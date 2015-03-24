@@ -1,3 +1,12 @@
 app:
     resource: @AppBundle/Controller/
     type:     annotation
+
+# The FrameworkBundle:Template:template controller can be used when you only
+# need to render a template without any variables.
+# See http://symfony.com/doc/current/cookbook/templating/render_without_controller.html
+homepage:
+    path: /
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template:    'default/homepage.html.twig'
