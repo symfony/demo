@@ -64,7 +64,7 @@ class BlogController extends Controller
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isValid()) {
             $post->setSlug($this->get('slugger')->slugify($post->getTitle()));
 
             $em = $this->getDoctrine()->getManager();
@@ -115,7 +115,7 @@ class BlogController extends Controller
 
         $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
+        if ($editForm->isValid()) {
             $post->setSlug($this->get('slugger')->slugify($post->getTitle()));
             $em->flush();
 

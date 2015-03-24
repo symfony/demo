@@ -67,7 +67,7 @@ class BlogController extends Controller
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isValid()) {
             /** @var Comment $comment */
             $comment = $form->getData();
             $comment->setAuthorEmail($this->getUser()->getEmail());
