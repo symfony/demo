@@ -119,8 +119,7 @@ class BlogController extends Controller
             $post->setSlug($this->get('slugger')->slugify($post->getTitle()));
             $em->flush();
 
-            return $this->redirect('admin_post_edit', array('id' => $post->getId()));
-            return $this->redirectToUrl('admin_post_edit', array('id' => $post->getId()));
+            return $this->redirectToRoute('admin_post_edit', array('id' => $post->getId()));
         }
 
         return $this->render('admin/blog/edit.html.twig', array(
