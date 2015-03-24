@@ -17,6 +17,7 @@ Then, download and install the Symfony Demo Application executing this command
 anywhere in your system:
 
 ```bash
+# NOTE: this command doesn't work yet. It will be added to the installer soon.
 $ symfony demo
 ```
 
