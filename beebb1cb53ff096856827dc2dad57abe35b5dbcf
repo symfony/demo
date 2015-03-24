@@ -1,0 +1,22 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-03-24T16:06:05Z
+
+I fully agree with you: `Default` is not a great name ... but in my opinion, `Static` is much worse than `Default`. In the programming world, the `static` word implies a lot of things that have nothing to do with the purpose of this controller or the related templates. HTML pages are static, but Twig templates, PHP controllers, Symfony routing, etc. are not static.
+
+However, I do like two things from your PR:
+
+  * Rename `indexAction()` to `homepageAction()`
+  * Render the `homepage.html.twig` without a controller. That would be a great example to showcase this feature.
+
+---------------------------------------------------------------------------
+
+by WouterJ at 2015-03-24T16:09:34Z
+
+Well, the template is a static template. That's why we called it a StaticController, it just renders static pages (it could be a simple HTML template instead of twig). I'll update it with your suggestions.
+
+---------------------------------------------------------------------------
+
+by WouterJ at 2015-03-24T16:20:28Z
+
+Updated to use the template controller. While I really don't like it, I've reverted the rename. :crying_cat_face:
