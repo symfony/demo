@@ -1,0 +1,205 @@
+/*!
+ *  Symfony Demo Application by @symfony
+ *  License: MIT License
+ */
+
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+@import "bootstrap/flatly-theme/variables";
+
+//
+// Typography
+// --------------------------------------------------
+
+p, ul, ol {
+    font-size: $font-size-large;
+    margin-bottom: 1.5em;
+}
+
+li {
+    margin-bottom: .5em;
+}
+
+// Code
+code {
+    background: $gray-lighter;
+    color: $brand-primary;
+}
+
+//
+// Icons
+// --------------------------------------------------
+
+i {
+    margin-right: .25em;
+}
+
+//
+// Page elements
+// --------------------------------------------------
+
+// Header
+header {
+    margin-bottom: 2em;
+
+    ul.nav li {
+        margin-bottom: 0;
+    }
+}
+
+// Body contents
+.body-container {
+    // needed to prevent pages with a very small height
+    min-height: 600px;
+
+    #main h1,
+    #main h2 {
+        margin-top: 0;
+    }
+}
+
+// Sidebar
+#sidebar {
+    .section {
+        margin-bottom: 2em;
+    }
+
+    p {
+        font-size: $font-size-base;
+
+        & + p {
+            margin: 1.5em 0 0;
+        }
+    }
+}
+
+// Footer
+footer {
+    background: $gray-lighter;
+    margin-top: 2em;
+    padding-top: 2em;
+    padding-bottom: 2em;
+
+    p {
+        color: $gray-dark;
+        font-size: $font-size-small;
+        margin-bottom: .25em;
+    }
+
+    #footer-resources {
+        text-align: right;
+
+        i {
+            color: $gray-dark;
+            font-size: 1.5 * $font-size-large;
+            margin-left: .5em;
+        }
+    }
+}
+
+// Source Code Modal Window
+#sourceCodeModal {
+    h3 {
+        font-size: $font-size-large;
+        margin-top: 0;
+
+        small {
+            color: $gray-dark;
+            font-size: 80%;
+        }
+    }
+
+    pre {
+        margin-bottom: 2em;
+        padding: 0;
+    }
+}
+
+//
+// Forms
+// --------------------------------------------------
+
+// Form errors
+.form-error {
+    ul {
+        color: #FFF;
+        margin-bottom: 0;
+    }
+}
+
+//
+// Page: 'homepage'
+// --------------------------------------------------
+body#homepage {
+    text-align: center;
+}
+
+//
+// Page: 'login'
+// --------------------------------------------------
+body#login {
+}
+
+//
+// Page: 'blog_index'
+// --------------------------------------------------
+body#blog_index {
+    h1 {
+        margin-bottom: .5em;
+    }
+
+    article.post {
+        margin-bottom: 3em;
+    }
+}
+
+//
+// Page: 'blog_post_show'
+// --------------------------------------------------
+body#blog_post_show {
+    h3 {
+        margin-bottom: .75em;
+    }
+
+    #post-add-comment {
+        margin: 2em 0;
+
+        p {
+            margin-bottom: 0;
+
+            a.btn {
+                margin-right: .5em;
+            }
+        }
+    }
+
+    .post-comment {
+        margin-bottom: 2em;
+
+        h4 {
+            font-size: $font-size-small;
+            line-height: $line-height-base;
+            margin-top: 0;
+
+            strong {
+                display: block;
+            }
+        }
+    }
+}
+
+//
+// Page: 'comment_form_error'
+// --------------------------------------------------
+body#comment_form_error {
+    h1.text-danger {
+        color: #E74C3C;
+        margin-bottom: 1em;
+    }
+}
+
+//
+// Page: 'admin_post_show'
+// --------------------------------------------------
+body#admin_post_show {
+}

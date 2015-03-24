@@ -1,0 +1,42 @@
+security:
+    encoders:
+        # Our use class and the algorithm we'll use to encode passwords
+        # http://symfony.com/doc/current/book/security.html#encoding-the-user-s-password
+        AppBundle\Entity\User: bcrypt
+
+    providers:
+        # in this example, users are stored via Doctrine in the database
+        # To see the users at src/AppBundle/DataFixtures/ORM/LoadFixtures.php
+        # To load users from somewhere else: http://symfony.com/doc/current/cookbook/security/custom_provider.html
+        database_users:
+            entity: { class: AppBundle:User, property: username }
+
+    # http://symfony.com/doc/current/book/security.html#firewalls-authentication
+    firewalls:
+        secured_area:
+            # this firewall applies to all URLs
+            pattern: ^/
+
+            # but the firewall does not require login on every page
+            # denying access is done in access_control or in your controllers
+            anonymous: true
+
+            # This allows the user to login by submitting a username and password
+            # Reference: http://symfony.com/doc/current/cookbook/security/form_login.html
+            form_login:
+                # The route name that the login form submits to
+                check_path: security_login_check
+                # The name of the route where the login form lives
+                # When the user tries to access a protected page, they are redirected here
+                login_path: security_login_form
+
+            logout:
+                # The route name the user can go to in order to logout
+                path: security_logout
+                # The name of the route to redirect to after logging out
+                target: homepage
+
+    access_control:
+        # this is a catch-all for the admin area
+        # additional security lives in the controllers
+        - { path: ^/admin, roles: ROLE_ADMIN }

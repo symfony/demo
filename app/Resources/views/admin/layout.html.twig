@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {# this 'parent()' function allows to maintain any stylesheet previously
+       included from 'base.html.twig' simplifying style management #}
+    {{ parent() }}
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/admin.css') }}">
+{% endblock %}
+
+{% block header_navigation_links %}
+    <li>
+        <a href="{{ path('admin_post_index') }}">
+            <i class="fa fa-list-alt"></i> Post List
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('blog_index') }}">
+            <i class="fa fa-home"></i> Back to blog
+        </a>
+    </li>
+{% endblock %}

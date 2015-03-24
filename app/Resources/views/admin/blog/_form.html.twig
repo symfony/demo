@@ -1,0 +1,12 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+
+    <input type="submit" value="{{ button_label|default("Create post") }}"
+           class="{{ button_css|default("btn btn-primary") }}" />
+
+    {% if include_back_to_home_link is not defined or include_back_to_home_link == true %}
+        <a href="{{ path('admin_post_index') }}" class="btn btn-link">
+            Back to the post list
+        </a>
+    {% endif %}
+{{ form_end(form) }}

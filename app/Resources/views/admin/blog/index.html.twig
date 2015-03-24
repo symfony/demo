@@ -1,0 +1,50 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block body_id 'admin_post_index' %}
+
+{% block main %}
+    <h1>{{ 'title.post_list'|trans }}</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th><i class="fa fa-user"></i> Author</th>
+                <th><i class="fa fa-calendar"></i> Published At</th>
+                <th><i class="fa fa-cogs"></i> Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for post in posts %}
+            <tr>
+                <td>{{ post.title }}</td>
+                <td>{{ post.authorEmail }}</td>
+                <td>{% if post.publishedAt %}{{ post.publishedAt|date('Y-m-d H:i') }}{% endif %}</td>
+                <td>
+                    <a href="{{ path('admin_post_show', { id: post.id }) }}" class="btn btn-sm btn-default">
+                        {{ 'action.show'|trans }}
+                    </a>
+
+                    {% if post.isAuthor(app.user) %}
+                        <a href="{{ path('admin_post_edit', { id: post.id }) }}" class="btn btn-sm btn-primary">
+                            <i class="fa fa-edit"></i> {{ 'action.edit'|trans }}
+                        </a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block sidebar %}
+    <div class="section actions">
+        <a href="{{ path('admin_post_new') }}" class="btn btn-lg btn-block btn-success">
+            <i class="fa fa-plus"></i> {{ 'action.create_post'|trans }}
+        </a>
+    </div>
+
+    {{ parent() }}
+
+    {{ show_source_code(_self) }}
+{% endblock %}

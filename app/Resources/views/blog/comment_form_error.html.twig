@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'comment_form_error' %}
+
+{% block main %}
+    <h1 class="text-danger">There was an error publishing your comment</h1>
+
+    <div class="well">
+        {{ include('blog/comment_form.html.twig') }}
+    </div>
+{% endblock %}

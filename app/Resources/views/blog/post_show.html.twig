@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'blog_post_show' %}
+
+{% block main %}
+    <h1>{{ post.title }}</h1>
+
+    {{ post.content|md2html }}
+
+    <div id="post-add-comment" class="well">
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            {{ render(controller('AppBundle:Blog:_commentForm', { 'id': post.id })) }}
+        {% else %}
+            <p>
+                <a class="btn btn-success" href="{{ path('security_login_form') }}">
+                    <i class="fa fa-sign-in"></i> Sign in
+                </a>
+                to publish a comment.
+            </p>
+        {% endif %}
+    </div>
+
+    <h3>{{ post.comments|length }} comments</h3>
+
+    {% for comment in post.comments %}
+        <div class="row post-comment">
+            <h4 class="col-sm-3">
+                <strong>{{ comment.authorEmail }}</strong> commented on
+                <strong>{{ comment.publishedAt|date('M jS \\a\\t g:i a') }}</strong>
+            </h4>
+            <div class="col-sm-9">
+                {{ comment.content|md2html }}
+            </div>
+        </div>
+    {% else %}
+        <div class="post-comment">
+            <p>Be the first to comment on this post.</p>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block sidebar %}
+    {% if app.user and post.isAuthor(app.user) %}
+        <div class="section">
+            <a class="btn btn-lg btn-block btn-success" href="{{ path('admin_post_edit', { id: post.id }) }}">
+                <i class="fa fa-edit"></i> Edit post
+            </a>
+        </div>
+    {% endif %}
+
+    {# the parent() function includes the contents defined by the parent template
+      ('base.html.twig') for this block ('sidebar'). This is a very convenient way
+      to share common contents in different templates #}
+    {{ parent() }}
+
+    {{ show_source_code(_self) }}
+{% endblock %}

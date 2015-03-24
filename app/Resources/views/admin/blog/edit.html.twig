@@ -1,0 +1,27 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block body_id 'admin_post_edit' %}
+
+{% block main %}
+    <h1>Edit post #{{ post.id }}</h1>
+
+    {{ include('admin/blog/_form.html.twig', {
+        form: edit_form,
+        button_label: 'Save changes',
+    }, with_context = false) }}
+{% endblock %}
+
+{% block sidebar %}
+    <div class="section actions">
+        {{ include('admin/blog/_form.html.twig', {
+            form: delete_form,
+            button_label: 'Delete post',
+            button_css: 'btn btn-lg btn-block btn-danger',
+            include_back_to_home_link: false
+        }, with_context = false) }}
+    </div>
+
+    {{ parent() }}
+
+    {{ show_source_code(_self) }}
+{% endblock %}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Symfony Demo Application{% endblock %}</title>
+
+        {% block stylesheets %}
+        {# uncomment the following lines to compile SCSS assets with Assetic
+
+            {% stylesheets output="css/app.css"
+                "%kernel.root_dir%/Resources/assets/scss/bootstrap.scss"
+                "%kernel.root_dir%/Resources/assets/scss/font-awesome.scss"
+                "%kernel.root_dir%/Resources/assets/css/*.css"
+                "%kernel.root_dir%/Resources/assets/scss/main.scss"
+            %}
+                <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        #}
+
+            <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+
+    <body id="{% block body_id %}{% endblock %}">
+
+        {% block header %}
+            <header>
+                <div class="navbar navbar-default navbar-static-top" role="navigation">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="{{ path('homepage') }}">
+                                Symfony Demo Application
+                            </a>
+
+                            <button type="button" class="navbar-toggle"
+                                    data-toggle="collapse"
+                                    data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav navbar-right">
+                                {% block header_navigation_links %}
+                                    <li>
+                                        <a href="{{ path('blog_index') }}">
+                                            <i class="fa fa-home"></i> Homepage
+                                        </a>
+                                    </li>
+
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <li>
+                                            <a href="{{ path('admin_post_index') }}">
+                                                <i class="fa fa-lock"></i> Backend
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                {% endblock %}
+
+                                {% if app.user %}
+                                    <li>
+                                        <a href="{{ path('security_logout') }}">
+                                            <i class="fa fa-sign-out"></i> Logout
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        {% endblock %}
+
+        <div class="container body-container">
+            {% block body %}
+                <div class="row">
+                    <div id="main" class="col-sm-9">
+                        {% block main %}{% endblock %}
+                    </div>
+
+                    <div id="sidebar" class="col-sm-3">
+                        {% block sidebar %}
+                            <div class="section about">
+                                <div class="well well-lg">
+                                    <p>
+                                        This is a <strong>demo application</strong> built in the
+                                        Symfony Framework to illustrate the recommended way of
+                                        developing Symfony applications.
+                                    </p>
+                                    <p>
+                                        For more information, check out the
+                                        <a href="http://symfony.com/doc">Symfony Documentation</a>.
+                                    </p>
+                                </div>
+                            </div>
+                        {% endblock %}
+                    </div>
+                </div>
+            {% endblock %}
+        </div>
+
+        {% block footer %}
+            <footer>
+                <div class="container">
+                    <div class="row">
+                        <div id="footer-copyright" class="col-md-6">
+                            <p>&copy; {{ 'now'|date('Y') }} - The Symfony Project</p>
+                            <p>MIT License</p>
+                        </div>
+                        <div id="footer-resources" class="col-md-6">
+                            <p>
+                                <a href="https://twitter.com/symfony"><i class="fa fa-twitter"></i></a>
+                                <a href="https://www.facebook.com/SensioLabs"><i class="fa fa-facebook"></i></a>
+                                <a href="http://symfony.com/blog"><i class="fa fa-rss"></i></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        {% endblock %}
+
+        {% block javascripts %}
+        {# uncomment the following lines to compile JavaScript assets with Assetic
+            {% javascripts output="js/app.js"
+                "%kernel.root_dir%/Resources/assets/js/jquery-2.1.3.min.js"
+                "%kernel.root_dir%/Resources/assets/js/bootstrap-3.3.4.min.js"
+                "%kernel.root_dir%/Resources/assets/js/highlight.pack.js" %}
+                <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        #}
+
+            <script src="{{ asset('js/app.js') }}"></script>
+
+            <script>
+                $(document).ready(function() {
+                    hljs.initHighlightingOnLoad();
+                });
+            </script>
+        {% endblock %}
+
+    </body>
+</html>
