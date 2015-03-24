@@ -37,7 +37,7 @@ $ cd symfony-demo/
 $ composer install
 ```
 
-Make sure you (install Composer)[http://getcomposer.org/download/] before
+Make sure you [install Composer](http://getcomposer.org/download/) before
 running this.
 
 Usage
@@ -55,8 +55,7 @@ This will start a web server that's accessible at http://localhost:8000.
 It will just sit and wait forever, so don't expect it to finish. You can
 quit it later when you want by pressing `ctrl + c`.
 
-**NOTE**
-
+    **NOTE**
     If you're using PHP 5.3, configure your web server to point at the `web/`
     directory of the project. For more details, see:
     http://symfony.com/doc/current/cookbook/configuration/web_server_configuration.html
