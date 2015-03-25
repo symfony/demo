@@ -60,6 +60,7 @@ class BlogController extends Controller
     public function newAction(Request $request)
     {
         $post = new Post();
+        $post->setAuthorEmail($this->getUser()->getEmail());
         $form = $this->createForm(new PostType(), $post);
 
         $form->handleRequest($request);
