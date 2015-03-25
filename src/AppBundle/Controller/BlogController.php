@@ -97,7 +97,7 @@ class BlogController extends Controller
      *
      * @return Response
      */
-    public function _commentFormAction(Post $post)
+    public function commentFormAction(Post $post)
     {
         $form = $this->createCommentForm($post);
 

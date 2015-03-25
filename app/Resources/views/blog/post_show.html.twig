@@ -9,7 +9,7 @@
 
     <div id="post-add-comment" class="well">
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            {{ render(controller('AppBundle:Blog:_commentForm', { 'id': post.id })) }}
+            {{ render(controller('AppBundle:Blog:commentForm', { 'id': post.id })) }}
         {% else %}
             <p>
                 <a class="btn btn-success" href="{{ path('security_login_form') }}">
