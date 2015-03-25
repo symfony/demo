@@ -71,7 +71,7 @@ class BlogController extends Controller
             $em->persist($post);
             $em->flush();
 
-            return $this->redirectToRoute('admin_post_show', array('id' => $post->getId()));
+            return $this->redirectToRoute('admin_post_index');
         }
 
         return $this->render('admin/blog/new.html.twig', array(
