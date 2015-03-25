@@ -57,6 +57,11 @@ class SourceCodeExtension extends \Twig_Extension
 
     private function getControllerCode()
     {
+        // this happens for example for exceptions (404 errors, etc.)
+        if (null === $this->controller) {
+            return 'Not available';
+        }
+
         $className = get_class($this->controller[0]);
         $class = new \ReflectionClass($className);
         $method = $class->getMethod($this->controller[1]);
@@ -68,6 +73,11 @@ class SourceCodeExtension extends \Twig_Extension
 
     private function getControllerRelativePath()
     {
+        // this happens for example for exceptions (404 errors, etc.)
+        if (null === $this->controller) {
+            return '';
+        }
+
         $className = get_class($this->controller[0]);
         $class = new \ReflectionClass($className);
 

@@ -6988,6 +6988,10 @@ code {
   background: #ecf0f1;
   color: #2c3e50; }
 
+.text-danger,
+.text-danger:hover {
+  color: #E74C3C; }
+
 i {
   margin-right: .25em; }
 
@@ -7065,7 +7069,6 @@ body#blog_post_show .post-comment {
       display: block; }
 
 body#comment_form_error h1.text-danger {
-  color: #E74C3C;
   margin-bottom: 1em; }
 
 body#admin_post_index tbody td a.btn + a.btn {

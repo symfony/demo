@@ -26,6 +26,12 @@ code {
     color: $brand-primary;
 }
 
+// Text labels
+.text-danger,
+.text-danger:hover {
+    color: #E74C3C;
+}
+
 //
 // Icons
 // --------------------------------------------------
@@ -193,7 +199,6 @@ body#blog_post_show {
 // --------------------------------------------------
 body#comment_form_error {
     h1.text-danger {
-        color: #E74C3C;
         margin-bottom: 1em;
     }
 }
