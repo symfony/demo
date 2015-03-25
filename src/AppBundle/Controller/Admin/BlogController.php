@@ -149,7 +149,7 @@ class BlogController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('admin_post');
+        return $this->redirectToRoute('admin_post_index');
     }
 
     /**
