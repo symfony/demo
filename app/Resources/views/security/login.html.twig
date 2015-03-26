@@ -59,11 +59,24 @@
                 </tbody>
             </table>
 
-            <p>
-                If they don't work, reload your fixtures by running this command
-                from the terminal: <br/>
-                <code>$ php app/console doctrine:fixtures:load</code>
-            </p>
+            <div id="login-users-help" class="panel panel-default">
+                <div class="panel-body">
+                    <p>
+                        <span class="label label-success">NOTE</span>
+                        If these users don't work, reload application fixtures by
+                        running this command from the terminal: <br/>
+
+                        <code class="console">$ php app/console doctrine:fixtures:load</code>
+                    </p>
+
+                    <p>
+                        <span class="label label-success">TIP</span>
+                        If you want to create new users, run this other command: <br/>
+
+                        <code class="console">$ php app/console app:add-user</code>
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

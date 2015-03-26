@@ -7046,6 +7046,18 @@ footer {
 body#homepage {
   text-align: center; }
 
+body#login #login-users-help p {
+  font-size: 15px;
+  line-height: 1.42857; }
+  body#login #login-users-help p:last-child {
+    margin-bottom: 0; }
+  body#login #login-users-help p .label {
+    margin-right: 5px; }
+  body#login #login-users-help p .console {
+    display: block;
+    margin: 5px 0;
+    padding: 10px; }
+
 body#blog_index h1 {
   margin-bottom: .5em; }
 body#blog_index article.post {
