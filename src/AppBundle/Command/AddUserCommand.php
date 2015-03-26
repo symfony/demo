@@ -16,16 +16,24 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\Question;
 use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\User;
 
 /**
- * Creates users and stores them in the database
+ * A command console that creates users and stores them in the database.
+ * To use this command, open a terminal window, enter into your project
+ * directory and execute the following:
+ *   $ php app/console app:add-user
+ *
+ * See http://symfony.com/doc/current/cookbook/console/console_command.html
  *
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
 class AddUserCommand extends ContainerAwareCommand
 {
+    const MAX_ATTEMPTS = 5;
+
     /** @var ObjectManager */
     private $em;
     private $username;
@@ -38,34 +46,126 @@ class AddUserCommand extends ContainerAwareCommand
         $this
             ->setName('app:add-user')
             ->setDescription('Creates users and stores them in the database')
-            ->addArgument('username', InputArgument::REQUIRED, 'The username of the new user')
-            ->addArgument('password', InputArgument::REQUIRED, 'The plain password of the new user')
-            ->addArgument('email', InputArgument::REQUIRED, 'The email of the new user')
+            ->addArgument('username', InputArgument::OPTIONAL, 'The username of the new user')
+            ->addArgument('password', InputArgument::OPTIONAL, 'The plain password of the new user')
+            ->addArgument('email', InputArgument::OPTIONAL, 'The email of the new user')
             ->addOption('is-admin', null, InputOption::VALUE_NONE, 'If set, the user is created as an administrator')
         ;
     }
 
+    /**
+     * This method is executed before initialize() and execute(). Its purpose is
+     * to check if some of the options/arguments are missing ans interactively
+     * ask the user for those values.
+     *
+     * This method is completely optional. If you are developing an internal console
+     * command, you probably should not implement this method because it requires
+     * quite a lot of work. However, if the command is meant to be used by external
+     * users, this method is a nice way to fall back an prevent errors.
+     */
+    protected function interact(InputInterface $input, OutputInterface $output)
+    {
+        if (empty($input->hasArgument('username'))
+            && empty($input->hasArgument('password'))
+            && empty($input->hasArgument('email'))) {
+            return;
+        }
+
+        $output->writeln('');
+        $output->writeln('Add User Command Interactive Wizard');
+        $output->writeln('-----------------------------------');
+
+        $output->writeln(array(
+            '',
+            'If you prefer to not use this interactive wizard, provide the',
+            'arguments required by this command as follows:',
+            '',
+            ' $ php app/console app:add-user username password email@example.com',
+            '',
+        ));
+
+        $output->writeln(array(
+            '',
+            'Now we\'ll ask you for the value of all the missing command arguments.',
+            '',
+        ));
+
+        // See http://symfony.com/doc/current/components/console/helpers/questionhelper.html
+        $console = $this->getHelper('question');
+
+        // Ask for the username if it's not defined
+        if (null === $username = $input->getArgument('username')) {
+            $question = new Question(' > <info>Username</>: ');
+            $question->setValidator(function ($answer) {
+                if (empty($answer)) {
+                    throw new \RuntimeException('The username cannot be empty');
+                }
+
+                return $answer;
+            });
+            $question->setMaxAttempts(self::MAX_ATTEMPTS);
+
+            $username = $console->ask($input, $output, $question);
+            $input->setArgument('username', $username);
+        } else {
+            $output->writeln(' > <info>Username</>: '.$username);
+        }
+
+        // Ask for the password if it's not defined
+        if (null === $password = $input->getArgument('password')) {
+            $question = new Question(' > <info>Password</> (your type will be hidden): ');
+            $question->setValidator(array($this, 'passwordValidator'));
+            $question->setHidden(true);
+            $question->setMaxAttempts(self::MAX_ATTEMPTS);
+
+            $password = $console->ask($input, $output, $question);
+            $input->setArgument('password', $password);
+        } else {
+            $output->writeln(' > <info>Password</>: '.str_repeat('*', strlen($password)));
+        }
+
+        // Ask for the email if it's not defined
+        if (null === $email = $input->getArgument('email')) {
+            $question = new Question(' > <info>Email</>: ');
+            $question->setValidator(array($this, 'emailValidator'));
+            $question->setMaxAttempts(self::MAX_ATTEMPTS);
+
+            $email = $console->ask($input, $output, $question);
+            $input->setArgument('email', $email);
+        } else {
+            $output->writeln(' > <info>Email</>: '.$email);
+        }
+    }
+
+    /**
+     * This method is executed after the interacte() and before the execute()
+     * method. It's main purpose is to initialize the variables used in the rest
+     * of the command methods.
+     */
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
         $this->em = $this->getContainer()->get('doctrine')->getManager();
+    }
+
+    /**
+     * This method is executed after interact() and initialize(). It usually
+     * contains the logic to execute to complete this command task.
+     */
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        // first check if a user with the same username already exists
+        $existingUser = $this->em->getRepository('AppBundle:User')->findOneBy(array(
+            'username' => $username = $input->getArgument('username'),
+        ));
+
+        if (null !== $existingUser) {
+            throw new \RuntimeException(sprintf('There is already a user registered with the "%s" username.', $username));
+        }
 
         $this->username = $input->getArgument('username');
         $this->plainPassword = $input->getArgument('password');
         $this->email = $input->getArgument('email');
         $this->isAdmin = $input->getOption('is-admin');
-    }
-
-    protected function execute(InputInterface $input, OutputInterface $output)
-    {
-        // first check if a user with the same username already exists
-        $existingUser = $this->em->getRepository('AppBundle:User')->findOneBy(array(
-            'username' => $input->getArgument('username')
-        ));
-
-        if (null !== $existingUser) {
-            throw new \RuntimeException(sprintf('There is already a user registered with the "%s" username.', $this->username));
-
-        }
 
         // create the user and encode its password
         $user = new User();
@@ -81,6 +181,33 @@ class AddUserCommand extends ContainerAwareCommand
         $this->em->persist($user);
         $this->em->flush($user);
 
-        $output->writeln(sprintf('User was successfully created: %s (%s)', $user->getUsername(), $user->getEmail()));
+        $output->writeln('');
+        $output->writeln(sprintf('[OK] %s was successfully created: %s (%s)', $this->isAdmin ? 'Administrator user' : 'User', $user->getUsername(), $user->getEmail()));
+    }
+
+    public function passwordValidator($plainPassword)
+    {
+        if (empty($plainPassword)) {
+            throw new \Exception('The password can not be empty');
+        }
+
+        if (strlen(trim($plainPassword)) < 6) {
+            throw new \Exception('The password must be at least 6 characters long');
+        }
+
+        return $plainPassword;
+    }
+
+    public function emailValidator($email)
+    {
+        if (empty($email)) {
+            throw new \Exception('The email can not be empty');
+        }
+
+        if (false === strpos($email, '@')) {
+            throw new \Exception('The email should look like a real email');
+        }
+
+        return $email;
     }
 }
