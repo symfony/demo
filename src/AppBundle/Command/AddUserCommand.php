@@ -16,6 +16,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\User;
 
 /**
@@ -25,6 +26,13 @@ use AppBundle\Entity\User;
  */
 class AddUserCommand extends ContainerAwareCommand
 {
+    /** @var ObjectManager */
+    private $em;
+    private $username;
+    private $plainPassword;
+    private $email;
+    private $isAdmin;
+
     protected function configure()
     {
         $this
