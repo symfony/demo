@@ -55,7 +55,7 @@ class AddUserCommand extends ContainerAwareCommand
 
     /**
      * This method is executed before initialize() and execute(). Its purpose is
-     * to check if some of the options/arguments are missing ans interactively
+     * to check if some of the options/arguments are missing and interactively
      * ask the user for those values.
      *
      * This method is completely optional. If you are developing an internal console
