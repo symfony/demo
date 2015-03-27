@@ -39,10 +39,6 @@ class AddUserCommand extends ContainerAwareCommand
 
     /** @var ObjectManager */
     private $em;
-    private $username;
-    private $plainPassword;
-    private $email;
-    private $isAdmin;
 
     protected function configure()
     {
@@ -160,36 +156,34 @@ class AddUserCommand extends ContainerAwareCommand
     {
         $startTime = microtime(true);
 
+        $username = $input->getArgument('username');
+        $plainPassword = $input->getArgument('password');
+        $email = $input->getArgument('email');
+        $isAdmin = $input->getOption('is-admin');
+
         // first check if a user with the same username already exists
-        $existingUser = $this->em->getRepository('AppBundle:User')->findOneBy(array(
-            'username' => $username = $input->getArgument('username'),
-        ));
+        $existingUser = $this->em->getRepository('AppBundle:User')->findOneBy(array('username' => $username));
 
         if (null !== $existingUser) {
             throw new \RuntimeException(sprintf('There is already a user registered with the "%s" username.', $username));
         }
 
-        $this->username = $input->getArgument('username');
-        $this->plainPassword = $input->getArgument('password');
-        $this->email = $input->getArgument('email');
-        $this->isAdmin = $input->getOption('is-admin');
-
         // create the user and encode its password
         $user = new User();
-        $user->setUsername($this->username);
-        $user->setEmail($this->email);
-        $user->setRoles(array($this->isAdmin ? 'ROLE_ADMIN' : 'ROLE_USER'));
+        $user->setUsername($username);
+        $user->setEmail($email);
+        $user->setRoles(array($isAdmin ? 'ROLE_ADMIN' : 'ROLE_USER'));
 
         // See http://symfony.com/doc/current/book/security.html#security-encoding-password
         $encoder = $this->getContainer()->get('security.password_encoder');
-        $encodedPassword = $encoder->encodePassword($user, $this->plainPassword);
+        $encodedPassword = $encoder->encodePassword($user, $plainPassword);
         $user->setPassword($encodedPassword);
 
         $this->em->persist($user);
         $this->em->flush($user);
 
         $output->writeln('');
-        $output->writeln(sprintf('[OK] %s was successfully created: %s (%s)', $this->isAdmin ? 'Administrator user' : 'User', $user->getUsername(), $user->getEmail()));
+        $output->writeln(sprintf('[OK] %s was successfully created: %s (%s)', $isAdmin ? 'Administrator user' : 'User', $user->getUsername(), $user->getEmail()));
 
         if ($output->isVerbose()) {
             $finishTime = microtime(true);
