@@ -44,8 +44,12 @@ class AddUserCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
+            // a good practice is to use the 'app:' prefix to group all your custom application commands
             ->setName('app:add-user')
             ->setDescription('Creates users and stores them in the database')
+            ->setHelp($this->getCommandHelp())
+            // commands can optionally define arguments and/or options (mandatory and optional)
+            // see http://symfony.com/doc/current/components/console/console_arguments.html
             ->addArgument('username', InputArgument::OPTIONAL, 'The username of the new user')
             ->addArgument('password', InputArgument::OPTIONAL, 'The plain password of the new user')
             ->addArgument('email', InputArgument::OPTIONAL, 'The email of the new user')
@@ -209,5 +213,37 @@ class AddUserCommand extends ContainerAwareCommand
         }
 
         return $email;
+    }
+
+    /**
+     * The command help is usually included in the configure() method, but when
+     * it's too long, it's better to define a separate method to maintain the
+     * code readability.
+     */
+    public function getCommandHelp()
+    {
+        return <<<HELP
+The <info>%command.name%</info> command creates new users and saves them in the database:
+
+  <info>php %command.full_name%</info> <comment>username password email</comment>
+
+By default the command creates regular users. To create administrator users,
+add the <comment>--is-admin</comment> option:
+
+  <info>php %command.full_name%</info> username password email <comment>--is-admin</comment>
+
+If you omit any of the three required arguments, the command will ask you to
+provide the missing values:
+
+  # command will ask you for the email
+  <info>php %command.full_name%</info> <comment>username password</comment>
+
+  # command will ask you for the email and password
+  <info>php %command.full_name%</info> <comment>username</comment>
+
+  # command will ask you for all arguments
+  <info>php %command.full_name%</info>
+
+HELP;
     }
 }
