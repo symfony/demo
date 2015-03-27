@@ -26,6 +26,9 @@ use AppBundle\Entity\User;
  * directory and execute the following:
  *   $ php app/console app:add-user
  *
+ * To output detailed information, increase the command verbosity:
+ *   $ php app/console app:add-user -vv
+ *
  * See http://symfony.com/doc/current/cookbook/console/console_command.html
  *
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
@@ -69,9 +72,7 @@ class AddUserCommand extends ContainerAwareCommand
      */
     protected function interact(InputInterface $input, OutputInterface $output)
     {
-        if (empty($input->hasArgument('username'))
-            && empty($input->hasArgument('password'))
-            && empty($input->hasArgument('email'))) {
+        if (null !== $input->getArgument('username') && null !== $input->getArgument('password') && null !== $input->getArgument('email')) {
             return;
         }
 
@@ -142,7 +143,7 @@ class AddUserCommand extends ContainerAwareCommand
     }
 
     /**
-     * This method is executed after the interacte() and before the execute()
+     * This method is executed after the interact() and before the execute()
      * method. It's main purpose is to initialize the variables used in the rest
      * of the command methods.
      */
@@ -157,6 +158,8 @@ class AddUserCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $startTime = microtime(true);
+
         // first check if a user with the same username already exists
         $existingUser = $this->em->getRepository('AppBundle:User')->findOneBy(array(
             'username' => $username = $input->getArgument('username'),
@@ -187,6 +190,13 @@ class AddUserCommand extends ContainerAwareCommand
 
         $output->writeln('');
         $output->writeln(sprintf('[OK] %s was successfully created: %s (%s)', $this->isAdmin ? 'Administrator user' : 'User', $user->getUsername(), $user->getEmail()));
+
+        if ($output->isVerbose()) {
+            $finishTime = microtime(true);
+            $elapsedTime = $finishTime - $startTime;
+
+            $output->writeln(sprintf('[INFO] New user database id: %d / Elapsed time: %.2f ms', $user->getId(), $elapsedTime*1000));
+        }
     }
 
     public function passwordValidator($plainPassword)
