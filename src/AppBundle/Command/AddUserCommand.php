@@ -224,7 +224,7 @@ class AddUserCommand extends ContainerAwareCommand
      * it's too long, it's better to define a separate method to maintain the
      * code readability.
      */
-    public function getCommandHelp()
+    private function getCommandHelp()
     {
         return <<<HELP
 The <info>%command.name%</info> command creates new users and saves them in the database:
