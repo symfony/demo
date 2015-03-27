@@ -64,7 +64,7 @@ class AddUserCommand extends ContainerAwareCommand
      * This method is completely optional. If you are developing an internal console
      * command, you probably should not implement this method because it requires
      * quite a lot of work. However, if the command is meant to be used by external
-     * users, this method is a nice way to fall back an prevent errors.
+     * users, this method is a nice way to fall back and prevent errors.
      */
     protected function interact(InputInterface $input, OutputInterface $output)
     {
