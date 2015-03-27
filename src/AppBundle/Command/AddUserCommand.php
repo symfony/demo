@@ -193,6 +193,12 @@ class AddUserCommand extends ContainerAwareCommand
         }
     }
 
+    /**
+     * This internal method should be private, but it's declared as public to
+     * maintain PHP 5.3 compatibility when using it in a callback.
+     *
+     * @internal
+     */
     public function passwordValidator($plainPassword)
     {
         if (empty($plainPassword)) {
@@ -206,6 +212,12 @@ class AddUserCommand extends ContainerAwareCommand
         return $plainPassword;
     }
 
+    /**
+     * This internal method should be private, but it's declared as public to
+     * maintain PHP 5.3 compatibility when using it in a callback.
+     *
+     * @internal
+     */
     public function emailValidator($email)
     {
         if (empty($email)) {
