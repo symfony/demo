@@ -144,6 +144,24 @@ body#homepage {
 // Page: 'login'
 // --------------------------------------------------
 body#login {
+    #login-users-help p {
+        font-size: $font-size-base;
+        line-height: $line-height-base;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        .label {
+            margin-right: 5px;
+        }
+
+        .console {
+            display: block;
+            margin: 5px 0;
+            padding: 10px;
+        }
+    }
 }
 
 //
