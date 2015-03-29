@@ -24,10 +24,12 @@ use AppBundle\Entity\User;
  * A command console that creates users and stores them in the database.
  * To use this command, open a terminal window, enter into your project
  * directory and execute the following:
- *   $ php app/console app:add-user
+ *
+ *     $ php app/console app:add-user
  *
  * To output detailed information, increase the command verbosity:
- *   $ php app/console app:add-user -vv
+ *
+ *     $ php app/console app:add-user -vv
  *
  * See http://symfony.com/doc/current/cookbook/console/console_command.html
  *
@@ -72,10 +74,12 @@ class AddUserCommand extends ContainerAwareCommand
             return;
         }
 
+        // multi-line messages can be displayed this way...
         $output->writeln('');
         $output->writeln('Add User Command Interactive Wizard');
         $output->writeln('-----------------------------------');
 
+        // ...but you can also pass an array of strings to the writeln() method
         $output->writeln(array(
             '',
             'If you prefer to not use this interactive wizard, provide the',
@@ -95,8 +99,9 @@ class AddUserCommand extends ContainerAwareCommand
         $console = $this->getHelper('question');
 
         // Ask for the username if it's not defined
-        if (null === $username = $input->getArgument('username')) {
-            $question = new Question(' > <info>Username</>: ');
+        $username = $input->getArgument('username');
+        if (null === $username) {
+            $question = new Question(' > <info>Username</info>: ');
             $question->setValidator(function ($answer) {
                 if (empty($answer)) {
                     throw new \RuntimeException('The username cannot be empty');
@@ -109,12 +114,13 @@ class AddUserCommand extends ContainerAwareCommand
             $username = $console->ask($input, $output, $question);
             $input->setArgument('username', $username);
         } else {
-            $output->writeln(' > <info>Username</>: '.$username);
+            $output->writeln(' > <info>Username</info>: '.$username);
         }
 
         // Ask for the password if it's not defined
-        if (null === $password = $input->getArgument('password')) {
-            $question = new Question(' > <info>Password</> (your type will be hidden): ');
+        $password = $input->getArgument('password');
+        if (null === $password) {
+            $question = new Question(' > <info>Password</info> (your type will be hidden): ');
             $question->setValidator(array($this, 'passwordValidator'));
             $question->setHidden(true);
             $question->setMaxAttempts(self::MAX_ATTEMPTS);
@@ -122,26 +128,27 @@ class AddUserCommand extends ContainerAwareCommand
             $password = $console->ask($input, $output, $question);
             $input->setArgument('password', $password);
         } else {
-            $output->writeln(' > <info>Password</>: '.str_repeat('*', strlen($password)));
+            $output->writeln(' > <info>Password</info>: '.str_repeat('*', strlen($password)));
         }
 
         // Ask for the email if it's not defined
-        if (null === $email = $input->getArgument('email')) {
-            $question = new Question(' > <info>Email</>: ');
+        $email = $input->getArgument('email');
+        if (null === $email) {
+            $question = new Question(' > <info>Email</info>: ');
             $question->setValidator(array($this, 'emailValidator'));
             $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
             $email = $console->ask($input, $output, $question);
             $input->setArgument('email', $email);
         } else {
-            $output->writeln(' > <info>Email</>: '.$email);
+            $output->writeln(' > <info>Email</info>: '.$email);
         }
     }
 
     /**
-     * This method is executed after the interact() and before the execute()
-     * method. It's main purpose is to initialize the variables used in the rest
-     * of the command methods.
+     * This method is executed before the interact() and the execute() methods.
+     * It's main purpose is to initialize the variables used in the rest of the
+     * command methods.
      */
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
