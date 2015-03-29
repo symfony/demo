@@ -31,8 +31,10 @@ class BlogControllerTest extends WebTestCase
         $client = static::createClient();
         $crawler = $client->request('GET', '/blog/');
 
-        $this->assertEquals(Post::NUM_ITEMS, $crawler->filter('article.post')->count(),
-            'The homepage displayes the right number of posts'
+        $this->assertCount(
+            Post::NUM_ITEMS,
+            $crawler->filter('article.post'),
+            'The homepage displays the right number of posts.'
         );
     }
 }
