@@ -19,11 +19,10 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  * See http://symfony.com/doc/current/best_practices/tests.html#functional-tests.
  *
  * Execute the application tests using this command (requires PHPUnit to be installed):
- * $ cd your-symfony-project/
- * $ phpunit -c app
  *
- * @author Ryan Weaver <weaverryan@gmail.com>
- * @author Javier Eguiluz <javier.eguiluz@gmail.com>
+ *     $ cd your-symfony-project/
+ *     $ phpunit -c app
+ *
  */
 class DefaultControllerTest extends WebTestCase
 {
