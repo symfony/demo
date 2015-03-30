@@ -12,28 +12,76 @@
 namespace AppBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use AppBundle\Entity\Post;
 
 /**
- * Functional test for the DefaultController methods.
- * See http://symfony.com/doc/current/book/testing.html#functional-tests
+ * Functional test that implements a "smoke test" of all the public and secure
+ * URLs of the application.
+ * See http://symfony.com/doc/current/best_practices/tests.html#functional-tests.
  *
  * Execute the application tests using this command (requires PHPUnit to be installed):
- * $ cd your-symfony-project/
- * $ phpunit -c app
  *
- * @author Ryan Weaver <weaverryan@gmail.com>
- * @author Javier Eguiluz <javier.eguiluz@gmail.com>
+ *     $ cd your-symfony-project/
+ *     $ phpunit -c app
+ *
  */
 class DefaultControllerTest extends WebTestCase
 {
-    public function testIndex()
+    /**
+     * PHPUnit's data providers allow to execute the same tests repeated times
+     * using a different set of data each time.
+     * See http://symfony.com/doc/current/cookbook/form/unit_testing.html#testing-against-different-sets-of-data.
+     *
+     * @dataProvider getPublicUrls
+     */
+    public function testPublicUrls($url)
     {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/blog/');
+        $client = self::createClient();
+        $client->request('GET', $url);
 
-        $this->assertEquals(Post::NUM_ITEMS, $crawler->filter('article.post')->count(),
-            'The homepage displayes the right number of posts'
+        $this->assertTrue(
+            $client->getResponse()->isSuccessful(),
+            sprintf('The %s public URL loads correctly.', $url)
+        );
+    }
+
+    /**
+     * The application contains a lot of secure URLs which shouldn't be
+     * publicly accessible. This tests ensures that whenever a user tries to
+     * access one of those pages, a redirection to the login form is performed.
+     *
+     * @dataProvider getSecureUrls
+     */
+    public function testSecureUrls($url)
+    {
+        $client = self::createClient();
+        $client->request('GET', $url);
+
+        $this->assertTrue($client->getResponse()->isRedirect());
+
+        $this->assertEquals(
+            'http://localhost/login',
+            $client->getResponse()->getTargetUrl(),
+            sprintf('The %s secure URL redirects to the login form.', $url)
+        );
+    }
+
+    public function getPublicUrls()
+    {
+        return array(
+            array('/'),
+            array('/blog/'),
+            array('/blog/posts/morbi-tempus-commodo-mattis'),
+            array('/login'),
+        );
+    }
+
+    public function getSecureUrls()
+    {
+        return array(
+            array('/admin/post/'),
+            array('/admin/post/new'),
+            array('/admin/post/1'),
+            array('/admin/post/1/edit'),
         );
     }
 }

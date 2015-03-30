@@ -18,11 +18,10 @@ use AppBundle\Utils\Slugger;
  * See http://symfony.com/doc/current/book/testing.html#unit-tests
  *
  * Execute the application tests using this command (requires PHPUnit to be installed):
- * $ cd your-symfony-project/
- * $ phpunit -c app
  *
- * @author Ryan Weaver <weaverryan@gmail.com>
- * @author Javier Eguiluz <javier.eguiluz@gmail.com>
+ *     $ cd your-symfony-project/
+ *     $ phpunit -c app
+ *
  */
 class SluggerTest extends \PHPUnit_Framework_TestCase
 {
