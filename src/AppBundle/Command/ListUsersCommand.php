@@ -30,7 +30,9 @@ use Symfony\Component\Console\Output\BufferedOutput;
  */
 class ListUsersCommand extends ContainerAwareCommand
 {
-    /** @var ObjectManager */
+    /**
+     * @var ObjectManager
+     */
     private $em;
 
     protected function configure()
@@ -87,10 +89,13 @@ HELP
             return array($user->getId(), $user->getUsername(), $user->getEmail(), implode(', ', $user->getRoles()));
         }, $users);
 
-        // Instead of the common output type, this command uses the BufferedOutput
-        // type, which allows to get the contents before displaying them in the
-        // console. You probably should never use this kind of output, because it's
-        // only suited for very special use cases, like the one proposed by this command
+        // In your console commands you should always use the regular output type,
+        // which outputs contents directly in the console window. However, this
+        // particular command uses the BufferedOutput type instead.
+        // The reason is that the table displaying the list of users can be sent
+        // via email if the '--send-to' option is provided. Instead of complicating
+        // things, the BufferedOutput allows to get the command output and store
+        // it in a variable before displaying it.
         $bufferedOutput = new BufferedOutput();
 
         $table = new Table($bufferedOutput);
@@ -125,7 +130,7 @@ HELP
             ->setSubject(sprintf('app:list-users report (%s)', date('Y-m-d H:i:s')))
             ->setFrom($this->getContainer()->getParameter('app.notifications.email_sender'))
             ->setTo($recipient)
-            ->setBody(sprintf('<pre>%s</pre>', $contents), 'text/html')
+            ->setBody($contents, 'text/plain')
         ;
 
         $mailer->send($message);
