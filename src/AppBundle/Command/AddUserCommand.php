@@ -39,7 +39,9 @@ class AddUserCommand extends ContainerAwareCommand
 {
     const MAX_ATTEMPTS = 5;
 
-    /** @var ObjectManager */
+    /**
+     * @var ObjectManager
+     */
     private $em;
 
     protected function configure()
