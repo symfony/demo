@@ -45,6 +45,11 @@ class BlogController extends Controller
 
     /**
      * @Route("/posts/{slug}", name="blog_post")
+     *
+     * NOTE: The $post controller argument is automatically injected by Symfony
+     * after performing a database query looking for a Post with the 'slug'
+     * value given in the route.
+     * See http://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html
      */
     public function postShowAction(Post $post)
     {
@@ -54,12 +59,13 @@ class BlogController extends Controller
     /**
      * @Route("/comment/{postSlug}/new", name = "comment_new")
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     *
      * @Method("POST")
-     *
-     * NOTE: The following ParamConverter mapping is required because the route parameter
-     * (postSlug) doesn't match any of the Doctrine entity properties (slug):
-     *
      * @ParamConverter("post", options={"mapping": {"postSlug": "slug"}})
+     *
+     * NOTE: The ParamConverter mapping is required because the route parameter
+     * (postSlug) doesn't match any of the Doctrine entity properties (slug).
+     * See http://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html#doctrine-converter
      */
     public function commentNewAction(Request $request, Post $post)
     {
@@ -88,10 +94,12 @@ class BlogController extends Controller
     }
 
     /**
-     * Called via the render() function in Twig.
+     * This controller is called directly via the render() function in the
+     * blog/post_show.html.twig template. That's why it's not needed to define
+     * a route name for it.
      *
      * The "id" of the Post is passed in and then turned into a Post object
-     * by the ParamConverter.
+     * automatically by the ParamConverter.
      *
      * @param Post $post
      *
@@ -107,6 +115,11 @@ class BlogController extends Controller
         ));
     }
 
+    /**
+     * This is a utility method used to create comment forms. It's recommended
+     * to not define this kind of methods in a controller class, but sometimes
+     * is convenient for defining small methods.
+     */
     private function createCommentForm()
     {
         $form = $this->createForm(new CommentType());

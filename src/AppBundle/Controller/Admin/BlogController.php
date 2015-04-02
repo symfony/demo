@@ -56,6 +56,11 @@ class BlogController extends Controller
      * Creates a new Post entity.
      *
      * @Route("/new", name="admin_post_new")
+     * @Method({"GET", "POST"})
+     *
+     * NOTE: the Method annotation is optional, but it's a recommended practice
+     * to constraint the HTTP methods each controller responds to (by default
+     * it responds to all methods).
      */
     public function newAction(Request $request)
     {
@@ -84,12 +89,12 @@ class BlogController extends Controller
     /**
      * Finds and displays a Post entity.
      *
-     * @Route("/{id}", name="admin_post_show")
+     * @Route("/{id}", requirements={"id" = "\d+"}, name="admin_post_show")
      * @Method("GET")
      * @Security("post.isAuthor(user)")
      *
-     *      NOTE:   You can also centralize security logic by using a "voter"
-     *              http://symfony.com/doc/current/cookbook/security/voters_data_permission.html
+     * NOTE: You can also centralize security logic by using a "voter"
+     * See http://symfony.com/doc/current/cookbook/security/voters_data_permission.html
      */
     public function showAction(Post $post)
     {
@@ -104,7 +109,8 @@ class BlogController extends Controller
     /**
      * Displays a form to edit an existing Post entity.
      *
-     * @Route("/{id}/edit", name="admin_post_edit")
+     * @Route("/{id}/edit", requirements={"id" = "\d+"}, name="admin_post_edit")
+     * @Method({"GET", "POST"})
      * @Security("post.isAuthor(user)")
      */
     public function editAction(Post $post, Request $request)
@@ -136,6 +142,10 @@ class BlogController extends Controller
      * @Route("/{id}", name="admin_post_delete")
      * @Method("DELETE")
      * @Security("post.isAuthor(user)")
+     *
+     * The Security annotation value is an expression (if it evaluates to false,
+     * the authorization mechanism will prevent the user accessing this resource).
+     * The isAuthor() method is defined in the AppBundle\Entity\Post entity.
      */
     public function deleteAction(Request $request, Post $post)
     {
@@ -154,6 +164,12 @@ class BlogController extends Controller
 
     /**
      * Creates a form to delete a Post entity by id.
+     *
+     * This is necessary because browsers don't support HTTP methods different
+     * from GET and POST. Since the controller that removes the blog posts expects
+     * a DELETE method, the trick is to create a simple form that *fakes* the
+     * HTTP DELETE method.
+     * See http://symfony.com/doc/current/cookbook/routing/method_parameters.html.
      *
      * @param Post $post The post object
      *
