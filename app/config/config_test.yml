@@ -14,3 +14,10 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+
+# this configuration simplifies testing URLs protected by the security mechanism
+# See http://symfony.com/doc/current/cookbook/testing/http_authentication.html
+security:
+    firewalls:
+        secured_area:
+            http_basic: ~
