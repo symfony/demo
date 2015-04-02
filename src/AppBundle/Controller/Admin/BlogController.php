@@ -168,10 +168,12 @@ class BlogController extends Controller
     }
 
     /**
-     * Creates a form to delete a Post entity by id. This is necessary because
-     * browsers don't support HTTP methods different from GET and POST. Since the
-     * controller that removes the blog posts expects a DELETE method, the trick
-     * is to create a simple form that *fakes* the HTTP DELETE method.
+     * Creates a form to delete a Post entity by id.
+     *
+     * This is necessary because browsers don't support HTTP methods different
+     * from GET and POST. Since the controller that removes the blog posts expects
+     * a DELETE method, the trick is to create a simple form that *fakes* the
+     * HTTP DELETE method.
      * See http://symfony.com/doc/current/cookbook/routing/method_parameters.html.
      *
      * @param Post $post The post object
