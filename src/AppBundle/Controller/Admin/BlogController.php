@@ -43,7 +43,6 @@ class BlogController extends Controller
      *
      * @Route("/", name="admin_index")
      * @Route("/", name="admin_post_index")
-     *
      * @Method("GET")
      */
     public function indexAction()
@@ -57,7 +56,6 @@ class BlogController extends Controller
      * Creates a new Post entity.
      *
      * @Route("/new", name="admin_post_new")
-     *
      * @Method({"GET", "POST"})
      *
      * NOTE: the Method annotation is optional, but it's a recommended practice
@@ -92,7 +90,6 @@ class BlogController extends Controller
      * Finds and displays a Post entity.
      *
      * @Route("/{id}", requirements={"id" = "\d+"}, name="admin_post_show")
-     *
      * @Method("GET")
      * @Security("post.isAuthor(user)")
      *
@@ -113,7 +110,6 @@ class BlogController extends Controller
      * Displays a form to edit an existing Post entity.
      *
      * @Route("/{id}/edit", requirements={"id" = "\d+"}, name="admin_post_edit")
-     *
      * @Method({"GET", "POST"})
      * @Security("post.isAuthor(user)")
      */
@@ -144,7 +140,6 @@ class BlogController extends Controller
      * Deletes a Post entity.
      *
      * @Route("/{id}", name="admin_post_delete")
-     *
      * @Method("DELETE")
      * @Security("post.isAuthor(user)")
      *
