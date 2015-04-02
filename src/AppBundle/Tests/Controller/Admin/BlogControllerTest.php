@@ -41,11 +41,7 @@ class BlogControllerTest extends WebTestCase
 
         $client->request('GET', '/admin/post/');
 
-        $this->assertEquals(
-            Response::HTTP_FORBIDDEN,
-            $client->getResponse()->getStatusCode(),
-            'Regular users cannot access to the backend.'
-        );
+        $this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
     }
 
     public function testAdministratorUsersCanAccessToTheBackend()
@@ -57,11 +53,7 @@ class BlogControllerTest extends WebTestCase
 
         $client->request('GET', '/admin/post/');
 
-        $this->assertEquals(
-            Response::HTTP_OK,
-            $client->getResponse()->getStatusCode(),
-            'Regular users cannot access to the backend.'
-        );
+        $this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
     }
 
     public function testIndex()
