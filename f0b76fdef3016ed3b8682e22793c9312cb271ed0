@@ -1,0 +1,25 @@
+---------------------------------------------------------------------------
+
+by stof at 2015-04-02T10:04:50Z
+
+should we really commit the test DB ? The day you write a functional test for non-safe requests, this will hurt you
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-04-02T10:34:20Z
+
+Yes, I think we should commit the test DB to meet our promise: *"everything works perfectly out-of-the-box"*. ("everything" means frontend, backend and tests ... and "out-of-the-box" means: 0 questions to answer, 0 options to provide, 0 commands to execute and 0 config changes).
+
+---------------------------------------------------------------------------
+
+by stof at 2015-04-02T10:39:41Z
+
+@javiereguiluz we also recommend following best practices. and commiting a DB does not look like a best practice. It can hurt your workflow quickly (you will also need to update it when changing your doctrine schema btw, which may create wunky git conflicts because of being a binary file).
+
+A much better setup IMO is making the test self-contained by making it load the necessary content in the test DB.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-04-02T10:53:17Z
+
+I understand you now. You are right. We'll load the fixtures dynamically in the test in a future pull request. But before I'm waiting for this old Symfony doc issue to be completed: https://github.com/symfony/symfony-docs/issues/480  but it seems nobody wants to work on it :(
