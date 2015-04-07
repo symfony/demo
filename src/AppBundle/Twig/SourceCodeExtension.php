@@ -50,7 +50,7 @@ class SourceCodeExtension extends \Twig_Extension
         return $twig->render('default/_source_code.html.twig', array(
             'controller_source_code' => $this->getControllerCode(),
             'controller_file_path'   => $this->getControllerRelativePath(),
-            'template_source_code'   => htmlspecialchars($this->getTemplateCode(), ENT_QUOTES, 'UTF-8'),
+            'template_source_code'   => $this->getTemplateCode(),
             'template_file_path'     => $this->getTemplateRelativePath(),
         ));
     }
