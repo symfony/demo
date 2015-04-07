@@ -93,6 +93,14 @@ class SourceCodeExtension extends \Twig_Extension
         return $this->loader->getSource($this->template->getTemplateName());
     }
 
+    /**
+     * The logic implemented in this method is solely developed for the Symfony
+     * Demo application and cannot be used as a general purpose solution.
+     * Specifically, this logic won't work for templates that use a namespaced path
+     * (e.g. @WebProfiler/Collector/time.html.twig) or any loader different from
+     * Twig_Loader_Filesystem (e.g. TwigBundle:Exception:exception.txt.twig notation
+     * or an anonymous template created by the {% embed %} tag).
+     */
     private function getTemplateRelativePath()
     {
         return 'app/Resources/views/'.$this->template->getTemplateName();
