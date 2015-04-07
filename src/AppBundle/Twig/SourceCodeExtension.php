@@ -95,7 +95,7 @@ class SourceCodeExtension extends \Twig_Extension
 
     private function getTemplateRelativePath()
     {
-        return 'app'.DIRECTORY_SEPARATOR.'Resources'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.$this->template->getTemplateName();
+        return 'app/Resources/views/'.$this->template->getTemplateName();
     }
 
     // the name of the Twig extension must be unique in the application
