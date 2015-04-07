@@ -82,8 +82,8 @@ class SourceCodeExtension extends \Twig_Extension
         $class = new \ReflectionClass($className);
 
         $absolutePath = $class->getFilename();
-        $pathParts = explode('/src/', $absolutePath);
-        $relativePath = 'src/'.$pathParts[1];
+        $pathParts = explode(DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR, $absolutePath);
+        $relativePath = 'src'.DIRECTORY_SEPARATOR.$pathParts[1];
 
         return $relativePath;
     }
