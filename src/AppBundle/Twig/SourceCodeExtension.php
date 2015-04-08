@@ -66,9 +66,11 @@ class SourceCodeExtension extends \Twig_Extension
         $class = new \ReflectionClass($className);
         $method = $class->getMethod($this->controller[1]);
 
-        $code = file($class->getFilename());
+        $classCode = file($class->getFilename());
+        $methodCode = array_slice($classCode, $method->getStartline() - 1, $method->getEndLine() - $method->getStartline() + 1);
+        $controllerCode = '    '.$method->getDocComment()."\n".implode('', $methodCode);
 
-        return '    '.$method->getDocComment()."\n".implode('', array_slice($code, $method->getStartline() - 1, $method->getEndLine() - $method->getStartline() + 1));
+        return $this->unindentCode($controllerCode);
     }
 
     private function getControllerRelativePath()
@@ -104,6 +106,32 @@ class SourceCodeExtension extends \Twig_Extension
     private function getTemplateRelativePath()
     {
         return 'app/Resources/views/'.$this->template->getTemplateName();
+    }
+
+    /**
+     * Utility method that "unindents" the given $code when all its lines start
+     * with a tabulation of four white spaces.
+     *
+     * @param  string $code
+     * @return string
+     */
+    private function unindentCode($code)
+    {
+        $formattedCode = '';
+        $codeLines = explode("\n", $code);
+
+        $indentedLines = array_filter($codeLines, function ($lineOfCode) {
+            return '' === $lineOfCode || '    ' === substr($lineOfCode, 0, 4);
+        });
+
+        if (count($indentedLines) === count($codeLines)) {
+            $formattedCode = array_map(function ($lineOfCode) { return substr($lineOfCode, 4); }, $codeLines);
+            $formattedCode = implode("\n", $formattedCode);
+        } else {
+            $formattedCode = $code;
+        }
+
+        return $formattedCode;
     }
 
     // the name of the Twig extension must be unique in the application
