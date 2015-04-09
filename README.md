@@ -7,14 +7,9 @@ to develop Symfony applications following the recommended best practices.
 Installation
 ------------
 
-This is a fully-functional Symfony project. If you want to get it running,
-you have two alternatives:
-
-### A) Using the Symfony Installer
-
-First, install the [Symfony Installer](https://github.com/symfony/symfony-installer).
-Then, download and install the Symfony Demo Application executing this command
-anywhere in your system:
+First, install the [Symfony Installer](https://github.com/symfony/symfony-installer)
+if you haven't already. Then, install the Symfony Demo Application executing
+this command anywhere in your system:
 
 ```bash
 $ symfony demo
@@ -23,23 +18,17 @@ $ symfony demo
 $ php symfony demo
 ```
 
-### B) Using Git
+If the `demo` command is not available, update your Symfony Installer to the
+most recent version executing the `symfony self-update` command.
 
-Alternatively, you can clone this repository using Git. Open up a terminal and
-execute the following command:
-
-```bash
-$ git clone https://github.com/symfony/symfony-demo
-````
-
-Next, [install Composer](http://symfony.com/doc/current/cookbook/composer.html)
-(if you haven't done this already), move into the project and use Composer to
-download the application dependencies:
-
-```bash
-$ cd symfony-demo/
-$ composer install
-```
+> **NOTE**
+>
+> If you can't use the Symfony Installer, download and install the demo
+> application using Git and Composer:
+>
+>     $ git clone https://github.com/symfony/symfony-demo
+>     $ cd symfony-demo/
+>     $ composer install
 
 Usage
 -----
