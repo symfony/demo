@@ -8,6 +8,7 @@
     },
     "require": {
         "php"                                  : ">=5.3.3",
+        "ext-pdo_sqlite"                       : "*",
         "doctrine/doctrine-bundle"             : "~1.2",
         "doctrine/doctrine-fixtures-bundle"    : "~2.2",
         "doctrine/orm"                         : "~2.2,>=2.2.3",
