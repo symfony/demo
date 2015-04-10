@@ -1,0 +1,11 @@
+---------------------------------------------------------------------------
+
+by weaverryan at 2015-04-09T13:45:09Z
+
+@javiereguiluz should it be ext-pdo_sqlite (since the extension is called `pdo_sqlite`)? I haven't needed to add an ext- before, so I thought I'd make the easy suggestion first :).
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-04-09T13:53:17Z
+
+@weaverryan that was exactly the problem! Everything works now. Thanks!
