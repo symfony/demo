@@ -6988,10 +6988,6 @@ code {
   background: #ecf0f1;
   color: #2c3e50; }
 
-.text-danger,
-.text-danger:hover {
-  color: #e74c3c; }
-
 i {
   margin-right: .25em; }
 
@@ -7039,34 +7035,12 @@ footer {
   margin-bottom: 2em;
   padding: 0; }
 
-.form-group.has-error .form-control {
-  border-color: #e74c3c; }
-
-.form-group.has-error .control-label {
-  color: #e74c3c; }
-
-.form-group.has-error .help-block {
-  background-color: #e74c3c;
+.form-error ul {
   color: #FFF;
-  font-size: 15px;
-  padding: 1em; }
-  .form-group.has-error .help-block ul {
-    margin-bottom: 0; }
+  margin-bottom: 0; }
 
 body#homepage {
   text-align: center; }
-
-body#login #login-users-help p {
-  font-size: 15px;
-  line-height: 1.42857; }
-  body#login #login-users-help p:last-child {
-    margin-bottom: 0; }
-  body#login #login-users-help p .label {
-    margin-right: 5px; }
-  body#login #login-users-help p .console {
-    display: block;
-    margin: 5px 0;
-    padding: 10px; }
 
 body#blog_index h1 {
   margin-bottom: .5em; }
@@ -7091,9 +7065,5 @@ body#blog_post_show .post-comment {
       display: block; }
 
 body#comment_form_error h1.text-danger {
+  color: #E74C3C;
   margin-bottom: 1em; }
-
-body#admin_post_index .item-actions {
-  white-space: nowrap; }
-  body#admin_post_index .item-actions a.btn + a.btn {
-    margin-left: 4px; }
