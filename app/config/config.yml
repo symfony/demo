@@ -35,9 +35,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
-    form:
-        resources:
-            - "bootstrap_3_layout.html.twig"
+    form_themes:
+        - "bootstrap_3_layout.html.twig"
 
 # Assetic Configuration (used for managing web assets: CSS, JavaScript, Sass, etc.)
 assetic:
