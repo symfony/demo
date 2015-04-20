@@ -6990,7 +6990,7 @@ code {
 
 .text-danger,
 .text-danger:hover {
-  color: #E74C3C; }
+  color: #e74c3c; }
 
 i {
   margin-right: .25em; }
@@ -7039,9 +7039,19 @@ footer {
   margin-bottom: 2em;
   padding: 0; }
 
-.form-error ul {
+.form-group.has-error .form-control {
+  border-color: #e74c3c; }
+
+.form-group.has-error .control-label {
+  color: #e74c3c; }
+
+.form-group.has-error .help-block {
+  background-color: #e74c3c;
   color: #FFF;
-  margin-bottom: 0; }
+  font-size: 15px;
+  padding: 1em; }
+  .form-group.has-error .help-block ul {
+    margin-bottom: 0; }
 
 body#homepage {
   text-align: center; }

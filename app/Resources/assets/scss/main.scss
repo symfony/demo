@@ -29,7 +29,7 @@ code {
 // Text labels
 .text-danger,
 .text-danger:hover {
-    color: #E74C3C;
+    color: $brand-danger;
 }
 
 //
@@ -126,9 +126,19 @@ footer {
 // --------------------------------------------------
 
 // Form errors
-.form-error {
+.form-group.has-error .form-control {
+    border-color: $brand-danger;
+}
+.form-group.has-error .control-label {
+    color: $brand-danger;
+}
+.form-group.has-error .help-block {
+    background-color: $brand-danger;
+    color: #FFF;
+    font-size: $font-size-base;
+    padding: 1em;
+
     ul {
-        color: #FFF;
         margin-bottom: 0;
     }
 }
