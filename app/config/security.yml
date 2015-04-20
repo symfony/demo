@@ -1,6 +1,6 @@
 security:
     encoders:
-        # Our use class and the algorithm we'll use to encode passwords
+        # Our user class and the algorithm we'll use to encode passwords
         # http://symfony.com/doc/current/book/security.html#encoding-the-user-s-password
         AppBundle\Entity\User: bcrypt
 
