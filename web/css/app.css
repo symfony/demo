@@ -7093,5 +7093,7 @@ body#blog_post_show .post-comment {
 body#comment_form_error h1.text-danger {
   margin-bottom: 1em; }
 
-body#admin_post_index tbody td a.btn + a.btn {
-  margin-left: 4px; }
+body#admin_post_index .item-actions {
+  white-space: nowrap; }
+  body#admin_post_index .item-actions a.btn + a.btn {
+    margin-left: 4px; }
