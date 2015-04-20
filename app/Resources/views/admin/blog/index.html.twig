@@ -21,15 +21,17 @@
                 <td>{{ post.authorEmail }}</td>
                 <td>{% if post.publishedAt %}{{ post.publishedAt|date('Y-m-d H:i') }}{% endif %}</td>
                 <td>
-                    <a href="{{ path('admin_post_show', { id: post.id }) }}" class="btn btn-sm btn-default">
-                        {{ 'action.show'|trans }}
-                    </a>
-
-                    {% if post.isAuthor(app.user) %}
-                        <a href="{{ path('admin_post_edit', { id: post.id }) }}" class="btn btn-sm btn-primary">
-                            <i class="fa fa-edit"></i> {{ 'action.edit'|trans }}
+                    <div class="item-actions">
+                        <a href="{{ path('admin_post_show', { id: post.id }) }}" class="btn btn-sm btn-default">
+                            {{ 'action.show'|trans }}
                         </a>
-                    {% endif %}
+
+                        {% if post.isAuthor(app.user) %}
+                            <a href="{{ path('admin_post_edit', { id: post.id }) }}" class="btn btn-sm btn-primary">
+                                <i class="fa fa-edit"></i> {{ 'action.edit'|trans }}
+                            </a>
+                        {% endif %}
+                    </div>
                 </td>
             </tr>
         {% endfor %}

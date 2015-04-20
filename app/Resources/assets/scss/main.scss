@@ -235,7 +235,9 @@ body#comment_form_error {
 // Page: 'admin_post_index'
 // --------------------------------------------------
 body#admin_post_index {
-    tbody td {
+    .item-actions {
+        white-space: nowrap;
+
         a.btn + a.btn {
             margin-left: 4px;
         }
