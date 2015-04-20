@@ -152,7 +152,7 @@ class BlogController extends Controller
         $form = $this->createDeleteForm($post);
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
             $em->remove($post);
