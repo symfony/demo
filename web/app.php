@@ -1,5 +1,11 @@
 <?php
 
+// This is the front controller used when executing the application in the
+// production environment ('prod'). See
+//
+//   * http://symfony.com/doc/current/cookbook/configuration/front_controllers_and_kernel.html
+//   * http://symfony.com/doc/current/cookbook/configuration/environments.html
+
 use Symfony\Component\ClassLoader\ApcClassLoader;
 use Symfony\Component\HttpFoundation\Request;
 
