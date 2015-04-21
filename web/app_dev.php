@@ -6,7 +6,6 @@
 //   * http://symfony.com/doc/current/cookbook/configuration/front_controllers_and_kernel.html
 //   * http://symfony.com/doc/current/cookbook/configuration/environments.html
 
-
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Debug\Debug;
 
