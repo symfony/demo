@@ -7,12 +7,9 @@ to develop Symfony applications following the recommended best practices.
 Requirements
 ------------
 
-You must have PDO-SQLite php extension enabled.
-
-```bash
-$ sudo aptitude install php5-sqlite
-
-```
+  * PHP 5.3;
+  * PDO-SQLite PHP extension enabled;
+  * and the [usual Symfony application requirements](http://symfony.com/doc/current/reference/requirements.html).
 
 Installation
 ------------
