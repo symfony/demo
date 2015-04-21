@@ -4,6 +4,16 @@ Symfony Demo Application
 The "Symfony Demo Application" is a reference application created to show how
 to develop Symfony applications following the recommended best practices.
 
+Requirements
+------------
+
+You must have PDO-SQLite php extension enabled.
+
+```bash
+$ sudo aptitude install php5-sqlite
+
+```
+
 Installation
 ------------
 
