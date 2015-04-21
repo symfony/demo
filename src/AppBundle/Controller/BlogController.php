@@ -69,7 +69,7 @@ class BlogController extends Controller
      */
     public function commentNewAction(Request $request, Post $post)
     {
-        $form = $this->createCommentForm($post);
+        $form = $this->createCommentForm();
 
         $form->handleRequest($request);
 
@@ -107,7 +107,7 @@ class BlogController extends Controller
      */
     public function commentFormAction(Post $post)
     {
-        $form = $this->createCommentForm($post);
+        $form = $this->createCommentForm();
 
         return $this->render('blog/comment_form.html.twig', array(
             'post' => $post,
@@ -116,7 +116,7 @@ class BlogController extends Controller
     }
 
     /**
-     * This is a utility method used to create comment forms. It's recommended
+     * This is an utility method used to create comment forms. It's recommended
      * to not define this kind of methods in a controller class, but sometimes
      * is convenient for defining small methods.
      */
