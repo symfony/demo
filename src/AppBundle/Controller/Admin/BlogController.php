@@ -70,6 +70,10 @@ class BlogController extends Controller
 
         $form->handleRequest($request);
 
+        // the isSubmitted() method is completely optional because the other
+        // isValid() method already checks whether the form is submitted.
+        // However, we explicitly add it to improve code readability.
+        // See http://symfony.com/doc/current/best_practices/forms.html#handling-form-submits
         if ($form->isSubmitted() && $form->isValid()) {
             $post->setSlug($this->get('slugger')->slugify($post->getTitle()));
 
