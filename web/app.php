@@ -15,8 +15,8 @@ $loader = require_once __DIR__.'/../app/bootstrap.php.cache';
 // lines to use APC for class autoloading. This can improve application performance
 // very significantly. See http://symfony.com/doc/current/components/class_loader/cache_class_loader.html#apcclassloader
 //
-// NOTE: The first argument of ApcClassLoader() is a prefix that will be used to
-// prevent cache key conflicts. In a real Symfony application, make sure to change
+// NOTE: The first argument of ApcClassLoader() is the prefix used to prevent
+// cache key conflicts. In a real Symfony application, make sure to change
 // it to a value that it's unique in the web server. A common practice is to use
 // the domain name associated to the Symfony application (e.g. 'example_com').
 //
@@ -29,26 +29,15 @@ require_once __DIR__.'/../app/AppKernel.php';
 $kernel = new AppKernel('prod', false);
 $kernel->loadClassCache();
 
+// If you use HTTP Cache to improve application performance, uncomment the following lines:
+// See http://symfony.com/doc/current/book/http_cache.html#symfony-reverse-proxy
+//
+// require_once __DIR__.'/../app/AppCache.php';
+// $kernel = new AppCache($kernel);
+// Request::enableHttpMethodParameterOverride();
+
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();
 
 $kernel->terminate($request, $response);
-
-// If you use HTTP Cache to improve application performance, comment the previous
-// lines (from 21st to 30th line) and uncomment the following lines:
-// See http://symfony.com/doc/current/book/http_cache.html#symfony-reverse-proxy
-//
-// require_once __DIR__.'/../app/AppKernel.php';
-// require_once __DIR__.'/../app/AppCache.php';
-
-// $kernel = new AppKernel('prod', false);
-// $kernel->loadClassCache();
-// $kernel = new AppCache($kernel);
-// Request::enableHttpMethodParameterOverride();
-
-// $request = Request::createFromGlobals();
-// $response = $kernel->handle($request);
-// $response->send();
-
-// $kernel->terminate($request, $response);
