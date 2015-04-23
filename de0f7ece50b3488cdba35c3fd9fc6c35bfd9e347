@@ -1,0 +1,13 @@
+---------------------------------------------------------------------------
+
+by stof at 2015-04-21T12:00:08Z
+
+Given that enabling the HttpCache only adds a few more lines but does not remove any of the previous lines, and that the new lines can be grouped together (it is totally fine to require the AppCache class only after instantiating the AppKernel), what about removing the need to comment all previous lines and uncomment the same lines later ? Using the HttpCache only requires adding 2 or 3 lines in the front controller (depending on whether you want to enable the method override or no).
+
+IMO, the current way only makes things harder for the user.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-04-21T12:55:43Z
+
+@stof you are right. I've simplified everything in e03d177 following your comments. Thanks.
