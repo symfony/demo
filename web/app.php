@@ -34,6 +34,10 @@ $kernel->loadClassCache();
 //
 // require_once __DIR__.'/../app/AppCache.php';
 // $kernel = new AppCache($kernel);
+
+// If you use HTTP Cache and your application relies on the _method request parameter
+// to get the intended HTTP method, uncomment this line.
+// See http://symfony.com/doc/current/reference/configuration/framework.html#http-method-override
 // Request::enableHttpMethodParameterOverride();
 
 $request = Request::createFromGlobals();
