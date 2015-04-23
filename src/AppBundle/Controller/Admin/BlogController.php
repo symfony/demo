@@ -52,6 +52,7 @@ class BlogController extends Controller
 
         return $this->render('admin/blog/index.html.twig', array('posts' => $posts));
     }
+    
     /**
      * Creates a new Post entity.
      *
