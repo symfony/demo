@@ -29,6 +29,9 @@ security:
                 # The name of the route where the login form lives
                 # When the user tries to access a protected page, they are redirected here
                 login_path: security_login_form
+                # Secure the login form against CSRF
+                # Reference: http://symfony.com/doc/current/cookbook/security/csrf_in_login_form.html
+                csrf_provider: security.csrf.token_manager
 
             logout:
                 # The route name the user can go to in order to logout
