@@ -116,7 +116,7 @@ class BlogController extends Controller
     }
 
     /**
-     * This is an utility method used to create comment forms. It's recommended
+     * This is a utility method used to create comment forms. It's recommended
      * to not define this kind of methods in a controller class, but sometimes
      * is convenient for defining small methods.
      */
