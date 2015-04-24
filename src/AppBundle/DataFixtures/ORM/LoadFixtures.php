@@ -20,7 +20,9 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Defines the sample data to load in the database when executing this command:
+ * Defines the sample data to load in the database when running the unit and
+ * functional tests. Execute this command to load the data:
+ *
  *   $ php app/console doctrine:fixtures:load
  *
  * See http://symfony.com/doc/current/bundles/DoctrineFixturesBundle/index.html

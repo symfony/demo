@@ -22,6 +22,11 @@ use AppBundle\Entity\Post;
 /**
  * Controller used to manage blog contents in the backend.
  *
+ * Please note that the application backend is developed manually for learning
+ * purposes. However, in your real Symfony application you should use any of the
+ * existing bundles that let you generate ready-to-use backends without effort.
+ * See http://knpbundles.com/keyword/admin
+ *
  * @Route("/admin/post")
  * @Security("has_role('ROLE_ADMIN')")
  *
@@ -52,7 +57,7 @@ class BlogController extends Controller
 
         return $this->render('admin/blog/index.html.twig', array('posts' => $posts));
     }
-    
+
     /**
      * Creates a new Post entity.
      *
