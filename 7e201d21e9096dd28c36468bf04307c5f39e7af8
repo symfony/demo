@@ -1,0 +1,34 @@
+---------------------------------------------------------------------------
+
+by stof at 2015-04-24T07:55:53Z
+
+:+1:
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-04-24T08:07:42Z
+
+@xelaris thanks for taking care of this important feature.
+
+I have a proposal about this line:
+
+```twig
+<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+```
+
+The current login form doesn't use `form_start()` and `form_end()` tags because when we developed the form, the best practice was to NOT use those tags. We changed that practice and now we DO recomment to use those tags.
+
+Given that adding the CSRF hidden field manually is extremely rare (at least in my case), what do you think if we remove this field and rely instead on `form_end()` tag?
+
+---------------------------------------------------------------------------
+
+by stof at 2015-04-24T08:31:27Z
+
+@javiereguiluz the login form is not rendered using the Symfony Form system (using it is overkill given you don't care about the form binding at all). so your suggestion does not work.
+And this is precisely one of the valid use cases for the ``csrf_token`` function.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-04-24T08:46:16Z
+
+@stof You are right! Let's merge this PR then.
