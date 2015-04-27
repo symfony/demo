@@ -11,6 +11,10 @@ imports:
 
 # Basic configuration for the Symfony framework features
 framework:
+    # uncomment the 'ide' option to turn file paths into clickable links that
+    # open the given file path and line number using your favorite IDE.
+    # Supported values are 'textmate', 'macvim', 'emacs' and 'sublime'
+    # ide: sublime
     # esi:             ~
     translator:      { fallback: "%locale%" }
     secret:          "%secret%"

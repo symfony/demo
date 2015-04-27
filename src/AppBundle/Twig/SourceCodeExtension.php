@@ -25,10 +25,14 @@ class SourceCodeExtension extends \Twig_Extension
     protected $loader;
     protected $controller;
     protected $template;
+    protected $kernelRootDir;
+    protected $fileLinkFormat;
 
-    public function __construct(\Twig_LoaderInterface $loader)
+    public function __construct(\Twig_LoaderInterface $loader, $kernelRootDir, $fileLinkFormat)
     {
+        $this->kernelRootDir = $kernelRootDir;
         $this->loader = $loader;
+        $this->fileLinkFormat = $fileLinkFormat ?: ini_get('xdebug.file_link_format') ?: get_cfg_var('xdebug.file_link_format');
     }
 
     public function setController($controller)
@@ -49,9 +53,9 @@ class SourceCodeExtension extends \Twig_Extension
 
         return $twig->render('default/_source_code.html.twig', array(
             'controller_source_code' => $this->getControllerCode(),
-            'controller_file_path'   => $this->getControllerRelativePath(),
+            'controller_file_path'   => $this->getControllerFilePath(),
             'template_source_code'   => $this->getTemplateCode(),
-            'template_file_path'     => $this->getTemplateRelativePath(),
+            'template_file_path'     => $this->getTemplateFilePath(),
         ));
     }
 
@@ -73,7 +77,7 @@ class SourceCodeExtension extends \Twig_Extension
         return $this->unindentCode($controllerCode);
     }
 
-    private function getControllerRelativePath()
+    private function getControllerFilePath()
     {
         // this happens for example for exceptions (404 errors, etc.)
         if (null === $this->controller) {
@@ -82,12 +86,15 @@ class SourceCodeExtension extends \Twig_Extension
 
         $className = get_class($this->controller[0]);
         $class = new \ReflectionClass($className);
+        $method = $class->getMethod($this->controller[1]);
 
+        $projectBaseDir = realpath($this->kernelRootDir.'/..');
         $absolutePath = $class->getFilename();
-        $pathParts = explode(DIRECTORY_SEPARATOR.'src'.DIRECTORY_SEPARATOR, $absolutePath);
-        $relativePath = 'src'.DIRECTORY_SEPARATOR.$pathParts[1];
+        $relativePath = ltrim(str_replace($projectBaseDir, '', $absolutePath), DIRECTORY_SEPARATOR);
 
-        return $relativePath;
+        $fileLink = strtr($this->fileLinkFormat, array('%f' => $absolutePath, '%l' => $method->getStartline()));
+
+        return empty($fileLink) ? $relativePath : new \Twig_Markup(sprintf('<a href="%s">%s</a>', $fileLink, $relativePath), 'UTF-8');
     }
 
     private function getTemplateCode()
@@ -103,9 +110,15 @@ class SourceCodeExtension extends \Twig_Extension
      * Twig_Loader_Filesystem (e.g. TwigBundle:Exception:exception.txt.twig notation
      * or an anonymous template created by the {% embed %} tag).
      */
-    private function getTemplateRelativePath()
+    private function getTemplateFilePath()
     {
-        return 'app/Resources/views/'.$this->template->getTemplateName();
+        $projectBaseDir = realpath($this->kernelRootDir.'/..');
+        $absolutePath = $this->kernelRootDir.'/Resources/views/'.$this->template->getTemplateName();
+        $relativePath = ltrim(str_replace($projectBaseDir, '', $absolutePath), DIRECTORY_SEPARATOR);
+
+        $fileLink = strtr($this->fileLinkFormat, array('%f' => $absolutePath, '%l' => 1));
+
+        return empty($fileLink) ? $relativePath : new \Twig_Markup(sprintf('<a href="%s">%s</a>', $fileLink, $relativePath), 'UTF-8');
     }
 
     /**
