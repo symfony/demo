@@ -20,7 +20,7 @@ services:
 
     app.twig.source_code_extension:
         class:     AppBundle\Twig\SourceCodeExtension
-        arguments: ["@twig.loader"]
+        arguments: ["@twig.loader", "%kernel.root_dir%", "%templating.helper.code.file_link_format%"]
         tags:
             - { name: twig.extension }
 
