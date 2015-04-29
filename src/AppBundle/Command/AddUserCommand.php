@@ -64,6 +64,9 @@ class AddUserCommand extends ContainerAwareCommand
      * This method is executed before the interact() and the execute() methods.
      * It's main purpose is to initialize the variables used in the rest of the
      * command methods.
+     *
+     * Beware that the input options and arguments are validated after executing
+     * the interact() method, so you can't blindly trust their values in this method.
      */
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
