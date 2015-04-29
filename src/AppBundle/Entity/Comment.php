@@ -43,7 +43,7 @@ class Comment
 
     /**
      * @ORM\Column(type="text")
-     * @assert\NotBlank(message="Please don't leave your comment blank!")
+     * @Assert\NotBlank(message="Please don't leave your comment blank!")
      * @Assert\Length(
      *     min = "5",
      *     minMessage = "Comment is too short ({{ limit }} characters minimum)",
