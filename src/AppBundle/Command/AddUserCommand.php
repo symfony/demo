@@ -61,8 +61,21 @@ class AddUserCommand extends ContainerAwareCommand
     }
 
     /**
-     * This method is executed before initialize() and execute(). Its purpose is
-     * to check if some of the options/arguments are missing and interactively
+     * This method is executed before the interact() and the execute() methods.
+     * It's main purpose is to initialize the variables used in the rest of the
+     * command methods.
+     *
+     * Beware that the input options and arguments are validated after executing
+     * the interact() method, so you can't blindly trust their values in this method.
+     */
+    protected function initialize(InputInterface $input, OutputInterface $output)
+    {
+        $this->em = $this->getContainer()->get('doctrine')->getManager();
+    }
+
+    /**
+     * This method is executed after initialize() and before execute(). Its purpose
+     * is to check if some of the options/arguments are missing and interactively
      * ask the user for those values.
      *
      * This method is completely optional. If you are developing an internal console
@@ -145,16 +158,6 @@ class AddUserCommand extends ContainerAwareCommand
         } else {
             $output->writeln(' > <info>Email</info>: '.$email);
         }
-    }
-
-    /**
-     * This method is executed before the interact() and the execute() methods.
-     * It's main purpose is to initialize the variables used in the rest of the
-     * command methods.
-     */
-    protected function initialize(InputInterface $input, OutputInterface $output)
-    {
-        $this->em = $this->getContainer()->get('doctrine')->getManager();
     }
 
     /**
