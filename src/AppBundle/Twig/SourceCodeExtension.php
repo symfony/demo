@@ -52,18 +52,16 @@ class SourceCodeExtension extends \Twig_Extension
         $this->template = $template;
 
         return $twig->render('default/_source_code.html.twig', array(
-            'controller_source_code' => $this->getControllerCode(),
-            'controller_file_path'   => $this->getControllerFilePath(),
-            'template_source_code'   => $this->getTemplateCode(),
-            'template_file_path'     => $this->getTemplateFilePath(),
+            'controller' => $this->getController(),
+            'template'   => $this->getTemplate(),
         ));
     }
 
-    private function getControllerCode()
+    private function getController()
     {
         // this happens for example for exceptions (404 errors, etc.)
         if (null === $this->controller) {
-            return 'Not available';
+            return;
         }
 
         $className = get_class($this->controller[0]);
@@ -74,51 +72,22 @@ class SourceCodeExtension extends \Twig_Extension
         $methodCode = array_slice($classCode, $method->getStartline() - 1, $method->getEndLine() - $method->getStartline() + 1);
         $controllerCode = '    '.$method->getDocComment()."\n".implode('', $methodCode);
 
-        return $this->unindentCode($controllerCode);
+        return array(
+            'file_path' => $class->getFilename(),
+            'starting_line' => $method->getStartline(),
+            'source_code' => $this->unindentCode($controllerCode)
+        );
     }
 
-    private function getControllerFilePath()
+    private function getTemplate()
     {
-        // this happens for example for exceptions (404 errors, etc.)
-        if (null === $this->controller) {
-            return '';
-        }
+        $templateName = $this->template->getTemplateName();
 
-        $className = get_class($this->controller[0]);
-        $class = new \ReflectionClass($className);
-        $method = $class->getMethod($this->controller[1]);
-
-        $projectBaseDir = realpath($this->kernelRootDir.'/..');
-        $absolutePath = $class->getFilename();
-        $relativePath = ltrim(str_replace($projectBaseDir, '', $absolutePath), DIRECTORY_SEPARATOR);
-
-        $fileLink = strtr($this->fileLinkFormat, array('%f' => $absolutePath, '%l' => $method->getStartline()));
-
-        return empty($fileLink) ? $relativePath : new \Twig_Markup(sprintf('<a href="%s">%s</a>', $fileLink, $relativePath), 'UTF-8');
-    }
-
-    private function getTemplateCode()
-    {
-        return $this->loader->getSource($this->template->getTemplateName());
-    }
-
-    /**
-     * The logic implemented in this method is solely developed for the Symfony
-     * Demo application and cannot be used as a general purpose solution.
-     * Specifically, this logic won't work for templates that use a namespaced path
-     * (e.g. @WebProfiler/Collector/time.html.twig) or any loader different from
-     * Twig_Loader_Filesystem (e.g. TwigBundle:Exception:exception.txt.twig notation
-     * or an anonymous template created by the {% embed %} tag).
-     */
-    private function getTemplateFilePath()
-    {
-        $projectBaseDir = realpath($this->kernelRootDir.'/..');
-        $absolutePath = $this->kernelRootDir.'/Resources/views/'.$this->template->getTemplateName();
-        $relativePath = ltrim(str_replace($projectBaseDir, '', $absolutePath), DIRECTORY_SEPARATOR);
-
-        $fileLink = strtr($this->fileLinkFormat, array('%f' => $absolutePath, '%l' => 1));
-
-        return empty($fileLink) ? $relativePath : new \Twig_Markup(sprintf('<a href="%s">%s</a>', $fileLink, $relativePath), 'UTF-8');
+        return array(
+            'file_path' => $this->kernelRootDir.'/Resources/views/'.$templateName,
+            'starting_line' => 1,
+            'source_code' => $this->loader->getSource($templateName),
+        );
     }
 
     /**
