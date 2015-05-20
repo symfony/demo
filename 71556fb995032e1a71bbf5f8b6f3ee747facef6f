@@ -1,0 +1,17 @@
+---------------------------------------------------------------------------
+
+by stof at 2015-04-30T13:21:44Z
+
+Btw, you could use the ``|format_file`` filter available in Symfony, which handles building the link whenever possible. It would be better than reimplementing the logic yourselves
+
+---------------------------------------------------------------------------
+
+by stof at 2015-05-09T16:17:55Z
+
+@javiereguiluz ping
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-05-18T08:11:33Z
+
+I've updated this PR to use the `format_file` filter and to simplify everything else.
