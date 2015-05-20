@@ -27,11 +27,16 @@
                 </div>
 
                 <div class="modal-body">
-                    <h3>Controller code <small class="pull-right">{{ controller_file_path }}</small></h3>
-                    <pre><code class="php">{{ controller_source_code }}</code></pre>
+                    {% if controller %}
+                        <h3>Controller code <small class="pull-right">{{ controller.file_path|format_file(controller.starting_line) }}</small></h3>
+                        <pre><code class="php">{{ controller.source_code }}</code></pre>
+                    {% else %}
+                        <h3>Controller code</h3>
+                        <pre><code>Not available</code></pre>
+                    {% endif %}
 
-                    <h3>Twig template code <small class="pull-right">{{ template_file_path }}</small></h3>
-                    <pre><code class="twig">{{ template_source_code }}</code></pre>
+                    <h3>Twig template code <small class="pull-right">{{ template.file_path|format_file(template.starting_line) }}</small></h3>
+                    <pre><code class="twig">{{ template.source_code }}</code></pre>
                 </div>
             </div>
         </div>
