@@ -26,13 +26,11 @@ class SourceCodeExtension extends \Twig_Extension
     protected $controller;
     protected $template;
     protected $kernelRootDir;
-    protected $fileLinkFormat;
 
-    public function __construct(\Twig_LoaderInterface $loader, $kernelRootDir, $fileLinkFormat)
+    public function __construct(\Twig_LoaderInterface $loader, $kernelRootDir)
     {
         $this->kernelRootDir = $kernelRootDir;
         $this->loader = $loader;
-        $this->fileLinkFormat = $fileLinkFormat ?: ini_get('xdebug.file_link_format') ?: get_cfg_var('xdebug.file_link_format');
     }
 
     public function setController($controller)
