@@ -7,6 +7,6 @@ php:
 
 before_script:
   - composer install -n
-  - php app/console doctrine:fixtures:load -n
+  - php app/console doctrine:fixtures:load -n --env test
 
 script: php vendor/bin/codecept run
