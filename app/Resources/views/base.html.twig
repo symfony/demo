@@ -13,10 +13,10 @@
         {# uncomment the following lines to compile SCSS assets with Assetic
 
             {% stylesheets filter="scssphp" output="css/app.css"
-                "assets/scss/bootstrap.scss"
-                "assets/scss/font-awesome.scss"
-                "assets/css/*.css"
-                "assets/scss/main.scss"
+                "%kernel.root_dir%/Resources/assets/scss/bootstrap.scss"
+                "%kernel.root_dir%/Resources/assets/scss/font-awesome.scss"
+                "%kernel.root_dir%/Resources/assets/css/*.css"
+                "%kernel.root_dir%/Resources/assets/scss/main.scss"
             %}
                 <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
@@ -135,9 +135,9 @@
         {% block javascripts %}
         {# uncomment the following lines to combine and minimize JavaScript assets with Assetic
             {% javascripts filter="?jsqueeze" output="js/app.js"
-                "assets/js/jquery-2.1.3.js"
-                "assets/js/bootstrap-3.3.4.js"
-                "assets/js/highlight.pack.js" %}
+                "%kernel.root_dir%/Resources/assets/js/jquery-2.1.3.js"
+                "%kernel.root_dir%/Resources/assets/js/bootstrap-3.3.4.js"
+                "%kernel.root_dir%/Resources/assets/js/highlight.pack.js" %}
                 <script src="{{ asset_url }}"></script>
             {% endjavascripts %}
         #}
