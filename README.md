@@ -58,21 +58,3 @@ terminal.
 > If you're using PHP 5.3, configure your web server to point at the `web/`
 > directory of the project. For more details, see:
 > http://symfony.com/doc/current/cookbook/configuration/web_server_configuration.html
-
-Contributing
-------------
-
-Contributions to this project are welcome. Send us your ideas, code reviews,
-pull requests and feature requests to help us improve this project. All
-contributions must follow the [usual Symfony contribution requirements](http://symfony.com/doc/current/contributing/index.html).
-
-This project manages its web assets in a special way to allow them to work
-without configuring any option, installing any tool or executing any command.
-If your contribution changes CSS styles or JavaScript code in any way, make
-sure to regenerate the `web/css/app.css` and `web/js/app.js` files. To do so,
-uncomment the Assetic blocks in the `app/Resources/views/base.html.twig` and
-execute the following command:
-
-```bash
-$ php app/console assetic:dump --no-debug
-```
