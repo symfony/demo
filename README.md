@@ -48,9 +48,10 @@ $ cd symfony-demo/
 $ php app/console server:run
 ```
 
-This command will start a web server for the Symfony application. Now you can access
-the application in your browser at <http://localhost:8000>. You can stop the built-in
-web server by pressing `Ctrl + C` while you're in the terminal.
+This command will start a web server for the Symfony application. Now you can
+access the application in your browser at <http://localhost:8000>. You can
+stop the built-in web server by pressing `Ctrl + C` while you're in the
+terminal.
 
 > **NOTE**
 >
