@@ -1,0 +1,61 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-04-14T13:08:50Z
+
+I'm not sure about merging this change. I'd love to hear first the opinions of @weaverryan and @WouterJ about it. They both know this topic well and they seem to have strong opinions about it (and definitely more qualified than mine!)
+
+---------------------------------------------------------------------------
+
+by stof at 2015-04-20T16:21:22Z
+
+@weaverryan ping as there was a typo when mentioning you previously
+
+@WouterJ any opinion on this ?
+
+---------------------------------------------------------------------------
+
+by WouterJ at 2015-05-11T12:01:24Z
+
+* I don't like depending on ports, they never are as good as the original ones. If it works with the code in the lib, I'm fine with using it here (although I don't believe we should recommend it).
+* Imo, sass/scss files are not public files, they shouldn't be accessed. That's why I vote to put these in `app/Resources/public` or the like, at least outside of `web/`. This is also following what the best practices guide says.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-05-29T08:48:32Z
+
+This PR is ready for the final review:
+
+  * The assets' sources are moved back to `app/Resources/assets/`
+  * The compiled assets are `web/css/app.css` and `web/js/app.js`
+  * The fonts have been moved to `web/fonts/` to not duplicate them
+  * The SCSS is now compiled and the CSS are minified with a PHP library (`Leafo\ScssPhp`)
+  * The JS are minified with a PHP library (JsSqueeze)
+
+The result is that:
+
+  * The application still looks nice without configuring anything or executing any command.
+  * If someone uncomments Assetic blocks, everything should still work because we use PHP-only solutions.
+
+---------------------------------------------------------------------------
+
+by stof at 2015-05-29T08:55:21Z
+
+@javiereguiluz it would be great to provide a way to recompile the assets for contributors (using ``assetic:dump`` won't work as the Assetic blocks are commented), and explaining it in the contributing file.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-05-29T09:16:27Z
+
+@stof I think that's a very nice idea! Thanks. I've added a note about contributing in 62417ca
+
+---------------------------------------------------------------------------
+
+by stof at 2015-05-29T09:20:13Z
+
+@javiereguiluz I suggest putting this in CONTRIBUTING.md instead, to follow the github conventions
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-05-29T09:30:08Z
+
+@stof much better indeed. Done in a88b360. Thanks.
