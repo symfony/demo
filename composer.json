@@ -9,21 +9,21 @@
     "require": {
         "php"                                  : ">=5.3.3",
         "ext-pdo_sqlite"                       : "*",
-        "doctrine/doctrine-bundle"             : "~1.2",
+        "doctrine/doctrine-bundle"             : "~1.5",
         "doctrine/doctrine-fixtures-bundle"    : "~2.2",
-        "doctrine/orm"                         : "~2.2,>=2.2.3",
+        "doctrine/orm"                         : "~2.5",
         "erusev/parsedown"                     : "~1.5",
-        "incenteev/composer-parameter-handler" : "~2.0",
+        "incenteev/composer-parameter-handler" : "~2.1",
         "ircmaxell/password-compat"            : "~1.0",
-        "leafo/scssphp"                        : "~0.1.",
+        "leafo/scssphp"                        : "~0.1.5",
         "patchwork/jsqueeze"                   : "~1.0",
-        "sensio/distribution-bundle"           : "~3.0.12",
+        "sensio/distribution-bundle"           : "~3.0.28",
         "sensio/framework-extra-bundle"        : "~3.0",
-        "symfony/assetic-bundle"               : "~2.3",
-        "symfony/monolog-bundle"               : "~2.4",
+        "symfony/assetic-bundle"               : "~2.6",
+        "symfony/monolog-bundle"               : "~2.7",
         "symfony/swiftmailer-bundle"           : "~2.3",
-        "symfony/symfony"                      : "~2.6",
-        "twig/extensions"                      : "~1.0"
+        "symfony/symfony"                      : "~2.7",
+        "twig/extensions"                      : "~1.2"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
