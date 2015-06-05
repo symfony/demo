@@ -1,0 +1,129 @@
+---------------------------------------------------------------------------
+
+by xabbuh at 2015-06-04T07:43:26Z
+
+You should also commit the changes to the `composer.json` file.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-06-04T07:53:19Z
+
+@xabbuh I did ... there is none :)
+
+---------------------------------------------------------------------------
+
+by xabbuh at 2015-06-04T07:58:35Z
+
+But there should be a difference if you bump the requirement to Symfony 2.7.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-06-04T08:01:16Z
+
+@xabbuh in the `.lock` file yes, but not in the `.json` file (we use `~2.6` for Symfony)
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-06-04T08:02:06Z
+
+By the way, I updated Symfony following the recommendation of @weaverryan:
+
+```bash
+$ composer update symfony/symfony sensio/distribution-bundle --with-dependencies
+```
+
+---------------------------------------------------------------------------
+
+by xabbuh at 2015-06-04T08:05:53Z
+
+To be more clear: You now make use of the `configureOptions()` method which introduced in Symfony 2.7. So having a version constraint like that if wing as you cannot use the form types with Symfony 2.6.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-06-04T08:08:50Z
+
+OK. I understand you now :)  Should I use `2.7.*` or `~2.7`?
+
+---------------------------------------------------------------------------
+
+by xabbuh at 2015-06-04T08:16:12Z
+
+Not sure if that really matters. What was the reasoning for the old constraint?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-06-04T08:19:55Z
+
+There was no particular reasoning. I always use the `~` constraint, so let's keep using `~2.7`. Thanks.
+
+---------------------------------------------------------------------------
+
+by stof at 2015-06-04T08:33:59Z
+
+@javiereguiluz what about updating other deps too (DoctrineBundle got a new release for instance)
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-06-04T08:45:30Z
+
+@stof I fully agree!  The constraint is now `~1.5` and I've executed `composer update doctrine/doctrine-bundle --with-dependencies`
+
+The current constraints are as follows. Should we update any other dependency?
+
+```json
+    "require": {
+        "php"                                  : ">=5.3.3",
+        "ext-pdo_sqlite"                       : "*",
+        "doctrine/doctrine-bundle"             : "~1.5",
+        "doctrine/doctrine-fixtures-bundle"    : "~2.2",
+        "doctrine/orm"                         : "~2.2,>=2.2.3",
+        "erusev/parsedown"                     : "~1.5",
+        "incenteev/composer-parameter-handler" : "~2.0",
+        "ircmaxell/password-compat"            : "~1.0",
+        "leafo/scssphp"                        : "~0.1.",
+        "patchwork/jsqueeze"                   : "~1.0",
+        "sensio/distribution-bundle"           : "~3.0.12",
+        "sensio/framework-extra-bundle"        : "~3.0",
+        "symfony/assetic-bundle"               : "~2.3",
+        "symfony/monolog-bundle"               : "~2.4",
+        "symfony/swiftmailer-bundle"           : "~2.3",
+        "symfony/symfony"                      : "~2.7",
+        "twig/extensions"                      : "~1.0"
+    },
+```
+
+---------------------------------------------------------------------------
+
+by stof at 2015-06-04T08:53:50Z
+
+Well, you should probably update all deps to their latest stable versions (``incenteev/composer-parameter-handler`` has a new release too to avoid deprecation warnings on Symfony 2.7 for instance)
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-06-04T09:12:27Z
+
+OK then. I've updated everything to their latest versions.
+
+---------------------------------------------------------------------------
+
+by weaverryan at 2015-06-04T13:57:08Z
+
+btw, we used the `2.6.*` format in `composer.json` for `symfony/symfony` just to match the SE. But I don't think it's a problem to differ from it - as long as we're doing something "good" :).
+
+---------------------------------------------------------------------------
+
+by weaverryan at 2015-06-04T13:58:13Z
+
+:+1:
+
+---------------------------------------------------------------------------
+
+by weaverryan at 2015-06-04T14:17:34Z
+
+@javiereguiluz for the future - I had an idea. We could upgrade a branch of the `symfony-demo` during the stabilization phase of a Symfony version. Then, it'll be ready for the release. But more importantly, it might help identify any bugs or not-smooth upgrade paths, while those can still be fixed :).
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-06-04T14:21:02Z
+
+@weaverryan I like the idea and I'm going to implement it for 2.8. Thanks!
