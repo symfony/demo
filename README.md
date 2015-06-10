@@ -1,6 +1,8 @@
 Symfony Demo Application
 ========================
 
+[![Build Status](https://travis-ci.org/Codeception/symfony-demo.svg?branch=2.1)](https://travis-ci.org/Codeception/symfony-demo)
+
 We use official "Symfony Demo Application" to demonstrate basics of Codeception functional tests. Check out `tests` directory to see functional and unit tests included. We use [Symfony2](http://codeception.com/docs/modules/Symfony2) and [Doctrine2](http://codeception.com/docs/modules/Doctrine2) modules for zero-configuration Symfony testing.
 
 ## Run Codeception Tests
