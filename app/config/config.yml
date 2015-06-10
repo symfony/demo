@@ -50,12 +50,12 @@ assetic:
     debug:          "%kernel.debug%"
     use_controller: false
     bundles:        [ ]
-    #java: /usr/bin/java
     filters:
         cssrewrite: ~
-        sass:
-            bin:      "/usr/bin/sass"
-            apply_to: "\.scss$"
+        jsqueeze: ~
+        scssphp:
+            # the formatter must be the FQCN (don't use the 'compressed' value)
+            formatter: "Leafo\\ScssPhp\\Formatter\\Compressed"
 
 # Doctrine Configuration (used to access databases and manipulate their information)
 doctrine:

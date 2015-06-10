@@ -71,7 +71,7 @@ class Comment
     }
 
     /**
-     * @Assert\True(message = "The content of this comment is considered spam.")
+     * @Assert\IsTrue(message = "The content of this comment is considered spam.")
      */
     public function isLegitComment()
     {
