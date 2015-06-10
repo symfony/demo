@@ -8,9 +8,10 @@ class PostCrudCest
     {
         // creating new record for test purposes
         // will be cleaned up in the end of a test
+        // we use sq() function from Sequnce module to generate unique id
         $this->postId = $I->haveInRepository(self::POST_ENTITY, [
-            'title' => 'Test Post',
-            'slug' => 'test-post',
+            'title' => 'Test Post'. sq('post'),
+            'slug' => 'test-post'. sq('post'),
             'content' => 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
             'summary' => 'Lorem ipsum text',
             'authorEmail' => 'anna_admin@symfony.com'
@@ -32,8 +33,8 @@ class PostCrudCest
      */
     public function viewPostInFrontend(FunctionalTester $I)
     {
-        $I->amOnPage('/blog/posts/test-post');
-        $I->see('Test Post');
+        $I->amOnPage('/blog/posts/test-post'. sq('post'));
+        $I->see('Test Post'. sq('post'));
         $I->see('Lorem Ipsum dolor');
     }
 
@@ -93,7 +94,7 @@ class PostCrudCest
     {
         $I->amOnPage("/admin/post/{$this->postId}");
         $I->click('Delete post');
-        $I->dontSee('Test post', 'table');
+        $I->dontSee('Test post' . sq('post'), 'table');
         $I->dontSeeInRepository(self::POST_ENTITY, ['id' => $this->postId]);
     }
 

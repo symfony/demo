@@ -7,6 +7,7 @@ php:
 
 before_script:
   - composer install -n
+  - php app/console doctrine:schema:create -n --env test
   - php app/console doctrine:fixtures:load -n --env test
 
 script: php bin/codecept run
