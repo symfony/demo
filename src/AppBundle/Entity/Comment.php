@@ -43,12 +43,12 @@ class Comment
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\NotBlank(message="Please don't leave your comment blank!")
+     * @Assert\NotBlank(message="comment.blank")
      * @Assert\Length(
      *     min = "5",
-     *     minMessage = "Comment is too short ({{ limit }} characters minimum)",
+     *     minMessage = "comment.short",
      *     max = "10000",
-     *     maxMessage = "Comment is too long ({{ limit }} characters maximum)"
+     *     maxMessage = "comment.long"
      * )
      */
     private $content;
@@ -71,7 +71,7 @@ class Comment
     }
 
     /**
-     * @Assert\IsTrue(message = "The content of this comment is considered spam.")
+     * @Assert\IsTrue(message = "comment.invalid")
      */
     public function isLegitComment()
     {
