@@ -23,8 +23,8 @@ $minorProblems = $symfonyRequirements->getFailedRecommendations();
     <head>
         <meta charset="UTF-8" />
         <title>Symfony Demo Application</title>
-        <link rel="stylesheet" href="/css/app.css">
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="stylesheet" href="css/app.css">
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
     </head>
 
     <body id="requirements_checker">
