@@ -38,41 +38,49 @@
                 <source>label.delete_post</source>
                 <target>Delete post</target>
             </trans-unit>
-            <trans-unit id="column.title">
-                <source>column.title</source>
+            <trans-unit id="label.title">
+                <source>label.title</source>
                 <target>Title</target>
             </trans-unit>
-            <trans-unit id="column.author">
-                <source>column.author</source>
+            <trans-unit id="label.author">
+                <source>label.author</source>
                 <target>Author</target>
             </trans-unit>
-            <trans-unit id="column.published_at">
-                <source>column.published_at</source>
+            <trans-unit id="label.author_email">
+                <source>label.author_email</source>
+                <target>Author email</target>
+            </trans-unit>
+            <trans-unit id="label.username">
+                <source>label.username</source>
+                <target>Username</target>
+            </trans-unit>
+            <trans-unit id="label.password">
+                <source>label.password</source>
+                <target>Password</target>
+            </trans-unit>
+            <trans-unit id="label.role">
+                <source>label.role</source>
+                <target>Role</target>
+            </trans-unit>
+            <trans-unit id="label.content">
+                <source>label.content</source>
+                <target>Content</target>
+            </trans-unit>
+            <trans-unit id="label.summary">
+                <source>label.summary</source>
+                <target>Summary</target>
+            </trans-unit>
+            <trans-unit id="label.published_at">
+                <source>label.published_at</source>
                 <target>Published at</target>
             </trans-unit>
-            <trans-unit id="column.actions">
-                <source>column.actions</source>
+            <trans-unit id="label.actions">
+                <source>label.actions</source>
                 <target>Actions</target>
             </trans-unit>
             <trans-unit id="title.post_new">
                 <source>title.post_new</source>
                 <target>Post creation</target>
-            </trans-unit>
-            <trans-unit id="term.summary">
-                <source>term.summary</source>
-                <target>Summary</target>
-            </trans-unit>
-            <trans-unit id="term.content">
-                <source>term.content</source>
-                <target>Content</target>
-            </trans-unit>
-            <trans-unit id="term.author">
-                <source>term.author</source>
-                <target>Author</target>
-            </trans-unit>
-            <trans-unit id="term.published">
-                <source>term.published</source>
-                <target>Published</target>
             </trans-unit>
             <trans-unit id="action.edit_contents">
                 <source>action.edit_contents</source>
@@ -82,6 +90,7 @@
                 <source>action.delete_post</source>
                 <target>Delete post</target>
             </trans-unit>
+
             <trans-unit id="menu.post_list">
                 <source>menu.post_list</source>
                 <target>Post list</target>
@@ -102,6 +111,7 @@
                 <source>menu.admin</source>
                 <target>Backend</target>
             </trans-unit>
+
             <trans-unit id="more_info_check_out">
                 <source>more_info_check_out</source>
                 <target>For more information, check out the</target>
@@ -190,38 +200,7 @@
                 <source>label.sign_in</source>
                 <target>Sign in</target>
             </trans-unit>
-            <trans-unit id="column.username">
-                <source>column.username</source>
-                <target>Username</target>
-            </trans-unit>
-            <trans-unit id="column.password">
-                <source>column.password</source>
-                <target>Password</target>
-            </trans-unit>
-            <trans-unit id="column.role">
-                <source>column.role</source>
-                <target>Role</target>
-            </trans-unit>
-            <trans-unit id="label.title">
-                <source>label.title</source>
-                <target>Title</target>
-            </trans-unit>
-            <trans-unit id="label.summary">
-                <source>label.summary</source>
-                <target>Summary</target>
-            </trans-unit>
-            <trans-unit id="label.content">
-                <source>label.content</source>
-                <target>Content</target>
-            </trans-unit>
-            <trans-unit id="label.author_email">
-                <source>label.author_email</source>
-                <target>Author email</target>
-            </trans-unit>
-            <trans-unit id="label.published_at">
-                <source>label.published_at</source>
-                <target>Published at</target>
-            </trans-unit>
+
             <trans-unit id="description.demo_app">
                 <source>description.demo_app</source>
                 <target><![CDATA[This is a <strong>demo application</strong> built in the Symfony Framework to illustrate the recommended way of developing Symfony applications.]]></target>
@@ -242,6 +221,7 @@
                 <source>description.browse_admin</source>
                 <target><![CDATA[Browse the <strong>admin backend</strong> of the demo application.]]></target>
             </trans-unit>
+
             <trans-unit id="title.login_help">
                 <source>title.login_help</source>
                 <target>Try either of the following users</target>

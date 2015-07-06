@@ -8,19 +8,19 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>{{ 'term.summary'|trans }}</th>
+                <th>{{ 'label.summary'|trans }}</th>
                 <td>{{ post.summary|md2html }}</td>
             </tr>
             <tr>
-                <th>{{ 'term.content'|trans }}</th>
+                <th>{{ 'label.content'|trans }}</th>
                 <td>{{ post.content|md2html }}</td>
             </tr>
             <tr>
-                <th>{{ 'term.author'|trans }}</th>
+                <th>{{ 'label.author'|trans }}</th>
                 <td><p>{{ post.authorEmail }}</p></td>
             </tr>
             <tr>
-                <th>{{ 'term.published'|trans }}</th>
+                <th>{{ 'label.published_at'|trans }}</th>
                 <td><p>{{ post.publishedAt|date('Y-m-d H:i:s') }}</p></td>
             </tr>
         </tbody>
