@@ -7,7 +7,7 @@
 
     {{ include('admin/blog/_form.html.twig', {
         form: edit_form,
-        button_label: 'label.save'|trans,
+        button_label: 'action.save'|trans,
     }, with_context = false) }}
 {% endblock %}
 
@@ -15,7 +15,7 @@
     <div class="section actions">
         {{ include('admin/blog/_form.html.twig', {
             form: delete_form,
-            button_label: 'label.delete_post'|trans,
+            button_label: 'action.delete_post'|trans,
             button_css: 'btn btn-lg btn-block btn-danger',
             include_back_to_home_link: false
         }, with_context = false) }}

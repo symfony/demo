@@ -25,7 +25,7 @@
                         </div>
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
                         <button type="submit" class="btn btn-primary">
-                            <i class="fa fa-sign-in"></i> {{ 'label.sign_in'|trans }}
+                            <i class="fa fa-sign-in"></i> {{ 'action.sign_in'|trans }}
                         </button>
                     </fieldset>
                 </form>
@@ -64,14 +64,14 @@
                 <div class="panel-body">
                     <p>
                         <span class="label label-success">{{ 'note'|trans }}</span>
-                        {{ 'reload_fixtures'|trans }}<br/>
+                        {{ 'help.reload_fixtures'|trans }}<br/>
 
                         <code class="console">$ php app/console doctrine:fixtures:load</code>
                     </p>
 
                     <p>
                         <span class="label label-success">{{ 'tip'|trans }}</span>
-                        {{ 'add_user'|trans }}<br/>
+                        {{ 'help.add_user'|trans }}<br/>
 
                         <code class="console">$ php app/console app:add-user</code>
                     </p>

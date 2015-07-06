@@ -21,17 +21,17 @@
                 <a class="btn btn-success" href="{{ path('security_login_form') }}">
                     <i class="fa fa-sign-in"></i> {{ 'action.sign_in'|trans }}
                 </a>
-                {{ 'to_publish_a_comment'|trans }}
+                {{ 'post.to_publish_a_comment'|trans }}
             </p>
         {% endif %}
     </div>
 
-    <h3>{{ 'title.comments'|transchoice(post.comments|length) }}</h3>
+    <h3>{{ 'post.num_comments'|transchoice(post.comments|length) }}</h3>
 
     {% for comment in post.comments %}
         <div class="row post-comment">
             <h4 class="col-sm-3">
-                <strong>{{ comment.authorEmail }}</strong> {{ 'commented_on'|trans }}
+                <strong>{{ comment.authorEmail }}</strong> {{ 'post.commented_on'|trans }}
                 <strong>{{ comment.publishedAt|date('M jS \\a\\t g:i a') }}</strong>
             </h4>
             <div class="col-sm-9">
@@ -40,7 +40,7 @@
         </div>
     {% else %}
         <div class="post-comment">
-            <p>{{ 'no_comment'|trans }}</p>
+            <p>{{ 'post.no_comments'|trans }}</p>
         </div>
     {% endfor %}
 {% endblock %}
