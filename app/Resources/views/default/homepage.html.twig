@@ -11,19 +11,18 @@
 
 {% block body %}
     <div class="page-header">
-        <h1>Welcome to the <strong>Symfony Demo Application</strong></h1>
+        <h1>{{ 'title.homepage'|trans|raw }}</h1>
     </div>
 
     <div class="row">
         <div class="col-sm-6">
             <div class="jumbotron">
                 <p>
-                    Browse the <strong>public section</strong>
-                    of the demo application.
+                    {{ 'description.browse_app'|trans|raw }}
                 </p>
                 <p>
                     <a class="btn btn-primary btn-lg" href="{{ path('blog_index') }}">
-                        <i class="fa fa-users"></i> Browse application
+                        <i class="fa fa-users"></i> {{ 'action.browse_app'|trans }}
                     </a>
                 </p>
             </div>
@@ -32,12 +31,11 @@
         <div class="col-sm-6">
             <div class="jumbotron">
                 <p>
-                    Browse the <strong>admin backend</strong>
-                    of the demo application.
+                    {{ 'description.browse_admin'|trans|raw }}
                 </p>
                 <p>
                     <a class="btn btn-primary btn-lg" href="{{ path('admin_index') }}">
-                        <i class="fa fa-lock"></i> Browse backend
+                        <i class="fa fa-lock"></i> {{ 'action.browse_admin'|trans }}
                     </a>
                 </p>
             </div>

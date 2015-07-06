@@ -47,7 +47,7 @@ class Post
 
     /**
      * @ORM\Column(type="string")
-     * @Assert\NotBlank(message="Give your post a summary!")
+     * @Assert\NotBlank(message="summary.blank")
      */
     private $summary;
 
@@ -55,7 +55,7 @@ class Post
      * @ORM\Column(type="text")
      * @Assert\Length(
      *     min = "10",
-     *     minMessage = "Post content is too short ({{ limit }} characters minimum)"
+     *     minMessage = "post.short"
      * )
      */
     private $content;
