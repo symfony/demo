@@ -270,6 +270,31 @@
                 <source>add_user</source>
                 <target>Si vous voulez créer de nouveaux utilisateurs, exécutez cette autre commande :</target>
             </trans-unit>
+
+            <trans-unit id="entity.comment_blank">
+                <source>entity.comment_blank</source>
+                <target>Veuillez ne pas laisser votre commentaire vide.</target>
+            </trans-unit>
+            <trans-unit id="entity.comment_short">
+                <source>entity.comment_short</source>
+                <target>Votre commentaire est trop court ({{ limit }} caractères minimum)</target>
+            </trans-unit>
+            <trans-unit id="entity.comment_long">
+                <source>entity.comment_long</source>
+                <target>Votre commentaire est trop long ({{ limit }} caractères maximum)</target>
+            </trans-unit>
+            <trans-unit id="entity.comment_invalid">
+                <source>entity.comment_invalid</source>
+                <target>Le contenu de votre commentaire est considéré comme du spam.</target>
+            </trans-unit>
+            <trans-unit id="entity.summary_blank">
+                <source>entity.summary_blank</source>
+                <target>Veuillez donner un résumé à votre post.</target>
+            </trans-unit>
+            <trans-unit id="entity.post_short">
+                <source>entity.post_short</source>
+                <target>Le contenu de votre post est trop court ({{ limit }} caractères minimum)</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

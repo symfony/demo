@@ -47,7 +47,7 @@ class Post
 
     /**
      * @ORM\Column(type="string")
-     * @Assert\NotBlank(message="summary.blank")
+     * @Assert\NotBlank(message="entity.summary_blank")
      */
     private $summary;
 
@@ -55,7 +55,7 @@ class Post
      * @ORM\Column(type="text")
      * @Assert\Length(
      *     min = "10",
-     *     minMessage = "post.short"
+     *     minMessage = "entity.post_short"
      * )
      */
     private $content;

@@ -43,12 +43,12 @@ class Comment
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\NotBlank(message="comment.blank")
+     * @Assert\NotBlank(message="entity.comment_blank")
      * @Assert\Length(
      *     min = "5",
-     *     minMessage = "comment.short",
+     *     minMessage = "entity.comment_short",
      *     max = "10000",
-     *     maxMessage = "comment.long"
+     *     maxMessage = "entity.comment_long"
      * )
      */
     private $content;
@@ -71,7 +71,7 @@ class Comment
     }
 
     /**
-     * @Assert\IsTrue(message = "comment.invalid")
+     * @Assert\IsTrue(message = "entity.comment_invalid")
      */
     public function isLegitComment()
     {
