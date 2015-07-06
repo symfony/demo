@@ -155,6 +155,26 @@ footer {
 }
 
 //
+// Page: 'Technical Requirements Checker'
+// --------------------------------------------------
+body#requirements_checker {
+    header h1 {
+        margin-bottom: 0;
+        margin-top: 0;
+
+        span {
+            font-size: 120%;
+            opacity: .7;
+            padding: 0 5px;
+        }
+    }
+
+    .panel li {
+        margin-bottom: 1em;
+    }
+}
+
+//
 // Page: 'homepage'
 // --------------------------------------------------
 body#homepage {
