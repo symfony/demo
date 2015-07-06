@@ -48,13 +48,24 @@ $ cd symfony-demo/
 $ php app/console server:run
 ```
 
-This command will start a web server for the Symfony application. Now you can
-access the application in your browser at <http://localhost:8000>. You can
-stop the built-in web server by pressing `Ctrl + C` while you're in the
-terminal.
-
 > **NOTE**
 >
 > If you're using PHP 5.3, configure your web server to point at the `web/`
 > directory of the project. For more details, see:
 > http://symfony.com/doc/current/cookbook/configuration/web_server_configuration.html
+
+You can also run the application using Docker, first, install [`docker`](https://docs.docker.com/installation/) (or [`boot2docker`](http://boot2docker.io/)) and
+[`docker-compose`](https://docs.docker.com/compose/install/) then run the following command:
+
+```bash
+$ docker-compose up
+```
+
+> **NOTE**
+>
+> If you are using [`boot2docker`](http://boot2docker.io/), you will have to replace `localhost` with the IP of your
+> boot2docker VM (you can get it by running `boot2docker ip`).
+
+Now you can access the application in your browser at <http://localhost:8000>. You can
+stop the built-in web server or the Docker container by pressing `Ctrl + C` while you're in the
+terminal.
