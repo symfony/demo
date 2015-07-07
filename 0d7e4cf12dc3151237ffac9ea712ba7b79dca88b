@@ -1,0 +1,129 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-07-06T10:36:24Z
+
+The reorganization of the English translation is now complete. Please review it before I make the needed changes in the rest of translations. Thanks.
+
+---------------------------------------------------------------------------
+
+by OskarStark at 2015-07-06T14:06:16Z
+
+@javiereguiluz if this is merged i will do the german translation if you like and if useful
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-07-06T14:21:07Z
+
+@OskarStark great! That would be awesome.
+
+---------------------------------------------------------------------------
+
+by OskarStark at 2015-07-06T14:22:19Z
+
+ok :smile:
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-07-06T14:27:08Z
+
+I have a question about the names of the translation strings related to the entity validation.
+
+I've defined them as follows, but I don't like it:
+
+```xml
+<trans-unit id="entity.comment_blank">
+    <source>entity.comment_blank</source>
+    <target>Please don't leave your comment blank!</target>
+</trans-unit>
+<trans-unit id="entity.comment_short">
+    <source>entity.comment_short</source>
+    <target>Comment is too short ({{ limit }} characters minimum)</target>
+</trans-unit>
+<trans-unit id="entity.comment_long">
+    <source>entity.comment_long</source>
+    <target>Comment is too long ({{ limit }} characters maximum)</target>
+</trans-unit>
+<trans-unit id="entity.comment_invalid">
+    <source>entity.comment_invalid</source>
+    <target>The content of this comment is considered spam.</target>
+</trans-unit>
+<trans-unit id="entity.summary_blank">
+    <source>entity.summary_blank</source>
+    <target>Give your post a summary!</target>
+</trans-unit>
+<trans-unit id="entity.post_short">
+    <source>entity.post_short</source>
+    <target>Post content is too short ({{ limit }} characters minimum)</target>
+</trans-unit>
+```
+
+What do you think of replacing it by the following?
+
+```xml
+<trans-unit id="comment.blank">
+    <source>comment.blank</source>
+    <target>Please don't leave your comment blank!</target>
+</trans-unit>
+<trans-unit id="comment.too_short">
+    <source>comment.too_short</source>
+    <target>Comment is too short ({{ limit }} characters minimum)</target>
+</trans-unit>
+<trans-unit id="comment.too_long">
+    <source>comment.too_long</source>
+    <target>Comment is too long ({{ limit }} characters maximum)</target>
+</trans-unit>
+<trans-unit id="comment.is_spam">
+    <source>comment.is_spam</source>
+    <target>The content of this comment is considered spam.</target>
+</trans-unit>
+<trans-unit id="comment.blank_summary">
+    <source>comment.blank_summary</source>
+    <target>Give your post a summary!</target>
+</trans-unit>
+<trans-unit id="post.too_short">
+    <source>post.too_short</source>
+    <target>Post content is too short ({{ limit }} characters minimum)</target>
+</trans-unit>
+```
+
+---------------------------------------------------------------------------
+
+by OskarStark at 2015-07-06T14:45:29Z
+
+:+1:  for shorter version!
+
+---------------------------------------------------------------------------
+
+by b-durand at 2015-07-06T18:22:02Z
+
+@javiereguiluz the domain is validators and not messages for constraints.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-07-06T18:41:01Z
+
+@b-durand I can't believe I made this mistake :'(  This morning I saw that translation wasn't working for validation ... but I didn't realize this issue. Thanks for telling me! It's fixed now.
+
+---------------------------------------------------------------------------
+
+by b-durand at 2015-07-06T19:00:17Z
+
+We should also localize the date format for "commented on". I regret to have choice with only 4 formats instead of format pattern for skeleton :disappointed:
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-07-07T07:58:43Z
+
+@b-durand I'm not sure I understand your last comment about date internationalization.
+
+---------------------------------------------------------------------------
+
+by OskarStark at 2015-07-07T11:59:58Z
+
+i think @b-durand would say, that in englisch we use ```01-01-2015``` and in german ```01.01.2015````
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-07-07T14:49:21Z
+
+OK, I understand now. Thanks. Let's do that change in a separate PR because it needs to install the Twig extensions and all that.
