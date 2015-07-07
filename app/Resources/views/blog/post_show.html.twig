@@ -19,19 +19,19 @@
         {% else %}
             <p>
                 <a class="btn btn-success" href="{{ path('security_login_form') }}">
-                    <i class="fa fa-sign-in"></i> Sign in
+                    <i class="fa fa-sign-in"></i> {{ 'action.sign_in'|trans }}
                 </a>
-                to publish a comment.
+                {{ 'post.to_publish_a_comment'|trans }}
             </p>
         {% endif %}
     </div>
 
-    <h3>{{ post.comments|length }} comments</h3>
+    <h3>{{ 'post.num_comments'|transchoice(post.comments|length) }}</h3>
 
     {% for comment in post.comments %}
         <div class="row post-comment">
             <h4 class="col-sm-3">
-                <strong>{{ comment.authorEmail }}</strong> commented on
+                <strong>{{ comment.authorEmail }}</strong> {{ 'post.commented_on'|trans }}
                 <strong>{{ comment.publishedAt|date('M jS \\a\\t g:i a') }}</strong>
             </h4>
             <div class="col-sm-9">
@@ -40,7 +40,7 @@
         </div>
     {% else %}
         <div class="post-comment">
-            <p>Be the first to comment on this post.</p>
+            <p>{{ 'post.no_comments'|trans }}</p>
         </div>
     {% endfor %}
 {% endblock %}
@@ -49,7 +49,7 @@
     {% if app.user and post.isAuthor(app.user) %}
         <div class="section">
             <a class="btn btn-lg btn-block btn-success" href="{{ path('admin_post_edit', { id: post.id }) }}">
-                <i class="fa fa-edit"></i> Edit post
+                <i class="fa fa-edit"></i> {{ 'action.edit_post'|trans }}
             </a>
         </div>
     {% endif %}

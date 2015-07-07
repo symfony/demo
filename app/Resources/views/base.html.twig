@@ -52,7 +52,7 @@
                                 {% block header_navigation_links %}
                                     <li>
                                         <a href="{{ path('blog_index') }}">
-                                            <i class="fa fa-home"></i> Homepage
+                                            <i class="fa fa-home"></i> {{ 'menu.homepage'|trans }}
                                         </a>
                                     </li>
 
@@ -64,7 +64,7 @@
                                     {% if app.user and is_granted('ROLE_ADMIN') %}
                                         <li>
                                             <a href="{{ path('admin_post_index') }}">
-                                                <i class="fa fa-lock"></i> Backend
+                                                <i class="fa fa-lock"></i> {{ 'menu.admin'|trans }}
                                             </a>
                                         </li>
                                     {% endif %}
@@ -73,7 +73,7 @@
                                 {% if app.user %}
                                     <li>
                                         <a href="{{ path('security_logout') }}">
-                                            <i class="fa fa-sign-out"></i> Logout
+                                            <i class="fa fa-sign-out"></i> {{ 'menu.logout'|trans }}
                                         </a>
                                     </li>
                                 {% endif %}
@@ -96,13 +96,10 @@
                             <div class="section about">
                                 <div class="well well-lg">
                                     <p>
-                                        This is a <strong>demo application</strong> built in the
-                                        Symfony Framework to illustrate the recommended way of
-                                        developing Symfony applications.
+                                        {{ 'help.app_description'|trans|raw }}
                                     </p>
                                     <p>
-                                        For more information, check out the
-                                        <a href="http://symfony.com/doc">Symfony Documentation</a>.
+                                        {{ 'help.more_information'|trans|raw }}
                                     </p>
                                 </div>
                             </div>
@@ -118,7 +115,7 @@
                     <div class="row">
                         <div id="footer-copyright" class="col-md-6">
                             <p>&copy; {{ 'now'|date('Y') }} - The Symfony Project</p>
-                            <p>MIT License</p>
+                            <p>{{ 'mit_license'|trans }}</p>
                         </div>
                         <div id="footer-resources" class="col-md-6">
                             <p>

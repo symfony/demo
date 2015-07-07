@@ -8,19 +8,19 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Summary</th>
+                <th>{{ 'label.summary'|trans }}</th>
                 <td>{{ post.summary|md2html }}</td>
             </tr>
             <tr>
-                <th>Content</th>
+                <th>{{ 'label.content'|trans }}</th>
                 <td>{{ post.content|md2html }}</td>
             </tr>
             <tr>
-                <th>Author</th>
+                <th>{{ 'label.author'|trans }}</th>
                 <td><p>{{ post.authorEmail }}</p></td>
             </tr>
             <tr>
-                <th>Published</th>
+                <th>{{ 'label.published_at'|trans }}</th>
                 <td><p>{{ post.publishedAt|date('Y-m-d H:i:s') }}</p></td>
             </tr>
         </tbody>
@@ -30,14 +30,14 @@
 {% block sidebar %}
     <div class="section">
         <a href="{{ path('admin_post_edit', { id: post.id }) }}" class="btn btn-lg btn-block btn-success">
-            <i class="fa fa-edit"></i> Edit contents
+            <i class="fa fa-edit"></i> {{ 'action.edit_contents'|trans }}
         </a>
     </div>
 
     <div class="section">
         {{ include('admin/blog/_form.html.twig', {
             form: delete_form,
-            button_label: 'Delete post',
+            button_label: 'action.delete_post'|trans,
             button_css: 'btn btn-lg btn-block btn-danger',
             include_back_to_home_link: false
         }, with_context = false) }}

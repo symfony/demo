@@ -6,7 +6,7 @@
     #}
 
     <fieldset>
-        <legend>Add a comment</legend>
+        <legend>{{ 'title.add_comment'|trans }}</legend>
 
         <div class="form-group">
             {{ form_label(form.content, 'Content', { label_attr: { class: 'hidden' }}) }}
@@ -21,7 +21,7 @@
         </div>
 
         <div class="form-group">
-            {{ form_widget(form.submit, { attr: { class: 'btn-primary pull-right' }, label: 'Publish comment' }) }}
+            {{ form_widget(form.submit, { attr: { class: 'btn-primary pull-right' }, label: 'action.publish_comment'|trans }) }}
         </div>
     </fieldset>
 {{ form_end(form) }}
