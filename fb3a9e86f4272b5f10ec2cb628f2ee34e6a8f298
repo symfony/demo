@@ -1,0 +1,85 @@
+---------------------------------------------------------------------------
+
+by OskarStark at 2015-07-06T14:08:09Z
+
+i think the symfony logo should be integrated
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-07-06T14:12:43Z
+
+@javiereguiluz Thanks a lot! I like it :+1:
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-07-06T14:14:51Z
+
+@OskarStark There is no Symfony's logo in `Symfony Demo Application`, so I think it will be unnecessary for this PR.
+
+P.S. I think Symfony's logo discussion could be open as a [new issue](https://github.com/symfony/symfony-demo/issues/new).
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-07-06T14:16:06Z
+
+@OskarStark I think the Symfony logo should be reserved for the Symfony installation. This demo is independent from the framework, so I think we can change its design to match our styles.
+
+---------------------------------------------------------------------------
+
+by OskarStark at 2015-07-06T14:16:49Z
+
+yes but the name ```Symfony```is used everywhere...
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-07-06T14:19:11Z
+
+@OskarStark let me put my reasoning in other words: this app is "made with Symfony" but "it's not Symfony". But let's see if other developers think we should add the logo.
+
+---------------------------------------------------------------------------
+
+by OskarStark at 2015-07-06T14:21:41Z
+
+@javiereguiluz i understand your reasoning, but i think this is an app which shows best practices by the symfony community with standard symfony edition... so a logo makes it more clear.... before this pr there was a symfony logo, or?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-07-06T14:29:08Z
+
+@bocharsky-bw I agree. Done. Thanks.
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-07-06T14:30:00Z
+
+@OskarStark I think better to create a new issue for this discussion about Symfony's logo in order to other developers could also tell their opinion.
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-07-06T14:34:26Z
+
+@javiereguiluz What about to add some instructions to `README.md` for this `check.php` usage at the beginning?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-07-06T14:48:29Z
+
+@bocharsky-bw I like the idea a lot. Done in d88ef7b
+
+---------------------------------------------------------------------------
+
+by OskarStark at 2015-07-06T14:49:43Z
+
+:+1:  for the note
+
+---------------------------------------------------------------------------
+
+by xabbuh at 2015-07-06T17:41:45Z
+
+What about renaming the file to `config.php`? Then its name is consistent with the one from the Standard Edition.
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-07-06T17:50:00Z
+
+@xabbuh I think about it too, but there are no any config operations, only environment checks, so it seems to confused a bit as for me.
