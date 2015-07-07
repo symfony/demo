@@ -2,273 +2,239 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
         <body>
-            <trans-unit id="1">
-                <source>title.post_list</source>
-                <target>Liste des articles</target>
-            </trans-unit>
-            <trans-unit id="2">
-                <source>action.show</source>
-                <target>Voir</target>
-            </trans-unit>
-            <trans-unit id="3">
-                <source>action.edit</source>
-                <target>Editer</target>
-            </trans-unit>
-            <trans-unit id="4">
-                <source>action.create_post</source>
-                <target>Créer un nouvel article</target>
-            </trans-unit>
-            <trans-unit id="9a3fc4e99a5e3ee2b6156bc75d50127e" resname="label.create_post">
-                <source>label.create_post</source>
-                <target>Créer un article</target>
-            </trans-unit>
-            <trans-unit id="5c6b5c0769ee5dbee4319b85d5df557b" resname="action.back_to_list">
-                <source>action.back_to_list</source>
-                <target>Retour à la liste des articles</target>
-            </trans-unit>
-            <trans-unit id="cf4fc2a194796551ff7ef0a8ec2dea52" resname="title.edit_post">
-                <source>title.edit_post</source>
-                <target>Modifier l'article #%id%</target>
-            </trans-unit>
-            <trans-unit id="2ced42ea2e1e8f41aa3f5325cbce70c2" resname="label.save">
-                <source>label.save</source>
-                <target>Enregistrer</target>
-            </trans-unit>
-            <trans-unit id="fbef78b7a288981d0cb77292ec57151d" resname="label.delete_post">
-                <source>label.delete_post</source>
-                <target>Supprimer l'article</target>
-            </trans-unit>
-            <trans-unit id="0e0ae1777de9fba6d6aa9c3859c2f7e8" resname="column.title">
-                <source>column.title</source>
-                <target>Titre</target>
-            </trans-unit>
-            <trans-unit id="88090adf0076c9e533202362a61ec120" resname="column.author">
-                <source>column.author</source>
-                <target>Auteur</target>
-            </trans-unit>
-            <trans-unit id="339bf6c69b350a19724a88a43d46f226" resname="column.published_at">
-                <source>column.published_at</source>
-                <target>Publié le</target>
-            </trans-unit>
-            <trans-unit id="538b697b5342983842b08d5981d61d61" resname="column.actions">
-                <source>column.actions</source>
-                <target>Actions</target>
-            </trans-unit>
-            <trans-unit id="665629b382e01fa73eac865cbd389fed" resname="title.post_new">
-                <source>title.post_new</source>
-                <target>Ajouter un nouvel article</target>
-            </trans-unit>
-            <trans-unit id="c0bc2fc156fd49c7847de1c2fc476dce" resname="term.summary">
-                <source>term.summary</source>
-                <target>Résumé</target>
-            </trans-unit>
-            <trans-unit id="221dde6a16335d63826d50ab9aafb153" resname="term.content">
-                <source>term.content</source>
-                <target>Contenu</target>
-            </trans-unit>
-            <trans-unit id="6c0c5c4b503fbef258c9890f17256e2a" resname="term.author">
-                <source>term.author</source>
-                <target>Auteur</target>
-            </trans-unit>
-            <trans-unit id="9ef1f167a83031f1a0d546260b0695ea" resname="term.published">
-                <source>term.published</source>
-                <target>Publié le</target>
-            </trans-unit>
-            <trans-unit id="6bc0617c5b8f09829938c29e0ca586eb" resname="action.edit_contents">
-                <source>action.edit_contents</source>
-                <target>Modifier le contenu</target>
-            </trans-unit>
-            <trans-unit id="e7a88703d1e70bf8516f19b164e5cdb2" resname="action.delete_post">
-                <source>action.delete_post</source>
-                <target>Supprimer l'article</target>
-            </trans-unit>
-            <trans-unit id="d769c3934d547a0a7d5e1623158d0d20" resname="menu.post_list">
-                <source>menu.post_list</source>
-                <target>Liste des articles</target>
-            </trans-unit>
-            <trans-unit id="15978f6181234a67568ed28477f2a137" resname="menu.back_to_blog">
-                <source>menu.back_to_blog</source>
-                <target>Retour au blog</target>
-            </trans-unit>
-            <trans-unit id="797a9670e2732097498906b9e515da2d" resname="menu.logout">
-                <source>menu.logout</source>
-                <target>Déconnexion</target>
-            </trans-unit>
-            <trans-unit id="170ebfa198986e2b77913834c0b4c5c3" resname="menu.homepage">
-                <source>menu.homepage</source>
-                <target>Accueil</target>
-            </trans-unit>
-            <trans-unit id="163bf4b4eb252ff6259fd476cc5f5f4a" resname="menu.admin">
-                <source>menu.admin</source>
-                <target>Admin</target>
-            </trans-unit>
-            <trans-unit id="8e8cee46963a98d03e10f2f1cae2fe9a" resname="more_info_check_out">
-                <source>more_info_check_out</source>
-                <target>Pour plus d'informations, consultez la</target>
-            </trans-unit>
-            <trans-unit id="5cb0cea702b8e6e3cfd370d04c9d790e" resname="symfony_doc">
-                <source>symfony_doc</source>
-                <target>documentation de Symfony</target>
-            </trans-unit>
-            <trans-unit id="5190738e75fe9f1d2b8516d5f217465b" resname="mit_license">
-                <source>mit_license</source>
-                <target>Licence MIT</target>
-            </trans-unit>
-            <trans-unit id="45508766fa21dbc4482d656e3356caa3" resname="title.add_comment">
-                <source>title.add_comment</source>
-                <target>Laisser un commentaire</target>
-            </trans-unit>
-            <trans-unit id="ac3cebfc6d45d308adf89c278fc9eb5e" resname="label.publish_comment">
-                <source>label.publish_comment</source>
-                <target>Publier</target>
-            </trans-unit>
-            <trans-unit id="4bfbf0db73df22d646d141f80acf1f4d" resname="action.sign_in">
-                <source>action.sign_in</source>
-                <target>Connectez-vous</target>
-            </trans-unit>
-            <trans-unit id="25c0ffb5cd0c4492e5211205efda6f6f" resname="to_publish_a_comment">
-                <source>to_publish_a_comment</source>
-                <target>pour publier un commentaire</target>
-            </trans-unit>
-            <trans-unit id="44258ba012bacde3f72b6452c2092469" resname="title.comments">
-                <source>title.comments</source>
-                <target>%count% commentaire|%count% commentaires</target>
-            </trans-unit>
-            <trans-unit id="6cd8e5e0a5355ff80b74098f8825186c" resname="commented_on">
-                <source>commented_on</source>
-                <target>commenté le</target>
-            </trans-unit>
-            <trans-unit id="992df2c259d4353f90bd900b11e6eb01" resname="no_comment">
-                <source>no_comment</source>
-                <target>Soyez le premier à commenter cet article.</target>
-            </trans-unit>
-            <trans-unit id="28afaad0dfd92619ad0098358eb9426d" resname="action.edit_post">
-                <source>action.edit_post</source>
-                <target>Modifier l'article</target>
-            </trans-unit>
-            <trans-unit id="05e776a18694bca884fdeedd3c4bfe84" resname="action.show_code">
-                <source>action.show_code</source>
-                <target>Voir le code</target>
-            </trans-unit>
-            <trans-unit id="6aedc9099c10ddb741e3fe695dbea8ba" resname="title.source_code">
-                <source>title.source_code</source>
-                <target>Le code source utilisé pour afficher cette page</target>
-            </trans-unit>
-            <trans-unit id="6d9d5f93e32e871f9e117a35eda2f4ae" resname="title.controller_code">
-                <source>title.controller_code</source>
-                <target>Code du contrôleur</target>
-            </trans-unit>
-            <trans-unit id="f12737f0cd6428651d191d5ad06b97f3" resname="not_available">
-                <source>not_available</source>
-                <target>Indisponible</target>
-            </trans-unit>
-            <trans-unit id="16dfb3efb800594f778fd912242abda3" resname="title.twig_template_code">
-                <source>title.twig_template_code</source>
-                <target>Code du template Twig</target>
-            </trans-unit>
-            <trans-unit id="1c5eeb3081f495d916c60fcc741285fb" resname="action.browse_app">
-                <source>action.browse_app</source>
-                <target>Naviguer sur l'application</target>
-            </trans-unit>
-            <trans-unit id="a32529da96e80766af0315b864c9ece1" resname="action.browse_admin">
-                <source>action.browse_admin</source>
-                <target>Naviguer sur l'admin</target>
-            </trans-unit>
-            <trans-unit id="d7d0dc5d9eaeedc89b1c87bd4a21d1ec" resname="title.login">
-                <source>title.login</source>
-                <target>Connexion sécurisée</target>
-            </trans-unit>
-            <trans-unit id="717ecfaa9d198197bc4a8a5403461d48" resname="label.username">
-                <source>label.username</source>
-                <target>Identifiant :</target>
-            </trans-unit>
-            <trans-unit id="a14f198f3da0de3396729d0fd7636731" resname="label.password">
-                <source>label.password</source>
-                <target>Mot de passe :</target>
-            </trans-unit>
-            <trans-unit id="30f9ac51531f94f09b0909be04cd4853" resname="label.sign_in">
-                <source>label.sign_in</source>
-                <target>Connexion</target>
-            </trans-unit>
-            <trans-unit id="f167eeba9225b37ed85266cffbb6e426" resname="column.username">
-                <source>column.username</source>
-                <target>Identifiant</target>
-            </trans-unit>
-            <trans-unit id="410de667a1539e47b5a2abff9c78d44b" resname="column.password">
-                <source>column.password</source>
-                <target>Mot de passe</target>
-            </trans-unit>
-            <trans-unit id="1b9d139b75269a7e47d5435f50c3df18" resname="column.role">
-                <source>column.role</source>
-                <target>Rôle</target>
-            </trans-unit>
-            <trans-unit id="5">
-                <source>label.title</source>
-                <target>Titre</target>
-            </trans-unit>
-            <trans-unit id="6">
-                <source>label.summary</source>
-                <target>Résumé</target>
-            </trans-unit>
-            <trans-unit id="7">
-                <source>label.content</source>
-                <target>Contenu</target>
-            </trans-unit>
-            <trans-unit id="8">
-                <source>label.author_email</source>
-                <target>Mail de l'auteur</target>
-            </trans-unit>
-            <trans-unit id="9">
-                <source>label.published_at</source>
-                <target>Publié le</target>
-            </trans-unit>
-            <trans-unit id="20bef0bda3ce1737bf9708a9c32a4737" resname="description.demo_app">
-                <source>description.demo_app</source>
-                <target><![CDATA[C'est une <strong>application de démonstration</strong> construite avec le framework Symfony pour illustrer la façon recommandée de développer des applications Symfony.]]></target>
-            </trans-unit>
-            <trans-unit id="0797cde96077085e45e9b5ecc3686cff" resname="description.show_code">
-                <source>description.show_code</source>
-		<target><![CDATA[Cliquez sur ce button pour voir le code source du <strong>contrôleur</strong> et du <strong>template</strong> utilisé pour afficher cette page.]]></target>
-            </trans-unit>
-            <trans-unit id="9d15754f37a26a942b5edcad2da9b5dc" resname="title.homepage">
-                <source>title.homepage</source>
-                <target><![CDATA[Bienvenue sur l'<strong>application de démonstration Symfony</strong>]]></target>
-            </trans-unit>
-            <trans-unit id="5086520b77512722bd5af9bbcc795f2e" resname="description.browse_app">
-                <source>description.browse_app</source>
-                <target><![CDATA[Parcourir la <strong>section publique</strong> de l'application de démonstration.]]></target>
-            </trans-unit>
-            <trans-unit id="d69e4aa07e12e8c10d8c8133b684ecdd" resname="description.browse_admin">
-                <source>description.browse_admin</source>
-                <target><![CDATA[Parcourir l'<strong>administration</strong> de l'appliation de démonstration.]]></target>
-            </trans-unit>
-            <trans-unit id="938ecb91df6310f7e0c6b45a561fe357" resname="title.login_help">
-                <source>title.login_help</source>
-                <target>Essayez l'un des utilisateurs suivants</target>
-            </trans-unit>
-            <trans-unit id="d7d9935a52a4e41dd0cbd1e32a2d4c6d" resname="help.role_user">
-                <source>help.role_user</source>
-                <target>utilisateur normal</target>
-            </trans-unit>
-            <trans-unit id="be31f309c74bd604b2622f99a88f434b" resname="help.role_admin">
-                <source>help.role_admin</source>
-                <target>administrateur</target>
-            </trans-unit>
-            <trans-unit id="aad653ca3ee669635f2938b73098b6d7" resname="note">
+            <trans-unit id="note">
                 <source>note</source>
                 <target>NOTE</target>
             </trans-unit>
-            <trans-unit id="427d36e9d404810a38a3182d7f587a31" resname="reload_fixtures">
-                <source>reload_fixtures</source>
-                <target>Si ces utilisateurs ne fonctionnent pas, rechargez les fixtures de l'application en exécutant cette commande depuis le terminale :</target>
-            </trans-unit>
-            <trans-unit id="6a2139364f96787c8ce1bbb0070b898c" resname="tip">
+            <trans-unit id="tip">
                 <source>tip</source>
                 <target>ASTUCE</target>
             </trans-unit>
-            <trans-unit id="dd0d6038781bb4f85e38713c69e2f530" resname="add_user">
+            <trans-unit id="not_available">
+                <source>not_available</source>
+                <target>Indisponible</target>
+            </trans-unit>
+            <trans-unit id="mit_license">
+                <source>mit_license</source>
+                <target>Licence MIT</target>
+            </trans-unit>
+
+            <trans-unit id="title.homepage">
+                <source>title.homepage</source>
+                <target><![CDATA[Bienvenue sur l'<strong>application de démonstration Symfony</strong>]]></target>
+            </trans-unit>
+            <trans-unit id="title.source_code">
+                <source>title.source_code</source>
+                <target>Le code source utilisé pour afficher cette page</target>
+            </trans-unit>
+            <trans-unit id="title.controller_code">
+                <source>title.controller_code</source>
+                <target>Code du contrôleur</target>
+            </trans-unit>
+            <trans-unit id="title.twig_template_code">
+                <source>title.twig_template_code</source>
+                <target>Code du template Twig</target>
+            </trans-unit>
+            <trans-unit id="title.login_help">
+                <source>title.login_help</source>
+                <target>Try either of the following users</target>
+            </trans-unit>
+            <trans-unit id="title.login">
+                <source>title.login</source>
+                <target>Connexion sécurisée</target>
+            </trans-unit>
+            <trans-unit id="title.post_list">
+                <source>title.post_list</source>
+                <target>Liste des articles</target>
+            </trans-unit>
+            <trans-unit id="title.edit_post">
+                <source>title.edit_post</source>
+                <target>Modifier l'article #%id%</target>
+            </trans-unit>
+            <trans-unit id="title.add_comment">
+                <source>title.add_comment</source>
+                <target>Laisser un commentaire</target>
+            </trans-unit>
+
+            <trans-unit id="action.show">
+                <source>action.show</source>
+                <target>Voir</target>
+            </trans-unit>
+            <trans-unit id="action.show_code">
+                <source>action.show_code</source>
+                <target>Voir le code</target>
+            </trans-unit>
+            <trans-unit id="action.edit">
+                <source>action.edit</source>
+                <target>Editer</target>
+            </trans-unit>
+            <trans-unit id="action.edit_post">
+                <source>action.edit_post</source>
+                <target>Modifier l'article</target>
+            </trans-unit>
+            <trans-unit id="action.save">
+                <source>action.save</source>
+                <target>Enregistrer</target>
+            </trans-unit>
+            <trans-unit id="action.delete_post">
+                <source>action.delete_post</source>
+                <target>Supprimer l'article</target>
+            </trans-unit>
+            <trans-unit id="action.create_post">
+                <source>action.create_post</source>
+                <target>Créer un nouvel article</target>
+            </trans-unit>
+            <trans-unit id="label.create_post">
+                <source>label.create_post</source>
+                <target>Créer un article</target>
+            </trans-unit>
+            <trans-unit id="action.back_to_list">
+                <source>action.back_to_list</source>
+                <target>Retour à la liste des articles</target>
+            </trans-unit>
+            <trans-unit id="action.publish_comment">
+                <source>action.publish_comment</source>
+                <target>Publier</target>
+            </trans-unit>
+            <trans-unit id="action.sign_in">
+                <source>action.sign_in</source>
+                <target>Connectez-vous</target>
+            </trans-unit>
+            <trans-unit id="action.browse_app">
+                <source>action.browse_app</source>
+                <target>Naviguer sur l'application</target>
+            </trans-unit>
+            <trans-unit id="action.browse_admin">
+                <source>action.browse_admin</source>
+                <target>Naviguer sur l'admin</target>
+            </trans-unit>
+
+            <trans-unit id="label.title">
+                <source>label.title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="label.author">
+                <source>label.author</source>
+                <target>Auteur</target>
+            </trans-unit>
+            <trans-unit id="label.author_email">
+                <source>label.author_email</source>
+                <target>Mail de l'auteur</target>
+            </trans-unit>
+            <trans-unit id="label.username">
+                <source>label.username</source>
+                <target>Identifiant</target>
+            </trans-unit>
+            <trans-unit id="label.password">
+                <source>label.password</source>
+                <target>Mot de passe</target>
+            </trans-unit>
+            <trans-unit id="label.role">
+                <source>label.role</source>
+                <target>Rôle</target>
+            </trans-unit>
+            <trans-unit id="label.content">
+                <source>label.content</source>
+                <target>Contenu</target>
+            </trans-unit>
+            <trans-unit id="label.summary">
+                <source>label.summary</source>
+                <target>Résumé</target>
+            </trans-unit>
+            <trans-unit id="label.published_at">
+                <source>label.published_at</source>
+                <target>Publié le</target>
+            </trans-unit>
+            <trans-unit id="label.actions">
+                <source>label.actions</source>
+                <target>Actions</target>
+            </trans-unit>
+            <trans-unit id="title.post_new">
+                <source>title.post_new</source>
+                <target>Ajouter un nouvel article</target>
+            </trans-unit>
+            <trans-unit id="action.edit_contents">
+                <source>action.edit_contents</source>
+                <target>Modifier le contenu</target>
+            </trans-unit>
+
+            <trans-unit id="menu.post_list">
+                <source>menu.post_list</source>
+                <target>Liste des articles</target>
+            </trans-unit>
+            <trans-unit id="menu.back_to_blog">
+                <source>menu.back_to_blog</source>
+                <target>Retour au blog</target>
+            </trans-unit>
+            <trans-unit id="menu.homepage">
+                <source>menu.homepage</source>
+                <target>Accueil</target>
+            </trans-unit>
+            <trans-unit id="menu.admin">
+                <source>menu.admin</source>
+                <target>Admin</target>
+            </trans-unit>
+            <trans-unit id="menu.logout">
+                <source>menu.logout</source>
+                <target>Déconnexion</target>
+            </trans-unit>
+
+            <trans-unit id="post.to_publish_a_comment">
+                <source>post.to_publish_a_comment</source>
+                <target>pour publier un commentaire</target>
+            </trans-unit>
+            <trans-unit id="post.num_comments">
+                <source>post.num_comments</source>
+                <target>%count% commentaire|%count% commentaires</target>
+            </trans-unit>
+            <trans-unit id="post.commented_on">
+                <source>post.commented_on</source>
+                <target>commenté le</target>
+            </trans-unit>
+            <trans-unit id="post.no_comments">
+                <source>post.no_comments</source>
+                <target>Soyez le premier à commenter cet article.</target>
+            </trans-unit>
+
+            <trans-unit id="help.app_description">
+                <source>help.app_description</source>
+                <target><![CDATA[C'est une <strong>application de démonstration</strong> construite avec le framework Symfony pour illustrer la façon recommandée de développer des applications Symfony.]]></target>
+            </trans-unit>
+            <trans-unit id="help.show_code">
+                <source>help.show_code</source>
+                <target><![CDATA[Cliquez sur ce button pour voir le code source du <strong>contrôleur</strong> et du <strong>template</strong> utilisé pour afficher cette page.]]></target>
+            </trans-unit>
+            <trans-unit id="help.browse_app">
+                <source>help.browse_app</source>
+                <target><![CDATA[Parcourir la <strong>section publique</strong> de l'application de démonstration.]]></target>
+            </trans-unit>
+            <trans-unit id="help.browse_admin">
+                <source>help.browse_admin</source>
+                <target><![CDATA[Parcourir l'<strong>administration</strong> de l'appliation de démonstration.]]></target>
+            </trans-unit>
+            <trans-unit id="help.login_users">
+                <source>help.login_users</source>
+                <target>Essayez l'un des utilisateurs suivants</target>
+            </trans-unit>
+            <trans-unit id="help.role_user">
+                <source>help.role_user</source>
+                <target>utilisateur normal</target>
+            </trans-unit>
+            <trans-unit id="help.role_admin">
+                <source>help.role_admin</source>
+                <target>administrateur</target>
+            </trans-unit>
+            <trans-unit id="help.reload_fixtures">
+                <source>reload_fixtures</source>
+                <target>Si ces utilisateurs ne fonctionnent pas, rechargez les fixtures de l'application en exécutant cette commande depuis le terminale :</target>
+            </trans-unit>
+            <trans-unit id="help.add_user">
                 <source>add_user</source>
                 <target>Si vous voulez créer de nouveaux utilisateurs, exécutez cette autre commande :</target>
+            </trans-unit>
+            <trans-unit id="help.more_information">
+                <source>title.homepage</source>
+                <target><![CDATA[Pour plus d'informations, consultez la <a href="http://symfony.com/doc">documentation de Symfony</a>.]]></target>
             </trans-unit>
         </body>
     </file>
