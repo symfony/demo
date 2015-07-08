@@ -32,13 +32,13 @@ class PostType extends AbstractType
         // for the full reference of options defined by each form field type
         // see http://symfony.com/doc/current/reference/forms/types.html
         $builder
-            ->add('title', null, ['label' => 'label.title'])
-            ->add('summary', 'textarea', ['label' => 'label.summary'])
+            ->add('title', null, array('label' => 'label.title'))
+            ->add('summary', 'textarea', array('label' => 'label.summary'))
             ->add('content', 'textarea', array(
                 'attr' => array('rows' => 20),
                 'label' => 'label.content',
             ))
-            ->add('authorEmail', 'email', ['label' => 'label.author_email'])
+            ->add('authorEmail', 'email', array('label' => 'label.author_email'))
             ->add('publishedAt', 'datetime', array(
                 'widget' => 'single_text',
                 'label' => 'label.published_at',
