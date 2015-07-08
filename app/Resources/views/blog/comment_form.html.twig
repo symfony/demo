@@ -8,13 +8,11 @@
     <fieldset>
         <legend>{{ 'title.add_comment'|trans }}</legend>
 
-        <div class="form-group">
+        <div class="form-group{% if not form.vars.valid %} has-error{% endif %}">
             {{ form_label(form.content, 'Content', { label_attr: { class: 'hidden' }}) }}
 
             {% if not form.vars.valid %}
-                <div class="alert alert-danger form-error">
-                    {{ form_errors(form.content) }}
-                </div>
+                {{ form_errors(form.content) }}
             {% endif %}
 
             {{ form_widget(form.content, { attr: { rows: 10 } }) }}
