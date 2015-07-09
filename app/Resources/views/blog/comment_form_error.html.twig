@@ -3,7 +3,7 @@
 {% block body_id 'comment_form_error' %}
 
 {% block main %}
-    <h1 class="text-danger">There was an error publishing your comment</h1>
+    <h1 class="text-danger">{{ 'title.comment_error'|trans }}</h1>
 
     <div class="well">
         {{ include('blog/comment_form.html.twig') }}
