@@ -1,3 +1,11 @@
+{#
+    By default, forms enable client-side validation. This means that you can't
+    test the server-side validation errors from the browser. To temporarily
+    disable this validation, add the 'novalidate' attribute:
+
+    {{ form_start(form, { method: ..., action: ..., attr: { novalidate: 'novalidate' } }) }}
+#}
+
 {{ form_start(form, { method: 'POST', action: path('comment_new', { 'postSlug': post.slug }) }) }}
     {#  instead of displaying form fields one by one, you can also display them
         all with their default options and styles just by calling to this function:
