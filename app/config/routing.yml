@@ -9,7 +9,7 @@ app:
     type:     annotation
     prefix:   /{_locale}
     requirements: 
-        _locale: en|fr|de|es|cs|ru|uk|ro
+        _locale: %locales%
     defaults:
         _locale: %locale%
 
