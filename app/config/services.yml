@@ -18,6 +18,12 @@ services:
         tags:
             - { name: twig.extension }
 
+    app.twig.locale_extension:
+        class:     AppBundle\Twig\LocaleExtension
+        arguments: ["%app_locales%"]
+        tags:
+            - { name: twig.extension }
+
     app.twig.source_code_extension:
         class:     AppBundle\Twig\SourceCodeExtension
         arguments: ["@twig.loader", "%kernel.root_dir%"]

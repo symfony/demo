@@ -9,6 +9,9 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
 
+parameters:
+    app_locales: en|fr|de|es|cs|ru|uk|ro|pt_BR
+
 # Basic configuration for the Symfony framework features
 framework:
     # Uncomment the 'ide' option to turn all of the file paths in an exception
