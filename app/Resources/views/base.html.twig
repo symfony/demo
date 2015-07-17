@@ -84,15 +84,15 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-flag"></i> <span class="caret"></span></a>
                                     <ul class="dropdown-menu locales" role="menu">
-                                        <li><a href="{{ path('blog_index', {_locale:'de'}) }}">Deutsch</a></li>
-                                        <li><a href="{{ path('blog_index', {_locale:'en'}) }}">English</a></li>
-                                        <li><a href="{{ path('blog_index', {_locale:'es'}) }}">Español</a></li>
-                                        <li><a href="{{ path('blog_index', {_locale:'fr'}) }}">Français</a></li>
-                                        <li><a href="{{ path('blog_index', {_locale:'ro'}) }}">Român</a></li>
-                                        <li><a href="{{ path('blog_index', {_locale:'ru'}) }}">Русский</a></li>
-                                        <li><a href="{{ path('blog_index', {_locale:'uk'}) }}">Українська</a></li>
-                                        <li><a href="{{ path('blog_index', {_locale:'cs'}) }}">Česky</a></li>
-                                        <li><a href="{{ path('blog_index', {_locale:'pt_BR'}) }}">Português Brasileiro</a></li>
+                                        <li {% if app.request.locale == 'de' %}class="active"{% endif %}><a href="{{ path('blog_index', {_locale:'de'}) }}">Deutsch</a></li>
+                                        <li {% if app.request.locale == 'en' %}class="active"{% endif %}><a href="{{ path('blog_index', {_locale:'en'}) }}">English</a></li>
+                                        <li {% if app.request.locale == 'es' %}class="active"{% endif %}><a href="{{ path('blog_index', {_locale:'es'}) }}">Español</a></li>
+                                        <li {% if app.request.locale == 'fr' %}class="active"{% endif %}><a href="{{ path('blog_index', {_locale:'fr'}) }}">Français</a></li>
+                                        <li {% if app.request.locale == 'ro' %}class="active"{% endif %}><a href="{{ path('blog_index', {_locale:'ro'}) }}">Român</a></li>
+                                        <li {% if app.request.locale == 'ru' %}class="active"{% endif %}><a href="{{ path('blog_index', {_locale:'ru'}) }}">Русский</a></li>
+                                        <li {% if app.request.locale == 'uk' %}class="active"{% endif %}><a href="{{ path('blog_index', {_locale:'uk'}) }}">Українська</a></li>
+                                        <li {% if app.request.locale == 'cs' %}class="active"{% endif %}><a href="{{ path('blog_index', {_locale:'cs'}) }}">Česky</a></li>
+                                        <li {% if app.request.locale == 'pt_BR' %}class="active"{% endif %}><a href="{{ path('blog_index', {_locale:'pt_BR'}) }}">Português Brasileiro</a></li>
                                     </ul>
                                 </li>
                             </ul>
