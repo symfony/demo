@@ -19,7 +19,7 @@
             <tr>
                 <td>{{ post.title }}</td>
                 <td>{{ post.authorEmail }}</td>
-                <td>{% if post.publishedAt %}{{ post.publishedAt|date('Y-m-d H:i') }}{% endif %}</td>
+                <td>{% if post.publishedAt %}{{ post.publishedAt|localizeddate('short', 'short') }}{% endif %}</td>
                 <td>
                     <div class="item-actions">
                         <a href="{{ path('admin_post_show', { id: post.id }) }}" class="btn btn-sm btn-default">
