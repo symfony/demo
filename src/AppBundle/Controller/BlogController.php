@@ -11,16 +11,17 @@
 
 namespace AppBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Entity\Comment;
+use AppBundle\Entity\Post;
+use AppBundle\Form\CommentType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use AppBundle\Entity\Post;
-use AppBundle\Entity\Comment;
-use AppBundle\Form\CommentType;
+use Symfony\Component\Intl\Intl;
 
 /**
  * Controller used to manage blog contents in the public part of the site.
@@ -126,5 +127,16 @@ class BlogController extends Controller
         $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
+    }
+
+    public function localesAction()
+    {
+        $array = explode('|', $this->container->getParameter('locales'));
+
+        foreach ($array as $locale) {
+            $locales[] = ['code' => $locale, 'name' => Intl::getLocaleBundle()->getLocaleName($locale, $locale)];
+        }
+
+        return $this->render('blog/_locales_dropdown.html.twig', ['locales' => $locales]); 
     }
 }
