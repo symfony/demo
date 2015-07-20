@@ -11,6 +11,7 @@
 
 namespace AppBundle\Twig;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Intl\Intl;
 
 /**
@@ -20,7 +21,7 @@ class LocaleExtension extends \Twig_Extension
 {
     private $container;
 
-    public function __construct($container)
+    public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
     }
