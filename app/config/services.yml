@@ -20,7 +20,7 @@ services:
 
     app.twig.locale_extension:
         class:     AppBundle\Twig\LocaleExtension
-        arguments: ["@service_container"]
+        arguments: ["%app_locales%"]
         tags:
             - { name: twig.extension }
 

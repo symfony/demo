@@ -11,7 +11,6 @@
 
 namespace AppBundle\Twig;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Intl\Intl;
 
 /**
@@ -19,11 +18,11 @@ use Symfony\Component\Intl\Intl;
  */
 class LocaleExtension extends \Twig_Extension
 {
-    private $container;
+    private $locales;
 
-    public function __construct(ContainerInterface $container)
+    public function __construct( $locales)
     {
-        $this->container = $container;
+        $this->locales = $locales;
     }
 
     public function getFunctions()
@@ -35,7 +34,7 @@ class LocaleExtension extends \Twig_Extension
 
     public function getLocales()
     {
-        $array = explode('|', $this->container->getParameter('locales'));
+        $array = explode('|', $this->locales);
 
         foreach ($array as $locale) {
             $locales[] = array('code' => $locale, 'name' => Intl::getLocaleBundle()->getLocaleName($locale, $locale));
