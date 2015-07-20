@@ -128,15 +128,4 @@ class BlogController extends Controller
 
         return $form;
     }
-
-    public function localesAction()
-    {
-        $array = explode('|', $this->container->getParameter('locales'));
-
-        foreach ($array as $locale) {
-            $locales[] = ['code' => $locale, 'name' => Intl::getLocaleBundle()->getLocaleName($locale, $locale)];
-        }
-
-        return $this->render('blog/_locales_dropdown.html.twig', ['locales' => $locales]); 
-    }
 }
