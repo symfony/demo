@@ -26,7 +26,7 @@
                             {{ 'action.show'|trans }}
                         </a>
 
-                        {% if post.isAuthor(app.user) %}
+                        {% if app.user and post.isAuthor(app.user) %}
                             <a href="{{ path('admin_post_edit', { id: post.id }) }}" class="btn btn-sm btn-primary">
                                 <i class="fa fa-edit"></i> {{ 'action.edit'|trans }}
                             </a>
