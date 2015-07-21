@@ -25,7 +25,8 @@ services:
             - { name: twig.extension }
 
     app.twig.extension_intl:
-        class: Twig_Extensions_Extension_Intl
+        public: false
+        class:  Twig_Extensions_Extension_Intl
         tags:
             - { name: twig.extension }
 
