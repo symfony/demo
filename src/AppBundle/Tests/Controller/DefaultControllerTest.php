@@ -59,7 +59,7 @@ class DefaultControllerTest extends WebTestCase
         $this->assertTrue($client->getResponse()->isRedirect());
 
         $this->assertEquals(
-            'http://localhost/login',
+            'http://localhost/en/login',
             $client->getResponse()->getTargetUrl(),
             sprintf('The %s secure URL redirects to the login form.', $url)
         );
@@ -69,19 +69,19 @@ class DefaultControllerTest extends WebTestCase
     {
         return array(
             array('/'),
-            array('/blog/'),
-            array('/blog/posts/morbi-tempus-commodo-mattis'),
-            array('/login'),
+            array('/en/blog/'),
+            array('/en/blog/posts/morbi-tempus-commodo-mattis'),
+            array('/en/login'),
         );
     }
 
     public function getSecureUrls()
     {
         return array(
-            array('/admin/post/'),
-            array('/admin/post/new'),
-            array('/admin/post/1'),
-            array('/admin/post/1/edit'),
+            array('/en/admin/post/'),
+            array('/en/admin/post/new'),
+            array('/en/admin/post/1'),
+            array('/en/admin/post/1/edit'),
         );
     }
 }
