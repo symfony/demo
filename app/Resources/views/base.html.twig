@@ -49,7 +49,9 @@
                         </div>
                         <div class="navbar-collapse collapse">
                             <ul class="nav navbar-nav navbar-right">
+                                    
                                 {% block header_navigation_links %}
+                                    
                                     <li>
                                         <a href="{{ path('blog_index') }}">
                                             <i class="fa fa-home"></i> {{ 'menu.homepage'|trans }}
@@ -77,6 +79,16 @@
                                         </a>
                                     </li>
                                 {% endif %}
+                                
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-globe"></i> <span class="caret"></span></a>
+                                    <ul class="dropdown-menu locales" role="menu">
+                                        {% for locale in locales() %}
+                                            <li {% if app.request.locale == locale.code %}class="active"{% endif %}><a href="{{ path('blog_index', {_locale:locale.code}) }}">{{ locale.name|capitalize }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                                
                             </ul>
                         </div>
                     </div>
