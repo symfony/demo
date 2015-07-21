@@ -30,6 +30,12 @@ services:
         tags:
             - { name: twig.extension }
 
+    app.twig.extension_intl:
+        public: false
+        class:  Twig_Extensions_Extension_Intl
+        tags:
+            - { name: twig.extension }
+
     app.controller_listener:
         class:     AppBundle\EventListener\ControllerListener
         arguments: ["@app.twig.source_code_extension"]

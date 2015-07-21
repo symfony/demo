@@ -21,7 +21,7 @@
             </tr>
             <tr>
                 <th>{{ 'label.published_at'|trans }}</th>
-                <td><p>{{ post.publishedAt|date('Y-m-d H:i:s') }}</p></td>
+                <td><p>{{ post.publishedAt|localizeddate('long', 'medium') }}</p></td>
             </tr>
         </tbody>
     </table>
