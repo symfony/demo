@@ -1,0 +1,183 @@
+---------------------------------------------------------------------------
+
+by weaverryan at 2015-07-15T18:22:27Z
+
+@JulienItard I like the flags, but where are they from? Also, I think we should only add the flags that we're using from now (especially if we know the source, and can find other flags if we need them)
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-07-15T18:25:17Z
+
+@JulienItard thanks for this. I like it.
+
+My only concern are the flags. I think we should get rid of them. This is one of the classic usability problems, [as explained here](http://www.nngroup.com/articles/flag-problems/). Take for the example the Spanish language: it's official in 21 different countries, but we only show the flag for one specific country.
+
+---------------------------------------------------------------------------
+
+by JulienItard at 2015-07-15T18:39:00Z
+
+@weaverryan I use these flags https://dribbble.com/shots/1211759-Free-195-Flat-Flags
+
+@javiereguiluz yes, but i use the country where the langage originally comes from
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-07-15T20:10:20Z
+
+@JulienItard I'm afraid that's not a good enough reason. Flags cannot be shown in a language selector because countries and languages have nothing to do. In you look around, you'll only see flags when a website lets you select a country, not a language.
+
+---------------------------------------------------------------------------
+
+by stof at 2015-07-16T08:13:56Z
+
+please revert the permission changes. Templates and config files have no reason to be executable
+
+---------------------------------------------------------------------------
+
+by JulienItard at 2015-07-17T14:44:55Z
+
+Everything is ok now?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-07-17T15:06:15Z
+
+I've tested it and from a code point of view, everything looks correct to me.
+
+However, I'd like to suggest some design changes. This is the current design:
+
+![before](https://cloud.githubusercontent.com/assets/73419/8750091/ba7a2916-2ca5-11e5-8916-574347233558.png)
+
+The first issue I see is that the icon represents a flag, which has nothing to do with languages ;)  The second issue, is that I think it's better to display the current language name. The last issue is that this selector is usually dispalyed at the rightmost part of the page. Something like this:
+
+![after-1](https://cloud.githubusercontent.com/assets/73419/8750122/ed328d6c-2ca5-11e5-9183-dba5801470a9.png)
+
+It would be nice too if the current language is displayed in bold letters in the language list:
+
+![after-2](https://cloud.githubusercontent.com/assets/73419/8750134/fa6577ba-2ca5-11e5-9c3d-a5fb573b45eb.png)
+
+Lastly, if you don't like the `fa-language` icon, another common alternative is to use `fa-globe`, which FontAwesome also relates to "translation":
+
+![after-3](https://cloud.githubusercontent.com/assets/73419/8750159/10023e00-2ca6-11e5-800d-70bb29934ea6.png)
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-07-17T15:11:54Z
+
+I vote for `fa-language` icon :+1:
+
+---------------------------------------------------------------------------
+
+by JulienItard at 2015-07-17T15:30:59Z
+
+I vote for fa-globe :)
+
+---------------------------------------------------------------------------
+
+by JulienItard at 2015-07-19T12:59:07Z
+
+Up
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-07-19T14:04:00Z
+
+Yeah, it's a bit overhead. What about to add `Twig` function to return  `locale_code => locale_name` array of all supported locales?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-07-19T15:28:50Z
+
+Yes, it would be better to create a Twig global variable from the `locales` parameter and use something like: `for locale in locales|split('|')`
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2015-07-19T15:49:42Z
+
+Parameters do not need to be flat strings, they can also contain array values: http://symfony.com/doc/current/components/dependency_injection/parameters.html#array-parameters. You don't need to use the "split" function.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-07-19T15:53:08Z
+
+@voronkovich yes, but we want to define the locales in one single parameter and then, define the global Twig variable based on that parameter:
+
+```yaml
+parameters:
+    locales: en|fr|de|es|cs|ru|uk|ro|pt_BR
+
+# ...
+
+twig:
+    globals:
+        locales: %locales%
+```
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-07-19T16:41:16Z
+
+What about locale human readable names? Maybe somethink like:
+
+``` yaml
+twig:
+    globals:
+        languages:
+            en: English
+            ru: Russian
+            # ... other
+```
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2015-07-19T16:48:05Z
+
+@bocharsky-bw, I agree with you. In the template we will need languages names, not only codes.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-07-19T17:36:18Z
+
+I was hoping we can define just the locale codes and Symfony will do the magic of displaying the name of each language in its own language (English, Français, Español, etc.)
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2015-07-19T17:58:09Z
+
+@javiereguiluz, are you meaning this? http://symfony.com/doc/current/components/intl.html#country-names
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-07-19T17:59:31Z
+
+Yep, `Intl` component could help us, but I think we need [locales](http://symfony.com/doc/current/components/intl.html#locales) not countries
+
+---------------------------------------------------------------------------
+
+by JulienItard at 2015-07-19T20:30:48Z
+
+Good ideas, i'll do it tomorrow.
+
+---------------------------------------------------------------------------
+
+by JulienItard at 2015-07-20T16:27:37Z
+
+What do you think about it ?
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-07-20T16:37:27Z
+
+I think locale menu relates to whole project, not only to Blog, so this method in BlogController a bit confused me. Maybe better to use custom Twig function in order to render locale menu?
+
+---------------------------------------------------------------------------
+
+by JulienItard at 2015-07-20T17:59:41Z
+
+Better ?
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-07-20T18:29:34Z
+
+I like it more :+1:
