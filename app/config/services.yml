@@ -13,24 +13,28 @@ services:
     # These are the Twig extensions that create new filters and functions for
     # using them in the templates
     app.twig.app_extension:
+        public:    false
         class:     AppBundle\Twig\AppExtension
         arguments: ["@markdown"]
         tags:
             - { name: twig.extension }
 
     app.twig.locale_extension:
+        public:    false
         class:     AppBundle\Twig\LocaleExtension
         arguments: ["%app_locales%"]
         tags:
             - { name: twig.extension }
 
     app.twig.source_code_extension:
+        public:    false
         class:     AppBundle\Twig\SourceCodeExtension
         arguments: ["@twig.loader", "%kernel.root_dir%"]
         tags:
             - { name: twig.extension }
 
     app.controller_listener:
+        public:    false
         class:     AppBundle\EventListener\ControllerListener
         arguments: ["@app.twig.source_code_extension"]
         tags:
