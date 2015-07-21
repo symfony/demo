@@ -40,7 +40,6 @@ services:
             - { name: twig.extension }
 
     app.controller_listener:
-        public:    false
         class:     AppBundle\EventListener\ControllerListener
         arguments: ["@app.twig.source_code_extension"]
         tags:
