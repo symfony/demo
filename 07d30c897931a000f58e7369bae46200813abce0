@@ -1,0 +1,33 @@
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-07-20T19:01:50Z
+
+Should not we add `"ext-intl": "*"` to `composer.json` requirements section?
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-07-21T08:20:56Z
+
+@javiereguiluz Could you also localize date on some admin pages:
+[blog index page](https://github.com/symfony/symfony-demo/blob/master/app/Resources/views/admin/blog/index.html.twig#L22)
+[post show page](https://github.com/symfony/symfony-demo/blob/master/app/Resources/views/admin/blog/show.html.twig#L24)
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-07-21T08:36:26Z
+
+@bocharsky-bw good idea! I've done it in bb9d1a7. Thanks!
+
+---------------------------------------------------------------------------
+
+by stof at 2015-07-21T09:15:40Z
+
+> Should not we add ``"ext-intl": "*"`` to composer.json requirements section?
+
+not needed. If you don't have the intl extension, the Symfony stub will be used. It will always format it in the en format, but it will work
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-07-21T14:26:25Z
+
+@stof thanks for your review! Everything has been fixed.
