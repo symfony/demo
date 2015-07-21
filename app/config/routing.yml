@@ -18,7 +18,8 @@ app:
 # the template can be rendered without executing any logic in your own controller.
 # See http://symfony.com/doc/current/cookbook/templating/render_without_controller.html
 homepage:
-    path: /
+    path: /{_locale}
     defaults:
         _controller: FrameworkBundle:Template:template
         template:    'default/homepage.html.twig'
+        _locale:     "%locale%"
