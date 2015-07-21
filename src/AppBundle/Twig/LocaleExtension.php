@@ -14,13 +14,17 @@ namespace AppBundle\Twig;
 use Symfony\Component\Intl\Intl;
 
 /**
+ * This Twig extension takes the list of codes of the locales (languages)
+ * enabled in the application and returns an array with the name of each
+ * locale written in its own language (e.g. English, Français, Español, etc.)
+ *
  * @author Julien ITARD <julienitard@gmail.com>
  */
 class LocaleExtension extends \Twig_Extension
 {
     private $locales;
 
-    public function __construct( $locales)
+    public function __construct($locales)
     {
         $this->locales = $locales;
     }
@@ -34,13 +38,13 @@ class LocaleExtension extends \Twig_Extension
 
     public function getLocales()
     {
-        $array = explode('|', $this->locales);
+        $localeCodes = explode('|', $this->locales);
 
-        foreach ($array as $locale) {
-            $locales[] = array('code' => $locale, 'name' => Intl::getLocaleBundle()->getLocaleName($locale, $locale));
+        foreach ($localeCodes as $localeCode) {
+            $locales[] = array('code' => $localeCode, 'name' => Intl::getLocaleBundle()->getLocaleName($localeCode, $localeCode));
         }
 
-        return $locales; 
+        return $locales;
     }
 
     // the name of the Twig extension must be unique in the application

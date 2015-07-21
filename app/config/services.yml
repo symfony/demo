@@ -2,7 +2,7 @@ parameters:
     app.notifications.email_sender: anonymous@example.com
 
 services:
-    # first we define some basic services to make these utilities available in
+    # First we define some basic services to make these utilities available in
     # the entire application
     slugger:
         class: AppBundle\Utils\Slugger
@@ -10,8 +10,8 @@ services:
     markdown:
         class: AppBundle\Utils\Markdown
 
-    # this is the Twig extension that creates the 'md2html' filter to transform
-    # Markdown contents into HTML contents
+    # These are the Twig extensions that create new filters and functions for
+    # using them in the templates
     app.twig.app_extension:
         class:     AppBundle\Twig\AppExtension
         arguments: ["@markdown"]

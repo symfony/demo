@@ -9,7 +9,11 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
 
+# These are the configuration parameters that define the application's behavior
+# and which are independent from the underlying technical infrastructure
+# See http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    # This parameter defines the codes of the locales (languages) enabled in the application
     app_locales: en|fr|de|es|cs|ru|uk|ro|pt_BR
 
 # Basic configuration for the Symfony framework features
