@@ -133,13 +133,13 @@ class Post
     /**
      * Is the given User the author of this Post?
      *
-     * @param User|string $user
+     * @param User $user
      *
      * @return bool
      */
-    public function isAuthor($user = null)
+    public function isAuthor(User $user = null)
     {
-        return $user instanceof User && $user->getEmail() == $this->getAuthorEmail();
+        return $user->getEmail() == $this->getAuthorEmail();
     }
 
     public function getPublishedAt()
