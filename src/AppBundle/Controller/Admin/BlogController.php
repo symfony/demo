@@ -127,9 +127,6 @@ class BlogController extends Controller
      */
     public function editAction(Post $post, Request $request)
     {
-        // This security check can also be performed:
-        //   1. Using an annotation: @Security("post.isAuthor(user)")
-        //   2. Using a "voter" (see http://symfony.com/doc/current/cookbook/security/voters_data_permission.html)
         if (null === $this->getUser() || !$post->isAuthor($this->getUser())) {
             throw $this->createAccessDeniedException('Posts can only be edited by their authors.');
         }
