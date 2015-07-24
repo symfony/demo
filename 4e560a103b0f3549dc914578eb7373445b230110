@@ -1,0 +1,5 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-07-23T10:20:45Z
+
+I've refactored some backend controllers (https://github.com/javiereguiluz/symfony-demo/commit/1cae0a24328f81980f03c7abcbdf9115f4f3f42b) to fix tests while maintaining the `isAuthor()` original code. Tests work again, although Travis has some problems on its own.
