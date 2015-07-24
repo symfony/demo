@@ -1,0 +1,119 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-07-24T07:36:50Z
+
+:+1: I almost made the same change in other PR and I was testing it irght now (https://github.com/javiereguiluz/symfony-demo/commit/bf799e4308035e7e07883e58d0628f6ea76c22b3) Thanks!
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-07-24T07:38:47Z
+
+Oh, now I see. :)
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-07-24T07:43:19Z
+
+I think I could close this PR
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-07-24T07:46:42Z
+
+Let's wait a bit ... neither your PR nor mine work at the moment :)
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-07-24T07:57:57Z
+
+@javiereguiluz The problem was I forgot to update `composer.lock` via `$ composer update`
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-07-24T07:59:41Z
+
+@bocharsky-bw true! Should we remove the composer.lock file? In Travis the old problems with PHP 5.3 are gone, but now we have new problemas with 5.6 :angry:
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-07-24T08:03:55Z
+
+No, `composer.lock` file should be in the repo for same environment for all developers who use this repo.
+
+The problem is we should always update dependencies when change `composer.json` file via command `$ composer update`. This command generate new `composer.lock` file with a new dependencies from changed `composer.json`.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-07-24T08:13:30Z
+
+Let's ask for help to our friends @stof and @xabbuh to see if they can tweak the `composer.json` dependencies to fix Travis issues. Thanks!
+
+---------------------------------------------------------------------------
+
+by stof at 2015-07-24T09:48:02Z
+
+The symfony-demo is a project, so we should indeed commit the lock file. See https://github.com/symfony/symfony-demo/commit/0fd26c68ba2fb76346eb914eee4e4c47b5e64920#commitcomment-12339685 for the solution
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-07-24T09:53:21Z
+
+@stof thanks a lot for your help and for the explanation!!
+
+@bocharsky-bw please add the following in `composer.json`:
+
+```json
+"config": {
+        "platform": {
+            "php": "5.3"
+        }
+    },
+```
+
+Besides, we can remove the `doctrine/dbal` dependency and we can simplify `doctrine/orm` to `~2.4`.
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-07-24T10:01:17Z
+
+I had next error for `"platform": { "php": "5.3" }` when did `$ composer up`:
+
+```
+  Problem 2
+    - symfony/symfony v2.7.2 requires php >=5.3.9 -> your PHP version (5.6.4-4ubuntu6.2) does not satisfy that requirement.
+    - symfony/symfony v2.7.2 requires php >=5.3.9 -> your PHP version (5.6.4-4ubuntu6.2) does not satisfy that requirement.
+    - symfony/symfony v2.7.1 requires php >=5.3.9 -> your PHP version (5.6.4-4ubuntu6.2) does not satisfy that requirement.
+    - symfony/symfony v2.7.0 requires php >=5.3.9 -> your PHP version (5.6.4-4ubuntu6.2) does not satisfy that requirement.
+    - Installation request for symfony/symfony ~2.7 -> satisfiable by symfony/symfony[v2.7.0, v2.7.1, v2.7.2].
+```
+so I bumped platform PHP version to `5.3.9`, it's ok?
+
+---------------------------------------------------------------------------
+
+by stof at 2015-07-24T10:04:52Z
+
+@bocharsky-bw yes (and we should change the min version in the symfony-demo composer.json too)
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-07-24T10:11:03Z
+
+Still failed
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-07-24T10:19:11Z
+
+Looks like old version of `Composer` on `Travis` machine was a problem :(
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-07-24T10:19:56Z
+
+@stof Thanks for your help!
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-07-24T10:20:35Z
+
+@bocharsky-bw great!!! We finally have green Travis results! Thank you! :tada: :tada: :tada:
