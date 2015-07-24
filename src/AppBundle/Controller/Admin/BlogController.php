@@ -101,13 +101,16 @@ class BlogController extends Controller
      *
      * @Route("/{id}", requirements={"id" = "\d+"}, name="admin_post_show")
      * @Method("GET")
-     * @Security("post.isAuthor(user)")
-     *
-     * NOTE: You can also centralize security logic by using a "voter"
-     * See http://symfony.com/doc/current/cookbook/security/voters_data_permission.html
      */
     public function showAction(Post $post)
     {
+        // This security check can also be performed:
+        //   1. Using an annotation: @Security("post.isAuthor(user)")
+        //   2. Using a "voter" (see http://symfony.com/doc/current/cookbook/security/voters_data_permission.html)
+        if (null === $this->getUser() || !$post->isAuthor($this->getUser())) {
+            throw $this->createAccessDeniedException('Posts can only be shown to their authors.');
+        }
+
         $deleteForm = $this->createDeleteForm($post);
 
         return $this->render('admin/blog/show.html.twig', array(
@@ -121,10 +124,13 @@ class BlogController extends Controller
      *
      * @Route("/{id}/edit", requirements={"id" = "\d+"}, name="admin_post_edit")
      * @Method({"GET", "POST"})
-     * @Security("post.isAuthor(user)")
      */
     public function editAction(Post $post, Request $request)
     {
+        if (null === $this->getUser() || !$post->isAuthor($this->getUser())) {
+            throw $this->createAccessDeniedException('Posts can only be edited by their authors.');
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $editForm = $this->createForm(new PostType(), $post);

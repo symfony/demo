@@ -39,7 +39,7 @@ class BlogControllerTest extends WebTestCase
             'PHP_AUTH_PW'   => 'kitten',
         ));
 
-        $client->request('GET', '/admin/post/');
+        $client->request('GET', '/en/admin/post/');
 
         $this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
     }
@@ -51,7 +51,7 @@ class BlogControllerTest extends WebTestCase
             'PHP_AUTH_PW'   => 'kitten',
         ));
 
-        $client->request('GET', '/admin/post/');
+        $client->request('GET', '/en/admin/post/');
 
         $this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
     }
@@ -63,7 +63,7 @@ class BlogControllerTest extends WebTestCase
             'PHP_AUTH_PW'   => 'kitten',
         ));
 
-        $crawler = $client->request('GET', '/admin/post/');
+        $crawler = $client->request('GET', '/en/admin/post/');
 
         $this->assertCount(
             Post::NUM_ITEMS,

@@ -29,7 +29,7 @@ class BlogControllerTest extends WebTestCase
     public function testIndex()
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/blog/');
+        $crawler = $client->request('GET', '/en/blog/');
 
         $this->assertCount(
             Post::NUM_ITEMS,
