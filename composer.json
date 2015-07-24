@@ -7,11 +7,11 @@
         "psr-0": { "": "src/", "SymfonyStandard": "app/" }
     },
     "require": {
-        "php"                                  : ">=5.3.3",
+        "php"                                  : ">=5.3.9",
         "ext-pdo_sqlite"                       : "*",
         "doctrine/doctrine-bundle"             : "~1.5",
         "doctrine/doctrine-fixtures-bundle"    : "~2.2",
-        "doctrine/orm"                         : "~2.5",
+        "doctrine/orm"                         : "~2.4",
         "erusev/parsedown"                     : "~1.5",
         "incenteev/composer-parameter-handler" : "~2.1",
         "ircmaxell/password-compat"            : "~1.0",
@@ -47,7 +47,10 @@
         ]
     },
     "config": {
-        "bin-dir": "bin"
+        "bin-dir": "bin",
+        "platform": {
+            "php": "5.3.9"
+        }
     },
     "extra": {
         "symfony-app-dir": "app",
