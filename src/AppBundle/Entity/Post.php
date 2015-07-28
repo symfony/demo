@@ -137,7 +137,7 @@ class Post
      *
      * @return bool
      */
-    public function isAuthor(User $user = null)
+    public function isAuthor(User $user)
     {
         return $user->getEmail() == $this->getAuthorEmail();
     }
