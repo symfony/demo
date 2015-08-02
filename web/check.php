@@ -34,7 +34,7 @@ $minorProblems = $symfonyRequirements->getFailedRecommendations();
                     <div class="navbar-header">
                         <h1 class="navbar-brand">
                             Symfony Demo Application <span>/</span> Technical Requirements Checker
-                        </span>
+                        </h1>
                     </div>
                 </div>
             </div>
