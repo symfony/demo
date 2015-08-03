@@ -1,0 +1,40 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-07-31T18:37:05Z
+
+@andesk thanks a lot for providing this translation. I'm sorry to bother you, but today we added 1 new string to translate:
+
+```xml
+ <trans-unit id="post.blank_summary">
+    <source>post.blank_summary</source>
+    <target>Gib deinem Beitrag eine Zusammenfassung!</target>
+</trans-unit>
+<trans-unit id="post.blank_content">
+    <source>post.blank_content</source>
+    <target> ... NEW TRANSLATION HERE ... </target>
+</trans-unit>
+```
+
+---------------------------------------------------------------------------
+
+by xabbuh at 2015-08-02T17:32:09Z
+
+@javiereguiluz Can you point to the commit where these strings have been added? It seems like all other translations do miss those translations do or they are named differently.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-08-02T18:35:52Z
+
+@xabbuh here: https://github.com/symfony/symfony-demo/commit/2c9a153e2da8378e438bb42510ebc552f5e743a9
+
+---------------------------------------------------------------------------
+
+by xabbuh at 2015-08-02T18:56:42Z
+
+@javiereguiluz Oh indeed (I was looking in `messages.en.xliff`).
+
+---------------------------------------------------------------------------
+
+by andesk at 2015-08-03T07:29:22Z
+
+German translation for blank_content was added.
