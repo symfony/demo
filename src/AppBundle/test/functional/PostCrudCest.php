@@ -1,4 +1,6 @@
 <?php
+namespace AcmeBundle;
+
 class PostCrudCest
 {
     const POST_ENTITY = 'AppBundle\Entity\Post';

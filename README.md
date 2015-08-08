@@ -13,9 +13,29 @@ php app/console doctrine:fixtures:load -n --env test
 php bin/codecept run
 ```
 
-There are functional and unit tests:
+### Unit Tests
+
+Unit tests should be located in corresponding Bundle. A simple Codeception configuration was created `src/AppBundle`.
+Codeception is configured (in `src/AppBundle/codeception.yml`) to use `app` directory for handling logs and data.
+
+Tests are loaded from `src/AppBundle/test` (we didn't use `Tests` folder to separate symfony-demo original tests and tests of Codeception).
+Unit tests can be executed from `src/AppBundle` dir:
+
+```
+codecept run -c src/AppBundle
+```
+
+*Codeception runs original symfony-demo unit tests as well as newly created ones*
 
 
+## Functional Tests
+
+Functional tests are Codeception specific and located in root of application in `tests` dir.
+They emulate interaction with application, and
+
+```
+
+```
 
 
 ## Below goes official README of Symfony Demo Application:

@@ -1,4 +1,6 @@
 <?php
+namespace AcmeBundle;
+
 class AuthCest
 {
     function _before(FunctionalTester $I)

@@ -46,4 +46,5 @@ before_script:
 
 script:
   - phpunit -c app
+  - php app/console server:start
   - php bin/codecept run
