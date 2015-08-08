@@ -1,0 +1,14 @@
+# we sprcify a namespace for this bundle
+# to include those tests into global suite
+namespace: AcmeBundle
+actor: Tester
+paths:
+    tests: test
+    # we are using ./app folder for logs and data
+    log: ../../app/logs
+    data: ../../app/data
+    support: test/_support
+settings:
+    bootstrap: _bootstrap.php
+    colors: true
+    memory_limit: 1024M

@@ -39,5 +39,12 @@ install:
   - if [ "$deps" = "low" ]; then composer update --prefer-lowest; fi
   - if [ "$deps" != "low" ]; then composer install; fi
 
+before_script:
+  - composer install -n
+  - php app/console doctrine:schema:create -n --env test
+  - php app/console doctrine:fixtures:load -n --env test
+
 script:
   - phpunit -c app
+  - php app/console server:start
+  - php bin/codecept run
