@@ -13,7 +13,12 @@ php app/console doctrine:fixtures:load -n --env test
 php bin/codecept run
 ```
 
-Below goes official README of Symfony Demo Application:
+There are functional and unit tests:
+
+
+
+
+## Below goes official README of Symfony Demo Application:
 
 ---
 

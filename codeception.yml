@@ -1,4 +1,6 @@
 actor: Tester
+include:
+    - src/*Bundle
 paths:
     tests: tests
     log: tests/_output
