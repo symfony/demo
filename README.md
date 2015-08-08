@@ -5,7 +5,7 @@ Symfony Demo Application
 
 We use official "Symfony Demo Application" to demonstrate basics of Codeception testing.
 
-![demopic](/home/davert/Pictures/Selection_040.png)
+![demopic](app/data/demo.png)
 
 There are **acceptance**, **functional**, and **unit** tests included.
 Acceptance tests are located in the `tests/acceptance` directory in the root of a project,
