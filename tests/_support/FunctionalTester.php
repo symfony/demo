@@ -20,8 +20,17 @@ class FunctionalTester extends \Codeception\Actor
 {
     use _generated\FunctionalTesterActions;
 
-   /**
-    * Define custom actions here
-    */
+    protected $locale = 'en';
+
+    /**
+     * All urls are localized, so we should apply localization rules for every opened page.
+     *
+     * @param $url
+     */
+    function amOnLocalizedPage($url)
+    {
+        $this->amOnPage("/{$this->locale}$url");
+    }
+
 
 }

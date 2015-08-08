@@ -23,7 +23,7 @@ class PostCrudCest
         // logging in to site, this could also be done by fillField, click "sign in",
         // as it is in AuthCest
         $I->amGoingTo('log in to site');
-        $I->amOnPage('/login');
+        $I->amOnLocalizedPage('/login');
         $I->submitForm('#main form', ['_username' => 'anna_admin', '_password' => 'kitten']);
     }
 
@@ -33,7 +33,7 @@ class PostCrudCest
      */
     public function viewPostInFrontend(FunctionalTester $I)
     {
-        $I->amOnPage('/blog/posts/test-post'. sq('post'));
+        $I->amOnLocalizedPage('/blog/posts/test-post'. sq('post'));
         $I->see('Test Post'. sq('post'));
         $I->see('Lorem Ipsum dolor');
     }
@@ -43,9 +43,9 @@ class PostCrudCest
      */
     public function createPost(FunctionalTester $I)
     {
-        $I->amOnPage('/admin/post/');
+        $I->amOnLocalizedPage('/admin/post/');
         $I->click('Create a new post');
-        $I->seeCurrentUrlEquals('/admin/post/new');
+        $I->seeInCurrentUrl('/admin/post/new');
         $I->fillField('Title', 'Sponsored post');
         $I->fillField('Summary', 'This post is sponsored, move along');
         $I->fillField('Content', 'Please read, this is very important');
@@ -62,9 +62,9 @@ class PostCrudCest
      */
     public function viewPostInBackend(FunctionalTester $I)
     {
-        $I->amOnPage('/admin/post/');
+        $I->amOnLocalizedPage('/admin/post/');
         $I->see('Test Post', 'table');
-        $I->amOnPage('/admin/post/'.$this->postId);
+        $I->amOnLocalizedPage('/admin/post/'.$this->postId);
         $I->see('Test Post', 'h1');
         $I->see('Lorem ipsum text');
         $I->seeLink('Edit contents');
@@ -77,7 +77,7 @@ class PostCrudCest
      */
     public function editPost(FunctionalTester $I)
     {
-        $I->amOnPage("/admin/post/{$this->postId}/edit");
+        $I->amOnLocalizedPage("/admin/post/{$this->postId}/edit");
         $I->see("Edit post #".$this->postId);
         $I->fillField('Title', 'Improved post');
         $I->click('Save changes');
@@ -92,7 +92,7 @@ class PostCrudCest
      */
     public function deletePost(FunctionalTester $I)
     {
-        $I->amOnPage("/admin/post/{$this->postId}");
+        $I->amOnLocalizedPage("/admin/post/{$this->postId}");
         $I->click('Delete post');
         $I->dontSee('Test post' . sq('post'), 'table');
         $I->dontSeeInRepository(self::POST_ENTITY, ['id' => $this->postId]);

@@ -3,7 +3,9 @@ class AuthCest
 {
     function _before(FunctionalTester $I)
     {
-        $I->amOnPage('/login');
+        // amOnPage replaced with custom implementation
+        // to open /en/login instead of /login
+        $I->amOnLocalizedPage('/login');
     }
 
     /**
@@ -13,13 +15,13 @@ class AuthCest
     public function authAsUser(FunctionalTester $I)
     {
         $I->fillField('Username', 'john_user');
-        $I->fillField('Password:', 'kitten');
+        $I->fillField('Password', 'kitten');
         $I->click('Sign in');
-        $I->amOnPage('/blog');
-        $I->seeLink('Logout','/logout');
+        $I->amOnLocalizedPage('/blog');
+        $I->seeLink('Logout');
 
         $I->expect("user can't access admin area");
-        $I->amOnPage('/admin/post/');
+        $I->amOnLocalizedPage('/admin/post/');
         $I->seeResponseCodeIs(403);
 
     }
@@ -30,20 +32,20 @@ class AuthCest
     public function authAsAdmin(FunctionalTester $I)
     {
         $I->fillField('Username', 'anna_admin');
-        $I->fillField('Password:', 'kitten');
+        $I->fillField('Password', 'kitten');
         $I->click('Sign in');
-        $I->amOnPage('/admin/post/');
+        $I->amOnLocalizedPage('/admin/post/');
         $I->see('Post List', 'h1');
-        $I->seeLink('Logout','/logout');
+        $I->seeLink('Logout');
     }
 
     public function invalidAuth(FunctionalTester $I)
     {
         $I->fillField('Username', 'notauser');
-        $I->fillField('Password:', 'kitten');
+        $I->fillField('Password', 'kitten');
         $I->click('Sign in');
         $I->see('Invalid credentials', '.alert');
-        $I->seeCurrentUrlEquals('/login');
-        $I->dontSeeLink('Logout','/logout');
+        $I->seeInCurrentUrl('/login');
+        $I->dontSeeLink('Logout');
     }
 }
