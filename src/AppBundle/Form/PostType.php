@@ -29,17 +29,27 @@ class PostType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        // for the full reference of options defined by each form field type
+        // For the full reference of options defined by each form field type
         // see http://symfony.com/doc/current/reference/forms/types.html
+
+        // By default, form fields include the 'required' attribute, which enables
+        // the client-side form validation. This means that you can't test the
+        // server-side validation errors from the browser. To temporarily disable
+        // this validation, set the 'required' attribute to 'false':
+        //
+        //     $builder->add('title', null, array('required' => false, ...));
+
         $builder
-            ->add('title')
-            ->add('summary', 'textarea')
+            ->add('title', null, array('label' => 'label.title'))
+            ->add('summary', 'textarea', array('label' => 'label.summary'))
             ->add('content', 'textarea', array(
                 'attr' => array('rows' => 20),
+                'label' => 'label.content',
             ))
-            ->add('authorEmail', 'email')
+            ->add('authorEmail', 'email', array('label' => 'label.author_email'))
             ->add('publishedAt', 'datetime', array(
                 'widget' => 'single_text',
+                'label' => 'label.published_at',
             ))
         ;
     }
@@ -59,6 +69,8 @@ class PostType extends AbstractType
      */
     public function getName()
     {
-        return 'post';
+        // Best Practice: use 'app_' as the prefix of your custom form types names
+        // see http://symfony.com/doc/current/best_practices/forms.html#custom-form-field-types
+        return 'app_post';
     }
 }

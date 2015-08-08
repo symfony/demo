@@ -20,12 +20,18 @@ Below goes official README of Symfony Demo Application:
 The "Symfony Demo Application" is a reference application created to show how
 to develop Symfony applications following the recommended best practices.
 
+[![Build Status](https://travis-ci.org/symfony/symfony-demo.svg?branch=master)](https://travis-ci.org/symfony/symfony-demo)
+
 Requirements
 ------------
 
   * PHP 5.3 or higher;
   * PDO-SQLite PHP extension enabled;
   * and the [usual Symfony application requirements](http://symfony.com/doc/current/reference/requirements.html).
+
+If unsure about meeting these requirements, download the demo application and
+browse the `http://localhost:8000/check.php` script to get more detailed
+information.
 
 Installation
 ------------

@@ -1,3 +1,11 @@
+{#
+    By default, forms enable client-side validation. This means that you can't
+    test the server-side validation errors from the browser. To temporarily
+    disable this validation, add the 'novalidate' attribute:
+
+    {{ form_start(form, { method: ..., action: ..., attr: { novalidate: 'novalidate' } }) }}
+#}
+
 {{ form_start(form, { method: 'POST', action: path('comment_new', { 'postSlug': post.slug }) }) }}
     {#  instead of displaying form fields one by one, you can also display them
         all with their default options and styles just by calling to this function:
@@ -6,22 +14,20 @@
     #}
 
     <fieldset>
-        <legend>Add a comment</legend>
+        <legend>{{ 'title.add_comment'|trans }}</legend>
 
-        <div class="form-group">
+        <div class="form-group{% if not form.vars.valid %} has-error{% endif %}">
             {{ form_label(form.content, 'Content', { label_attr: { class: 'hidden' }}) }}
 
             {% if not form.vars.valid %}
-                <div class="alert alert-danger form-error">
-                    {{ form_errors(form.content) }}
-                </div>
+                {{ form_errors(form.content) }}
             {% endif %}
 
             {{ form_widget(form.content, { attr: { rows: 10 } }) }}
         </div>
 
         <div class="form-group">
-            {{ form_widget(form.submit, { attr: { class: 'btn-primary pull-right' }, label: 'Publish comment' }) }}
+            {{ form_widget(form.submit, { attr: { class: 'btn-primary pull-right' }, label: 'action.publish_comment'|trans }) }}
         </div>
     </fieldset>
 {{ form_end(form) }}

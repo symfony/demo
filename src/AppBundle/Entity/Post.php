@@ -47,16 +47,14 @@ class Post
 
     /**
      * @ORM\Column(type="string")
-     * @Assert\NotBlank(message="Give your post a summary!")
+     * @Assert\NotBlank(message="post.blank_summary")
      */
     private $summary;
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\Length(
-     *     min = "10",
-     *     minMessage = "Post content is too short ({{ limit }} characters minimum)"
-     * )
+     * @Assert\NotBlank(message="post.blank_content")
+     * @Assert\Length(min = "10", minMessage = "post.too_short_content")
      */
     private $content;
 
@@ -140,7 +138,7 @@ class Post
      *
      * @return bool
      */
-    public function isAuthor(User $user = null)
+    public function isAuthor(User $user)
     {
         return $user->getEmail() == $this->getAuthorEmail();
     }

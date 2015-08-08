@@ -44,6 +44,14 @@ i {
 // Page elements
 // --------------------------------------------------
 
+body {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 // Header
 header {
     margin-bottom: 2em;
@@ -51,11 +59,18 @@ header {
     ul.nav li {
         margin-bottom: 0;
     }
+
+    .locales a {
+        padding-right: 10px;
+    }
 }
 
 // Body contents
 .body-container {
-    // needed to prevent pages with a very small height
+    -webkit-flex: 1;
+    flex: 1;
+
+    // needed to prevent pages with a very small height and browsers not supporting flex
     min-height: 600px;
 
     #main h1,
@@ -140,6 +155,26 @@ footer {
 
     ul {
         margin-bottom: 0;
+    }
+}
+
+//
+// Page: 'Technical Requirements Checker'
+// --------------------------------------------------
+body#requirements_checker {
+    header h1 {
+        margin-bottom: 0;
+        margin-top: 0;
+
+        span {
+            font-size: 120%;
+            opacity: .7;
+            padding: 0 5px;
+        }
+    }
+
+    .panel li {
+        margin-bottom: 1em;
     }
 }
 

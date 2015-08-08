@@ -7,13 +7,19 @@
 app:
     resource: @AppBundle/Controller/
     type:     annotation
+    prefix:   /{_locale}
+    requirements: 
+        _locale: %app_locales%
+    defaults:
+        _locale: %locale%
 
 # These lines define a route using YAML configuration. The controller used by
 # the route (FrameworkBundle:Template:template) is a convenient shortcut when
 # the template can be rendered without executing any logic in your own controller.
 # See http://symfony.com/doc/current/cookbook/templating/render_without_controller.html
 homepage:
-    path: /
+    path: /{_locale}
     defaults:
         _controller: FrameworkBundle:Template:template
         template:    'default/homepage.html.twig'
+        _locale:     "%locale%"
