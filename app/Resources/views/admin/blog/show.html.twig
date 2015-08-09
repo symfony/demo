@@ -9,11 +9,11 @@
         <tbody>
             <tr>
                 <th>{{ 'label.summary'|trans }}</th>
-                <td>{{ post.summary|md2html }}</td>
+                <td>{{ post.summary|e|md2html }}</td>
             </tr>
             <tr>
                 <th>{{ 'label.content'|trans }}</th>
-                <td>{{ post.content|md2html }}</td>
+                <td>{{ post.content|e|md2html }}</td>
             </tr>
             <tr>
                 <th>{{ 'label.author'|trans }}</th>

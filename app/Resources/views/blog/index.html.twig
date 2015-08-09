@@ -11,7 +11,7 @@
                 </a>
             </h2>
 
-            {{ post.summary|md2html }}
+            {{ post.summary|e|md2html }}
         </article>
     {% endfor %}
 {% endblock %}
