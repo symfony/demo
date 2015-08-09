@@ -5,7 +5,7 @@
 {% block main %}
     <h1>{{ post.title }}</h1>
 
-    {{ post.content|e|md2html }}
+    {{ post.content|md2html }}
 
     <div id="post-add-comment" class="well">
         {# The 'IS_AUTHENTICATED_FULLY' role ensures that the user has entered
@@ -35,7 +35,7 @@
                 <strong>{{ comment.publishedAt|localizeddate('medium', 'short') }}</strong>
             </h4>
             <div class="col-sm-9">
-                {{ comment.content|e|md2html }}
+                {{ comment.content|md2html }}
             </div>
         </div>
     {% else %}
