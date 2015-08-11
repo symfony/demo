@@ -8,7 +8,7 @@ app:
     resource: @AppBundle/Controller/
     type:     annotation
     prefix:   /{_locale}
-    requirements: 
+    requirements:
         _locale: %app_locales%
     defaults:
         _locale: %locale%
@@ -19,6 +19,8 @@ app:
 # See http://symfony.com/doc/current/cookbook/templating/render_without_controller.html
 homepage:
     path: /{_locale}
+    requirements:
+        _locale: %app_locales%
     defaults:
         _controller: FrameworkBundle:Template:template
         template:    'default/homepage.html.twig'
