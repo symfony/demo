@@ -26,13 +26,15 @@ class PostRepository extends EntityRepository
 {
     public function findLatest($limit = Post::NUM_ITEMS)
     {
-        return $this
-            ->createQueryBuilder('p')
-            ->select('p')
-            ->where('p.publishedAt <= :now')->setParameter('now', new \DateTime())
-            ->orderBy('p.publishedAt', 'DESC')
+        return $this->getEntityManager()
+            ->createQuery('
+                SELECT p
+                FROM AppBundle:Post p
+                WHERE p.publishedAt <= :now
+                ORDER BY p.publishedAt DESC
+            ')
+            ->setParameter('now', new \DateTime())
             ->setMaxResults($limit)
-            ->getQuery()
             ->getResult()
         ;
     }
