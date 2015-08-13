@@ -36,7 +36,7 @@ class AppExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('md2html', array($this, 'markdownToHtml'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFilter('md2html', array($this, 'markdownToHtml'), array('pre_escape' => 'html', 'is_safe' => array('html'))),
         );
     }
 
