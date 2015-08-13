@@ -23,15 +23,19 @@ class Markdown
 {
     private $parser;
 
+    private $purifier;
+
     public function __construct()
     {
         $this->parser = new \Parsedown();
+        $this->purifier = new \HTMLPurifier();
     }
 
     public function toHtml($text)
     {
         $html = $this->parser->text($text);
+        $safeHtml = $this->purifier->purify($html);
 
-        return $html;
+        return $safeHtml;
     }
 }
