@@ -79,7 +79,6 @@ class BlogController extends Controller
             $comment = $form->getData();
             $comment->setAuthorEmail($this->getUser()->getEmail());
             $comment->setPost($post);
-            $comment->setPublishedAt(new \DateTime());
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($comment);
