@@ -148,7 +148,7 @@ class Post
         return $this->publishedAt;
     }
 
-    public function setPublishedAt($publishedAt)
+    public function setPublishedAt(\DateTime $publishedAt)
     {
         $this->publishedAt = $publishedAt;
     }
