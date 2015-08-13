@@ -25,7 +25,10 @@ class Markdown
 
     public function __construct()
     {
-        $this->parser = new \Parsedown();
+        $parsedown = new \Parsedown();
+        $parsedown->setMarkupEscaped(true);
+
+        $this->parser = $parsedown;
     }
 
     public function toHtml($text)
