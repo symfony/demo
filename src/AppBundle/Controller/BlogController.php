@@ -110,7 +110,7 @@ class BlogController extends Controller
     {
         $form = $this->createCommentForm();
 
-        return $this->render('blog/comment_form.html.twig', array(
+        return $this->render('blog/_comment_form.html.twig', array(
             'post' => $post,
             'form' => $form->createView(),
         ));
