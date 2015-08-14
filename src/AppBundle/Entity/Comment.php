@@ -107,7 +107,7 @@ class Comment
     {
         return $this->publishedAt;
     }
-    public function setPublishedAt($publishedAt)
+    public function setPublishedAt(\DateTime $publishedAt)
     {
         $this->publishedAt = $publishedAt;
     }
@@ -116,7 +116,7 @@ class Comment
     {
         return $this->post;
     }
-    public function setPost(Post $post = null)
+    public function setPost(Post $post)
     {
         $this->post = $post;
     }
