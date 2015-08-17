@@ -8,24 +8,24 @@ parameters:
     database_driver:   pdo_sqlite
     database_host:     127.0.0.1
     database_port:     ~
-    database_name:     symfony
+    database_name:     ~
     database_user:     root
     database_password: ~
     # the 'database_path' is only used for SQLite type databases
-    database_path:     %kernel.root_dir%/data/blog.sqlite
+    database_path:     '%kernel.root_dir%/data/blog.sqlite'
 
     # Uncomment these lines to use a MySQL database instead of SQLite:
     #
     # database_driver: pdo_mysql
     # database_host: 127.0.0.1
-    # database_port: null
+    # database_port: ~
     # database_name: symfony_demo
     # database_user: root
-    # database_password: null
+    # database_password: ~
     #
     # You can even create the database and load the sample data from the command line:
     #
-    # $ cd your-symfony-project/
+    # $ cd symfony-demo/
     # $ php app/console doctrine:database:create
     # $ php app/console doctrine:schema:create
     # $ php app/console doctrine:fixtures:load
