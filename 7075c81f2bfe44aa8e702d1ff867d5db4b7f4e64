@@ -1,0 +1,19 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-08-17T09:43:27Z
+
+Are we 100% sure that if we merge this change the application will keep working perfectly without having to execute any command or create (copy/paste) any file? Thanks.
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-08-17T09:55:18Z
+
+The only problem I see is if a developer already have cloned project and pull this new changes manually with `git pull`, for example, he loses his `parameter.yml` file. So he should do `$ composer install`. But if he pulled any changes he should to do `composer install` in any way to load new dependencies.
+
+However with `$ symfony demo` it should work fine without any problems I think.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-08-18T09:36:04Z
+
+I've tested all the building process and there should be no problem by adding this improvement. Thanks @bocharsky-bw!
