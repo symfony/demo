@@ -41,7 +41,7 @@ most recent version executing the `symfony self-update` command.
 >
 >     $ git clone https://github.com/symfony/symfony-demo
 >     $ cd symfony-demo/
->     $ composer install
+>     $ composer install --no-interaction
 
 Usage
 -----
