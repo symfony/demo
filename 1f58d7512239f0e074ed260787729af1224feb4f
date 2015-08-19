@@ -1,0 +1,28 @@
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-08-12T19:44:09Z
+
+Yes, it's true :+1:
+
+However I like form buttons because it allows to do in controllers something like:
+
+``` php
+// create/update action
+if ($form->get('save_and_close')->isClicked()) {
+    return $this->redirectToRoute('post');
+}
+
+return $this->redirectToRoute('post_edit', ['id' => $entity->getId()]);
+```
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2015-08-12T20:16:07Z
+
+I think you should remove the `createCommentForm` method, because it's unnecessary
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-08-12T20:28:43Z
+
+Yes, to be consistent with other forms creation in this demo
