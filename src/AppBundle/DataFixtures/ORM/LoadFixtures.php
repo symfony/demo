@@ -35,6 +35,9 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
     /** @var ContainerInterface */
     private $container;
 
+    /**
+     * {@inheritdoc}
+     */
     public function load(ObjectManager $manager)
     {
         $this->loadUsers($manager);
@@ -93,6 +96,9 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
         $manager->flush();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function setContainer(ContainerInterface $container = null)
     {
         $this->container = $container;
