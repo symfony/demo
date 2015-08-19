@@ -1,0 +1,91 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-08-13T07:50:59Z
+
+Even if this method call is not strictly necessary, don't you think it improves code readability? Removing it looks like "magic" and Symfony always prefer "explicit". What do you think?
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-08-13T08:50:23Z
+
+Yes, it looks a bit magically. However with `select` there is still without `from`, I think it could a bit confused too. As for me I don't like use `select` when fetch all entity.
+
+I based this PR on [Querying for Objects Using Doctrine's Query Builder](http://symfony.com/doc/current/book/doctrine.html#querying-for-objects-using-doctrine-s-query-builder) but it's a tutorial, not best practices.
+
+Also I surfed knpuniversity, Ryan don't use `select` with query builder in his screencasts: [Go Pro with Doctrine Queries](http://knpuniversity.com/screencast/doctrine-queries/query-builder#building-the-query) and [Symfony2](http://knpuniversity.com/screencast/symfony2-ep2/query-builder#doctrine-s-querybuilder).
+
+As for me, the `ParamConverter` do much more magic, however it's best practice :)
+
+Do you think we should keep `select`?
+
+---------------------------------------------------------------------------
+
+by JHGitty at 2015-08-16T23:52:46Z
+
+:+1: I think we should remove ``select``.
+
+---------------------------------------------------------------------------
+
+by xabbuh at 2015-08-17T18:41:20Z
+
+@javiereguiluz Why is the query builder used at all in this example? Imho we can simply use a plain DQL query here as the query is not built based on some argument.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-08-18T09:17:38Z
+
+@xabbuh yes, I think DQL should be used in this example. By the way, anyone knows a good reference in the official Doctrine documentation that explains when to use each of their different ways to build queries? I'd like to add a help note linking to that article. Thanks.
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-08-18T09:40:39Z
+
+@javiereguiluz I think [Symfony docs](http://symfony.com/doc/current/book/doctrine.html#querying-for-objects) has nice explanation about quering with DQL vs Query Builder.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-08-18T09:47:17Z
+
+Honestly, I find the explanation very lacking. For example, when they explain the "query builder":
+
+> Instead of writing a DQL string, you can alternatively use a helpful object called the QueryBuilder to build that string for you:
+
+But they never say why the query builder is better or worse and when to use it or avoid it.
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-08-18T09:56:25Z
+
+It'll be nice to improve Symfony docs for this.
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-08-18T10:23:03Z
+
+The minor problem is that in PhpStorm I have autocompletion by property names with Query Builder what I haven't with DQL :(
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-08-19T06:48:28Z
+
+:+1:
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-08-19T07:11:05Z
+
+@javiereguiluz What do you think about add next explanation?
+
+> Instead of writing a DQL string, you can alternatively use a helpful object called the QueryBuilder to build that string for you if you need to build a query based on some result of conditions. The QueryBuilder allow you to avoid manual query string concatenation by using suitable methods calls and do this concatenation for you. Also, with QueryBuilder you could easy take away some parts of query to separate methods and reuse it in other queries. Check more information about querying for objects in http://symfony.com/doc/current/book/doctrine.html#querying-for-objects
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-08-19T08:28:40Z
+
+@bocharsky-bw I think it's a very good starting point to make a pull request to the symfony-docs repo. My only concern is that phrases are too long :)  But please, make the pull request and our cool doc managers will guide you to tweak the original text. Thanks!
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-08-19T09:42:43Z
+
+I created PR https://github.com/symfony/symfony-docs/pull/5637
