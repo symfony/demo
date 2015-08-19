@@ -17,7 +17,7 @@
         <legend>{{ 'title.add_comment'|trans }}</legend>
 
         <div class="form-group{% if not form.vars.valid %} has-error{% endif %}">
-            {{ form_label(form.content, 'Content', { label_attr: { class: 'hidden' }}) }}
+            {{ form_label(form.content, 'label.content', { label_attr: { class: 'hidden' }}) }}
 
             {% if not form.vars.valid %}
                 {{ form_errors(form.content) }}
@@ -27,7 +27,7 @@
         </div>
 
         <div class="form-group">
-            {{ form_widget(form.submit, { attr: { class: 'btn-primary pull-right' }, label: 'action.publish_comment'|trans }) }}
+            <button class="btn btn-primary pull-right" type="submit">{{ 'action.publish_comment'|trans }}</button>
         </div>
     </fieldset>
 {{ form_end(form) }}

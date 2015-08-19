@@ -123,7 +123,6 @@ class BlogController extends Controller
     private function createCommentForm()
     {
         $form = $this->createForm(new CommentType());
-        $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
