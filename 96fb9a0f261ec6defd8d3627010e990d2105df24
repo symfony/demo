@@ -1,0 +1,77 @@
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-08-17T18:29:42Z
+
+Why do you want to delete docblock comments?
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2015-08-17T18:33:19Z
+
+http://phpdoc.org/docs/latest/guides/inheritance.html#methods
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-08-17T18:36:25Z
+
+So I think we should to use `@inheritdoc` instead
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2015-08-17T18:46:07Z
+
+No, we shouldn't, because https://github.com/symfony/symfony/issues/13696
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-08-17T18:56:16Z
+
+But Symfony doesn't implement this yet
+
+---------------------------------------------------------------------------
+
+by theofidry at 2015-08-17T18:59:59Z
+
+As in symfony/symfony#13696, until the PSR is out, it may be better to keep using it like this.
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2015-08-17T19:30:22Z
+
+But, why we need this docblock comments?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-08-19T15:14:03Z
+
+I don't know what to do. Some peole say "remove them" and others say "keep them" :confused:
+
+---------------------------------------------------------------------------
+
+by theofidry at 2015-08-19T15:15:50Z
+
+Then for now maybe it's better to keep with Symfony practices and keep them :)
+
+---------------------------------------------------------------------------
+
+by TomasVotruba at 2015-08-19T16:28:33Z
+
+@theofidry :+1: Convention over opinions
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2015-08-19T17:23:48Z
+
+But if we want to follow Symfony conventions we should use a `{@inheritdoc}` tag
+
+---------------------------------------------------------------------------
+
+by theofidry at 2015-08-19T17:31:47Z
+
+Then so be it!
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-08-19T19:08:03Z
+
+@theofidry :+1:
