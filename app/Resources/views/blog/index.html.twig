@@ -3,7 +3,7 @@
 {% block body_id 'blog_index' %}
 
 {% block main %}
-    {% for post in pagination %}
+    {% for post in posts %}
         <article class="post">
             <h2>
                 <a href="{{ path('blog_post', { slug: post.slug }) }}">
@@ -17,9 +17,8 @@
         <div class="well">{{ 'post.no_posts_found'|trans }}</div>
     {% endfor %}
 
-    {# display navigation #}
     <div class="navigation">
-        {{ knp_pagination_render(pagination) }}
+        {{ knp_pagination_render(posts) }}
     </div>
 {% endblock %}
 

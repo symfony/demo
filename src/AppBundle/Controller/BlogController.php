@@ -39,15 +39,16 @@ class BlogController extends Controller
     public function indexAction(Request $request)
     {
         $query = $this->getDoctrine()->getRepository('AppBundle:Post')->queryLatest();
+        $page = $request->query->getInt('page', 1);
 
         $paginator  = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
+        $posts = $paginator->paginate(
             $query,
-            $request->query->getInt('page', 1)/*page number*/,
-            10/*limit per page*/
+            $page,
+            Post::NUM_ITEMS
         );
 
-        return $this->render('blog/index.html.twig', array('pagination' => $pagination));
+        return $this->render('blog/index.html.twig', array('posts' => $posts));
     }
 
     /**
