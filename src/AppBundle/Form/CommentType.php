@@ -26,6 +26,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class CommentType extends AbstractType
 {
+    /**
+     * {@inheritdoc}
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         // By default, form fields include the 'required' attribute, which enables
@@ -40,6 +43,9 @@ class CommentType extends AbstractType
         ;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
@@ -47,6 +53,9 @@ class CommentType extends AbstractType
         ));
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
         // Best Practice: use 'app_' as the prefix of your custom form types names

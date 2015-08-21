@@ -29,6 +29,9 @@ class LocaleExtension extends \Twig_Extension
         $this->locales = $locales;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getFunctions()
     {
         return array(

@@ -38,6 +38,9 @@ class SourceCodeExtension extends \Twig_Extension
         $this->controller = $controller;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getFunctions()
     {
         return array(

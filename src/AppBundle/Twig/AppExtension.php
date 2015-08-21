@@ -33,6 +33,9 @@ class AppExtension extends \Twig_Extension
         $this->parser = $parser;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getFilters()
     {
         return array(

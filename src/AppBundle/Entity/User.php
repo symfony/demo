@@ -51,6 +51,9 @@ class User implements UserInterface
         return $this->id;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getUsername()
     {
         return $this->username;
@@ -69,6 +72,9 @@ class User implements UserInterface
         $this->email = $email;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getPassword()
     {
         return $this->password;

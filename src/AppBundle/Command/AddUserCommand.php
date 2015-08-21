@@ -44,6 +44,9 @@ class AddUserCommand extends ContainerAwareCommand
      */
     private $em;
 
+    /**
+     * {@inheritdoc}
+     */
     protected function configure()
     {
         $this

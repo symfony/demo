@@ -23,6 +23,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class PostType extends AbstractType
 {
+    /**
+     * {@inheritdoc}
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         // For the full reference of options defined by each form field type
@@ -50,6 +53,9 @@ class PostType extends AbstractType
         ;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
@@ -57,6 +63,9 @@ class PostType extends AbstractType
         ));
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
         // Best Practice: use 'app_' as the prefix of your custom form types names
