@@ -16,6 +16,10 @@
     {% else %}
         <div class="well">{{ 'post.no_posts_found'|trans }}</div>
     {% endfor %}
+
+    <div class="navigation">
+        {{ knp_pagination_render(posts) }}
+    </div>
 {% endblock %}
 
 {% block sidebar %}

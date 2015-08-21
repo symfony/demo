@@ -68,7 +68,7 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
 
     private function loadPosts(ObjectManager $manager)
     {
-        foreach (range(1, 10) as $i) {
+        foreach (range(1, 30) as $i) {
             $post = new Post();
 
             $post->setTitle($this->getRandomPostTitle());
