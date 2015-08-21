@@ -14,7 +14,7 @@ Requirements
   * and the [usual Symfony application requirements](http://symfony.com/doc/current/reference/requirements.html).
 
 If unsure about meeting these requirements, download the demo application and
-browse the `http://localhost:8000/check.php` script to get more detailed
+browse the `http://localhost:8000/config.php` script to get more detailed
 information.
 
 Installation
