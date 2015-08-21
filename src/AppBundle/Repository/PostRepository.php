@@ -29,7 +29,7 @@ class PostRepository extends EntityRepository
      *
      * @return Post[]
      */
-    public function findLatest($limit = Post::NUM_ITEMS)
+    public function queryLatest($limit = Post::NUM_ITEMS)
     {
         return $this->getEntityManager()
             ->createQuery('
@@ -40,7 +40,11 @@ class PostRepository extends EntityRepository
             ')
             ->setParameter('now', new \DateTime())
             ->setMaxResults($limit)
-            ->getResult()
         ;
+    }
+
+    public function findLatest($limit = Post::NUM_ITEMS)
+    {
+        $this->queryLatest($limit)->getResult();
     }
 }

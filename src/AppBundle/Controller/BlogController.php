@@ -36,12 +36,18 @@ class BlogController extends Controller
     /**
      * @Route("/", name="blog_index")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $posts = $em->getRepository('AppBundle:Post')->findLatest();
+        $query = $this->getDoctrine()->getRepository('AppBundle:Post')->queryLatest();
 
-        return $this->render('blog/index.html.twig', array('posts' => $posts));
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+
+        return $this->render('blog/index.html.twig', array('pagination' => $pagination));
     }
 
     /**
