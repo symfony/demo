@@ -1,0 +1,82 @@
+---------------------------------------------------------------------------
+
+by stof at 2015-08-12T13:39:52Z
+
+This looks wrong to me as the check file is not the one from the SE. It has been customized to have a display consistent with the demo.
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-08-12T13:52:51Z
+
+Do you mean to change the file name in `app/check.php` is wrong because this file should be refered only to the original Symfony SE file, not customized one for this project?
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-08-12T13:56:59Z
+
+So in this case we couldn't rename our `web/check.php` to `web/config.php` back too to be consistent with Symfony SE because we change its content.
+
+---------------------------------------------------------------------------
+
+by stof at 2015-08-12T14:07:01Z
+
+@bocharsky-bw which is exactly what I commented previously
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-08-12T14:22:32Z
+
+Then seems the best solution in this case is to revert web requirements checker filename and keep `app/check.php` refers to the non-exist `web/config.php` file.
+
+I changed this PR.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-08-13T07:59:29Z
+
+@bocharsky-bw I'm sorry but I don't understand this pull request. My question to you is: what do you think if we rename `web/check.php` file back to `web/config.php`?
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-08-13T08:25:14Z
+
+There is another good solution to rename `web/check.php` file back to `web/config.php`. But it's not the one from the SE, we did some changes to it to have a display consistent with the demo application.
+
+Anyway, I think it'll be better to rename this file to `web/config.php` to be consistent with SE naming if @stof is not opposed.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-08-19T15:40:25Z
+
+The current content of this pull request is:
+
+```diff
+-echo_style('yellow', 'web/check.php');
++echo_style('yellow', 'web/config.php');
+```
+
+But I'm confused because we do have a `web/check.php` file but we don't have a `web/config.php`. Should we also rename `web/check.php` to `web/config.php`?
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-08-19T15:55:57Z
+
+Xabbuh said that's the best solution in https://github.com/symfony/symfony-demo/pull/124#issuecomment-127053916 and now I agree with him.
+
+I'm also interesting what does @stof think about to rename `web/check.php` to `web/config.php`.
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-08-20T07:17:13Z
+
+Well, I renamed to `web/config.php` and it's a bad idea. After this renaming Symfony replace our `web/config.php` with its own when I do `$ composer install/update`. So we should avoid `config.php` name anyway.
+
+I suggest to revert changes to https://github.com/bocharsky-bw/symfony-demo/commit/3e8e6e81f21fe7082b7d69cd20bcb4a52bd47601 (left this file name as `check.php` and also left `echo_style('yellow', 'web/config.php');` string in `app/check.php` as is).
+
+@javiereguiluz What do you think?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-08-21T14:01:52Z
+
+@bocharsky-bw I agree with your last solution. If there are problems with Symfony overwriting this file, we'll deal with that when the time comes. Thanks!
