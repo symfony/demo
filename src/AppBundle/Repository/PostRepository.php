@@ -24,12 +24,7 @@ use AppBundle\Entity\Post;
  */
 class PostRepository extends EntityRepository
 {
-    /**
-     * @param int $limit
-     *
-     * @return Post[]
-     */
-    public function queryLatest($limit = Post::NUM_ITEMS)
+    public function queryLatest()
     {
         return $this->getEntityManager()
             ->createQuery('
@@ -39,12 +34,11 @@ class PostRepository extends EntityRepository
                 ORDER BY p.publishedAt DESC
             ')
             ->setParameter('now', new \DateTime())
-            ->setMaxResults($limit)
         ;
     }
 
-    public function findLatest($limit = Post::NUM_ITEMS)
+    public function findLatest()
     {
-        $this->queryLatest($limit)->getResult();
+        $this->queryLatest()->getResult();
     }
 }
