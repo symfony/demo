@@ -34,7 +34,8 @@ use Symfony\Component\Intl\Intl;
 class BlogController extends Controller
 {
     /**
-     * @Route("/{page}", name="blog_index", defaults={"page" = 1}, requirements={"page" : "\d+"})
+     * @Route("/", name="blog_index", defaults={"page" = 1})
+     * @Route("/page/{page}", name="blog_index_paginated", defaults={"page" = 1}, requirements={"page" : "\d+"})
      */
     public function indexAction($page)
     {
@@ -46,6 +47,7 @@ class BlogController extends Controller
             $page,
             Post::NUM_ITEMS
         );
+        $posts->setUsedRoute('blog_index_paginated');
 
         return $this->render('blog/index.html.twig', array('posts' => $posts));
     }
