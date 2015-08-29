@@ -7,6 +7,9 @@
 #}
 {% extends 'base.html.twig' %}
 
+{# Import macros needed for displaying flash messages. See http://twig.sensiolabs.org/doc/tags/import.html #}
+{% import 'macro/messages.html.twig' as messages %}
+
 {% block header_navigation_links %}
     <li>
         <a href="{{ path('admin_post_index') }}">
