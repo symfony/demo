@@ -13,6 +13,8 @@
 
             {{ post.summary|md2html }}
         </article>
+    {% else %}
+        <div class="well">{{ 'post.no_posts_found'|trans }}</div>
     {% endfor %}
 {% endblock %}
 
