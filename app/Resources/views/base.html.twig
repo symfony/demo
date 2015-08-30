@@ -83,7 +83,7 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-globe"></i> <span class="caret"></span></a>
                                     <ul class="dropdown-menu locales" role="menu">
                                         {% for locale in locales() %}
-                                            <li {% if app.request.locale == locale.code %}class="active"{% endif %}><a href="{{ path('blog_index', { _locale: locale.code }) }}">{{ locale.name|capitalize }}</a></li>
+                                            <li {% if app.request.locale == locale.code %}class="active"{% endif %}><a href="{{ path(app.request.get('_route', 'blog_index'), app.request.get('_route_params', [])|merge({ _locale: locale.code })) }}">{{ locale.name|capitalize }}</a></li>
                                         {% endfor %}
                                     </ul>
                                 </li>
