@@ -1,17 +1,11 @@
 {% extends 'admin/layout.html.twig' %}
 
-{#
-    Import macros used for displaying flash messages.
-    See http://twig.sensiolabs.org/doc/tags/import.html
-#}
-{% import 'helper/messages.html.twig' as helper %}
-
 {% block body_id 'admin_post_edit' %}
 
 {% block main %}
     <h1>{{ 'title.edit_post'|trans({'%id%': post.id}) }}</h1>
 
-    {{ helper.render_flash_messages() }}
+    {{ include('default/_flash_messages.html.twig') }}
 
     {{ include('admin/blog/_form.html.twig', {
         form: edit_form,

@@ -1,0 +1,12 @@
+<div class="messages">
+    {% for message in app.session.flashBag.get('success') %}
+        {# Bootstrap alert, see http://getbootstrap.com/components/#alerts #}
+        <div class="alert alert-dismissible alert-success" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+
+            {{ message|trans }}
+        </div>
+    {% endfor %}
+</div>
