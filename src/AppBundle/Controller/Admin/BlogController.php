@@ -87,10 +87,10 @@ class BlogController extends Controller
             $em->persist($post);
             $em->flush();
 
-            // Add a flash message to user
-            // $this->addFlash is equivalent to $this->get('session')->getFlashBag()->add
+            // Flash messages are used to notify the user about the result of the
+            // actions. They only last as long as the next request.
             // See http://symfony.com/doc/current/book/controller.html#flash-messages
-            $this->addFlash('post.created_successfully', 'post.created_successfully');
+            $this->addFlash('success', 'post.created_successfully');
 
             return $this->redirectToRoute('admin_post_index');
         }
@@ -147,7 +147,7 @@ class BlogController extends Controller
             $post->setSlug($this->get('slugger')->slugify($post->getTitle()));
             $em->flush();
 
-            $this->addFlash('post.updated_successfully', 'post.updated_successfully');
+            $this->addFlash('success', 'post.updated_successfully');
 
             return $this->redirectToRoute('admin_post_edit', array('id' => $post->getId()));
         }
@@ -181,7 +181,7 @@ class BlogController extends Controller
             $em->remove($post);
             $em->flush();
 
-            $this->addFlash('post.deleted_successfully', 'post.deleted_successfully');
+            $this->addFlash('success', 'post.deleted_successfully');
         }
 
         return $this->redirectToRoute('admin_post_index');
