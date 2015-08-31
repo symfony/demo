@@ -5,9 +5,7 @@
 {% block main %}
     <h1>{{ 'title.edit_post'|trans({'%id%': post.id}) }}</h1>
 
-    <div class="messages">
-        {{ messages.flashes([ 'post.updated_successfully' ], 'success') }}
-    </div>
+    {{ helper.render_flash_messages() }}
 
     {{ include('admin/blog/_form.html.twig', {
         form: edit_form,

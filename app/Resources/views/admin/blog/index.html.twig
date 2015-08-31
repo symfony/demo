@@ -5,9 +5,7 @@
 {% block main %}
     <h1>{{ 'title.post_list'|trans }}</h1>
 
-    <div class="messages">
-        {{ messages.flashes([ 'post.created_successfully', 'post.deleted_successfully' ], 'success') }}
-    </div>
+    {{ helper.render_flash_messages() }}
 
     <table class="table table-striped">
         <thead>
