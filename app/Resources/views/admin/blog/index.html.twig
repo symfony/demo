@@ -1,5 +1,11 @@
 {% extends 'admin/layout.html.twig' %}
 
+{#
+    Import macros used for displaying flash messages.
+    See http://twig.sensiolabs.org/doc/tags/import.html
+#}
+{% import 'helper/messages.html.twig' as helper %}
+
 {% block body_id 'admin_post_index' %}
 
 {% block main %}
