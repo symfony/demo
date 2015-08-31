@@ -34,6 +34,10 @@
                     </div>
                 </td>
             </tr>
+        {% else %}
+            <tr>
+                <td colspan="4" align="center">{{ 'post.no_posts_found'|trans }}</td>
+           </tr>
         {% endfor %}
         </tbody>
     </table>
