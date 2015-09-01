@@ -1,0 +1,39 @@
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-08-30T19:39:15Z
+
+:+1:
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-08-31T06:43:56Z
+
+@voronkovich thanks for this improvement. I like it a lot!
+
+I only have a question. What would happen when a 404 error without an associated route is triggered? In those cases, there is no route defined:
+
+![routing-404-error](https://cloud.githubusercontent.com/assets/73419/9573404/5e89b380-4fbc-11e5-86a4-4edee1b03c8f.png)
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2015-08-31T10:13:54Z
+
+@javiereguiluz , I think we could fix this by adding a checking `app.request.get('_route') ? app.request.get ('_route') : 'blog_index'`
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-08-31T10:16:18Z
+
+The `get()` method can define a default value as second param, so maybe we can do this: `app.request.get('_route', 'blog_index')`
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2015-08-31T10:38:41Z
+
+@javiereguiluz, @stof thanks! I've updated the PR.
+
+---------------------------------------------------------------------------
+
+by xabbuh at 2015-09-01T06:19:23Z
+
+:+1:
