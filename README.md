@@ -54,6 +54,14 @@ $ cd symfony-demo/
 $ php app/console server:run
 ```
 
+Or:
+
+```bash
+$ php app/console server:run --env=prod
+```
+
+to run the application in `production` environment.
+
 This command will start a web server for the Symfony application. Now you can
 access the application in your browser at <http://localhost:8000>. You can
 stop the built-in web server by pressing `Ctrl + C` while you're in the
