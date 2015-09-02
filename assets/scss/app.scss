@@ -67,6 +67,20 @@ header .locales a {
   padding-right: 10px
 }
 
+header .search-bar {
+    padding: 0.8em 0;
+}
+
+header .search-bar form {
+    position: relative;
+}
+
+header .search-preview {
+    position: absolute;
+    width: 100%;
+    top: 100%;
+}
+
 .body-container {
   flex: 1;
   /* needed to prevent pages with a very small height and browsers not supporting flex */

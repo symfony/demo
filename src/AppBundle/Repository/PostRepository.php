@@ -59,4 +59,22 @@ class PostRepository extends EntityRepository
 
         return $paginator;
     }
+
+    public function findByTerms(array $terms, $limit = Post::NUM_ITEMS)
+    {
+        $queryBuilder = $this->createQueryBuilder('p');
+
+        foreach ($terms as $key => $term) {
+            $queryBuilder
+                ->orWhere('p.title LIKE :t_'.$key)
+                ->setParameter('t_'.$key, '%'.$term.'%')
+            ;
+        }
+
+        return $queryBuilder
+            ->orderBy('p.publishedAt', 'DESC')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
 }

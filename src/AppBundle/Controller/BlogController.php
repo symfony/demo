@@ -23,6 +23,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -149,5 +150,43 @@ class BlogController extends Controller
             'post' => $post,
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/search", name="blog_search")
+     * @Method("GET")
+     *
+     * @return JsonResponse
+     */
+    public function searchAction(Request $request)
+    {
+        $query = $request->query->get('q', '');
+
+        // Sanitizing the query: removes all non-alphanumeric characters except whitespaces
+        $query = preg_replace('/[^[:alnum:] ]/', '', trim(preg_replace('/[[:space:]]+/', ' ', $query)));
+
+        // Splits the query into terms and removes all terms which
+        // length is less than 2
+        $terms = array_unique(explode(' ', strtolower($query)));
+        $terms = array_filter($terms, function ($term) {
+            return 2 <= strlen($term);
+        });
+
+        $posts = [];
+
+        if (!empty($terms)) {
+            $posts = $this->getDoctrine()->getRepository(Post::class)->findByTerms($terms);
+        }
+
+        $results = [];
+
+        foreach ($posts as $post) {
+            array_push($results, [
+                'result' => htmlspecialchars($post->getTitle()),
+                'url' => $this->generateUrl('blog_post', ['slug' => $post->getSlug()]),
+            ]);
+        }
+
+        return new JsonResponse($results);
     }
 }

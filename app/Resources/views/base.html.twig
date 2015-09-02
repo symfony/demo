@@ -23,7 +23,7 @@
             <header>
                 <div class="navbar navbar-default navbar-static-top" role="navigation">
                     <div class="container">
-                        <div class="navbar-header">
+                        <div class="navbar-header col-md-3 col-lg-2">
                             <a class="navbar-brand" href="{{ path('homepage') }}">
                                 Symfony Demo
                             </a>
@@ -36,6 +36,13 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
+                        </div>
+                        <div class="search-bar col-sm-5">
+                            <form action="{{ path('blog_search') }}" method="get">
+                                <div class="input-group-sm">
+                                    <input name="q" type="text" class="form-control" placeholder="{{ 'post.search_for'|trans }}" autocomplete="off">
+                                </div>
+                            </form>
                         </div>
                         <div class="navbar-collapse collapse">
                             <ul class="nav navbar-nav navbar-right">
@@ -135,6 +142,15 @@
             <script src="{{ asset('build/manifest.js') }}"></script>
             <script src="{{ asset('build/js/common.js') }}"></script>
             <script src="{{ asset('build/js/app.js') }}"></script>
+            <script>
+                (function($) {
+                    $(function() {
+                        $('.search-bar input[name="q"]').instantSearch({
+                            noItemsFoundMessage: '{{ 'post.no_posts_found'|trans }}'
+                        });
+                    });
+                })(window.jQuery);
+            </script>
         {% endblock %}
 
         {# it's not mandatory to set the timezone in localizeddate(). This is done to
