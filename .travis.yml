@@ -28,7 +28,6 @@ matrix:
   allow_failures:
     - php: hhvm
     - php: nightly
-    - env: SYMFONY_VERSION="2.7.x-dev"
     - env: SYMFONY_VERSION="2.8.x-dev"
 
 before_install:
@@ -36,7 +35,7 @@ before_install:
   - if [ "$SYMFONY_VERSION" != "" ]; then composer require --dev --no-update symfony/symfony:$SYMFONY_VERSION; fi
 
 install:
-  - if [ "$deps" = "low" ]; then composer update --prefer-lowest; fi
+  - if [ "$deps" = "low" ]; then composer install --prefer-lowest; fi
   - if [ "$deps" != "low" ]; then composer install; fi
 
 script:
