@@ -88,7 +88,8 @@ class BlogController extends Controller
             $em->flush();
 
             // Flash messages are used to notify the user about the result of the
-            // actions. They only last as long as the next request.
+            // actions. They are deleted automatically from the session as soon
+            // as they are accessed.
             // See http://symfony.com/doc/current/book/controller.html#flash-messages
             $this->addFlash('success', 'post.created_successfully');
 
