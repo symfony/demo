@@ -17,6 +17,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\User;
 
@@ -43,6 +44,11 @@ class AddUserCommand extends ContainerAwareCommand
      * @var ObjectManager
      */
     private $entityManager;
+
+    /**
+     * @var ValidatorInterface
+     */
+    private $validator;
 
     /**
      * {@inheritdoc}
@@ -74,6 +80,7 @@ class AddUserCommand extends ContainerAwareCommand
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
         $this->entityManager = $this->getContainer()->get('doctrine')->getManager();
+        $this->validator = $this->getContainer()->get('validator');
     }
 
     /**
@@ -120,13 +127,7 @@ class AddUserCommand extends ContainerAwareCommand
         $username = $input->getArgument('username');
         if (null === $username) {
             $question = new Question(' > <info>Username</info>: ');
-            $question->setValidator(function ($answer) {
-                if (empty($answer)) {
-                    throw new \RuntimeException('The username cannot be empty');
-                }
-
-                return $answer;
-            });
+            $question->setValidator($this->getValidatorForProperty('username'));
             $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
             $username = $console->ask($input, $output, $question);
@@ -139,7 +140,7 @@ class AddUserCommand extends ContainerAwareCommand
         $password = $input->getArgument('password');
         if (null === $password) {
             $question = new Question(' > <info>Password</info> (your type will be hidden): ');
-            $question->setValidator(array($this, 'passwordValidator'));
+            $question->setValidator($this->getValidatorForProperty('plainPassword'));
             $question->setHidden(true);
             $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
@@ -153,7 +154,7 @@ class AddUserCommand extends ContainerAwareCommand
         $email = $input->getArgument('email');
         if (null === $email) {
             $question = new Question(' > <info>Email</info>: ');
-            $question->setValidator(array($this, 'emailValidator'));
+            $question->setValidator($this->getValidatorForProperty('email'));
             $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
             $email = $console->ask($input, $output, $question);
@@ -176,13 +177,6 @@ class AddUserCommand extends ContainerAwareCommand
         $email = $input->getArgument('email');
         $isAdmin = $input->getOption('is-admin');
 
-        // first check if a user with the same username already exists
-        $existingUser = $this->entityManager->getRepository('AppBundle:User')->findOneBy(array('username' => $username));
-
-        if (null !== $existingUser) {
-            throw new \RuntimeException(sprintf('There is already a user registered with the "%s" username.', $username));
-        }
-
         // create the user and encode its password
         $user = new User();
         $user->setUsername($username);
@@ -193,6 +187,19 @@ class AddUserCommand extends ContainerAwareCommand
         $encoder = $this->getContainer()->get('security.password_encoder');
         $encodedPassword = $encoder->encodePassword($user, $plainPassword);
         $user->setPassword($encodedPassword);
+        $user->setPlainPassword($plainPassword);
+
+        // See http://symfony.com/doc/current/book/validation.html
+        $errors = $this->validator->validate($user, null, array('Default', 'registration'));
+
+        if (count($errors) > 0) {
+            $output->writeln('');
+            foreach ($errors as $error) {
+                $property = 'plainPassword' === $error->getPropertyPath() ? 'password' : $error->getPropertyPath();
+                $output->writeln(sprintf('<error>[%s] %s</error>', $property, $error->getMessage()));
+            }
+            return;
+        }
 
         $this->entityManager->persist($user);
         $this->entityManager->flush($user);
@@ -208,42 +215,25 @@ class AddUserCommand extends ContainerAwareCommand
         }
     }
 
-    /**
-     * This internal method should be private, but it's declared as public to
-     * maintain PHP 5.3 compatibility when using it in a callback.
-     *
-     * @internal
-     */
-    public function passwordValidator($plainPassword)
+    private function getValidatorForProperty($property)
     {
-        if (empty($plainPassword)) {
-            throw new \Exception('The password can not be empty');
-        }
+        $validator = $this->validator;
 
-        if (strlen(trim($plainPassword)) < 6) {
-            throw new \Exception('The password must be at least 6 characters long');
-        }
+        return function($value) use ($validator, $property) {
+            $errors = $validator->validatePropertyValue('\AppBundle\Entity\User', $property, $value, array('Default', 'registration'));
 
-        return $plainPassword;
-    }
+            if (count($errors) > 0) {
+                $message = '';
 
-    /**
-     * This internal method should be private, but it's declared as public to
-     * maintain PHP 5.3 compatibility when using it in a callback.
-     *
-     * @internal
-     */
-    public function emailValidator($email)
-    {
-        if (empty($email)) {
-            throw new \Exception('The email can not be empty');
-        }
+                foreach ($errors as $error) {
+                    $message .= sprintf(' %s', $error->getMessage());
+                }
 
-        if (false === strpos($email, '@')) {
-            throw new \Exception('The email should look like a real email');
-        }
+                throw new \Exception(sprintf('[%s] %s', $property, $message));
+            }
 
-        return $email;
+            return $value;
+        };
     }
 
     /**
