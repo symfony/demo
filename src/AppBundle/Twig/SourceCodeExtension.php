@@ -11,6 +11,12 @@
 
 namespace AppBundle\Twig;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Twig_Extension;
+use Twig_LoaderInterface;
+use Twig_SimpleFunction;
+use Twig_Template;
+
 /**
  * CAUTION: this is an extremely advanced Twig extension. It's used to get the
  * source code of the controller and the template used to render the current
@@ -20,20 +26,47 @@ namespace AppBundle\Twig;
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-class SourceCodeExtension extends \Twig_Extension
+class SourceCodeExtension extends Twig_Extension
 {
-    protected $loader;
-    protected $controller;
-    protected $template;
-    protected $kernelRootDir;
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
 
-    public function __construct(\Twig_LoaderInterface $loader, $kernelRootDir)
-    {
+    /**
+     * @var Twig_LoaderInterface
+     */
+    private $loader;
+
+    /**
+     * @var string
+     */
+    private $kernelRootDir;
+
+    /**
+     * @var array|null
+     */
+    private $controller;
+
+    /**
+     * @param ContainerInterface $container
+     * @param Twig_LoaderInterface $loader
+     * @param $kernelRootDir
+     */
+    public function __construct(
+        ContainerInterface $container,
+        Twig_LoaderInterface $loader,
+        $kernelRootDir
+    ) {
+        $this->container = $container;
         $this->kernelRootDir = $kernelRootDir;
         $this->loader = $loader;
     }
 
-    public function setController($controller)
+    /**
+     * @param array|null $controller
+     */
+    public function setController($controller = null)
     {
         $this->controller = $controller;
     }
@@ -44,82 +77,34 @@ class SourceCodeExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('show_source_code', array($this, 'showSourceCode'), array('is_safe' => array('html'), 'needs_environment' => true)),
-        );
-    }
-
-    public function showSourceCode(\Twig_Environment $twig, $template)
-    {
-        $this->template = $template;
-
-        return $twig->render('default/_source_code.html.twig', array(
-            'controller' => $this->getController(),
-            'template'   => $this->getTemplate(),
-        ));
-    }
-
-    private function getController()
-    {
-        // this happens for example for exceptions (404 errors, etc.)
-        if (null === $this->controller) {
-            return;
-        }
-
-        $className = get_class($this->controller[0]);
-        $class = new \ReflectionClass($className);
-        $method = $class->getMethod($this->controller[1]);
-
-        $classCode = file($class->getFilename());
-        $methodCode = array_slice($classCode, $method->getStartline() - 1, $method->getEndLine() - $method->getStartline() + 1);
-        $controllerCode = '    '.$method->getDocComment()."\n".implode('', $methodCode);
-
-        return array(
-            'file_path' => $class->getFilename(),
-            'starting_line' => $method->getStartline(),
-            'source_code' => $this->unindentCode($controllerCode)
-        );
-    }
-
-    private function getTemplate()
-    {
-        $templateName = $this->template->getTemplateName();
-
-        return array(
-            'file_path' => $this->kernelRootDir.'/Resources/views/'.$templateName,
-            'starting_line' => 1,
-            'source_code' => $this->loader->getSource($templateName),
+            new Twig_SimpleFunction('show_source_code', array($this, 'showSourceCode'), array(
+                'is_safe' => array('html')
+            )),
         );
     }
 
     /**
-     * Utility method that "unindents" the given $code when all its lines start
-     * with a tabulation of four white spaces.
+     * @param Twig_Template $template
      *
-     * @param  string $code
      * @return string
      */
-    private function unindentCode($code)
+    public function showSourceCode(Twig_Template $template)
     {
-        $formattedCode = '';
-        $codeLines = explode("\n", $code);
+        $templateName = $template->getTemplateName();
 
-        $indentedLines = array_filter($codeLines, function ($lineOfCode) {
-            return '' === $lineOfCode || '    ' === substr($lineOfCode, 0, 4);
-        });
-
-        if (count($indentedLines) === count($codeLines)) {
-            $formattedCode = array_map(function ($lineOfCode) { return substr($lineOfCode, 4); }, $codeLines);
-            $formattedCode = implode("\n", $formattedCode);
-        } else {
-            $formattedCode = $code;
-        }
-
-        return $formattedCode;
+        return $this->container->get('app.templating.source_code_helper')->showSourceCode(
+            $templateName,
+            $this->loader->getSource($templateName),
+            $this->controller
+        );
     }
 
-    // the name of the Twig extension must be unique in the application
+    /**
+     * @inheritdoc
+     */
     public function getName()
     {
+        // the name of the Twig extension must be unique in the application
         return 'app.source_code_extension';
     }
 }

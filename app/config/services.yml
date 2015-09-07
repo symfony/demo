@@ -7,6 +7,13 @@ services:
     markdown:
         class: AppBundle\Utils\Markdown
 
+
+    app.templating.source_code_helper:
+        class:     AppBundle\Templating\Helper\SourceCodeHelper
+        arguments: ["@templating", "%kernel.root_dir%"]
+        tags:
+            - { name: templating.helper }
+
     # These are the Twig extensions that create new filters and functions for
     # using them in the templates
     app.twig.app_extension:
@@ -26,7 +33,7 @@ services:
     app.twig.source_code_extension:
         public:    false
         class:     AppBundle\Twig\SourceCodeExtension
-        arguments: ["@twig.loader", "%kernel.root_dir%"]
+        arguments: ["@service_container", "@twig.loader", "%kernel.root_dir%"]
         tags:
             - { name: twig.extension }
 
