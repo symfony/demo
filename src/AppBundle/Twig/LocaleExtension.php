@@ -53,6 +53,6 @@ class LocaleExtension extends \Twig_Extension
     // the name of the Twig extension must be unique in the application
     public function getName()
     {
-        return 'app.locale_extension';
+        return 'app_locale';
     }
 }

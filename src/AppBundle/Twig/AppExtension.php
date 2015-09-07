@@ -49,9 +49,9 @@ class AppExtension extends \Twig_Extension
     }
 
     // the name of the Twig extension must be unique in the application. Consider
-    // using 'app.extension' if you only have one Twig extension in your application.
+    // using 'app' if you only have one Twig extension in your application.
     public function getName()
     {
-        return 'app.extension';
+        return 'app';
     }
 }
