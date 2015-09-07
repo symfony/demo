@@ -1,0 +1,65 @@
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-09-03T14:39:39Z
+
+Seems `--prefer-lowest` is avaliable argument for `composer up` command only.
+
+---------------------------------------------------------------------------
+
+by ccab at 2015-09-03T14:44:20Z
+
+It makes sense
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-09-07T08:59:36Z
+
+Closing it as "won't fix".
+
+---------------------------------------------------------------------------
+
+by stof at 2015-09-07T09:14:43Z
+
+@javiereguiluz my point in the comment you linked is that it does not really make sense to test against different deps versions as we are locking deps
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-09-07T10:15:55Z
+
+@stof you are right. Sorry for not understanding you earlier. I've just reopened and made a lot of simplifications to the Travis config. Thanks!
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-09-07T10:49:16Z
+
+Cool! It has become much easier now :+1:
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-09-07T10:53:22Z
+
+@bocharsky-bw I agree! @stof's comments are always spot on. I love the new Travis config.
+
+---------------------------------------------------------------------------
+
+by stof at 2015-09-07T10:59:12Z
+
+@javiereguiluz I also suggest enabling the Travis caching for the composer cache, so that it does not to re-download the same archives for each build (project with locked dependencies benefit from it even more than others because the deps change only when you commit a change, not when a new release of a deps is done:
+
+```yaml
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+```
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-09-07T11:01:07Z
+
+Nice! Enabled the cache too. Thanks.
+
+---------------------------------------------------------------------------
+
+by stof at 2015-09-07T11:06:23Z
+
+:+1:
