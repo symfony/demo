@@ -35,7 +35,7 @@ class BlogController extends Controller
 {
     /**
      * @Route("/", name="blog_index", defaults={"page" = 1})
-     * @Route("/page/{page}", name="blog_index_paginated", defaults={"page" = 1}, requirements={"page" : "\d+"})
+     * @Route("/page/{page}", name="blog_index_paginated", requirements={"page" : "\d+"})
      */
     public function indexAction($page)
     {
