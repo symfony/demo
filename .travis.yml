@@ -1,43 +1,24 @@
 language: php
 sudo: false
 
-env:
-  global:
-    - deps="no"
-    - SYMFONY_VERSION=""
+cache:
+  directories:
+    - $HOME/.composer/cache/files
 
 matrix:
   fast_finish: true
   include:
     - php: 5.3
-    - php: 5.3
-      env: deps="low"
     - php: 5.4
     - php: 5.5
     - php: 5.6
-    - php: 5.6
-      env: SYMFONY_VERSION="2.3.x"
-    - php: 5.6
-      env: SYMFONY_VERSION="2.6.x"
-    - php: 5.6
-      env: SYMFONY_VERSION="2.7.x"
-    - php: 5.6
-      env: SYMFONY_VERSION="2.8.x-dev"
     - php: hhvm
     - php: nightly
   allow_failures:
     - php: hhvm
-    - php: nightly
-    - env: SYMFONY_VERSION="2.7.x-dev"
-    - env: SYMFONY_VERSION="2.8.x-dev"
-
-before_install:
-  - composer self-update
-  - if [ "$SYMFONY_VERSION" != "" ]; then composer require --dev --no-update symfony/symfony:$SYMFONY_VERSION; fi
 
 install:
-  - if [ "$deps" = "low" ]; then composer update --prefer-lowest; fi
-  - if [ "$deps" != "low" ]; then composer install; fi
+  - composer install
 
 script:
   - phpunit -c app
