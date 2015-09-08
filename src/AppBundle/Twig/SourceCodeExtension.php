@@ -51,7 +51,7 @@ class SourceCodeExtension extends \Twig_Extension
     {
         return $twig->render('default/_source_code.html.twig', array(
             'controller' => $this->getController(),
-            'template'   => $this->getTemplate($template),
+            'template'   => $this->getTemplateSource($template),
         ));
     }
 
@@ -77,7 +77,7 @@ class SourceCodeExtension extends \Twig_Extension
         );
     }
 
-    private function getTemplate(\Twig_Template $template)
+    private function getTemplateSource(\Twig_Template $template)
     {
         $templateName = $template->getTemplateName();
 
