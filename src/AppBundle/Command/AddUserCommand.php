@@ -187,7 +187,7 @@ class AddUserCommand extends ContainerAwareCommand
         // See http://symfony.com/doc/current/book/validation.html
         $errors = $this->validator->validate($user, null, array('Default', 'registration'));
 
-        if (count($errors) > 0) {
+        if (0 < count($errors)) {
             $output->writeln('');
             foreach ($errors as $error) {
                 $property = 'plainPassword' === $error->getPropertyPath() ? 'password' : $error->getPropertyPath();
@@ -225,7 +225,7 @@ class AddUserCommand extends ContainerAwareCommand
         return function($value) use ($validator, $property) {
             $errors = $validator->validatePropertyValue('\AppBundle\Entity\User', $property, $value, array('Default', 'registration'));
 
-            if (count($errors) > 0) {
+            if (0 < count($errors)) {
                 $message = '';
 
                 foreach ($errors as $error) {
