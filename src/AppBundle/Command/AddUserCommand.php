@@ -182,11 +182,6 @@ class AddUserCommand extends ContainerAwareCommand
         $user->setUsername($username);
         $user->setEmail($email);
         $user->setRoles(array($isAdmin ? 'ROLE_ADMIN' : 'ROLE_USER'));
-
-        // See http://symfony.com/doc/current/book/security.html#security-encoding-password
-        $encoder = $this->getContainer()->get('security.password_encoder');
-        $encodedPassword = $encoder->encodePassword($user, $plainPassword);
-        $user->setPassword($encodedPassword);
         $user->setPlainPassword($plainPassword);
 
         // See http://symfony.com/doc/current/book/validation.html
@@ -201,8 +196,16 @@ class AddUserCommand extends ContainerAwareCommand
             return;
         }
 
-        $this->entityManager->persist($user);
-        $this->entityManager->flush($user);
+        // Plain password no more needed in the model
+        $user->eraseCredentials();
+
+        // See http://symfony.com/doc/current/book/security.html#security-encoding-password
+        $encoder = $this->getContainer()->get('security.password_encoder');
+        $encodedPassword = $encoder->encodePassword($user, $plainPassword);
+        $user->setPassword($encodedPassword);
+
+        $this->em->persist($user);
+        $this->em->flush($user);
 
         $output->writeln('');
         $output->writeln(sprintf('[OK] %s was successfully created: %s (%s)', $isAdmin ? 'Administrator user' : 'User', $user->getUsername(), $user->getEmail()));
