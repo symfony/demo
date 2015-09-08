@@ -123,44 +123,32 @@ class AddUserCommand extends ContainerAwareCommand
         // See http://symfony.com/doc/current/components/console/helpers/questionhelper.html
         $console = $this->getHelper('question');
 
-        // Ask for the username if it's not defined
-        $username = $input->getArgument('username');
-        if (null === $username) {
-            $question = new Question(' > <info>Username</info>: ');
-            $question->setValidator($this->getValidatorForProperty('username'));
-            $question->setMaxAttempts(self::MAX_ATTEMPTS);
+        $properties = array(
+            'username'      => array('argName' => 'username', 'hidden' => false),
+            'plainPassword' => array('argName' => 'password', 'hidden' => true),
+            'email'         => array('argName' => 'email',    'hidden' => false),
+        );
 
-            $username = $console->ask($input, $output, $question);
-            $input->setArgument('username', $username);
-        } else {
-            $output->writeln(' > <info>Username</info>: '.$username);
-        }
+        // Ask for the property if it's not defined
+        foreach ($properties as $property => $settings) {
+            $argName = $settings['argName'];
+            $argValue = $input->getArgument($argName);
+            $hidden = $settings['hidden'];
 
-        // Ask for the password if it's not defined
-        $password = $input->getArgument('password');
-        if (null === $password) {
-            $question = new Question(' > <info>Password</info> (your type will be hidden): ');
-            $question->setValidator($this->getValidatorForProperty('plainPassword'));
-            $question->setHidden(true);
-            $question->setMaxAttempts(self::MAX_ATTEMPTS);
+            if (null === $argValue) {
+                $question = new Question(sprintf(' > <info>%s</info>%s: ',
+                    ucfirst($argName),
+                    $hidden ? ' (your type will be hidden)' : ''
+                ));
+                $question->setValidator($this->getValidatorForProperty($property));
+                $question->setHidden($hidden);
+                $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
-            $password = $console->ask($input, $output, $question);
-            $input->setArgument('password', $password);
-        } else {
-            $output->writeln(' > <info>Password</info>: '.str_repeat('*', strlen($password)));
-        }
-
-        // Ask for the email if it's not defined
-        $email = $input->getArgument('email');
-        if (null === $email) {
-            $question = new Question(' > <info>Email</info>: ');
-            $question->setValidator($this->getValidatorForProperty('email'));
-            $question->setMaxAttempts(self::MAX_ATTEMPTS);
-
-            $email = $console->ask($input, $output, $question);
-            $input->setArgument('email', $email);
-        } else {
-            $output->writeln(' > <info>Email</info>: '.$email);
+                $argValue = $console->ask($input, $output, $question);
+                $input->setArgument($argName, $argValue);
+            } else {
+                $output->writeln(sprintf(' > <info>%s</info>: %s', ucfirst($argName), $argValue));
+            }
         }
     }
 
