@@ -28,13 +28,22 @@ use AppBundle\Twig\SourceCodeExtension;
  */
 class ControllerListener
 {
+    /**
+     * @var SourceCodeExtension
+     */
     protected $twigExtension;
 
+    /**
+     * @param SourceCodeExtension $twigExtension
+     */
     public function __construct(SourceCodeExtension $twigExtension)
     {
         $this->twigExtension = $twigExtension;
     }
 
+    /**
+     * @param FilterControllerEvent $event
+     */
     public function registerCurrentController(FilterControllerEvent $event)
     {
         // this check is needed because in Symfony a request can perform any
