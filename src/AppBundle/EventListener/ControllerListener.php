@@ -28,6 +28,9 @@ use AppBundle\Twig\SourceCodeExtension;
  */
 class ControllerListener
 {
+    /**
+     * @var SourceCodeExtension
+     */
     protected $twigExtension;
 
     public function __construct(SourceCodeExtension $twigExtension)
