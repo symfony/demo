@@ -62,19 +62,41 @@ class SourceCodeExtension extends \Twig_Extension
             return;
         }
 
-        $className = get_class($this->controller[0]);
-        $class = new \ReflectionClass($className);
-        $method = $class->getMethod($this->controller[1]);
+        $method = $this->getCallableReflector($this->controller);
 
-        $classCode = file($class->getFilename());
+        $classCode = file($method->getFilename());
         $methodCode = array_slice($classCode, $method->getStartline() - 1, $method->getEndLine() - $method->getStartline() + 1);
         $controllerCode = '    '.$method->getDocComment()."\n".implode('', $methodCode);
 
         return array(
-            'file_path' => $class->getFilename(),
+            'file_path' => $method->getFilename(),
             'starting_line' => $method->getStartline(),
             'source_code' => $this->unindentCode($controllerCode)
         );
+    }
+    
+    /**
+     * Gets a reflector for a callable.
+     *
+     * This logic is copied from Symfony\Component\HttpKernel\Controller\ControllerResolver::getArguments
+     *
+     * @param callable $callable
+     *
+     * @return \ReflectionFunctionAbstract
+     */
+    private function getCallableReflector($callable)
+    {
+        if (is_array($callable)) {
+            return new \ReflectionMethod($callable[0], $callable[1]);
+        }
+
+        if (is_object($callable) && !$callable instanceof \Closure) {
+            $r = new \ReflectionObject($callable);
+
+            return $r->getMethod('__invoke');
+        }
+
+        return new \ReflectionFunction($callable);
     }
 
     private function getTemplateSource(\Twig_Template $template)
