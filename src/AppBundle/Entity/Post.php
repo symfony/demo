@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -17,6 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
+ * @author Rasanga Perera <rasangaperera@gmail.com>
  */
 class Post
 {
@@ -79,6 +81,17 @@ class Post
      * @ORM\OrderBy({"publishedAt" = "DESC"})
      */
     private $comments;
+
+    /**
+     * @var Collection|Tag[]
+     *
+     * @ManyToMany(
+     *      targetEntity="Tag",
+     *      inversedBy="posts"
+     * )
+     * @JoinTable(name="posts_tags")
+     */
+    private $tags;
 
     public function __construct()
     {
@@ -178,5 +191,39 @@ class Post
     public function setSummary($summary)
     {
         $this->summary = $summary;
+    }
+
+    /**
+     * Add tag
+     *
+     * @param Tag $tag
+     *
+     * @return Post
+     */
+    public function addTag(Tag $tag)
+    {
+        $this->tags[] = $tag;
+
+        return $this;
+    }
+
+    /**
+     * Remove tag
+     *
+     * @param Tag $tag
+     */
+    public function removeTag(Tag $tag)
+    {
+        $this->tags->removeElement($tag);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return Tag[]|Collection
+     */
+    public function getTags()
+    {
+        return $this->tags;
     }
 }
