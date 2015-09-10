@@ -46,7 +46,7 @@ services:
     # It's not mandatory to create these services, but if you use repositories a lot,
     # these services simplify your code:
     #
-    # post_repository:
+    # app.post_repository:
     #     class:     Doctrine\ORM\EntityRepository
     #     factory:   ["@doctrine.orm.entity_manager", getRepository]
     #     arguments: [AppBundle\Entity\Post]
@@ -56,4 +56,4 @@ services:
     # $posts = $em->getRepository('AppBundle:Post')->findAll();
     #
     # // same code using repository services
-    # $posts = $this->get('post_repository')->findAll();
+    # $posts = $this->get('app.post_repository')->findAll();
