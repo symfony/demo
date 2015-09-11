@@ -52,8 +52,8 @@ class BlogController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $posts = $em->getRepository('AppBundle:Post')->findAll();
+        $entityManager = $this->getDoctrine()->getManager();
+        $posts = $entityManager->getRepository('AppBundle:Post')->findAll();
 
         return $this->render('admin/blog/index.html.twig', array('posts' => $posts));
     }
@@ -83,9 +83,9 @@ class BlogController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $post->setSlug($this->get('slugger')->slugify($post->getTitle()));
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($post);
-            $em->flush();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($post);
+            $entityManager->flush();
 
             // Flash messages are used to notify the user about the result of the
             // actions. They are deleted automatically from the session as soon
@@ -137,7 +137,7 @@ class BlogController extends Controller
             throw $this->createAccessDeniedException('Posts can only be edited by their authors.');
         }
 
-        $em = $this->getDoctrine()->getManager();
+        $entityManager = $this->getDoctrine()->getManager();
 
         $editForm = $this->createForm(new PostType(), $post);
         $deleteForm = $this->createDeleteForm($post);
@@ -146,7 +146,7 @@ class BlogController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $post->setSlug($this->get('slugger')->slugify($post->getTitle()));
-            $em->flush();
+            $entityManager->flush();
 
             $this->addFlash('success', 'post.updated_successfully');
 
@@ -177,10 +177,10 @@ class BlogController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $entityManager = $this->getDoctrine()->getManager();
 
-            $em->remove($post);
-            $em->flush();
+            $entityManager->remove($post);
+            $entityManager->flush();
 
             $this->addFlash('success', 'post.deleted_successfully');
         }

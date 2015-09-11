@@ -33,7 +33,7 @@ class ListUsersCommand extends ContainerAwareCommand
     /**
      * @var ObjectManager
      */
-    private $em;
+    private $entityManager;
 
     /**
      * {@inheritdoc}
@@ -74,7 +74,7 @@ HELP
      */
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
-        $this->em = $this->getContainer()->get('doctrine')->getManager();
+        $this->entityManager = $this->getContainer()->get('doctrine')->getManager();
     }
 
     /**
@@ -85,7 +85,7 @@ HELP
     {
         $maxResults = $input->getOption('max-results');
         // Use ->findBy() instead of ->findAll() to allow result sorting and limiting
-        $users = $this->em->getRepository('AppBundle:User')->findBy(array(), array('id' => 'DESC'), $maxResults);
+        $users = $this->entityManager->getRepository('AppBundle:User')->findBy(array(), array('id' => 'DESC'), $maxResults);
 
         // Doctrine query returns an array of objects and we need an array of plain arrays
         $usersAsPlainArrays = array_map(function ($user) {

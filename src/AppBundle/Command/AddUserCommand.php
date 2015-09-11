@@ -42,7 +42,7 @@ class AddUserCommand extends ContainerAwareCommand
     /**
      * @var ObjectManager
      */
-    private $em;
+    private $entityManager;
 
     /**
      * {@inheritdoc}
@@ -73,7 +73,7 @@ class AddUserCommand extends ContainerAwareCommand
      */
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
-        $this->em = $this->getContainer()->get('doctrine')->getManager();
+        $this->entityManager = $this->getContainer()->get('doctrine')->getManager();
     }
 
     /**
@@ -177,7 +177,7 @@ class AddUserCommand extends ContainerAwareCommand
         $isAdmin = $input->getOption('is-admin');
 
         // first check if a user with the same username already exists
-        $existingUser = $this->em->getRepository('AppBundle:User')->findOneBy(array('username' => $username));
+        $existingUser = $this->entityManager->getRepository('AppBundle:User')->findOneBy(array('username' => $username));
 
         if (null !== $existingUser) {
             throw new \RuntimeException(sprintf('There is already a user registered with the "%s" username.', $username));
@@ -194,8 +194,8 @@ class AddUserCommand extends ContainerAwareCommand
         $encodedPassword = $encoder->encodePassword($user, $plainPassword);
         $user->setPassword($encodedPassword);
 
-        $this->em->persist($user);
-        $this->em->flush($user);
+        $this->entityManager->persist($user);
+        $this->entityManager->flush($user);
 
         $output->writeln('');
         $output->writeln(sprintf('[OK] %s was successfully created: %s (%s)', $isAdmin ? 'Administrator user' : 'User', $user->getUsername(), $user->getEmail()));
