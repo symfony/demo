@@ -11,9 +11,11 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
+use AppBundle\Entity\Tag;
 use AppBundle\Entity\User;
 use AppBundle\Entity\Post;
 use AppBundle\Entity\Comment;
+use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -29,8 +31,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
+ * @author Rasanga Perera <rasangaperera@gmail.com>
  */
-class LoadFixtures implements FixtureInterface, ContainerAwareInterface
+class LoadFixtures extends AbstractFixture implements FixtureInterface, ContainerAwareInterface
 {
     /** @var ContainerInterface */
     private $container;
@@ -42,6 +45,8 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
     {
         $this->loadUsers($manager);
         $this->loadPosts($manager);
+        $this->loadTags($manager);
+        $this->loadPostsTags($manager);
     }
 
     private function loadUsers(ObjectManager $manager)
@@ -91,7 +96,110 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
             }
 
             $manager->persist($post);
+
+            $this->addReference('post-' . $i, $post);
         }
+
+        $manager->flush();
+    }
+
+    private function loadTags(ObjectManager $manager)
+    {
+        $tagNames = array(
+            'Lorem',
+            'ipsum',
+            'consectetur',
+            'adipiscing',
+            'incididunt',
+            'labore',
+            'voluptate'
+        );
+
+        foreach ($tagNames as $key => $name) {
+            $tag = new Tag();
+            $tag->setName($name);
+
+            $manager->persist($tag);
+
+            $this->addReference('tag-' . ++$key, $tag);
+        }
+
+        $manager->flush();
+    }
+
+    private function loadPostsTags(ObjectManager $manager)
+    {
+        /** @var Post $post1 */
+        $post1 = $this->getReference('post-1');
+        /** @var Post $post2 */
+        $post2 = $this->getReference('post-2');
+        /** @var Post $post3 */
+        $post3 = $this->getReference('post-3');
+        /** @var Post $post4 */
+        $post4 = $this->getReference('post-4');
+        /** @var Post $post5 */
+        $post5 = $this->getReference('post-5');
+        /** @var Post $post6 */
+        $post6 = $this->getReference('post-6');
+        /** @var Post $post7 */
+        $post7 = $this->getReference('post-7');
+        /** @var Post $post8 */
+        $post8 = $this->getReference('post-8');
+        /** @var Post $post9 */
+        $post9 = $this->getReference('post-9');
+        /** @var Post $post10 */
+        $post10 = $this->getReference('post-10');
+
+        /** @var Tag $tag1 */
+        $tag1 = $this->getReference('tag-1');
+        /** @var Tag $tag2 */
+        $tag2 = $this->getReference('tag-2');
+        /** @var Tag $tag3 */
+        $tag3 = $this->getReference('tag-3');
+        /** @var Tag $tag4 */
+        $tag4 = $this->getReference('tag-4');
+        /** @var Tag $tag5 */
+        $tag5 = $this->getReference('tag-5');
+        /** @var Tag $tag6 */
+        $tag6 = $this->getReference('tag-6');
+        /** @var Tag $tag7 */
+        $tag7 = $this->getReference('tag-7');
+
+        $post1->addTag($tag1);
+        $post1->addTag($tag3);
+        $manager->persist($post1);
+
+        $post2->addTag($tag2);
+        $manager->persist($post2);
+
+        $post3->addTag($tag3);
+        $post3->addTag($tag4);
+        $manager->persist($post3);
+
+        $post4->addTag($tag5);
+        $post4->addTag($tag6);
+        $post4->addTag($tag7);
+        $manager->persist($post4);
+
+        $post5->addTag($tag1);
+        $manager->persist($post5);
+
+        $post6->addTag($tag1);
+        $manager->persist($post6);
+
+        $post7->addTag($tag3);
+        $manager->persist($post7);
+
+        $post8->addTag($tag5);
+        $post8->addTag($tag7);
+        $manager->persist($post8);
+
+        $post9->addTag($tag1);
+        $manager->persist($post9);
+
+        $post10->addTag($tag4);
+        $post10->addTag($tag6);
+        $manager->persist($post10);
 
         $manager->flush();
     }

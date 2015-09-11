@@ -85,11 +85,11 @@ class Post
     /**
      * @var Collection|Tag[]
      *
-     * @ManyToMany(
+     * @ORM\ManyToMany(
      *      targetEntity="Tag",
      *      inversedBy="posts"
      * )
-     * @JoinTable(name="posts_tags")
+     * @ORM\JoinTable(name="posts_tags")
      */
     private $tags;
 
