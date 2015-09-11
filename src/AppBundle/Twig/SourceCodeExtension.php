@@ -69,7 +69,7 @@ class SourceCodeExtension extends \Twig_Extension
     }
 
     /**
-     * @return array|void
+     * @return array|null
      */
     private function getController()
     {

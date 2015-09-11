@@ -33,9 +33,6 @@ class ControllerListener
      */
     protected $twigExtension;
 
-    /**
-     * @param SourceCodeExtension $twigExtension
-     */
     public function __construct(SourceCodeExtension $twigExtension)
     {
         $this->twigExtension = $twigExtension;
