@@ -1,0 +1,29 @@
+---------------------------------------------------------------------------
+
+by voronkovich at 2015-09-11T19:25:39Z
+
+What about to create simple separate bundle (ShowSourceBundle) and move there the ControllerListener, SourceCodeExtension and related views? All this stuff is not needed for newcomers.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-09-11T20:17:02Z
+
+@voronkovich at first sight I like your idea. This could even let us show how easy can you create additional bundles in your application when needed. Please let's us think over this idea a bit more before implementing it. Thanks!
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2015-09-11T20:22:59Z
+
+@javiereguiluz,  ok. I've created an issue about it.
+
+---------------------------------------------------------------------------
+
+by stof at 2015-09-11T20:37:51Z
+
+@javiereguiluz this should still be merged before starting the move of classes to avoid conflicts
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-09-11T20:41:34Z
+
+@stof sure! I'm going to merge it right now. Thanks a lot for providing this improvement.
