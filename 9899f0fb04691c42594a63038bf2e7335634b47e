@@ -1,0 +1,31 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-09-10T15:52:46Z
+
+I don't usually like to restrict the behaviour of the native UI elements unless there is a good reason for it. But I'll wait to read more opinions. Thanks.
+
+---------------------------------------------------------------------------
+
+by yceruto at 2015-09-10T16:06:30Z
+
+@javiereguiluz I understand your point. In this case we could avoid this behavior that affects the design when creating or editing a post.
+
+![textarea-horizontal-resize](https://cloud.githubusercontent.com/assets/2028198/9793587/1f07745e-57b4-11e5-9c5d-3bc08b742328.png)
+
+---------------------------------------------------------------------------
+
+by stof at 2015-09-10T17:03:10Z
+
+another solution is to add ``max-width: 100%``. This would keep the possibility to resize it as long as it fits in its parent
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2015-09-10T17:09:42Z
+
+@stof, you're rigth. The `resize` property is not supported by IE and Opera at all, so it's better to use `max-width`. https://developer.mozilla.org/en-US/docs/Web/CSS/resize
+
+---------------------------------------------------------------------------
+
+by yceruto at 2015-09-10T17:13:39Z
+
+@stof, @voronkovich Fixed, thanks!
