@@ -62,9 +62,9 @@ class AddUserCommand extends ContainerAwareCommand
             ->setHelp($this->getCommandHelp())
             // commands can optionally define arguments and/or options (mandatory and optional)
             // see http://symfony.com/doc/current/components/console/console_arguments.html
-            ->addArgument('username', InputArgument::OPTIONAL, 'The username of the new user')
-            ->addArgument('password', InputArgument::OPTIONAL, 'The plain password of the new user')
-            ->addArgument('email', InputArgument::OPTIONAL, 'The email of the new user')
+            ->addArgument('username', InputArgument::REQUIRED, 'The username of the new user')
+            ->addArgument('password', InputArgument::REQUIRED, 'The plain password of the new user')
+            ->addArgument('email', InputArgument::REQUIRED, 'The email of the new user')
             ->addOption('is-admin', null, InputOption::VALUE_NONE, 'If set, the user is created as an administrator')
         ;
     }
