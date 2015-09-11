@@ -192,8 +192,8 @@ class AddUserCommand extends ContainerAwareCommand
         $encodedPassword = $encoder->encodePassword($user, $plainPassword);
         $user->setPassword($encodedPassword);
 
-        $this->em->persist($user);
-        $this->em->flush($user);
+        $this->entityManager->persist($user);
+        $this->entityManager->flush($user);
 
         $output->writeln('');
         $output->writeln(sprintf('[OK] %s was successfully created: %s (%s)', $isAdmin ? 'Administrator user' : 'User', $user->getUsername(), $user->getEmail()));
