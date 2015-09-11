@@ -55,7 +55,7 @@ class DeleteUserCommand extends ContainerAwareCommand
             ->setHelp($this->getCommandHelp())
             // commands can optionally define arguments and/or options (mandatory and optional)
             // see http://symfony.com/doc/current/components/console/console_arguments.html
-            ->addArgument('userIdentity', InputArgument::REQUIRED, 'The username or email of an existing user')
+            ->addArgument('username', InputArgument::REQUIRED, 'The username of an existing user')
         ;
     }
 
@@ -84,7 +84,7 @@ class DeleteUserCommand extends ContainerAwareCommand
      */
     protected function interact(InputInterface $input, OutputInterface $output)
     {
-        if (null !== $input->getArgument('userIdentity')) {
+        if (null !== $input->getArgument('username')) {
             return;
         }
 
@@ -99,7 +99,7 @@ class DeleteUserCommand extends ContainerAwareCommand
             'If you prefer to not use this interactive wizard, provide the',
             'arguments required by this command as follows:',
             '',
-            ' $ php app/console app:delete-user username or email',
+            ' $ php app/console app:delete-user username',
             '',
         ));
 
@@ -112,16 +112,16 @@ class DeleteUserCommand extends ContainerAwareCommand
         // See http://symfony.com/doc/current/components/console/helpers/questionhelper.html
         $console = $this->getHelper('question');
 
-        $userIdentity = $input->getArgument('userIdentity');
-        if (null === $userIdentity) {
-            $question = new Question(' > <info>Username or email</info>: ');
-            $question->setValidator(array($this, 'userIdentityValidator'));
+        $username = $input->getArgument('username');
+        if (null === $username) {
+            $question = new Question(' > <info>Username</info>: ');
+            $question->setValidator(array($this, 'usernameValidator'));
             $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
-            $userIdentity = $console->ask($input, $output, $question);
-            $input->setArgument('userIdentity', $userIdentity);
+            $username = $console->ask($input, $output, $question);
+            $input->setArgument('username', $username);
         } else {
-            $output->writeln(' > <info>Username or email</info>: ' . $userIdentity);
+            $output->writeln(' > <info>Username</info>: ' . $username);
         }
     }
 
@@ -133,23 +133,17 @@ class DeleteUserCommand extends ContainerAwareCommand
     {
         $startTime = microtime(true);
 
-        $userIdentity = $input->getArgument('userIdentity');
+        $username = $input->getArgument('username');
 
-        $this->userIdentityValidator($userIdentity);
+        $this->usernameValidator($username);
 
         $user = null;
         $repository = $this->entityManager->getRepository('AppBundle:User');
 
-        if (false !== strpos($userIdentity, '@')) {
-            $identityType = 'email';
-            $user = $repository->findOneBy(array('email' => $userIdentity));
-        } else {
-            $identityType = 'username';
-            $user = $repository->findOneBy(array('username' => $userIdentity));
-        }
+        $user = $repository->findOneBy(array('username' => $username));
 
         if (null === $user) {
-            throw new \RuntimeException(sprintf('User with %s "%s" not found.', $identityType, $userIdentity));
+            throw new \RuntimeException(sprintf('User with username "%s" not found.', $username));
         }
 
         $userId = $user->getId();
@@ -174,17 +168,17 @@ class DeleteUserCommand extends ContainerAwareCommand
      *
      * @internal
      */
-    public function userIdentityValidator($userIdentity)
+    public function usernameValidator($username)
     {
-        if (empty($userIdentity)) {
-            throw new \Exception('The value can not be empty');
+        if (empty($username)) {
+            throw new \Exception('The username can not be empty');
         }
 
-        if (1 !== preg_match('/^[\da-z_@\.]+$/', $userIdentity)) {
-            throw new \Exception('It must be a valid username or email');
+        if (1 !== preg_match('/^[a-z_]+$/', $username)) {
+            throw new \Exception('The username must contain only lowercase latin characters and underscores');
         }
 
-        return $userIdentity;
+        return $username;
     }
 
     /**
@@ -197,7 +191,7 @@ class DeleteUserCommand extends ContainerAwareCommand
         return <<<HELP
 The <info>%command.name%</info> command deletes users from the database:
 
-  <info>php %command.full_name%</info> <comment>username or email</comment>
+  <info>php %command.full_name%</info> <comment>username</comment>
 
 If you omit the argmument, the command will ask you to
 provide the missing value:
