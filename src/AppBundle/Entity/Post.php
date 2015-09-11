@@ -86,8 +86,7 @@ class Post
      * @var Collection|Tag[]
      *
      * @ORM\ManyToMany(
-     *      targetEntity="Tag",
-     *      inversedBy="posts"
+     *      targetEntity="Tag"
      * )
      * @ORM\JoinTable(name="posts_tags")
      */
@@ -97,6 +96,7 @@ class Post
     {
         $this->publishedAt = new \DateTime();
         $this->comments = new ArrayCollection();
+        $this->tags = new ArrayCollection();
     }
 
     public function getId()
@@ -194,6 +194,16 @@ class Post
     }
 
     /**
+     * Get tags
+     *
+     * @return Tag[]|Collection
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
      * Add tag
      *
      * @param Tag $tag
@@ -202,7 +212,9 @@ class Post
      */
     public function addTag(Tag $tag)
     {
-        $this->tags[] = $tag;
+        if (!$this->hasTag($tag)) {
+            $this->tags->add($tag);
+        }
 
         return $this;
     }
@@ -211,19 +223,25 @@ class Post
      * Remove tag
      *
      * @param Tag $tag
+     *
+     * @return Post
      */
     public function removeTag(Tag $tag)
     {
-        $this->tags->removeElement($tag);
+        if (!$this->hasTag($tag)) {
+            $this->tags->removeElement($tag);
+        }
+
+        return $this;
     }
 
     /**
-     * Get tags
+     * @param Tag $tag
      *
-     * @return Tag[]|Collection
+     * @return bool
      */
-    public function getTags()
+    public function hasTag(Tag $tag)
     {
-        return $this->tags;
+        return $this->tags->contains($tag);
     }
 }
