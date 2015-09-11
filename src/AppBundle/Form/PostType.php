@@ -39,7 +39,10 @@ class PostType extends AbstractType
         //     $builder->add('title', null, array('required' => false, ...));
 
         $builder
-            ->add('title', null, array('label' => 'label.title'))
+            ->add('title', null, array(
+                'attr' => array('autofocus' => true),
+                'label' => 'label.title',
+            ))
             ->add('summary', 'textarea', array('label' => 'label.summary'))
             ->add('content', 'textarea', array(
                 'attr' => array('rows' => 20),
