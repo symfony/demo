@@ -41,7 +41,7 @@ class DeleteUserCommand extends ContainerAwareCommand
     /**
      * @var ObjectManager
      */
-    private $em;
+    private $entityManager;
 
     /**
      * {@inheritdoc}
@@ -69,7 +69,7 @@ class DeleteUserCommand extends ContainerAwareCommand
      */
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
-        $this->em = $this->getContainer()->get('doctrine')->getManager();
+        $this->entityManager = $this->getContainer()->get('doctrine')->getManager();
     }
 
     /**
@@ -138,7 +138,7 @@ class DeleteUserCommand extends ContainerAwareCommand
         $this->userIdentityValidator($userIdentity);
 
         $user = null;
-        $repository = $this->em->getRepository('AppBundle:User');
+        $repository = $this->entityManager->getRepository('AppBundle:User');
 
         if (false !== strpos($userIdentity, '@')) {
             $identityType = 'email';
@@ -154,8 +154,8 @@ class DeleteUserCommand extends ContainerAwareCommand
 
         $userId = $user->getId();
 
-        $this->em->remove($user);
-        $this->em->flush();
+        $this->entityManager->remove($user);
+        $this->entityManager->flush();
 
         $output->writeln('');
         $output->writeln(sprintf('[OK] User "%s" (ID: %d, email: %s) was successfully deleted.', $user->getUsername(), $userId, $user->getEmail()));
