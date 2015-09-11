@@ -24,13 +24,8 @@ class SourceCodeExtension extends \Twig_Extension
 {
     protected $loader;
     protected $controller;
-    protected $template;
     protected $kernelRootDir;
 
-    /**
-     * @param \Twig_LoaderInterface $loader
-     * @param string $kernelRootDir
-     */
     public function __construct(\Twig_LoaderInterface $loader, $kernelRootDir)
     {
         $this->kernelRootDir = $kernelRootDir;
@@ -52,25 +47,14 @@ class SourceCodeExtension extends \Twig_Extension
         );
     }
 
-    /**
-     * @param \Twig_Environment $twig
-     * @param string $template
-     *
-     * @return string
-     */
-    public function showSourceCode(\Twig_Environment $twig, $template)
+    public function showSourceCode(\Twig_Environment $twig, \Twig_Template $template)
     {
-        $this->template = $template;
-
         return $twig->render('default/_source_code.html.twig', array(
             'controller' => $this->getController(),
-            'template'   => $this->getTemplate(),
+            'template'   => $this->getTemplateSource($template),
         ));
     }
 
-    /**
-     * @return array|null
-     */
     private function getController()
     {
         // this happens for example for exceptions (404 errors, etc.)
@@ -93,12 +77,9 @@ class SourceCodeExtension extends \Twig_Extension
         );
     }
 
-    /**
-     * @return array
-     */
-    private function getTemplate()
+    private function getTemplateSource(\Twig_Template $template)
     {
-        $templateName = $this->template->getTemplateName();
+        $templateName = $template->getTemplateName();
 
         return array(
             'file_path' => $this->kernelRootDir.'/Resources/views/'.$templateName,
@@ -133,12 +114,9 @@ class SourceCodeExtension extends \Twig_Extension
         return $formattedCode;
     }
 
-    /**
-     * @inheritdoc
-     */
+    // the name of the Twig extension must be unique in the application
     public function getName()
     {
-        // the name of the Twig extension must be unique in the application
         return 'app.source_code_extension';
     }
 }
