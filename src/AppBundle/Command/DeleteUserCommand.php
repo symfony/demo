@@ -55,7 +55,7 @@ class DeleteUserCommand extends ContainerAwareCommand
             ->setHelp($this->getCommandHelp())
             // commands can optionally define arguments and/or options (mandatory and optional)
             // see http://symfony.com/doc/current/components/console/console_arguments.html
-            ->addArgument('userIdentity', InputArgument::OPTIONAL, 'The username or email of an existing user')
+            ->addArgument('userIdentity', InputArgument::REQUIRED, 'The username or email of an existing user')
         ;
     }
 
