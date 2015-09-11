@@ -174,9 +174,9 @@ class LoadFixtures extends AbstractFixture implements FixtureInterface, Containe
 
         $post3->addTag($tag3);
         $post3->addTag($tag4);
+        $post3->addTag($tag5);
         $manager->persist($post3);
 
-        $post4->addTag($tag5);
         $post4->addTag($tag6);
         $post4->addTag($tag7);
         $manager->persist($post4);
