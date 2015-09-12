@@ -38,9 +38,6 @@ class ControllerListener
         $this->twigExtension = $twigExtension;
     }
 
-    /**
-     * @param FilterControllerEvent $event
-     */
     public function registerCurrentController(FilterControllerEvent $event)
     {
         // this check is needed because in Symfony a request can perform any
