@@ -155,8 +155,8 @@
                 $(document).ready(function() {
                     hljs.initHighlightingOnLoad();
 
-                    $('[data-toggle="confirmation"][data-message]').on('click', function (event) {
-                        var message = $(this).data('message');
+                    $('form[data-confirmation-message]').on('submit', function (event) {
+                        var message = $(this).data('confirmation-message');
 
                         if (confirm(message) === false) {
                             //cancel the event
