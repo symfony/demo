@@ -10,11 +10,14 @@
                     {{ post.title }}
                 </a>
             </h2>
-            <p>
-                {% for tag in post.tags %}
-                    <span class="label label-default">{{ tag.name }}</span>
-                {% endfor %}
-            </p>
+            {% if 0 < post.tags | length %}
+                <p>
+                    {% for tag in post.tags %}
+                        <span class="label label-default">{{ tag.name }}</span>
+                    {% endfor %}
+                </p>
+            {% endif %}
+
             {{ post.summary|md2html }}
         </article>
     {% else %}

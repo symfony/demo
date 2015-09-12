@@ -5,12 +5,13 @@
 {% block main %}
     <h1>{{ post.title }}</h1>
 
-    <p>
-        {% if 0 < post.tags | length %}Tags: {% endif %}
-        {% for tag in post.tags %}
-            <span class="label label-default">{{ tag.name }}</span>
-        {% endfor %}
-    </p>
+    {% if 0 < post.tags | length %}
+        <p> Tags:
+            {% for tag in post.tags %}
+                <span class="label label-default">{{ tag.name }}</span>
+            {% endfor %}
+        </p>
+    {% endif %}
 
     {{ post.content|md2html }}
 

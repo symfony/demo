@@ -33,7 +33,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  * @author Rasanga Perera <rasangaperera@gmail.com>
  */
-class LoadFixtures extends AbstractFixture implements FixtureInterface, ContainerAwareInterface
+class LoadFixtures implements FixtureInterface, ContainerAwareInterface
 {
     /** @var ContainerInterface */
     private $container;
