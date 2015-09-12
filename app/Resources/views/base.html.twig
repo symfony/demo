@@ -158,7 +158,10 @@
                     $('[data-toggle="confirmation"][data-message]').on('click', function (event) {
                         var message = $(this).data('message');
 
-                        return confirm(message) || event.preventDefault();
+                        if (confirm(message) === false) {
+                            //cancel the event
+                            event.preventDefault();
+                        }
                     });
                 });
             </script>
