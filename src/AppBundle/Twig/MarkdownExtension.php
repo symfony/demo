@@ -24,7 +24,7 @@ use AppBundle\Utils\Markdown;
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-class AppExtension extends \Twig_Extension
+class MarkdownExtension extends \Twig_Extension
 {
     private $parser;
 
@@ -49,9 +49,9 @@ class AppExtension extends \Twig_Extension
     }
 
     // the name of the Twig extension must be unique in the application. Consider
-    // using 'app.extension' if you only have one Twig extension in your application.
+    // using 'app' if you only have one Twig extension in your application.
     public function getName()
     {
-        return 'app.extension';
+        return 'app_markdown';
     }
 }

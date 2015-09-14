@@ -15,7 +15,7 @@ namespace AppBundle\Twig;
  * CAUTION: this is an extremely advanced Twig extension. It's used to get the
  * source code of the controller and the template used to render the current
  * page. If you are starting with Symfony, don't look at this code and consider
- * studying instead the code of the src/AppBundle/Twig/AppExtension.php extension.
+ * studying instead the code of the src/AppBundle/Twig/MarkdownExtension.php extension.
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
@@ -139,6 +139,6 @@ class SourceCodeExtension extends \Twig_Extension
     // the name of the Twig extension must be unique in the application
     public function getName()
     {
-        return 'app.source_code_extension';
+        return 'app_source_code';
     }
 }

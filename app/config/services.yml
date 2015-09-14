@@ -9,9 +9,9 @@ services:
 
     # These are the Twig extensions that create new filters and functions for
     # using them in the templates
-    app.twig.app_extension:
+    app.twig.markdown_extension:
         public:    false
-        class:     AppBundle\Twig\AppExtension
+        class:     AppBundle\Twig\MarkdownExtension
         arguments: ["@markdown"]
         tags:
             - { name: twig.extension }
