@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace ShowSourceBundle\Twig;
+namespace CodeExplorerBundle\Twig;
 
 /**
  * CAUTION: this is an extremely advanced Twig extension. It's used to get the
@@ -49,7 +49,7 @@ class SourceCodeExtension extends \Twig_Extension
 
     public function showSourceCode(\Twig_Environment $twig, \Twig_Template $template)
     {
-        return $twig->render('ShowSourceBundle::source_code.html.twig', array(
+        return $twig->render('CodeExplorerBundle::source_code.html.twig', array(
             'controller' => $this->getController(),
             'template'   => $this->getTemplateSource($template),
         ));
@@ -139,6 +139,6 @@ class SourceCodeExtension extends \Twig_Extension
     // the name of the Twig extension must be unique in the application
     public function getName()
     {
-        return 'show_source_source_code';
+        return 'code_explorer_source_code';
     }
 }

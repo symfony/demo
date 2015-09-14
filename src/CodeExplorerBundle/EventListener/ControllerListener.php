@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace ShowSourceBundle\EventListener;
+namespace CodeExplorerBundle\EventListener;
 
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
-use ShowSourceBundle\Twig\SourceCodeExtension;
+use CodeExplorerBundle\Twig\SourceCodeExtension;
 
 /**
  * Defines the method that 'listens' to the 'kernel.controller' event, which is

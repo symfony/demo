@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace ShowSourceBundle;
+namespace CodeExplorerBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
  * @author Oleg Voronkovich <oleg-voronkovich@yandex.ru>
  */
-class ShowSourceBundle extends Bundle
+class CodeExplorerBundle extends Bundle
 {
 }

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace ShowSourceBundle\DependencyInjection;
+namespace CodeExplorerBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -19,7 +19,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 /**
  * @author Oleg Voronkovich <oleg-voronkovich@yandex.ru>
  */
-class ShowSourceExtension extends Extension
+class CodeExplorerExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container)
     {
