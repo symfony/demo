@@ -49,7 +49,7 @@ class SourceCodeExtension extends \Twig_Extension
 
     public function showSourceCode(\Twig_Environment $twig, \Twig_Template $template)
     {
-        return $twig->render('ShowSourceBundle::_source_code.html.twig', array(
+        return $twig->render('ShowSourceBundle::source_code.html.twig', array(
             'controller' => $this->getController(),
             'template'   => $this->getTemplateSource($template),
         ));
