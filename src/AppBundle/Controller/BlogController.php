@@ -38,8 +38,8 @@ class BlogController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $posts = $em->getRepository('AppBundle:Post')->findLatest();
+        $entityManager = $this->getDoctrine()->getManager();
+        $posts = $entityManager->getRepository('AppBundle:Post')->findLatest();
 
         return $this->render('blog/index.html.twig', array('posts' => $posts));
     }
@@ -80,9 +80,9 @@ class BlogController extends Controller
             $comment->setAuthorEmail($this->getUser()->getEmail());
             $comment->setPost($post);
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($comment);
-            $em->flush();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($comment);
+            $entityManager->flush();
 
             return $this->redirectToRoute('blog_post', array('slug' => $post->getSlug()));
         }
