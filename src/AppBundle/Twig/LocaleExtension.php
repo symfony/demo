@@ -22,8 +22,14 @@ use Symfony\Component\Intl\Intl;
  */
 class LocaleExtension extends \Twig_Extension
 {
+    /**
+     * @var array
+     */
     private $locales;
 
+    /**
+     * @param array $locales
+     */
     public function __construct($locales)
     {
         $this->locales = $locales;
@@ -39,6 +45,9 @@ class LocaleExtension extends \Twig_Extension
         );
     }
 
+    /**
+     * @return array
+     */
     public function getLocales()
     {
         $localeCodes = explode('|', $this->locales);
@@ -50,9 +59,12 @@ class LocaleExtension extends \Twig_Extension
         return $locales;
     }
 
-    // the name of the Twig extension must be unique in the application
+    /**
+     * @inheritdoc
+     */
     public function getName()
     {
+        // the name of the Twig extension must be unique in the application
         return 'app.locale_extension';
     }
 }
