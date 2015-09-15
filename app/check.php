@@ -68,7 +68,7 @@ echo_style('title', '~~~~');
 echo '  than the one used with your web server. To be on the'.PHP_EOL;
 echo '      safe side, please check the requirements from your web'.PHP_EOL;
 echo '      server using the ';
-echo_style('yellow', 'web/check.php');
+echo_style('yellow', 'web/config.php');
 echo ' script.'.PHP_EOL;
 echo PHP_EOL;
 

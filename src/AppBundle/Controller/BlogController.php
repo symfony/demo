@@ -42,11 +42,7 @@ class BlogController extends Controller
         $query = $this->getDoctrine()->getRepository('AppBundle:Post')->queryLatest();
 
         $paginator = $this->get('knp_paginator');
-        $posts = $paginator->paginate(
-            $query,
-            $page,
-            Post::NUM_ITEMS
-        );
+        $posts = $paginator->paginate($query, $page, Post::NUM_ITEMS);
         $posts->setUsedRoute('blog_index_paginated');
 
         return $this->render('blog/index.html.twig', array('posts' => $posts));
