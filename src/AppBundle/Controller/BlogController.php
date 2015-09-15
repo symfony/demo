@@ -34,12 +34,20 @@ use Symfony\Component\Intl\Intl;
 class BlogController extends Controller
 {
     /**
-     * @Route("/", name="blog_index")
+     * @Route("/", name="blog_index", defaults={"page" = 1})
+     * @Route("/page/{page}", name="blog_index_paginated", requirements={"page" : "\d+"})
      */
-    public function indexAction()
+    public function indexAction($page)
     {
-        $entityManager = $this->getDoctrine()->getManager();
-        $posts = $entityManager->getRepository('AppBundle:Post')->findLatest();
+        $query = $this->getDoctrine()->getRepository('AppBundle:Post')->queryLatest();
+
+        $paginator = $this->get('knp_paginator');
+        $posts = $paginator->paginate(
+            $query,
+            $page,
+            Post::NUM_ITEMS
+        );
+        $posts->setUsedRoute('blog_index_paginated');
 
         return $this->render('blog/index.html.twig', array('posts' => $posts));
     }
