@@ -1,0 +1,159 @@
+---------------------------------------------------------------------------
+
+by voronkovich at 2015-08-21T16:09:37Z
+
+Please, add more fixtures for posts. Now it's only 10.
+
+---------------------------------------------------------------------------
+
+by ccab at 2015-08-24T15:21:09Z
+
+Actually the `$limit` argument in the queries isn't necessary, what should I do remove it or not?
+
+---------------------------------------------------------------------------
+
+by ccab at 2015-08-27T14:30:55Z
+
+Ok I got something like this:
+
+`@Route("/", name="blog_index", defaults={"page" = 1})`
+`@Route("/page/{page}", name="page_blog_index", defaults={"page" = 1}, requirements={"page" : "\d+"})`
+
+The default for page in both routes is because I don't want to catch the page as a query string but as a  route parameter. It's a little ugly doesn't it ?
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-08-27T15:11:10Z
+
+What about `blog_index_paged` name or something similar to be consistent with first route name?
+Nonetheless, I don't like to use 2 routes for this action :(
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-08-27T15:15:57Z
+
+@bocharsky-bw if we don't want to define two different routes, then we need to pass the page number as a query string. @ccab I agree with @bocharsky-bw about the new route name: I personally use and I've seen a lot of times the practice of naming it as `*_paginated`, so it could be `blog_index_paginated`. (The other option would be to not name it at all, because we are not going to generate this URL in any template).
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-08-27T15:27:44Z
+
+What about next definition with single route:
+``` php
+/**
+ *@Route("/{page_prefix}{page}", name="blog_index", defaults={"page" = 1, "page_prefix" = "page-"}, requirements={"page" : "\d+", "page_prefix" = "page-"})
+ */
+```
+and we could move `page_prefix` value to `parameters.yml`.
+
+Does it too confused?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-08-27T15:31:02Z
+
+@bocharsky-bw yes, it looks very confusing to me.
+
+---------------------------------------------------------------------------
+
+by ccab at 2015-08-27T15:37:32Z
+
+yea @bocharsky-bw I turn around something like that but we need to think in code readability too, for newcomers it could be a little confusing.
+@javiereguiluz I'll rename the second `@Route` as `blog_index_paginated` because the paginator need it to generate the right URL
+
+---------------------------------------------------------------------------
+
+by ccab at 2015-09-01T14:27:10Z
+
+A clue about Travis-CI ??
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-09-01T14:37:11Z
+
+Try to check [this](https://github.com/symfony/symfony/issues/14790) suggestion.
+
+---------------------------------------------------------------------------
+
+by ccab at 2015-09-01T16:41:49Z
+
+Thanks @bocharsky-bw, as you may see in [this commit](https://github.com/KnpLabs/KnpPaginatorBundle/commit/3f00050cfbed246bb6f195ebee6badb50190fcf6) this should be solved but I am using the 2.4.2 release and I still got it, so I'm following directions from [UPGRADE-3.0](https://github.com/symfony/symfony/commit/1dbf67ed667c99f0d08ad61bf2bf4d2ec9fbada1) and I'll enable php as templating engine
+
+---------------------------------------------------------------------------
+
+by ccab at 2015-09-03T14:03:31Z
+
+I make all the restrictions in the packages versions in order to pass all test with the `composer update --prefer-lowest`, but I must confess I'am not happy about the end result, so what do you think if we change to `Pagerfanta`
+
+---------------------------------------------------------------------------
+
+by stof at 2015-09-03T14:13:13Z
+
+@javiereguiluz this is a project with locked dependencies. Why are we running builds with different deps than the locked ones ?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-09-03T14:19:15Z
+
+@stof I'm not sure I understand you. Please tell me what should I change or add. Thanks!
+
+---------------------------------------------------------------------------
+
+by stof at 2015-09-03T14:25:54Z
+
+@javiereguiluz why are we running ``composer update`` in some Travis jobs ? Dependencies are locked in the project, so the CI server should only run ``composer install``
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-09-03T14:33:33Z
+
+I think `composer update` needs for legacy PHP compatibility, doesn't it?
+
+---------------------------------------------------------------------------
+
+by ccab at 2015-09-03T14:34:30Z
+
+Actually this is the main reason for my last 4 commits, because I need to pass `composer update` with the latest versions :-) & `composer update --prefer-lowest` with the lowest versions :-(
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-09-03T14:37:10Z
+
+Well, you could try to constraint lowest version `knplabs/knp-paginator-bundle": "~2.4,>=2.4.2"`. It should fix bug with `--prefer-lowest`.
+
+---------------------------------------------------------------------------
+
+by ccab at 2015-09-03T14:49:39Z
+
+Yes @bocharsky-bw it could solve the problem now, but in the future we will need to add some other bundles and we could have the same problem again, always watching lowest versions for bugs, I'm with @stof on this, locked dependencies is the answer
+
+---------------------------------------------------------------------------
+
+by ccab at 2015-09-07T19:20:00Z
+
+What if we change the basic template for another one bootstrap oriented, this can be easily done changing a config key
+
+Default:
+![snapshot5](https://cloud.githubusercontent.com/assets/12819019/9721983/34f24b60-5573-11e5-872d-e3d6c68454b4.png)
+
+Now with Bootstrap:
+
+![snapshot6](https://cloud.githubusercontent.com/assets/12819019/9722023/7f869a0a-5573-11e5-8bbd-2890c68d9030.png)
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-09-07T19:22:56Z
+
+Bootstrap oriented looks better :+1:
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2015-09-07T20:30:03Z
+
+:+1: Yeah, bootstrap oriented is totaly better. Now it seems like the Mathias Noback blog http://php-and-symfony.matthiasnoback.nl :)
+
+---------------------------------------------------------------------------
+
+by ccab at 2015-09-14T18:25:54Z
+
+@javiereguiluz what do you think, it's finished ?
