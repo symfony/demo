@@ -154,15 +154,15 @@
             <script>
                 $(document).ready(function() {
                     hljs.initHighlightingOnLoad();
+                });
 
-                    $('body').on('submit', 'form[data-confirmation-message]', function (event) {
-                        var message = $(this).data('confirmation-message');
+                $(document).on('submit', 'form[data-confirmation-message]', function (event) {
+                    var message = $(this).data('confirmation-message');
 
-                        if (confirm(message) === false) {
-                            //cancel the event
-                            event.preventDefault();
-                        }
-                    });
+                    if (confirm(message) === false) {
+                        //cancel the event
+                        event.preventDefault();
+                    }
                 });
             </script>
         {% endblock %}
