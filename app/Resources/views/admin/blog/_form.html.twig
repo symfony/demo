@@ -6,11 +6,11 @@
     {{ form_start(form, { attr: { novalidate: 'novalidate' } }) }}
 #}
 
-{% if confirmation_message is defined %}
-    {% set attr = {'data-confirmation-message': confirmation_message} %}
+{% if show_confirmation_message is defined %}
+    {% set attr = {'data-confirmation-message': 'action.delete_post_confirmation'|trans} %}
 {% endif %}
 
-{{ form_start(form, {attr: attr|default({})}) }}
+{{ form_start(form, { attr: attr|default({}) }) }}
     {{ form_widget(form) }}
 
     <input type="submit" value="{{ button_label|default('label.create_post'|trans) }}"
