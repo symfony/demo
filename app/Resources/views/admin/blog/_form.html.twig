@@ -6,7 +6,7 @@
     {{ form_start(form, { attr: { novalidate: 'novalidate' } }) }}
 #}
 
-{% if show_confirmation_message is defined %}
+{% if show_confirmation_message is defined and show_confirmation_message == true %}
     {% set attr = {'data-confirmation-message': 'action.delete_post_confirmation'|trans} %}
 {% endif %}
 
