@@ -28,12 +28,23 @@ class RedirectToPreferredLocaleListener
      */
     private $locales = array();
 
+    /**
+     * Constructor.
+     *
+     * @param string $locales Supported locales separated by '|'
+     * @param UrlGeneratorInterface $urlGenerator
+     */
     public function __construct($locales = '', UrlGeneratorInterface $urlGenerator)
     {
         $this->locales = explode('|', $locales);
         $this->urlGenerator = $urlGenerator;
     }
 
+    /**
+     * Handles an event.
+     *
+     * @param GetResponseEvent $event
+     */
     public function onKernelRequest(GetResponseEvent $event)
     {
         $request = $event->getRequest();
