@@ -1,0 +1,69 @@
+{% if pageCount > 1 %}
+    <ul class="pagination">
+
+    {% if previous is defined %}
+        <li>
+            <a href="{{ path(route, query|merge({(pageParameterName): previous})) }}">&laquo;&nbsp;{{ 'previous'|trans }}</a>
+        </li>
+    {% else %}
+        <li class="disabled">
+            <span>&laquo;&nbsp;{{ 'previous'|trans }}</span>
+        </li>
+    {% endif %}
+
+    {% if startPage > 1 %}
+        <li>
+            <a href="{{ path(route, query|merge({(pageParameterName): 1})) }}">1</a>
+        </li>
+        {% if startPage == 3 %}
+            <li>
+                <a href="{{ path(route, query|merge({(pageParameterName): 2})) }}">2</a>
+            </li>
+        {% elseif startPage != 2 %}
+        <li class="disabled">
+            <span>&hellip;</span>
+        </li>
+        {% endif %}
+    {% endif %}
+
+    {% for page in pagesInRange %}
+        {% if page != current %}
+            <li>
+                <a href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a>
+            </li>
+        {% else %}
+            <li class="active">
+                <span>{{ page }}</span>
+            </li>
+        {% endif %}
+
+    {% endfor %}
+
+    {% if pageCount > endPage %}
+        {% if pageCount > (endPage + 1) %}
+            {% if pageCount > (endPage + 2) %}
+                <li class="disabled">
+                    <span>&hellip;</span>
+                </li>
+            {% else %}
+                <li>
+                    <a href="{{ path(route, query|merge({(pageParameterName): (pageCount - 1)})) }}">{{ pageCount -1 }}</a>
+                </li>
+            {% endif %}
+        {% endif %}
+        <li>
+            <a href="{{ path(route, query|merge({(pageParameterName): pageCount})) }}">{{ pageCount }}</a>
+        </li>
+    {% endif %}
+
+    {% if next is defined %}
+        <li>
+            <a href="{{ path(route, query|merge({(pageParameterName): next})) }}">{{ 'next'|trans }}&nbsp;&raquo;</a>
+        </li>
+    {% else %}
+        <li class="disabled">
+            <span>{{ 'next'|trans }}&nbsp;&raquo;</span>
+        </li>
+    {% endif %}
+    </ul>
+{% endif %}
