@@ -4,7 +4,7 @@ namespace AppBundle\EventListener;
 
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * This listener subscribes to the 'kernel.request' event to redirect a client
@@ -14,24 +14,24 @@ use Symfony\Component\Routing\RouterInterface;
  *
  * @author Oleg Voronkovich <oleg-voronkovich@yandex.ru>
  */
-class RedirectToPreferedLocaleListener
+class RedirectToPreferredLocaleListener
 {
     /**
-     * @var RouterInterface
+     * @var UrlGeneratorInterface
      */
-    private $router;
+    private $urlGenerator;
 
     /**
      * List of supported locales.
      *
-     * @var array
+     * @var string[]
      */
     private $locales = array();
 
-    public function __construct($locales = '', RouterInterface $router)
+    public function __construct($locales = '', UrlGeneratorInterface $urlGenerator)
     {
         $this->locales = explode('|', $locales);
-        $this->router = $router;
+        $this->urlGenerator = $urlGenerator;
     }
 
     public function onKernelRequest(GetResponseEvent $event)
@@ -42,10 +42,10 @@ class RedirectToPreferedLocaleListener
             return;
         }
 
-        $preferedLanguage = $request->getPreferredLanguage($this->locales);
+        $preferredLanguage = $request->getPreferredLanguage($this->locales);
 
-        if ('' !== $preferedLanguage && $request->getDefaultLocale() !== $preferedLanguage) {
-            $response = new RedirectResponse($this->router->generate('homepage', array('_locale' => $preferedLanguage)));
+        if ('' !== $preferredLanguage && $request->getDefaultLocale() !== $preferredLanguage) {
+            $response = new RedirectResponse($this->urlGenerator->generate('homepage', array('_locale' => $preferredLanguage)));
             $event->setResponse($response);
         }
     }
