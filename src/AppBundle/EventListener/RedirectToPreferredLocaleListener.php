@@ -49,7 +49,7 @@ class RedirectToPreferredLocaleListener
     {
         $request = $event->getRequest();
 
-        if ('/' !== $request->getPathInfo()) {
+        if (!$event->isMasterRequest() || '/' !== $request->getPathInfo()) {
             return;
         }
 
