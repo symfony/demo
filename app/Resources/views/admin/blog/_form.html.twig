@@ -6,7 +6,7 @@
     {{ form_start(form, { attr: { novalidate: 'novalidate' } }) }}
 #}
 
-{% if show_confirmation_message is defined and show_confirmation_message == true %}
+{% if show_confirmation|default(false) %}
     {% set attr = {'data-confirmation-message': 'action.delete_post_confirmation'|trans} %}
 {% endif %}
 
@@ -16,7 +16,7 @@
     <input type="submit" value="{{ button_label|default('label.create_post'|trans) }}"
            class="{{ button_css|default("btn btn-primary") }}" />
 
-    {% if include_back_to_home_link is not defined or include_back_to_home_link == true %}
+    {% if include_back_to_home_link|default(false) %}
         <a href="{{ path('admin_post_index') }}" class="btn btn-link">
             {{ 'action.back_to_list'|trans }}
         </a>
