@@ -23,6 +23,7 @@
                 .off('click', '#btnYes')
                 .on('click', '#btnYes', function () {
                     $confirm.data('result', 'yes');
+                    $form.find('input[type="submit"]').attr('disabled', 'disabled');
                     $form.submit();
                 })
                 .modal('show');
