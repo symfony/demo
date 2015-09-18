@@ -29,14 +29,38 @@ class RedirectToPreferredLocaleListener
     private $locales = array();
 
     /**
+     * @var string
+     */
+    private $defaultLocale = '';
+
+    /**
      * Constructor.
      *
-     * @param string $locales Supported locales separated by '|'
      * @param UrlGeneratorInterface $urlGenerator
+     * @param string $locales Supported locales separated by '|'
+     * @param string|null $defaultLocale
      */
-    public function __construct($locales = '', UrlGeneratorInterface $urlGenerator)
+    public function __construct(UrlGeneratorInterface $urlGenerator, $locales, $defaultLocale = null)
     {
-        $this->locales = explode('|', $locales);
+        $this->locales = explode('|', trim($locales));
+
+        if (empty($this->locales)) {
+            throw new \UnexpectedValueException('Locales argument value must not be empty');
+        }
+
+        $this->defaultLocale = $defaultLocale;
+
+        if (null === $this->defaultLocale) {
+            $this->defaultLocale = $this->locales[0];
+        } elseif (!in_array($this->defaultLocale, $this->locales)) {
+            throw new \UnexpectedValueException(sprintf('The default locale\'s argument value "%s" must be one of "%s"', $this->defaultLocale, $locales));
+        } else {
+            // Add the default locale at the first position of an array,
+            // because Symfony\HttpFoundation\Request::getPreferredLanguage
+            // returns the first element of locales when no an appropriate language found
+            $this->locales = array_unique(array_merge(array($this->defaultLocale), $this->locales));
+        }
+
         $this->urlGenerator = $urlGenerator;
     }
 
@@ -55,7 +79,7 @@ class RedirectToPreferredLocaleListener
 
         $preferredLanguage = $request->getPreferredLanguage($this->locales);
 
-        if ('' !== $preferredLanguage && $request->getDefaultLocale() !== $preferredLanguage) {
+        if ($preferredLanguage !== $this->defaultLocale) {
             $response = new RedirectResponse($this->urlGenerator->generate('homepage', array('_locale' => $preferredLanguage)));
             $event->setResponse($response);
         }

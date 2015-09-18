@@ -29,9 +29,9 @@ services:
         tags:
             - { name: twig.extension }
 
-    app.redirect_to_prefered_locale_listener:
-        class: AppBundle\EventListener\RedirectToPreferedLocaleListener
-        arguments: ["%app_locales%", "@router"]
+    app.redirect_to_preferred_locale_listener:
+        class: AppBundle\EventListener\RedirectToPreferredLocaleListener
+        arguments: ["@router", "%app_locales%", "%locale%"]
         tags:
             - { name: 'kernel.event_listener', event: kernel.request, method: onKernelRequest }
 
