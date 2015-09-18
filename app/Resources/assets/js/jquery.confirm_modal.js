@@ -9,8 +9,6 @@
 
 /**
  * Handling the modal confirmation message.
- *
- * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
 (function ($) {
     $(document).on('submit', 'form[data-confirmation]', function (event) {
