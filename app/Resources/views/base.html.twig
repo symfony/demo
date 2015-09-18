@@ -144,7 +144,8 @@
             {% javascripts filter="?jsqueeze" output="js/app.js"
                 "%kernel.root_dir%/Resources/assets/js/jquery-2.1.4.js"
                 "%kernel.root_dir%/Resources/assets/js/bootstrap-3.3.4.js"
-                "%kernel.root_dir%/Resources/assets/js/highlight.pack.js" %}
+                "%kernel.root_dir%/Resources/assets/js/highlight.pack.js"
+                "%kernel.root_dir%/Resources/assets/js/jquery.confirm_modal.js" %}
                 <script src="{{ asset_url }}"></script>
             {% endjavascripts %}
         #}
@@ -154,15 +155,6 @@
             <script>
                 $(document).ready(function() {
                     hljs.initHighlightingOnLoad();
-                });
-
-                $(document).on('submit', 'form[data-confirmation-message]', function (event) {
-                    var message = $(this).data('confirmation-message');
-
-                    if (confirm(message) === false) {
-                        //cancel the event
-                        event.preventDefault();
-                    }
                 });
             </script>
         {% endblock %}
