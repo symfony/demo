@@ -8,7 +8,7 @@
  */
 
 /**
- * jQuery plugin for a modal confirmation message.
+ * Handling the modal confirmation message.
  *
  * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
