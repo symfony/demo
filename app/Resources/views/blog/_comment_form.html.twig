@@ -16,12 +16,14 @@
     <fieldset>
         <legend>{{ 'title.add_comment'|trans }}</legend>
 
+        {# Render any "global" errors (e.g. when a constraint on a public getter method failed). #}
+        {{ form_errors(form) }}
+
         <div class="form-group{% if not form.vars.valid %} has-error{% endif %}">
             {{ form_label(form.content, 'label.content', { label_attr: { class: 'hidden' }}) }}
 
-            {% if not form.vars.valid %}
-                {{ form_errors(form.content) }}
-            {% endif %}
+            {# Render any errors for the "content" field (e.g. when a class property constraint failed). #}
+            {{ form_errors(form.content) }}
 
             {{ form_widget(form.content, { attr: { rows: 10 } }) }}
         </div>
