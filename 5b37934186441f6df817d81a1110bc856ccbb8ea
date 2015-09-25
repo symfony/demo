@@ -1,0 +1,33 @@
+---------------------------------------------------------------------------
+
+by voronkovich at 2015-09-17T12:31:12Z
+
+Fixed. Thanks, @stof!
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2015-09-18T17:03:46Z
+
+I've refactored the listener, because Request::getPreferredLanguage and Request::getDefaultLocale don't behave as I expected.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-09-25T18:02:38Z
+
+My concern with this feature is that I don't think this is a good practice we want to promote. First, executing another listener for each and every request of the application introduces a non-negligible performance hit.
+
+Second, if I understand this feature well, I'm not sure this is what the user expects. When accessing the homepage, I think it's OK to redirect to the homepage of the user's language. But when accessing directly to an inner page, I think it's better to not change its language inadvertedly.
+
+I propose to simplify this feature and apply it only for the homepage and without using a listener. But before doing any change, let's wait for other people's opinions.
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2015-09-25T19:34:43Z
+
+@javiereguiluz, this feature woks only when requesting the homepage. I've added a comment about it.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-09-25T20:10:38Z
+
+@voronkovich you are right! Sorry for not having looked at your code with more detail.
