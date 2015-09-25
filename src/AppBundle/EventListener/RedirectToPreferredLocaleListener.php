@@ -73,6 +73,7 @@ class RedirectToPreferredLocaleListener
     {
         $request = $event->getRequest();
 
+        // Ignores sub-requests and all routes but the homepage one
         if (!$event->isMasterRequest() || '/' !== $request->getPathInfo()) {
             return;
         }
