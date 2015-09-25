@@ -7,8 +7,8 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
- * This listener subscribes to the 'kernel.request' event to redirect a client
- * to an appropriate locale, according to browser settings.
+ * When visiting the homepage, this listener redirects the user to the most
+ * appropriate localized version according to the browser settings.
  *
  * See http://symfony.com/doc/current/components/http_kernel/introduction.html#the-kernel-request-event
  *
@@ -42,38 +42,33 @@ class RedirectToPreferredLocaleListener
      */
     public function __construct(UrlGeneratorInterface $urlGenerator, $locales, $defaultLocale = null)
     {
-        $this->locales = explode('|', trim($locales));
-
-        if (empty($this->locales)) {
-            throw new \UnexpectedValueException('Locales argument value must not be empty');
-        }
-
-        $this->defaultLocale = $defaultLocale;
-
-        if (null === $this->defaultLocale) {
-            $this->defaultLocale = $this->locales[0];
-        } elseif (!in_array($this->defaultLocale, $this->locales)) {
-            throw new \UnexpectedValueException(sprintf('The default locale\'s argument value "%s" must be one of "%s"', $this->defaultLocale, $locales));
-        } else {
-            // Add the default locale at the first position of an array,
-            // because Symfony\HttpFoundation\Request::getPreferredLanguage
-            // returns the first element of locales when no an appropriate language found
-            $this->locales = array_unique(array_merge(array($this->defaultLocale), $this->locales));
-        }
-
         $this->urlGenerator = $urlGenerator;
+
+        $this->locales = explode('|', trim($locales));
+        if (empty($this->locales)) {
+            throw new \UnexpectedValueException('The list of supported locales must not be empty.');
+        }
+
+        $this->defaultLocale = $defaultLocale ?: $this->locales[0];
+
+        if (!in_array($this->defaultLocale, $this->locales)) {
+            throw new \UnexpectedValueException(sprintf('The default locale ("%s") must be one of "%s".', $this->defaultLocale, $locales));
+        }
+
+        // Add the default locale at the first position of the array,
+        // because Symfony\HttpFoundation\Request::getPreferredLanguage
+        // returns the first element when no an appropriate language is found
+        array_unshift($this->locales, $this->defaultLocale);
     }
 
     /**
-     * Handles an event.
-     *
      * @param GetResponseEvent $event
      */
     public function onKernelRequest(GetResponseEvent $event)
     {
         $request = $event->getRequest();
 
-        // Ignores sub-requests and all routes but the homepage one
+        // Ignore sub-requests and all URLs but the homepage
         if (!$event->isMasterRequest() || '/' !== $request->getPathInfo()) {
             return;
         }
