@@ -5,7 +5,9 @@
 {% block main %}
     <h1>{{ 'title.post_new'|trans }}</h1>
 
-    {{ include('admin/blog/_form.html.twig') }}
+    {{ include('admin/blog/_form.html.twig', {
+        include_back_to_home_link: true,
+    }) }}
 {% endblock %}
 
 {% block sidebar %}
