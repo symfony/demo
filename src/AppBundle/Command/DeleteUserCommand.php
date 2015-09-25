@@ -61,7 +61,7 @@ class DeleteUserCommand extends ContainerAwareCommand
 
     /**
      * This method is executed before the interact() and the execute() methods.
-     * It's main purpose is to initialize the variables used in the rest of the
+     * Its main purpose is to initialize the variables used in the rest of the
      * command methods.
      *
      * Beware that the input options and arguments are validated after executing
@@ -110,24 +110,19 @@ class DeleteUserCommand extends ContainerAwareCommand
         ));
 
         // See http://symfony.com/doc/current/components/console/helpers/questionhelper.html
-        $console = $this->getHelper('question');
+        $helper = $this->getHelper('question');
 
-        $username = $input->getArgument('username');
-        if (null === $username) {
-            $question = new Question(' > <info>Username</info>: ');
-            $question->setValidator(array($this, 'usernameValidator'));
-            $question->setMaxAttempts(self::MAX_ATTEMPTS);
+        $question = new Question(' > <info>Username</info>: ');
+        $question->setValidator(array($this, 'usernameValidator'));
+        $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
-            $username = $console->ask($input, $output, $question);
-            $input->setArgument('username', $username);
-        } else {
-            $output->writeln(' > <info>Username</info>: ' . $username);
-        }
+        $username = $helper->ask($input, $output, $question);
+        $input->setArgument('username', $username);
     }
 
     /**
      * This method is executed after interact() and initialize(). It usually
-     * contains the logic to execute to complete this command task.
+     * contains the logic to complete this command task.
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -137,15 +132,17 @@ class DeleteUserCommand extends ContainerAwareCommand
 
         $this->usernameValidator($username);
 
-        $user = null;
         $repository = $this->entityManager->getRepository('AppBundle:User');
 
-        $user = $repository->findOneBy(array('username' => $username));
+        $user = $repository->findOneByUsername($username);
 
         if (null === $user) {
             throw new \RuntimeException(sprintf('User with username "%s" not found.', $username));
         }
 
+        // After an entity has been removed its in-memory state is the same
+        // as before the removal, except for generated identifiers.
+        // See http://docs.doctrine-project.org/en/latest/reference/working-with-objects.html#removing-entities
         $userId = $user->getId();
 
         $this->entityManager->remove($user);
@@ -163,7 +160,7 @@ class DeleteUserCommand extends ContainerAwareCommand
     }
 
     /**
-     * This internal method should be private, but it's declared as public to
+     * This internal method should be private, but it's declared public to
      * maintain PHP 5.3 compatibility when using it in a callback.
      *
      * @internal
@@ -171,11 +168,11 @@ class DeleteUserCommand extends ContainerAwareCommand
     public function usernameValidator($username)
     {
         if (empty($username)) {
-            throw new \Exception('The username can not be empty');
+            throw new \Exception('The username can not be empty.');
         }
 
         if (1 !== preg_match('/^[a-z_]+$/', $username)) {
-            throw new \Exception('The username must contain only lowercase latin characters and underscores');
+            throw new \Exception('The username must contain only lowercase latin characters and underscores.');
         }
 
         return $username;
