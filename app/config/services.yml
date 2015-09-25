@@ -12,14 +12,14 @@ services:
     app.twig.app_extension:
         public:    false
         class:     AppBundle\Twig\AppExtension
-        arguments: ["@markdown"]
+        arguments: [@markdown]
         tags:
             - { name: twig.extension }
 
     app.twig.locale_extension:
         public:    false
         class:     AppBundle\Twig\LocaleExtension
-        arguments: ["%app_locales%"]
+        arguments: [%app_locales%]
         tags:
             - { name: twig.extension }
 
@@ -35,7 +35,7 @@ services:
     #
     # app.post_repository:
     #     class:     Doctrine\ORM\EntityRepository
-    #     factory:   ["@doctrine.orm.entity_manager", getRepository]
+    #     factory:   [@doctrine.orm.entity_manager, getRepository]
     #     arguments: [AppBundle\Entity\Post]
     #
     # // traditional code inside a controller
