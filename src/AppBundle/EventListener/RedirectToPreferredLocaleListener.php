@@ -49,10 +49,10 @@ class RedirectToPreferredLocaleListener
             throw new \UnexpectedValueException('The list of supported locales must not be empty.');
         }
 
-        $this->defaultLocale = $defaultLocale ? $this->locales[0];
+        $this->defaultLocale = $defaultLocale ?: $this->locales[0];
 
         if (!in_array($this->defaultLocale, $this->locales)) {
-            throw new \UnexpectedValueException(sprintf('The default locale\'s argument value "%s" must be one of "%s"', $this->defaultLocale, $locales));
+            throw new \UnexpectedValueException(sprintf('The default locale ("%s") must be one of "%s".', $this->defaultLocale, $locales));
         }
 
         // Add the default locale at the first position of the array,
