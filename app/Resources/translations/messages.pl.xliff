@@ -80,6 +80,22 @@
                 <source>action.delete_post</source>
                 <target>Usuń artykuł</target>
             </trans-unit>
+            <trans-unit id="delete_post_modal.title">
+                <source>delete_post_modal.title</source>
+                <target>Czy na pewno chcesz usunąć ten artykuł?</target>
+            </trans-unit>
+            <trans-unit id="delete_post_modal.body">
+                <source>delete_post_modal.body</source>
+                <target>Ta akcja nie może zostać cofnięta.</target>
+            </trans-unit>
+            <trans-unit id="label.delete_post">
+                <source>label.delete_post</source>
+                <target>Usuń artykuł</target>
+            </trans-unit>
+            <trans-unit id="label.cancel">
+                <source>label.cancel</source>
+                <target>Anuluj</target>
+            </trans-unit>
             <trans-unit id="action.create_post">
                 <source>action.create_post</source>
                 <target>Dodaj nowy artykuł</target>
@@ -155,7 +171,7 @@
             </trans-unit>
             <trans-unit id="action.edit_contents">
                 <source>action.edit_contents</source>
-                <target>Edycja treśći</target>
+                <target>Edycja treści</target>
             </trans-unit>
 
             <trans-unit id="menu.post_list">
@@ -198,6 +214,18 @@
             <trans-unit id="post.no_posts_found">
                 <source>post.no_posts_found</source>
                 <target>Brak artykułów</target>
+            </trans-unit>
+            <trans-unit id="post.created_successfully">
+                <source>post.created_successfully</source>
+                <target>Artykuł został utworzony!</target>
+            </trans-unit>
+            <trans-unit id="post.updated_successfully">
+                <source>post.updated_successfully</source>
+                <target>Artykuł został zaktualizowany!</target>
+            </trans-unit>
+            <trans-unit id="post.deleted_successfully">
+                <source>post.deleted_successfully</source>
+                <target>Artykuł został usunięty!</target>
             </trans-unit>
             <trans-unit id="help.app_description">
                 <source>help.app_description</source>
