@@ -12,18 +12,11 @@ services:
     app.twig.app_extension:
         public:    false
         class:     AppBundle\Twig\AppExtension
-        arguments: [@markdown]
+        arguments: [@markdown, %app_locales%]
         tags:
             - { name: twig.extension }
 
-    app.twig.locale_extension:
-        public:    false
-        class:     AppBundle\Twig\LocaleExtension
-        arguments: [%app_locales%]
-        tags:
-            - { name: twig.extension }
-
-    app.twig.extension_intl:
+    app.twig.intl_extension:
         public: false
         class:  Twig_Extensions_Extension_Intl
         tags:
