@@ -12,6 +12,7 @@
 namespace AppBundle\Twig;
 
 use AppBundle\Utils\Markdown;
+use Symfony\Component\Intl\Intl;
 
 /**
  * This Twig extension adds a new 'md2html' filter to easily transform Markdown
@@ -23,6 +24,7 @@ use AppBundle\Utils\Markdown;
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
+ * @author Julien ITARD <julienitard@gmail.com>
  */
 class AppExtension extends \Twig_Extension
 {
@@ -31,9 +33,15 @@ class AppExtension extends \Twig_Extension
      */
     private $parser;
 
-    public function __construct(Markdown $parser)
+    /**
+     * @var array
+     */
+    private $locales;
+
+    public function __construct(Markdown $parser, $locales)
     {
         $this->parser = $parser;
+        $this->locales = $locales;
     }
 
     /**
@@ -47,13 +55,43 @@ class AppExtension extends \Twig_Extension
     }
 
     /**
-     * @param string $content
+     * {@inheritdoc}
+     */
+    public function getFunctions()
+    {
+        return array(
+            new \Twig_SimpleFunction('locales', array($this, 'getLocales')),
+        );
+    }
+
+    /**
+     * Transforms the given Markdown content into HTML content.
+     *
+     *  @param string $content
      *
      * @return string
      */
     public function markdownToHtml($content)
     {
         return $this->parser->toHtml($content);
+    }
+
+    /**
+     * Takes the list of codes of the locales (languages) enabled in the
+     * application and returns an array with the name of each locale written
+     * in its own language (e.g. English, Français, Español, etc.)
+     *
+     * @return array
+     */
+    public function getLocales()
+    {
+        $localeCodes = explode('|', $this->locales);
+
+        foreach ($localeCodes as $localeCode) {
+            $locales[] = array('code' => $localeCode, 'name' => Intl::getLocaleBundle()->getLocaleName($localeCode, $localeCode));
+        }
+
+        return $locales;
     }
 
     /**
