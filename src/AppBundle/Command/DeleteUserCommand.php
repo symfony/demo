@@ -20,16 +20,14 @@ use Symfony\Component\Console\Question\Question;
 use Doctrine\Common\Persistence\ObjectManager;
 
 /**
- * A command console that deletes users and from the database.
+ * A command console that deletes users from the database.
  * To use this command, open a terminal window, enter into your project
  * directory and execute the following:
  *
  *     $ php app/console app:delete-user
  *
- * To output detailed information, increase the command verbosity:
- *
- *     $ php app/console app:delete-user -vv
- *
+ * Check out the code of the src/AppBundle/Command/AddUserCommand.php file for
+ * the full explanation about Symfony commands.
  * See http://symfony.com/doc/current/cookbook/console/console_command.html
  *
  * @author Oleg Voronkovich <oleg-voronkovich@yandex.ru>
@@ -49,51 +47,37 @@ class DeleteUserCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            // a good practice is to use the 'app:' prefix to group all your custom application commands
             ->setName('app:delete-user')
             ->setDescription('Deletes users from the database')
-            ->setHelp($this->getCommandHelp())
-            // commands can optionally define arguments and/or options (mandatory and optional)
-            // see http://symfony.com/doc/current/components/console/console_arguments.html
             ->addArgument('username', InputArgument::REQUIRED, 'The username of an existing user')
-        ;
+            ->setHelp(<<<HELP
+The <info>%command.name%</info> command deletes users from the database:
+
+  <info>php %command.full_name%</info> <comment>username</comment>
+
+If you omit the argument, the command will ask you to
+provide the missing value:
+
+  <info>php %command.full_name%</info>
+HELP
+            );
     }
 
-    /**
-     * This method is executed before the interact() and the execute() methods.
-     * Its main purpose is to initialize the variables used in the rest of the
-     * command methods.
-     *
-     * Beware that the input options and arguments are validated after executing
-     * the interact() method, so you can't blindly trust their values in this method.
-     */
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
         $this->entityManager = $this->getContainer()->get('doctrine')->getManager();
     }
 
-    /**
-     * This method is executed after initialize() and before execute(). Its purpose
-     * is to check if some of the options/arguments are missing and interactively
-     * ask the user for those values.
-     *
-     * This method is completely optional. If you are developing an internal console
-     * command, you probably should not implement this method because it requires
-     * quite a lot of work. However, if the command is meant to be used by external
-     * users, this method is a nice way to fall back and prevent errors.
-     */
     protected function interact(InputInterface $input, OutputInterface $output)
     {
         if (null !== $input->getArgument('username')) {
             return;
         }
 
-        // multi-line messages can be displayed this way...
         $output->writeln('');
         $output->writeln('Delete User Command Interactive Wizard');
         $output->writeln('-----------------------------------');
 
-        // ...but you can also pass an array of strings to the writeln() method
         $output->writeln(array(
             '',
             'If you prefer to not use this interactive wizard, provide the',
@@ -109,7 +93,6 @@ class DeleteUserCommand extends ContainerAwareCommand
             '',
         ));
 
-        // See http://symfony.com/doc/current/components/console/helpers/questionhelper.html
         $helper = $this->getHelper('question');
 
         $question = new Question(' > <info>Username</info>: ');
@@ -120,20 +103,12 @@ class DeleteUserCommand extends ContainerAwareCommand
         $input->setArgument('username', $username);
     }
 
-    /**
-     * This method is executed after interact() and initialize(). It usually
-     * contains the logic to complete this command task.
-     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $startTime = microtime(true);
-
         $username = $input->getArgument('username');
-
         $this->usernameValidator($username);
 
         $repository = $this->entityManager->getRepository('AppBundle:User');
-
         $user = $repository->findOneByUsername($username);
 
         if (null === $user) {
@@ -150,13 +125,6 @@ class DeleteUserCommand extends ContainerAwareCommand
 
         $output->writeln('');
         $output->writeln(sprintf('[OK] User "%s" (ID: %d, email: %s) was successfully deleted.', $user->getUsername(), $userId, $user->getEmail()));
-
-        if ($output->isVerbose()) {
-            $finishTime = microtime(true);
-            $elapsedTime = $finishTime - $startTime;
-
-            $output->writeln(sprintf('[INFO] Elapsed time: %.2f ms', $elapsedTime*1000));
-        }
     }
 
     /**
@@ -176,26 +144,5 @@ class DeleteUserCommand extends ContainerAwareCommand
         }
 
         return $username;
-    }
-
-    /**
-     * The command help is usually included in the configure() method, but when
-     * it's too long, it's better to define a separate method to maintain the
-     * code readability.
-     */
-    private function getCommandHelp()
-    {
-        return <<<HELP
-The <info>%command.name%</info> command deletes users from the database:
-
-  <info>php %command.full_name%</info> <comment>username</comment>
-
-If you omit the argmument, the command will ask you to
-provide the missing value:
-
-  # command will ask you for the argument
-  <info>php %command.full_name%</info>
-
-HELP;
     }
 }
