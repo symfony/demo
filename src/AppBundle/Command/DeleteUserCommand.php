@@ -58,8 +58,8 @@ The <info>%command.name%</info> command deletes users from the database:
 If you omit the argument, the command will ask you to
 provide the missing value:
 
-  <info>php %command.full_name%</info>)
-HELP;
+  <info>php %command.full_name%</info>
+HELP
             );
     }
 
