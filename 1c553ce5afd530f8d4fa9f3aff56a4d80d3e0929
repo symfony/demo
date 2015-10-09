@@ -1,0 +1,56 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-09-25T18:08:14Z
+
+I don't like the idea of creating such a long template just to translate the pagination controls. I know that Pagerfanta includes dozens of translations. Does anyone that uses KnpPaginatorBundle know if translations are supported anyhow or will they be supported anytime soon?
+
+---------------------------------------------------------------------------
+
+by davialexandre at 2015-10-06T14:05:36Z
+
+Looking at the templates in KnpPaginatorBundle I see they do support translations. They are using 'Next' and 'Previous' as IDs, so all we have to do is add translations for them
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-10-06T15:13:57Z
+
+@davialexandre I was referring to have the actual contents translated, not just ready to be translated. Pagerfanta provides tens of translation files, which makes sense because all of us are probably going to translate these strings the same way.
+
+---------------------------------------------------------------------------
+
+by davialexandre at 2015-10-06T15:56:13Z
+
+@javiereguiluz That makes sense. In that case, they don't support it and it doesn't seem that they plan to support it anytime soon, given this closed issue:
+https://github.com/KnpLabs/KnpPaginatorBundle/issues/192
+
+---------------------------------------------------------------------------
+
+by ccab at 2015-10-07T14:05:00Z
+
+So we should change the paginator to Pagerfanta ?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-10-07T17:19:37Z
+
+@ccab I'd prefer not to do that ... but I'd like to implement a better way to translate the paginator without having to recreate its entire template.
+
+---------------------------------------------------------------------------
+
+by ccab at 2015-10-07T17:59:07Z
+
+@javiereguiluz I agree, but as you can see they don't care about this, I could create a issue for this topic in the KnpPaginatorBundle repo but it could be a slow way, how we could ask help to the community seasoned developers ?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-10-08T07:19:47Z
+
+I've opened a "feature request" to ask for translations in KnpPaginatorBundle: https://github.com/KnpLabs/KnpPaginatorBundle/issues/334
+
+Meanwhile, @ccab could you try just to provide the translations in a regular XLF file instead of recreating the entire template. The original template uses `'Next'|trans` and `'Previous'|trans`, so it's ready to be translated.
+
+---------------------------------------------------------------------------
+
+by ccab at 2015-10-08T13:37:47Z
+
+Ok @javiereguiluz I'll do that, I really appreciated your patience
