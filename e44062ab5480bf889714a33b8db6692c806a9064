@@ -1,0 +1,14 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-10-08T15:09:45Z
+
+I like this change. Thanks @stof.
+
+I have one question: `->getSource()` is available only on Twig `>= 1.22.0`. Should we add a constraint for `twig/twig` in composer.json?
+
+---------------------------------------------------------------------------
+
+by stof at 2015-10-08T15:27:42Z
+
+@javiereguiluz well, I considered this, and I would have updated the requirement if there was already one.
+But this a project with locked dependencies, so it may be fine to write code against the locked dependencies (if you consider it is not fine, I can argue that you should then add explicit dependencies for all packages used directly in your own codebase)
