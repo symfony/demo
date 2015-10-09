@@ -22,14 +22,12 @@ namespace CodeExplorerBundle\Twig;
  */
 class SourceCodeExtension extends \Twig_Extension
 {
-    protected $loader;
-    protected $controller;
-    protected $kernelRootDir;
+    private $controller;
+    private $kernelRootDir;
 
-    public function __construct(\Twig_LoaderInterface $loader, $kernelRootDir)
+    public function __construct($kernelRootDir)
     {
         $this->kernelRootDir = $kernelRootDir;
-        $this->loader = $loader;
     }
 
     public function setController($controller)
@@ -101,12 +99,10 @@ class SourceCodeExtension extends \Twig_Extension
 
     private function getTemplateSource(\Twig_Template $template)
     {
-        $templateName = $template->getTemplateName();
-
         return array(
-            'file_path' => $this->kernelRootDir.'/Resources/views/'.$templateName,
+            'file_path' => $this->kernelRootDir.'/Resources/views/'.$template->getTemplateName(),
             'starting_line' => 1,
-            'source_code' => $this->loader->getSource($templateName),
+            'source_code' => $template->getSource(),
         );
     }
 

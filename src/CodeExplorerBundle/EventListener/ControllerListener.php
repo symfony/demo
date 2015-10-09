@@ -28,10 +28,7 @@ use CodeExplorerBundle\Twig\SourceCodeExtension;
  */
 class ControllerListener
 {
-    /**
-     * @var SourceCodeExtension
-     */
-    protected $twigExtension;
+    private $twigExtension;
 
     public function __construct(SourceCodeExtension $twigExtension)
     {
