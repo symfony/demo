@@ -120,7 +120,7 @@ class SourceCodeExtension extends \Twig_Extension
      */
     private function unindentCode($code)
     {
-        $formattedCode = '';
+        $formattedCode = $code;
         $codeLines = explode("\n", $code);
 
         $indentedLines = array_filter($codeLines, function ($lineOfCode) {
@@ -130,8 +130,6 @@ class SourceCodeExtension extends \Twig_Extension
         if (count($indentedLines) === count($codeLines)) {
             $formattedCode = array_map(function ($lineOfCode) { return substr($lineOfCode, 4); }, $codeLines);
             $formattedCode = implode("\n", $formattedCode);
-        } else {
-            $formattedCode = $code;
         }
 
         return $formattedCode;
