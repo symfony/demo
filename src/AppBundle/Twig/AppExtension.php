@@ -95,7 +95,7 @@ class AppExtension extends \Twig_Extension
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getName()
     {
