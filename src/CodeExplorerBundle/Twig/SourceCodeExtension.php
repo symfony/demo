@@ -116,6 +116,7 @@ class SourceCodeExtension extends \Twig_Extension
      * with a tabulation of four white spaces.
      *
      * @param  string $code
+     *
      * @return string
      */
     private function unindentCode($code)
