@@ -17,6 +17,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\User;
 
@@ -45,6 +46,11 @@ class AddUserCommand extends ContainerAwareCommand
     private $entityManager;
 
     /**
+     * @var ValidatorInterface
+     */
+    private $validator;
+
+    /**
      * {@inheritdoc}
      */
     protected function configure()
@@ -56,9 +62,9 @@ class AddUserCommand extends ContainerAwareCommand
             ->setHelp($this->getCommandHelp())
             // commands can optionally define arguments and/or options (mandatory and optional)
             // see http://symfony.com/doc/current/components/console/console_arguments.html
-            ->addArgument('username', InputArgument::OPTIONAL, 'The username of the new user')
-            ->addArgument('password', InputArgument::OPTIONAL, 'The plain password of the new user')
-            ->addArgument('email', InputArgument::OPTIONAL, 'The email of the new user')
+            ->addArgument('username', InputArgument::REQUIRED, 'The username of the new user')
+            ->addArgument('password', InputArgument::REQUIRED, 'The plain password of the new user')
+            ->addArgument('email', InputArgument::REQUIRED, 'The email of the new user')
             ->addOption('is-admin', null, InputOption::VALUE_NONE, 'If set, the user is created as an administrator')
         ;
     }
@@ -74,6 +80,7 @@ class AddUserCommand extends ContainerAwareCommand
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
         $this->entityManager = $this->getContainer()->get('doctrine')->getManager();
+        $this->validator = $this->getContainer()->get('validator');
     }
 
     /**
@@ -116,50 +123,32 @@ class AddUserCommand extends ContainerAwareCommand
         // See http://symfony.com/doc/current/components/console/helpers/questionhelper.html
         $console = $this->getHelper('question');
 
-        // Ask for the username if it's not defined
-        $username = $input->getArgument('username');
-        if (null === $username) {
-            $question = new Question(' > <info>Username</info>: ');
-            $question->setValidator(function ($answer) {
-                if (empty($answer)) {
-                    throw new \RuntimeException('The username cannot be empty');
-                }
+        $properties = array(
+            'username'      => array('argName' => 'username', 'hidden' => false),
+            'plainPassword' => array('argName' => 'password', 'hidden' => true),
+            'email'         => array('argName' => 'email',    'hidden' => false),
+        );
 
-                return $answer;
-            });
-            $question->setMaxAttempts(self::MAX_ATTEMPTS);
+        // Ask for the property if it's not defined
+        foreach ($properties as $property => $settings) {
+            $argName = $settings['argName'];
+            $argValue = $input->getArgument($argName);
+            $hidden = $settings['hidden'];
 
-            $username = $console->ask($input, $output, $question);
-            $input->setArgument('username', $username);
-        } else {
-            $output->writeln(' > <info>Username</info>: '.$username);
-        }
+            if (null === $argValue) {
+                $question = new Question(sprintf(' > <info>%s</info>%s: ',
+                    ucfirst($argName),
+                    $hidden ? ' (your type will be hidden)' : ''
+                ));
+                $question->setValidator($this->getValidatorForProperty($property));
+                $question->setHidden($hidden);
+                $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
-        // Ask for the password if it's not defined
-        $password = $input->getArgument('password');
-        if (null === $password) {
-            $question = new Question(' > <info>Password</info> (your type will be hidden): ');
-            $question->setValidator(array($this, 'passwordValidator'));
-            $question->setHidden(true);
-            $question->setMaxAttempts(self::MAX_ATTEMPTS);
-
-            $password = $console->ask($input, $output, $question);
-            $input->setArgument('password', $password);
-        } else {
-            $output->writeln(' > <info>Password</info>: '.str_repeat('*', strlen($password)));
-        }
-
-        // Ask for the email if it's not defined
-        $email = $input->getArgument('email');
-        if (null === $email) {
-            $question = new Question(' > <info>Email</info>: ');
-            $question->setValidator(array($this, 'emailValidator'));
-            $question->setMaxAttempts(self::MAX_ATTEMPTS);
-
-            $email = $console->ask($input, $output, $question);
-            $input->setArgument('email', $email);
-        } else {
-            $output->writeln(' > <info>Email</info>: '.$email);
+                $argValue = $console->ask($input, $output, $question);
+                $input->setArgument($argName, $argValue);
+            } else {
+                $output->writeln(sprintf(' > <info>%s</info>: %s', ucfirst($argName), $argValue));
+            }
         }
     }
 
@@ -176,18 +165,27 @@ class AddUserCommand extends ContainerAwareCommand
         $email = $input->getArgument('email');
         $isAdmin = $input->getOption('is-admin');
 
-        // first check if a user with the same username already exists
-        $existingUser = $this->entityManager->getRepository('AppBundle:User')->findOneBy(array('username' => $username));
-
-        if (null !== $existingUser) {
-            throw new \RuntimeException(sprintf('There is already a user registered with the "%s" username.', $username));
-        }
-
         // create the user and encode its password
         $user = new User();
         $user->setUsername($username);
         $user->setEmail($email);
         $user->setRoles(array($isAdmin ? 'ROLE_ADMIN' : 'ROLE_USER'));
+        $user->setPlainPassword($plainPassword);
+
+        // See http://symfony.com/doc/current/book/validation.html
+        $errors = $this->validator->validate($user, null, array('Default', 'registration'));
+
+        if (0 < count($errors)) {
+            $output->writeln('');
+            foreach ($errors as $error) {
+                $property = 'plainPassword' === $error->getPropertyPath() ? 'password' : $error->getPropertyPath();
+                $output->writeln(sprintf('<error>[%s] %s</error>', $property, $error->getMessage()));
+            }
+            return;
+        }
+
+        // Plain password no more needed in the model
+        $user->eraseCredentials();
 
         // See http://symfony.com/doc/current/book/security.html#security-encoding-password
         $encoder = $this->getContainer()->get('security.password_encoder');
@@ -208,42 +206,25 @@ class AddUserCommand extends ContainerAwareCommand
         }
     }
 
-    /**
-     * This internal method should be private, but it's declared as public to
-     * maintain PHP 5.3 compatibility when using it in a callback.
-     *
-     * @internal
-     */
-    public function passwordValidator($plainPassword)
+    private function getValidatorForProperty($property)
     {
-        if (empty($plainPassword)) {
-            throw new \Exception('The password can not be empty');
-        }
+        $validator = $this->validator;
 
-        if (strlen(trim($plainPassword)) < 6) {
-            throw new \Exception('The password must be at least 6 characters long');
-        }
+        return function($value) use ($validator, $property) {
+            $errors = $validator->validatePropertyValue('\AppBundle\Entity\User', $property, $value, array('Default', 'registration'));
 
-        return $plainPassword;
-    }
+            if (0 < count($errors)) {
+                $message = '';
 
-    /**
-     * This internal method should be private, but it's declared as public to
-     * maintain PHP 5.3 compatibility when using it in a callback.
-     *
-     * @internal
-     */
-    public function emailValidator($email)
-    {
-        if (empty($email)) {
-            throw new \Exception('The email can not be empty');
-        }
+                foreach ($errors as $error) {
+                    $message .= sprintf(' %s', $error->getMessage());
+                }
 
-        if (false === strpos($email, '@')) {
-            throw new \Exception('The email should look like a real email');
-        }
+                throw new \Exception(sprintf('[%s] %s', $property, $message));
+            }
 
-        return $email;
+            return $value;
+        };
     }
 
     /**

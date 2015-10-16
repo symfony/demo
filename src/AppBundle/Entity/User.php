@@ -3,10 +3,14 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @UniqueEntity("username")
+ * @UniqueEntity("email")
  *
  * Defines the properties of the User entity to represent the application users.
  * See http://symfony.com/doc/current/book/doctrine.html#creating-an-entity-class
@@ -28,13 +32,23 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Regex("/^[[:alnum:]_]+$/")
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Email()
      */
     private $email;
+
+    /**
+     * @Assert\NotBlank(groups={"registration"})
+     * @Assert\Length(min = 6, groups={"registration"})
+     */
+    private $plainPassword;
 
     /**
      * @ORM\Column(type="string")
@@ -84,6 +98,16 @@ class User implements UserInterface
         $this->password = $password;
     }
 
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
+    }
+
     /**
      * Returns the roles or permissions granted to the user for security.
      */
@@ -122,6 +146,6 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         // if you had a plainPassword property, you'd nullify it here
-        // $this->plainPassword = null;
+        $this->plainPassword = null;
     }
 }
