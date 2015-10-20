@@ -1,0 +1,35 @@
+---------------------------------------------------------------------------
+
+by OskarStark at 2015-10-20T12:21:08Z
+
+i would prefer to use translation keys.
+
+see: https://github.com/symfony/symfony-demo/pull/232#issuecomment-149547884
+
+---------------------------------------------------------------------------
+
+by xabbuh at 2015-10-20T12:35:56Z
+
+@OskarStark We can't control that (the string to be translated comes from a third-party library).
+
+---------------------------------------------------------------------------
+
+by OskarStark at 2015-10-20T14:46:50Z
+
+oh, didn't know that :+1:
+
+---------------------------------------------------------------------------
+
+by OskarStark at 2015-10-20T15:04:13Z
+
+i think its better to provide this to the vendor bundle as a PR
+
+KnpLabs/KnpPaginatorBundle#337
+
+what do you thin?
+
+---------------------------------------------------------------------------
+
+by ccab at 2015-10-20T15:09:45Z
+
+hello people I think @OskarStark initiative is the right one, as you can see in #201 @javiereguiluz asked for this a few days ago
