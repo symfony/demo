@@ -5,6 +5,8 @@
 {% block main %}
     <h1>{{ post.title }}</h1>
 
+    {{ include('default/_flash_messages.html.twig') }}
+
     <table class="table">
         <tbody>
             <tr>
