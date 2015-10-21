@@ -1,0 +1,73 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-10-16T08:04:37Z
+
+@EmanueleMinotto thanks for working in this. I'll wait a bit before merging it so people that understand this configuration can review it. Thanks.
+
+---------------------------------------------------------------------------
+
+by EmanueleMinotto at 2015-10-16T08:11:46Z
+
+@javiereguiluz great, thanks
+
+I'm leaving appveyor output here for a fast access to it: https://ci.appveyor.com/project/EmanueleMinotto/symfony-demo
+
+---------------------------------------------------------------------------
+
+by stof at 2015-10-16T08:14:33Z
+
+@javiereguiluz I suggest you to enable AppVeyor on the repo *before* merging this (configuring it to run only when there is a config file, so that it does not impact other PRs). This way, we would have the feedback in the PR status
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-10-20T15:52:30Z
+
+@fabpot when you have some free time, please enable AppVeyor for this `symfony-demo` repository. Thanks!
+
+---------------------------------------------------------------------------
+
+by fabpot at 2015-10-20T16:07:43Z
+
+done
+
+---------------------------------------------------------------------------
+
+by stof at 2015-10-20T16:13:50Z
+
+@EmanueleMinotto please rebase your PR so that it triggers an AppVeyor build now that it is enabled on the repo
+
+---------------------------------------------------------------------------
+
+by EmanueleMinotto at 2015-10-20T20:31:47Z
+
+@javiereguiluz PR rebased, now should be ok
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-10-21T06:31:30Z
+
+@EmanueleMinotto thanks. By the way, there are some warnings in the AppVeyor output:
+
+```
+WARNING: Write-ChocolateySuccess is deprecated. If you are the maintainer,
+please remove it from your package file.
+
+...
+
+Get-BinRoot is going to be deprecated by v1. Many packages no longer require
+it since the folders no longer have versions on them.
+
+...
+```
+
+---------------------------------------------------------------------------
+
+by stof at 2015-10-21T09:16:42Z
+
+@javiereguiluz this should be reported to the maintainers of these chocolatey packages
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-10-21T09:27:01Z
+
+@stof merging then. Thanks.
