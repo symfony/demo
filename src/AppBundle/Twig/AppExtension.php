@@ -87,6 +87,7 @@ class AppExtension extends \Twig_Extension
     {
         $localeCodes = explode('|', $this->locales);
 
+        $locales = array();
         foreach ($localeCodes as $localeCode) {
             $locales[] = array('code' => $localeCode, 'name' => Intl::getLocaleBundle()->getLocaleName($localeCode, $localeCode));
         }
