@@ -1,0 +1,7 @@
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-10-23T13:50:05Z
+
+You should revert changes in `web/config.php`. This file customized for `symfony-demo` app.
+
+Also I think we don't need to update `composer.lock` and `app/SymfonyRequirements.php` now. Better to update them when new version of Symfony will be avaliable. Anyway, this changes should be in separate PR.
