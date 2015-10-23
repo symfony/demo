@@ -11,10 +11,10 @@
 
 namespace AppBundle\Command;
 
+use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -109,6 +109,7 @@ HELP
         $this->usernameValidator($username);
 
         $repository = $this->entityManager->getRepository('AppBundle:User');
+        /** @var User $user */
         $user = $repository->findOneByUsername($username);
 
         if (null === $user) {
