@@ -96,7 +96,7 @@ class BlogController extends Controller
             // See http://symfony.com/doc/current/book/controller.html#flash-messages
             $this->addFlash('success', 'post.created_successfully');
 
-            if ($form['createAndShow']->isClicked()) {
+            if ($form->get('createAndShow')->isClicked()) {
                 return $this->redirectToRoute('admin_post_show', array('id' => $post->getId()));
             }
 
