@@ -75,7 +75,7 @@ class BlogController extends Controller
 
         // See http://symfony.com/doc/current/book/forms.html#submitting-forms-with-multiple-buttons
         $form = $this->createForm(new PostType(), $post)
-            ->add('createAndShow', 'submit');
+            ->add('saveAndCreateNew', 'submit');
 
         $form->handleRequest($request);
 
@@ -96,8 +96,8 @@ class BlogController extends Controller
             // See http://symfony.com/doc/current/book/controller.html#flash-messages
             $this->addFlash('success', 'post.created_successfully');
 
-            if ($form->get('createAndShow')->isClicked()) {
-                return $this->redirectToRoute('admin_post_show', array('id' => $post->getId()));
+            if ($form->get('saveAndCreateNew')->isClicked()) {
+                return $this->redirectToRoute('admin_post_new');
             }
 
             return $this->redirectToRoute('admin_post_index');
