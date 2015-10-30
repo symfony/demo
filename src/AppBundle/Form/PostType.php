@@ -49,8 +49,7 @@ class PostType extends AbstractType
                 'label' => 'label.content',
             ))
             ->add('authorEmail', 'email', array('label' => 'label.author_email'))
-            ->add('publishedAt', 'datetime', array(
-                'widget' => 'single_text',
+            ->add('publishedAt', 'app_datetimepicker', array(
                 'label' => 'label.published_at',
             ))
         ;
