@@ -1,0 +1,69 @@
+---------------------------------------------------------------------------
+
+by yceruto at 2015-10-26T07:06:04Z
+
+I need help to rebase this PR. Only the last two commits are part of this PR.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-10-26T07:16:39Z
+
+This is really nice! Tell me, how can we help you? Thanks.
+
+---------------------------------------------------------------------------
+
+by yceruto at 2015-10-26T07:21:15Z
+
+@javiereguiluz I mistakenly worked on this PR from a previous PR. Would like to leave just two last commit in this branch. Can you help me?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-10-26T07:24:00Z
+
+In that case I always do a `git rebase -i`, delete the wrong commits and then I do a `git push -f`
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2015-10-26T11:58:14Z
+
+@yceruto, you can use `git cherry-pick` to copy the last commits to an appropriate branch and then `git rebase -i` to delete those commits from the current branch. https://nathanhoad.net/how-to-cherry-pick-changes-with-git
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2015-10-26T12:02:41Z
+
+@yceruto, I think it's not necessary to define `MomentFormatConverter` as a service,  you can create it's instance inside the form's type constructor method.
+
+---------------------------------------------------------------------------
+
+by yceruto at 2015-10-26T15:18:04Z
+
+@javiereguiluz @voronkovich I've rebased successfully. Thanks.
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2015-10-28T12:13:19Z
+
+:+1:
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-10-30T12:19:19Z
+
+I'd like to merge this super-cool date picker as soon as possible. However, I have a problem with the feature that allows you to navigate from one month to another. The feature works es intended ... but the arrows aren't displayed:
+
+![datepicker](https://cloud.githubusercontent.com/assets/73419/10845501/b3d68cca-7f08-11e5-81cf-19ad48f665ff.gif)
+
+---------------------------------------------------------------------------
+
+by yceruto at 2015-10-30T13:39:17Z
+
+@javiereguiluz fixed, thanks!
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-10-30T13:59:55Z
+
+@yceruto and it's working like a charm! Thanks.
+
+![datepicker](https://cloud.githubusercontent.com/assets/73419/10847443/d2559b56-7f16-11e5-92e1-48fdbff060f3.png)
