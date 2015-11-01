@@ -72,7 +72,10 @@ class BlogController extends Controller
     {
         $post = new Post();
         $post->setAuthorEmail($this->getUser()->getEmail());
-        $form = $this->createForm(new PostType(), $post);
+
+        // See http://symfony.com/doc/current/book/forms.html#submitting-forms-with-multiple-buttons
+        $form = $this->createForm(new PostType(), $post)
+            ->add('saveAndCreateNew', 'submit');
 
         $form->handleRequest($request);
 
@@ -92,6 +95,10 @@ class BlogController extends Controller
             // as they are accessed.
             // See http://symfony.com/doc/current/book/controller.html#flash-messages
             $this->addFlash('success', 'post.created_successfully');
+
+            if ($form->get('saveAndCreateNew')->isClicked()) {
+                return $this->redirectToRoute('admin_post_new');
+            }
 
             return $this->redirectToRoute('admin_post_index');
         }
