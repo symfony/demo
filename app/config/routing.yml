@@ -1,3 +1,7 @@
+formation:
+    resource: "@FormationBundle/Resources/config/routing.yml"
+    prefix:   /
+
 # These first lines load the all routes defined as @Route() annotations in any
 # controller defined inside the src/AppBundle/Controller/ directory. Controllers
 # are loaded recursively, so you can separate them into subdirectories.
@@ -25,3 +29,6 @@ homepage:
         _controller: FrameworkBundle:Template:template
         template:    'default/homepage.html.twig'
         _locale:     "%locale%"
+
+formation:
+    resource: @Formation

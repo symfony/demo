@@ -1,0 +1,3 @@
+formation_homepage:
+    path:     /hello/{civility}-{name}
+    defaults: { _controller: FormationBundle:Default:index }

@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new CodeExplorerBundle\CodeExplorerBundle(),
             new AppBundle\AppBundle(),
+            new FormationBundle\FormationBundle(),
         );
 
         // Some bundles are only used while developing the application or during
