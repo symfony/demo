@@ -2,17 +2,29 @@
 
 namespace FormationBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * Class Fournisseur.
+ *
+ * @ORM\Entity(repositoryClass="FormationBundle\Repository\FournisseurRepository")
  */
 class Fournisseur
 {
     /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     *
      * @var int
      */
     private $id;
 
     /**
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank()
+     *
      * @var string
      */
     private $nom;

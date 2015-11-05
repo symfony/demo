@@ -10,7 +10,7 @@ use FormationBundle\Model\PerissableInterface;
  */
 class Aliment extends Article implements PerissableInterface
 {
-    use PerissableTrait
+    use PerissableTrait;
 
     /**
      * @var string

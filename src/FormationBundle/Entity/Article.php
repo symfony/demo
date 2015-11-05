@@ -2,29 +2,48 @@
 
 namespace FormationBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 use FormationBundle\Entity\Behavior\VendableTrait;
 use FormationBundle\Model\AbstractArticle;
 use FormationBundle\Model\PerissableInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
+ * @ORM\Entity(repositoryClass="FormationBundle\Repository\ArticleRepository")
+ *
  * Class Article.
  */
 class Article extends AbstractArticle
 {
-    use VendableTrait
+    use VendableTrait;
 
     /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     *
      * @var int
      */
     private $id;
 
     /**
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank()
+     *
      * @var string
      */
     private $reference;
 
     /**
-     * @var array
+     * @ORM\ManyToMany(targetEntity="Fournisseur")
+     * @ORM\JoinTable(
+     *   name="article_fournisseurs",
+     *   joinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id")},
+     *   inverseJoinColumns={@ORM\JoinColumn(name="fournisseur_id", referencedColumnName="id")}
+     * )
+     *
+     * @var ArrayCollection
      */
     private $fournisseurs;
 
@@ -33,7 +52,7 @@ class Article extends AbstractArticle
      */
     public function __construct()
     {
-        $this->fournisseurs = array();
+        $this->fournisseurs = new ArrayCollection();
     }
 
     /**
@@ -42,18 +61,6 @@ class Article extends AbstractArticle
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @param int $id
-     *
-     * @return Article
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
     }
 
     /**
