@@ -12,7 +12,7 @@ services:
     app.twig.app_extension:
         public:    false
         class:     AppBundle\Twig\AppExtension
-        arguments: [@markdown, %app_locales%]
+        arguments: ['@markdown', %app_locales%]
         tags:
             - { name: twig.extension }
 
@@ -24,7 +24,7 @@ services:
 
     app.redirect_to_preferred_locale_listener:
         class: AppBundle\EventListener\RedirectToPreferredLocaleListener
-        arguments: [@router, %app_locales%, %locale%]
+        arguments: ['@router', %app_locales%, %locale%]
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
 
@@ -39,7 +39,7 @@ services:
     #
     # app.post_repository:
     #     class:     Doctrine\ORM\EntityRepository
-    #     factory:   [@doctrine.orm.entity_manager, getRepository]
+    #     factory:   ['@doctrine.orm.entity_manager', getRepository]
     #     arguments: [AppBundle\Entity\Post]
     #
     # // traditional code inside a controller

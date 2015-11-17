@@ -8,6 +8,6 @@ services:
 
     code_explorer.controller_listener:
         class:     CodeExplorerBundle\EventListener\ControllerListener
-        arguments: [@code_explorer.twig.source_code_extension]
+        arguments: ['@code_explorer.twig.source_code_extension']
         tags:
             - { name: kernel.event_listener, event: kernel.controller, method: registerCurrentController }
