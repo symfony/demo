@@ -74,8 +74,8 @@ class BlogController extends Controller
         $post->setAuthorEmail($this->getUser()->getEmail());
 
         // See http://symfony.com/doc/current/book/forms.html#submitting-forms-with-multiple-buttons
-        $form = $this->createForm(new PostType(), $post)
-            ->add('saveAndCreateNew', 'submit');
+        $form = $this->createForm('AppBundle\Form\PostType', $post)
+            ->add('saveAndCreateNew', 'Symfony\Component\Form\Extension\Core\Type\SubmitType');
 
         $form->handleRequest($request);
 
@@ -146,7 +146,7 @@ class BlogController extends Controller
 
         $entityManager = $this->getDoctrine()->getManager();
 
-        $editForm = $this->createForm(new PostType(), $post);
+        $editForm = $this->createForm('AppBundle\Form\PostType', $post);
         $deleteForm = $this->createDeleteForm($post);
 
         $editForm->handleRequest($request);
