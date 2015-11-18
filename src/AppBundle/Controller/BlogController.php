@@ -74,7 +74,7 @@ class BlogController extends Controller
      */
     public function commentNewAction(Request $request, Post $post)
     {
-        $form = $this->createForm(new CommentType());
+        $form = $this->createForm('AppBundle\Form\CommentType');
 
         $form->handleRequest($request);
 
@@ -111,7 +111,7 @@ class BlogController extends Controller
      */
     public function commentFormAction(Post $post)
     {
-        $form = $this->createForm(new CommentType());
+        $form = $this->createForm('AppBundle\Form\CommentType');
 
         return $this->render('blog/_comment_form.html.twig', array(
             'post' => $post,
