@@ -5,7 +5,7 @@
 # the routes in YAML, XML or PHP files.
 # See http://symfony.com/doc/current/book/routing.html
 app:
-    resource: @AppBundle/Controller/
+    resource: '@AppBundle/Controller/'
     type:     annotation
     prefix:   /{_locale}
     requirements:
@@ -23,5 +23,5 @@ homepage:
         _locale: %app_locales%
     defaults:
         _controller: FrameworkBundle:Template:template
-        template:    'default/homepage.html.twig'
-        _locale:     "%locale%"
+        template:    default/homepage.html.twig
+        _locale:     %locale%
