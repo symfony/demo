@@ -31,7 +31,7 @@ services:
     app.form.type.datetimepicker:
         class: AppBundle\Form\Type\DateTimePickerType
         tags:
-            - { name: form.type, alias: app_datetimepicker }
+            - { name: form.type }
 
     # Uncomment the following lines to define a service for the Post Doctrine repository.
     # It's not mandatory to create these services, but if you use repositories a lot,

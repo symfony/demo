@@ -75,7 +75,7 @@ class BlogController extends Controller
 
         // See http://symfony.com/doc/current/book/forms.html#submitting-forms-with-multiple-buttons
         $form = $this->createForm('AppBundle\Form\PostType', $post)
-            ->add('saveAndCreateNew', 'submit');
+            ->add('saveAndCreateNew', 'Symfony\Component\Form\Extension\Core\Type\SubmitType');
 
         $form->handleRequest($request);
 
