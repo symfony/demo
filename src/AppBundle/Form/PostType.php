@@ -44,11 +44,11 @@ class PostType extends AbstractType
                 'label' => 'label.title',
             ))
             ->add('summary', 'Symfony\Component\Form\Extension\Core\Type\TextareaType', array('label' => 'label.summary'))
-            ->add('content', 'Symfony\Component\Form\Extension\Core\Type\TextareaType', array(
+            ->add('content', null, array(
                 'attr' => array('rows' => 20),
                 'label' => 'label.content',
             ))
-            ->add('authorEmail', 'Symfony\Component\Form\Extension\Core\Type\EmailType', array('label' => 'label.author_email'))
+            ->add('authorEmail', null, array('label' => 'label.author_email'))
             ->add('publishedAt', 'AppBundle\Form\Type\DateTimePickerType', array(
                 'label' => 'label.published_at',
             ))
