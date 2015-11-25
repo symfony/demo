@@ -179,7 +179,7 @@ MARKDOWN;
         $numPhrases = rand(6, 12);
         shuffle($phrases);
 
-        return implode(' ', array_slice($phrases, 0, $numPhrases-1));
+        return substr(implode(' ', array_slice($phrases, 0, $numPhrases-1)), 0, 255);
     }
 
     private function getRandomCommentContent()
@@ -189,6 +189,6 @@ MARKDOWN;
         $numPhrases = rand(2, 15);
         shuffle($phrases);
 
-        return implode(' ', array_slice($phrases, 0, $numPhrases-1));
+        return substr(implode(' ', array_slice($phrases, 0, $numPhrases-1)), 0, 255);
     }
 }
