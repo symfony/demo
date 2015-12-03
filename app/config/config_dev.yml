@@ -7,6 +7,11 @@ framework:
         strict_requirements: true
     profiler: { only_exceptions: false }
 
+doctrine:
+    dbal:
+        # temp workaround for https://github.com/doctrine/dbal/issues/1106: define DB path here
+        path: "%kernel.root_dir%/data/blog.sqlite"
+
 web_profiler:
     toolbar: %kernel.debug%
     intercept_redirects: false
