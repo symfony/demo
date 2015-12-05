@@ -1,0 +1,37 @@
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-12-01T10:32:00Z
+
+Should we also update directory structure to the Symfony `3.0` in this PR or create a separate one for it?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-12-01T10:36:32Z
+
+@bocharsky-bw let's do that in a separate PR. In any case, we don't have to update to 3.0 in the coming days. We can stay at 2.8 for some time. Thanks.
+
+---------------------------------------------------------------------------
+
+by stof at 2015-12-01T10:39:30Z
+
+updating to 2.8 first would indeed be better, to give time to solve all deprecations.
+
+but you should update the app to use the new way to load the autoloader, allowing to update SensioDistributionBundle to 5.x
+
+---------------------------------------------------------------------------
+
+by xabbuh at 2015-12-01T11:34:03Z
+
+FYI, the steps @stof is talking about are described [in the upgrade file](https://github.com/symfony/symfony-standard/blob/2.8/UPGRADE-2.8.md) of the Symfony Standard Edition.
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-12-01T14:20:34Z
+
+Made changes according to [UPGRADE-2.8.md](https://github.com/symfony/symfony-standard/blob/2.8/UPGRADE-2.8.md), thanks @stof and @xabbuh for help!
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-12-05T10:26:42Z
+
+This looks good, so I'm merging it. Thanks @bocharsky-bw.
