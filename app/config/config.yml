@@ -45,7 +45,7 @@ framework:
     session:
         # handler_id set to null will use default session handler from php.ini
         handler_id:  ~
-    fragments:       { path: /_fragment }
+    fragments:       ~
     http_method_override: true
 
 # Twig Configuration (used for rendering application templates)
