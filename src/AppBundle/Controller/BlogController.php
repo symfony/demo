@@ -44,7 +44,18 @@ class BlogController extends Controller
         $posts = $paginator->paginate($query, $page, Post::NUM_ITEMS);
         $posts->setUsedRoute('blog_index_paginated');
 
-        return $this->render('blog/index.html.twig', array('posts' => $posts));
+        $response = $this->render('blog/index.html.twig', array('posts' => $posts));
+        $response->setSharedMaxAge(10); // cached for 10 seconds
+
+        return $response;
+    }
+
+    public function sidebarAction()
+    {
+        $response = $this->render('blog/sidebar.html.twig');
+        $response->setSharedMaxAge(600); // cached for 10 minutes
+
+        return $response;
     }
 
     /**

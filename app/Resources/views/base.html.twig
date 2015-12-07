@@ -35,7 +35,7 @@
                     <div class="container">
                         <div class="navbar-header">
                             <a class="navbar-brand" href="{{ path('homepage') }}">
-                                Symfony Demo
+                                Symfony Demo <small style="font-size: 10px;"><strong>ESI TIME:</strong> {{ "now"|date('H:i:s') }}</small>
                             </a>
 
                             <button type="button" class="navbar-toggle"
@@ -105,16 +105,7 @@
 
                     <div id="sidebar" class="col-sm-3">
                         {% block sidebar %}
-                            <div class="section about">
-                                <div class="well well-lg">
-                                    <p>
-                                        {{ 'help.app_description'|trans|raw }}
-                                    </p>
-                                    <p>
-                                        {{ 'help.more_information'|trans|raw }}
-                                    </p>
-                                </div>
-                            </div>
+                            {{ render_esi(controller('AppBundle:Blog:sidebar')) }}
                         {% endblock %}
                     </div>
                 </div>
