@@ -50,14 +50,6 @@ class BlogController extends Controller
         return $response;
     }
 
-    public function sidebarAction()
-    {
-        $response = $this->render('blog/sidebar.html.twig');
-        $response->setSharedMaxAge(600); // cached for 10 minutes
-
-        return $response;
-    }
-
     /**
      * @Route("/posts/{slug}", name="blog_post")
      *
