@@ -21,6 +21,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 /**
  * Controller used to manage blog contents in the public part of the site.
@@ -35,6 +36,7 @@ class BlogController extends Controller
     /**
      * @Route("/", name="blog_index", defaults={"page" = 1})
      * @Route("/page/{page}", name="blog_index_paginated", requirements={"page" : "\d+"})
+     * @Cache(smaxage="10")
      */
     public function indexAction($page)
     {
@@ -44,10 +46,7 @@ class BlogController extends Controller
         $posts = $paginator->paginate($query, $page, Post::NUM_ITEMS);
         $posts->setUsedRoute('blog_index_paginated');
 
-        $response = $this->render('blog/index.html.twig', array('posts' => $posts));
-        $response->setSharedMaxAge(10); // cached for 10 seconds
-
-        return $response;
+        return $this->render('blog/index.html.twig', array('posts' => $posts));
     }
 
     /**
