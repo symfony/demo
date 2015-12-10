@@ -1,0 +1,77 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-11-18T14:19:35Z
+
+@bocharsky-bw thanks for this fix ... but I'm afraid I have bad news for you :cry: This project is compatible with `php >=5.3.9` so we can't use the `::class` trick and we must use the entire fully qualified class name of the form types.
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-11-18T14:26:58Z
+
+For now, but when we update to the Symfony 3 we should use `5.5.9` at least, right? It will work then.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-11-18T14:28:34Z
+
+Yes.
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-11-18T14:29:50Z
+
+So keep it as is or update with fully qualified classname?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-11-18T14:32:01Z
+
+Good question. I'd prefer to use the full string because that works perfectly on 2.8 and 3.0 ... but in the future we'll need to change it again to make code more concise.
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2015-11-18T14:35:11Z
+
+@bocharsky-bw, you forgot to update form type's classes too. See https://github.com/symfony/symfony-demo/blob/master/src/AppBundle/Form/PostType.php
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-11-18T14:45:47Z
+
+@javiereguiluz You're right. I updated with fully qualified classname for now.
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-11-18T14:47:47Z
+
+@voronkovich Did you mean this https://github.com/symfony/symfony-demo/blob/master/src/AppBundle/Form/PostType.php#L64 ? Seems for now we should use fully qualified classnames, but thanks you pointed it!
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2015-11-18T14:54:10Z
+
+@bocharsky-bw, ok.
+
+---------------------------------------------------------------------------
+
+by stof at 2015-11-18T17:37:00Z
+
+You should also switch to FQCN rather than legacy type names inside the existing form types to avoid deprecation warnings there
+
+---------------------------------------------------------------------------
+
+by stof at 2015-11-18T17:37:43Z
+
+@javiereguiluz this requires bumping the Symfony requirement to ``~2.8`` though. Currently, the code still says ``~2.7``
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-11-20T09:14:35Z
+
+Switched. Thanks @stof !
+
+---------------------------------------------------------------------------
+
+by yceruto at 2015-11-20T13:25:42Z
+
+This comment is not related to this PR. But IMHO these changes are a throwback for developers. :(
