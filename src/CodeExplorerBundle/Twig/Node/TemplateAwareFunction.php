@@ -21,6 +21,6 @@ class TemplateAwareFunction extends \Twig_Node_Expression_Function
      */
     protected function compileArguments(\Twig_Compiler $compiler)
     {
-        $compiler->raw('($this)');
+        $compiler->raw('($this, $this->env)');
     }
 }
