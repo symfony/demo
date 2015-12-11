@@ -21,6 +21,17 @@ class TemplateAwareFunction extends \Twig_Node_Expression_Function
      */
     protected function compileArguments(\Twig_Compiler $compiler)
     {
-        $compiler->raw('($this, $this->env)');
+        $subCompiler = new \Twig_Compiler($compiler->getEnvironment());
+
+        parent::compileArguments($subCompiler);
+
+        $source = $subCompiler->getSource();
+
+        // Pass a template instance as the first argument
+        if ('()' === $source) {
+            $compiler->raw('($this)');
+        } else {
+            $compiler->raw(sprintf('($this, %s', substr($source, 1)));
+        }
     }
 }

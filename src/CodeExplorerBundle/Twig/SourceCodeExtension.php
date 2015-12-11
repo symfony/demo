@@ -43,7 +43,8 @@ class SourceCodeExtension extends \Twig_Extension
         return array(
             new \Twig_SimpleFunction('show_source_code', array($this, 'showSourceCode'), array(
                 'is_safe' => array('html'),
-                'node_class' => 'CodeExplorerBundle\Twig\Node\TemplateAwareFunction'
+                'needs_environment' => true,
+                'node_class' => 'CodeExplorerBundle\Twig\Node\TemplateAwareFunction',
             )),
         );
     }
