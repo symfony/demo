@@ -68,6 +68,7 @@ class RedirectToPreferredLocaleListener
         // because Symfony\HttpFoundation\Request::getPreferredLanguage
         // returns the first element when no an appropriate language is found
         array_unshift($this->locales, $this->defaultLocale);
+        $this->locales = array_unique($this->locales);
     }
 
     /**
