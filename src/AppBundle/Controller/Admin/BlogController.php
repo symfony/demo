@@ -11,6 +11,7 @@
 
 namespace AppBundle\Controller\Admin;
 
+use AppBundle\Filter\PostFilterType;
 use AppBundle\Form\PostType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -50,12 +51,29 @@ class BlogController extends Controller
      * @Route("/", name="admin_post_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        $entityManager = $this->getDoctrine()->getManager();
-        $posts = $entityManager->getRepository('AppBundle:Post')->findAll();
+        $form = $this->get('form.factory')->create(new PostFilterType());
 
-        return $this->render('admin/blog/index.html.twig', array('posts' => $posts));
+        // initialize a query builder
+        $filterBuilder = $this->get('doctrine.orm.entity_manager')
+            ->getRepository('AppBundle:Post')
+            ->createQueryBuilder('p');
+
+        if ($request->query->has($form->getName())) {
+            // manually bind values from the request
+            $form->submit($request->query->get($form->getName()));
+
+            // build the query from the given form object
+            $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
+        }
+
+        $posts = $filterBuilder->getQuery()->getResult();
+
+        return $this->render('admin/blog/index.html.twig', array(
+            'form' => $form->createView(),
+            'posts' => $posts
+        ));
     }
 
     /**
