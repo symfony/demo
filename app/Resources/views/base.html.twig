@@ -35,7 +35,7 @@
                     <div class="container">
                         <div class="navbar-header">
                             <a class="navbar-brand" href="{{ path('homepage') }}">
-                                Symfony Demo <!-- ESI TIME: {{ "now"|date('H:i:s') }} -->
+                                Symfony Demo
                             </a>
 
                             <button type="button" class="navbar-toggle"
@@ -151,5 +151,7 @@
 
             <script src="{{ asset('js/app.js') }}"></script>
         {% endblock %}
+
+        <!-- Page rendered on {{ 'now'|localizeddate('long', 'long') }} -->
     </body>
 </html>
