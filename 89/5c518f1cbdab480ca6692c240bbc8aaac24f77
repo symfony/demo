@@ -1,0 +1,48 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-12-07T14:38:26Z
+
+@sergiu-popa thanks for proposing this feature. My first comment would be to please remove the output of the date in each block. It's true that it's a convenient trick to understand what's going on with ESI, but in this case it wouldn't be necessary.
+
+Then, my question to the rest of the people that follow this repository would be: is it OK to show EASI + HttpCache in the demo app or is it too advanced?
+
+---------------------------------------------------------------------------
+
+by chapay at 2015-12-07T14:45:32Z
+
+@sergiu-popa You should not update `web/config.php` as it was customized, see the conversation [here](https://github.com/symfony/symfony-demo/pull/241) and the origin [PR #81](https://github.com/symfony/symfony-demo/pull/81).
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-12-07T14:51:39Z
+
+Proceeding from the fact that simple ESI implementation require minimum changes of code I think it'll be nice to have it in this demo application :+1:
+
+---------------------------------------------------------------------------
+
+by sergiu-popa at 2015-12-07T17:38:39Z
+
+Thank you. I removed the date output from display with HTML comments. I reverted config.php and added comment and link in config.yml. The only remaining thing is this:
+`{{ render_esi('FrameworkBundle:Template:template', { 'defaults': { 'template': 'blog/sidebar.html.twig', 'sharedAge': 600 }}) }}`
+
+I would be nice to remove the sidebarAction() and render it using the code, but I get `An exception has been thrown during the rendering of a template ("No route found for "GET Template:template"") in base.html.twig at line 108. `
+
+Debugging using `php app/console debug:router` the route doesn't show. It should appear in the list, right? Or some routing file needs to be imported?
+
+---------------------------------------------------------------------------
+
+by sergiu-popa at 2015-12-07T20:05:30Z
+
+All done. Thank you
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2015-12-10T18:41:51Z
+
+:+1: I hope that newcomers won't notice all this stuff :)
+
+---------------------------------------------------------------------------
+
+by sergiu-popa at 2015-12-10T20:45:24Z
+
+That encouraging :+1: What about this? https://t.co/7cBQGNwGD2 A form filter that could be implemented in the admin area for many-to-many relationship, KnpPaginator compatible.
