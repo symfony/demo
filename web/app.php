@@ -33,7 +33,7 @@ $kernel->loadClassCache();
 // If you use HTTP Cache to improve application performance, uncomment the following lines:
 // See http://symfony.com/doc/current/book/http_cache.html#symfony-reverse-proxy
 //
-// $kernel = new AppCache($kernel);
+$kernel = new AppCache($kernel);
 
 // If you use HTTP Cache and your application relies on the _method request parameter
 // to get the intended HTTP method, uncomment this line.

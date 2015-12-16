@@ -14,6 +14,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Comment;
 use AppBundle\Entity\Post;
 use AppBundle\Form\CommentType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -35,6 +36,7 @@ class BlogController extends Controller
     /**
      * @Route("/", name="blog_index", defaults={"page" = 1})
      * @Route("/page/{page}", name="blog_index_paginated", requirements={"page" : "\d+"})
+     * @Cache(smaxage="10")
      */
     public function indexAction($page)
     {
