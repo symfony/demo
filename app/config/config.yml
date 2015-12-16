@@ -26,7 +26,8 @@ framework:
     # See http://symfony.com/doc/current/reference/configuration/framework.html#ide
     ide: sublime
 
-    # ESI enabled for blog index and sidebar
+    # When using the HTTP Cache, ESI allows to render page fragments separately
+    # and with different cache configurations for each fragment
     # http://symfony.com/doc/current/book/http_cache.html#edge-side-includes
     esi:             { enabled: true }
     translator:      { fallback: "%locale%" }
