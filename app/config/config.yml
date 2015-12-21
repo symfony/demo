@@ -104,3 +104,13 @@ swiftmailer:
 knp_paginator:
     template:
         pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig
+
+# LiipImagineBundle configuration (used to manipulate with images)
+liip_imagine:
+    filter_sets:
+        blog_post_featured_image_index:
+            filters:
+                relative_resize: { widen: 200 }
+        blog_post_featured_image_show:
+            filters:
+                relative_resize: { widen: 400 }

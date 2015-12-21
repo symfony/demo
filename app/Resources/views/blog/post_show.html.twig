@@ -5,6 +5,8 @@
 {% block main %}
     <h1>{{ post.title }}</h1>
 
+    {{ post.image ? include('/blog/_featured_image.html.twig', { 'filter': 'show' }) }}
+
     {{ post.content|md2html }}
 
     <div id="post-add-comment" class="well">
