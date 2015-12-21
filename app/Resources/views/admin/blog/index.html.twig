@@ -5,6 +5,11 @@
 {% block main %}
     <h1>{{ 'title.post_list'|trans }}</h1>
 
+    <form method="get" action=".">
+        {{ form_rest(form) }}
+        <input type="submit" name="submit-filter" value="Filter" />
+    </form>
+
     <table class="table table-striped">
         <thead>
             <tr>

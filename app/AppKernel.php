@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new CodeExplorerBundle\CodeExplorerBundle(),
+            new Lexik\Bundle\FormFilterBundle\LexikFormFilterBundle(),
             new AppBundle\AppBundle(),
         );
 
