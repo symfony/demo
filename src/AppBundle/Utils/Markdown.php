@@ -34,7 +34,11 @@ class Markdown
     public function __construct()
     {
         $this->parser = new \Parsedown();
-        $this->purifier = new \HTMLPurifier();
+
+        $purifierConfig = \HTMLPurifier_Config::create(array(
+            'Cache.DefinitionImpl' => null, // Disable caching
+        ));
+        $this->purifier = new \HTMLPurifier($purifierConfig);
     }
 
     /**
