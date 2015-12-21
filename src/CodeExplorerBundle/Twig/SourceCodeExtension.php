@@ -11,6 +11,8 @@
 
 namespace CodeExplorerBundle\Twig;
 
+use CodeExplorerBundle\Twig\NodeVisitor\TemplateVariable;
+
 /**
  * CAUTION: this is an extremely advanced Twig extension. It's used to get the
  * source code of the controller and the template used to render the current
@@ -42,6 +44,16 @@ class SourceCodeExtension extends \Twig_Extension
     {
         return array(
             new \Twig_SimpleFunction('show_source_code', array($this, 'showSourceCode'), array('is_safe' => array('html'), 'needs_environment' => true)),
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getNodeVisitors()
+    {
+        return array(
+            new TemplateVariable(),
         );
     }
 
