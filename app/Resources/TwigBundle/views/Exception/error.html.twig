@@ -13,15 +13,13 @@
 {% block body_id 'error' %}
 
 {% block main %}
-    <h1 class="text-danger">Error</h1>
+    <h1 class="text-danger">{{ 'http_error.name'|trans({ '%status_code%': status_code }) }}</h1>
 
     <p class="lead">
-        There was an unknown error (HTTP {{ status_code }})
-        that prevented to complete your request.
+        {{ 'http_error.description'|trans({ '%status_code%': status_code }) }}
     </p>
     <p>
-        Try loading this page again in some minutes or
-        <a href="{{ path('blog_index') }}">go back to the homepage</a>.
+        {{ 'http_error.suggestion'|trans({ '%url%': path('blog_index') })|raw }}
     </p>
 {% endblock %}
 
