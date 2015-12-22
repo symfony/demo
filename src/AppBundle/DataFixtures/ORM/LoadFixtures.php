@@ -172,14 +172,14 @@ MARKDOWN;
         return $titles[array_rand($titles)];
     }
 
-    private function getRandomPostSummary()
+    private function getRandomPostSummary($maxLength = 255)
     {
         $phrases = $this->getPhrases();
 
         $numPhrases = rand(6, 12);
         shuffle($phrases);
 
-        return implode(' ', array_slice($phrases, 0, $numPhrases-1));
+        return substr(implode(' ', array_slice($phrases, 0, $numPhrases-1)), 0, $maxLength);
     }
 
     private function getRandomCommentContent()
