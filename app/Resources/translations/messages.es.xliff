@@ -27,6 +27,43 @@
                 <target>Siguiente</target>
             </trans-unit>
 
+            <trans-unit id="http_error.name">
+                <source>http_error.name</source>
+                <target>Error %status_code%</target>
+            </trans-unit>
+            <trans-unit id="http_error.description">
+                <source>http_error.description</source>
+                <target>Se ha producido un error desconocido (HTTP %status_code%) que ha impedido completar tu petición.</target>
+            </trans-unit>
+            <trans-unit id="http_error.suggestion">
+                <source>http_error.suggestion</source>
+                <target><![CDATA[Intentar recargar esta página dentro de unos minutos o <a href="%url%">vuelve a la portada del sitio</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="http_error_403.description">
+                <source>http_error_403.description</source>
+                <target>No tienes permiso para acceder a este recurso.</target>
+            </trans-unit>
+            <trans-unit id="http_error_403.suggestion">
+                <source>http_error_403.suggestion</source>
+                <target>Solicita a los administradores de este sitio que te concedan permiso para acceder al recurso solicitado.</target>
+            </trans-unit>
+            <trans-unit id="http_error_404.description">
+                <source>http_error_404.description</source>
+                <target>No hemos podido encontrar la página solicitada.</target>
+            </trans-unit>
+            <trans-unit id="http_error_404.suggestion">
+                <source>http_error_404.suggestion</source>
+                <target><![CDATA[Comprueba que la dirección de la página está bien escrita o <a href="%url%">vuelve a la portada del sitio</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="http_error_500.description">
+                <source>http_error_500.description</source>
+                <target>Se ha producido un error grave en el servidor.</target>
+            </trans-unit>
+            <trans-unit id="http_error_500.suggestion">
+                <source>http_error_500.suggestion</source>
+                <target><![CDATA[Intentar recargar esta página dentro de unos minutos o <a href="%url%">vuelve a la portada del sitio</a>.]]></target>
+            </trans-unit>
+
             <trans-unit id="title.homepage">
                 <source>title.homepage</source>
                 <target><![CDATA[Bienvenido/a a la aplicación <strong>Symfony Demo</strong>]]></target>
