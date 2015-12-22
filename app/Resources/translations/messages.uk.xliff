@@ -27,6 +27,43 @@
                 <target>Наступна</target>
             </trans-unit>
 
+            <trans-unit id="http_error.name">
+                <source>http_error.name</source>
+                <target>Помилка %status_code%</target>
+            </trans-unit>
+            <trans-unit id="http_error.description">
+                <source>http_error.description</source>
+                <target>Виникла невідма помилка (HTTP %status_code%), котра завадила виконати ваш запит.</target>
+            </trans-unit>
+            <trans-unit id="http_error.suggestion">
+                <source>http_error.suggestion</source>
+                <target><![Спробуйте завантажити цю сторінку знову через декілька хвилин або <a href="%url%">поверніться на головну сторінку</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="http_error_403.description">
+                <source>http_error_403.description</source>
+                <target>У вас немає дозволу на доступ до цього ресурсу.</target>
+            </trans-unit>
+            <trans-unit id="http_error_403.suggestion">
+                <source>http_error_403.suggestion</source>
+                <target>Зробіть запит на доступ до цього ресурсу у вашого менеджера або системного адміністратора.</target>
+            </trans-unit>
+            <trans-unit id="http_error_404.description">
+                <source>http_error_404.description</source>
+                <target>Ми не змогли знайти сторінку що ви запросили.</target>
+            </trans-unit>
+            <trans-unit id="http_error_404.suggestion">
+                <source>http_error_404.suggestion</source>
+                <target><![CDATA[Перевірте коректність введеного URL або <a href="%url%">поверніться на головну сторінку</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="http_error_500.description">
+                <source>http_error_500.description</source>
+                <target>Виникла внутрішня помилка сервера.</target>
+            </trans-unit>
+            <trans-unit id="http_error_500.suggestion">
+                <source>http_error_500.suggestion</source>
+                <target><![CDATA[Спробуйте завантажити цю сторінку знову через декілька хвилин або <a href="%url%">поверніться на головну сторінку</a>.]]></target>
+            </trans-unit>
+
             <trans-unit id="title.homepage">
                 <source>title.homepage</source>
                 <target><![CDATA[Ласкаво просимо до <strong>Symfony Demo</strong> додатку]]></target>
