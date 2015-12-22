@@ -57,12 +57,7 @@
                                         </a>
                                     </li>
 
-                                    {# The 'app.user' condition is required to avoid issues in 404 and 500 error pages
-                                       As routing is done before security, error pages are not covered by any firewall.
-                                       This means you can't use is_granted() directly on these pages.
-                                       See http://symfony.com/doc/current/cookbook/security/form_login_setup.html#avoid-common-pitfalls
-                                    #}
-                                    {% if app.user and is_granted('ROLE_ADMIN') %}
+                                    {% if is_granted('ROLE_ADMIN') %}
                                         <li>
                                             <a href="{{ path('admin_post_index') }}">
                                                 <i class="fa fa-lock"></i> {{ 'menu.admin'|trans }}
