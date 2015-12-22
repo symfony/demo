@@ -1,0 +1,48 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-12-17T09:05:56Z
+
+I'm about to merge your nice improvement, but I have doubts with this kind of translations:
+
+```twig
+{{ 'http_error.suggestion'|trans }}
+<a href="{{ path('blog_index') }}">{{ 'http_error.go_back'|trans }}</a>.
+```
+
+```xml
+<trans-unit id="http_error.suggestion">
+    <source>http_error.suggestion</source>
+    <target>Try loading this page again in some minutes or</target>
+</trans-unit>
+<trans-unit id="http_error.go_back">
+    <source>http_error.go_back</source>
+    <target>go back to the homepage</target>
+</trans-unit>
+```
+
+Shouldn't we translate it like this?
+
+```twig
+{{ 'http_error.suggestion'|trans({ '%url%': path('blog_index') }) }}
+```
+
+```xml
+<trans-unit id="http_error.suggestion">
+    <source>http_error.suggestion</source>
+    <target>Try loading this page again in some minutes or <a href="%url%">go back to homepage</a>.</target>
+</trans-unit>
+```
+
+Please don't make any change yet. I'm just asking because I don't know which is the common practice in this kind of translations. Thanks!
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2015-12-17T09:32:08Z
+
+I don't like that `http_error.suggestion` message ends with `... or` so I'm :+1: with your suggestion.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2015-12-21T14:35:00Z
+
+@bocharsky-bw nobody said anything contrary to the previous suggestion, so when you have some free time, please update the error message translations to include the URL placeholder. Thanks!
