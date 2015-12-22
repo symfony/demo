@@ -52,7 +52,20 @@ class PostType extends AbstractType
             ->add('publishedAt', 'AppBundle\Form\Type\DateTimePickerType', array(
                 'label' => 'label.published_at',
             ))
+            ->add('image', 'Symfony\Component\Form\Extension\Core\Type\FileType', array(
+                'label' => 'label.image',
+                'mapped' => false,
+                'required' => false,
+            ))
         ;
+
+        if (null !== $builder->getData()->getImage()) {
+            $builder->add('deleteImage', 'Symfony\Component\Form\Extension\Core\Type\CheckboxType', array(
+                'label' => 'label.delete_image',
+                'mapped' => false,
+                'required' => false,
+            ));
+        }
     }
 
     /**

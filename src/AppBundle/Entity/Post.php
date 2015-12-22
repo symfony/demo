@@ -47,6 +47,12 @@ class Post
     private $slug;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     * @Assert\Image(maxSize="1M")
+     */
+    private $image;
+
+    /**
      * @ORM\Column(type="string")
      * @Assert\NotBlank(message="post.blank_summary")
      */
@@ -110,6 +116,16 @@ class Post
     public function setSlug($slug)
     {
         $this->slug = $slug;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
     }
 
     public function getContent()

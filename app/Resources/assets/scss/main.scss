@@ -237,6 +237,11 @@ body#blog_index {
     article.post {
         margin-bottom: 3em;
     }
+
+    .post-featured-image {
+        float: left;
+        margin: 0 1em 0 0;
+    }
 }
 
 //
@@ -245,6 +250,11 @@ body#blog_index {
 body#blog_post_show {
     h3 {
         margin-bottom: .75em;
+    }
+
+    .post-featured-image {
+        float: right;
+        margin: 0.5em 1em;
     }
 
     #post-add-comment {

@@ -11,6 +11,12 @@
                 <th>{{ 'label.summary'|trans }}</th>
                 <td>{{ post.summary|md2html }}</td>
             </tr>
+            {% if post.image %}
+            <tr>
+                <th>{{ 'label.image'|trans }}</th>
+                <td>{{ include('/blog/_featured_image.html.twig', { 'filter': 'show' }) }}</td>
+            </tr>
+            {% endif %}
             <tr>
                 <th>{{ 'label.content'|trans }}</th>
                 <td>{{ post.content|md2html }}</td>

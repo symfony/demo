@@ -4,12 +4,14 @@
 
 {% block main %}
     {% for post in posts %}
-        <article class="post">
+        <article class="post clearfix">
             <h2>
                 <a href="{{ path('blog_post', { slug: post.slug }) }}">
                     {{ post.title }}
                 </a>
             </h2>
+
+            {{ post.image ? include('/blog/_featured_image.html.twig', { 'filter': 'index' }) }}
 
             {{ post.summary|md2html }}
         </article>

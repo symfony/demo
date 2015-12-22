@@ -12,6 +12,8 @@
 namespace AppBundle\Controller\Admin;
 
 use AppBundle\Form\PostType;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -86,6 +88,8 @@ class BlogController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $post->setSlug($this->get('slugger')->slugify($post->getTitle()));
 
+            $this->handleImage($post, $form);
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($post);
             $entityManager->flush();
@@ -153,6 +157,9 @@ class BlogController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $post->setSlug($this->get('slugger')->slugify($post->getTitle()));
+
+            $this->handleImage($post, $editForm);
+
             $entityManager->flush();
 
             $this->addFlash('success', 'post.updated_successfully');
@@ -186,6 +193,8 @@ class BlogController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
 
+            $this->deleteImage($post);
+
             $entityManager->remove($post);
             $entityManager->flush();
 
@@ -215,5 +224,50 @@ class BlogController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * Instead of handling file uploading yourself, you may consider using the
+     * VichUploaderBundle community bundle. This bundle provides all the common
+     * operations (such as file renaming, saving and deleting) and it's tightly
+     * integrated with Doctrine ORM, MongoDB ODM, PHPCR ODM and Propel.
+     * See https://github.com/dustin10/VichUploaderBundle
+     * See http://symfony.com/doc/current/cookbook/doctrine/file_uploads.html
+     */
+    private function handleImage(Post $post, FormInterface $form)
+    {
+        if ($form->has('deleteImage') && $form->get('deleteImage')->getData()) {
+            $this->deleteImage($post);
+        } elseif (null !== $form->get('image')->getData()) {
+            $this->uploadImage($post, $form->get('image')->getData());
+        }
+    }
+
+    private function deleteImage(Post $post)
+    {
+        if (null !== $post->getImage()) {
+            unlink($this->getWebPath() . '/' . $post->getImage());
+
+            $post->setImage(null);
+        }
+    }
+
+    private function uploadImage(Post $post, UploadedFile $image)
+    {
+        $this->deleteImage($post);
+
+        $name = $post->getSlug() . '.' . $image->getClientOriginalExtension();
+
+        $image->move($this->getWebPath() . '/uploads', $name);
+
+        $post->setImage('uploads/' . $name);
+    }
+
+    /**
+     * @return string Full path to the public dir
+     */
+    private function getWebPath()
+    {
+        return sprintf('%s/../web', $this->container->getParameter('kernel.root_dir'));
     }
 }
