@@ -447,6 +447,12 @@ class SymfonyRequirements extends RequirementCollection
         }
 
         $this->addRequirement(
+            function_exists('iconv'),
+            'iconv() must be available',
+            'Install and enable the <strong>iconv</strong> extension.'
+        );
+
+        $this->addRequirement(
             function_exists('json_encode'),
             'json_encode() must be available',
             'Install and enable the <strong>JSON</strong> extension.'
@@ -546,10 +552,10 @@ class SymfonyRequirements extends RequirementCollection
             require_once __DIR__.'/../vendor/autoload.php';
 
             try {
-                $r = new \ReflectionClass('Sensio\Bundle\DistributionBundle\SensioDistributionBundle');
+                $r = new ReflectionClass('Sensio\Bundle\DistributionBundle\SensioDistributionBundle');
 
                 $contents = file_get_contents(dirname($r->getFileName()).'/Resources/skeleton/app/SymfonyRequirements.php');
-            } catch (\ReflectionException $e) {
+            } catch (ReflectionException $e) {
                 $contents = '';
             }
             $this->addRecommendation(
@@ -638,7 +644,7 @@ class SymfonyRequirements extends RequirementCollection
         }
 
         $this->addRecommendation(
-            class_exists('Locale'),
+            extension_loaded('intl'),
             'intl extension should be available',
             'Install and enable the <strong>intl</strong> extension (used for validators).'
         );

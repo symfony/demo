@@ -19,6 +19,15 @@
                 <target>Licença MIT</target>
             </trans-unit>
 
+            <trans-unit id="previous">
+                <source>Previous</source>
+                <target>Anterior</target>
+            </trans-unit>
+            <trans-unit id="next">
+                <source>Next</source>
+                <target>Próximo</target>
+            </trans-unit>
+
             <trans-unit id="title.homepage">
                 <source>title.homepage</source>
                 <target><![CDATA[Bem-vindo à aplicação <strong>Symfony Demo</strong>]]></target>
@@ -79,6 +88,22 @@
             <trans-unit id="action.delete_post">
                 <source>action.delete_post</source>
                 <target>Excluir o post</target>
+            </trans-unit>
+            <trans-unit id="delete_post_modal.title">
+                <source>delete_post_modal.title</source>
+                <target>Tem certeza que deseja excluir esse post?</target>
+            </trans-unit>
+            <trans-unit id="delete_post_modal.body">
+                <source>delete_post_modal.body</source>
+                <target>Essa ação não pode ser desfeita.</target>
+            </trans-unit>
+            <trans-unit id="label.delete_post">
+                <source>label.delete_post</source>
+                <target>Excluir o post</target>
+            </trans-unit>
+            <trans-unit id="label.cancel">
+                <source>label.cancel</source>
+                <target>Cancelar</target>
             </trans-unit>
             <trans-unit id="action.create_post">
                 <source>action.create_post</source>
@@ -198,6 +223,18 @@
             <trans-unit id="post.no_posts_found">
                 <source>post.no_posts_found</source>
                 <target>Nenhum post encontrado.</target>
+            </trans-unit>
+            <trans-unit id="post.created_successfully">
+                <source>post.created_successfully</source>
+                <target>Post criado com sucesso!</target>
+            </trans-unit>
+            <trans-unit id="post.updated_successfully">
+                <source>post.updated_successfully</source>
+                <target>Post atualizado com sucesso!</target>
+            </trans-unit>
+            <trans-unit id="post.deleted_successfully">
+                <source>post.deleted_successfully</source>
+                <target>Post excluído com sucesso!</target>
             </trans-unit>
 
             <trans-unit id="help.app_description">

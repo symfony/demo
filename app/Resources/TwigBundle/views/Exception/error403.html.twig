@@ -13,14 +13,13 @@
 {% block body_id 'error' %}
 
 {% block main %}
-    <h1 class="text-danger"><i class="fa fa-unlock-alt"></i> Error 403</h1>
+    <h1 class="text-danger"><i class="fa fa-unlock-alt"></i> {{ 'http_error.name'|trans({ '%status_code%': 403 }) }}</h1>
 
     <p class="lead">
-        You don't have permission to access to this resource.
+        {{ 'http_error_403.description'|trans }}
     </p>
     <p>
-        Ask your manager or system administrator to grant you
-        access to this resource.
+        {{ 'http_error_403.suggestion'|trans }}
     </p>
 {% endblock %}
 

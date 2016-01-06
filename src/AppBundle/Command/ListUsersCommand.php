@@ -11,6 +11,8 @@
 
 namespace AppBundle\Command;
 
+use AppBundle\Entity\User;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
@@ -33,7 +35,7 @@ class ListUsersCommand extends ContainerAwareCommand
     /**
      * @var ObjectManager
      */
-    private $em;
+    private $entityManager;
 
     /**
      * {@inheritdoc}
@@ -74,7 +76,7 @@ HELP
      */
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
-        $this->em = $this->getContainer()->get('doctrine')->getManager();
+        $this->entityManager = $this->getContainer()->get('doctrine')->getManager();
     }
 
     /**
@@ -85,10 +87,10 @@ HELP
     {
         $maxResults = $input->getOption('max-results');
         // Use ->findBy() instead of ->findAll() to allow result sorting and limiting
-        $users = $this->em->getRepository('AppBundle:User')->findBy(array(), array('id' => 'DESC'), $maxResults);
+        $users = $this->entityManager->getRepository('AppBundle:User')->findBy(array(), array('id' => 'DESC'), $maxResults);
 
         // Doctrine query returns an array of objects and we need an array of plain arrays
-        $usersAsPlainArrays = array_map(function ($user) {
+        $usersAsPlainArrays = array_map(function (User $user) {
             return array($user->getId(), $user->getUsername(), $user->getEmail(), implode(', ', $user->getRoles()));
         }, $users);
 

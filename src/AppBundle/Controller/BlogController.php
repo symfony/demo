@@ -13,7 +13,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Comment;
 use AppBundle\Entity\Post;
-use AppBundle\Form\CommentType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -21,7 +21,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Intl\Intl;
 
 /**
  * Controller used to manage blog contents in the public part of the site.
@@ -34,12 +33,17 @@ use Symfony\Component\Intl\Intl;
 class BlogController extends Controller
 {
     /**
-     * @Route("/", name="blog_index")
+     * @Route("/", name="blog_index", defaults={"page" = 1})
+     * @Route("/page/{page}", name="blog_index_paginated", requirements={"page" : "\d+"})
+     * @Cache(smaxage="10")
      */
-    public function indexAction()
+    public function indexAction($page)
     {
-        $em = $this->getDoctrine()->getManager();
-        $posts = $em->getRepository('AppBundle:Post')->findLatest();
+        $query = $this->getDoctrine()->getRepository('AppBundle:Post')->queryLatest();
+
+        $paginator = $this->get('knp_paginator');
+        $posts = $paginator->paginate($query, $page, Post::NUM_ITEMS);
+        $posts->setUsedRoute('blog_index_paginated');
 
         return $this->render('blog/index.html.twig', array('posts' => $posts));
     }
@@ -70,7 +74,7 @@ class BlogController extends Controller
      */
     public function commentNewAction(Request $request, Post $post)
     {
-        $form = $this->createForm(new CommentType());
+        $form = $this->createForm('AppBundle\Form\CommentType');
 
         $form->handleRequest($request);
 
@@ -80,9 +84,9 @@ class BlogController extends Controller
             $comment->setAuthorEmail($this->getUser()->getEmail());
             $comment->setPost($post);
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($comment);
-            $em->flush();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($comment);
+            $entityManager->flush();
 
             return $this->redirectToRoute('blog_post', array('slug' => $post->getSlug()));
         }
@@ -107,7 +111,7 @@ class BlogController extends Controller
      */
     public function commentFormAction(Post $post)
     {
-        $form = $this->createForm(new CommentType());
+        $form = $this->createForm('AppBundle\Form\CommentType');
 
         return $this->render('blog/_comment_form.html.twig', array(
             'post' => $post,
