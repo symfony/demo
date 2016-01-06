@@ -12,7 +12,6 @@
 namespace AppBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use AppBundle\Entity\Post;
 
 /**
  * This custom Doctrine repository contains some methods which are useful when
@@ -24,12 +23,7 @@ use AppBundle\Entity\Post;
  */
 class PostRepository extends EntityRepository
 {
-    /**
-     * @param int $limit
-     *
-     * @return Post[]
-     */
-    public function findLatest($limit = Post::NUM_ITEMS)
+    public function queryLatest()
     {
         return $this->getEntityManager()
             ->createQuery('
@@ -39,8 +33,11 @@ class PostRepository extends EntityRepository
                 ORDER BY p.publishedAt DESC
             ')
             ->setParameter('now', new \DateTime())
-            ->setMaxResults($limit)
-            ->getResult()
         ;
+    }
+
+    public function findLatest()
+    {
+        $this->queryLatest()->getResult();
     }
 }

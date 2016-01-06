@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace AppBundle\EventListener;
+namespace CodeExplorerBundle\EventListener;
 
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
-use AppBundle\Twig\SourceCodeExtension;
+use CodeExplorerBundle\Twig\SourceCodeExtension;
 
 /**
  * Defines the method that 'listens' to the 'kernel.controller' event, which is
@@ -28,7 +28,7 @@ use AppBundle\Twig\SourceCodeExtension;
  */
 class ControllerListener
 {
-    protected $twigExtension;
+    private $twigExtension;
 
     public function __construct(SourceCodeExtension $twigExtension)
     {

@@ -6,13 +6,18 @@
     {{ form_start(form, { attr: { novalidate: 'novalidate' } }) }}
 #}
 
-{{ form_start(form) }}
+{% if show_confirmation|default(false) %}
+    {% set attr = {'data-confirmation': 'true'} %}
+    {{ include('blog/_delete_post_confirmation.html.twig') }}
+{% endif %}
+
+{{ form_start(form, { attr: attr|default({}) }) }}
     {{ form_widget(form) }}
 
     <input type="submit" value="{{ button_label|default('label.create_post'|trans) }}"
            class="{{ button_css|default("btn btn-primary") }}" />
 
-    {% if include_back_to_home_link is not defined or include_back_to_home_link == true %}
+    {% if include_back_to_home_link|default(false) %}
         <a href="{{ path('admin_post_index') }}" class="btn btn-link">
             {{ 'action.back_to_list'|trans }}
         </a>

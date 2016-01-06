@@ -13,14 +13,13 @@
 {% block body_id 'error' %}
 
 {% block main %}
-    <h1 class="text-danger">Error 500</h1>
+    <h1 class="text-danger">{{ 'http_error.name'|trans({ '%status_code%': 500 }) }}</h1>
 
     <p class="lead">
-        There was an internal server error.
+        {{ 'http_error_500.description'|trans }}
     </p>
     <p>
-        Try loading this page again in some minutes or
-        <a href="{{ path('blog_index') }}">go back to the homepage</a>.
+        {{ 'http_error_500.suggestion'|trans({ '%url%': path('blog_index') })|raw }}
     </p>
 {% endblock %}
 

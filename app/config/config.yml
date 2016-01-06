@@ -14,7 +14,7 @@ imports:
 # See http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     # This parameter defines the codes of the locales (languages) enabled in the application
-    app_locales: en|fr|de|es|cs|ru|uk|ro|pt_BR|pl|it|ja|id
+    app_locales: en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca
     app.notifications.email_sender: anonymous@example.com
 
 # Basic configuration for the Symfony framework features
@@ -26,7 +26,10 @@ framework:
     # See http://symfony.com/doc/current/reference/configuration/framework.html#ide
     ide: sublime
 
-    # esi:             ~
+    # When using the HTTP Cache, ESI allows to render page fragments separately
+    # and with different cache configurations for each fragment
+    # http://symfony.com/doc/current/book/http_cache.html#edge-side-includes
+    esi:             { enabled: true }
     translator:      { fallback: "%locale%" }
     secret:          "%secret%"
     router:
@@ -45,6 +48,7 @@ framework:
         handler_id:  ~
     fragments:       ~
     http_method_override: true
+    assets: ~
 
 # Twig Configuration (used for rendering application templates)
 twig:
@@ -52,6 +56,7 @@ twig:
     strict_variables: "%kernel.debug%"
     form_themes:
         - "bootstrap_3_layout.html.twig"
+        - "form/fields.html.twig"
 
 # Assetic Configuration (used for managing web assets: CSS, JavaScript, Sass, etc.)
 assetic:
@@ -94,3 +99,8 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+# KnpPaginatorBundle configuration (used to paginate large result set)
+knp_paginator:
+    template:
+        pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig

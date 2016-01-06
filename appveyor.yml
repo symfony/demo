@@ -1,0 +1,30 @@
+build: false
+platform: x86
+clone_folder: c:\projects\symfony-demo
+
+cache:
+  - '%LOCALAPPDATA%\Composer\files'
+
+init:
+  - SET PATH=C:\Program Files\OpenSSL;c:\tools\php;%PATH%
+
+install:
+  - cinst -y OpenSSL.Light
+  - cinst -y php
+  - cd c:\tools\php
+  - copy php.ini-production php.ini /Y
+  - echo date.timezone="UTC" >> php.ini
+  - echo extension_dir=ext >> php.ini
+  - echo extension=php_openssl.dll >> php.ini
+  - echo extension=php_mbstring.dll >> php.ini
+  - echo extension=php_intl.dll >> php.ini
+  - echo extension=php_pdo_sqlite.dll >> php.ini
+  - echo memory_limit=1G >> php.ini
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - php -r "readfile('http://getcomposer.org/installer');" | php
+  - php composer.phar install --no-interaction --no-progress
+  - appveyor DownloadFile https://phar.phpunit.de/phpunit.phar
+
+test_script:
+  - cd %APPVEYOR_BUILD_FOLDER%
+  - php phpunit.phar -c app --verbose

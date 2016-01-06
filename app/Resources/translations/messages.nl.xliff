@@ -18,6 +18,14 @@
                 <source>mit_license</source>
                 <target>MIT Licentie</target>
             </trans-unit>
+            <trans-unit id="Previous">
+                <source>Previous</source>
+                <target>Vorige</target>
+            </trans-unit>
+            <trans-unit id="Next">
+                <source>Next</source>
+                <target>Volgende</target>
+            </trans-unit>
 
             <trans-unit id="title.homepage">
                 <source>title.homepage</source>
@@ -143,7 +151,7 @@
             </trans-unit>
             <trans-unit id="label.published_at">
                 <source>label.published_at</source>
-                <target>Gepubliceerd op</target>
+                <target>Geplaatst</target>
             </trans-unit>
             <trans-unit id="label.actions">
                 <source>label.actions</source>
@@ -164,7 +172,7 @@
             </trans-unit>
             <trans-unit id="menu.back_to_blog">
                 <source>menu.back_to_blog</source>
-                <target>Terug naar het blog</target>
+                <target>Terug naar de blog</target>
             </trans-unit>
             <trans-unit id="menu.homepage">
                 <source>menu.homepage</source>
@@ -181,7 +189,7 @@
 
             <trans-unit id="post.to_publish_a_comment">
                 <source>post.to_publish_a_comment</source>
-                <target>om reactie toe te voegen</target>
+                <target>om een reactie toe te voegen</target>
             </trans-unit>
             <trans-unit id="post.num_comments">
                 <source>post.num_comments</source>
@@ -235,6 +243,22 @@
             <trans-unit id="help.more_information">
                 <source>help.more_information</source>
                 <target><![CDATA[Voor meer informatie bekijk de <a href="http://symfony.com/doc">Symfony documentatie</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="delete_post_modal.title">
+                <source>delete_post_modal.title</source>
+                <target>Weet u zeker dat u dit bericht wilt verwijderen?</target>
+            </trans-unit>
+            <trans-unit id="delete_post_modal.body">
+                <source>delete_post_modal.body</source>
+                <target>Deze actie kan niet ongedaan gemaakt worden.</target>
+            </trans-unit>
+            <trans-unit id="label.cancel">
+                <source>label.cancel</source>
+                <target>Annuleren</target>
+            </trans-unit>
+            <trans-unit id="label.delete_post">
+                <source>label.delete_post</source>
+                <target>Verwijderen</target>
             </trans-unit>
         </body>
     </file>

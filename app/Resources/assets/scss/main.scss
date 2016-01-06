@@ -136,6 +136,19 @@ footer {
     }
 }
 
+// Confirmation Modal Window
+#confirmationModal {
+    .modal-dialog {
+        width: 500px;
+    }
+
+    .modal-footer {
+        button {
+            min-width: 75px;
+        }
+    }
+}
+
 //
 // Forms
 // --------------------------------------------------

@@ -11,7 +11,6 @@
 
 namespace AppBundle\Controller\Admin;
 
-use AppBundle\Form\PostType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -52,8 +51,8 @@ class BlogController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $posts = $em->getRepository('AppBundle:Post')->findAll();
+        $entityManager = $this->getDoctrine()->getManager();
+        $posts = $entityManager->getRepository('AppBundle:Post')->findAll();
 
         return $this->render('admin/blog/index.html.twig', array('posts' => $posts));
     }
@@ -72,7 +71,10 @@ class BlogController extends Controller
     {
         $post = new Post();
         $post->setAuthorEmail($this->getUser()->getEmail());
-        $form = $this->createForm(new PostType(), $post);
+
+        // See http://symfony.com/doc/current/book/forms.html#submitting-forms-with-multiple-buttons
+        $form = $this->createForm('AppBundle\Form\PostType', $post)
+            ->add('saveAndCreateNew', 'Symfony\Component\Form\Extension\Core\Type\SubmitType');
 
         $form->handleRequest($request);
 
@@ -83,15 +85,19 @@ class BlogController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $post->setSlug($this->get('slugger')->slugify($post->getTitle()));
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($post);
-            $em->flush();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($post);
+            $entityManager->flush();
 
             // Flash messages are used to notify the user about the result of the
             // actions. They are deleted automatically from the session as soon
             // as they are accessed.
             // See http://symfony.com/doc/current/book/controller.html#flash-messages
             $this->addFlash('success', 'post.created_successfully');
+
+            if ($form->get('saveAndCreateNew')->isClicked()) {
+                return $this->redirectToRoute('admin_post_new');
+            }
 
             return $this->redirectToRoute('admin_post_index');
         }
@@ -137,16 +143,16 @@ class BlogController extends Controller
             throw $this->createAccessDeniedException('Posts can only be edited by their authors.');
         }
 
-        $em = $this->getDoctrine()->getManager();
+        $entityManager = $this->getDoctrine()->getManager();
 
-        $editForm = $this->createForm(new PostType(), $post);
+        $editForm = $this->createForm('AppBundle\Form\PostType', $post);
         $deleteForm = $this->createDeleteForm($post);
 
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $post->setSlug($this->get('slugger')->slugify($post->getTitle()));
-            $em->flush();
+            $entityManager->flush();
 
             $this->addFlash('success', 'post.updated_successfully');
 
@@ -177,10 +183,10 @@ class BlogController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $entityManager = $this->getDoctrine()->getManager();
 
-            $em->remove($post);
-            $em->flush();
+            $entityManager->remove($post);
+            $entityManager->flush();
 
             $this->addFlash('success', 'post.deleted_successfully');
         }

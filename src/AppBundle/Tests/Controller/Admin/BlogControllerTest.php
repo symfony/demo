@@ -66,9 +66,9 @@ class BlogControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/en/admin/post/');
 
         $this->assertCount(
-            Post::NUM_ITEMS,
+            30,
             $crawler->filter('body#admin_post_index #main tbody tr'),
-            'The backend homepage displays the right number of posts.'
+            'The backend homepage displays all the available posts.'
         );
     }
 }
