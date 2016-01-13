@@ -27,4 +27,4 @@ install:
 
 test_script:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - php phpunit.phar -c app --verbose
+  - php phpunit.phar --verbose
