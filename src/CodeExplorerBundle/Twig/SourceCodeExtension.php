@@ -41,11 +41,15 @@ class SourceCodeExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('show_source_code', array($this, 'showSourceCode'), array('is_safe' => array('html'), 'needs_environment' => true)),
+            new \Twig_SimpleFunction('show_source_code', array($this, 'showSourceCode'), array(
+                'is_safe' => array('html'),
+                'needs_environment' => true,
+                'node_class' => 'CodeExplorerBundle\Twig\Node\TemplateAwareFunction',
+            )),
         );
     }
 
-    public function showSourceCode(\Twig_Environment $twig, \Twig_Template $template)
+    public function showSourceCode(\Twig_Template $template, \Twig_Environment $twig)
     {
         return $twig->render('@CodeExplorer/source_code.html.twig', array(
             'controller' => $this->getController(),
