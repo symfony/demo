@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
  * @var Composer\Autoload\ClassLoader
  */
 $loader = require __DIR__.'/../app/autoload.php';
-include_once __DIR__.'/../app/bootstrap.php.cache';
+include_once __DIR__.'/../var/bootstrap.php.cache';
 
 // If your web server provides APC support for PHP applications, uncomment these
 // lines to use APC for class autoloading. This can improve application performance
