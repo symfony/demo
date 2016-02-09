@@ -168,7 +168,6 @@ class Post
     public function removeComment(Comment $comment)
     {
         $this->comments->removeElement($comment);
-        $comment->setPost(null);
     }
 
     public function getSummary()
