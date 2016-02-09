@@ -111,7 +111,7 @@ class BlogController extends Controller
     /**
      * Finds and displays a Post entity.
      *
-     * @Route("/{id}", requirements={"id" = "\d+"}, name="admin_post_show")
+     * @Route("/{id}", requirements={"id": "\d+"}, name="admin_post_show")
      * @Method("GET")
      */
     public function showAction(Post $post)
@@ -134,7 +134,7 @@ class BlogController extends Controller
     /**
      * Displays a form to edit an existing Post entity.
      *
-     * @Route("/{id}/edit", requirements={"id" = "\d+"}, name="admin_post_edit")
+     * @Route("/{id}/edit", requirements={"id": "\d+"}, name="admin_post_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Post $post, Request $request)

@@ -33,8 +33,9 @@ use Symfony\Component\HttpFoundation\Response;
 class BlogController extends Controller
 {
     /**
-     * @Route("/", name="blog_index", defaults={"page" = 1})
-     * @Route("/page/{page}", name="blog_index_paginated", requirements={"page" : "\d+"})
+     * @Route("/", defaults={"page": 1}, name="blog_index")
+     * @Route("/page/{page}", requirements={"page": "[1-9]\d*"}, name="blog_index_paginated")
+     * @Method("GET")
      * @Cache(smaxage="10")
      */
     public function indexAction($page)
@@ -45,11 +46,16 @@ class BlogController extends Controller
         $posts = $paginator->paginate($query, $page, Post::NUM_ITEMS);
         $posts->setUsedRoute('blog_index_paginated');
 
+        if (0 === count($posts)) {
+            throw $this->createNotFoundException();
+        }
+
         return $this->render('blog/index.html.twig', array('posts' => $posts));
     }
 
     /**
      * @Route("/posts/{slug}", name="blog_post")
+     * @Method("GET")
      *
      * NOTE: The $post controller argument is automatically injected by Symfony
      * after performing a database query looking for a Post with the 'slug'
@@ -62,10 +68,9 @@ class BlogController extends Controller
     }
 
     /**
-     * @Route("/comment/{postSlug}/new", name = "comment_new")
-     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
-     *
+     * @Route("/comment/{postSlug}/new", name="comment_new")
      * @Method("POST")
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @ParamConverter("post", options={"mapping": {"postSlug": "slug"}})
      *
      * NOTE: The ParamConverter mapping is required because the route parameter
