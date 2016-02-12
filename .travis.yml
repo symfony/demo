@@ -17,6 +17,9 @@ matrix:
   allow_failures:
     - php: hhvm
 
+before_install:
+  - composer self-update
+
 install:
   - composer install
 
