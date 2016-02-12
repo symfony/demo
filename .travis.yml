@@ -18,6 +18,7 @@ matrix:
     - php: hhvm
 
 before_install:
+  - if [[ "$TRAVIS_PHP_VERSION" != "hhvm" ]]; then phpenv config-rm xdebug.ini; fi
   - composer self-update
 
 install:
