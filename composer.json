@@ -7,6 +7,12 @@
         "psr-4": { "": "src/" },
         "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/dunglas/symfony"
+        }
+    ],
     "require": {
         "php"                                  : ">=5.3.9",
         "ext-pdo_sqlite"                       : "*",
@@ -25,8 +31,9 @@
         "symfony/assetic-bundle"               : "~2.6",
         "symfony/monolog-bundle"               : "~2.7",
         "symfony/swiftmailer-bundle"           : "~2.3",
-        "symfony/symfony"                      : "~2.8",
-        "twig/extensions"                      : "~1.2"
+        "symfony/symfony"                      : "dev-action as 3.1.0",
+        "twig/extensions"                      : "~1.2",
+        "dunglas/action-bundle"                : "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0"
@@ -50,10 +57,7 @@
         ]
     },
     "config": {
-        "bin-dir": "bin",
-        "platform": {
-            "php": "5.3.9"
-        }
+        "bin-dir": "bin"
     },
     "extra": {
         "symfony-app-dir": "app",
