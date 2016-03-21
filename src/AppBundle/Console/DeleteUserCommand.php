@@ -9,10 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace AppBundle\Command;
+namespace AppBundle\Console;
 
 use AppBundle\Entity\User;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Doctrine\Common\Persistence\ManagerRegistry;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -32,14 +33,23 @@ use Doctrine\Common\Persistence\ObjectManager;
  *
  * @author Oleg Voronkovich <oleg-voronkovich@yandex.ru>
  */
-class DeleteUserCommand extends ContainerAwareCommand
+class DeleteUserCommand extends Command
 {
     const MAX_ATTEMPTS = 5;
+
+    private $doctrine;
 
     /**
      * @var ObjectManager
      */
     private $entityManager;
+
+    public function __construct(ManagerRegistry $doctrine)
+    {
+        parent::__construct();
+
+        $this->doctrine = $doctrine;
+    }
 
     /**
      * {@inheritdoc}
@@ -65,7 +75,7 @@ HELP
 
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
-        $this->entityManager = $this->getContainer()->get('doctrine')->getManager();
+        $this->entityManager = $this->doctrine->getManager();
     }
 
     protected function interact(InputInterface $input, OutputInterface $output)

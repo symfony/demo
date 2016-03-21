@@ -9,9 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace AppBundle\Command;
+namespace AppBundle\Console;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Doctrine\Common\Persistence\ManagerRegistry;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -19,6 +20,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\User;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * A command console that creates users and stores them in the database.
@@ -34,15 +36,27 @@ use AppBundle\Entity\User;
  * See http://symfony.com/doc/current/cookbook/console/console_command.html
  *
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
+ * @author Kévin Dunglas <dunglas@gmail.com>
  */
-class AddUserCommand extends ContainerAwareCommand
+class AddUserCommand extends Command
 {
     const MAX_ATTEMPTS = 5;
+
+    private $doctrine;
+    private $passwordEndoder;
 
     /**
      * @var ObjectManager
      */
     private $entityManager;
+
+    public function __construct(ManagerRegistry $doctrine, UserPasswordEncoderInterface $passwordEncoder)
+    {
+        parent::__construct();
+
+        $this->doctrine = $doctrine;
+        $this->passwordEndoder = $passwordEncoder;
+    }
 
     /**
      * {@inheritdoc}
@@ -73,7 +87,7 @@ class AddUserCommand extends ContainerAwareCommand
      */
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
-        $this->entityManager = $this->getContainer()->get('doctrine')->getManager();
+        $this->entityManager = $this->doctrine->getManager();
     }
 
     /**
@@ -190,8 +204,7 @@ class AddUserCommand extends ContainerAwareCommand
         $user->setRoles(array($isAdmin ? 'ROLE_ADMIN' : 'ROLE_USER'));
 
         // See http://symfony.com/doc/current/book/security.html#security-encoding-password
-        $encoder = $this->getContainer()->get('security.password_encoder');
-        $encodedPassword = $encoder->encodePassword($user, $plainPassword);
+        $encodedPassword = $this->passwordEndoder->encodePassword($user, $plainPassword);
         $user->setPassword($encodedPassword);
 
         $this->entityManager->persist($user);
