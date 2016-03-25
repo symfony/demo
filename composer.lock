@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7320f4e2ff3228c505943b68b0e569ad",
-    "content-hash": "e585bb0ab9e4908035a893d617aad050",
+    "hash": "a38ab8edfb63d4ee21a9197d670ee30b",
+    "content-hash": "a11160ba30aa6d7ea898c1e53b9746e5",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -893,18 +893,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dunglas/DunglasActionBundle.git",
-                "reference": "db0039f330216d7cd3186c0359b8b2903a8347d8"
+                "reference": "5194e0b273e0f13c6e54a16aeb47ed2590c29116"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dunglas/DunglasActionBundle/zipball/db0039f330216d7cd3186c0359b8b2903a8347d8",
-                "reference": "db0039f330216d7cd3186c0359b8b2903a8347d8",
+                "url": "https://api.github.com/repos/dunglas/DunglasActionBundle/zipball/5194e0b273e0f13c6e54a16aeb47ed2590c29116",
+                "reference": "5194e0b273e0f13c6e54a16aeb47ed2590c29116",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.5.9",
                 "symfony/config": "~2.8|~3.0",
                 "symfony/dependency-injection": "~2.8|~3.0",
+                "symfony/finder": "~2.8|~3.0",
                 "symfony/http-kernel": "~2.8|~3.0"
             },
             "require-dev": {
@@ -918,6 +919,11 @@
                 "symfony/routing": "To use the @Route annotation provided by the bundle."
             },
             "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Dunglas\\ActionBundle\\": ""
@@ -946,7 +952,7 @@
                 "routing",
                 "symfony"
             ],
-            "time": "2016-03-20 21:53:21"
+            "time": "2016-03-25 19:41:41"
         },
         {
             "name": "erusev/parsedown",
@@ -1742,16 +1748,16 @@
         },
         {
             "name": "sensio/framework-extra-bundle",
-            "version": "v3.0.14",
+            "version": "v3.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioFrameworkExtraBundle.git",
-                "reference": "cccf975c565ccd835bddc30a8fea5cdfe3357bf1"
+                "reference": "507a15f56fa7699f6cc8c2c7de4080b19ce22546"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/cccf975c565ccd835bddc30a8fea5cdfe3357bf1",
-                "reference": "cccf975c565ccd835bddc30a8fea5cdfe3357bf1",
+                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/507a15f56fa7699f6cc8c2c7de4080b19ce22546",
+                "reference": "507a15f56fa7699f6cc8c2c7de4080b19ce22546",
                 "shasum": ""
             },
             "require": {
@@ -1800,7 +1806,7 @@
                 "annotations",
                 "controllers"
             ],
-            "time": "2016-03-01 10:50:07"
+            "time": "2016-03-25 17:08:27"
         },
         {
             "name": "sensiolabs/security-checker",

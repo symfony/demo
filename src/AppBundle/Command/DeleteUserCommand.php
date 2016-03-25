@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace AppBundle\Console;
+namespace AppBundle\Command;
 
 use AppBundle\Entity\User;
 use Doctrine\Common\Persistence\ManagerRegistry;

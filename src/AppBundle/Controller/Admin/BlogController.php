@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace AppBundle\Action\Admin;
+namespace AppBundle\Controller\Admin;
 
 use AppBundle\Utils\Slugger;
 use Symfony\Bundle\FrameworkBundle\Controller\ControllerTrait;

@@ -33,7 +33,7 @@
         "symfony/swiftmailer-bundle"           : "~2.3",
         "symfony/symfony"                      : "dev-action as 3.1.0",
         "twig/extensions"                      : "~1.2",
-        "dunglas/action-bundle"                : "dev-master"
+        "dunglas/action-bundle"                : "~1.0@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0"
@@ -57,7 +57,10 @@
         ]
     },
     "config": {
-        "bin-dir": "bin"
+        "bin-dir": "bin",
+        "platform": {
+            "php": "5.5.9"
+        }
     },
     "extra": {
         "symfony-app-dir": "app",
