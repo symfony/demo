@@ -13,12 +13,13 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Comment;
 use AppBundle\Entity\Post;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\ControllerTrait;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -29,9 +30,19 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
+ * @author Kévin Dunglas <dunglas@gmail.com>
  */
-class BlogController extends Controller
+class BlogController
 {
+    use ControllerTrait;
+
+    private $paginator;
+    
+    public function __construct(PaginatorInterface $paginator) // Typehint services you need here, they will be automatically autowired
+    {
+        $this->paginator = $paginator;
+    }
+
     /**
      * @Route("/", defaults={"page": 1}, name="blog_index")
      * @Route("/page/{page}", requirements={"page": "[1-9]\d*"}, name="blog_index_paginated")
@@ -42,8 +53,7 @@ class BlogController extends Controller
     {
         $query = $this->getDoctrine()->getRepository('AppBundle:Post')->queryLatest();
 
-        $paginator = $this->get('knp_paginator');
-        $posts = $paginator->paginate($query, $page, Post::NUM_ITEMS);
+        $posts = $this->paginator->paginate($query, $page, Post::NUM_ITEMS);
         $posts->setUsedRoute('blog_index_paginated');
 
         if (0 === count($posts)) {

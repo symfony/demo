@@ -11,8 +11,9 @@
 
 namespace AppBundle\Controller\Admin;
 
+use AppBundle\Utils\Slugger;
+use Symfony\Bundle\FrameworkBundle\Controller\ControllerTrait;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -31,9 +32,19 @@ use AppBundle\Entity\Post;
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
+ * @author Kévin Dunglas <dunglas@gmail.com>
  */
-class BlogController extends Controller
+class BlogController
 {
+    use ControllerTrait;
+
+    private $slugger;
+
+    public function __construct(Slugger $slugger)
+    {
+        $this->slugger = $slugger;
+    }
+
     /**
      * Lists all Post entities.
      *
@@ -83,7 +94,7 @@ class BlogController extends Controller
         // However, we explicitly add it to improve code readability.
         // See http://symfony.com/doc/current/best_practices/forms.html#handling-form-submits
         if ($form->isSubmitted() && $form->isValid()) {
-            $post->setSlug($this->get('slugger')->slugify($post->getTitle()));
+            $post->setSlug($this->slugger->slugify($post->getTitle()));
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($post);
@@ -151,7 +162,7 @@ class BlogController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $post->setSlug($this->get('slugger')->slugify($post->getTitle()));
+            $post->setSlug($this->slugger->slugify($post->getTitle()));
             $entityManager->flush();
 
             $this->addFlash('success', 'post.updated_successfully');
