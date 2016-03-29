@@ -19,7 +19,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Bundle\FrameworkBundle\Controller\ControllerTrait;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -32,10 +32,8 @@ use Symfony\Component\HttpFoundation\Response;
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  * @author Kévin Dunglas <dunglas@gmail.com>
  */
-class BlogController
+class BlogController extends Controller
 {
-    use ControllerTrait;
-
     private $paginator;
     
     public function __construct(PaginatorInterface $paginator) // Typehint services you need here, they will be automatically autowired

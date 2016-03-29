@@ -13,7 +13,9 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\ControllerTrait;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
@@ -26,13 +28,13 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
  */
 class SecurityController
 {
-    use ControllerTrait;
-
     private $authenticationUtils;
+    private $twig;
 
-    public function __construct(AuthenticationUtils $authenticationUtils)
+    public function __construct(AuthenticationUtils $authenticationUtils, \Twig_Environment $twig)
     {
         $this->authenticationUtils = $authenticationUtils;
+        $this->twig = $twig;
     }
 
     /**
@@ -41,12 +43,12 @@ class SecurityController
      */
     public function loginAction()
     {
-        return $this->render('security/login.html.twig', array(
+        return new Response($this->twig->render('security/login.html.twig', array(
             // last username entered by the user (if any)
             'last_username' => $this->authenticationUtils->getLastUsername(),
             // last authentication error (if any)
             'error' => $this->authenticationUtils->getLastAuthenticationError(),
-        ));
+        )));
     }
 
     /**

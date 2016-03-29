@@ -12,6 +12,7 @@
 namespace AppBundle\Controller\Admin;
 
 use AppBundle\Utils\Slugger;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\ControllerTrait;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -34,10 +35,8 @@ use AppBundle\Entity\Post;
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  * @author Kévin Dunglas <dunglas@gmail.com>
  */
-class BlogController
+class BlogController extends Controller
 {
-    use ControllerTrait;
-
     private $slugger;
 
     public function __construct(Slugger $slugger)

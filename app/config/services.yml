@@ -1,4 +1,8 @@
 services:
+    # Required for fixtures
+    slugger:
+      class: AppBundle\Utils\Slugger
+
     # These are the Twig extensions that create new filters and functions for
     # using them in the templates
     app.twig.app_extension:
