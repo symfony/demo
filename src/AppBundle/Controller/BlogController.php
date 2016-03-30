@@ -46,7 +46,7 @@ class BlogController extends Controller
         $posts = $paginator->paginate($query, $page, Post::NUM_ITEMS);
         $posts->setUsedRoute('blog_index_paginated');
 
-        if (0 === count($posts)) {
+        if (0 === count($posts) && 1 < $page) {
             throw $this->createNotFoundException();
         }
 
