@@ -176,7 +176,7 @@ MARKDOWN;
     {
         $phrases = $this->getPhrases();
 
-        $numPhrases = rand(6, 12);
+        $numPhrases = mt_rand(6, 12);
         shuffle($phrases);
 
         return substr(implode(' ', array_slice($phrases, 0, $numPhrases-1)), 0, $maxLength);
@@ -186,7 +186,7 @@ MARKDOWN;
     {
         $phrases = $this->getPhrases();
 
-        $numPhrases = rand(2, 15);
+        $numPhrases = mt_rand(2, 15);
         shuffle($phrases);
 
         return implode(' ', array_slice($phrases, 0, $numPhrases-1));
