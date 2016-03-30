@@ -45,11 +45,11 @@ class SourceCodeExtension extends \Twig_Extension
         );
     }
 
-    public function showSourceCode(\Twig_Environment $twig, \Twig_Template $template)
+    public function showSourceCode(\Twig_Environment $twig, $template)
     {
         return $twig->render('@CodeExplorer/source_code.html.twig', array(
             'controller' => $this->getController(),
-            'template'   => $this->getTemplateSource($template),
+            'template'   => $this->getTemplateSource($twig->resolveTemplate($template)),
         ));
     }
 
