@@ -7,7 +7,7 @@
    '_flash_messages.html.twig' instead of 'flash_messages.html.twig'
 #}
 
-{% if app.session.started %}
+{% if app.session.started and app.session.flashBag.has('success') %}
     <div class="messages">
         {% for message in app.session.flashBag.get('success') %}
             {# Bootstrap alert, see http://getbootstrap.com/components/#alerts #}
