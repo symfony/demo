@@ -1,0 +1,17 @@
+---------------------------------------------------------------------------
+
+by f-plante at 2016-03-30T11:19:13Z
+
+I reverted the code style issue regarding flashBag vs flashbag. The shame is that I checked first in [the documentation](http://symfony.com/doc/current/book/controller.html) and the twig example use `flashbag`.
+
+---------------------------------------------------------------------------
+
+by stof at 2016-03-30T13:23:08Z
+
+@f-plante given that PHP method names are case-insensitive, both work
+
+---------------------------------------------------------------------------
+
+by f-plante at 2016-03-30T13:28:35Z
+
+Yes, I know that. That's why I called it a _code style issue_. This seems important to @xabbuh to keep the case as-is.
