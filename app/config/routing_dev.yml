@@ -16,9 +16,9 @@ _errors:
     resource: "@TwigBundle/Resources/config/routing/errors.xml"
     prefix:   /{_locale}/_error
     requirements:
-        _locale: %app_locales%
+        _locale: '%app_locales%'
     defaults:
-        _locale: %locale%
+        _locale: '%locale%'
 
 # this loads the main routing file, which usually defines the routes available
 # in any environment (production, development, etc.)

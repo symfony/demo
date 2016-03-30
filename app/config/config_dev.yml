@@ -13,7 +13,7 @@ doctrine:
         path: "%kernel.root_dir%/data/blog.sqlite"
 
 web_profiler:
-    toolbar: %kernel.debug%
+    toolbar: '%kernel.debug%'
     intercept_redirects: false
 
 monolog:
