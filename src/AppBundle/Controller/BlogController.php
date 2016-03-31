@@ -34,23 +34,15 @@ class BlogController extends Controller
 {
     /**
      * @Route("/", defaults={"page": 1}, name="blog_index")
-     * @Route("/page/{page}", requirements={"page": "[1-9]\d*"}, name="blog_index_paginated")
+     * @Route("/page/{page}", name="blog_index_paginated")
      * @Method("GET")
      * @Cache(smaxage="10")
      */
     public function indexAction($page)
     {
-        $query = $this->getDoctrine()->getRepository('AppBundle:Post')->queryLatest();
+        $paginator = $this->getDoctrine()->getRepository('AppBundle:Post')->findLatest($page);
 
-        $paginator = $this->get('knp_paginator');
-        $posts = $paginator->paginate($query, $page, Post::NUM_ITEMS);
-        $posts->setUsedRoute('blog_index_paginated');
-
-        if (0 === count($posts) && 1 < $page) {
-            throw $this->createNotFoundException();
-        }
-
-        return $this->render('blog/index.html.twig', array('posts' => $posts));
+        return $this->render('blog/index.html.twig', array('posts' => $paginator));
     }
 
     /**
