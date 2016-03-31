@@ -18,7 +18,7 @@
     {% endfor %}
 
     <div class="navigation text-center">
-        {{ knp_pagination_render(posts) }}
+        {{ pagerfanta(posts, 'twitter_bootstrap3', { routeName: 'blog_index_paginated' }) }}
     </div>
 {% endblock %}
 

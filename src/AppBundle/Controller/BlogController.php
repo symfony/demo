@@ -40,15 +40,7 @@ class BlogController extends Controller
      */
     public function indexAction($page)
     {
-        $query = $this->getDoctrine()->getRepository('AppBundle:Post')->queryLatest();
-
-        $paginator = $this->get('knp_paginator');
-        $posts = $paginator->paginate($query, $page, Post::NUM_ITEMS);
-        $posts->setUsedRoute('blog_index_paginated');
-
-        if (0 === count($posts) && 1 < $page) {
-            throw $this->createNotFoundException();
-        }
+        $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->findLatest($page);
 
         return $this->render('blog/index.html.twig', array('posts' => $posts));
     }
