@@ -7,6 +7,7 @@ framework:
         strict_requirements: true
     profiler: { only_exceptions: false }
 
+# remove next 4 lines if you are not using standard SQLite database but e.g. MySQL
 doctrine:
     dbal:
         # temp workaround for https://github.com/doctrine/dbal/issues/1106: define DB path here
