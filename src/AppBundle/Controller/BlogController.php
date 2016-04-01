@@ -34,7 +34,7 @@ class BlogController extends Controller
 {
     /**
      * @Route("/", defaults={"page": 1}, name="blog_index")
-     * @Route("/page/{page}", name="blog_index_paginated")
+     * @Route("/page/{page}", requirements={"page": "[1-9]\d*"}, name="blog_index_paginated")
      * @Method("GET")
      * @Cache(smaxage="10")
      */
