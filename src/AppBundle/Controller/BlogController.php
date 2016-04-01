@@ -40,9 +40,9 @@ class BlogController extends Controller
      */
     public function indexAction($page)
     {
-        $paginator = $this->getDoctrine()->getRepository('AppBundle:Post')->findLatest($page);
+        $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->findLatest($page);
 
-        return $this->render('blog/index.html.twig', array('posts' => $paginator));
+        return $this->render('blog/index.html.twig', array('posts' => $posts));
     }
 
     /**
