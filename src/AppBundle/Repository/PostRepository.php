@@ -13,6 +13,7 @@ namespace AppBundle\Repository;
 
 use AppBundle\Entity\Post;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
 
@@ -26,6 +27,9 @@ use Pagerfanta\Pagerfanta;
  */
 class PostRepository extends EntityRepository
 {
+    /**
+     * @return Query
+     */
     public function queryLatest()
     {
         return $this->getEntityManager()
@@ -39,6 +43,11 @@ class PostRepository extends EntityRepository
         ;
     }
 
+    /**
+     * @param int $page
+     *
+     * @return Pagerfanta
+     */
     public function findLatest($page = 1)
     {
         $paginator = new Pagerfanta(new DoctrineORMAdapter($this->queryLatest(), true, false));
