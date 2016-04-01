@@ -50,7 +50,7 @@ class PostRepository extends EntityRepository
      */
     public function findLatest($page = 1)
     {
-        $paginator = new Pagerfanta(new DoctrineORMAdapter($this->queryLatest(), true, false));
+        $paginator = new Pagerfanta(new DoctrineORMAdapter($this->queryLatest(), false));
         $paginator->setMaxPerPage(Post::NUM_ITEMS);
         $paginator->setCurrentPage($page);
 
