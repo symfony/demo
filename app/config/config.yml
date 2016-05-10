@@ -8,6 +8,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: services.php }
 
 # These are the configuration parameters that define the application's behavior
 # and which are independent from the underlying technical infrastructure

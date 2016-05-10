@@ -16,12 +16,6 @@ services:
         tags:
             - { name: twig.extension }
 
-    app.twig.intl_extension:
-        public: false
-        class:  Twig_Extensions_Extension_Intl
-        tags:
-            - { name: twig.extension }
-
     app.redirect_to_preferred_locale_listener:
         class: AppBundle\EventListener\RedirectToPreferredLocaleListener
         arguments: ['@router', '%app_locales%', '%locale%']
