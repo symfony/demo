@@ -58,7 +58,7 @@ class IntlExtension extends \Twig_Extension
      */
     public function getLocalizedDate($date, $dateFormat = 'medium', $timeFormat = 'medium')
     {
-        $date = is_string($date) ? new \DateTime($date) : $date;
+        $date = ($date instanceof \DateTimeInterface) ? $date : new \DateTime($date);
 
         return $date->format($this->dateFormats[$dateFormat].' '.$this->timeFormats[$timeFormat]);
     }
