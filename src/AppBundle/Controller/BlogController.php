@@ -56,6 +56,16 @@ class BlogController extends Controller
      */
     public function postShowAction(Post $post)
     {
+        // Symfony provides a function called 'dump()' which is an improved version
+        // of the well-known 'var_dump()' function. It's useful to show the contents
+        // of any variable and check if they contain what you expect.
+        // The 'dump()' function is not available in the 'prod' environment, so use
+        // it only while developing the application, not in production. To make this
+        // app work in both environments, we check the value of the 'kernel.debug' parameter.
+        if (true === $this->getParameter('kernel.debug')) {
+            dump($post, $this->get('security.token_storage')->getToken()->getUser(), new \DateTime());
+        }
+
         return $this->render('blog/post_show.html.twig', array('post' => $post));
     }
 
