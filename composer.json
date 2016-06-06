@@ -29,7 +29,8 @@
         "white-october/pagerfanta-bundle"      : "^1.0"
     },
     "require-dev": {
-        "sensio/generator-bundle": "~3.0"
+        "sensio/generator-bundle"              : "~3.0",
+        "symfony/phpunit-bridge"               : "^3.0"
     },
     "scripts": {
         "post-install-cmd": [
@@ -52,12 +53,15 @@
     "config": {
         "bin-dir": "bin",
         "platform": {
-            "php": "5.3.9"
+            "php": "5.5.9"
         }
     },
     "extra": {
         "symfony-app-dir": "app",
+        "symfony-bin-dir": "bin",
+        "symfony-var-dir": "var",
         "symfony-web-dir": "web",
+        "symfony-tests-dir": "tests",
         "symfony-assets-install": "relative",
         "incenteev-parameters": {
             "file": "app/config/parameters.yml",
