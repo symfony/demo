@@ -11,12 +11,14 @@
 
 namespace AppBundle\Controller\Admin;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Entity\Post;
+use AppBundle\Form\PostType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use AppBundle\Entity\Post;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Controller used to manage blog contents in the backend.
@@ -73,8 +75,8 @@ class BlogController extends Controller
         $post->setAuthorEmail($this->getUser()->getEmail());
 
         // See http://symfony.com/doc/current/book/forms.html#submitting-forms-with-multiple-buttons
-        $form = $this->createForm('AppBundle\Form\PostType', $post)
-            ->add('saveAndCreateNew', 'Symfony\Component\Form\Extension\Core\Type\SubmitType');
+        $form = $this->createForm(PostType::class, $post)
+            ->add('saveAndCreateNew', SubmitType::class);
 
         $form->handleRequest($request);
 
@@ -145,7 +147,7 @@ class BlogController extends Controller
 
         $entityManager = $this->getDoctrine()->getManager();
 
-        $editForm = $this->createForm('AppBundle\Form\PostType', $post);
+        $editForm = $this->createForm(PostType::class, $post);
         $deleteForm = $this->createDeleteForm($post);
 
         $editForm->handleRequest($request);
