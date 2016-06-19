@@ -60,6 +60,8 @@ class BlogController extends Controller
         // of the 'var_dump()' function. It's useful to quickly debug the contents
         // of any variable, but it's not available in the 'prod' environment to
         // prevent any leak of sensitive information.
+        // This function can be used both in PHP files and Twig templates. The only
+        // requirement is to have enabled the DebugBundle.
         if ('dev' === $this->getParameter('kernel.environment')) {
             dump($post, $this->get('security.token_storage')->getToken()->getUser(), new \DateTime());
         }
