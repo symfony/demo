@@ -36,22 +36,22 @@ class PostType extends AbstractType
         // server-side validation errors from the browser. To temporarily disable
         // this validation, set the 'required' attribute to 'false':
         //
-        //     $builder->add('title', null, array('required' => false, ...));
+        //     $builder->add('title', null, ['required' => false, ...]);
 
         $builder
-            ->add('title', null, array(
-                'attr' => array('autofocus' => true),
+            ->add('title', null, [
+                'attr' => ['autofocus' => true],
                 'label' => 'label.title',
-            ))
-            ->add('summary', 'Symfony\Component\Form\Extension\Core\Type\TextareaType', array('label' => 'label.summary'))
-            ->add('content', null, array(
-                'attr' => array('rows' => 20),
+            ])
+            ->add('summary', 'Symfony\Component\Form\Extension\Core\Type\TextareaType', ['label' => 'label.summary'])
+            ->add('content', null, [
+                'attr' => ['rows' => 20],
                 'label' => 'label.content',
-            ))
-            ->add('authorEmail', null, array('label' => 'label.author_email'))
-            ->add('publishedAt', 'AppBundle\Form\Type\DateTimePickerType', array(
+            ])
+            ->add('authorEmail', null, ['label' => 'label.author_email'])
+            ->add('publishedAt', 'AppBundle\Form\Type\DateTimePickerType', [
                 'label' => 'label.published_at',
-            ))
+            ])
         ;
     }
 
@@ -60,8 +60,8 @@ class PostType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'AppBundle\Entity\Post',
-        ));
+        ]);
     }
 }

@@ -54,7 +54,7 @@ class BlogController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $posts = $entityManager->getRepository('AppBundle:Post')->findAll();
 
-        return $this->render('admin/blog/index.html.twig', array('posts' => $posts));
+        return $this->render('admin/blog/index.html.twig', ['posts' => $posts]);
     }
 
     /**
@@ -102,10 +102,10 @@ class BlogController extends Controller
             return $this->redirectToRoute('admin_post_index');
         }
 
-        return $this->render('admin/blog/new.html.twig', array(
+        return $this->render('admin/blog/new.html.twig', [
             'post' => $post,
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -125,10 +125,10 @@ class BlogController extends Controller
 
         $deleteForm = $this->createDeleteForm($post);
 
-        return $this->render('admin/blog/show.html.twig', array(
+        return $this->render('admin/blog/show.html.twig', [
             'post'        => $post,
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -156,14 +156,14 @@ class BlogController extends Controller
 
             $this->addFlash('success', 'post.updated_successfully');
 
-            return $this->redirectToRoute('admin_post_edit', array('id' => $post->getId()));
+            return $this->redirectToRoute('admin_post_edit', ['id' => $post->getId()]);
         }
 
-        return $this->render('admin/blog/edit.html.twig', array(
+        return $this->render('admin/blog/edit.html.twig', [
             'post'        => $post,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -210,7 +210,7 @@ class BlogController extends Controller
     private function createDeleteForm(Post $post)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_post_delete', array('id' => $post->getId())))
+            ->setAction($this->generateUrl('admin_post_delete', ['id' => $post->getId()]))
             ->setMethod('DELETE')
             ->getForm()
         ;

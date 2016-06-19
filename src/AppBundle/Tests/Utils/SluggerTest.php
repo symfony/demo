@@ -38,12 +38,12 @@ class SluggerTest extends \PHPUnit_Framework_TestCase
 
     public function getSlugs()
     {
-        return array(
-            array('Lorem Ipsum'     , 'lorem-ipsum'),
-            array('  Lorem Ipsum  ' , 'lorem-ipsum'),
-            array(' lOrEm  iPsUm  ' , 'lorem-ipsum'),
-            array('!Lorem Ipsum!'   , 'lorem-ipsum'),
-            array('lorem-ipsum'     , 'lorem-ipsum'),
-        );
+        return [
+            ['Lorem Ipsum'     , 'lorem-ipsum'],
+            ['  Lorem Ipsum  ' , 'lorem-ipsum'],
+            [' lOrEm  iPsUm  ' , 'lorem-ipsum'],
+            ['!Lorem Ipsum!'   , 'lorem-ipsum'],
+            ['lorem-ipsum'     , 'lorem-ipsum'],
+        ];
     }
 }

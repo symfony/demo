@@ -42,7 +42,7 @@ class BlogController extends Controller
     {
         $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->findLatest($page);
 
-        return $this->render('blog/index.html.twig', array('posts' => $posts));
+        return $this->render('blog/index.html.twig', ['posts' => $posts]);
     }
 
     /**
@@ -66,7 +66,7 @@ class BlogController extends Controller
             dump($post, $this->get('security.token_storage')->getToken()->getUser(), new \DateTime());
         }
 
-        return $this->render('blog/post_show.html.twig', array('post' => $post));
+        return $this->render('blog/post_show.html.twig', ['post' => $post]);
     }
 
     /**
@@ -95,13 +95,13 @@ class BlogController extends Controller
             $entityManager->persist($comment);
             $entityManager->flush();
 
-            return $this->redirectToRoute('blog_post', array('slug' => $post->getSlug()));
+            return $this->redirectToRoute('blog_post', ['slug' => $post->getSlug()]);
         }
 
-        return $this->render('blog/comment_form_error.html.twig', array(
+        return $this->render('blog/comment_form_error.html.twig', [
             'post' => $post,
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -120,9 +120,9 @@ class BlogController extends Controller
     {
         $form = $this->createForm('AppBundle\Form\CommentType');
 
-        return $this->render('blog/_comment_form.html.twig', array(
+        return $this->render('blog/_comment_form.html.twig', [
             'post' => $post,
             'form' => $form->createView(),
-        ));
+        ]);
     }
 }
