@@ -1,0 +1,108 @@
+---------------------------------------------------------------------------
+
+by stof at 2016-05-31T09:35:04Z
+
+``var/bootstrap.php.cache`` should not be committed
+
+---------------------------------------------------------------------------
+
+by stof at 2016-05-31T09:36:34Z
+
+the ``bin/console`` file is missing
+
+---------------------------------------------------------------------------
+
+by stof at 2016-05-31T09:37:13Z
+
+Given the 2 above issues, I suspect you did the ``git add`` call before changing the gitignore file...
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2016-05-31T10:51:11Z
+
+In eba83d9 you can see that I reverted some changes related to logs and DB and that were introduced to make this app more Heroku-friendly:
+
+1) First, errors in `prod` environment are logged again in `var/logs/prod.log` which is what every Symfony developer expects. Otherwise, debugging errors is more complicated than it should.
+2) The `database_url` option doesn't work for me. The `prod` environment simply returns `500` for every request. Using the common `path` and `driver` options solved this for me.
+
+---------------------------------------------------------------------------
+
+by stof at 2016-06-02T09:52:26Z
+
+> The database_url option doesn't work for me. The prod environment simply returns 500 for every request.
+
+Have you checked the logs to see what the error is ? It would be great to identify the bug rather than just saying it is buggy and avoiding its usage.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2016-06-02T10:01:13Z
+
+@stof you are right. I apologize! I didn't want to sound harsh. Here are the details.
+
+---
+
+With this config:
+
+```yaml
+doctrine:
+    dbal:
+        driver: "pdo_sqlite"
+        path:   "%kernel.root_dir%/../var/data/blog.sqlite"
+```
+
+The app works in `prod`.
+
+---
+
+With this other config:
+
+```yaml
+parameters:
+    database_url: 'sqlite:///%kernel.root_dir%/../var/data/blog.sqlite'
+
+doctrine:
+    dbal:
+        url: "%database_url%"
+```
+
+Every page shows a `500` error because of this:
+
+```
+[2016-06-02 11:56:03] request.CRITICAL: Uncaught PHP Exception Twig_Error_Runtime:
+"An exception has been thrown during the rendering of a template: "An exception occurred
+while executing 'SELECT ... FROM symfony_demo_post s0_ WHERE ...' with params
+["2016-06-02 11:56:03"]:
+
+SQLSTATE[HY000]: General error: 1 no such table: symfony_demo_post"
+in "blog/index.html.twig" at line 6."
+```
+
+---------------------------------------------------------------------------
+
+by stof at 2016-06-02T10:29:15Z
+
+that looks weird.
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2016-06-02T11:15:39Z
+
+It seems like it creates a new database instead of using an existing one
+
+---------------------------------------------------------------------------
+
+by xabbuh at 2016-06-05T20:50:27Z
+
+~~You need to update the `app_dev.php` file too.~~ (Never mind, it's already up-to-date).
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2016-06-12T14:24:27Z
+
+This is ready for the final review. Thanks!
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2016-06-19T11:17:07Z
+
+Let's merge this change to test it a bit before releasing the new version of the demo app. Thanks!
