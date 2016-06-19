@@ -22,7 +22,7 @@ if (!in_array(@$_SERVER['REMOTE_ADDR'], array(
     exit('This script is only accessible from localhost.');
 }
 
-require_once dirname(__FILE__).'/../app/SymfonyRequirements.php';
+require_once dirname(__FILE__).'/../var/SymfonyRequirements.php';
 
 $symfonyRequirements = new SymfonyRequirements();
 
