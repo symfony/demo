@@ -67,21 +67,17 @@ class DefaultControllerTest extends WebTestCase
 
     public function getPublicUrls()
     {
-        return [
-            ['/'],
-            ['/en/blog/'],
-            ['/en/blog/posts/morbi-tempus-commodo-mattis'],
-            ['/en/login'],
-        ];
+        yield ['/'];
+        yield ['/en/blog/'];
+        yield ['/en/blog/posts/morbi-tempus-commodo-mattis'];
+        yield ['/en/login'];
     }
 
     public function getSecureUrls()
     {
-        return [
-            ['/en/admin/post/'],
-            ['/en/admin/post/new'],
-            ['/en/admin/post/1'],
-            ['/en/admin/post/1/edit'],
-        ];
+        yield ['/en/admin/post/'];
+        yield ['/en/admin/post/new'];
+        yield ['/en/admin/post/1'];
+        yield ['/en/admin/post/1/edit'];
     }
 }
