@@ -11,7 +11,7 @@ class AppKernel extends Kernel
         // application, you must add it in the following array to register it
         // in the application. Otherwise, the bundle won't be enabled and you
         // won't be able to use it.
-        $bundles = array(
+        $bundles = [
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
@@ -24,13 +24,13 @@ class AppKernel extends Kernel
             new CodeExplorerBundle\CodeExplorerBundle(),
             new AppBundle\AppBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
-        );
+        ];
 
         // Some bundles are only used while developing the application or during
         // the unit and functional tests. Therefore, they are only registered
         // when the application runs in 'dev' or 'test' environments. This allows
         // to increase application performance in the production environment.
-        if (in_array($this->getEnvironment(), array('dev', 'test'))) {
+        if (in_array($this->getEnvironment(), ['dev', 'test'])) {
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();

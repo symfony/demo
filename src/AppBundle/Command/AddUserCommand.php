@@ -98,20 +98,20 @@ class AddUserCommand extends ContainerAwareCommand
         $output->writeln('-----------------------------------');
 
         // ...but you can also pass an array of strings to the writeln() method
-        $output->writeln(array(
+        $output->writeln([
             '',
             'If you prefer to not use this interactive wizard, provide the',
             'arguments required by this command as follows:',
             '',
             ' $ php app/console app:add-user username password email@example.com',
             '',
-        ));
+        ]);
 
-        $output->writeln(array(
+        $output->writeln([
             '',
             'Now we\'ll ask you for the value of all the missing command arguments.',
             '',
-        ));
+        ]);
 
         // See http://symfony.com/doc/current/components/console/helpers/questionhelper.html
         $console = $this->getHelper('question');
@@ -139,7 +139,7 @@ class AddUserCommand extends ContainerAwareCommand
         $password = $input->getArgument('password');
         if (null === $password) {
             $question = new Question(' > <info>Password</info> (your type will be hidden): ');
-            $question->setValidator(array($this, 'passwordValidator'));
+            $question->setValidator([$this, 'passwordValidator']);
             $question->setHidden(true);
             $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
@@ -153,7 +153,7 @@ class AddUserCommand extends ContainerAwareCommand
         $email = $input->getArgument('email');
         if (null === $email) {
             $question = new Question(' > <info>Email</info>: ');
-            $question->setValidator(array($this, 'emailValidator'));
+            $question->setValidator([$this, 'emailValidator']);
             $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
             $email = $console->ask($input, $output, $question);
@@ -177,7 +177,7 @@ class AddUserCommand extends ContainerAwareCommand
         $isAdmin = $input->getOption('is-admin');
 
         // first check if a user with the same username already exists
-        $existingUser = $this->entityManager->getRepository('AppBundle:User')->findOneBy(array('username' => $username));
+        $existingUser = $this->entityManager->getRepository(User::class)->findOneBy(['username' => $username]);
 
         if (null !== $existingUser) {
             throw new \RuntimeException(sprintf('There is already a user registered with the "%s" username.', $username));
@@ -187,7 +187,7 @@ class AddUserCommand extends ContainerAwareCommand
         $user = new User();
         $user->setUsername($username);
         $user->setEmail($email);
-        $user->setRoles(array($isAdmin ? 'ROLE_ADMIN' : 'ROLE_USER'));
+        $user->setRoles([$isAdmin ? 'ROLE_ADMIN' : 'ROLE_USER']);
 
         // See http://symfony.com/doc/current/book/security.html#security-encoding-password
         $encoder = $this->getContainer()->get('security.password_encoder');

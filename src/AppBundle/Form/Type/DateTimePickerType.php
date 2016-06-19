@@ -13,6 +13,7 @@ namespace AppBundle\Form\Type;
 
 use AppBundle\Utils\MomentFormatConverter;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -50,9 +51,9 @@ class DateTimePickerType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'widget' => 'single_text',
-        ));
+        ]);
     }
 
     /**
@@ -60,6 +61,6 @@ class DateTimePickerType extends AbstractType
      */
     public function getParent()
     {
-        return 'Symfony\Component\Form\Extension\Core\Type\DateTimeType';
+        return DateTimeType::class;
     }
 }

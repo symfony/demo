@@ -25,7 +25,7 @@ class MomentFormatConverter
      *
      * @var array
      */
-    private static $formatConvertRules = array(
+    private static $formatConvertRules = [
         // year
         'yyyy' => 'YYYY', 'yy' => 'YY', 'y' => 'YYYY',
         // day
@@ -36,7 +36,7 @@ class MomentFormatConverter
         'ZZZZZ' => 'Z', 'ZZZ' => 'ZZ',
         // letter 'T'
         '\'T\'' => 'T',
-    );
+    ];
 
     /**
      * Returns associated moment.js format.

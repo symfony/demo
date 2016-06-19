@@ -11,6 +11,7 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Comment;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -36,7 +37,7 @@ class CommentType extends AbstractType
         // server-side validation errors from the browser. To temporarily disable
         // this validation, set the 'required' attribute to 'false':
         //
-        //     $builder->add('content', null, array('required' => false));
+        //     $builder->add('content', null, ['required' => false]);
 
         $builder
             ->add('content')
@@ -48,8 +49,8 @@ class CommentType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Comment',
-        ));
+        $resolver->setDefaults([
+            'data_class' => Comment::class,
+        ]);
     }
 }
