@@ -17,9 +17,9 @@ parameters:
     # You can even create the database and load the sample data from the command line:
     #
     # $ cd symfony-demo/
-    # $ php app/console doctrine:database:create
-    # $ php app/console doctrine:schema:create
-    # $ php app/console doctrine:fixtures:load
+    # $ php bin/console doctrine:database:create
+    # $ php bin/console doctrine:schema:create
+    # $ php bin/console doctrine:fixtures:load
 
     # If you don't use a real mail server, you can send emails via your Gmail account.
     # see http://symfony.com/doc/current/cookbook/email/gmail.html

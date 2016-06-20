@@ -24,7 +24,7 @@ use Doctrine\Common\Persistence\ObjectManager;
  * To use this command, open a terminal window, enter into your project
  * directory and execute the following:
  *
- *     $ php app/console app:delete-user
+ *     $ php bin/console app:delete-user
  *
  * Check out the code of the src/AppBundle/Command/AddUserCommand.php file for
  * the full explanation about Symfony commands.
@@ -83,7 +83,7 @@ HELP
             'If you prefer to not use this interactive wizard, provide the',
             'arguments required by this command as follows:',
             '',
-            ' $ php app/console app:delete-user username',
+            ' $ php bin/console app:delete-user username',
             '',
         ));
 
