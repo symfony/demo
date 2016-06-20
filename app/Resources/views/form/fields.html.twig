@@ -1,11 +1,13 @@
 {#
    Each field type is rendered by a template fragment, which is determined
-   by the value of your getName() method and the suffix _widget.
+   by the name of your form type class (DateTimePickerType -> date_time_picker)
+   and the suffix "_widget". This can be controlled by overriding getBlockPrefix()
+   in DateTimePickerType.
 
    See http://symfony.com/doc/current/cookbook/form/create_custom_field_type.html#creating-a-template-for-the-field
 #}
 
-{% block app_datetimepicker_widget %}
+{% block date_time_picker_widget %}
     {% spaceless %}
         <div class="input-group date" data-toggle="datetimepicker">
             {{ block('datetime_widget') }}
