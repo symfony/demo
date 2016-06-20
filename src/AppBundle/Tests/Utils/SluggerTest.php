@@ -44,6 +44,12 @@ class SluggerTest extends \PHPUnit_Framework_TestCase
             array(' lOrEm  iPsUm  ' , 'lorem-ipsum'),
             array('!Lorem Ipsum!'   , 'lorem-ipsum'),
             array('lorem-ipsum'     , 'lorem-ipsum'),
+            array('русский язык'    , 'русский-язык'),
+            array('  русский язык  ', 'русский-язык'),
+            array('日本語'           , '日本語'),
+            array(' 日本語 '         , '日本語'),
+            array('  日 本 語!'       , '日-本-語'),
+            array('日本語#&'         , '日本語'),
         );
     }
 }
