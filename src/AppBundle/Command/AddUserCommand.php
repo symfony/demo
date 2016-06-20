@@ -25,11 +25,11 @@ use AppBundle\Entity\User;
  * To use this command, open a terminal window, enter into your project
  * directory and execute the following:
  *
- *     $ php app/console app:add-user
+ *     $ php bin/console app:add-user
  *
  * To output detailed information, increase the command verbosity:
  *
- *     $ php app/console app:add-user -vv
+ *     $ php bin/console app:add-user -vv
  *
  * See http://symfony.com/doc/current/cookbook/console/console_command.html
  *
@@ -103,7 +103,7 @@ class AddUserCommand extends ContainerAwareCommand
             'If you prefer to not use this interactive wizard, provide the',
             'arguments required by this command as follows:',
             '',
-            ' $ php app/console app:add-user username password email@example.com',
+            ' $ php bin/console app:add-user username password email@example.com',
             '',
         ));
 

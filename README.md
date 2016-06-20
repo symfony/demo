@@ -53,7 +53,7 @@ in your web server to access the application. Just use the built-in web server:
 
 ```bash
 $ cd symfony-demo/
-$ php app/console server:run
+$ php bin/console server:run
 ```
 
 This command will start a web server for the Symfony application. Now you can
