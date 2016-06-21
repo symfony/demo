@@ -18,7 +18,7 @@
             {{ render(controller('AppBundle:Blog:commentForm', { 'id': post.id })) }}
         {% else %}
             <p>
-                <a class="btn btn-success" href="{{ path('security_login_form') }}">
+                <a class="btn btn-success" href="{{ path('security_login') }}">
                     <i class="fa fa-sign-in"></i> {{ 'action.sign_in'|trans }}
                 </a>
                 {{ 'post.to_publish_a_comment'|trans }}
