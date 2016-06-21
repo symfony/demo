@@ -108,7 +108,7 @@ HELP
         $username = $input->getArgument('username');
         $this->usernameValidator($username);
 
-        $repository = $this->entityManager->getRepository('AppBundle:User');
+        $repository = $this->entityManager->getRepository(User::class);
         /** @var User $user */
         $user = $repository->findOneByUsername($username);
 

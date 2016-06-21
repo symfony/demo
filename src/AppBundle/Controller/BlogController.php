@@ -41,7 +41,7 @@ class BlogController extends Controller
      */
     public function indexAction($page)
     {
-        $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->findLatest($page);
+        $posts = $this->getDoctrine()->getRepository(Post::class)->findLatest($page);
 
         return $this->render('blog/index.html.twig', ['posts' => $posts]);
     }

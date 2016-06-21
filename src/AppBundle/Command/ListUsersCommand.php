@@ -87,7 +87,7 @@ HELP
     {
         $maxResults = $input->getOption('max-results');
         // Use ->findBy() instead of ->findAll() to allow result sorting and limiting
-        $users = $this->entityManager->getRepository('AppBundle:User')->findBy([], ['id' => 'DESC'], $maxResults);
+        $users = $this->entityManager->getRepository(User::class)->findBy([], ['id' => 'DESC'], $maxResults);
 
         // Doctrine query returns an array of objects and we need an array of plain arrays
         $usersAsPlainArrays = array_map(function (User $user) {

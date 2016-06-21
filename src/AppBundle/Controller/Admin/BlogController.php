@@ -54,7 +54,7 @@ class BlogController extends Controller
     public function indexAction()
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $posts = $entityManager->getRepository('AppBundle:Post')->findAll();
+        $posts = $entityManager->getRepository(Post::class)->findAll();
 
         return $this->render('admin/blog/index.html.twig', ['posts' => $posts]);
     }
