@@ -21,7 +21,10 @@
             </tr>
             <tr>
                 <th>{{ 'label.published_at'|trans }}</th>
-                <td><p>{{ post.publishedAt|localizeddate('long', 'medium') }}</p></td>
+                {# it's not mandatory to set the timezone in localizeddate(). This is done to
+                   avoid errors when the 'intl' PHP extension is not available and the application
+                   is forced to use the limited "intl polyfill", which only supports UTC and GMT #}
+                <td><p>{{ post.publishedAt|localizeddate('long', 'medium', null, 'UTC') }}</p></td>
             </tr>
         </tbody>
     </table>

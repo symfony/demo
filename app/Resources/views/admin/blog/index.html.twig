@@ -19,7 +19,10 @@
             <tr>
                 <td>{{ post.title }}</td>
                 <td>{{ post.authorEmail }}</td>
-                <td>{% if post.publishedAt %}{{ post.publishedAt|localizeddate('short', 'short') }}{% endif %}</td>
+                {# it's not mandatory to set the timezone in localizeddate(). This is done to
+                   avoid errors when the 'intl' PHP extension is not available and the application
+                   is forced to use the limited "intl polyfill", which only supports UTC and GMT #}
+                <td>{% if post.publishedAt %}{{ post.publishedAt|localizeddate('short', 'short', null, 'UTC') }}{% endif %}</td>
                 <td>
                     <div class="item-actions">
                         <a href="{{ path('admin_post_show', { id: post.id }) }}" class="btn btn-sm btn-default">
