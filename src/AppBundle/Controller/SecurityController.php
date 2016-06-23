@@ -25,8 +25,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class SecurityController extends Controller
 {
     /**
-     * @Route("/login", name="security_login_form")
-     * @Method("GET")
+     * @Route("/login", name="security_login")
      */
     public function loginAction()
     {
@@ -38,19 +37,6 @@ class SecurityController extends Controller
             // last authentication error (if any)
             'error' => $helper->getLastAuthenticationError(),
         ));
-    }
-
-    /**
-     * This is the route the login form submits to.
-     *
-     * But, this will never be executed. Symfony will intercept this first
-     * and handle the login automatically. See form_login in app/config/security.yml
-     *
-     * @Route("/login_check", name="security_login_check")
-     */
-    public function loginCheckAction()
-    {
-        throw new \Exception('This should never be reached!');
     }
 
     /**
