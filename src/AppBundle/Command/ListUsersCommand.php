@@ -87,11 +87,11 @@ HELP
     {
         $maxResults = $input->getOption('max-results');
         // Use ->findBy() instead of ->findAll() to allow result sorting and limiting
-        $users = $this->entityManager->getRepository('AppBundle:User')->findBy(array(), array('id' => 'DESC'), $maxResults);
+        $users = $this->entityManager->getRepository(User::class)->findBy([], ['id' => 'DESC'], $maxResults);
 
         // Doctrine query returns an array of objects and we need an array of plain arrays
         $usersAsPlainArrays = array_map(function (User $user) {
-            return array($user->getId(), $user->getUsername(), $user->getEmail(), implode(', ', $user->getRoles()));
+            return [$user->getId(), $user->getUsername(), $user->getEmail(), implode(', ', $user->getRoles())];
         }, $users);
 
         // In your console commands you should always use the regular output type,
@@ -105,7 +105,7 @@ HELP
 
         $table = new Table($bufferedOutput);
         $table
-            ->setHeaders(array('ID', 'Username', 'Email', 'Roles'))
+            ->setHeaders(['ID', 'Username', 'Email', 'Roles'])
             ->setRows($usersAsPlainArrays)
         ;
         $table->render();
