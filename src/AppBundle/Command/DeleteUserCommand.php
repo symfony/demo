@@ -78,25 +78,25 @@ HELP
         $output->writeln('Delete User Command Interactive Wizard');
         $output->writeln('-----------------------------------');
 
-        $output->writeln(array(
+        $output->writeln([
             '',
             'If you prefer to not use this interactive wizard, provide the',
             'arguments required by this command as follows:',
             '',
             ' $ php bin/console app:delete-user username',
             '',
-        ));
+        ]);
 
-        $output->writeln(array(
+        $output->writeln([
             '',
             'Now we\'ll ask you for the value of all the missing command arguments.',
             '',
-        ));
+        ]);
 
         $helper = $this->getHelper('question');
 
         $question = new Question(' > <info>Username</info>: ');
-        $question->setValidator(array($this, 'usernameValidator'));
+        $question->setValidator([$this, 'usernameValidator']);
         $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
         $username = $helper->ask($input, $output, $question);
@@ -108,7 +108,7 @@ HELP
         $username = $input->getArgument('username');
         $this->usernameValidator($username);
 
-        $repository = $this->entityManager->getRepository('AppBundle:User');
+        $repository = $this->entityManager->getRepository(User::class);
         /** @var User $user */
         $user = $repository->findOneByUsername($username);
 

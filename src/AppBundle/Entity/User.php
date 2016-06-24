@@ -45,7 +45,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="json_array")
      */
-    private $roles = array();
+    private $roles = [];
 
     public function getId()
     {
