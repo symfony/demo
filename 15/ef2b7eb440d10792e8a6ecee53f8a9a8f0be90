@@ -1,0 +1,33 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2016-06-19T19:29:30Z
+
+It feels so nice to use non-prehistoric PHP code! Thanks @voronkovich.
+
+If anyone has other ideas to use PHP 5.5 features in the demo app, please share them!
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2016-06-21T17:24:45Z
+
+Should we use:
+```php
+$entityManager->getRepository(User::class)
+```
+instead of:
+```php
+$entityManager->getRepository('AppBundle:User')
+```
+?
+
+---------------------------------------------------------------------------
+
+by stof at 2016-06-21T17:42:25Z
+
+@voronkovich I would say yes. ``AppBundle:`` shortcuts would probably not be implemented in Doctrine if the project started today.
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2016-06-21T19:32:13Z
+
+@stof, I agree with you. I've changed the code.
