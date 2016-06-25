@@ -99,15 +99,23 @@ class SourceCodeExtension extends \Twig_Extension
 
     private function getTemplateSource(\Twig_Template $template)
     {
+        // Twig templates are not always stored in files, and so there is no
+        // API to get the filename from a template name in a generic way.
+        // The logic used here works only for templates stored in app/Resources/views
+        // and referenced via the "filename.html.twig" notation, not via the "::filename.html.twig"
+        // one or stored in bundles. This is enough for the needs of the demo app.
+        $filePath = $this->kernelRootDir.'/Resources/views/'.$template->getTemplateName();
+        $sourceCode = $template->getSource();
+
+        // Temporary workaround for https://github.com/twigphp/Twig/issues/2011
+        if (null === $sourceCode) {
+            $sourceCode = @file_get_contents($filePath);
+        }
+
         return [
-            // Twig templates are not always stored in files, and so there is no
-            // API to get the filename from a template name in a generic way.
-            // The logic used here works only for templates stored in app/Resources/views
-            // and referenced via the "filename.html.twig" notation, not via the "::filename.html.twig"
-            // one or stored in bundles. This is enough for the needs of the demo app.
-            'file_path' => $this->kernelRootDir.'/Resources/views/'.$template->getTemplateName(),
+            'file_path' => $filePath,
             'starting_line' => 1,
-            'source_code' => $template->getSource(),
+            'source_code' => $sourceCode,
         ];
     }
 
