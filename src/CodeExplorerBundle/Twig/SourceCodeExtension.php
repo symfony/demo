@@ -104,10 +104,10 @@ class SourceCodeExtension extends \Twig_Extension
         // The logic used here works only for templates stored in app/Resources/views
         // and referenced via the "filename.html.twig" notation, not via the "::filename.html.twig"
         // one or stored in bundles. This is enough for the needs of the demo app.
-        $filePath   = $this->kernelRootDir.'/Resources/views/'.$template->getTemplateName();
+        $filePath = $this->kernelRootDir.'/Resources/views/'.$template->getTemplateName();
         $sourceCode = $template->getSource();
 
-        // Temporary workaround for https://github.com/symfony/symfony-demo/issues/224
+        // Temporary workaround for https://github.com/twigphp/Twig/issues/2011
         if (null === $sourceCode) {
             $sourceCode = @file_get_contents($filePath);
         }
