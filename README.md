@@ -9,7 +9,7 @@ to develop Symfony applications following the recommended best practices.
 Requirements
 ------------
 
-  * PHP 5.3 or higher;
+  * PHP 5.5 or higher;
   * PDO-SQLite PHP extension enabled;
   * and the [usual Symfony application requirements](http://symfony.com/doc/current/reference/requirements.html).
 
