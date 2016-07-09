@@ -42,4 +42,4 @@ security:
     access_control:
         # this is a catch-all for the admin area
         # additional security lives in the controllers
-        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: '^/(%app_locales%)/admin', roles: ROLE_ADMIN }
