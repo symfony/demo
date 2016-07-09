@@ -63,6 +63,7 @@ terminal.
 
 > **NOTE**
 >
-> If you're using PHP 5.3, configure your web server to point at the `web/`
-> directory of the project. For more details, see:
+> If you want to use a fully-featured web server (like Nginx or Apache) to run
+> Symfony Demo application, configure it to point at the `web/` directory of the project.
+> For more details, see:
 > http://symfony.com/doc/current/cookbook/configuration/web_server_configuration.html
