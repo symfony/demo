@@ -92,8 +92,12 @@
 
     <script>
         $(document).ready(function() {
-            $('#username').val('anna_admin');
-            $('#password').val('kitten');
+            var usernameEl = $('#username');
+            var passwordEl = $('#password');
+            if (!usernameEl.val() && !passwordEl.val()) {
+                usernameEl.val('anna_admin');
+                passwordEl.val('kitten');
+            }
         });
     </script>
 {% endblock %}
