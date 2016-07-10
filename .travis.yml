@@ -23,4 +23,4 @@ install:
   - composer install
 
 script:
-  - phpunit
+  - ./bin/phpunit
