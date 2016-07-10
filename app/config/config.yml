@@ -79,7 +79,7 @@ doctrine:
         # stores options that change from one server to another
         driver: "pdo_sqlite"
         # temp workaround for https://github.com/doctrine/dbal/issues/1106: define DB path here
-        path: "%kernel.root_dir%/../var/data/blog.sqlite"
+        path: "%kernel.root_dir%/data/blog.sqlite"
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
