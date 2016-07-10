@@ -48,8 +48,8 @@ most recent version executing the `symfony self-update` command.
 Usage
 -----
 
-If you have PHP 5.4 or higher, there is no need to configure a virtual host
-in your web server to access the application. Just use the built-in web server:
+There is no need to configure a virtual host in your web server to access the application.
+Just use the built-in web server:
 
 ```bash
 $ cd symfony-demo/
