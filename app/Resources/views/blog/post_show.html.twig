@@ -19,7 +19,7 @@
         {% else %}
             <p>
                 <a class="btn btn-success" href="{{ path('security_login') }}">
-                    <i class="fa fa-sign-in"></i> {{ 'action.sign_in'|trans }}
+                    <i class="fa fa-sign-in" aria-hidden="true"></i> {{ 'action.sign_in'|trans }}
                 </a>
                 {{ 'post.to_publish_a_comment'|trans }}
             </p>
@@ -52,7 +52,7 @@
     {% if app.user and post.isAuthor(app.user) %}
         <div class="section">
             <a class="btn btn-lg btn-block btn-success" href="{{ path('admin_post_edit', { id: post.id }) }}">
-                <i class="fa fa-edit"></i> {{ 'action.edit_post'|trans }}
+                <i class="fa fa-edit" aria-hidden="true"></i> {{ 'action.edit_post'|trans }}
             </a>
         </div>
     {% endif %}
