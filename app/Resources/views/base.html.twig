@@ -4,7 +4,7 @@
    See http://symfony.com/doc/current/book/templating.html#template-inheritance-and-layouts
 #}
 <!DOCTYPE html>
-<html>
+<html lang="{{ app.request.locale }}">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -54,14 +54,14 @@
                                 {% block header_navigation_links %}
                                     <li>
                                         <a href="{{ path('blog_index') }}">
-                                            <i class="fa fa-home"></i> {{ 'menu.homepage'|trans }}
+                                            <i class="fa fa-home" aria-hidden="true"></i> {{ 'menu.homepage'|trans }}
                                         </a>
                                     </li>
 
                                     {% if is_granted('ROLE_ADMIN') %}
                                         <li>
                                             <a href="{{ path('admin_post_index') }}">
-                                                <i class="fa fa-lock"></i> {{ 'menu.admin'|trans }}
+                                                <i class="fa fa-lock" aria-hidden="true"></i> {{ 'menu.admin'|trans }}
                                             </a>
                                         </li>
                                     {% endif %}
@@ -70,16 +70,16 @@
                                 {% if app.user %}
                                     <li>
                                         <a href="{{ path('security_logout') }}">
-                                            <i class="fa fa-sign-out"></i> {{ 'menu.logout'|trans }}
+                                            <i class="fa fa-sign-out" aria-hidden="true"></i> {{ 'menu.logout'|trans }}
                                         </a>
                                     </li>
                                 {% endif %}
 
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-globe"></i> <span class="caret"></span></a>
-                                    <ul class="dropdown-menu locales" role="menu">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="locales"><i class="fa fa-globe" aria-hidden="true"></i> <span class="caret"></span></a>
+                                    <ul class="dropdown-menu locales" role="menu" aria-labelledby="locales">
                                         {% for locale in locales() %}
-                                            <li {% if app.request.locale == locale.code %}class="active"{% endif %}><a href="{{ path(app.request.get('_route', 'blog_index'), app.request.get('_route_params', [])|merge({ _locale: locale.code })) }}">{{ locale.name|capitalize }}</a></li>
+                                            <li {% if app.request.locale == locale.code %}aria-checked="true" class="active"{%else%}aria-checked="false"{% endif %} role="menuitem"><a href="{{ path(app.request.get('_route', 'blog_index'), app.request.get('_route_params', [])|merge({ _locale: locale.code })) }}">{{ locale.name|capitalize }}</a></li>
                                         {% endfor %}
                                     </ul>
                                 </li>
@@ -122,9 +122,15 @@
                         </div>
                         <div id="footer-resources" class="col-md-6">
                             <p>
-                                <a href="https://twitter.com/symfony"><i class="fa fa-twitter"></i></a>
-                                <a href="https://www.facebook.com/SensioLabs"><i class="fa fa-facebook"></i></a>
-                                <a href="https://symfony.com/blog/"><i class="fa fa-rss"></i></a>
+                                <a href="https://twitter.com/symfony" title="Symfony Twitter">
+                                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                                </a>
+                                <a href="https://www.facebook.com/SensioLabs" title="SensioLabs Facebook">
+                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                </a>
+                                <a href="https://symfony.com/blog/" title="Symfony Blog">
+                                    <i class="fa fa-rss" aria-hidden="true"></i>
+                                </a>
                             </p>
                         </div>
                     </div>

@@ -8,19 +8,19 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>{{ 'label.summary'|trans }}</th>
+                <th scope="row">{{ 'label.summary'|trans }}</th>
                 <td>{{ post.summary|md2html }}</td>
             </tr>
             <tr>
-                <th>{{ 'label.content'|trans }}</th>
+                <th scope="row">{{ 'label.content'|trans }}</th>
                 <td>{{ post.content|md2html }}</td>
             </tr>
             <tr>
-                <th>{{ 'label.author'|trans }}</th>
+                <th scope="row">{{ 'label.author'|trans }}</th>
                 <td><p>{{ post.authorEmail }}</p></td>
             </tr>
             <tr>
-                <th>{{ 'label.published_at'|trans }}</th>
+                <th scope="row">{{ 'label.published_at'|trans }}</th>
                 {# it's not mandatory to set the timezone in localizeddate(). This is done to
                    avoid errors when the 'intl' PHP extension is not available and the application
                    is forced to use the limited "intl polyfill", which only supports UTC and GMT #}
@@ -33,7 +33,7 @@
 {% block sidebar %}
     <div class="section">
         <a href="{{ path('admin_post_edit', { id: post.id }) }}" class="btn btn-lg btn-block btn-success">
-            <i class="fa fa-edit"></i> {{ 'action.edit_contents'|trans }}
+            <i class="fa fa-edit" aria-hidden="true"></i> {{ 'action.edit_contents'|trans }}
         </a>
     </div>
 

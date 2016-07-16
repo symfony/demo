@@ -8,10 +8,10 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>{{ 'label.title'|trans }}</th>
-                <th><i class="fa fa-user"></i> {{ 'label.author'|trans }}</th>
-                <th><i class="fa fa-calendar"></i> {{ 'label.published_at'|trans }}</th>
-                <th><i class="fa fa-cogs"></i> {{ 'label.actions'|trans }}</th>
+                <th scope="col">{{ 'label.title'|trans }}</th>
+                <th scope="col"><i class="fa fa-user" aria-hidden="true"></i> {{ 'label.author'|trans }}</th>
+                <th scope="col"><i class="fa fa-calendar" aria-hidden="true"></i> {{ 'label.published_at'|trans }}</th>
+                <th scope="col"><i class="fa fa-cogs" aria-hidden="true"></i> {{ 'label.actions'|trans }}</th>
             </tr>
         </thead>
         <tbody>
@@ -31,7 +31,7 @@
 
                         {% if post.isAuthor(app.user) %}
                             <a href="{{ path('admin_post_edit', { id: post.id }) }}" class="btn btn-sm btn-primary">
-                                <i class="fa fa-edit"></i> {{ 'action.edit'|trans }}
+                                <i class="fa fa-edit" aria-hidden="true"></i> {{ 'action.edit'|trans }}
                             </a>
                         {% endif %}
                     </div>
@@ -49,7 +49,7 @@
 {% block sidebar %}
     <div class="section actions">
         <a href="{{ path('admin_post_new') }}" class="btn btn-lg btn-block btn-success">
-            <i class="fa fa-plus"></i> {{ 'action.create_post'|trans }}
+            <i class="fa fa-plus" aria-hidden="true"></i> {{ 'action.create_post'|trans }}
         </a>
     </div>
 
