@@ -1,0 +1,15 @@
+---------------------------------------------------------------------------
+
+by mik-laj at 2016-07-16T15:21:15Z
+
+This app also have a other problems:
+
+1.  Accessibility text not translated https://github.com/symfony/symfony-demo/blob/81797b9/app/Resources/views/base.html.twig#L45
+2.  Missing text description for the text.
+https://github.com/symfony/symfony-demo/blob/81797b9/app/Resources/views/base.html.twig#L79
+
+    Example:
+    ````
+    <span class="sr-only">{{ 'choose.language' | trans }}</span>
+    ````
+    Class `sr-only` is a Bootstrap class. You can read more about in on: http://getbootstrap.com/components/#callout-glyphicons-accessibility
