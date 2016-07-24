@@ -14,7 +14,7 @@
             <div class="well">
                 <form action="{{ path('security_login') }}" method="post">
                     <fieldset>
-                        <legend><i class="fa fa-lock"></i> {{ 'title.login'|trans }}</legend>
+                        <legend><i class="fa fa-lock" aria-hidden="true"></i> {{ 'title.login'|trans }}</legend>
                         <div class="form-group">
                             <label for="username">{{ 'label.username'|trans }}</label>
                             <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control"/>
@@ -25,7 +25,7 @@
                         </div>
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
                         <button type="submit" class="btn btn-primary">
-                            <i class="fa fa-sign-in"></i> {{ 'action.sign_in'|trans }}
+                            <i class="fa fa-sign-in" aria-hidden="true"></i> {{ 'action.sign_in'|trans }}
                         </button>
                     </fieldset>
                 </form>
@@ -34,16 +34,16 @@
 
         <div id="login-help" class="col-sm-7">
             <h3>
-                <i class="fa fa-long-arrow-left"></i>
+                <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
                 {{ 'help.login_users'|trans }}
             </h3>
 
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th>{{ 'label.username'|trans }}</th>
-                        <th>{{ 'label.password'|trans }}</th>
-                        <th>{{ 'label.role'|trans }}</th>
+                        <th scope="col">{{ 'label.username'|trans }}</th>
+                        <th scope="col">{{ 'label.password'|trans }}</th>
+                        <th scope="col">{{ 'label.role'|trans }}</th>
                     </tr>
                 </thead>
                 <tbody>
