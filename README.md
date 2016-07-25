@@ -67,3 +67,17 @@ terminal.
 > Symfony Demo application, configure it to point at the `web/` directory of the project.
 > For more details, see:
 > http://symfony.com/doc/current/cookbook/configuration/web_server_configuration.html
+
+Troubleshooting
+---------------
+
+The current Symfony Demo application uses Symfony 3.x version. If you want to
+use the legacy Symfony 2.8 version, clone the Git repository and checkout the
+`v0.8.4` tag, which is the last one compatible with Symfony 2.8:
+
+```bash
+$ git clone https://github.com/symfony/symfony-demo
+$ cd symfony-demo/
+$ git checkout tags/v0.8.4 -b v0.8.4
+$ composer install
+```
