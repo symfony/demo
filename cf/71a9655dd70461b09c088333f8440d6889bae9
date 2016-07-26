@@ -1,0 +1,87 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2016-07-09T20:45:26Z
+
+👍
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2016-07-10T15:16:22Z
+
+I agree with this change, but I'd like to read other opinions. Apparently, Symfony doesn't recommend this practice officially.
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2016-07-10T15:22:09Z
+
+I'm wondering to hear other opinions too. BTW, `symfony-standard` already moved `DefaultControllerTest` into the `tests` directory:
+https://github.com/symfony/symfony-standard/blob/master/tests/AppBundle/Controller/DefaultControllerTest.php
+And autoloads tests from `tests` dir in [composer.json](https://github.com/symfony/symfony-standard/blob/master/composer.json#L10-L12)
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2016-07-10T15:29:47Z
+
+I think that holding the folder with tests in the root directory just makes it easier to launch the tests: `phpunit` vs. `phpunit -c app`. :+1:
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2016-07-10T17:08:57Z
+
+@voronkovich good point ... but if I'm right, that's achieved by moving the `phpunit.xml.dist` config file to the root directory. That's what Symfony 3.x did and we can run the tests with `phpunit` even if they are located inside `src/`
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2016-07-10T17:28:13Z
+
+@javiereguiluz,  you're right, I mistakenly confused the test directory and phpunit.xml file. So, I don't have any opinion about this PR :(
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2016-07-10T18:09:21Z
+
+@javiereguiluz, there is an explanation why tests folder was moved to the root directory in the symfony-standard. See https://github.com/symfony/symfony-standard/commit/d0311d2eb06309d9fc0b8bacb8cab9e0f29c622f#commitcomment-15653984
+
+---------------------------------------------------------------------------
+
+by xabbuh at 2016-07-11T10:40:58Z
+
+The namespace of the `SluggerTest` class needs to be updated too.
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2016-07-11T10:46:39Z
+
+@xabbuh Yes, I know. It's weird, but it already has a right namespace in [master](https://github.com/symfony/symfony-demo/blob/master/src/AppBundle/Tests/Utils/SluggerTest.php#L12). Actually, I think we have a bug now in master, but this PR should fix it.
+
+---------------------------------------------------------------------------
+
+by xabbuh at 2016-07-11T10:56:23Z
+
+@bocharsky-bw But the namespace should be `Tests\AppBundle\Utils`, shouldn't it?
+
+---------------------------------------------------------------------------
+
+by xabbuh at 2016-07-11T10:57:55Z
+
+And to be consistent with the Symfony Standard Edition we would need to have a `tests/AppBundle` directory.
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2016-07-11T11:15:56Z
+
+@xabbuh Ah, you're totally right, I missed `AppBundle`.
+
+Thanks for notice it! I'll fix it soon.
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2016-07-11T19:30:38Z
+
+Done.
+
+---------------------------------------------------------------------------
+
+by xabbuh at 2016-07-12T07:40:25Z
+
+👍
