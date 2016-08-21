@@ -11,8 +11,11 @@
 
 namespace AppBundle\Repository;
 
-use Doctrine\ORM\EntityRepository;
 use AppBundle\Entity\Post;
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
 
 /**
  * This custom Doctrine repository contains some methods which are useful when
@@ -25,11 +28,9 @@ use AppBundle\Entity\Post;
 class PostRepository extends EntityRepository
 {
     /**
-     * @param int $limit
-     *
-     * @return Post[]
+     * @return Query
      */
-    public function findLatest($limit = Post::NUM_ITEMS)
+    public function queryLatest()
     {
         return $this->getEntityManager()
             ->createQuery('
@@ -39,8 +40,20 @@ class PostRepository extends EntityRepository
                 ORDER BY p.publishedAt DESC
             ')
             ->setParameter('now', new \DateTime())
-            ->setMaxResults($limit)
-            ->getResult()
         ;
+    }
+
+    /**
+     * @param int $page
+     *
+     * @return Pagerfanta
+     */
+    public function findLatest($page = 1)
+    {
+        $paginator = new Pagerfanta(new DoctrineORMAdapter($this->queryLatest(), false));
+        $paginator->setMaxPerPage(Post::NUM_ITEMS);
+        $paginator->setCurrentPage($page);
+
+        return $paginator;
     }
 }

@@ -11,13 +11,14 @@
 
 namespace AppBundle\Controller\Admin;
 
+use AppBundle\Entity\Post;
 use AppBundle\Form\PostType;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use AppBundle\Entity\Post;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Controller used to manage blog contents in the backend.
@@ -52,10 +53,10 @@ class BlogController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $posts = $em->getRepository('AppBundle:Post')->findAll();
+        $entityManager = $this->getDoctrine()->getManager();
+        $posts = $entityManager->getRepository(Post::class)->findAll();
 
-        return $this->render('admin/blog/index.html.twig', array('posts' => $posts));
+        return $this->render('admin/blog/index.html.twig', ['posts' => $posts]);
     }
 
     /**
@@ -72,7 +73,10 @@ class BlogController extends Controller
     {
         $post = new Post();
         $post->setAuthorEmail($this->getUser()->getEmail());
-        $form = $this->createForm(new PostType(), $post);
+
+        // See http://symfony.com/doc/current/book/forms.html#submitting-forms-with-multiple-buttons
+        $form = $this->createForm(PostType::class, $post)
+            ->add('saveAndCreateNew', SubmitType::class);
 
         $form->handleRequest($request);
 
@@ -83,9 +87,9 @@ class BlogController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $post->setSlug($this->get('slugger')->slugify($post->getTitle()));
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($post);
-            $em->flush();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($post);
+            $entityManager->flush();
 
             // Flash messages are used to notify the user about the result of the
             // actions. They are deleted automatically from the session as soon
@@ -93,19 +97,23 @@ class BlogController extends Controller
             // See http://symfony.com/doc/current/book/controller.html#flash-messages
             $this->addFlash('success', 'post.created_successfully');
 
+            if ($form->get('saveAndCreateNew')->isClicked()) {
+                return $this->redirectToRoute('admin_post_new');
+            }
+
             return $this->redirectToRoute('admin_post_index');
         }
 
-        return $this->render('admin/blog/new.html.twig', array(
+        return $this->render('admin/blog/new.html.twig', [
             'post' => $post,
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**
      * Finds and displays a Post entity.
      *
-     * @Route("/{id}", requirements={"id" = "\d+"}, name="admin_post_show")
+     * @Route("/{id}", requirements={"id": "\d+"}, name="admin_post_show")
      * @Method("GET")
      */
     public function showAction(Post $post)
@@ -119,16 +127,16 @@ class BlogController extends Controller
 
         $deleteForm = $this->createDeleteForm($post);
 
-        return $this->render('admin/blog/show.html.twig', array(
+        return $this->render('admin/blog/show.html.twig', [
             'post'        => $post,
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
      * Displays a form to edit an existing Post entity.
      *
-     * @Route("/{id}/edit", requirements={"id" = "\d+"}, name="admin_post_edit")
+     * @Route("/{id}/edit", requirements={"id": "\d+"}, name="admin_post_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Post $post, Request $request)
@@ -137,27 +145,27 @@ class BlogController extends Controller
             throw $this->createAccessDeniedException('Posts can only be edited by their authors.');
         }
 
-        $em = $this->getDoctrine()->getManager();
+        $entityManager = $this->getDoctrine()->getManager();
 
-        $editForm = $this->createForm(new PostType(), $post);
+        $editForm = $this->createForm(PostType::class, $post);
         $deleteForm = $this->createDeleteForm($post);
 
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $post->setSlug($this->get('slugger')->slugify($post->getTitle()));
-            $em->flush();
+            $entityManager->flush();
 
             $this->addFlash('success', 'post.updated_successfully');
 
-            return $this->redirectToRoute('admin_post_edit', array('id' => $post->getId()));
+            return $this->redirectToRoute('admin_post_edit', ['id' => $post->getId()]);
         }
 
-        return $this->render('admin/blog/edit.html.twig', array(
+        return $this->render('admin/blog/edit.html.twig', [
             'post'        => $post,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -177,10 +185,10 @@ class BlogController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $entityManager = $this->getDoctrine()->getManager();
 
-            $em->remove($post);
-            $em->flush();
+            $entityManager->remove($post);
+            $entityManager->flush();
 
             $this->addFlash('success', 'post.deleted_successfully');
         }
@@ -204,7 +212,7 @@ class BlogController extends Controller
     private function createDeleteForm(Post $post)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_post_delete', array('id' => $post->getId())))
+            ->setAction($this->generateUrl('admin_post_delete', ['id' => $post->getId()]))
             ->setMethod('DELETE')
             ->getForm()
         ;

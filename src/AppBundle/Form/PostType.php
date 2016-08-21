@@ -11,7 +11,10 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Post;
+use AppBundle\Form\Type\DateTimePickerType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -36,20 +39,26 @@ class PostType extends AbstractType
         // server-side validation errors from the browser. To temporarily disable
         // this validation, set the 'required' attribute to 'false':
         //
-        //     $builder->add('title', null, array('required' => false, ...));
+        //     $builder->add('title', null, ['required' => false, ...]);
 
         $builder
-            ->add('title', null, array('label' => 'label.title'))
-            ->add('summary', 'textarea', array('label' => 'label.summary'))
-            ->add('content', 'textarea', array(
-                'attr' => array('rows' => 20),
+            ->add('title', null, [
+                'attr' => ['autofocus' => true],
+                'label' => 'label.title',
+            ])
+            ->add('summary', TextareaType::class, [
+                'label' => 'label.summary',
+            ])
+            ->add('content', null, [
+                'attr' => ['rows' => 20],
                 'label' => 'label.content',
-            ))
-            ->add('authorEmail', 'email', array('label' => 'label.author_email'))
-            ->add('publishedAt', 'datetime', array(
-                'widget' => 'single_text',
+            ])
+            ->add('authorEmail', null, [
+                'label' => 'label.author_email',
+            ])
+            ->add('publishedAt', DateTimePickerType::class, [
                 'label' => 'label.published_at',
-            ))
+            ])
         ;
     }
 
@@ -58,18 +67,8 @@ class PostType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Post',
-        ));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        // Best Practice: use 'app_' as the prefix of your custom form types names
-        // see http://symfony.com/doc/current/best_practices/forms.html#custom-form-field-types
-        return 'app_post';
+        $resolver->setDefaults([
+            'data_class' => Post::class,
+        ]);
     }
 }

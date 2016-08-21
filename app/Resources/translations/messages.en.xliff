@@ -19,6 +19,43 @@
                 <target>MIT License</target>
             </trans-unit>
 
+            <trans-unit id="http_error.name">
+                <source>http_error.name</source>
+                <target>Error %status_code%</target>
+            </trans-unit>
+            <trans-unit id="http_error.description">
+                <source>http_error.description</source>
+                <target>There was an unknown error (HTTP %status_code%) that prevented to complete your request.</target>
+            </trans-unit>
+            <trans-unit id="http_error.suggestion">
+                <source>http_error.suggestion</source>
+                <target><![CDATA[Try loading this page again in some minutes or <a href="%url%">go back to the homepage</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="http_error_403.description">
+                <source>http_error_403.description</source>
+                <target>You don't have permission to access to this resource.</target>
+            </trans-unit>
+            <trans-unit id="http_error_403.suggestion">
+                <source>http_error_403.suggestion</source>
+                <target>Ask your manager or system administrator to grant you access to this resource.</target>
+            </trans-unit>
+            <trans-unit id="http_error_404.description">
+                <source>http_error_404.description</source>
+                <target>We couldn't find the page you requested.</target>
+            </trans-unit>
+            <trans-unit id="http_error_404.suggestion">
+                <source>http_error_404.suggestion</source>
+                <target><![CDATA[Check out any misspelling in the URL or <a href="%url%">go back to the homepage</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="http_error_500.description">
+                <source>http_error_500.description</source>
+                <target>There was an internal server error.</target>
+            </trans-unit>
+            <trans-unit id="http_error_500.suggestion">
+                <source>http_error_500.suggestion</source>
+                <target><![CDATA[Try loading this page again in some minutes or <a href="%url%">go back to the homepage</a>.]]></target>
+            </trans-unit>
+
             <trans-unit id="title.homepage">
                 <source>title.homepage</source>
                 <target><![CDATA[Welcome to the <strong>Symfony Demo</strong> application]]></target>
@@ -80,6 +117,22 @@
                 <source>action.delete_post</source>
                 <target>Delete post</target>
             </trans-unit>
+            <trans-unit id="delete_post_modal.title">
+                <source>delete_post_modal.title</source>
+                <target>Are you sure you want to delete this post?</target>
+            </trans-unit>
+            <trans-unit id="delete_post_modal.body">
+                <source>delete_post_modal.body</source>
+                <target>This action cannot be undone.</target>
+            </trans-unit>
+            <trans-unit id="label.delete_post">
+                <source>label.delete_post</source>
+                <target>Delete post</target>
+            </trans-unit>
+            <trans-unit id="label.cancel">
+                <source>label.cancel</source>
+                <target>Cancel</target>
+            </trans-unit>
             <trans-unit id="action.create_post">
                 <source>action.create_post</source>
                 <target>Create a new post</target>
@@ -87,6 +140,10 @@
             <trans-unit id="label.create_post">
                 <source>label.create_post</source>
                 <target>Create post</target>
+            </trans-unit>
+            <trans-unit id="label.save_and_create_new">
+                <source>label.save_and_create_new</source>
+                <target>Save and create new</target>
             </trans-unit>
             <trans-unit id="action.back_to_list">
                 <source>action.back_to_list</source>
@@ -158,6 +215,14 @@
                 <target>Edit contents</target>
             </trans-unit>
 
+            <trans-unit id="menu.toggle_nav">
+                <source>menu.toggle_nav</source>
+                <target>Toggle navigation</target>
+            </trans-unit>
+            <trans-unit id="menu.choose_language">
+                <source>menu.choose_language</source>
+                <target>Choose language</target>
+            </trans-unit>
             <trans-unit id="menu.post_list">
                 <source>menu.post_list</source>
                 <target>Post list</target>

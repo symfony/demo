@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PostRepository")
+ * @ORM\Table(name="symfony_demo_post")
  *
  * Defines the properties of the Post entity to represent the blog posts.
  * See http://symfony.com/doc/current/book/doctrine.html#creating-an-entity-class
@@ -140,7 +141,7 @@ class Post
      */
     public function isAuthor(User $user)
     {
-        return $user->getEmail() == $this->getAuthorEmail();
+        return $user->getEmail() === $this->getAuthorEmail();
     }
 
     public function getPublishedAt()
@@ -167,7 +168,6 @@ class Post
     public function removeComment(Comment $comment)
     {
         $this->comments->removeElement($comment);
-        $comment->setPost(null);
     }
 
     public function getSummary()

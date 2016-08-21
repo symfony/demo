@@ -19,6 +19,43 @@
                 <target>MIT Лицензия</target>
             </trans-unit>
 
+            <trans-unit id="http_error.name">
+                <source>http_error.name</source>
+                <target>Ошибка %status_code%</target>
+            </trans-unit>
+            <trans-unit id="http_error.description">
+                <source>http_error.description</source>
+                <target>Произошла неизвестная ошибка (HTTP %status_code%), которая помешала выполнить ваш запрос.</target>
+            </trans-unit>
+            <trans-unit id="http_error.suggestion">
+                <source>http_error.suggestion</source>
+                <target><![CDATA[Попробуйте загрузить эту страницу снова через несколько минут или <a href="%url%">вернитесь на главную страницу</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="http_error_403.description">
+                <source>http_error_403.description</source>
+                <target>У вас нет разрешения на доступ к этому ресурсу.</target>
+            </trans-unit>
+            <trans-unit id="http_error_403.suggestion">
+                <source>http_error_403.suggestion</source>
+                <target>Запросите доступ к этому ресурсу у вашего менеджера или системного администратора.</target>
+            </trans-unit>
+            <trans-unit id="http_error_404.description">
+                <source>http_error_404.description</source>
+                <target>Мы не смогли найти запрашиваемую вами страницу.</target>
+            </trans-unit>
+            <trans-unit id="http_error_404.suggestion">
+                <source>http_error_404.suggestion</source>
+                <target><![CDATA[Проверьте корректность введенного URL или <a href="%url%">вернитесь на главную страницу</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="http_error_500.description">
+                <source>http_error_500.description</source>
+                <target>Произошла внутренняя ошибка сервера.</target>
+            </trans-unit>
+            <trans-unit id="http_error_500.suggestion">
+                <source>http_error_500.suggestion</source>
+                <target><![CDATA[Попробуйте загрузить эту страницу снова через несколько минут или <a href="%url%">вернитесь на главную страницу</a>.]]></target>
+            </trans-unit>
+
             <trans-unit id="title.homepage">
                 <source>title.homepage</source>
                 <target><![CDATA[Добро пожаловать в <strong>Symfony Demo</strong> приложение]]></target>
@@ -80,6 +117,22 @@
                 <source>action.delete_post</source>
                 <target>Удалить запись</target>
             </trans-unit>
+            <trans-unit id="delete_post_modal.title">
+                <source>delete_post_modal.title</source>
+                <target>Вы уверены, что хотите удалить эту запись?</target>
+            </trans-unit>
+            <trans-unit id="delete_post_modal.body">
+                <source>delete_post_modal.body</source>
+                <target>Это действие не может быть отменено.</target>
+            </trans-unit>
+            <trans-unit id="label.delete_post">
+                <source>label.delete_post</source>
+                <target>Удалить запись</target>
+            </trans-unit>
+            <trans-unit id="label.cancel">
+                <source>label.cancel</source>
+                <target>Отменить</target>
+            </trans-unit>
             <trans-unit id="action.create_post">
                 <source>action.create_post</source>
                 <target>Создать новую запись</target>
@@ -87,6 +140,10 @@
             <trans-unit id="label.create_post">
                 <source>label.create_post</source>
                 <target>Создать запись</target>
+            </trans-unit>
+            <trans-unit id="label.save_and_create_new">
+                <source>label.save_and_create_new</source>
+                <target>Сохранить и создать новую</target>
             </trans-unit>
             <trans-unit id="action.back_to_list">
                 <source>action.back_to_list</source>
@@ -158,6 +215,10 @@
                 <target>Изменить содержание</target>
             </trans-unit>
 
+            <trans-unit id="menu.toggle_nav">
+                <source>menu.toggle_nav</source>
+                <target>Переключить навигацию</target>
+            </trans-unit>
             <trans-unit id="menu.post_list">
                 <source>menu.post_list</source>
                 <target>Список записей</target>
@@ -198,6 +259,7 @@
             <trans-unit id="post.no_posts_found">
                 <source>post.no_posts_found</source>
                 <target>Ни одной записи не найдено.</target>
+            </trans-unit>
             <trans-unit id="post.created_successfully">
                 <source>post.created_successfully</source>
                 <target>Запись успешно создана!</target>

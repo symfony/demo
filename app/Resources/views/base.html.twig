@@ -4,16 +4,17 @@
    See http://symfony.com/doc/current/book/templating.html#template-inheritance-and-layouts
 #}
 <!DOCTYPE html>
-<html>
+<html lang="{{ app.request.locale }}">
     <head>
         <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title>{% block title %}Symfony Demo application{% endblock %}</title>
 
         {% block stylesheets %}
         {# uncomment the following lines to compile SCSS assets with Assetic
 
             {% stylesheets filter="scssphp" output="css/app.css"
-                "%kernel.root_dir%/Resources/assets/scss/bootstrap.scss"
+                "%kernel.root_dir%/Resources/assets/scss/bootstrap-flatly.scss"
                 "%kernel.root_dir%/Resources/assets/scss/font-awesome.scss"
                 "%kernel.root_dir%/Resources/assets/css/*.css"
                 "%kernel.root_dir%/Resources/assets/scss/main.scss"
@@ -41,7 +42,7 @@
                             <button type="button" class="navbar-toggle"
                                     data-toggle="collapse"
                                     data-target=".navbar-collapse">
-                                <span class="sr-only">Toggle navigation</span>
+                                <span class="sr-only">{{ 'menu.toggle_nav'|trans }}</span>
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
@@ -53,19 +54,14 @@
                                 {% block header_navigation_links %}
                                     <li>
                                         <a href="{{ path('blog_index') }}">
-                                            <i class="fa fa-home"></i> {{ 'menu.homepage'|trans }}
+                                            <i class="fa fa-home" aria-hidden="true"></i> {{ 'menu.homepage'|trans }}
                                         </a>
                                     </li>
 
-                                    {# The 'app.user' condition is required to avoid issues in 404 and 500 error pages
-                                       As routing is done before security, error pages are not covered by any firewall.
-                                       This means you can't use is_granted() directly on these pages.
-                                       See http://symfony.com/doc/current/cookbook/security/form_login_setup.html#avoid-common-pitfalls
-                                    #}
-                                    {% if app.user and is_granted('ROLE_ADMIN') %}
+                                    {% if is_granted('ROLE_ADMIN') %}
                                         <li>
                                             <a href="{{ path('admin_post_index') }}">
-                                                <i class="fa fa-lock"></i> {{ 'menu.admin'|trans }}
+                                                <i class="fa fa-lock" aria-hidden="true"></i> {{ 'menu.admin'|trans }}
                                             </a>
                                         </li>
                                     {% endif %}
@@ -74,16 +70,20 @@
                                 {% if app.user %}
                                     <li>
                                         <a href="{{ path('security_logout') }}">
-                                            <i class="fa fa-sign-out"></i> {{ 'menu.logout'|trans }}
+                                            <i class="fa fa-sign-out" aria-hidden="true"></i> {{ 'menu.logout'|trans }}
                                         </a>
                                     </li>
                                 {% endif %}
 
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-globe"></i> <span class="caret"></span></a>
-                                    <ul class="dropdown-menu locales" role="menu">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="locales">
+                                        <i class="fa fa-globe" aria-hidden="true"></i>
+                                        <span class="caret"></span>
+                                        <span class="sr-only">{{ 'menu.choose_language'|trans }}</span>
+                                    </a>
+                                    <ul class="dropdown-menu locales" role="menu" aria-labelledby="locales">
                                         {% for locale in locales() %}
-                                            <li {% if app.request.locale == locale.code %}class="active"{% endif %}><a href="{{ path(app.request.get('_route', 'blog_index'), app.request.get('_route_params', [])|merge({ _locale: locale.code })) }}">{{ locale.name|capitalize }}</a></li>
+                                            <li {% if app.request.locale == locale.code %}aria-checked="true" class="active"{%else%}aria-checked="false"{% endif %} role="menuitem"><a href="{{ path(app.request.get('_route', 'blog_index'), app.request.get('_route_params', [])|merge({ _locale: locale.code })) }}">{{ locale.name|capitalize }}</a></li>
                                         {% endfor %}
                                     </ul>
                                 </li>
@@ -98,21 +98,18 @@
             {% block body %}
                 <div class="row">
                     <div id="main" class="col-sm-9">
+                        {{ include('default/_flash_messages.html.twig') }}
+
                         {% block main %}{% endblock %}
                     </div>
 
                     <div id="sidebar" class="col-sm-3">
                         {% block sidebar %}
-                            <div class="section about">
-                                <div class="well well-lg">
-                                    <p>
-                                        {{ 'help.app_description'|trans|raw }}
-                                    </p>
-                                    <p>
-                                        {{ 'help.more_information'|trans|raw }}
-                                    </p>
-                                </div>
-                            </div>
+                            {{ render_esi(controller('FrameworkBundle:Template:template', {
+                                'template': 'blog/about.html.twig',
+                                'sharedAge': 600,
+                                '_locale': app.request.locale
+                            })) }}
                         {% endblock %}
                     </div>
                 </div>
@@ -129,9 +126,15 @@
                         </div>
                         <div id="footer-resources" class="col-md-6">
                             <p>
-                                <a href="https://twitter.com/symfony"><i class="fa fa-twitter"></i></a>
-                                <a href="https://www.facebook.com/SensioLabs"><i class="fa fa-facebook"></i></a>
-                                <a href="http://symfony.com/blog"><i class="fa fa-rss"></i></a>
+                                <a href="https://twitter.com/symfony" title="Symfony Twitter">
+                                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                                </a>
+                                <a href="https://www.facebook.com/SensioLabs" title="SensioLabs Facebook">
+                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                </a>
+                                <a href="https://symfony.com/blog/" title="Symfony Blog">
+                                    <i class="fa fa-rss" aria-hidden="true"></i>
+                                </a>
                             </p>
                         </div>
                     </div>
@@ -143,20 +146,21 @@
         {# uncomment the following lines to combine and minimize JavaScript assets with Assetic
             {% javascripts filter="?jsqueeze" output="js/app.js"
                 "%kernel.root_dir%/Resources/assets/js/jquery-2.1.4.js"
+                "%kernel.root_dir%/Resources/assets/js/moment.min.js"
                 "%kernel.root_dir%/Resources/assets/js/bootstrap-3.3.4.js"
-                "%kernel.root_dir%/Resources/assets/js/highlight.pack.js" %}
+                "%kernel.root_dir%/Resources/assets/js/highlight.pack.js"
+                "%kernel.root_dir%/Resources/assets/js/bootstrap-datetimepicker.min.js"
+                "%kernel.root_dir%/Resources/assets/js/main.js" %}
                 <script src="{{ asset_url }}"></script>
             {% endjavascripts %}
         #}
 
             <script src="{{ asset('js/app.js') }}"></script>
-
-            <script>
-                $(document).ready(function() {
-                    hljs.initHighlightingOnLoad();
-                });
-            </script>
         {% endblock %}
 
+        {# it's not mandatory to set the timezone in localizeddate(). This is done to
+           avoid errors when the 'intl' PHP extension is not available and the application
+           is forced to use the limited "intl polyfill", which only supports UTC and GMT #}
+        <!-- Page rendered on {{ 'now'|localizeddate('long', 'long', null, 'UTC') }} -->
     </body>
 </html>

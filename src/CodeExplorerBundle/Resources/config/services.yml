@@ -1,0 +1,13 @@
+services:
+    code_explorer.twig.source_code_extension:
+        public:    false
+        class:     CodeExplorerBundle\Twig\SourceCodeExtension
+        arguments: ['%kernel.root_dir%']
+        tags:
+            - { name: twig.extension }
+
+    code_explorer.controller_listener:
+        class:     CodeExplorerBundle\EventListener\ControllerListener
+        arguments: ['@code_explorer.twig.source_code_extension']
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: registerCurrentController }

@@ -3,9 +3,7 @@
  *  License: MIT License
  */
 
-@import "bootstrap/variables";
-@import "bootstrap/mixins";
-@import "bootstrap/flatly-theme/variables";
+@import "bootswatch-flatly/variables";
 
 //
 // Typography
@@ -133,6 +131,19 @@ footer {
     pre {
         margin-bottom: 2em;
         padding: 0;
+    }
+}
+
+// Confirmation Modal Window
+#confirmationModal {
+    .modal-dialog {
+        width: 500px;
+    }
+
+    .modal-footer {
+        button {
+            min-width: 75px;
+        }
     }
 }
 

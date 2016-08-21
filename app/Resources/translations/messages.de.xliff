@@ -80,6 +80,22 @@
                 <source>action.delete_post</source>
                 <target>Beitrag löschen</target>
             </trans-unit>
+            <trans-unit id="delete_post_modal.title">
+                <source>delete_post_modal.title</source>
+                <target>Bist du sicher, dass du diesen Beitrag löschen möchtest?</target>
+            </trans-unit>
+            <trans-unit id="delete_post_modal.body">
+                <source>delete_post_modal.body</source>
+                <target>Diese Aktion kann nicht rückgängig gemacht werden.</target>
+            </trans-unit>
+            <trans-unit id="label.delete_post">
+                <source>label.delete_post</source>
+                <target>Beitrag löschen</target>
+            </trans-unit>
+            <trans-unit id="label.cancel">
+                <source>label.cancel</source>
+                <target>Abbrechen</target>
+            </trans-unit>
             <trans-unit id="action.create_post">
                 <source>action.create_post</source>
                 <target>Neuen Beitrag erstellen</target>
@@ -87,6 +103,10 @@
             <trans-unit id="label.create_post">
                 <source>label.create_post</source>
                 <target>Beitrag erstellen</target>
+            </trans-unit>
+            <trans-unit id="label.save_and_create_new">
+                <source>label.save_and_create_new</source>
+                <target>Speichern und neuen Beitrag erstellen</target>
             </trans-unit>
             <trans-unit id="action.back_to_list">
                 <source>action.back_to_list</source>
@@ -158,6 +178,10 @@
                 <target>Inhalt bearbeiten</target>
             </trans-unit>
 
+            <trans-unit id="menu.toggle_nav">
+                <source>menu.toggle_nav</source>
+                <target>Navigation ein-/ausblenden</target>
+            </trans-unit>
             <trans-unit id="menu.post_list">
                 <source>menu.post_list</source>
                 <target>Beitragsliste</target>

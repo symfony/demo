@@ -143,7 +143,7 @@
             </trans-unit>
             <trans-unit id="label.published_at">
                 <source>label.published_at</source>
-                <target>Gepubliceerd op</target>
+                <target>Geplaatst</target>
             </trans-unit>
             <trans-unit id="label.actions">
                 <source>label.actions</source>
@@ -158,13 +158,17 @@
                 <target>Inhoud bewerken</target>
             </trans-unit>
 
+            <trans-unit id="menu.toggle_nav">
+                <source>menu.toggle_nav</source>
+                <target>Schakel navigatie</target>
+            </trans-unit>
             <trans-unit id="menu.post_list">
                 <source>menu.post_list</source>
                 <target>Berichten lijst</target>
             </trans-unit>
             <trans-unit id="menu.back_to_blog">
                 <source>menu.back_to_blog</source>
-                <target>Terug naar het blog</target>
+                <target>Terug naar de blog</target>
             </trans-unit>
             <trans-unit id="menu.homepage">
                 <source>menu.homepage</source>
@@ -181,7 +185,7 @@
 
             <trans-unit id="post.to_publish_a_comment">
                 <source>post.to_publish_a_comment</source>
-                <target>om reactie toe te voegen</target>
+                <target>om een reactie toe te voegen</target>
             </trans-unit>
             <trans-unit id="post.num_comments">
                 <source>post.num_comments</source>
@@ -202,7 +206,7 @@
             </trans-unit>
             <trans-unit id="help.show_code">
                 <source>help.show_code</source>
-                <target><![CDATA[Klik op deze knop om de broncode van de <strong>Controller</strong> en <strong>template</strong> weer te geven, die gebruikt is bij het weergeven van deze pagina.]]></target>
+                <target><![CDATA[Klik op deze knop om de broncode van de <strong>Controller</strong> en <strong>template</strong>, die gebruikt zijn bij het weergeven van deze pagina, te bekijken.]]></target>
             </trans-unit>
             <trans-unit id="help.browse_app">
                 <source>help.browse_app</source>
@@ -235,6 +239,22 @@
             <trans-unit id="help.more_information">
                 <source>help.more_information</source>
                 <target><![CDATA[Voor meer informatie bekijk de <a href="http://symfony.com/doc">Symfony documentatie</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="delete_post_modal.title">
+                <source>delete_post_modal.title</source>
+                <target>Weet u zeker dat u dit bericht wilt verwijderen?</target>
+            </trans-unit>
+            <trans-unit id="delete_post_modal.body">
+                <source>delete_post_modal.body</source>
+                <target>Deze actie kan niet ongedaan gemaakt worden.</target>
+            </trans-unit>
+            <trans-unit id="label.cancel">
+                <source>label.cancel</source>
+                <target>Annuleren</target>
+            </trans-unit>
+            <trans-unit id="label.delete_post">
+                <source>label.delete_post</source>
+                <target>Verwijderen</target>
             </trans-unit>
         </body>
     </file>
