@@ -9,11 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace AppBundle\Tests\Controller\Admin;
+namespace Tests\AppBundle\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
-use AppBundle\Entity\Post;
 
 /**
  * Functional test for the controllers defined inside the BlogController used
@@ -34,10 +33,10 @@ class BlogControllerTest extends WebTestCase
 {
     public function testRegularUsersCannotAccessToTheBackend()
     {
-        $client = static::createClient(array(), array(
+        $client = static::createClient([], [
             'PHP_AUTH_USER' => 'john_user',
             'PHP_AUTH_PW'   => 'kitten',
-        ));
+        ]);
 
         $client->request('GET', '/en/admin/post/');
 
@@ -46,10 +45,10 @@ class BlogControllerTest extends WebTestCase
 
     public function testAdministratorUsersCanAccessToTheBackend()
     {
-        $client = static::createClient(array(), array(
+        $client = static::createClient([], [
             'PHP_AUTH_USER' => 'anna_admin',
             'PHP_AUTH_PW'   => 'kitten',
-        ));
+        ]);
 
         $client->request('GET', '/en/admin/post/');
 
@@ -58,10 +57,10 @@ class BlogControllerTest extends WebTestCase
 
     public function testIndex()
     {
-        $client = static::createClient(array(), array(
+        $client = static::createClient([], [
             'PHP_AUTH_USER' => 'anna_admin',
             'PHP_AUTH_PW'   => 'kitten',
-        ));
+        ]);
 
         $crawler = $client->request('GET', '/en/admin/post/');
 

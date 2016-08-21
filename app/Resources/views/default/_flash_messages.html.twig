@@ -7,17 +7,19 @@
    '_flash_messages.html.twig' instead of 'flash_messages.html.twig'
 #}
 
-{% if app.session.started %}
+{% if app.session.started and app.session.flashBag.peekAll is not empty %}
     <div class="messages">
-        {% for message in app.session.flashBag.get('success') %}
-            {# Bootstrap alert, see http://getbootstrap.com/components/#alerts #}
-            <div class="alert alert-dismissible alert-success" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+        {% for type, messages in app.session.flashBag.all %}
+            {% for message in messages %}
+                {# Bootstrap alert, see http://getbootstrap.com/components/#alerts #}
+                <div class="alert alert-dismissible alert-{{ type }}" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
 
-                {{ message|trans }}
-            </div>
+                    {{ message|trans }}
+                </div>
+            {% endfor %}
         {% endfor %}
     </div>
 {% endif %}

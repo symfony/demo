@@ -5,8 +5,6 @@
 {% block main %}
     <h1>{{ 'title.edit_post'|trans({'%id%': post.id}) }}</h1>
 
-    {{ include('default/_flash_messages.html.twig') }}
-
     {{ include('admin/blog/_form.html.twig', {
         form: edit_form,
         button_label: 'action.save'|trans,

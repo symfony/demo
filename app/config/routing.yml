@@ -9,9 +9,9 @@ app:
     type:     annotation
     prefix:   /{_locale}
     requirements:
-        _locale: %app_locales%
+        _locale: '%app_locales%'
     defaults:
-        _locale: %locale%
+        _locale: '%locale%'
 
 # These lines define a route using YAML configuration. The controller used by
 # the route (FrameworkBundle:Template:template) is a convenient shortcut when
@@ -20,8 +20,8 @@ app:
 homepage:
     path: /{_locale}
     requirements:
-        _locale: %app_locales%
+        _locale: '%app_locales%'
     defaults:
         _controller: FrameworkBundle:Template:template
         template:    default/homepage.html.twig
-        _locale:     %locale%
+        _locale:     '%locale%'

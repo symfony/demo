@@ -17,5 +17,5 @@ uncomment the Assetic blocks in the `app/Resources/views/base.html.twig` and
 execute the following command:
 
 ```bash
-$ php app/console assetic:dump --no-debug
+$ php bin/console assetic:dump --no-debug
 ```

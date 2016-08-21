@@ -21,6 +21,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use AppBundle\Form\CommentType;
 
 /**
  * Controller used to manage blog contents in the public part of the site.
@@ -33,23 +34,21 @@ use Symfony\Component\HttpFoundation\Response;
 class BlogController extends Controller
 {
     /**
-     * @Route("/", name="blog_index", defaults={"page" = 1})
-     * @Route("/page/{page}", name="blog_index_paginated", requirements={"page" : "\d+"})
+     * @Route("/", defaults={"page": 1}, name="blog_index")
+     * @Route("/page/{page}", requirements={"page": "[1-9]\d*"}, name="blog_index_paginated")
+     * @Method("GET")
      * @Cache(smaxage="10")
      */
     public function indexAction($page)
     {
-        $query = $this->getDoctrine()->getRepository('AppBundle:Post')->queryLatest();
+        $posts = $this->getDoctrine()->getRepository(Post::class)->findLatest($page);
 
-        $paginator = $this->get('knp_paginator');
-        $posts = $paginator->paginate($query, $page, Post::NUM_ITEMS);
-        $posts->setUsedRoute('blog_index_paginated');
-
-        return $this->render('blog/index.html.twig', array('posts' => $posts));
+        return $this->render('blog/index.html.twig', ['posts' => $posts]);
     }
 
     /**
      * @Route("/posts/{slug}", name="blog_post")
+     * @Method("GET")
      *
      * NOTE: The $post controller argument is automatically injected by Symfony
      * after performing a database query looking for a Post with the 'slug'
@@ -58,14 +57,23 @@ class BlogController extends Controller
      */
     public function postShowAction(Post $post)
     {
-        return $this->render('blog/post_show.html.twig', array('post' => $post));
+        // Symfony provides a function called 'dump()' which is an improved version
+        // of the 'var_dump()' function. It's useful to quickly debug the contents
+        // of any variable, but it's not available in the 'prod' environment to
+        // prevent any leak of sensitive information.
+        // This function can be used both in PHP files and Twig templates. The only
+        // requirement is to have enabled the DebugBundle.
+        if ('dev' === $this->getParameter('kernel.environment')) {
+            dump($post, $this->get('security.token_storage')->getToken()->getUser(), new \DateTime());
+        }
+
+        return $this->render('blog/post_show.html.twig', ['post' => $post]);
     }
 
     /**
-     * @Route("/comment/{postSlug}/new", name = "comment_new")
-     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
-     *
+     * @Route("/comment/{postSlug}/new", name="comment_new")
      * @Method("POST")
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @ParamConverter("post", options={"mapping": {"postSlug": "slug"}})
      *
      * NOTE: The ParamConverter mapping is required because the route parameter
@@ -74,7 +82,7 @@ class BlogController extends Controller
      */
     public function commentNewAction(Request $request, Post $post)
     {
-        $form = $this->createForm('AppBundle\Form\CommentType');
+        $form = $this->createForm(CommentType::class);
 
         $form->handleRequest($request);
 
@@ -88,13 +96,13 @@ class BlogController extends Controller
             $entityManager->persist($comment);
             $entityManager->flush();
 
-            return $this->redirectToRoute('blog_post', array('slug' => $post->getSlug()));
+            return $this->redirectToRoute('blog_post', ['slug' => $post->getSlug()]);
         }
 
-        return $this->render('blog/comment_form_error.html.twig', array(
+        return $this->render('blog/comment_form_error.html.twig', [
             'post' => $post,
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -111,11 +119,11 @@ class BlogController extends Controller
      */
     public function commentFormAction(Post $post)
     {
-        $form = $this->createForm('AppBundle\Form\CommentType');
+        $form = $this->createForm(CommentType::class);
 
-        return $this->render('blog/_comment_form.html.twig', array(
+        return $this->render('blog/_comment_form.html.twig', [
             'post' => $post,
             'form' => $form->createView(),
-        ));
+        ]);
     }
 }

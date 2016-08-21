@@ -154,7 +154,7 @@ class Post
      */
     public function isAuthor(User $user)
     {
-        return $user->getEmail() == $this->getAuthorEmail();
+        return $user->getEmail() === $this->getAuthorEmail();
     }
 
     public function getPublishedAt()
@@ -181,7 +181,6 @@ class Post
     public function removeComment(Comment $comment)
     {
         $this->comments->removeElement($comment);
-        $comment->setPost(null);
     }
 
     public function getSummary()

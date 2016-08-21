@@ -25,7 +25,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Defines the sample data to load in the database when running the unit and
  * functional tests. Execute this command to load the data:
  *
- *   $ php app/console doctrine:fixtures:load
+ *   $ php bin/console doctrine:fixtures:load
  *
  * See http://symfony.com/doc/current/bundles/DoctrineFixturesBundle/index.html
  *
@@ -65,7 +65,7 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
         $annaAdmin = new User();
         $annaAdmin->setUsername('anna_admin');
         $annaAdmin->setEmail('anna_admin@symfony.com');
-        $annaAdmin->setRoles(array('ROLE_ADMIN'));
+        $annaAdmin->setRoles(['ROLE_ADMIN']);
         $encodedPassword = $passwordEncoder->encodePassword($annaAdmin, 'kitten');
         $annaAdmin->setPassword($encodedPassword);
         $manager->persist($annaAdmin);
@@ -245,7 +245,7 @@ MARKDOWN;
 
     private function getPhrases()
     {
-        return array(
+        return [
             'Lorem ipsum dolor sit amet consectetur adipiscing elit',
             'Pellentesque vitae velit ex',
             'Mauris dapibus risus quis suscipit vulputate',
@@ -261,7 +261,7 @@ MARKDOWN;
             'Sed varius a risus eget aliquam',
             'Nunc viverra elit ac laoreet suscipit',
             'Pellentesque et sapien pulvinar consectetur',
-        );
+        ];
     }
 
     private function getRandomPostTitle()
@@ -275,7 +275,7 @@ MARKDOWN;
     {
         $phrases = $this->getPhrases();
 
-        $numPhrases = rand(6, 12);
+        $numPhrases = mt_rand(6, 12);
         shuffle($phrases);
 
         return substr(implode(' ', array_slice($phrases, 0, $numPhrases-1)), 0, $maxLength);
@@ -285,7 +285,7 @@ MARKDOWN;
     {
         $phrases = $this->getPhrases();
 
-        $numPhrases = rand(2, 15);
+        $numPhrases = mt_rand(2, 15);
         shuffle($phrases);
 
         return implode(' ', array_slice($phrases, 0, $numPhrases-1));
