@@ -26,4 +26,4 @@ install:
 
 test_script:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - php ./bin/phpunit --verbose
+  - php ./vendor/bin/phpunit --verbose
