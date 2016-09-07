@@ -18,19 +18,47 @@ class DumpTranslationCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $loader = $this->getContainer()->get('translation.loader.xliff');
         $dumper = new MyXliffFileDumper();
 
-        $locale = 'en';
-        $domain = 'messages';
+        $defaultLocale = $this->getContainer()->getParameter('locale');
+        $domains = [
+            'messages',
+            'validators',
+        ];
+
+        foreach ($domains as $domain) {
+            $this->dump($dumper, $domain, $defaultLocale, $defaultLocale);
+
+            foreach ($this->getAppLocales() as $locale) {
+                $this->dump($dumper, $domain, $locale, $defaultLocale);
+            }
+        }
+    }
+
+    private function dump($dumper, $domain, $locale, $defaultLocale)
+    {
+        $loader = $this->getContainer()->get('translation.loader.xliff');
         $translationsDir = $this->getContainer()->get('kernel')->getRootDir() . '/Resources/translations';
+
         $translationsPath = sprintf('%s/%s.%s.xliff', $translationsDir, $domain, $locale);
+        $defaultCatalogue = $loader->load($translationsPath, $locale, $domain);
 
-        $catalogue = $loader->load($translationsPath, $locale, $domain);
-
-        $dumper->dump($catalogue, [
+        $dumper->dump($defaultCatalogue, [
             'path' => $translationsDir,
-            'default_locale' => $locale,
+            'default_locale' => $defaultLocale,
         ]);
+    }
+
+    /**
+     * @TODO Remove default locale from this list?
+     *
+     * @return string[]
+     */
+    private function getAppLocales()
+    {
+        $locales = $this->getContainer()->getParameter('app_locales');
+        $locales = trim($locales, '|');
+
+        return explode('|', $locales);
     }
 }
