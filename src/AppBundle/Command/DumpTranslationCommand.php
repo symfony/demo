@@ -39,11 +39,25 @@ class DumpTranslationCommand extends ContainerAwareCommand
         }
     }
 
+    /**
+     * Reorder catalog according to the default one
+     *
+     * @param MessageCatalogue $catalogue
+     * @param MessageCatalogue $defaultCatalogue
+     *
+     * @return MessageCatalogue
+     */
     private function diffCatalogue(MessageCatalogue $catalogue, MessageCatalogue $defaultCatalogue)
     {
-        // @TODO Reorder catalog according to the default one
+        $newCatalogue = new MessageCatalogue($catalogue->getLocale());
+        $domains = $catalogue->getDomains();
+        $domain = $domains[0];
 
-        return $catalogue;
+        foreach ($defaultCatalogue->all($domain) as $key => $value) {
+            $newCatalogue->set($key, $catalogue->get($key, $domain), $domain);
+        }
+
+        return $newCatalogue;
     }
 
     private function loadCatalogue($domain, $locale)
