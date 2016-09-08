@@ -8,12 +8,12 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Translation\MessageCatalogue;
 
-class DumpTranslationCommand extends ContainerAwareCommand
+class NormalizeTranslationsCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
         $this
-            ->setName('app:translation:dump')
+            ->setName('app:translations:normalize')
         ;
     }
 
@@ -22,12 +22,12 @@ class DumpTranslationCommand extends ContainerAwareCommand
         $defaultLocale = $this->getContainer()->getParameter('locale');
         $dumper = new MyXliffFileDumper();
 
-        $domains = [
+        $supportedDomains = [
             'messages',
             'validators',
         ];
 
-        foreach ($domains as $domain) {
+        foreach ($supportedDomains as $domain) {
             $defaultCatalogue = $this->loadCatalogue($domain, $defaultLocale);
             $this->dumpCatalogue($dumper, $defaultCatalogue);
 
@@ -40,7 +40,7 @@ class DumpTranslationCommand extends ContainerAwareCommand
     }
 
     /**
-     * Reorder catalog according to the default one
+     * Normalize message catalog according to the default one
      *
      * @param MessageCatalogue $catalogue
      * @param MessageCatalogue $defaultCatalogue
@@ -49,15 +49,22 @@ class DumpTranslationCommand extends ContainerAwareCommand
      */
     private function diffCatalogue(MessageCatalogue $catalogue, MessageCatalogue $defaultCatalogue)
     {
-        $newCatalogue = new MessageCatalogue($catalogue->getLocale());
-        $domains = $catalogue->getDomains();
-        $domain = $domains[0];
+        $normalizedCatalogue = new MessageCatalogue($catalogue->getLocale());
 
-        foreach ($defaultCatalogue->all($domain) as $key => $value) {
-            $newCatalogue->set($key, $catalogue->get($key, $domain), $domain);
+        foreach ($catalogue->getDomains() as $domain) {
+            // Iterate over all messages in the default catalogue
+            foreach ($defaultCatalogue->all($domain) as $key => $value) {
+                if ($catalogue->defines($key, $domain)) {
+                    // translation exists, just put it in right order
+                    $normalizedCatalogue->set($key, $catalogue->get($key, $domain), $domain);
+                } else {
+                    // translation does NOT exist, put a TO DO with default message instead
+                    $normalizedCatalogue->set($key, sprintf('@TODO Translate "%s" here', $value), $domain);
+                }
+            }
         }
 
-        return $newCatalogue;
+        return $normalizedCatalogue;
     }
 
     private function loadCatalogue($domain, $locale)
@@ -66,6 +73,7 @@ class DumpTranslationCommand extends ContainerAwareCommand
         $translationsDir = $this->getContainer()->get('kernel')->getRootDir() . '/Resources/translations';
 
         $translationsPath = sprintf('%s/%s.%s.xliff', $translationsDir, $domain, $locale);
+
         return $loader->load($translationsPath, $locale, $domain);
     }
 
