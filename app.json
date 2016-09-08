@@ -9,9 +9,6 @@
     "repository": "https://github.com/symfony/symfony-demo",
     "logo": "https://symfony.com/images/v5/pictos/demoapp.svg?v=4",
     "success_url": "/",
-    "scripts": {
-        "postdeploy": "php bin/console doctrine:schema:create && php bin/console doctrine:fixtures:load -n"
-    },
     "env": {
         "SYMFONY_ENV": "prod",
         "SYMFONY_SECRET": {
@@ -19,8 +16,5 @@
             "generator": "secret"
         }
     },
-    "addons": [
-        "heroku-postgresql"
-    ],
     "image": "heroku/php"
 }
