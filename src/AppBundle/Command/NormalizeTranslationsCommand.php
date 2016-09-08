@@ -7,23 +7,59 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Translation\Loader\XliffFileLoader;
 use Symfony\Component\Translation\MessageCatalogue;
 
 class NormalizeTranslationsCommand extends ContainerAwareCommand
 {
+    /**
+     * @var bool
+     */
+    private $isAllOptionSet;
+
+    /**
+     * @var bool
+     */
+    private $isAppendOptionSet;
+
+    /**
+     * @var string
+     */
+    private $defaultLocale;
+
+    /**
+     * @var string
+     */
+    private $translationsDir;
+
+    /**
+     * @var XliffFileLoader
+     */
+    private $loader;
+
+    /**
+     * @var MyXliffFileDumper
+     */
+    private $dumper;
+
     protected function configure()
     {
         $this
             ->setName('app:translations:normalize')
             ->setDescription('Normalize translations according to the default locale')
             ->addOption('all', null, InputOption::VALUE_NONE, 'Normalize all locales in application')
+            ->addOption('append', null, InputOption::VALUE_NONE, 'Append TODO about missed translations')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $defaultLocale = $this->getContainer()->getParameter('locale');
-        $dumper = new MyXliffFileDumper();
+        $this->isAllOptionSet = $input->getOption('all');
+        $this->isAppendOptionSet = $input->getOption('append');
+        $this->defaultLocale = $this->getContainer()->getParameter('locale');
+        $this->translationsDir = $this->getContainer()->get('kernel')->getRootDir() . '/Resources/translations';
+        $this->loader = $this->getContainer()->get('translation.loader.xliff');
+        $this->dumper = new MyXliffFileDumper(); // @TODO Move to the service container
 
         $supportedDomains = [
             'messages',
@@ -31,14 +67,14 @@ class NormalizeTranslationsCommand extends ContainerAwareCommand
         ];
 
         foreach ($supportedDomains as $domain) {
-            $defaultCatalogue = $this->loadCatalogue($domain, $defaultLocale);
-            $this->dumpCatalogue($dumper, $defaultCatalogue);
+            $defaultCatalogue = $this->loadCatalogue($domain, $this->defaultLocale);
+            $this->dumpCatalogue($defaultCatalogue);
 
-            if ($input->getOption('all')) {
+            if ($this->isAllOptionSet) {
                 foreach ($this->getAppLocales() as $locale) {
                     $catalogue = $this->loadCatalogue($domain, $locale);
                     $catalogue = $this->normalizeCatalogue($catalogue, $defaultCatalogue);
-                    $this->dumpCatalogue($dumper, $catalogue);
+                    $this->dumpCatalogue($catalogue);
                 }
             }
         }
@@ -60,11 +96,14 @@ class NormalizeTranslationsCommand extends ContainerAwareCommand
             // Iterate over all messages in the default catalogue
             foreach ($defaultCatalogue->all($domain) as $key => $value) {
                 if ($catalogue->defines($key, $domain)) {
-                    // translation exists, just put it in right order
+                    // Translation exists, just put it in right order
                     $normalizedCatalogue->set($key, $catalogue->get($key, $domain), $domain);
                 } else {
-                    // translation does NOT exist, put a TO DO with default message instead
-                    $normalizedCatalogue->set($key, sprintf('@TODO Translate "%s" here', $value), $domain);
+                    // Translation does NOT exist...
+                    if ($this->isAppendOptionSet) {
+                        // Put a TO DO with default message for missed translation
+                        $normalizedCatalogue->set($key, sprintf('@TODO Translate "%s" here', $value), $domain);
+                    }
                 }
             }
         }
@@ -80,26 +119,19 @@ class NormalizeTranslationsCommand extends ContainerAwareCommand
      */
     private function loadCatalogue($domain, $locale)
     {
-        $loader = $this->getContainer()->get('translation.loader.xliff');
-        $translationsDir = $this->getContainer()->get('kernel')->getRootDir() . '/Resources/translations';
+        $filePath = sprintf('%s/%s.%s.xliff', $this->translationsDir, $domain, $locale);
 
-        $translationsPath = sprintf('%s/%s.%s.xliff', $translationsDir, $domain, $locale);
-
-        return $loader->load($translationsPath, $locale, $domain);
+        return $this->loader->load($filePath, $locale, $domain);
     }
 
     /**
-     * @param MyXliffFileDumper $dumper
      * @param MessageCatalogue $catalogue
      */
-    private function dumpCatalogue(MyXliffFileDumper $dumper, MessageCatalogue $catalogue)
+    private function dumpCatalogue(MessageCatalogue $catalogue)
     {
-        $translationsDir = $this->getContainer()->get('kernel')->getRootDir() . '/Resources/translations';
-        $defaultLocale = $this->getContainer()->getParameter('locale');
-
-        $dumper->dump($catalogue, [
-            'path' => $translationsDir,
-            'default_locale' => $defaultLocale,
+        $this->dumper->dump($catalogue, [
+            'path' => $this->translationsDir,
+            'default_locale' => $this->defaultLocale,
         ]);
     }
 
