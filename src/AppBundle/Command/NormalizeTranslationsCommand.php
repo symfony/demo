@@ -28,6 +28,11 @@ class NormalizeTranslationsCommand extends ContainerAwareCommand
     private $defaultLocale;
 
     /**
+     * @var string[]
+     */
+    private $locales;
+
+    /**
      * @var string
      */
     private $translationsDir;
@@ -57,6 +62,7 @@ class NormalizeTranslationsCommand extends ContainerAwareCommand
         $this->isAllOptionSet = $input->getOption('all');
         $this->isAppendOptionSet = $input->getOption('append');
         $this->defaultLocale = $this->getContainer()->getParameter('locale');
+        $this->locales = $this->getLocales();
         $this->translationsDir = $this->getContainer()->get('kernel')->getRootDir() . '/Resources/translations';
         $this->loader = $this->getContainer()->get('translation.loader.xliff');
         $this->dumper = $this->getContainer()->get('app.translation.dumper.xliff');
@@ -136,15 +142,21 @@ class NormalizeTranslationsCommand extends ContainerAwareCommand
     }
 
     /**
-     * @TODO Remove default locale from this list?
+     * Returns array of application locales without default locale.
      *
      * @return string[]
      */
-    private function getAppLocales()
+    private function getLocales()
     {
         $locales = $this->getContainer()->getParameter('app_locales');
         $locales = trim($locales, '|');
+        $locales = explode('|', $locales);
 
-        return explode('|', $locales);
+        // Remove default locale from the list
+        if ($key = array_search($this->defaultLocale, $locales)) {
+            unset($locales[$key]);
+        }
+
+        return $locales;
     }
 }
