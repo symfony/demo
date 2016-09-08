@@ -5,6 +5,7 @@ namespace AppBundle\Command;
 use AppBundle\Dumper\MyXliffFileDumper;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Translation\MessageCatalogue;
 
@@ -14,6 +15,8 @@ class NormalizeTranslationsCommand extends ContainerAwareCommand
     {
         $this
             ->setName('app:translations:normalize')
+            ->setDescription('Normalize translations according to the default locale')
+            ->addOption('all', null, InputOption::VALUE_NONE, 'Normalize all locales in application')
         ;
     }
 
@@ -31,10 +34,12 @@ class NormalizeTranslationsCommand extends ContainerAwareCommand
             $defaultCatalogue = $this->loadCatalogue($domain, $defaultLocale);
             $this->dumpCatalogue($dumper, $defaultCatalogue);
 
-            foreach ($this->getAppLocales() as $locale) {
-                $catalogue = $this->loadCatalogue($domain, $locale);
-                $catalogue = $this->diffCatalogue($catalogue, $defaultCatalogue);
-                $this->dumpCatalogue($dumper, $catalogue);
+            if ($input->getOption('all')) {
+                foreach ($this->getAppLocales() as $locale) {
+                    $catalogue = $this->loadCatalogue($domain, $locale);
+                    $catalogue = $this->normalizeCatalogue($catalogue, $defaultCatalogue);
+                    $this->dumpCatalogue($dumper, $catalogue);
+                }
             }
         }
     }
@@ -47,7 +52,7 @@ class NormalizeTranslationsCommand extends ContainerAwareCommand
      *
      * @return MessageCatalogue
      */
-    private function diffCatalogue(MessageCatalogue $catalogue, MessageCatalogue $defaultCatalogue)
+    private function normalizeCatalogue(MessageCatalogue $catalogue, MessageCatalogue $defaultCatalogue)
     {
         $normalizedCatalogue = new MessageCatalogue($catalogue->getLocale());
 
@@ -67,6 +72,12 @@ class NormalizeTranslationsCommand extends ContainerAwareCommand
         return $normalizedCatalogue;
     }
 
+    /**
+     * @param string $domain
+     * @param string $locale
+     *
+     * @return MessageCatalogue
+     */
     private function loadCatalogue($domain, $locale)
     {
         $loader = $this->getContainer()->get('translation.loader.xliff');
@@ -77,6 +88,10 @@ class NormalizeTranslationsCommand extends ContainerAwareCommand
         return $loader->load($translationsPath, $locale, $domain);
     }
 
+    /**
+     * @param MyXliffFileDumper $dumper
+     * @param MessageCatalogue $catalogue
+     */
     private function dumpCatalogue(MyXliffFileDumper $dumper, MessageCatalogue $catalogue)
     {
         $translationsDir = $this->getContainer()->get('kernel')->getRootDir() . '/Resources/translations';
