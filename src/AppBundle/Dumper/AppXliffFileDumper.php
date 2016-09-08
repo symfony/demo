@@ -16,6 +16,8 @@ use Symfony\Component\Translation\MessageCatalogue;
 
 /**
  * XliffFileDumper generates xliff files from a message catalogue.
+ *
+ * @author Victor Bocharsky <bocharsky.bw@gmail.com>
  */
 class AppXliffFileDumper extends XliffFileDumper
 {
@@ -120,7 +122,7 @@ class AppXliffFileDumper extends XliffFileDumper
             $xliffBody->appendChild($translation);
         }
 
-        return $this->indent($dom);
+        return $this->reindentAndSaveXML($dom);
     }
 
     /**
@@ -134,7 +136,13 @@ class AppXliffFileDumper extends XliffFileDumper
         return null !== $metadata && array_key_exists($key, $metadata) && ($metadata[$key] instanceof \Traversable || is_array($metadata[$key]));
     }
 
-    private function indent(\DOMDocument $dom, $length = 4)
+    /**
+     * @param \DOMDocument $dom
+     * @param int $length
+     *
+     * @return string
+     */
+    private function reindentAndSaveXML(\DOMDocument $dom, $length = 4)
     {
         return preg_replace_callback('/^( +)</m', function ($matches) use ($length) {
             $indentation = $matches[1];
