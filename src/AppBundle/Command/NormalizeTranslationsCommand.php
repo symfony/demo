@@ -77,7 +77,7 @@ class NormalizeTranslationsCommand extends ContainerAwareCommand
             $this->dumpCatalogue($defaultCatalogue);
 
             if ($this->isAllOptionSet) {
-                foreach ($this->getAppLocales() as $locale) {
+                foreach ($this->locales as $locale) {
                     $catalogue = $this->loadCatalogue($domain, $locale);
                     $catalogue = $this->normalizeCatalogue($catalogue, $defaultCatalogue);
                     $this->dumpCatalogue($catalogue);
