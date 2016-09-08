@@ -17,7 +17,7 @@ use Symfony\Component\Translation\MessageCatalogue;
 /**
  * XliffFileDumper generates xliff files from a message catalogue.
  */
-class MyXliffFileDumper extends XliffFileDumper
+class AppXliffFileDumper extends XliffFileDumper
 {
     /**
      * {@inheritdoc}

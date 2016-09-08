@@ -2,7 +2,7 @@
 
 namespace AppBundle\Command;
 
-use AppBundle\Dumper\MyXliffFileDumper;
+use AppBundle\Dumper\AppXliffFileDumper;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -38,7 +38,7 @@ class NormalizeTranslationsCommand extends ContainerAwareCommand
     private $loader;
 
     /**
-     * @var MyXliffFileDumper
+     * @var AppXliffFileDumper
      */
     private $dumper;
 
@@ -59,7 +59,7 @@ class NormalizeTranslationsCommand extends ContainerAwareCommand
         $this->defaultLocale = $this->getContainer()->getParameter('locale');
         $this->translationsDir = $this->getContainer()->get('kernel')->getRootDir() . '/Resources/translations';
         $this->loader = $this->getContainer()->get('translation.loader.xliff');
-        $this->dumper = new MyXliffFileDumper(); // @TODO Move to the service container
+        $this->dumper = $this->getContainer()->get('app.translation.dumper.xliff');
 
         $supportedDomains = [
             'messages',
