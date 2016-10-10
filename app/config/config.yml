@@ -58,18 +58,6 @@ twig:
         - "bootstrap_3_layout.html.twig"
         - "form/fields.html.twig"
 
-# Assetic Configuration (used for managing web assets: CSS, JavaScript, Sass, etc.)
-assetic:
-    debug:          "%kernel.debug%"
-    use_controller: false
-    bundles:        [ ]
-    filters:
-        cssrewrite: ~
-        jsqueeze: ~
-        scssphp:
-            # the formatter must be the FQCN (don't use the 'compressed' value)
-            formatter: "Leafo\\ScssPhp\\Formatter\\Compressed"
-
 # Doctrine Configuration (used to access databases and manipulate their information)
 doctrine:
     dbal:
