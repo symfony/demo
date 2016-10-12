@@ -1,0 +1,246 @@
+/*
+ *  Symfony Demo Application by @symfony
+ *  License: MIT License
+ */
+
+/* Basic styles
+   ------------------------------------------------------------------------- */
+p, ul, ol {
+    font-size: 19px;
+    margin-bottom: 1.5em
+}
+
+li {
+    margin-bottom: 0.5em
+}
+
+code {
+    background: #ecf0f1;
+    color: #2c3e50
+}
+
+.text-danger, .text-danger:hover {
+    color: #e74c3c
+}
+
+i {
+    margin-right: 0.25em
+}
+
+/* Page elements
+   ------------------------------------------------------------------------- */
+body {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    min-height: 100vh
+}
+
+header {
+    margin-bottom: 2em
+}
+
+header ul.nav li {
+    margin-bottom: 0
+}
+
+header .locales a {
+    padding-right: 10px
+}
+
+.body-container {
+    -webkit-flex: 1;
+    flex: 1;
+    /* needed to prevent pages with a very small height and browsers not supporting flex */
+    min-height: 600px
+}
+
+.body-container #main h1, .body-container #main h2 {
+    margin-top: 0
+}
+
+#sidebar .section {
+    margin-bottom: 2em
+}
+
+#sidebar p {
+    font-size: 15px
+}
+
+#sidebar p + p {
+    margin: 1.5em 0 0
+}
+
+footer {
+    background: #ecf0f1;
+    margin-top: 2em;
+    padding-top: 2em;
+    padding-bottom: 2em
+}
+
+footer p {
+    color: #7b8a8b;
+    font-size: 13px;
+    margin-bottom: 0.25em
+}
+
+footer #footer-resources {
+    text-align: right
+}
+
+footer #footer-resources i {
+    color: #7b8a8b;
+    font-size: 28.5px;
+    margin-left: 0.5em
+}
+
+#sourceCodeModal h3 {
+    font-size: 19px;
+    margin-top: 0
+}
+
+#sourceCodeModal h3 small {
+    color: #7b8a8b;
+    font-size: 80%
+}
+
+#sourceCodeModal pre {
+    margin-bottom: 2em;
+    padding: 0
+}
+
+#confirmationModal .modal-dialog {
+    width: 500px
+}
+
+#confirmationModal .modal-footer button {
+    min-width: 75px
+}
+
+/* Forms
+   ------------------------------------------------------------------------- */
+.form-group.has-error .form-control {
+    border-color: #e74c3c
+}
+
+.form-group.has-error .control-label {
+    color: #e74c3c
+}
+
+.form-group.has-error .help-block {
+    background-color: #e74c3c;
+    color: #fff;
+    font-size: 15px;
+    padding: 1em
+}
+
+.form-group.has-error .help-block ul {
+    margin-bottom: 0
+}
+
+textarea {
+    max-width: 100%
+}
+
+/* Page: 'Technical Requirements Checker'
+   ------------------------------------------------------------------------- */
+body#requirements_checker header h1 {
+    margin-bottom: 0;
+    margin-top: 0
+}
+
+body#requirements_checker header h1 span {
+    font-size: 120%;
+    opacity: 0.7;
+    padding: 0 5px
+}
+
+body#requirements_checker .panel li {
+    margin-bottom: 1em
+}
+
+/* Page: 'Homepage'
+   ------------------------------------------------------------------------- */
+body#homepage {
+    text-align: center
+}
+
+/* Page: 'Login'
+   ------------------------------------------------------------------------- */
+body#login #login-users-help p {
+    font-size: 15px;
+    line-height: 1.42857
+}
+
+body#login #login-users-help p:last-child {
+    margin-bottom: 0
+}
+
+body#login #login-users-help p .label {
+    margin-right: 5px
+}
+
+body#login #login-users-help p .console {
+    display: block;
+    margin: 5px 0;
+    padding: 10px
+}
+
+/* Page: 'Blog index'
+   ------------------------------------------------------------------------- */
+body#blog_index h1 {
+    margin-bottom: 0.5em
+}
+
+body#blog_index article.post {
+    margin-bottom: 3em
+}
+
+/* Page: 'Blog post show'
+   ------------------------------------------------------------------------- */
+body#blog_post_show h3 {
+    margin-bottom: 0.75em
+}
+
+body#blog_post_show #post-add-comment {
+    margin: 2em 0
+}
+
+body#blog_post_show #post-add-comment p {
+    margin-bottom: 0
+}
+
+body#blog_post_show #post-add-comment p a.btn {
+    margin-right: 0.5em
+}
+
+body#blog_post_show .post-comment {
+    margin-bottom: 2em
+}
+
+body#blog_post_show .post-comment h4 {
+    font-size: 13px;
+    line-height: 1.42857;
+    margin-top: 0
+}
+
+body#blog_post_show .post-comment h4 strong {
+    display: block
+}
+
+/* Page: 'Comment form error'
+   ------------------------------------------------------------------------- */
+body#comment_form_error h1.text-danger {
+    margin-bottom: 1em
+}
+
+/* Page: 'Backend post index'
+   ------------------------------------------------------------------------- */
+body#admin_post_index .item-actions {
+    white-space: nowrap
+}
+
+body#admin_post_index .item-actions a.btn + a.btn {
+    margin-left: 4px
+}
