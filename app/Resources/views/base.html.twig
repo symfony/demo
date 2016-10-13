@@ -9,21 +9,13 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title>{% block title %}Symfony Demo application{% endblock %}</title>
-
         {% block stylesheets %}
-        {# uncomment the following lines to compile SCSS assets with Assetic
-
-            {% stylesheets filter="scssphp" output="css/app.css"
-                "%kernel.root_dir%/Resources/assets/scss/bootstrap-flatly.scss"
-                "%kernel.root_dir%/Resources/assets/scss/font-awesome.scss"
-                "%kernel.root_dir%/Resources/assets/css/*.css"
-                "%kernel.root_dir%/Resources/assets/scss/main.scss"
-            %}
-                <link rel="stylesheet" href="{{ asset_url }}" />
-            {% endstylesheets %}
-        #}
-
-            <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/bootstrap-flatly-3.3.7.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/font-awesome-4.6.3.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/font-lato.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/highlight-solarized-light.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/main.css') }}">
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -143,19 +135,12 @@
         {% endblock %}
 
         {% block javascripts %}
-        {# uncomment the following lines to combine and minimize JavaScript assets with Assetic
-            {% javascripts filter="?jsqueeze" output="js/app.js"
-                "%kernel.root_dir%/Resources/assets/js/jquery-2.1.4.js"
-                "%kernel.root_dir%/Resources/assets/js/moment.min.js"
-                "%kernel.root_dir%/Resources/assets/js/bootstrap-3.3.4.js"
-                "%kernel.root_dir%/Resources/assets/js/highlight.pack.js"
-                "%kernel.root_dir%/Resources/assets/js/bootstrap-datetimepicker.min.js"
-                "%kernel.root_dir%/Resources/assets/js/main.js" %}
-                <script src="{{ asset_url }}"></script>
-            {% endjavascripts %}
-        #}
-
-            <script src="{{ asset('js/app.js') }}"></script>
+            <script src="{{ asset('js/jquery-2.2.4.min.js') }}"></script>
+            <script src="{{ asset('js/moment.min.js') }}"></script>
+            <script src="{{ asset('js/bootstrap-3.3.7.min.js') }}"></script>
+            <script src="{{ asset('js/highlight.pack.js') }}"></script>
+            <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
+            <script src="{{ asset('js/main.js') }}"></script>
         {% endblock %}
 
         {# it's not mandatory to set the timezone in localizeddate(). This is done to
