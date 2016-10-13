@@ -1,0 +1,15 @@
+---------------------------------------------------------------------------
+
+by stof at 2016-10-10T15:51:46Z
+
+Fine with me, but we should not force contributors to work on the minified CSS file, so we should replace it with another setup for the assets
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2016-10-12T09:34:48Z
+
+The diff is now impossible to review, but this is what we've done:
+
+* Removed the source SCSS files and turn them into simple CSS files.
+* Link to `*.min.css` and `*.min.js` files for third-party libraries (Bootstrap, jQuery, etc.)
+* Link to `main.css` and `main.js` for our app files, so anybody can easily work with them.
