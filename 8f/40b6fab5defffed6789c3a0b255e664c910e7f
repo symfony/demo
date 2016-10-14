@@ -1,0 +1,58 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2016-10-14T06:48:26Z
+
+There are some failing tests only for PHP 5.5. I don't understand why because we use Symfony's polyfill for mb_strtolower():
+
+```
+There were 2 failures:
+1) Tests\AppBundle\Utils\SluggerTest::testSlugify with data set #6 ('lorem ру́сский язы... ipsum', 'lorem-ру́сский-язы...-ipsum')
+Failed asserting that two strings are equal.
+--- Expected
++++ Actual
+@@ @@
+-'lorem-ру́сский-язы́к-ipsum'
++'lorem-����������������-����������-ipsum'
+/home/travis/build/symfony/symfony-demo/tests/AppBundle/Utils/SluggerTest.php:36
+
+2) Tests\AppBundle\Utils\SluggerTest::testSlugify with data set #7 ('lorem العَرَبِيَّ�... ipsum', 'lorem-العَرَبِيَّ�...-ipsum')
+Failed asserting that two strings are equal.
+--- Expected
++++ Actual
+@@ @@
+-'lorem-العَرَبِيَّة‎‎-ipsum'
++'lorem-������������������������‎‎-ipsum'
+/home/travis/build/symfony/symfony-demo/tests/AppBundle/Utils/SluggerTest.php:36
+```
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2016-10-14T11:26:13Z
+
+@javiereguiluz, Could we use the slugs without changing their cases?
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2016-10-14T14:20:52Z
+
+@javiereguiluz, I think it doesn't work because you use unsupported symbols like `у́` (it's not Cyrillic). See https://github.com/symfony/polyfill-mbstring/blob/master/Resources/unidata/lowerCase.php
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2016-10-14T14:36:53Z
+
+@voronkovich I took that from the Wikipedia 😱  Is it wrong?
+
+![wikipedia_russian](https://cloud.githubusercontent.com/assets/73419/19391327/65398cce-922c-11e6-8cef-86d88758ca97.png)
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2016-10-14T14:51:23Z
+
+@javiereguiluz, it's not wrong but those symbols are used rarely.  Try to use: `русский язык`.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2016-10-14T15:12:03Z
+
+And it's working 🎉  Thank you all for your help!
