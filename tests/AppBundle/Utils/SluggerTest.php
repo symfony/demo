@@ -44,7 +44,7 @@ class SluggerTest extends \PHPUnit_Framework_TestCase
         yield ['!Lorem Ipsum!', '!lorem-ipsum!'];
         yield ['lorem-ipsum', 'lorem-ipsum'];
         yield ['lorem 日本語 ipsum', 'lorem-日本語-ipsum'];
-        yield ['lorem ру́сский язы́к ipsum', 'lorem-ру́сский-язы́к-ipsum'];
+        yield ['lorem русский языќк ipsum', 'lorem-русский язык-ipsum'];
         yield ['lorem العَرَبِيَّة‎‎ ipsum', 'lorem-العَرَبِيَّة‎‎-ipsum'];
     }
 }
