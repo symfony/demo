@@ -61,19 +61,28 @@ twig:
 # Doctrine Configuration (used to access databases and manipulate their information)
 doctrine:
     dbal:
-        # instead of configuring the database access options in this file, we pull
-        # them from the app/config/parameters.yml file. The reason is that config.yml
-        # stores options that change the application behavior and parameters.yml
-        # stores options that change from one server to another
+        # if you don't want to use SQLite, comment the two following lines
         driver: "pdo_sqlite"
-        # temp workaround for https://github.com/doctrine/dbal/issues/1106: define DB path here
         path: "%kernel.root_dir%/data/blog.sqlite"
+        # uncomment the following lines to use a database different than SQLite
+        # driver:   pdo_mysql
+        # host:     "%database_host%"
+        # port:     "%database_port%"
+        # dbname:   "%database_name%"
+        # user:     "%database_user%"
+        # password: "%database_password%"
+        # charset:  UTF8
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
 
 # Swiftmailer Configuration (used to send emails)
+# instead of configuring the mailer credentials in this file, we pull
+# them from the app/config/parameters.yml file. The reason is that config.yml
+# stores options that change the application behavior and parameters.yml
+# stores options that change from one server to another
+#
 # swiftmailer:
 #     transport: "%mailer_transport%"
 #     host:      "%mailer_host%"
