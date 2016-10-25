@@ -19,10 +19,9 @@ parameters:
 
 # Basic configuration for the Symfony framework features
 framework:
-    # The 'ide' option to turn all of the file paths in an exception
-    # page into clickable links that open the given file using your favorite IDE.
-    # Supported values are 'textmate', 'macvim', 'emacs' and 'sublime' shortcuts
-    # and any custom configuration string, such as: "phpstorm://open?file=%%f&line=%%l"
+    # The 'ide' option turns all of the file paths in an exception page
+    # into clickable links that open the given file using your favorite IDE.
+    # Supported values are 'phpstorm', 'sublime', 'textmate', 'macvim' and 'emacs'.
     # See http://symfony.com/doc/current/reference/configuration/framework.html#ide
     ide: ~
 
