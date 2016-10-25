@@ -19,12 +19,12 @@ parameters:
 
 # Basic configuration for the Symfony framework features
 framework:
-    # Uncomment the 'ide' option to turn all of the file paths in an exception
+    # The 'ide' option to turn all of the file paths in an exception
     # page into clickable links that open the given file using your favorite IDE.
     # Supported values are 'textmate', 'macvim', 'emacs' and 'sublime' shortcuts
     # and any custom configuration string, such as: "phpstorm://open?file=%%f&line=%%l"
     # See http://symfony.com/doc/current/reference/configuration/framework.html#ide
-    ide: sublime
+    ide: ~
 
     # When using the HTTP Cache, ESI allows to render page fragments separately
     # and with different cache configurations for each fragment
