@@ -21,6 +21,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class User implements UserInterface
 {
     /**
+     * @var int
+     *
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -28,21 +30,29 @@ class User implements UserInterface
     private $id;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", unique=true)
      */
     private $username;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", unique=true)
      */
     private $email;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string")
      */
     private $password;
 
     /**
+     * @var array
+     *
      * @ORM\Column(type="json_array")
      */
     private $roles = [];
@@ -59,6 +69,7 @@ class User implements UserInterface
     {
         return $this->username;
     }
+
     public function setUsername($username)
     {
         $this->username = $username;
@@ -68,6 +79,7 @@ class User implements UserInterface
     {
         return $this->email;
     }
+
     public function setEmail($email)
     {
         $this->email = $email;
@@ -80,6 +92,7 @@ class User implements UserInterface
     {
         return $this->password;
     }
+
     public function setPassword($password)
     {
         $this->password = $password;

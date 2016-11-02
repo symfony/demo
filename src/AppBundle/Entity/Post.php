@@ -29,6 +29,8 @@ class Post
     const NUM_ITEMS = 10;
 
     /**
+     * @var int
+     *
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -36,23 +38,31 @@ class Post
     private $id;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string")
      * @Assert\NotBlank()
      */
     private $title;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string")
      */
     private $slug;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string")
      * @Assert\NotBlank(message="post.blank_summary")
      */
     private $summary;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="text")
      * @Assert\NotBlank(message="post.blank_content")
      * @Assert\Length(min = "10", minMessage = "post.too_short_content")
@@ -60,18 +70,24 @@ class Post
     private $content;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string")
      * @Assert\Email()
      */
     private $authorEmail;
 
     /**
+     * @var \DateTime
+     *
      * @ORM\Column(type="datetime")
      * @Assert\DateTime()
      */
     private $publishedAt;
 
     /**
+     * @var Comment[]|ArrayCollection
+     *
      * @ORM\OneToMany(
      *      targetEntity="Comment",
      *      mappedBy="post",
