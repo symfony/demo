@@ -57,6 +57,9 @@ class User implements UserInterface
      */
     private $roles = [];
 
+    /**
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
@@ -70,16 +73,25 @@ class User implements UserInterface
         return $this->username;
     }
 
+    /**
+     * @param string $username
+     */
     public function setUsername($username)
     {
         $this->username = $username;
     }
 
+    /**
+     * @return string
+     */
     public function getEmail()
     {
         return $this->email;
     }
 
+    /**
+     * @param string $email
+     */
     public function setEmail($email)
     {
         $this->email = $email;
@@ -93,6 +105,9 @@ class User implements UserInterface
         return $this->password;
     }
 
+    /**
+     * @param string $password
+     */
     public function setPassword($password)
     {
         $this->password = $password;
@@ -100,6 +115,8 @@ class User implements UserInterface
 
     /**
      * Returns the roles or permissions granted to the user for security.
+     *
+     * @return array
      */
     public function getRoles()
     {
@@ -113,6 +130,9 @@ class User implements UserInterface
         return array_unique($roles);
     }
 
+    /**
+     * @param array $roles
+     */
     public function setRoles(array $roles)
     {
         $this->roles = $roles;
@@ -120,6 +140,8 @@ class User implements UserInterface
 
     /**
      * Returns the salt that was originally used to encode the password.
+     *
+     * {@inheritdoc}
      */
     public function getSalt()
     {
@@ -127,11 +149,13 @@ class User implements UserInterface
         // we're using bcrypt in security.yml to encode the password, so
         // the salt value is built-in and you don't have to generate one
 
-        return;
+        return null;
     }
 
     /**
      * Removes sensitive data from the user.
+     *
+     * @return void
      */
     public function eraseCredentials()
     {
