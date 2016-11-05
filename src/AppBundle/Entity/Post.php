@@ -103,17 +103,11 @@ class Post
         $this->comments = new ArrayCollection();
     }
 
-    /**
-     * @return int
-     */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
     public function getTitle()
     {
         return $this->title;
@@ -127,9 +121,6 @@ class Post
         $this->title = $title;
     }
 
-    /**
-     * @return string
-     */
     public function getSlug()
     {
         return $this->slug;
@@ -143,9 +134,6 @@ class Post
         $this->slug = $slug;
     }
 
-    /**
-     * @return string
-     */
     public function getContent()
     {
         return $this->content;
@@ -159,9 +147,6 @@ class Post
         $this->content = $content;
     }
 
-    /**
-     * @return string
-     */
     public function getAuthorEmail()
     {
         return $this->authorEmail;
@@ -177,60 +162,38 @@ class Post
 
     /**
      * Is the given User the author of this Post?
-     *
-     * @param User $user
-     *
-     * @return bool
      */
     public function isAuthor(User $user)
     {
         return $user->getEmail() === $this->getAuthorEmail();
     }
 
-    /**
-     * @return \DateTime
-     */
     public function getPublishedAt()
     {
         return $this->publishedAt;
     }
 
-    /**
-     * @param \DateTime $publishedAt
-     */
     public function setPublishedAt(\DateTime $publishedAt)
     {
         $this->publishedAt = $publishedAt;
     }
 
-    /**
-     * @return Comment[]|ArrayCollection
-     */
     public function getComments()
     {
         return $this->comments;
     }
 
-    /**
-     * @param Comment $comment
-     */
     public function addComment(Comment $comment)
     {
         $this->comments->add($comment);
         $comment->setPost($this);
     }
 
-    /**
-     * @param Comment $comment
-     */
     public function removeComment(Comment $comment)
     {
         $this->comments->removeElement($comment);
     }
 
-    /**
-     * @return string
-     */
     public function getSummary()
     {
         return $this->summary;

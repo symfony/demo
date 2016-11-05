@@ -57,17 +57,11 @@ class User implements UserInterface
      */
     private $roles = [];
 
-    /**
-     * @return int
-     */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getUsername()
     {
         return $this->username;
@@ -81,9 +75,6 @@ class User implements UserInterface
         $this->username = $username;
     }
 
-    /**
-     * @return string
-     */
     public function getEmail()
     {
         return $this->email;
@@ -97,9 +88,6 @@ class User implements UserInterface
         $this->email = $email;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPassword()
     {
         return $this->password;
@@ -115,8 +103,6 @@ class User implements UserInterface
 
     /**
      * Returns the roles or permissions granted to the user for security.
-     *
-     * @return array
      */
     public function getRoles()
     {
@@ -130,9 +116,6 @@ class User implements UserInterface
         return array_unique($roles);
     }
 
-    /**
-     * @param array $roles
-     */
     public function setRoles(array $roles)
     {
         $this->roles = $roles;
@@ -155,7 +138,7 @@ class User implements UserInterface
     /**
      * Removes sensitive data from the user.
      *
-     * @return void
+     * {@inheritdoc}
      */
     public function eraseCredentials()
     {

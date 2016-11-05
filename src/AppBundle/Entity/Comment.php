@@ -83,8 +83,6 @@ class Comment
 
     /**
      * @Assert\IsTrue(message = "comment.is_spam")
-     *
-     * @return bool
      */
     public function isLegitComment()
     {
@@ -93,17 +91,11 @@ class Comment
         return !$containsInvalidCharacters;
     }
 
-    /**
-     * @return int
-     */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
     public function getContent()
     {
         return $this->content;
@@ -117,9 +109,6 @@ class Comment
         $this->content = $content;
     }
 
-    /**
-     * @return string
-     */
     public function getAuthorEmail()
     {
         return $this->authorEmail;
@@ -133,33 +122,21 @@ class Comment
         $this->authorEmail = $authorEmail;
     }
 
-    /**
-     * @return \DateTime
-     */
     public function getPublishedAt()
     {
         return $this->publishedAt;
     }
 
-    /**
-     * @param \DateTime $publishedAt
-     */
     public function setPublishedAt(\DateTime $publishedAt)
     {
         $this->publishedAt = $publishedAt;
     }
 
-    /**
-     * @return Post
-     */
     public function getPost()
     {
         return $this->post;
     }
 
-    /**
-     * @param Post $post
-     */
     public function setPost(Post $post)
     {
         $this->post = $post;
