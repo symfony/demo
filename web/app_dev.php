@@ -1,13 +1,12 @@
 <?php
 
 // This is the front controller used when executing the application in the
-// development environment ('dev'). See
-//
+// development environment ('dev'). See:
 //   * http://symfony.com/doc/current/cookbook/configuration/front_controllers_and_kernel.html
 //   * http://symfony.com/doc/current/cookbook/configuration/environments.html
 
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Debug\Debug;
+use Symfony\Component\HttpFoundation\Request;
 
 // If you don't want to setup permissions the proper way, just uncomment the
 // following PHP line. See:
@@ -25,9 +24,7 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])
     exit('You are not allowed to access this file. Check '.basename(__FILE__).' for more information.');
 }
 
-/**
- * @var Composer\Autoload\ClassLoader $loader
- */
+/** @var Composer\Autoload\ClassLoader $loader */
 $loader = require __DIR__.'/../app/autoload.php';
 Debug::enable();
 

@@ -11,12 +11,13 @@
 
 namespace CodeExplorerBundle\EventListener;
 
-use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use CodeExplorerBundle\Twig\SourceCodeExtension;
+use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 
 /**
  * Defines the method that 'listens' to the 'kernel.controller' event, which is
  * triggered whenever a controller is executed in the application.
+ *
  * See http://symfony.com/doc/current/book/internals.html#kernel-controller-event
  *
  * Tip: listeners are common in Symfony applications, but this particular listener
