@@ -17,6 +17,7 @@ use Symfony\Component\Intl\Intl;
 /**
  * This Twig extension adds a new 'md2html' filter to easily transform Markdown
  * contents into HTML contents inside Twig templates.
+ *
  * See http://symfony.com/doc/current/cookbook/templating/twig_extension.html
  *
  * In addition to creating the Twig extension class, before using it you must also
@@ -79,7 +80,7 @@ class AppExtension extends \Twig_Extension
     /**
      * Takes the list of codes of the locales (languages) enabled in the
      * application and returns an array with the name of each locale written
-     * in its own language (e.g. English, Français, Español, etc.)
+     * in its own language (e.g. English, Français, Español, etc.).
      *
      * @return array
      */

@@ -20,6 +20,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * Defines the form used to create and manipulate blog comments. Although in this
  * case the form is trivial and we could build it inside the controller, a good
  * practice is to always define your forms as classes.
+ *
  * See http://symfony.com/doc/current/book/forms.html#creating-form-classes
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
@@ -36,8 +37,7 @@ class CommentType extends AbstractType
         // the client-side form validation. This means that you can't test the
         // server-side validation errors from the browser. To temporarily disable
         // this validation, set the 'required' attribute to 'false':
-        //
-        //     $builder->add('content', null, ['required' => false]);
+        // $builder->add('content', null, ['required' => false]);
 
         $builder
             ->add('content')

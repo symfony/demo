@@ -17,6 +17,7 @@ use CodeExplorerBundle\Twig\SourceCodeExtension;
 /**
  * Defines the method that 'listens' to the 'kernel.controller' event, which is
  * triggered whenever a controller is executed in the application.
+ *
  * See http://symfony.com/doc/current/book/internals.html#kernel-controller-event
  *
  * Tip: listeners are common in Symfony applications, but this particular listener

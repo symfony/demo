@@ -38,8 +38,7 @@ class PostType extends AbstractType
         // the client-side form validation. This means that you can't test the
         // server-side validation errors from the browser. To temporarily disable
         // this validation, set the 'required' attribute to 'false':
-        //
-        //     $builder->add('title', null, ['required' => false, ...]);
+        // $builder->add('title', null, ['required' => false, ...]);
 
         $builder
             ->add('title', null, [

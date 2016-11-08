@@ -12,5 +12,6 @@ $finder = Symfony\CS\Finder::create()
 ;
 
 return Symfony\CS\Config::create()
+    ->fixers(['-psr0'])
     ->finder($finder)
 ;
