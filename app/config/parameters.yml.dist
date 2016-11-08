@@ -36,3 +36,6 @@ parameters:
     # 'Remember Me' functionality, etc.)
     # see: http://symfony.com/doc/current/reference/configuration/framework.html#secret
     env(SYMFONY_SECRET): 'secret_value_for_symfony_demo_application'
+
+    # Destination for log files; can also be "php://stderr" etc
+    env(SYMFONY_LOG):    %kernel.logs_dir%/%kernel.environment%.log

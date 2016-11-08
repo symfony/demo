@@ -14,6 +14,7 @@
     },
     "env": {
         "SYMFONY_ENV": "prod",
+        "SYMFONY_LOG": "php://stderr",
         "SYMFONY_SECRET": {
             "description": "Extra entropy for %kernel.secret%; used for CSRF tokens, cookies and signed URLs.",
             "generator": "secret"
