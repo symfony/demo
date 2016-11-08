@@ -12,6 +12,6 @@ $finder = Symfony\CS\Finder::create()
 ;
 
 return Symfony\CS\Config::create()
-    ->fixers(['-psr0'])
+    ->fixers(['-psr0']) // Ignore Tests\ namespace prefix mismatch with tests/ directory
     ->finder($finder)
 ;
