@@ -15,7 +15,8 @@ use AppBundle\Utils\Slugger;
 
 /**
  * Unit test for the application utils.
- * See http://symfony.com/doc/current/book/testing.html#unit-tests.
+ *
+ * See http://symfony.com/doc/current/book/testing.html#unit-tests
  *
  * Execute the application tests using this command (requires PHPUnit to be installed):
  *
