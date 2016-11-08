@@ -4,10 +4,15 @@
 $finder = Symfony\CS\Finder::create()
     ->ignoreDotFiles(true)
     ->ignoreVCS(true)
-    ->exclude('app')
+    ->exclude('app/Resources')
+    ->exclude('app/config')
+    ->exclude('app/data')
     ->exclude('var')
     ->exclude('vendor')
-    ->exclude('web')
+    ->exclude('web/bundles')
+    ->exclude('web/css')
+    ->exclude('web/fonts')
+    ->exclude('web/js')
     ->in(__DIR__)
 ;
 
