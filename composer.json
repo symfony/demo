@@ -64,11 +64,7 @@
         "symfony-tests-dir": "tests",
         "symfony-assets-install": "relative",
         "incenteev-parameters": {
-            "file": "app/config/parameters.yml",
-            "env-map": {
-                "database_url": "DATABASE_URL",
-                "secret": "SYMFONY_SECRET"
-            }
+            "file": "app/config/parameters.yml"
         }
     }
 }

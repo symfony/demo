@@ -31,7 +31,7 @@ framework:
     # http://symfony.com/doc/current/book/http_cache.html#edge-side-includes
     esi:             { enabled: true }
     translator:      { fallback: "%locale%" }
-    secret:          "%secret%"
+    secret:          "%env(SYMFONY_SECRET)%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
         strict_requirements: ~
@@ -61,10 +61,10 @@ twig:
 # Doctrine Configuration (used to access databases and manipulate their information)
 doctrine:
     dbal:
-        # if you don't want to use SQLite, comment the two following lines
-        driver: "pdo_sqlite"
-        path: "%kernel.root_dir%/data/blog.sqlite"
-        # uncomment the following lines to use a database different than SQLite
+        # if you don't want to use SQLite, change the URL in parameters.yml or set the DATABASE_URL environment variable
+        url: "%env(DATABASE_URL)%"
+        
+        # instead of using a URL, you may also uncomment the following lines to configure your database
         # driver:   pdo_mysql
         # host:     "%database_host%"
         # port:     "%database_port%"
