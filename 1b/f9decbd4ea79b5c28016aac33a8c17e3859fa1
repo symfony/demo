@@ -1,0 +1,29 @@
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2016-11-02T22:15:03Z
+
+I also wonder about using `@var` annotation for setters and `@return` one for getters in Symfony Demo. What do you think about adding it?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2016-11-03T12:18:51Z
+
+If we add the `@var` for properties, I guess it makes sense it add it to getters/setters too.
+
+---------------------------------------------------------------------------
+
+by xabbuh at 2016-11-04T16:07:21Z
+
+When the properties are annotated, you shouldn't have to repeat the type for the returned values of the getter methods as IDEs are able to infer the return types then.
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2016-11-04T16:36:12Z
+
+@xabbuh Do you suggest to fully revert commit about annotations for setters / getters?
+
+---------------------------------------------------------------------------
+
+by xabbuh at 2016-11-05T11:56:43Z
+
+@bocharsky-bw For setters where we do not have type hints (i.e. scalar type arguments) we should keep them.
