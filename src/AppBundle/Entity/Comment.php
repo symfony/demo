@@ -30,6 +30,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Comment
 {
     /**
+     * @var int
+     *
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -37,12 +39,16 @@ class Comment
     private $id;
 
     /**
+     * @var Post
+     *
      * @ORM\ManyToOne(targetEntity="Post", inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
      */
     private $post;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="text")
      * @Assert\NotBlank(message="comment.blank")
      * @Assert\Length(
@@ -55,12 +61,16 @@ class Comment
     private $content;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string")
      * @Assert\Email()
      */
     private $authorEmail;
 
     /**
+     * @var \DateTime
+     *
      * @ORM\Column(type="datetime")
      * @Assert\DateTime()
      */
@@ -90,6 +100,10 @@ class Comment
     {
         return $this->content;
     }
+
+    /**
+     * @param string $content
+     */
     public function setContent($content)
     {
         $this->content = $content;
@@ -99,6 +113,10 @@ class Comment
     {
         return $this->authorEmail;
     }
+
+    /**
+     * @param string $authorEmail
+     */
     public function setAuthorEmail($authorEmail)
     {
         $this->authorEmail = $authorEmail;
@@ -108,6 +126,7 @@ class Comment
     {
         return $this->publishedAt;
     }
+
     public function setPublishedAt(\DateTime $publishedAt)
     {
         $this->publishedAt = $publishedAt;
@@ -117,6 +136,7 @@ class Comment
     {
         return $this->post;
     }
+
     public function setPost(Post $post)
     {
         $this->post = $post;

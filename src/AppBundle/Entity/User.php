@@ -21,6 +21,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class User implements UserInterface
 {
     /**
+     * @var int
+     *
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -28,21 +30,29 @@ class User implements UserInterface
     private $id;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", unique=true)
      */
     private $username;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", unique=true)
      */
     private $email;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string")
      */
     private $password;
 
     /**
+     * @var array
+     *
      * @ORM\Column(type="json_array")
      */
     private $roles = [];
@@ -52,13 +62,14 @@ class User implements UserInterface
         return $this->id;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getUsername()
     {
         return $this->username;
     }
+
+    /**
+     * @param string $username
+     */
     public function setUsername($username)
     {
         $this->username = $username;
@@ -68,18 +79,23 @@ class User implements UserInterface
     {
         return $this->email;
     }
+
+    /**
+     * @param string $email
+     */
     public function setEmail($email)
     {
         $this->email = $email;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getPassword()
     {
         return $this->password;
     }
+
+    /**
+     * @param string $password
+     */
     public function setPassword($password)
     {
         $this->password = $password;
@@ -107,6 +123,8 @@ class User implements UserInterface
 
     /**
      * Returns the salt that was originally used to encode the password.
+     *
+     * {@inheritdoc}
      */
     public function getSalt()
     {
@@ -114,11 +132,13 @@ class User implements UserInterface
         // we're using bcrypt in security.yml to encode the password, so
         // the salt value is built-in and you don't have to generate one
 
-        return;
+        return null;
     }
 
     /**
      * Removes sensitive data from the user.
+     *
+     * {@inheritdoc}
      */
     public function eraseCredentials()
     {
