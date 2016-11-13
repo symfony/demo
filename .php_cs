@@ -4,9 +4,9 @@
 $finder = Symfony\CS\Finder::create()
     ->ignoreDotFiles(true)
     ->ignoreVCS(true)
-    ->exclude('app/Resources')
     ->exclude('app/config')
     ->exclude('app/data')
+    ->exclude('app/Resources')
     ->exclude('var')
     ->exclude('vendor')
     ->exclude('web/bundles')
@@ -17,6 +17,12 @@ $finder = Symfony\CS\Finder::create()
 ;
 
 return Symfony\CS\Config::create()
-    ->fixers(['-psr0']) // Ignore Tests\ namespace prefix mismatch with tests/ directory
+    ->level(Symfony\CS\FixerInterface::SYMFONY_LEVEL)
+    ->fixers([
+        '-psr0', // Ignore Tests\ namespace prefix mismatch with tests/ directory
+        'ordered_use',
+        'phpdoc_order',
+        'short_array_syntax',
+    ])
     ->finder($finder)
 ;
