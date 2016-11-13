@@ -13,7 +13,10 @@
         "postdeploy": "php bin/console doctrine:schema:create && php bin/console doctrine:fixtures:load -n"
     },
     "env": {
-        "SYMFONY_ENV": "prod",
+        "SYMFONY_ENV": {
+            "value": "prod",
+            "description": "If you want to be able to use the Symfony `dev` environment in the deployed version, you will need to move the necessary dependencies like `SensioGeneratorBundle` to normal requirements rather than `dev` requirements, but it will be a security issue, because development tools like the `WebProfiler` can be revealing sensitive information."
+        },
         "SYMFONY_LOG": "php://stderr",
         "SYMFONY_SECRET": {
             "description": "Extra entropy for %kernel.secret%; used for CSRF tokens, cookies and signed URLs.",
