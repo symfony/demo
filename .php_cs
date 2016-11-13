@@ -13,6 +13,7 @@ $finder = Symfony\CS\Finder::create()
     ->exclude('web/css')
     ->exclude('web/fonts')
     ->exclude('web/js')
+    ->notPath('web/config.php')
     ->in(__DIR__)
 ;
 
