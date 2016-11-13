@@ -11,8 +11,8 @@
 
 namespace CodeExplorerBundle\EventListener;
 
-use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use CodeExplorerBundle\Twig\SourceCodeExtension;
+use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 
 /**
  * Defines the method that 'listens' to the 'kernel.controller' event, which is

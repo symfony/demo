@@ -11,14 +11,14 @@
 
 namespace AppBundle\Command;
 
+use AppBundle\Entity\User;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
-use Doctrine\Common\Persistence\ObjectManager;
-use AppBundle\Entity\User;
 
 /**
  * A command console that creates users and stores them in the database.

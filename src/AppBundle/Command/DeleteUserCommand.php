@@ -12,12 +12,12 @@
 namespace AppBundle\Command;
 
 use AppBundle\Entity\User;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
-use Doctrine\Common\Persistence\ObjectManager;
 
 /**
  * A command console that deletes users from the database.
