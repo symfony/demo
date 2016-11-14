@@ -11,9 +11,11 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
+use AppBundle\Entity\Tag;
 use AppBundle\Entity\User;
 use AppBundle\Entity\Post;
 use AppBundle\Entity\Comment;
+use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -29,6 +31,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
+ * @author Rasanga Perera <rasangaperera@gmail.com>
  */
 class LoadFixtures implements FixtureInterface, ContainerAwareInterface
 {
@@ -41,7 +44,11 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
     public function load(ObjectManager $manager)
     {
         $this->loadUsers($manager);
-        $this->loadPosts($manager);
+        $this->loadPostsTags(
+            $manager,
+            $this->loadPosts($manager),
+            $this->loadTags($manager)
+        );
     }
 
     private function loadUsers(ObjectManager $manager)
@@ -66,8 +73,15 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
         $manager->flush();
     }
 
+    /**
+     * @param ObjectManager $manager
+     *
+     * @return array
+     */
     private function loadPosts(ObjectManager $manager)
     {
+        $posts = array();
+
         foreach (range(1, 30) as $i) {
             $post = new Post();
 
@@ -91,7 +105,92 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
             }
 
             $manager->persist($post);
+
+            $posts[] = $post;
         }
+
+        $manager->flush();
+
+        return $posts;
+    }
+
+    /**
+     * @param ObjectManager $manager
+     *
+     * @return array
+     */
+    private function loadTags(ObjectManager $manager)
+    {
+        $tags = array();
+        $tagNames = array(
+            'Lorem',
+            'ipsum',
+            'consectetur',
+            'adipiscing',
+            'incididunt',
+            'labore',
+            'voluptate'
+        );
+
+        foreach ($tagNames as $key => $name) {
+            $tag = new Tag();
+            $tag->setName($name);
+
+            $manager->persist($tag);
+
+            $tags[] = $tag;
+        }
+
+        $manager->flush();
+
+        return $tags;
+    }
+
+    /**
+     * @param ObjectManager $manager
+     * @param array|Post[] $posts
+     * @param array|Tag[] $tags
+     */
+    private function loadPostsTags(
+        ObjectManager $manager,
+        array $posts,
+        array $tags
+    ) {
+        $posts[0]->addTag($tags[0]);
+        $posts[0]->addTag($tags[2]);
+        $manager->persist($posts[0]);
+
+        $posts[1]->addTag($tags[1]);
+        $manager->persist($posts[1]);
+
+        $posts[2]->addTag($tags[2]);
+        $posts[2]->addTag($tags[3]);
+        $posts[2]->addTag($tags[4]);
+        $manager->persist($posts[2]);
+
+        $posts[3]->addTag($tags[5]);
+        $posts[3]->addTag($tags[6]);
+        $manager->persist($posts[3]);
+
+        $posts[4]->addTag($tags[0]);
+        $manager->persist($posts[4]);
+
+        $posts[5]->addTag($tags[0]);
+        $manager->persist($posts[5]);
+
+        $posts[6]->addTag($tags[2]);
+        $manager->persist($posts[6]);
+
+        $posts[7]->addTag($tags[4]);
+        $posts[7]->addTag($tags[6]);
+        $manager->persist($posts[7]);
+
+        $posts[8]->addTag($tags[0]);
+        $manager->persist($posts[8]);
+
+        $posts[9]->addTag($tags[3]);
+        $posts[9]->addTag($tags[5]);
+        $manager->persist($posts[9]);
 
         $manager->flush();
     }

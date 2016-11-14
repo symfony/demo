@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -18,6 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
+ * @author Rasanga Perera <rasangaperera@gmail.com>
  */
 class Post
 {
@@ -97,10 +99,21 @@ class Post
      */
     private $comments;
 
+    /**
+     * @var Collection|Tag[]
+     *
+     * @ORM\ManyToMany(
+     *      targetEntity="Tag"
+     * )
+     * @ORM\JoinTable(name="posts_tags")
+     */
+    private $tags;
+
     public function __construct()
     {
         $this->publishedAt = new \DateTime();
         $this->comments = new ArrayCollection();
+        $this->tags = new ArrayCollection();
     }
 
     public function getId()
@@ -205,5 +218,57 @@ class Post
     public function setSummary($summary)
     {
         $this->summary = $summary;
+    }
+
+    /**
+     * Get tags
+     *
+     * @return Tag[]|Collection
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Add tag
+     *
+     * @param Tag $tag
+     *
+     * @return Post
+     */
+    public function addTag(Tag $tag)
+    {
+        if (!$this->hasTag($tag)) {
+            $this->tags->add($tag);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove tag
+     *
+     * @param Tag $tag
+     *
+     * @return Post
+     */
+    public function removeTag(Tag $tag)
+    {
+        if (!$this->hasTag($tag)) {
+            $this->tags->removeElement($tag);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Tag $tag
+     *
+     * @return bool
+     */
+    public function hasTag(Tag $tag)
+    {
+        return $this->tags->contains($tag);
     }
 }
