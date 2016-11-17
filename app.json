@@ -10,7 +10,9 @@
     "logo": "https://symfony.com/images/v5/pictos/demoapp.svg?v=4",
     "success_url": "/",
     "scripts": {
-        "postdeploy": "php bin/console doctrine:schema:create && php bin/console doctrine:fixtures:load -n"
+        "postdeploy": "php bin/console doctrine:schema:create && php bin/console doctrine:fixtures:load -n",
+        "test-setup": "php bin/console doctrine:schema:create && php bin/console doctrine:fixtures:load -n",
+        "test": "phpunit"
     },
     "env": {
         "SYMFONY_ENV": {
