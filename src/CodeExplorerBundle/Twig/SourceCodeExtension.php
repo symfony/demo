@@ -49,7 +49,7 @@ class SourceCodeExtension extends \Twig_Extension
     {
         return $twig->render('@CodeExplorer/source_code.html.twig', [
             'controller' => $this->getController(),
-            'template'   => $this->getTemplateSource($twig->resolveTemplate($template)),
+            'template' => $this->getTemplateSource($twig->resolveTemplate($template)),
         ]);
     }
 
@@ -69,7 +69,7 @@ class SourceCodeExtension extends \Twig_Extension
         return [
             'file_path' => $method->getFileName(),
             'starting_line' => $method->getStartLine(),
-            'source_code' => $this->unindentCode($controllerCode)
+            'source_code' => $this->unindentCode($controllerCode),
         ];
     }
 
@@ -116,7 +116,7 @@ class SourceCodeExtension extends \Twig_Extension
      * Utility method that "unindents" the given $code when all its lines start
      * with a tabulation of four white spaces.
      *
-     * @param  string $code
+     * @param string $code
      *
      * @return string
      */
@@ -130,7 +130,9 @@ class SourceCodeExtension extends \Twig_Extension
         });
 
         if (count($indentedLines) === count($codeLines)) {
-            $formattedCode = array_map(function ($lineOfCode) { return substr($lineOfCode, 4); }, $codeLines);
+            $formattedCode = array_map(function ($lineOfCode) {
+                return substr($lineOfCode, 4);
+            }, $codeLines);
             $formattedCode = implode("\n", $formattedCode);
         }
 

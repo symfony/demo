@@ -11,9 +11,9 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
-use AppBundle\Entity\User;
-use AppBundle\Entity\Post;
 use AppBundle\Entity\Comment;
+use AppBundle\Entity\Post;
+use AppBundle\Entity\User;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -21,7 +21,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Defines the sample data to load in the database when running the unit and
- * functional tests. Execute this command to load the data:
+ * functional tests.
+ *
+ * Execute this command to load the data:
  *
  *   $ php bin/console doctrine:fixtures:load
  *
@@ -106,7 +108,7 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
 
     private function getPostContent()
     {
-        return <<<MARKDOWN
+        return <<<'MARKDOWN'
 Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod tempor
 incididunt ut labore et **dolore magna aliqua**: Duis aute irure dolor in
 reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
@@ -179,7 +181,7 @@ MARKDOWN;
         $numPhrases = mt_rand(6, 12);
         shuffle($phrases);
 
-        return substr(implode(' ', array_slice($phrases, 0, $numPhrases-1)), 0, $maxLength);
+        return substr(implode(' ', array_slice($phrases, 0, $numPhrases - 1)), 0, $maxLength);
     }
 
     private function getRandomCommentContent()
@@ -189,6 +191,6 @@ MARKDOWN;
         $numPhrases = mt_rand(2, 15);
         shuffle($phrases);
 
-        return implode(' ', array_slice($phrases, 0, $numPhrases-1));
+        return implode(' ', array_slice($phrases, 0, $numPhrases - 1));
     }
 }

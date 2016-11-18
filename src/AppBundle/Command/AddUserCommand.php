@@ -11,17 +11,18 @@
 
 namespace AppBundle\Command;
 
+use AppBundle\Entity\User;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
-use Doctrine\Common\Persistence\ObjectManager;
-use AppBundle\Entity\User;
 
 /**
  * A command console that creates users and stores them in the database.
+ *
  * To use this command, open a terminal window, enter into your project
  * directory and execute the following:
  *
@@ -204,7 +205,7 @@ class AddUserCommand extends ContainerAwareCommand
             $finishTime = microtime(true);
             $elapsedTime = $finishTime - $startTime;
 
-            $output->writeln(sprintf('[INFO] New user database id: %d / Elapsed time: %.2f ms', $user->getId(), $elapsedTime*1000));
+            $output->writeln(sprintf('[INFO] New user database id: %d / Elapsed time: %.2f ms', $user->getId(), $elapsedTime * 1000));
         }
     }
 
@@ -253,7 +254,7 @@ class AddUserCommand extends ContainerAwareCommand
      */
     private function getCommandHelp()
     {
-        return <<<HELP
+        return <<<'HELP'
 The <info>%command.name%</info> command creates new users and saves them in the database:
 
   <info>php %command.full_name%</info> <comment>username password email</comment>

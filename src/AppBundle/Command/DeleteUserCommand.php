@@ -12,15 +12,16 @@
 namespace AppBundle\Command;
 
 use AppBundle\Entity\User;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
-use Doctrine\Common\Persistence\ObjectManager;
 
 /**
  * A command console that deletes users from the database.
+ *
  * To use this command, open a terminal window, enter into your project
  * directory and execute the following:
  *
@@ -28,6 +29,7 @@ use Doctrine\Common\Persistence\ObjectManager;
  *
  * Check out the code of the src/AppBundle/Command/AddUserCommand.php file for
  * the full explanation about Symfony commands.
+ *
  * See http://symfony.com/doc/current/cookbook/console/console_command.html
  *
  * @author Oleg Voronkovich <oleg-voronkovich@yandex.ru>
@@ -50,7 +52,7 @@ class DeleteUserCommand extends ContainerAwareCommand
             ->setName('app:delete-user')
             ->setDescription('Deletes users from the database')
             ->addArgument('username', InputArgument::REQUIRED, 'The username of an existing user')
-            ->setHelp(<<<HELP
+            ->setHelp(<<<'HELP'
 The <info>%command.name%</info> command deletes users from the database:
 
   <info>php %command.full_name%</info> <comment>username</comment>

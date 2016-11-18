@@ -11,18 +11,18 @@
 
 namespace Tests\AppBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use AppBundle\Entity\Post;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
  * Functional test for the controllers defined inside BlogController.
+ *
  * See http://symfony.com/doc/current/book/testing.html#functional-tests
  *
  * Execute the application tests using this command (requires PHPUnit to be installed):
  *
  *     $ cd your-symfony-project/
  *     $ phpunit -c app
- *
  */
 class BlogControllerTest extends WebTestCase
 {

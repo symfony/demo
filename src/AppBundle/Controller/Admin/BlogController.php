@@ -26,6 +26,7 @@ use Symfony\Component\HttpFoundation\Request;
  * Please note that the application backend is developed manually for learning
  * purposes. However, in your real Symfony application you should use any of the
  * existing bundles that let you generate ready-to-use backends without effort.
+ *
  * See http://knpbundles.com/keyword/admin
  *
  * @Route("/admin/post")
@@ -128,7 +129,7 @@ class BlogController extends Controller
         $deleteForm = $this->createDeleteForm($post);
 
         return $this->render('admin/blog/show.html.twig', [
-            'post'        => $post,
+            'post' => $post,
             'delete_form' => $deleteForm->createView(),
         ]);
     }
@@ -162,8 +163,8 @@ class BlogController extends Controller
         }
 
         return $this->render('admin/blog/edit.html.twig', [
-            'post'        => $post,
-            'edit_form'   => $editForm->createView(),
+            'post' => $post,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ]);
     }

@@ -11,8 +11,8 @@
 
 namespace AppBundle\EventListener;
 
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
@@ -46,8 +46,8 @@ class RedirectToPreferredLocaleListener
      * Constructor.
      *
      * @param UrlGeneratorInterface $urlGenerator
-     * @param string $locales Supported locales separated by '|'
-     * @param string|null $defaultLocale
+     * @param string                $locales       Supported locales separated by '|'
+     * @param string|null           $defaultLocale
      */
     public function __construct(UrlGeneratorInterface $urlGenerator, $locales, $defaultLocale = null)
     {

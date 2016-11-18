@@ -15,7 +15,9 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
  * This class is the one that transforms the src/AppBundle/ directory into a real
- * Symfony bundle. There are two types of bundles:
+ * Symfony bundle.
+ *
+ * There are two types of bundles:
  *
  *   * Reusable Bundles: they are meant to be shared between different applications.
  *     A lot of them are even publicly available in sites like packagist.org.
@@ -37,7 +39,6 @@ class AppBundle extends Bundle
 {
     // At first it's common to leave this class empty, but when the application grows,
     // you may need to add some initialization code in the boot() method.
-    //
     // Checkout the Symfony\Component\HttpKernel\Bundle\Bundle class to see all
     // the available methods for bundles.
 }
