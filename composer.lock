@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6616cda63dceb16e22a667bfa5e4c179",
-    "content-hash": "e4f4c9803e3388e26151790dab13a1d2",
+    "hash": "8516db45d4b9a9502c473c346e0a3440",
+    "content-hash": "dc732091beb3e9d099c3b66e7532bed4",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1973,16 +1973,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v3.2.0-BETA1",
+            "version": "v3.2.0-RC1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "ea699a044f10bff2782b6c0df17f1bf77550adfb"
+                "reference": "7d00e4f006da51fe190ae88441f52b82c6174675"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/ea699a044f10bff2782b6c0df17f1bf77550adfb",
-                "reference": "ea699a044f10bff2782b6c0df17f1bf77550adfb",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/7d00e4f006da51fe190ae88441f52b82c6174675",
+                "reference": "7d00e4f006da51fe190ae88441f52b82c6174675",
                 "shasum": ""
             },
             "require": {
@@ -1995,7 +1995,7 @@
                 "symfony/polyfill-php56": "~1.0",
                 "symfony/polyfill-php70": "~1.0",
                 "symfony/polyfill-util": "~1.0",
-                "twig/twig": "~1.27|~2.0"
+                "twig/twig": "~1.28|~2.0"
             },
             "conflict": {
                 "phpdocumentor/reflection-docblock": "<3.0",
@@ -2111,7 +2111,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2016-10-27 03:45:57"
+            "time": "2016-11-17 20:27:40"
         },
         {
             "name": "twig/extensions",
@@ -2167,16 +2167,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.27.0",
+            "version": "v1.28.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "3c6c0033fd3b5679c6e1cb60f4f9766c2b424d97"
+                "reference": "60ae30368f7ac50a95de032f16c1e882b0f69813"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/3c6c0033fd3b5679c6e1cb60f4f9766c2b424d97",
-                "reference": "3c6c0033fd3b5679c6e1cb60f4f9766c2b424d97",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/60ae30368f7ac50a95de032f16c1e882b0f69813",
+                "reference": "60ae30368f7ac50a95de032f16c1e882b0f69813",
                 "shasum": ""
             },
             "require": {
@@ -2189,7 +2189,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.27-dev"
+                    "dev-master": "1.28-dev"
                 }
             },
             "autoload": {
@@ -2224,7 +2224,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2016-10-25 19:17:17"
+            "time": "2016-11-17 17:46:53"
         },
         {
             "name": "white-october/pagerfanta-bundle",
@@ -3392,7 +3392,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "symfony/symfony": 10
+        "symfony/symfony": 5
     },
     "prefer-stable": false,
     "prefer-lowest": false,
