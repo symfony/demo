@@ -1,0 +1,30 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2016-11-10T14:21:48Z
+
+@bocharsky-bw thanks for working on this!
+
+I have two questions:
+
+1) Is it recommended to add PHP-CS-Fixer as a project dependency or is it better to install it as a global tool in your computer?
+
+2) Which is the default list of fixers applied when you don't select any config? I've seen some fixers [in the official docs](https://github.com/FriendsOfPHP/PHP-CS-Fixer) that are interesting but I don't know if they are enabled. For example: `phpdoc_order`, `short_array_syntax`, `ordered_use`, etc.
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2016-11-13T22:09:19Z
+
+Hey @javiereguiluz
+
+1) Actually, I don't know, but I did the same way as we had done with PhpUnit. I wonder others opinion about it.
+
+2) As I see in docs:
+> By default, all PSR-2 fixers and some additional ones are run.
+
+So I specified Symfony level explicitly and added a few fixers from Contrib level that you had suggested.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2016-11-13T22:16:21Z
+
+@bocharsky-bw very nice! Thanks. Let's wait for others opinion about adding PHP-CS-Fixer as a dependency or not.
