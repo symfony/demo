@@ -34,7 +34,7 @@ use AppBundle\Form\CommentType;
 class BlogController extends Controller
 {
     /**
-     * @Route("/", defaults={"page": 1}, name="blog_index")
+     * @Route("/", defaults={"page": "1"}, name="blog_index")
      * @Route("/page/{page}", requirements={"page": "[1-9]\d*"}, name="blog_index_paginated")
      * @Method("GET")
      * @Cache(smaxage="10")
