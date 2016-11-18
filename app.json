@@ -15,7 +15,7 @@
     "env": {
         "SYMFONY_ENV": {
             "value": "prod",
-            "description": "If you want to be able to use the Symfony `dev` environment in the deployed version, you will need to move the necessary dependencies like `SensioGeneratorBundle` to normal requirements rather than `dev` requirements, but it will be a security issue, because development tools like the `WebProfiler` can be revealing sensitive information."
+            "description": "If you want to use the Symfony `dev` environment in the deployed application, you must move the necessary dependencies (like SensioGeneratorBundle) from `require-dev` to `require`. This will introduce security issues because development tools like the WebProfiler reveal sensitive information."
         },
         "SYMFONY_LOG": "php://stderr",
         "SYMFONY_SECRET": {
