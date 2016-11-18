@@ -1,0 +1,28 @@
+---------------------------------------------------------------------------
+
+by xabbuh at 2016-11-12T12:49:16Z
+
+I don't understand what you mean. Which other default value are you talking about?
+
+---------------------------------------------------------------------------
+
+by hanahiroAze at 2016-11-13T06:07:01Z
+
+In `@Route("/", defaults={"page": 1}, name="blog_index")`, the parameter "page" is set as int value by `{"page": 1}`, but in `@Route("/page/{page}", requirements={"page": "[1-9]\d*"}, name="blog_index_paginated")`  the parameter "page" is set as string value by `{"page": "[1-9]\d*"}`.
+
+When I dump `$page` parameter in `BlogController.indecAction()`, Symfony profiler says like below and  I found the parameter's type is different.
+
+- Top page -> application
+![2016-11-12 19 21 32](https://cloud.githubusercontent.com/assets/9178166/20243966/0566415a-a9b2-11e6-8172-3468cb82cec3.png)
+
+- click "Next" button
+![2016-11-12 19 22 58](https://cloud.githubusercontent.com/assets/9178166/20243971/1969ad18-a9b2-11e6-91e4-0552f0104692.png)
+
+- click "Previous" button
+![2016-11-13 15 03 08](https://cloud.githubusercontent.com/assets/9178166/20243974/5e66fbbe-a9b2-11e6-9695-9446af66a220.png)
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2016-11-13T10:30:27Z
+
+I think it makes sense for PHP 7 scalar types hinting 👍
