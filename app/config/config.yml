@@ -22,6 +22,7 @@ framework:
     # The 'ide' option turns all of the file paths in an exception page
     # into clickable links that open the given file using your favorite IDE.
     # Supported values are 'phpstorm', 'sublime', 'textmate', 'macvim' and 'emacs'.
+    # When 'ide' is set to null the file is opened in your web browser.
     # See http://symfony.com/doc/current/reference/configuration/framework.html#ide
     ide: ~
 
