@@ -1,0 +1,37 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2016-11-27T12:28:01Z
+
+After upgrading, I see the following deprecation log in every page:
+
+![32rc2_deprecation](https://cloud.githubusercontent.com/assets/73419/20648384/4c978aae-b4a5-11e6-9ef8-0672ba69db0c.png)
+
+---------------------------------------------------------------------------
+
+by jzawadzki at 2016-11-27T23:30:09Z
+
+@javiereguiluz it looks like it's fixed in symfony/monolog-bundle v2.12 (by https://github.com/symfony/monolog-bundle/commit/a55b0a098951dcab5d902726a8b1579053e1b1d0#diff-25076ecfab002a680c691e32a36c5e6bL106) - currently composer installs v2.11.1
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2016-11-28T07:29:08Z
+
+@jzawadzki you are right! I've updated all dependencies and the deprecation log is gone. Thanks!
+
+---------------------------------------------------------------------------
+
+by dzuelke at 2016-11-28T08:10:58Z
+
+:+1:
+
+---------------------------------------------------------------------------
+
+by xabbuh at 2016-11-28T08:37:37Z
+
+:+1:
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2016-11-30T11:28:54Z
+
+Let's update to v3.2.0
