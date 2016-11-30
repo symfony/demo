@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "435cc27881e5d937bcc4bbb440ed5aef",
-    "content-hash": "ef41fb1f0e755c22d585578e1cc82533",
+    "hash": "c3a977bb116af47aa3d5a18c6ece4621",
+    "content-hash": "314f16901871e2ca166380d8c1208920",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1978,16 +1978,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v3.2.0-RC2",
+            "version": "v3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "1a29cec155956afc37670b23ae652b9bb201e08d"
+                "reference": "b96a144bc875684f3338f697687147a2696d73eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/1a29cec155956afc37670b23ae652b9bb201e08d",
-                "reference": "1a29cec155956afc37670b23ae652b9bb201e08d",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/b96a144bc875684f3338f697687147a2696d73eb",
+                "reference": "b96a144bc875684f3338f697687147a2696d73eb",
                 "shasum": ""
             },
             "require": {
@@ -2116,7 +2116,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2016-11-27 04:46:36"
+            "time": "2016-11-30 08:46:24"
         },
         {
             "name": "twig/extensions",
@@ -2287,16 +2287,16 @@
     "packages-dev": [
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v1.12.4",
+            "version": "v1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "c5a9d66dd27f02a3ffba4ec451ce27702604cdc8"
+                "reference": "ac04a510bed5407e91664f8a37b9d58072d96768"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/c5a9d66dd27f02a3ffba4ec451ce27702604cdc8",
-                "reference": "c5a9d66dd27f02a3ffba4ec451ce27702604cdc8",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/ac04a510bed5407e91664f8a37b9d58072d96768",
+                "reference": "ac04a510bed5407e91664f8a37b9d58072d96768",
                 "shasum": ""
             },
             "require": {
@@ -2341,7 +2341,7 @@
                 }
             ],
             "description": "A tool to automatically fix PHP code style",
-            "time": "2016-11-15 09:10:47"
+            "time": "2016-11-29 09:21:33"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -3349,16 +3349,16 @@
         },
         {
             "name": "symfony/phpunit-bridge",
-            "version": "v3.1.7",
+            "version": "v3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
-                "reference": "c80098acb81e604eb18030c5e444032ef948f9e7"
+                "reference": "a56acfdb96be7c82f4bcf16b7c77f1960690b0e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/c80098acb81e604eb18030c5e444032ef948f9e7",
-                "reference": "c80098acb81e604eb18030c5e444032ef948f9e7",
+                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/a56acfdb96be7c82f4bcf16b7c77f1960690b0e2",
+                "reference": "a56acfdb96be7c82f4bcf16b7c77f1960690b0e2",
                 "shasum": ""
             },
             "require": {
@@ -3367,10 +3367,13 @@
             "suggest": {
                 "symfony/debug": "For tracking deprecated interfaces usages at runtime with DebugClassLoader"
             },
+            "bin": [
+                "bin/simple-phpunit"
+            ],
             "type": "symfony-bridge",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.1-dev"
+                    "dev-master": "3.2-dev"
                 }
             },
             "autoload": {
@@ -3400,7 +3403,7 @@
             ],
             "description": "Symfony PHPUnit Bridge",
             "homepage": "https://symfony.com",
-            "time": "2016-11-17 10:59:24"
+            "time": "2016-11-25 22:54:21"
         },
         {
             "name": "webmozart/assert",
@@ -3455,9 +3458,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "symfony/symfony": 5
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
