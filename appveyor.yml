@@ -1,29 +1,51 @@
 build: false
-platform: x86
+clone_depth: 1
 clone_folder: c:\projects\symfony-demo
 
 cache:
-  - '%LOCALAPPDATA%\Composer\files'
+    - '%LOCALAPPDATA%\Composer\files'
+    - c:\projects\symfony-demo\composer.phar
 
 init:
-  - SET PATH=C:\Program Files\OpenSSL;c:\tools\php;%PATH%
+    - SET PATH=c:\php;%PATH%
+    - SET COMPOSER_NO_INTERACTION=1
+    - SET SYMFONY_DEPRECATIONS_HELPER=strict
+    - SET ANSICON=121x90 (121x90)
+    - REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Command Processor" /v DelayedExpansion /t REG_DWORD /d 1 /f
 
 install:
-  - cinst -y OpenSSL.Light
-  - cinst -y php
-  - cd c:\tools\php
-  - copy php.ini-production php.ini /Y
-  - echo date.timezone="UTC" >> php.ini
-  - echo extension_dir=ext >> php.ini
-  - echo extension=php_openssl.dll >> php.ini
-  - echo extension=php_mbstring.dll >> php.ini
-  - echo extension=php_intl.dll >> php.ini
-  - echo extension=php_pdo_sqlite.dll >> php.ini
-  - echo memory_limit=1G >> php.ini
-  - cd %APPVEYOR_BUILD_FOLDER%
-  - php -r "readfile('http://getcomposer.org/installer');" | php
-  - php composer.phar install --no-interaction --no-progress
+    - mkdir c:\php && cd c:\php
+    - appveyor DownloadFile https://raw.githubusercontent.com/symfony/binary-utils/master/cacert.pem
+    - appveyor DownloadFile http://windows.php.net/downloads/releases/archives/php-5.5.9-nts-Win32-VC11-x86.zip
+    - 7z x php-5.5.9-nts-Win32-VC11-x86.zip -y >nul
+    - del /Q *.zip
+    - cd ext
+    - appveyor DownloadFile http://windows.php.net/downloads/pecl/releases/apcu/4.0.10/php_apcu-4.0.10-5.5-nts-vc11-x86.zip
+    - 7z x php_apcu-4.0.10-5.5-nts-vc11-x86.zip -y >nul
+    - del /Q *.zip
+    - cd ..
+    - copy /Y php.ini-development php.ini
+    - echo max_execution_time=1200 >> php.ini
+    - echo date.timezone="America/Los_Angeles" >> php.ini
+    - echo extension_dir=ext >> php.ini
+    - echo zend_extension=php_opcache.dll >> php.ini
+    - echo opcache.enable_cli=1 >> php.ini
+    - echo extension=php_openssl.dll >> php.ini
+    - echo extension=php_apcu.dll >> php.ini
+    - echo apc.enable_cli=1 >> php.ini
+    - echo extension=php_intl.dll >> php.ini
+    - echo extension=php_mbstring.dll >> php.ini
+    - echo extension=php_fileinfo.dll >> php.ini
+    - echo extension=php_pdo_sqlite.dll >> php.ini
+    - echo extension=php_curl.dll >> php.ini
+    - echo curl.cainfo=c:\php\cacert.pem >> php.ini
+    - cd c:\projects\symfony-demo
+    - IF NOT EXIST composer.phar (appveyor DownloadFile https://getcomposer.org/download/1.2.1/composer.phar)
+    - php composer.phar self-update
+    - IF %APPVEYOR_REPO_BRANCH%==master (SET COMPOSER_ROOT_VERSION=dev-master) ELSE (SET COMPOSER_ROOT_VERSION=%APPVEYOR_REPO_BRANCH%.x-dev)
+    - php composer.phar update --no-progress --ansi
+    - SET COMPOSER_ROOT_VERSION=
 
 test_script:
-  - cd %APPVEYOR_BUILD_FOLDER%
-  - php ./vendor/bin/phpunit --verbose
+    - cd c:\projects\symfony-demo
+    - php vendor/bin/phpunit
