@@ -3,7 +3,7 @@ clone_depth: 1
 clone_folder: c:\projects\symfony-demo
 
 cache:
-    - c:\projects\symfony\composer.phar
+    - c:\projects\symfony-demo\composer.phar
     - .phpunit -> phpunit
 
 init:
@@ -11,7 +11,6 @@ init:
     - SET COMPOSER_NO_INTERACTION=1
     - SET SYMFONY_DEPRECATIONS_HELPER=strict
     - SET ANSICON=121x90 (121x90)
-    - SET SYMFONY_PHPUNIT_SKIPPED_TESTS=phpunit.skipped
     - REG ADD "HKEY_CURRENT_USER\Software\Microsoft\Command Processor" /v DelayedExpansion /t REG_DWORD /d 1 /f
 
 install:
@@ -25,23 +24,21 @@ install:
     - 7z x php_apcu-4.0.10-5.5-nts-vc11-x86.zip -y >nul
     - del /Q *.zip
     - cd ..
-    - copy /Y php.ini-development php.ini-min
-    - echo max_execution_time=1200 >> php.ini-min
-    - echo date.timezone="America/Los_Angeles" >> php.ini-min
-    - echo extension_dir=ext >> php.ini-min
-    - copy /Y php.ini-min php.ini-max
-    - echo zend_extension=php_opcache.dll >> php.ini-max
-    - echo opcache.enable_cli=1 >> php.ini-max
-    - echo extension=php_openssl.dll >> php.ini-max
-    - echo extension=php_apcu.dll >> php.ini-max
-    - echo apc.enable_cli=1 >> php.ini-max
-    - echo extension=php_intl.dll >> php.ini-max
-    - echo extension=php_mbstring.dll >> php.ini-max
-    - echo extension=php_fileinfo.dll >> php.ini-max
-    - echo extension=php_pdo_sqlite.dll >> php.ini-max
-    - echo extension=php_curl.dll >> php.ini-max
-    - echo curl.cainfo=c:\php\cacert.pem >> php.ini-max
-    - copy /Y php.ini-max php.ini
+    - copy /Y php.ini-development php.ini
+    - echo max_execution_time=1200 >> php.ini
+    - echo date.timezone="America/Los_Angeles" >> php.ini
+    - echo extension_dir=ext >> php.ini
+    - echo zend_extension=php_opcache.dll >> php.ini
+    - echo opcache.enable_cli=1 >> php.ini
+    - echo extension=php_openssl.dll >> php.ini
+    - echo extension=php_apcu.dll >> php.ini
+    - echo apc.enable_cli=1 >> php.ini
+    - echo extension=php_intl.dll >> php.ini
+    - echo extension=php_mbstring.dll >> php.ini
+    - echo extension=php_fileinfo.dll >> php.ini
+    - echo extension=php_pdo_sqlite.dll >> php.ini
+    - echo extension=php_curl.dll >> php.ini
+    - echo curl.cainfo=c:\php\cacert.pem >> php.ini
     - cd c:\projects\symfony-demo
     - IF NOT EXIST composer.phar (appveyor DownloadFile https://getcomposer.org/download/1.2.1/composer.phar)
     - php composer.phar self-update
@@ -52,8 +49,5 @@ install:
 test_script:
     - cd c:\projects\symfony-demo
     - SET X=0
-    - copy /Y c:\php\php.ini-min c:\php\php.ini
-    - php vendor/bin/phpunit || SET X=!errorlevel!
-    - copy /Y c:\php\php.ini-max c:\php\php.ini
     - php vendor/bin/phpunit || SET X=!errorlevel!
     - exit %X%
