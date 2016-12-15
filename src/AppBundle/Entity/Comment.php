@@ -52,10 +52,10 @@ class Comment
      * @ORM\Column(type="text")
      * @Assert\NotBlank(message="comment.blank")
      * @Assert\Length(
-     *     min = "5",
-     *     minMessage = "comment.too_short",
-     *     max = "10000",
-     *     maxMessage = "comment.too_long"
+     *     min=5,
+     *     minMessage="comment.too_short",
+     *     max=10000,
+     *     maxMessage="comment.too_long"
      * )
      */
     private $content;
@@ -64,7 +64,7 @@ class Comment
      * @var string
      *
      * @ORM\Column(type="string")
-     * @Assert\Email()
+     * @Assert\Email
      */
     private $authorEmail;
 
@@ -72,7 +72,7 @@ class Comment
      * @var \DateTime
      *
      * @ORM\Column(type="datetime")
-     * @Assert\DateTime()
+     * @Assert\DateTime
      */
     private $publishedAt;
 
@@ -82,7 +82,7 @@ class Comment
     }
 
     /**
-     * @Assert\IsTrue(message = "comment.is_spam")
+     * @Assert\IsTrue(message="comment.is_spam")
      */
     public function isLegitComment()
     {
