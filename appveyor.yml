@@ -48,4 +48,4 @@ install:
 
 test_script:
     - cd c:\projects\symfony-demo
-    - php vendor/bin/phpunit || SET X=!errorlevel!
+    - php vendor/bin/phpunit
