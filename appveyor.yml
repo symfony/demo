@@ -3,8 +3,8 @@ clone_depth: 1
 clone_folder: c:\projects\symfony-demo
 
 cache:
+    - '%LOCALAPPDATA%\Composer\files'
     - c:\projects\symfony-demo\composer.phar
-    - .phpunit -> phpunit
 
 init:
     - SET PATH=c:\php;%PATH%
@@ -48,6 +48,4 @@ install:
 
 test_script:
     - cd c:\projects\symfony-demo
-    - SET X=0
     - php vendor/bin/phpunit || SET X=!errorlevel!
-    - exit %X%
