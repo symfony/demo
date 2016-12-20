@@ -17,7 +17,7 @@ parameters:
     # this demo application uses an embedded SQLite database to simplify setup.
     # in a real Symfony application you probably will use a MySQL or PostgreSQL database
     # the path must be relative or else it will not work on Windows
-    env(DATABASE_URL): 'sqlite:///%kernel.root_dir%/data/blog.sqlite'
+    env(DATABASE_URL): 'sqlite:///%kernel.root_dir%/../var/data/blog.sqlite'
 
     # Uncomment this line to use a MySQL database instead of SQLite (and remove
     # the "doctrine" section from config_dev.yml regarding SQLite):
