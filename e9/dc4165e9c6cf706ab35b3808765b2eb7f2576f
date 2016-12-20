@@ -1,0 +1,53 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2016-12-20T08:22:58Z
+
+👍  It totally makes sense.
+
+---------------------------------------------------------------------------
+
+by stof at 2016-12-20T09:03:51Z
+
+it should be excluded from the gitignore rules though to be consistent with the previous setup. Currently, ``var/*`` is ignored (with some whitelist in it)
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2016-12-20T11:19:48Z
+
+@stof What about to add this to `.gitignore`:
+```
+!/var/data
+/var/data/*
+!var/data/.gitkeep
+```
+
+---------------------------------------------------------------------------
+
+by stof at 2016-12-20T11:32:20Z
+
+Well, we don't want to ignore the ``var/data/blog.sqlite`` file AFAIK
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2016-12-20T11:48:06Z
+
+But we also don't want to encourage other devs to commit their DB into the repository. We added `blog.sqlite` to the repository only for our demo purposes.
+
+---------------------------------------------------------------------------
+
+by stof at 2016-12-20T12:02:24Z
+
+@bocharsky-bw this repo is the demo, not the starting point for new projects (which is what symfony-standard is). So the rules should match the needs of the demo.
+A real project should probably not use sqlite for its main storage anyway, as this is incompatible with any deployment involving multiple servers (as they would each have a separate DB) and with any PaaS (as they replace the server when deploying, going back to the point about multiple server, plus they often advocate redundancy so having multiple servers too)
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2016-12-20T12:13:56Z
+
+Thanks @stof, it makes sense. I fixed it in a3bdaf1
+
+---------------------------------------------------------------------------
+
+by stof at 2016-12-20T13:41:38Z
+
+👍
