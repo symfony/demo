@@ -11,7 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
  * @var Composer\Autoload\ClassLoader
  */
 $loader = require __DIR__.'/../app/autoload.php';
-include_once __DIR__.'/../var/bootstrap.php.cache';
+if (PHP_VERSION_ID < 70000) {
+    include_once __DIR__.'/../var/bootstrap.php.cache';
+}
 
 // If your web server provides APC support for PHP applications, uncomment these
 // lines to use APC for class autoloading. This can improve application performance
@@ -27,7 +29,9 @@ include_once __DIR__.'/../var/bootstrap.php.cache';
 // $apcLoader->register(true);
 
 $kernel = new AppKernel('prod', false);
-$kernel->loadClassCache();
+if (PHP_VERSION_ID < 70000) {
+    $kernel->loadClassCache();
+}
 
 // When using the HTTP Cache to improve application performance, the application
 // kernel is wrapped by the AppCache class to activate the built-in reverse proxy.
