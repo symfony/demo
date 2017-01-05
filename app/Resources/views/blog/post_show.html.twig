@@ -30,6 +30,7 @@
 
     {% for comment in post.comments %}
         <div class="row post-comment">
+            <a name="comment_{{ comment.id }}"></a>
             <h4 class="col-sm-3">
                 <strong>{{ comment.authorEmail }}</strong> {{ 'post.commented_on'|trans }}
                 {# it's not mandatory to set the timezone in localizeddate(). This is done to
