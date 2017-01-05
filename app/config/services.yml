@@ -22,11 +22,23 @@ services:
         tags:
             - { name: twig.extension }
 
+    # Event Listeners are classes that listen to one or more specific events.
+    # Those events are defined in the tags added to the service definition.
+    # See http://symfony.com/doc/current/event_dispatcher.html#creating-an-event-listener
     app.redirect_to_preferred_locale_listener:
         class: AppBundle\EventListener\RedirectToPreferredLocaleListener
         arguments: ['@router', '%app_locales%', '%locale%']
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+
+    # Event subscribers are similar to event listeners but they don't need service tags.
+    # Instead, the PHP class of the event subscriber includes a method that returns
+    # the list of events listened by that class.
+    # See http://symfony.com/doc/current/event_dispatcher.html#creating-an-event-subscriber
+    app.console_subscriber:
+        class: AppBundle\EventListener\ConsoleEventSubscriber
+        tags:
+            - { name: kernel.event_subscriber }
 
     # Uncomment the following lines to define a service for the Post Doctrine repository.
     # It's not mandatory to create these services, but if you use repositories a lot,
