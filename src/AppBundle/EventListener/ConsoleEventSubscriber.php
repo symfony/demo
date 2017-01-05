@@ -20,9 +20,9 @@ class ConsoleEventSubscriber implements EventSubscriberInterface
 {
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
             ConsoleEvents::EXCEPTION => 'displayBetterErrorMessages',
-        );
+        ];
     }
 
     public function displayBetterErrorMessages(ConsoleExceptionEvent $event)
