@@ -31,9 +31,9 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
 
-    # Event subscribers are similar to event listeners. The main difference is
-    # that the classes define the events they listen to, instead of defining them
-    # in the service definition.
+    # Event subscribers are similar to event listeners but they don't need service tags.
+    # Instead, the PHP class of the event subscriber includes a method that returns
+    # the list of events listened by that class.
     # See http://symfony.com/doc/current/event_dispatcher.html#creating-an-event-subscriber
     app.console_subscriber:
         class: AppBundle\EventListener\ConsoleEventSubscriber
