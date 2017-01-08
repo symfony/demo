@@ -55,7 +55,7 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     form_themes:
-        - "bootstrap_3_layout.html.twig"
+        - "form/layout.html.twig"
         - "form/fields.html.twig"
 
 # Doctrine Configuration (used to access databases and manipulate their information)
@@ -63,7 +63,7 @@ doctrine:
     dbal:
         # if you don't want to use SQLite, change the URL in parameters.yml or set the DATABASE_URL environment variable
         url: "%env(DATABASE_URL)%"
-        
+
         # instead of using a URL, you may also uncomment the following lines to configure your database
         # driver:   pdo_mysql
         # host:     "%database_host%"
