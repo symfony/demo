@@ -13,6 +13,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Comment;
 use AppBundle\Entity\Post;
+use AppBundle\Events;
 use AppBundle\Form\CommentType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -20,9 +21,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * Controller used to manage blog contents in the public part of the site.
@@ -97,7 +98,11 @@ class BlogController extends Controller
             $entityManager->persist($comment);
             $entityManager->flush();
 
-            $this->notifyAuthorAboutNewComment($comment);
+            // See http://symfony.com/doc/current/components/event_dispatcher/generic_event.html
+            $event = new GenericEvent($comment);
+
+            // See http://symfony.com/doc/current/components/event_dispatcher.html
+            $this->get('event_dispatcher')->dispatch(Events::COMMENT_CREATED, $event);
 
             return $this->redirectToRoute('blog_post', ['slug' => $post->getSlug()]);
         }
@@ -106,33 +111,6 @@ class BlogController extends Controller
             'post' => $post,
             'form' => $form->createView(),
         ]);
-    }
-
-    private function notifyAuthorAboutNewComment(Comment $comment)
-    {
-        $post = $comment->getPost();
-
-        $linkToPost = $this->generateUrl('blog_post', ['slug' => $post->getSlug()], UrlGeneratorInterface::ABSOLUTE_URL);
-
-        $translator = $this->get('translator');
-
-        $subject = $translator->trans('post.recieved_comment');
-        $body = $translator->trans('post.recieved_comment_message', [
-            '%title%' => $post->getTitle(),
-            '%link%' => $linkToPost.'#comment_'.$comment->getId(),
-        ]);
-
-        // See http://symfony.com/doc/current/email.html#sending-emails
-        $message = \Swift_Message::newInstance()
-            ->setSubject($subject)
-            ->setTo($post->getAuthorEmail())
-            ->setFrom('symfony-demo@localhost')
-            ->setBody($body, 'text/html')
-        ;
-
-        // You can view a sent email in the debug toolbar
-        // See http://symfony.com/doc/current/email/dev_environment.html#viewing-from-the-web-debug-toolbar
-        $this->get('mailer')->send($message);
     }
 
     /**
