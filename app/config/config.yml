@@ -76,16 +76,3 @@ doctrine:
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
-
-# Swiftmailer Configuration (used to send emails)
-# instead of configuring the mailer credentials in this file, we pull
-# them from the app/config/parameters.yml file. The reason is that config.yml
-# stores options that change the application behavior and parameters.yml
-# stores options that change from one server to another
-#
-# swiftmailer:
-#     transport: "%mailer_transport%"
-#     host:      "%mailer_host%"
-#     username:  "%mailer_user%"
-#     password:  "%mailer_password%"
-#     spool:     { type: memory }
