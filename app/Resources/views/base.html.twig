@@ -9,6 +9,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title>{% block title %}Symfony Demo application{% endblock %}</title>
+        <link rel="alternate" type="application/rss+xml" href="{{ path('blog_rss') }}">
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('css/bootstrap-flatly-3.3.7.min.css') }}">
             <link rel="stylesheet" href="{{ asset('css/font-awesome-4.6.3.min.css') }}">
@@ -44,6 +45,12 @@
                             <ul class="nav navbar-nav navbar-right">
 
                                 {% block header_navigation_links %}
+                                    <li>
+                                        <a href="{{ path('blog_rss') }}">
+                                            <i class="fa fa-rss" aria-hidden="true"></i> {{ 'menu.rss'|trans }}
+                                        </a>
+                                    </li>
+
                                     <li>
                                         <a href="{{ path('blog_index') }}">
                                             <i class="fa fa-home" aria-hidden="true"></i> {{ 'menu.homepage'|trans }}

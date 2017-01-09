@@ -34,16 +34,24 @@ use Symfony\Component\HttpFoundation\Response;
 class BlogController extends Controller
 {
     /**
-     * @Route("/", defaults={"page": "1"}, name="blog_index")
-     * @Route("/page/{page}", requirements={"page": "[1-9]\d*"}, name="blog_index_paginated")
+     * @Route("/", defaults={"page": "1", "_format"="html"}, name="blog_index")
+     * @Route("/rss.{_format}", name="blog_rss", defaults={"page": "1", "_format"="xml"}, requirements={"_format": "xml"})
+     * @Route("/page/{page}", defaults={"_format"="html"}, requirements={"page": "[1-9]\d*"}, name="blog_index_paginated")
      * @Method("GET")
      * @Cache(smaxage="10")
+     *
+     * NOTE: For standard formats, Symfony will also automatically choose the best
+     * Content-Type header for the response.
+     * See http://symfony.com/doc/current/quick_tour/the_controller.html#using-formats
      */
-    public function indexAction($page)
+    public function indexAction($page, $_format)
     {
         $posts = $this->getDoctrine()->getRepository(Post::class)->findLatest($page);
 
-        return $this->render('blog/index.html.twig', ['posts' => $posts]);
+        // Every template name also has two extensions that specify the format and
+        // engine for that template.
+        // See https://symfony.com/doc/current/templating.html#template-suffix
+        return $this->render('blog/index.'.$_format.'.twig', ['posts' => $posts]);
     }
 
     /**
