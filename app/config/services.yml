@@ -34,6 +34,9 @@ services:
     app.comment_notification:
         class: AppBundle\EventListener\CommentNotificationListener
         arguments: ['@mailer', '@router', '@translator', '%app.notifications.email_sender%']
+        # There is an optional tag attribute called "method" which defines which method to execute when the event is triggered.
+        # By default the name of the method is on + "camel-cased event name".
+        # If the event is "comment.created" the method executed by default is onCommentCreated().
         tags:
             - { name: kernel.event_listener, event: comment.created, method: onCommentCreated }
 
