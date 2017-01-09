@@ -40,7 +40,7 @@ class CommentNotificationListener
     /**
      * @var string
      */
-    private $sender = 'symfony-demo@localhost';
+    private $sender;
 
     /**
      * Constructor.
@@ -48,14 +48,14 @@ class CommentNotificationListener
      * @param \Swift_Mailer         $mailer
      * @param UrlGeneratorInterface $urlGenerator
      * @param TranslatorInterface   $translator
-     * @param string|null           $sender
+     * @param string                $sender
      */
-    public function __construct(\Swift_Mailer $mailer, UrlGeneratorInterface $urlGenerator, TranslatorInterface $translator, $sender = null)
+    public function __construct(\Swift_Mailer $mailer, UrlGeneratorInterface $urlGenerator, TranslatorInterface $translator, $sender)
     {
         $this->mailer = $mailer;
         $this->urlGenerator = $urlGenerator;
         $this->translator = $translator;
-        $this->sender = $sender ?: $this->sender;
+        $this->sender = $sender;
     }
 
     /**
