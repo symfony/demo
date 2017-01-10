@@ -276,13 +276,13 @@
                 <source>post.deleted_successfully</source>
                 <target>Post deleted successfully!</target>
             </trans-unit>
-            <trans-unit id="post.recieved_comment">
-                <source>post.recieved_comment</source>
-                <target>Your post recieved a comment!</target>
+            <trans-unit id="post.comment_added">
+                <source>post.comment_added</source>
+                <target>Your post received a comment!</target>
             </trans-unit>
-            <trans-unit id="post.recieved_comment_message">
-                <source>post.recieved_comment_message</source>
-                <target><![CDATA[Your post "%title%" has recieved a new comment. You can read the comment by following this <a href="%link%">link</a>!]]></target>
+            <trans-unit id="post.comment_added.description">
+                <source>post.comment_added.description</source>
+                <target><![CDATA[Your post "%title%" has received a new comment. You can read the comment by following <a href="%link%">this link</a>]]></target>
             </trans-unit>
 
             <trans-unit id="help.app_description">
