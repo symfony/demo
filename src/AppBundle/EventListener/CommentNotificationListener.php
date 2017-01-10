@@ -66,12 +66,15 @@ class CommentNotificationListener
         $comment = $event->getSubject();
         $post = $comment->getPost();
 
-        $linkToPost = $this->urlGenerator->generate('blog_post', ['slug' => $post->getSlug()], UrlGeneratorInterface::ABSOLUTE_URL);
+        $linkToPost = $this->urlGenerator->generate('blog_post', [
+            'slug' => $post->getSlug(),
+            '_fragment' => 'comment_'.$comment->getId(),
+        ], UrlGeneratorInterface::ABSOLUTE_URL);
 
-        $subject = $this->translator->trans('post.recieved_comment');
-        $body = $this->translator->trans('post.recieved_comment_message', [
+        $subject = $this->translator->trans('post.comment_added');
+        $body = $this->translator->trans('post.comment_added.description', [
             '%title%' => $post->getTitle(),
-            '%link%' => $linkToPost.'#comment_'.$comment->getId(),
+            '%link%' => $linkToPost,
         ]);
 
         // Symfony uses a library called SwiftMailer to send emails. That's why
