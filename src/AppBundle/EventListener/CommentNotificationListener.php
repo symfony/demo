@@ -71,8 +71,8 @@ class CommentNotificationListener
             '_fragment' => 'comment_'.$comment->getId(),
         ], UrlGeneratorInterface::ABSOLUTE_URL);
 
-        $subject = $this->translator->trans('post.comment_added');
-        $body = $this->translator->trans('post.comment_added.description', [
+        $subject = $this->translator->trans('notification.comment_created');
+        $body = $this->translator->trans('notification.comment_created.description', [
             '%title%' => $post->getTitle(),
             '%link%' => $linkToPost,
         ]);
