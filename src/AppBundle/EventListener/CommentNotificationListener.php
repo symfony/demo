@@ -74,6 +74,8 @@ class CommentNotificationListener
             '%link%' => $linkToPost.'#comment_'.$comment->getId(),
         ]);
 
+        // Symfony uses a library called SwiftMailer to send emails. That's why
+        // email messages are created instantiating a Swift_Message class.
         // See http://symfony.com/doc/current/email.html#sending-emails
         $message = \Swift_Message::newInstance()
             ->setSubject($subject)
@@ -82,7 +84,9 @@ class CommentNotificationListener
             ->setBody($body, 'text/html')
         ;
 
-        // You can view a sent email in the debug toolbar
+        // In app/config/config_dev.yml the 'disable_delivery' option is set to 'true'.
+        // That's why in the development environment you won't actually receive any email.
+        // However, you can inspect the contents of those unsent emails using the debug toolbar.
         // See http://symfony.com/doc/current/email/dev_environment.html#viewing-from-the-web-debug-toolbar
         $this->mailer->send($message);
     }
