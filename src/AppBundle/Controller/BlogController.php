@@ -35,7 +35,7 @@ class BlogController extends Controller
 {
     /**
      * @Route("/", defaults={"page": "1", "_format"="html"}, name="blog_index")
-     * @Route("/rss.{_format}", name="blog_rss", defaults={"page": "1", "_format"="xml"}, requirements={"_format": "xml"})
+     * @Route("/rss.xml", name="blog_rss", defaults={"page": "1", "_format"="xml"})
      * @Route("/page/{page}", defaults={"_format"="html"}, requirements={"page": "[1-9]\d*"}, name="blog_index_paginated")
      * @Method("GET")
      * @Cache(smaxage="10")
