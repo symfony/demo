@@ -55,7 +55,7 @@ class BlogController extends Controller
     public function indexAction()
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $posts = $entityManager->getRepository(Post::class)->findBy([], ['publishedAt' => 'DESC']);
+        $posts = $entityManager->getRepository(Post::class)->findBy(['authorEmail' => $this->getUser()->getEmail()], ['publishedAt' => 'DESC']);
 
         return $this->render('admin/blog/index.html.twig', ['posts' => $posts]);
     }
