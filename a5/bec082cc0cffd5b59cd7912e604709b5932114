@@ -1,0 +1,31 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-01-10T10:09:39Z
+
+I appreciate your efforts to fix this problem ... but shouldn't we wait for a fix upstream? I don't think we should modify this file ourselves.
+
+---------------------------------------------------------------------------
+
+by stof at 2017-01-10T10:12:04Z
+
+this must indeed be fixed in SensioDistributionBundle. Otherwise the fix would be lost on the next ``composer update`` (or even ``composer install`` btw IIRC)
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2017-01-10T10:12:55Z
+
+@javiereguiluz Yes, you're definitely right but you misunderstand me. The `sensio/distribution-bundle` `v5.0.17` is already released. Those changes were made by Composer, not by me. Check the composer.lock suppressed diff
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-01-10T10:14:59Z
+
+@bocharsky-bw thanks! I understand this PR now. I've updated the title to make it easier to understand.
+
+👍
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2017-01-10T10:16:35Z
+
+@javiereguiluz Much better, thanks!
