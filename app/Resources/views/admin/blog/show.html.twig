@@ -38,13 +38,10 @@
     </div>
 
     <div class="section">
-        {{ include('admin/blog/_form.html.twig', {
-            form: delete_form,
-            button_label: 'action.delete_post'|trans,
-            button_css: 'btn btn-lg btn-block btn-danger',
-            show_confirmation: true,
-        }, with_context = false) }}
+        {{ include('admin/blog/_delete_form.html.twig', { post: post }, with_context = false) }}
     </div>
+
+    {{ parent() }}
 
     {{ show_source_code(_self) }}
 {% endblock %}

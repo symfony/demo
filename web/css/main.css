@@ -118,6 +118,13 @@ footer #footer-resources i {
     min-width: 75px
 }
 
+/* Misc. elements
+   ------------------------------------------------------------------------- */
+.section.rss a {
+    color: #f39c12;
+    font-size: 21px;
+}
+
 /* Forms
    ------------------------------------------------------------------------- */
 .form-group.has-error .form-control {
@@ -243,4 +250,10 @@ body#admin_post_index .item-actions {
 
 body#admin_post_index .item-actions a.btn + a.btn {
     margin-left: 4px
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+    .container {
+        width: 98%;
+    }
 }

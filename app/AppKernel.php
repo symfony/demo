@@ -22,8 +22,7 @@ class AppKernel extends Kernel
             new CodeExplorerBundle\CodeExplorerBundle(),
             new AppBundle\AppBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(), // used for initial population of non-SQLite databases in production envs
-            // uncomment the following line if your application sends emails
-            // new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
+            new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
         ];
 
         // Some bundles are only used while developing the application or during
