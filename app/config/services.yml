@@ -31,6 +31,14 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
 
+    # There is an optional tag attribute called method which defines which method
+    # to execute when the event is triggered. By default the name of the method is on + "camel-cased event name".
+    # If the event is kernel.exception the method executed by default is onKernelException().
+    app.driver_exception_listener:
+        class: AppBundle\EventListener\SQLiteExceptionListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception }
+
     # Event subscribers are similar to event listeners but they don't need to add
     # a separate tag for each listened event. Instead, the PHP class of the event
     # subscriber includes a method that returns the list of listened events.
