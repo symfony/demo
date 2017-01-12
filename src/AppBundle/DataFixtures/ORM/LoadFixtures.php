@@ -17,7 +17,7 @@ use AppBundle\Entity\User;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
 /**
  * Defines the sample data to load in the database when running the unit and
@@ -34,8 +34,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class LoadFixtures implements FixtureInterface, ContainerAwareInterface
 {
-    /** @var ContainerInterface */
-    private $container;
+    use ContainerAwareTrait;
 
     /**
      * {@inheritdoc}
@@ -96,14 +95,6 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
         }
 
         $manager->flush();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
     }
 
     private function getPostContent()
