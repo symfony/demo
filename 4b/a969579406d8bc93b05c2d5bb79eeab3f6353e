@@ -1,0 +1,11 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-01-08T12:17:30Z
+
+I like this feature proposal ... but what about replacing the private method in the controller by an event listener + custom event trigger? That would allow us to show custom events in action.
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2017-01-08T16:51:19Z
+
+@javiereguiluz, I've added an event listener and custom event trigger. BTW, I found that we have an example of using mailer in the `ListUsersCommand` https://github.com/symfony/symfony-demo/blob/master/src/AppBundle/Command/ListUsersCommand.php#L131
