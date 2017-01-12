@@ -75,7 +75,10 @@ class CheckSQLiteEventSubscriber implements EventSubscriberInterface
         // We must get the original exception.
         $previousException = $exception->getPrevious();
 
-        if ($previousException instanceof DriverException && !extension_loaded('sqlite3')) {
+        // Driver exception may happen in controller or in twig template rendering
+        $isDriverException = ($exception instanceof DriverException || $previousException instanceof DriverException);
+
+        if ($isDriverException && !extension_loaded('sqlite3')) {
             $event->setException(new \Exception('PHP extension "sqlite3" must be enabled because, by default, the Symfony Demo application uses SQLite to store its information.'));
         }
     }
