@@ -15,6 +15,8 @@ use Symfony\Component\Console\ConsoleEvents;
 use Symfony\Component\Console\Event\ConsoleExceptionEvent;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
+use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
  * This application uses by default an SQLite database to store its information.
@@ -24,7 +26,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  *
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-class ConsoleEventSubscriber implements EventSubscriberInterface
+class CheckSQLiteEventSubscriber implements EventSubscriberInterface
 {
     // Event Subscribers must define this method to declare the events they
     // listen to. You can listen to several events, execute more than one method
@@ -36,6 +38,8 @@ class ConsoleEventSubscriber implements EventSubscriberInterface
             // Exceptions are one of the events defined by the Console. See the
             // rest here: http://symfony.com/doc/current/components/console/events.html
             ConsoleEvents::EXCEPTION => 'handleDatabaseExceptions',
+            // See: http://api.symfony.com/3.2/Symfony/Component/HttpKernel/KernelEvents.html
+            KernelEvents::EXCEPTION  => 'onKernelException'
         ];
     }
 
@@ -55,6 +59,18 @@ class ConsoleEventSubscriber implements EventSubscriberInterface
                 $io = new SymfonyStyle($event->getInput(), $event->getOutput());
                 $io->error('This command requires to have the "sqlite3" PHP extension enabled because, by default, the Symfony Demo application uses SQLite to store its information.');
             }
+        }
+    }
+
+    /**
+     * This method is triggered when kernel exception occurs. And checks if sqlite extension is enabled.
+     *
+     * @param GetResponseForExceptionEvent $event
+     */
+    public function onKernelException(GetResponseForExceptionEvent $event)
+    {
+        if (!extension_loaded('sqlite3')) {
+            $event->setException(new \Exception('PHP extension "sqlite3" must be enabled because, by default, the Symfony Demo application uses SQLite to store its information.'));
         }
     }
 }
