@@ -243,6 +243,10 @@
                 <source>menu.logout</source>
                 <target>Logout</target>
             </trans-unit>
+            <trans-unit id="menu.rss">
+                <source>menu.rss</source>
+                <target>Blog Posts RSS</target>
+            </trans-unit>
 
             <trans-unit id="post.to_publish_a_comment">
                 <source>post.to_publish_a_comment</source>
@@ -316,6 +320,15 @@
             <trans-unit id="help.more_information">
                 <source>help.more_information</source>
                 <target><![CDATA[For more information, check out the <a href="http://symfony.com/doc">Symfony doc</a>.]]></target>
+            </trans-unit>
+
+            <trans-unit id="rss.title">
+                <source>rss.title</source>
+                <target>Symfony Demo blog</target>
+            </trans-unit>
+            <trans-unit id="rss.description">
+                <source>rss.description</source>
+                <target>Most recent posts published on the Symfony Demo blog</target>
             </trans-unit>
         </body>
     </file>
