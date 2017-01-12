@@ -1,0 +1,19 @@
+---------------------------------------------------------------------------
+
+by yceruto at 2017-01-10T13:36:18Z
+
+@javiereguiluz, @voronkovich Thanks for the review. I have addressed your comments.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-01-12T08:56:17Z
+
+@yceruto thanks to the help of @iltar and @fbourigault in the Symfony Slack channel, I've managed to add a commit to your PR. The change I propose is to remove the RSS link from the header, which makes it look crowded:
+
+![before](https://cloud.githubusercontent.com/assets/73419/21882964/1f669986-d8ad-11e6-8853-e466dadb961d.png)
+
+---
+
+And instead display it in the sidebar of blog/index and blog/show:
+
+![after](https://cloud.githubusercontent.com/assets/73419/21882970/26330600-d8ad-11e6-9855-1a3bd6a9003a.png)
