@@ -39,7 +39,7 @@ class CheckSQLiteEventSubscriber implements EventSubscriberInterface
             // rest here: http://symfony.com/doc/current/components/console/events.html
             ConsoleEvents::EXCEPTION => 'handleDatabaseExceptions',
             // See: http://api.symfony.com/3.2/Symfony/Component/HttpKernel/KernelEvents.html
-            KernelEvents::EXCEPTION  => 'onKernelException'
+            KernelEvents::EXCEPTION => 'onKernelException',
         ];
     }
 
