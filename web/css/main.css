@@ -244,3 +244,9 @@ body#admin_post_index .item-actions {
 body#admin_post_index .item-actions a.btn + a.btn {
     margin-left: 4px
 }
+
+@media (min-width: 768px) and (max-width: 1200px) {
+    .container {
+        width: 98%;
+    }
+}
