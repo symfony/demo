@@ -281,6 +281,15 @@
                 <target>Post deleted successfully!</target>
             </trans-unit>
 
+            <trans-unit id="notification.comment_created">
+                <source>notification.comment_created</source>
+                <target>Your post received a comment!</target>
+            </trans-unit>
+            <trans-unit id="notification.comment_created.description">
+                <source>notification.comment_created.description</source>
+                <target><![CDATA[Your post "%title%" has received a new comment. You can read the comment by following <a href="%link%">this link</a>]]></target>
+            </trans-unit>
+
             <trans-unit id="help.app_description">
                 <source>help.app_description</source>
                 <target><![CDATA[This is a <strong>demo application</strong> built in the Symfony Framework to illustrate the recommended way of developing Symfony applications.]]></target>
