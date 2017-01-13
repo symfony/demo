@@ -14,7 +14,7 @@ namespace AppBundle\DataFixtures\ORM;
 use AppBundle\Entity\Comment;
 use AppBundle\Entity\Post;
 use AppBundle\Entity\User;
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
@@ -32,7 +32,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareTrait;
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-class LoadFixtures implements FixtureInterface, ContainerAwareInterface
+class LoadFixtures extends AbstractFixture implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
 
@@ -55,6 +55,7 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
         $encodedPassword = $passwordEncoder->encodePassword($johnUser, 'kitten');
         $johnUser->setPassword($encodedPassword);
         $manager->persist($johnUser);
+        $this->addReference('john-user', $johnUser);
 
         $annaAdmin = new User();
         $annaAdmin->setUsername('anna_admin');
@@ -63,6 +64,7 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
         $encodedPassword = $passwordEncoder->encodePassword($annaAdmin, 'kitten');
         $annaAdmin->setPassword($encodedPassword);
         $manager->persist($annaAdmin);
+        $this->addReference('anna-admin', $annaAdmin);
 
         $manager->flush();
     }
@@ -76,13 +78,13 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
             $post->setSummary($this->getRandomPostSummary());
             $post->setSlug($this->container->get('slugger')->slugify($post->getTitle()));
             $post->setContent($this->getPostContent());
-            $post->setAuthorEmail('anna_admin@symfony.com');
+            $post->setAuthor($this->getReference('anna-admin'));
             $post->setPublishedAt(new \DateTime('now - '.$i.'days'));
 
             foreach (range(1, 5) as $j) {
                 $comment = new Comment();
 
-                $comment->setAuthorEmail('john_user@symfony.com');
+                $comment->setAuthor($this->getReference('john-user'));
                 $comment->setPublishedAt(new \DateTime('now + '.($i + $j).'seconds'));
                 $comment->setContent($this->getRandomCommentContent());
                 $comment->setPost($post);

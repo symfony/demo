@@ -15,7 +15,7 @@
                 <link>{{ url('blog_post', {'slug': post.slug}) }}</link>
                 <guid>{{ url('blog_post', {'slug': post.slug}) }}</guid>
                 <pubDate>{{ post.publishedAt|date(format='r', timezone='GMT') }}</pubDate>
-                <author>{{ post.authorEmail }}</author>
+                <author>{{ post.author.email }}</author>
             </item>
         {% endfor %}
     </channel>

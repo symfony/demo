@@ -99,7 +99,7 @@ class BlogController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var Comment $comment */
             $comment = $form->getData();
-            $comment->setAuthorEmail($this->getUser()->getEmail());
+            $comment->setAuthor($this->getUser());
             $comment->setPost($post);
 
             $entityManager = $this->getDoctrine()->getManager();
