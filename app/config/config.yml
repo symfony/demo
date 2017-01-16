@@ -83,9 +83,9 @@ doctrine:
 # stores options that change the application behavior and parameters.yml
 # stores options that change from one server to another
 #
-# swiftmailer:
-#     transport: "%mailer_transport%"
-#     host:      "%mailer_host%"
-#     username:  "%mailer_user%"
-#     password:  "%mailer_password%"
-#     spool:     { type: memory }
+swiftmailer:
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    spool:     { type: memory }

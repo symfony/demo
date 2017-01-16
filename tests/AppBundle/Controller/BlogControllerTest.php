@@ -37,4 +37,21 @@ class BlogControllerTest extends WebTestCase
             'The homepage displays the right number of posts.'
         );
     }
+
+    public function testRss()
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/en/blog/rss.xml');
+
+        $this->assertSame(
+            'text/xml; charset=UTF-8',
+            $client->getResponse()->headers->get('Content-Type')
+        );
+
+        $this->assertCount(
+            Post::NUM_ITEMS,
+            $crawler->filter('item'),
+            'The xml file displays the right number of posts.'
+        );
+    }
 }
