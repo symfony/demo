@@ -37,6 +37,7 @@ services:
     # See http://symfony.com/doc/current/event_dispatcher.html#creating-an-event-subscriber
     app.console_subscriber:
         class: AppBundle\EventListener\CheckSQLiteEventSubscriber
+        arguments: ['@doctrine.orm.entity_manager']
         tags:
             - { name: kernel.event_subscriber }
 
