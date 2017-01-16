@@ -107,6 +107,6 @@ class CheckSQLiteEventSubscriber implements EventSubscriberInterface
      */
     private function isSQLitePlatform()
     {
-        return $this->entityManager->getConnection()->getDatabasePlatform()->getName() === 'sqlite';
+        return $this->entityManager->getConnection()->getDatabasePlatform() ? $this->entityManager->getConnection()->getDatabasePlatform()->getName() === 'sqlite' : false;
     }
 }
