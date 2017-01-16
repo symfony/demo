@@ -126,11 +126,8 @@ class BlogController extends Controller
             throw $this->createAccessDeniedException('Posts can only be shown to their authors.');
         }
 
-        $deleteForm = $this->createDeleteForm($post);
-
         return $this->render('admin/blog/show.html.twig', [
             'post' => $post,
-            'delete_form' => $deleteForm->createView(),
         ]);
     }
 
@@ -148,12 +145,11 @@ class BlogController extends Controller
 
         $entityManager = $this->getDoctrine()->getManager();
 
-        $editForm = $this->createForm(PostType::class, $post);
-        $deleteForm = $this->createDeleteForm($post);
+        $form = $this->createForm(PostType::class, $post);
 
-        $editForm->handleRequest($request);
+        $form->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $post->setSlug($this->get('slugger')->slugify($post->getTitle()));
             $entityManager->flush();
 
@@ -164,16 +160,15 @@ class BlogController extends Controller
 
         return $this->render('admin/blog/edit.html.twig', [
             'post' => $post,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'form' => $form->createView(),
         ]);
     }
 
     /**
      * Deletes a Post entity.
      *
-     * @Route("/{id}", name="admin_post_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="admin_post_delete")
+     * @Method("POST")
      * @Security("post.isAuthor(user)")
      *
      * The Security annotation value is an expression (if it evaluates to false,
@@ -182,40 +177,17 @@ class BlogController extends Controller
      */
     public function deleteAction(Request $request, Post $post)
     {
-        $form = $this->createDeleteForm($post);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-
-            $entityManager->remove($post);
-            $entityManager->flush();
-
-            $this->addFlash('success', 'post.deleted_successfully');
+        if (!$this->isCsrfTokenValid('delete', $request->request->get('token'))) {
+            return $this->redirectToRoute('admin_post_index');
         }
 
-        return $this->redirectToRoute('admin_post_index');
-    }
+        $entityManager = $this->getDoctrine()->getManager();
 
-    /**
-     * Creates a form to delete a Post entity by id.
-     *
-     * This is necessary because browsers don't support HTTP methods different
-     * from GET and POST. Since the controller that removes the blog posts expects
-     * a DELETE method, the trick is to create a simple form that *fakes* the
-     * HTTP DELETE method.
-     * See http://symfony.com/doc/current/cookbook/routing/method_parameters.html.
-     *
-     * @param Post $post The post object
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Post $post)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_post_delete', ['id' => $post->getId()]))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
+        $entityManager->remove($post);
+        $entityManager->flush();
+
+        $this->addFlash('success', 'post.deleted_successfully');
+
+        return $this->redirectToRoute('admin_post_index');
     }
 }
