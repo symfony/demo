@@ -11,6 +11,11 @@
                 </a>
             </h2>
 
+            <p class="post-metadata">
+                <i class="fa fa-calendar"></i> {{ post.publishedAt|localizeddate('long', 'medium', null, 'UTC') }}
+                <i class="fa fa-user"></i> {{ post.authorEmail }}
+            </p>
+
             {{ post.summary|md2html }}
         </article>
     {% else %}
