@@ -5,6 +5,11 @@
 {% block main %}
     <h1>{{ post.title }}</h1>
 
+    <p class="post-metadata">
+        <i class="fa fa-calendar"></i> {{ post.publishedAt|localizeddate('long', 'medium', null, 'UTC') }}
+        <i class="fa fa-user"></i> {{ post.authorEmail }}
+    </p>
+
     {{ post.content|md2html }}
 
     <div id="post-add-comment" class="well">
