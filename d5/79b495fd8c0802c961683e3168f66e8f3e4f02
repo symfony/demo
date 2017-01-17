@@ -1,0 +1,109 @@
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2017-01-10T20:46:02Z
+
+I think you can show posts even if you're not the author of it. Does it make sense?
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-01-10T20:49:41Z
+
+Make sense show a post which we can't act? Currently we can't (i.e. in backend)
+
+https://github.com/symfony/symfony-demo/blob/master/src/AppBundle/Controller/Admin/BlogController.php#L125
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2017-01-10T21:10:33Z
+
+It's a controversial question since all posts are public on frontend and anyone can read it... so why we should deny reading them on backend?
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-01-10T21:17:16Z
+
+@bocharsky-bw I agree with you, so there are two options:
+* Allow show a post and hide edit/delete actions inside it?
+* Show only the posts of the authenticated user (author) in this list?
+
+I'm go for the second.
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2017-01-10T21:37:35Z
+
+I think that showing post only for it's author is very strange behavior :) I would allow all authenticated users to view any post.
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-01-10T21:43:09Z
+
+@voronkovich
+
+> I would allow all authenticated users to view any post.
+
+IMHO this is the goal of the frontend.
+
+If I enter to backend I'll want to see my posts only, to review/edit it or create a new one.
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2017-01-10T21:50:49Z
+
+@yceruto, thanks for the explanation. It makes sense.  So, I would choose the second option: `Show only the posts of the authenticated user (author) in this list`.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-01-12T09:26:23Z
+
+This might be trickier than I thought. For example, if I browse the backend of a WordPress blog managed by several users, I can see (and most of the times, edit) the articles written by all authors, not only me.
+
+If you agree, we could do this instead:
+
+* In the "author" column, display "You" is you are the author of the article. Otherwise, keep displaying the author's email.
+* Keep the `Show` button for all articles
+* Keep the `Edit` button for all articles ... but disable it for articles that you are not the author. Bonus: display a hover message in those buttons saying: "You can't edit this article because you are not the author".
+
+Does it make sense?
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-01-12T15:29:42Z
+
+@javiereguiluz I think it's fine, but what do we do with the "show" button? we allow show the post and we hide the edit/delete actions inside it? or we disable it too as well as "Edit" button?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-01-12T15:32:17Z
+
+@yceruto if we do this, then yes, we should display but disable the edit and delete buttons.
+
+But there's something I don't like about this proposal and I don't know what is. It doesn't feel right to me :(
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-01-12T16:00:04Z
+
+@javiereguiluz to be honest, me neither. IMO this is a multi-user app with two scenarios, frontend (public) and backend (private), so for me, just to filter the posts list by the logged user would simplify the things (hiding the author column of course). What do you think about this alternative?
+
+Edit: Later the newcomers can play creating another admin user and see their own posts list only.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-01-12T16:11:40Z
+
+Yes ... maybe it's better to only display your posts and see if we like the result 👍
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-01-12T16:59:21Z
+
+Updated!
+
+![posts-list-after](https://cloud.githubusercontent.com/assets/2028198/21901731/e20e3b1a-d8c6-11e6-94e5-dff0f22d6b86.png)
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-01-12T17:37:04Z
+
+Rebased with master!
