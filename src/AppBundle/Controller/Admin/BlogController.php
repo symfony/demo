@@ -119,12 +119,9 @@ class BlogController extends Controller
      */
     public function showAction(Post $post)
     {
-        // This security check can also be performed:
-        //   1. Using an annotation: @Security("post.isAuthor(user)")
-        //   2. Using a "voter" (see http://symfony.com/doc/current/cookbook/security/voters_data_permission.html)
-        if (!$post->isAuthor($this->getUser())) {
-            throw $this->createAccessDeniedException('Posts can only be shown to their authors.');
-        }
+        // This security check can also be performed
+        // using an annotation: @Security("is_granted('show', post)")
+        $this->denyAccessUnlessGranted('show', $post, 'Posts can only be shown to their authors.');
 
         return $this->render('admin/blog/show.html.twig', [
             'post' => $post,
@@ -139,9 +136,7 @@ class BlogController extends Controller
      */
     public function editAction(Post $post, Request $request)
     {
-        if (!$post->isAuthor($this->getUser())) {
-            throw $this->createAccessDeniedException('Posts can only be edited by their authors.');
-        }
+        $this->denyAccessUnlessGranted('edit', $post, 'Posts can only be edited by their authors.');
 
         $entityManager = $this->getDoctrine()->getManager();
 
@@ -169,11 +164,10 @@ class BlogController extends Controller
      *
      * @Route("/{id}/delete", name="admin_post_delete")
      * @Method("POST")
-     * @Security("post.isAuthor(user)")
+     * @Security("is_granted('delete', post)")
      *
      * The Security annotation value is an expression (if it evaluates to false,
      * the authorization mechanism will prevent the user accessing this resource).
-     * The isAuthor() method is defined in the AppBundle\Entity\Post entity.
      */
     public function deleteAction(Request $request, Post $post)
     {
