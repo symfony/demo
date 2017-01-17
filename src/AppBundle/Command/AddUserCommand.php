@@ -61,7 +61,7 @@ class AddUserCommand extends ContainerAwareCommand
             ->addArgument('username', InputArgument::OPTIONAL, 'The username of the new user')
             ->addArgument('password', InputArgument::OPTIONAL, 'The plain password of the new user')
             ->addArgument('email', InputArgument::OPTIONAL, 'The email of the new user')
-            ->addOption('is-admin', null, InputOption::VALUE_NONE, 'If set, the user is created as an administrator')
+            ->addOption('admin', null, InputOption::VALUE_NONE, 'If set, the user is created as an administrator')
         ;
     }
 
@@ -280,9 +280,9 @@ The <info>%command.name%</info> command creates new users and saves them in the 
   <info>php %command.full_name%</info> <comment>username password email</comment>
 
 By default the command creates regular users. To create administrator users,
-add the <comment>--is-admin</comment> option:
+add the <comment>--admin</comment> option:
 
-  <info>php %command.full_name%</info> username password email <comment>--is-admin</comment>
+  <info>php %command.full_name%</info> username password email <comment>--admin</comment>
 
 If you omit any of the three required arguments, the command will ask you to
 provide the missing values:
