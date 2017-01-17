@@ -142,8 +142,12 @@ footer #footer-resources i {
     padding: 1em
 }
 
-.form-group.has-error .help-block ul {
+.form-group.has-error .help-block ul,
+.form-group.has-error .help-block li {
     margin-bottom: 0
+}
+.form-group.has-error .help-block li + li {
+    margin-top: 0.5em;
 }
 
 textarea {

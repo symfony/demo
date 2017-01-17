@@ -52,9 +52,6 @@ class PostType extends AbstractType
                 'attr' => ['rows' => 20],
                 'label' => 'label.content',
             ])
-            ->add('authorEmail', null, [
-                'label' => 'label.author_email',
-            ])
             ->add('publishedAt', DateTimePickerType::class, [
                 'label' => 'label.published_at',
             ])
