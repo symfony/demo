@@ -207,6 +207,17 @@ body#login #login-users-help p .console {
     padding: 10px
 }
 
+/* Common Blog page elements
+   ------------------------------------------------------------------------- */
+.post-metadata {
+    color: #b4bcc2;
+    font-size: 19px;
+    margin-bottom: 16px;
+}
+.post-metadata .metadata {
+    margin-right: 1.5em;
+}
+
 /* Page: 'Blog index'
    ------------------------------------------------------------------------- */
 body#blog_index h1 {
@@ -215,6 +226,11 @@ body#blog_index h1 {
 
 body#blog_index article.post {
     margin-bottom: 3em
+}
+
+body#blog_index .post-metadata {
+    font-size: 16px;
+    margin-bottom: 8px;
 }
 
 /* Page: 'Blog post show'
