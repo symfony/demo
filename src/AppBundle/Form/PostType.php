@@ -49,16 +49,10 @@ class PostType extends AbstractType
                 'label' => 'label.summary',
             ])
             ->add('content', null, [
-                'attr' => [
-                    'rows' => 20,
-                    'help' => 'Markdown is allowed.',
-                ],
+                'attr' => ['rows' => 20],
                 'label' => 'label.content',
             ])
             ->add('publishedAt', DateTimePickerType::class, [
-                'attr' => [
-                    'help' => 'Dates in the future are allowed. Posts won\'t be displayed until that date.',
-                ],
                 'label' => 'label.published_at',
             ])
         ;
