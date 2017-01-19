@@ -1,0 +1,23 @@
+---------------------------------------------------------------------------
+
+by voronkovich at 2017-01-14T13:36:45Z
+
+@yceruto, I think we don't need the relation between `User` and `Comment`. It's better to allow anonymous users create comments.
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-01-14T14:48:21Z
+
+@voronkovich before this PR to comment on Post is required to be logged, just I keep the current behavior for now :)
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2017-01-14T16:32:34Z
+
+@yceruto, ok, let's keep it as is for now.
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-01-17T13:43:24Z
+
+Rebase with master and added more tests.
