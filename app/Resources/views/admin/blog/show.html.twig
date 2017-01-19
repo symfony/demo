@@ -4,7 +4,10 @@
 
 {% block main %}
     <h1>{{ post.title }}</h1>
-    <p class="text-muted">{{ post.publishedAt|localizeddate('long', 'medium', null, 'UTC') }}</p>
+    <p class="post-metadata">
+        <i class="fa fa-calendar"></i> {{ post.publishedAt|localizeddate('long', 'medium', null, 'UTC') }}
+        <i class="fa fa-user"></i> {{ post.author.email }}
+    </p>
 
     <div class="well">
         <p class="m-b-0"><strong>{{ 'label.summary'|trans }}</strong>: {{ post.summary }}</p>
