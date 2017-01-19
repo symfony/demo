@@ -1,0 +1,25 @@
+---------------------------------------------------------------------------
+
+by stof at 2017-01-17T15:24:54Z
+
+should we keep the author name ?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-01-17T15:29:05Z
+
+My reasoning was that you can only see your own posts in the backend (of course you can play with the URL parameters and see other posts ... but should we care about that?)
+
+---------------------------------------------------------------------------
+
+by stof at 2017-01-17T16:00:45Z
+
+> of course you can play with the URL parameters and see other posts ... but should we care about that?
+
+if you should only see your own posts, but changing the URL allows to see any post, this looks like a flaw in the security checks of the backend. It should send a 403. We should use proper security rules in the demo.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-01-17T16:03:06Z
+
+@stof yes ... but it's a bit tricky. This demo app is a simplified blog, so we made some decisions such as: all posts are public and published, everybody can see all posts (even anonymous users visiting the blog), etc. The only restriction is that posts can only be edited by their authors.
