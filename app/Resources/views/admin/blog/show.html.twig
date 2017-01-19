@@ -4,30 +4,16 @@
 
 {% block main %}
     <h1>{{ post.title }}</h1>
+    <p class="post-metadata">
+        <i class="fa fa-calendar"></i> {{ post.publishedAt|localizeddate('long', 'medium', null, 'UTC') }}
+        <i class="fa fa-user"></i> {{ post.author.email }}
+    </p>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th scope="row">{{ 'label.summary'|trans }}</th>
-                <td>{{ post.summary|md2html }}</td>
-            </tr>
-            <tr>
-                <th scope="row">{{ 'label.content'|trans }}</th>
-                <td>{{ post.content|md2html }}</td>
-            </tr>
-            <tr>
-                <th scope="row">{{ 'label.author'|trans }}</th>
-                <td><p>{{ post.author.email }}</p></td>
-            </tr>
-            <tr>
-                <th scope="row">{{ 'label.published_at'|trans }}</th>
-                {# it's not mandatory to set the timezone in localizeddate(). This is done to
-                   avoid errors when the 'intl' PHP extension is not available and the application
-                   is forced to use the limited "intl polyfill", which only supports UTC and GMT #}
-                <td><p>{{ post.publishedAt|localizeddate('long', 'medium', null, 'UTC') }}</p></td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="well">
+        <p class="m-b-0"><strong>{{ 'label.summary'|trans }}</strong>: {{ post.summary }}</p>
+    </div>
+
+    {{ post.content|md2html }}
 {% endblock %}
 
 {% block sidebar %}
