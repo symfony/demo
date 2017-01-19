@@ -32,7 +32,7 @@
         <div class="row post-comment">
             <a name="comment_{{ comment.id }}"></a>
             <h4 class="col-sm-3">
-                <strong>{{ comment.authorEmail }}</strong> {{ 'post.commented_on'|trans }}
+                <strong>{{ comment.author.email }}</strong> {{ 'post.commented_on'|trans }}
                 {# it's not mandatory to set the timezone in localizeddate(). This is done to
                    avoid errors when the 'intl' PHP extension is not available and the application
                    is forced to use the limited "intl polyfill", which only supports UTC and GMT #}
@@ -50,7 +50,7 @@
 {% endblock %}
 
 {% block sidebar %}
-    {% if app.user and post.isAuthor(app.user) %}
+    {% if post.isAuthor(app.user) %}
         <div class="section">
             <a class="btn btn-lg btn-block btn-success" href="{{ path('admin_post_edit', { id: post.id }) }}">
                 <i class="fa fa-edit" aria-hidden="true"></i> {{ 'action.edit_post'|trans }}

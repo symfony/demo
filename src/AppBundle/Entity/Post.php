@@ -72,20 +72,20 @@ class Post
     private $content;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(type="string")
-     * @Assert\Email
-     */
-    private $authorEmail;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(type="datetime")
      * @Assert\DateTime
      */
     private $publishedAt;
+
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $author;
 
     /**
      * @var Comment[]|ArrayCollection
@@ -149,27 +149,6 @@ class Post
         $this->content = $content;
     }
 
-    public function getAuthorEmail()
-    {
-        return $this->authorEmail;
-    }
-
-    /**
-     * @param string $authorEmail
-     */
-    public function setAuthorEmail($authorEmail)
-    {
-        $this->authorEmail = $authorEmail;
-    }
-
-    /**
-     * Is the given User the author of this Post?
-     */
-    public function isAuthor(User $user)
-    {
-        return $user->getEmail() === $this->getAuthorEmail();
-    }
-
     public function getPublishedAt()
     {
         return $this->publishedAt;
@@ -178,6 +157,30 @@ class Post
     public function setPublishedAt(\DateTime $publishedAt)
     {
         $this->publishedAt = $publishedAt;
+    }
+
+    /**
+     * @return User
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * @param User $author
+     */
+    public function setAuthor(User $author)
+    {
+        $this->author = $author;
+    }
+
+    /**
+     * Is the given User the author of this Post?
+     */
+    public function isAuthor(User $user = null)
+    {
+        return $user === $this->author;
     }
 
     public function getComments()

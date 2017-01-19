@@ -70,4 +70,26 @@ class BlogControllerTest extends WebTestCase
             'The backend homepage displays all the available posts.'
         );
     }
+
+    /**
+     * @dataProvider getPostUrls
+     */
+    public function testOnlyAuthorCanAccessToThePostInTheBackend($method, $url, $statusCode)
+    {
+        $client = static::createClient([], [
+            'PHP_AUTH_USER' => 'anna_admin',
+            'PHP_AUTH_PW' => 'kitten',
+        ]);
+
+        $client->request($method, $url);
+
+        $this->assertEquals($statusCode, $client->getResponse()->getStatusCode());
+    }
+
+    public function getPostUrls()
+    {
+        yield ['GET', '/en/admin/post/1', Response::HTTP_OK];
+        yield ['GET', '/en/admin/post/1/edit', Response::HTTP_OK];
+        yield ['POST', '/en/admin/post/1/delete', Response::HTTP_FOUND];
+    }
 }

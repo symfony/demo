@@ -61,20 +61,20 @@ class Comment
     private $content;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(type="string")
-     * @Assert\Email
-     */
-    private $authorEmail;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(type="datetime")
      * @Assert\DateTime
      */
     private $publishedAt;
+
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $author;
 
     public function __construct()
     {
@@ -109,19 +109,6 @@ class Comment
         $this->content = $content;
     }
 
-    public function getAuthorEmail()
-    {
-        return $this->authorEmail;
-    }
-
-    /**
-     * @param string $authorEmail
-     */
-    public function setAuthorEmail($authorEmail)
-    {
-        $this->authorEmail = $authorEmail;
-    }
-
     public function getPublishedAt()
     {
         return $this->publishedAt;
@@ -130,6 +117,22 @@ class Comment
     public function setPublishedAt(\DateTime $publishedAt)
     {
         $this->publishedAt = $publishedAt;
+    }
+
+    /**
+     * @return User
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * @param User $author
+     */
+    public function setAuthor(User $author)
+    {
+        $this->author = $author;
     }
 
     public function getPost()

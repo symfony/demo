@@ -55,7 +55,7 @@ class BlogController extends Controller
     public function indexAction()
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $posts = $entityManager->getRepository(Post::class)->findBy(['authorEmail' => $this->getUser()->getEmail()], ['publishedAt' => 'DESC']);
+        $posts = $entityManager->getRepository(Post::class)->findBy(['author' => $this->getUser()], ['publishedAt' => 'DESC']);
 
         return $this->render('admin/blog/index.html.twig', ['posts' => $posts]);
     }
@@ -73,7 +73,7 @@ class BlogController extends Controller
     public function newAction(Request $request)
     {
         $post = new Post();
-        $post->setAuthorEmail($this->getUser()->getEmail());
+        $post->setAuthor($this->getUser());
 
         // See http://symfony.com/doc/current/book/forms.html#submitting-forms-with-multiple-buttons
         $form = $this->createForm(PostType::class, $post)
@@ -122,7 +122,7 @@ class BlogController extends Controller
         // This security check can also be performed:
         //   1. Using an annotation: @Security("post.isAuthor(user)")
         //   2. Using a "voter" (see http://symfony.com/doc/current/cookbook/security/voters_data_permission.html)
-        if (null === $this->getUser() || !$post->isAuthor($this->getUser())) {
+        if (!$post->isAuthor($this->getUser())) {
             throw $this->createAccessDeniedException('Posts can only be shown to their authors.');
         }
 
@@ -139,7 +139,7 @@ class BlogController extends Controller
      */
     public function editAction(Post $post, Request $request)
     {
-        if (null === $this->getUser() || !$post->isAuthor($this->getUser())) {
+        if (!$post->isAuthor($this->getUser())) {
             throw $this->createAccessDeniedException('Posts can only be edited by their authors.');
         }
 
