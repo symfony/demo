@@ -5,8 +5,8 @@
 {% block main %}
     <h1>{{ post.title }}</h1>
     <p class="post-metadata">
-        <i class="fa fa-calendar"></i> {{ post.publishedAt|localizeddate('long', 'medium', null, 'UTC') }}
-        <i class="fa fa-user"></i> {{ post.author.email }}
+        <span class="metadata"><i class="fa fa-calendar"></i> {{ post.publishedAt|localizeddate('long', 'medium', null, 'UTC') }}</span>
+        <span class="metadata"><i class="fa fa-user"></i> {{ post.author.email }}</span>
     </p>
 
     <div class="well">

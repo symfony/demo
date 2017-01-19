@@ -207,6 +207,17 @@ body#login #login-users-help p .console {
     padding: 10px
 }
 
+/* Common Blog page elements
+   ------------------------------------------------------------------------- */
+.post-metadata {
+    color: #b4bcc2;
+    font-size: 19px;
+    margin-bottom: 16px;
+}
+.post-metadata .metadata {
+    margin-right: 1.5em;
+}
+
 /* Page: 'Blog index'
    ------------------------------------------------------------------------- */
 body#blog_index h1 {
@@ -217,24 +228,15 @@ body#blog_index article.post {
     margin-bottom: 3em
 }
 
-.post-metadata {
-    color: #b4bcc2;
+body#blog_index .post-metadata {
     font-size: 16px;
     margin-bottom: 8px;
-}
-.post-metadata .fa-user {
-    margin-left: 1.5em;
 }
 
 /* Page: 'Blog post show'
    ------------------------------------------------------------------------- */
 body#blog_post_show h3 {
     margin-bottom: 0.75em
-}
-
-body#blog_post_show .post-metadata {
-    font-size: 19px;
-    margin-bottom: 16px;
 }
 
 body#blog_post_show #post-add-comment {
