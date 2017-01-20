@@ -21,7 +21,7 @@ use AppBundle\Utils\Slugger;
  * Execute the application tests using this command (requires PHPUnit to be installed):
  *
  *     $ cd your-symfony-project/
- *     $ phpunit -c app
+ *     $ ./vendor/bin/phpunit
  */
 class SluggerTest extends \PHPUnit_Framework_TestCase
 {

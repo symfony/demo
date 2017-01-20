@@ -27,35 +27,55 @@ use Symfony\Component\HttpFoundation\Response;
  * Execute the application tests using this command (requires PHPUnit to be installed):
  *
  *     $ cd your-symfony-project/
- *     $ phpunit -c app
+ *     $ ./vendor/bin/phpunit
  */
 class BlogControllerTest extends WebTestCase
 {
-    public function testRegularUsersCannotAccessToTheBackend()
+    /**
+     * @dataProvider getUrlsForRegularUsers
+     */
+    public function testRegularUsers($httpMethod, $url, $statusCode)
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => 'john_user',
             'PHP_AUTH_PW' => 'kitten',
         ]);
 
-        $client->request('GET', '/en/admin/post/');
-
-        $this->assertEquals(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
+        $client->request($httpMethod, $url);
+        $this->assertEquals($statusCode, $client->getResponse()->getStatusCode());
     }
 
-    public function testAdministratorUsersCanAccessToTheBackend()
+    public function getUrlsForRegularUsers()
+    {
+        yield ['GET', '/en/admin/post/', Response::HTTP_FORBIDDEN];
+        yield ['GET', '/en/admin/post/1', Response::HTTP_FORBIDDEN];
+        yield ['GET', '/en/admin/post/1/edit', Response::HTTP_FORBIDDEN];
+        yield ['POST', '/en/admin/post/1/delete', Response::HTTP_FORBIDDEN];
+    }
+
+    /**
+     * @dataProvider getUrlsForAdminUsers
+     */
+    public function testAdminUsers($httpMethod, $url, $statusCode)
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => 'anna_admin',
             'PHP_AUTH_PW' => 'kitten',
         ]);
 
-        $client->request('GET', '/en/admin/post/');
-
-        $this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+        $client->request($httpMethod, $url);
+        $this->assertEquals($statusCode, $client->getResponse()->getStatusCode());
     }
 
-    public function testIndex()
+    public function getUrlsForAdminUsers()
+    {
+        yield ['GET', '/en/admin/post/', Response::HTTP_OK];
+        yield ['GET', '/en/admin/post/1', Response::HTTP_OK];
+        yield ['GET', '/en/admin/post/1/edit', Response::HTTP_OK];
+        yield ['POST', '/en/admin/post/1/delete', Response::HTTP_FOUND];
+    }
+
+    public function testBackendHomepage()
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => 'anna_admin',
@@ -69,27 +89,5 @@ class BlogControllerTest extends WebTestCase
             $crawler->filter('body#admin_post_index #main tbody tr'),
             'The backend homepage displays all the available posts.'
         );
-    }
-
-    /**
-     * @dataProvider getPostUrls
-     */
-    public function testOnlyAuthorCanAccessToThePostInTheBackend($method, $url, $statusCode)
-    {
-        $client = static::createClient([], [
-            'PHP_AUTH_USER' => 'anna_admin',
-            'PHP_AUTH_PW' => 'kitten',
-        ]);
-
-        $client->request($method, $url);
-
-        $this->assertEquals($statusCode, $client->getResponse()->getStatusCode());
-    }
-
-    public function getPostUrls()
-    {
-        yield ['GET', '/en/admin/post/1', Response::HTTP_OK];
-        yield ['GET', '/en/admin/post/1/edit', Response::HTTP_OK];
-        yield ['POST', '/en/admin/post/1/delete', Response::HTTP_FOUND];
     }
 }

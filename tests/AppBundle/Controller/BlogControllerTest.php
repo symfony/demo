@@ -22,7 +22,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  * Execute the application tests using this command (requires PHPUnit to be installed):
  *
  *     $ cd your-symfony-project/
- *     $ phpunit -c app
+ *     $ ./vendor/bin/phpunit
  */
 class BlogControllerTest extends WebTestCase
 {
