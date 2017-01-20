@@ -17,7 +17,8 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 /**
- * Decide whether the current user can show, edit or delete a Post object.
+ * It grants or denies permissions for actions related to blog posts (such as
+ * showing, editing and deleting posts).
  *
  * See http://symfony.com/doc/current/security/voters.html
  *
@@ -25,6 +26,8 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
  */
 class PostVoter extends Voter
 {
+    // Defining these constants is overkill for this simple application, but for real
+    // applications, it's a recommended practice to avoid relying on "magic strings"
     const SHOW = 'show';
     const EDIT = 'edit';
     const DELETE = 'delete';
@@ -34,17 +37,8 @@ class PostVoter extends Voter
      */
     protected function supports($attribute, $subject)
     {
-        // if the attribute isn't one we support, return false
-        if (!in_array($attribute, [self::SHOW, self::EDIT, self::DELETE])) {
-            return false;
-        }
-
-        // only vote on Post objects inside this voter
-        if (!$subject instanceof Post) {
-            return false;
-        }
-
-        return true;
+        // this voter is only executed for three specific permissions on Post objects
+        return $subject instanceof Post && in_array($attribute, [self::SHOW, self::EDIT, self::DELETE]);
     }
 
     /**
@@ -54,12 +48,14 @@ class PostVoter extends Voter
     {
         $user = $token->getUser();
 
+        // the user must be logged in; if not, deny permission
         if (!$user instanceof User) {
-            // the user must be logged in; if not, deny access
             return false;
         }
 
-        // you know $post is a Post object, thanks to supports
+        // the logic of this voter is pretty simple: if the given user is the
+        // author of the blog post, grant permission; otherwise, deny it.
+        // (the supports() method guarantees that $post is a Post object)
         return $user === $post->getAuthor();
     }
 }
