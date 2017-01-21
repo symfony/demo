@@ -1,0 +1,27 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-01-20T15:46:34Z
+
+@yceruto thanks for these improvements. I like them. The only question I have is about the `--is-admin` to `--admin` reword.
+
+It's true that "is admin" can be understood as a question: "john-doe is admin?" but also as a non-question sentence: "john-doe is admin."  In any case, `--is-admin` is not perfect. However, using just `--admin` is not perfectly clearly either (it can be understood in several ways in addition to the intended one).
+
+So, let's wait for other opinions before merging it. Thanks!
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-01-20T16:42:40Z
+
+As I see it in others commands with similar option, this flag is directly related to the command name rather than its related options, i.e. `app:add-user --admin`, it's like "I want: to add an admin user", or `app:add-user john --admin` (add an admin user named john).
+
+This approach in [FOSUserBundle commands](https://github.com/FriendsOfSymfony/FOSUserBundle/blob/master/Command) for example:
+* [`fos:user:create --super-admin --inactive`](https://github.com/FriendsOfSymfony/FOSUserBundle/blob/master/Command/CreateUserCommand.php#L40-L41 )
+* [`fos:user:promote --super`](https://github.com/FriendsOfSymfony/FOSUserBundle/blob/master/Command/RoleCommand.php#L36)
+
+Symfony commands also follow this approach for your flag options, but I'm fine with `--is-admin` approach too :)
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-01-20T16:46:29Z
+
+That's a nice argument. Reusing the existing practices is always a good idea.
