@@ -12,6 +12,8 @@
 
     {{ post.content|md2html }}
 
+    {{ include('blog/_post_tags.html.twig') }}
+
     <div id="post-add-comment" class="well">
         {# The 'IS_AUTHENTICATED_FULLY' role ensures that the user has entered
         his/her credentials (login + password) during this session. If he/she

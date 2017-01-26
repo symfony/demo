@@ -218,6 +218,10 @@ body#login #login-users-help p .console {
     margin-right: 1.5em;
 }
 
+.post-tags .label {
+    margin-right: 5px;
+}
+
 /* Page: 'Blog index'
    ------------------------------------------------------------------------- */
 body#blog_index h1 {
@@ -231,6 +235,10 @@ body#blog_index article.post {
 body#blog_index .post-metadata {
     font-size: 16px;
     margin-bottom: 8px;
+}
+
+body#blog_index .post-tags {
+    margin-bottom: 15px;
 }
 
 /* Page: 'Blog post show'
