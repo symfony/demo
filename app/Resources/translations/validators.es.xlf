@@ -14,6 +14,10 @@
                 <source>post.too_short_content</source>
                 <target>El contenido del artículo es demasiado corto ({{ limit }} caracteres como mínimo)</target>
             </trans-unit>
+            <trans-unit id="post.too_much_tags">
+                <source>post.too_much_tags</source>
+                <target>Demasiadas etiquetas ({{ limit }} como máximo)</target>
+            </trans-unit>
             <trans-unit id="comment.blank">
                 <source>comment.blank</source>
                 <target>No es posible dejar el contenido del comentario vacío.</target>

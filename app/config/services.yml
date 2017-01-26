@@ -22,6 +22,16 @@ services:
         tags:
             - { name: twig.extension }
 
+    # This is only needed if your form type requires some dependencies to be injected
+    # by the container, otherwise it is unnecessary overhead and therefore not recommended
+    # to do this for all form type classes.
+    # See http://symfony.com/doc/current/best_practices/forms.html
+    app.form.type.tagsinput:
+        class: AppBundle\Form\Type\TagsInputType
+        arguments: ['@doctrine.orm.entity_manager']
+        tags:
+            - { name: form.type }
+
     # Event Listeners are classes that listen to one or more specific events.
     # Those events are defined in the tags added to the service definition.
     # See http://symfony.com/doc/current/event_dispatcher.html#creating-an-event-listener
