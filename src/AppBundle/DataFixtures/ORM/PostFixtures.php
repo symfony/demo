@@ -21,10 +21,8 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
 /**
- * Defines the sample data to load in the database when running the unit and
- * functional tests.
- *
- * Execute this command to load the data:
+ * Defines the sample blog posts to load in the database before running the unit
+ * and functional tests. Execute this command to load the data.
  *
  *   $ php bin/console doctrine:fixtures:load
  *
@@ -53,8 +51,9 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface,
             $post->setSummary($this->getRandomPostSummary());
             $post->setSlug($this->container->get('slugger')->slugify($post->getTitle()));
             $post->setContent($this->getPostContent());
-            // This reference has been added in UserFixtures class and contains
-            // an instance of User entity.
+            // "References" are the way to share objects between fixtures defined
+            // in different files. This reference has been added in the UserFixtures
+            // file and it contains an instance of the User entity.
             $post->setAuthor($this->getReference('anna-admin'));
             $post->setPublishedAt(new \DateTime('now - '.$i.'days'));
 
@@ -79,8 +78,9 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface,
     }
 
     /**
-     * This method must return an array of fixtures classes
-     * on which the implementing class depends on.
+     * Instead of defining the exact order in which the fixtures files must be loaded,
+     * this method defines which other fixtures this file depends on. Then, Doctrine
+     * will figure out the best order to fit all the dependencies.
      *
      * @return array
      */
@@ -170,14 +170,14 @@ MARKDOWN;
             'Eposs sunt solems de superbus fortis',
             'Vae humani generis',
             'Diatrias tolerare tanquam noster caesium',
-            'Teres talis orgias saepe tractare de camerarius flavum sensorem',
+            'Teres talis saepe tractare de camerarius flavum sensorem',
             'Silva de secundus galatae demitto quadra',
             'Sunt accentores vitare salvus flavum parses',
-            'Potus sensim ducunt ad ferox abnoba',
+            'Potus sensim ad ferox abnoba',
             'Sunt seculaes transferre talis camerarius fluctuies',
             'Era brevis ratione est',
             'Sunt torquises imitari velox mirabilis medicinaes',
-            'Cum mineralis persuadere omnes finises desiderium bi-color',
+            'Mineralis persuadere omnes finises desiderium',
             'Bassus fatalis classiss virtualiter transferre de flavum',
         ];
     }

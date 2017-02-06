@@ -14,9 +14,9 @@
                 <source>post.too_short_content</source>
                 <target>Post content is too short ({{ limit }} characters minimum)</target>
             </trans-unit>
-            <trans-unit id="post.too_much_tags">
-                <source>post.too_much_tags</source>
-                <target>Too much tags ({{ limit }} maximum)</target>
+            <trans-unit id="post.too_many_tags">
+                <source>post.too_many_tags</source>
+                <target>Too many tags (add {{ limit }} tags or less)</target>
             </trans-unit>
             <trans-unit id="comment.blank">
                 <source>comment.blank</source>

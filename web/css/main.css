@@ -224,12 +224,13 @@ body#login #login-users-help p .console {
 
 /* Page: 'Blog index'
    ------------------------------------------------------------------------- */
-body#blog_index h1 {
+body#blog_index h1,
+body#blog_index p {
     margin-bottom: 0.5em
 }
 
 body#blog_index article.post {
-    margin-bottom: 3em
+    margin-bottom: 3em;
 }
 
 body#blog_index .post-metadata {
@@ -237,14 +238,29 @@ body#blog_index .post-metadata {
     margin-bottom: 8px;
 }
 
-body#blog_index .post-tags {
-    margin-bottom: 15px;
+body#blog_index .post-tags .label-default {
+    background-color: #e9ecec;
+    color: #6d8283;
+}
+body#blog_index .post-tags .label-default i {
+    color: #a3b2b2;
 }
 
 /* Page: 'Blog post show'
    ------------------------------------------------------------------------- */
 body#blog_post_show h3 {
     margin-bottom: 0.75em
+}
+
+body#blog_post_show .post-tags .label-default {
+    background-color: #e9ecec;
+    color: #6D8283;
+    font-size: 16px;
+    margin-right: 10px;
+    padding: .4em 1em .5em;
+}
+body#blog_post_show .post-tags .label-default i {
+    color: #95A6A7;
 }
 
 body#blog_post_show #post-add-comment {
@@ -288,6 +304,20 @@ body#admin_post_index .item-actions {
 body#admin_post_index .item-actions a.btn + a.btn {
     margin-left: 4px
 }
+
+/* Page: 'Backend post show'
+   ------------------------------------------------------------------------- */
+body#admin_post_show .post-tags .label-default {
+    background-color: #e9ecec;
+    color: #6D8283;
+    font-size: 16px;
+    margin-right: 10px;
+    padding: .4em 1em .5em;
+}
+body#admin_post_show .post-tags .label-default i {
+    color: #95A6A7;
+}
+
 
 @media (min-width: 768px) and (max-width: 1200px) {
     .container {
