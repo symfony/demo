@@ -21,10 +21,8 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
 /**
- * Defines the sample data to load in the database when running the unit and
- * functional tests.
- *
- * Execute this command to load the data:
+ * Defines the sample blog posts to load in the database before running the unit
+ * and functional tests. Execute this command to load the data:
  *
  *   $ php bin/console doctrine:fixtures:load
  *
