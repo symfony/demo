@@ -17,7 +17,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 /**
  * Defines the sample blog tags to load in the database before running the unit
- * and functional tests. Execute this command to load the data:
+ * and functional tests. Execute this command to load the data.
  *
  *   $ php bin/console doctrine:fixtures:load
  *
