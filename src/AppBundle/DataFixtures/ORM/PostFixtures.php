@@ -170,14 +170,14 @@ MARKDOWN;
             'Eposs sunt solems de superbus fortis',
             'Vae humani generis',
             'Diatrias tolerare tanquam noster caesium',
-            'Teres talis orgias saepe tractare de camerarius flavum sensorem',
+            'Teres talis saepe tractare de camerarius flavum sensorem',
             'Silva de secundus galatae demitto quadra',
             'Sunt accentores vitare salvus flavum parses',
-            'Potus sensim ducunt ad ferox abnoba',
+            'Potus sensim ad ferox abnoba',
             'Sunt seculaes transferre talis camerarius fluctuies',
             'Era brevis ratione est',
             'Sunt torquises imitari velox mirabilis medicinaes',
-            'Cum mineralis persuadere omnes finises desiderium bi-color',
+            'Mineralis persuadere omnes finises desiderium',
             'Bassus fatalis classiss virtualiter transferre de flavum',
         ];
     }
