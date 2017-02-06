@@ -22,9 +22,8 @@ services:
         tags:
             - { name: twig.extension }
 
-    # This is only needed if your form type requires some dependencies to be injected
-    # by the container, otherwise it is unnecessary overhead and therefore not recommended
-    # to do this for all form type classes.
+    # Defining a form type as a service is only required when the form type
+    # needs to use some other services, such as the entity manager.
     # See http://symfony.com/doc/current/best_practices/forms.html
     app.form.type.tagsinput:
         class: AppBundle\Form\Type\TagsInputType

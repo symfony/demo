@@ -53,8 +53,9 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface,
             $post->setSummary($this->getRandomPostSummary());
             $post->setSlug($this->container->get('slugger')->slugify($post->getTitle()));
             $post->setContent($this->getPostContent());
-            // This reference has been added in UserFixtures class and contains
-            // an instance of User entity.
+            // "References" are the way to share objects between fixtures defined
+            // in different files. This reference has been added in the UserFixtures
+            // file and it contains an instance of the User entity.
             $post->setAuthor($this->getReference('anna-admin'));
             $post->setPublishedAt(new \DateTime('now - '.$i.'days'));
 
@@ -79,8 +80,9 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface,
     }
 
     /**
-     * This method must return an array of fixtures classes
-     * on which the implementing class depends on.
+     * Instead of defining the exact order in which the fixtures files must be loaded,
+     * this method defines which other fixtures this file depends on. Then, Doctrine
+     * will figure out the best order to fit all the dependencies.
      *
      * @return array
      */
