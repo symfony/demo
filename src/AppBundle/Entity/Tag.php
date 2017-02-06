@@ -55,6 +55,9 @@ class Tag implements \JsonSerializable
      */
     public function jsonSerialize()
     {
+        // This method is called when a Tag instance needs be serialized to JSON
+        // See usage in app/Resources/views/form/fields.html.twig: tags|json_encode
+
         return $this->name;
     }
 

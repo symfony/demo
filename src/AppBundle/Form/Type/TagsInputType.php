@@ -45,8 +45,12 @@ class TagsInputType extends AbstractType
     {
         $builder
             ->setByReference(false)
-            ->addModelTransformer(new TagArrayToStringTransformer($this->manager))
-            ->addModelTransformer(new CollectionToArrayTransformer())
+            // We need to transform the tags collection into a comma separated string format
+            // so we are reusing an existing one to simplify the code, but you could build
+            // only one to do all transformation (i.e. Collection <-> string).
+            // Transformation flow: Collection <-> array <-> string
+            ->addModelTransformer(new CollectionToArrayTransformer(), true)
+            ->addModelTransformer(new TagArrayToStringTransformer($this->manager), true)
         ;
     }
 
