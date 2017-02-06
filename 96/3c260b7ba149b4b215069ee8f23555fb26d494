@@ -1,0 +1,37 @@
+---------------------------------------------------------------------------
+
+by yceruto at 2017-01-26T15:43:49Z
+
+Next form tags approach ( coming soon :sweat_smile: )
+![tagsinput](https://cloud.githubusercontent.com/assets/2028198/22337644/79a6ac86-e3b3-11e6-867c-e1905b6736e1.png)
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-01-26T20:56:20Z
+
+![tagsinput](https://cloud.githubusercontent.com/assets/2028198/22357946/624d31da-e409-11e6-82d0-76916d19228d.gif)
+
+Ready!
+
+Status: Need Reviews :)
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2017-01-27T14:06:12Z
+
+@yceruto, you forgot to call `EntityManager::persist` for post in `BlogController::editAction` to save the changes in tags.
+https://github.com/symfony/symfony-demo/blob/master/src/AppBundle/Controller/Admin/BlogController.php#L137
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-01-27T14:42:30Z
+
+> @yceruto, you forgot to call EntityManager::persist for post in BlogController::editAction to save the changes in tags.
+
+AFAIK it's not necessary, Doctrine is able to detect the changes on M2M `tags` property and do it. Likewise for new tags thanks to `cascade={"persist"}` option.
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-01-28T13:00:49Z
+
+@stof, @voronkovich Thanks for the review. I have addressed your comments.
