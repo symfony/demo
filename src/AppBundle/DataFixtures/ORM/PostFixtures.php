@@ -13,8 +13,9 @@ namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Comment;
 use AppBundle\Entity\Post;
-use AppBundle\Entity\User;
+use AppBundle\Entity\Tag;
 use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
@@ -31,8 +32,9 @@ use Symfony\Component\DependencyInjection\ContainerAwareTrait;
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
+ * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
-class LoadFixtures extends AbstractFixture implements ContainerAwareInterface
+class PostFixtures extends AbstractFixture implements DependentFixtureInterface, ContainerAwareInterface
 {
     use ContainerAwareTrait;
 
@@ -41,45 +43,22 @@ class LoadFixtures extends AbstractFixture implements ContainerAwareInterface
      */
     public function load(ObjectManager $manager)
     {
-        $this->loadUsers($manager);
-        $this->loadPosts($manager);
-    }
+        $phrases = $this->getPhrases();
+        shuffle($phrases);
 
-    private function loadUsers(ObjectManager $manager)
-    {
-        $passwordEncoder = $this->container->get('security.password_encoder');
-
-        $johnUser = new User();
-        $johnUser->setUsername('john_user');
-        $johnUser->setEmail('john_user@symfony.com');
-        $encodedPassword = $passwordEncoder->encodePassword($johnUser, 'kitten');
-        $johnUser->setPassword($encodedPassword);
-        $manager->persist($johnUser);
-        $this->addReference('john-user', $johnUser);
-
-        $annaAdmin = new User();
-        $annaAdmin->setUsername('anna_admin');
-        $annaAdmin->setEmail('anna_admin@symfony.com');
-        $annaAdmin->setRoles(['ROLE_ADMIN']);
-        $encodedPassword = $passwordEncoder->encodePassword($annaAdmin, 'kitten');
-        $annaAdmin->setPassword($encodedPassword);
-        $manager->persist($annaAdmin);
-        $this->addReference('anna-admin', $annaAdmin);
-
-        $manager->flush();
-    }
-
-    private function loadPosts(ObjectManager $manager)
-    {
-        foreach (range(1, 30) as $i) {
+        foreach ($phrases as $i => $title) {
             $post = new Post();
 
-            $post->setTitle($this->getRandomPostTitle());
+            $post->setTitle($title);
             $post->setSummary($this->getRandomPostSummary());
             $post->setSlug($this->container->get('slugger')->slugify($post->getTitle()));
             $post->setContent($this->getPostContent());
+            // This reference has been added in UserFixtures class and contains
+            // an instance of User entity.
             $post->setAuthor($this->getReference('anna-admin'));
             $post->setPublishedAt(new \DateTime('now - '.$i.'days'));
+
+            $this->addRandomTags($post);
 
             foreach (range(1, 5) as $j) {
                 $comment = new Comment();
@@ -97,6 +76,34 @@ class LoadFixtures extends AbstractFixture implements ContainerAwareInterface
         }
 
         $manager->flush();
+    }
+
+    /**
+     * This method must return an array of fixtures classes
+     * on which the implementing class depends on.
+     *
+     * @return array
+     */
+    public function getDependencies()
+    {
+        return [
+            TagFixtures::class,
+            UserFixtures::class,
+        ];
+    }
+
+    private function addRandomTags(Post $post)
+    {
+        if (0 === $count = mt_rand(0, 3)) {
+            return;
+        }
+
+        $indexes = (array) array_rand(TagFixtures::$names, $count);
+        foreach ($indexes as $index) {
+            /** @var Tag $tag */
+            $tag = $this->getReference('tag-'.$index);
+            $post->addTag($tag);
+        }
     }
 
     private function getPostContent()
@@ -157,14 +164,22 @@ MARKDOWN;
             'Sed varius a risus eget aliquam',
             'Nunc viverra elit ac laoreet suscipit',
             'Pellentesque et sapien pulvinar consectetur',
+            'Ubi est barbatus nix',
+            'Abnobas sunt hilotaes de placidus vita',
+            'Ubi est audax amicitia',
+            'Eposs sunt solems de superbus fortis',
+            'Vae humani generis',
+            'Diatrias tolerare tanquam noster caesium',
+            'Teres talis orgias saepe tractare de camerarius flavum sensorem',
+            'Silva de secundus galatae demitto quadra',
+            'Sunt accentores vitare salvus flavum parses',
+            'Potus sensim ducunt ad ferox abnoba',
+            'Sunt seculaes transferre talis camerarius fluctuies',
+            'Era brevis ratione est',
+            'Sunt torquises imitari velox mirabilis medicinaes',
+            'Cum mineralis persuadere omnes finises desiderium bi-color',
+            'Bassus fatalis classiss virtualiter transferre de flavum',
         ];
-    }
-
-    private function getRandomPostTitle()
-    {
-        $titles = $this->getPhrases();
-
-        return $titles[array_rand($titles)];
     }
 
     private function getRandomPostSummary($maxLength = 255)
