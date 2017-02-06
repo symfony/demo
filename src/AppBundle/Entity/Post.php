@@ -104,6 +104,7 @@ class Post
      * @var Tag[]|ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", cascade={"persist"})
+     * @ORM\JoinTable(name="symfony_demo_post_tag")
      * @Assert\Count(max="4", maxMessage="post.too_many_tags")
      */
     private $tags;
