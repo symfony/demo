@@ -44,7 +44,6 @@ class TagsInputType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->setByReference(false)
             // We need to transform the tags collection into a comma separated string format
             // so we are reusing an existing one to simplify the code, but you could build
             // only one to do all transformation (i.e. Collection <-> string).
