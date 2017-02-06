@@ -16,10 +16,8 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
 /**
- * Defines the sample data to load in the database when running the unit and
- * functional tests.
- *
- * Execute this command to load the data:
+ * Defines the sample blog tags to load in the database before running the unit
+ * and functional tests. Execute this command to load the data.
  *
  *   $ php bin/console doctrine:fixtures:load
  *
@@ -30,7 +28,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 class TagFixtures extends AbstractFixture
 {
     public static $names = [
-        'Lorem',
+        'lorem',
         'ipsum',
         'consectetur',
         'adipiscing',
