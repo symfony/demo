@@ -1,0 +1,15 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-02-07T10:52:58Z
+
+@keradus in 0aa68ef I've removed everything except the default Symfony rules. Is that what you were proposing?
+
+---------------------------------------------------------------------------
+
+by keradus at 2017-02-07T13:51:14Z
+
+> @keradus in 0aa68ef I've removed everything except the default Symfony rules. Is that what you were proposing?
+
+no, i proposed to evaluate the rules and maybe include them into `@Symfony` ruleset itself.
+or, if Symfony project will refuse to apply the rules on codebase but expect them for new code, create sth like `@SymfonyWishList` (with better name) to track that kind of rules that should apply for new code only.
+Then, if nothing of those could happen, do what you did, so drop extra rules
