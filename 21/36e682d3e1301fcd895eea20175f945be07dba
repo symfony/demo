@@ -1,0 +1,37 @@
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2017-01-17T07:10:54Z
+
+Looks like in this case, users, which don't have access to the admin page, will have an "Access denied" error.
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-01-17T14:04:28Z
+
+@bocharsky-bw you're right, but actually already happening, at least the most of times, the users accessing to login page through "browser backend" button and they get a "Access Denied" (and **it makes sense if it was your intention**).
+
+Something like "redirect to post index for users" or "redirect to admin index for admins" would be the best approach.
+
+Any suggestion to improving it?
+
+---------------------------------------------------------------------------
+
+by stof at 2017-01-17T14:18:03Z
+
+@yceruto if you want to do it, you need to create a dedicated route (used as target path) for which the controller would do redirections conditionally.
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-01-22T04:32:36Z
+
+> Something like "redirect to post index for users" or "redirect to admin index for admins" would be the best approach.
+
+I'm agree that @stof's and @javiereguiluz's solution may be a bit overkill for this demo app and I abandon this idea.
+
+But, my initial goal here was to find a better `default_target_path` that `/` for "the user" (admin or not) after login **"only in this case:"**
+
+**When the user access to login page directly (i.e. through URL) then this option (`default_target_path`) is used and not through "Browse Backend" button from home page, which use the target path saved in session.**
+
+So, to make it simpler and to avoid "Access denied" for users, I've changed again the `default_target_path` option to `blog_index` instead.
+
+What do you think now?
