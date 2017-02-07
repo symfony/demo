@@ -177,8 +177,9 @@ class BlogController extends Controller
 
         $entityManager = $this->getDoctrine()->getManager();
 
-        // Delete related symfony_demo_post_tag entries. This is necessary for SQLite platform only,
-        // you can remove it for another platform.
+        // Delete the tags associated with this blog post. This is done automatically
+        // by Doctrine, except for SQLite (the database used in this application)
+        // because foreign key support is not enabled by default in SQLite
         $post->getTags()->clear();
 
         $entityManager->remove($post);
