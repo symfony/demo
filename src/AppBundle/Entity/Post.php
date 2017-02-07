@@ -186,14 +186,6 @@ class Post
         $this->author = $author;
     }
 
-    /**
-     * Is the given User the author of this Post?
-     */
-    public function isAuthor(User $user = null)
-    {
-        return $user === $this->author;
-    }
-
     public function getComments()
     {
         return $this->comments;
