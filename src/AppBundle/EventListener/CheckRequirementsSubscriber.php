@@ -28,16 +28,12 @@ use Symfony\Component\HttpKernel\KernelEvents;
  *
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-class CheckSQLiteEventSubscriber implements EventSubscriberInterface
+class CheckRequirementsSubscriber implements EventSubscriberInterface
 {
-    /**
-     * @var EntityManager
-     */
+    /** @var EntityManager */
     private $entityManager;
 
     /**
-     * CheckSQLiteEventSubscriber constructor.
-     *
      * @param EntityManager $entityManager
      */
     public function __construct(EntityManager $entityManager)
@@ -54,9 +50,9 @@ class CheckSQLiteEventSubscriber implements EventSubscriberInterface
         return [
             // Exceptions are one of the events defined by the Console. See the
             // rest here: http://symfony.com/doc/current/components/console/events.html
-            ConsoleEvents::EXCEPTION => 'handleDatabaseExceptions',
-            // See: http://api.symfony.com/3.2/Symfony/Component/HttpKernel/KernelEvents.html
-            KernelEvents::EXCEPTION => 'onKernelException',
+            ConsoleEvents::EXCEPTION => 'handleConsoleException',
+            // See: http://api.symfony.com/master/Symfony/Component/HttpKernel/KernelEvents.html
+            KernelEvents::EXCEPTION => 'handleKernelException',
         ];
     }
 
@@ -67,7 +63,7 @@ class CheckSQLiteEventSubscriber implements EventSubscriberInterface
      *
      * @param ConsoleExceptionEvent $event
      */
-    public function handleDatabaseExceptions(ConsoleExceptionEvent $event)
+    public function handleConsoleException(ConsoleExceptionEvent $event)
     {
         $commandNames = ['doctrine:fixtures:load', 'doctrine:database:create', 'doctrine:schema:create', 'doctrine:database:drop'];
 
@@ -80,15 +76,16 @@ class CheckSQLiteEventSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * This method is triggered when kernel exception occurs. And checks if sqlite extension is enabled.
+     * This method checks if the triggered exception is related to the database
+     * and then, it checks if the required 'sqlite3' PHP extension is enabled.
      *
      * @param GetResponseForExceptionEvent $event
      */
-    public function onKernelException(GetResponseForExceptionEvent $event)
+    public function handleKernelException(GetResponseForExceptionEvent $event)
     {
         $exception = $event->getException();
-        // Since any exception thrown during a Twig template rendering is wrapped in a Twig_Error_Runtime.
-        // We must get the original exception.
+        // Since any exception thrown during a Twig template rendering is wrapped
+        // in a Twig_Error_Runtime, we must get the original exception.
         $previousException = $exception->getPrevious();
 
         // Driver exception may happen in controller or in twig template rendering
@@ -101,7 +98,7 @@ class CheckSQLiteEventSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * Check if demo application is configured to use SQLite as database.
+     * Checks if the application is using SQLite as its database.
      *
      * @return bool
      */
@@ -109,6 +106,6 @@ class CheckSQLiteEventSubscriber implements EventSubscriberInterface
     {
         $databasePlatform = $this->entityManager->getConnection()->getDatabasePlatform();
 
-        return $databasePlatform ? $databasePlatform->getName() === 'sqlite' : false;
+        return $databasePlatform ? 'sqlite' === $databasePlatform->getName() : false;
     }
 }
