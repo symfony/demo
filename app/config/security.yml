@@ -32,9 +32,8 @@ security:
                 # Secure the login form against CSRF
                 # Reference: http://symfony.com/doc/current/cookbook/security/csrf_in_login_form.html
                 csrf_token_generator: security.csrf.token_manager
-                # After login, users are redirected by default to their previous page. This
-                # value is only used when the referrer page does not exist (e.g. when
-                # accessing directly to the login page)
+                # The page users are redirect to when there is no previous page stored in the
+                # session (for example when the users access directly to the login page).
                 default_target_path: blog_index
 
             logout:
