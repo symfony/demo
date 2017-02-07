@@ -1,28 +1,30 @@
 #!/usr/bin/env php
 <?php
+
+$finder = PhpCsFixer\Finder::create()
+    ->files()
+    ->name('*.php')
+    ->name('*.twig')
+    ->in('app/Resources')
+    ->in('src')
+    ->append([
+        'web/app.php',
+        'web/app_dev.php',
+    ])
+;
+
 return PhpCsFixer\Config::create()
     ->setRiskyAllowed(true)
     ->setRules([
         '@Symfony' => true,
         '@Symfony:risky' => true,
         'array_syntax' => ['syntax' => 'short'],
+        'no_useless_else' => true,
+        'no_useless_return' => true,
         'ordered_imports' => true,
         'phpdoc_order' => true,
+        'php_unit_strict' => true,
+        'strict_comparison' => true,
     ])
-    ->setFinder(
-        PhpCsFixer\Finder::create()
-            ->ignoreDotFiles(true)
-            ->ignoreVCS(true)
-            ->exclude('app/config')
-            ->exclude('app/data')
-            ->exclude('app/Resources')
-            ->exclude('var')
-            ->exclude('vendor')
-            ->exclude('web/bundles')
-            ->exclude('web/css')
-            ->exclude('web/fonts')
-            ->exclude('web/js')
-            ->notPath('web/config.php')
-            ->in(__DIR__)
-    )
+    ->setFinder($finder)
 ;
