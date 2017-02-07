@@ -42,7 +42,7 @@ class BlogControllerTest extends WebTestCase
         ]);
 
         $client->request($httpMethod, $url);
-        $this->assertEquals($statusCode, $client->getResponse()->getStatusCode());
+        $this->assertSame($statusCode, $client->getResponse()->getStatusCode());
     }
 
     public function getUrlsForRegularUsers()
@@ -64,7 +64,7 @@ class BlogControllerTest extends WebTestCase
         ]);
 
         $client->request($httpMethod, $url);
-        $this->assertEquals($statusCode, $client->getResponse()->getStatusCode());
+        $this->assertSame($statusCode, $client->getResponse()->getStatusCode());
     }
 
     public function getUrlsForAdminUsers()
