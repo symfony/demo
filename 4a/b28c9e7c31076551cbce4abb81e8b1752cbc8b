@@ -1,0 +1,5 @@
+---------------------------------------------------------------------------
+
+by voronkovich at 2017-01-12T06:03:40Z
+
+@uikolas, IMO if we already have the [ConsoleEventSubscriber](https://github.com/symfony/symfony-demo/blob/master/src/AppBundle/EventListener/ConsoleEventSubscriber.php) you should add your code there. Just rename it to `CheckSQLiteSubscriber` and move there your `onKernelException` method.
