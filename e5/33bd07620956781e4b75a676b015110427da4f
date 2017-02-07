@@ -1,0 +1,5 @@
+---------------------------------------------------------------------------
+
+by yceruto at 2017-02-07T00:01:47Z
+
+Thanks to new instance of `ArrayCollection` into [CollectionToArrayTransformer](https://github.com/symfony/symfony/blob/master/src/Symfony/Bridge/Doctrine/Form/DataTransformer/CollectionToArrayTransformer.php#L67) now we can remove the `setByReference(false)` option, so the form data mapper should call setter always.
