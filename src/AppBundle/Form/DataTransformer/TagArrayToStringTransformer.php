@@ -37,9 +37,9 @@ class TagArrayToStringTransformer implements DataTransformerInterface
      */
     public function transform($array)
     {
-        // This transformation expects an array of Tag always thanks to
+        // The value received is an array of Tag objects generated with
         // Symfony\Bridge\Doctrine\Form\DataTransformer\CollectionToArrayTransformer::transform()
-        // Just remains transform this array into a comma separated string format.
+        // The value returned is a string that concatenates the string representation of those objects
 
         /* @var Tag[] $array */
         return implode(',', $array);
@@ -56,7 +56,7 @@ class TagArrayToStringTransformer implements DataTransformerInterface
 
         $names = explode(',', $string);
 
-        // Now we need to get the current tags and to find the new ones that should be created.
+        // Get the current tags and find the new ones that should be created.
         $tags = $this->manager->getRepository(Tag::class)->findBy([
             'name' => $names,
         ]);
@@ -66,11 +66,11 @@ class TagArrayToStringTransformer implements DataTransformerInterface
             $tag->setName($name);
             $tags[] = $tag;
 
-            // Don't worry about persisting these new tags, Doctrine is able to do it automatically
-            // thanks to cascade={"persist"} configuration in AppBundle\Entity\Post::$tags property.
+            // There's no need to persist these new tags because Doctrine does that automatically
+            // thanks to the cascade={"persist"} option in the AppBundle\Entity\Post::$tags property.
         }
 
-        // This one should return an array always to transform these tags into Collection instance again.
+        // Return an array of tags to transform them back into a Doctrine Collection.
         // See Symfony\Bridge\Doctrine\Form\DataTransformer\CollectionToArrayTransformer::reverseTransform()
         return $tags;
     }
