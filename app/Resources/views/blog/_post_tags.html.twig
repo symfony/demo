@@ -1,0 +1,10 @@
+{% if not post.tags.empty %}
+    <p class="post-tags">
+        {% for tag in post.tags %}
+            <span class="label label-default">
+                <i class="fa fa-tag"></i> {{ tag.name }}
+            </span>
+        {% endfor %}
+    </p>
+{% endif %}
+

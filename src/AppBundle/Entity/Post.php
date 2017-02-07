@@ -19,6 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
+ * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
 class Post
 {
@@ -43,7 +44,7 @@ class Post
      * @var string
      *
      * @ORM\Column(type="string")
-     * @Assert\NotBlank()
+     * @Assert\NotBlank
      */
     private $title;
 
@@ -67,25 +68,25 @@ class Post
      *
      * @ORM\Column(type="text")
      * @Assert\NotBlank(message="post.blank_content")
-     * @Assert\Length(min = "10", minMessage = "post.too_short_content")
+     * @Assert\Length(min=10, minMessage="post.too_short_content")
      */
     private $content;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string")
-     * @Assert\Email()
-     */
-    private $authorEmail;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(type="datetime")
-     * @Assert\DateTime()
+     * @Assert\DateTime
      */
     private $publishedAt;
+
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $author;
 
     /**
      * @var Comment[]|ArrayCollection
@@ -95,14 +96,24 @@ class Post
      *      mappedBy="post",
      *      orphanRemoval=true
      * )
-     * @ORM\OrderBy({"publishedAt" = "DESC"})
+     * @ORM\OrderBy({"publishedAt": "DESC"})
      */
     private $comments;
+
+    /**
+     * @var Tag[]|ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", cascade={"persist"})
+     * @ORM\JoinTable(name="symfony_demo_post_tag")
+     * @Assert\Count(max="4", maxMessage="post.too_many_tags")
+     */
+    private $tags;
 
     public function __construct()
     {
         $this->publishedAt = new \DateTime();
         $this->comments = new ArrayCollection();
+        $this->tags = new ArrayCollection();
     }
 
     public function getId()
@@ -149,27 +160,6 @@ class Post
         $this->content = $content;
     }
 
-    public function getAuthorEmail()
-    {
-        return $this->authorEmail;
-    }
-
-    /**
-     * @param string $authorEmail
-     */
-    public function setAuthorEmail($authorEmail)
-    {
-        $this->authorEmail = $authorEmail;
-    }
-
-    /**
-     * Is the given User the author of this Post?
-     */
-    public function isAuthor(User $user)
-    {
-        return $user->getEmail() === $this->getAuthorEmail();
-    }
-
     public function getPublishedAt()
     {
         return $this->publishedAt;
@@ -178,6 +168,22 @@ class Post
     public function setPublishedAt(\DateTime $publishedAt)
     {
         $this->publishedAt = $publishedAt;
+    }
+
+    /**
+     * @return User
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * @param User $author
+     */
+    public function setAuthor(User $author)
+    {
+        $this->author = $author;
     }
 
     public function getComments()
@@ -207,5 +213,22 @@ class Post
     public function setSummary($summary)
     {
         $this->summary = $summary;
+    }
+
+    public function addTag(Tag $tag)
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags->add($tag);
+        }
+    }
+
+    public function removeTag(Tag $tag)
+    {
+        $this->tags->removeElement($tag);
+    }
+
+    public function getTags()
+    {
+        return $this->tags;
     }
 }

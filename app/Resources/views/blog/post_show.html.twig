@@ -5,7 +5,14 @@
 {% block main %}
     <h1>{{ post.title }}</h1>
 
+    <p class="post-metadata">
+        <span class="metadata"><i class="fa fa-calendar"></i> {{ post.publishedAt|localizeddate('long', 'medium', null, 'UTC') }}</span>
+        <span class="metadata"><i class="fa fa-user"></i> {{ post.author.email }}</span>
+    </p>
+
     {{ post.content|md2html }}
+
+    {{ include('blog/_post_tags.html.twig') }}
 
     <div id="post-add-comment" class="well">
         {# The 'IS_AUTHENTICATED_FULLY' role ensures that the user has entered
@@ -30,8 +37,9 @@
 
     {% for comment in post.comments %}
         <div class="row post-comment">
+            <a name="comment_{{ comment.id }}"></a>
             <h4 class="col-sm-3">
-                <strong>{{ comment.authorEmail }}</strong> {{ 'post.commented_on'|trans }}
+                <strong>{{ comment.author.email }}</strong> {{ 'post.commented_on'|trans }}
                 {# it's not mandatory to set the timezone in localizeddate(). This is done to
                    avoid errors when the 'intl' PHP extension is not available and the application
                    is forced to use the limited "intl polyfill", which only supports UTC and GMT #}
@@ -49,7 +57,7 @@
 {% endblock %}
 
 {% block sidebar %}
-    {% if app.user and post.isAuthor(app.user) %}
+    {% if is_granted('edit', post) %}
         <div class="section">
             <a class="btn btn-lg btn-block btn-success" href="{{ path('admin_post_edit', { id: post.id }) }}">
                 <i class="fa fa-edit" aria-hidden="true"></i> {{ 'action.edit_post'|trans }}
@@ -63,4 +71,5 @@
     {{ parent() }}
 
     {{ show_source_code(_self) }}
+    {{ include('blog/_rss.html.twig') }}
 {% endblock %}

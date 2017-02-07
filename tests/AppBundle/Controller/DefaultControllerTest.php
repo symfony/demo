@@ -11,6 +11,7 @@
 
 namespace Tests\AppBundle\Controller;
 
+use AppBundle\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -21,7 +22,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  * Execute the application tests using this command (requires PHPUnit to be installed):
  *
  *     $ cd your-symfony-project/
- *     $ phpunit -c app
+ *     $ ./vendor/bin/phpunit
  */
 class DefaultControllerTest extends WebTestCase
 {
@@ -41,6 +42,23 @@ class DefaultControllerTest extends WebTestCase
             $client->getResponse()->isSuccessful(),
             sprintf('The %s public URL loads correctly.', $url)
         );
+    }
+
+    /**
+     * A good practice for tests is to not use the service container, to make
+     * them more robust. However, in this example we must access to the container
+     * to get the entity manager and make a database query. The reason is that
+     * blog post fixtures are randomly generated and there's no guarantee that
+     * a given blog post slug will be available.
+     */
+    public function testPublicBlogPost()
+    {
+        // the service container is always available via the client
+        $client = self::createClient();
+        $blogPost = $client->getContainer()->get('doctrine')->getRepository(Post::class)->find(1);
+        $client->request('GET', sprintf('/en/blog/posts/%s', $blogPost->getSlug()));
+
+        $this->assertTrue($client->getResponse()->isSuccessful());
     }
 
     /**
@@ -68,7 +86,6 @@ class DefaultControllerTest extends WebTestCase
     {
         yield ['/'];
         yield ['/en/blog/'];
-        yield ['/en/blog/posts/morbi-tempus-commodo-mattis'];
         yield ['/en/login'];
     }
 

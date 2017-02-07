@@ -17,7 +17,7 @@ parameters:
     # this demo application uses an embedded SQLite database to simplify setup.
     # in a real Symfony application you probably will use a MySQL or PostgreSQL database
     # the path must be relative or else it will not work on Windows
-    env(DATABASE_URL): 'sqlite:///%kernel.root_dir%/data/blog.sqlite'
+    env(DATABASE_URL): 'sqlite:///%kernel.root_dir%/../var/data/blog.sqlite'
 
     # Uncomment this line to use a MySQL database instead of SQLite (and remove
     # the "doctrine" section from config_dev.yml regarding SQLite):
@@ -31,12 +31,9 @@ parameters:
     # $ php bin/console doctrine:schema:create
     # $ php bin/console doctrine:fixtures:load
 
-    # Uncomment these parameters if your application sends emails:
-    #
-    # mailer_transport:  smtp
-    # mailer_host:       127.0.0.1
-    # mailer_user:       ~
-    # mailer_password:   ~
-    #
     # If you don't use a real mail server, you can send emails via your Gmail account.
     # see http://symfony.com/doc/current/cookbook/email/gmail.html
+    mailer_transport:  smtp
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~

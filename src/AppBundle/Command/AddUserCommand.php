@@ -35,6 +35,7 @@ use Symfony\Component\Console\Question\Question;
  * See http://symfony.com/doc/current/cookbook/console/console_command.html
  *
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
+ * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
 class AddUserCommand extends ContainerAwareCommand
 {
@@ -60,7 +61,7 @@ class AddUserCommand extends ContainerAwareCommand
             ->addArgument('username', InputArgument::OPTIONAL, 'The username of the new user')
             ->addArgument('password', InputArgument::OPTIONAL, 'The plain password of the new user')
             ->addArgument('email', InputArgument::OPTIONAL, 'The email of the new user')
-            ->addOption('is-admin', null, InputOption::VALUE_NONE, 'If set, the user is created as an administrator')
+            ->addOption('admin', null, InputOption::VALUE_NONE, 'If set, the user is created as an administrator')
         ;
     }
 
@@ -175,14 +176,10 @@ class AddUserCommand extends ContainerAwareCommand
         $username = $input->getArgument('username');
         $plainPassword = $input->getArgument('password');
         $email = $input->getArgument('email');
-        $isAdmin = $input->getOption('is-admin');
+        $isAdmin = $input->getOption('admin');
 
-        // first check if a user with the same username already exists
-        $existingUser = $this->entityManager->getRepository(User::class)->findOneBy(['username' => $username]);
-
-        if (null !== $existingUser) {
-            throw new \RuntimeException(sprintf('There is already a user registered with the "%s" username.', $username));
-        }
+        // make sure to validate the user data is correct
+        $this->validateUserData($username, $plainPassword, $email);
 
         // create the user and encode its password
         $user = new User();
@@ -218,11 +215,11 @@ class AddUserCommand extends ContainerAwareCommand
     public function passwordValidator($plainPassword)
     {
         if (empty($plainPassword)) {
-            throw new \Exception('The password can not be empty');
+            throw new \Exception('The password can not be empty.');
         }
 
         if (strlen(trim($plainPassword)) < 6) {
-            throw new \Exception('The password must be at least 6 characters long');
+            throw new \Exception('The password must be at least 6 characters long.');
         }
 
         return $plainPassword;
@@ -237,14 +234,37 @@ class AddUserCommand extends ContainerAwareCommand
     public function emailValidator($email)
     {
         if (empty($email)) {
-            throw new \Exception('The email can not be empty');
+            throw new \Exception('The email can not be empty.');
         }
 
         if (false === strpos($email, '@')) {
-            throw new \Exception('The email should look like a real email');
+            throw new \Exception('The email should look like a real email.');
         }
 
         return $email;
+    }
+
+    private function validateUserData($username, $plainPassword, $email)
+    {
+        $userRepository = $this->entityManager->getRepository(User::class);
+
+        // first check if a user with the same username already exists.
+        $existingUser = $userRepository->findOneBy(['username' => $username]);
+
+        if (null !== $existingUser) {
+            throw new \RuntimeException(sprintf('There is already a user registered with the "%s" username.', $username));
+        }
+
+        // validate password and email if is not this input means interactive.
+        $this->passwordValidator($plainPassword);
+        $this->emailValidator($email);
+
+        // check if a user with the same email already exists.
+        $existingEmail = $userRepository->findOneBy(['email' => $email]);
+
+        if (null !== $existingEmail) {
+            throw new \RuntimeException(sprintf('There is already a user registered with the "%s" email.', $email));
+        }
     }
 
     /**
@@ -260,9 +280,9 @@ The <info>%command.name%</info> command creates new users and saves them in the 
   <info>php %command.full_name%</info> <comment>username password email</comment>
 
 By default the command creates regular users. To create administrator users,
-add the <comment>--is-admin</comment> option:
+add the <comment>--admin</comment> option:
 
-  <info>php %command.full_name%</info> username password email <comment>--is-admin</comment>
+  <info>php %command.full_name%</info> username password email <comment>--admin</comment>
 
 If you omit any of the three required arguments, the command will ask you to
 provide the missing values:

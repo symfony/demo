@@ -13,6 +13,7 @@ namespace AppBundle\Form;
 
 use AppBundle\Entity\Post;
 use AppBundle\Form\Type\DateTimePickerType;
+use AppBundle\Form\Type\TagsInputType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -23,6 +24,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
+ * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
 class PostType extends AbstractType
 {
@@ -52,11 +54,12 @@ class PostType extends AbstractType
                 'attr' => ['rows' => 20],
                 'label' => 'label.content',
             ])
-            ->add('authorEmail', null, [
-                'label' => 'label.author_email',
-            ])
             ->add('publishedAt', DateTimePickerType::class, [
                 'label' => 'label.published_at',
+            ])
+            ->add('tags', TagsInputType::class, [
+                'label' => 'label.tags',
+                'required' => false,
             ])
         ;
     }

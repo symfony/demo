@@ -13,17 +13,16 @@ namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Comment;
 use AppBundle\Entity\Post;
-use AppBundle\Entity\User;
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use AppBundle\Entity\Tag;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
 /**
- * Defines the sample data to load in the database when running the unit and
- * functional tests.
- *
- * Execute this command to load the data:
+ * Defines the sample blog posts to load in the database before running the unit
+ * and functional tests. Execute this command to load the data.
  *
  *   $ php bin/console doctrine:fixtures:load
  *
@@ -31,59 +30,39 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
+ * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
-class LoadFixtures implements FixtureInterface, ContainerAwareInterface
+class PostFixtures extends AbstractFixture implements DependentFixtureInterface, ContainerAwareInterface
 {
-    /** @var ContainerInterface */
-    private $container;
+    use ContainerAwareTrait;
 
     /**
      * {@inheritdoc}
      */
     public function load(ObjectManager $manager)
     {
-        $this->loadUsers($manager);
-        $this->loadPosts($manager);
-    }
+        $phrases = $this->getPhrases();
+        shuffle($phrases);
 
-    private function loadUsers(ObjectManager $manager)
-    {
-        $passwordEncoder = $this->container->get('security.password_encoder');
-
-        $johnUser = new User();
-        $johnUser->setUsername('john_user');
-        $johnUser->setEmail('john_user@symfony.com');
-        $encodedPassword = $passwordEncoder->encodePassword($johnUser, 'kitten');
-        $johnUser->setPassword($encodedPassword);
-        $manager->persist($johnUser);
-
-        $annaAdmin = new User();
-        $annaAdmin->setUsername('anna_admin');
-        $annaAdmin->setEmail('anna_admin@symfony.com');
-        $annaAdmin->setRoles(['ROLE_ADMIN']);
-        $encodedPassword = $passwordEncoder->encodePassword($annaAdmin, 'kitten');
-        $annaAdmin->setPassword($encodedPassword);
-        $manager->persist($annaAdmin);
-
-        $manager->flush();
-    }
-
-    private function loadPosts(ObjectManager $manager)
-    {
-        foreach (range(1, 30) as $i) {
+        foreach ($phrases as $i => $title) {
             $post = new Post();
 
-            $post->setTitle($this->getRandomPostTitle());
+            $post->setTitle($title);
             $post->setSummary($this->getRandomPostSummary());
             $post->setSlug($this->container->get('slugger')->slugify($post->getTitle()));
             $post->setContent($this->getPostContent());
-            $post->setAuthorEmail('anna_admin@symfony.com');
+            // "References" are the way to share objects between fixtures defined
+            // in different files. This reference has been added in the UserFixtures
+            // file and it contains an instance of the User entity.
+            $post->setAuthor($this->getReference('anna-admin'));
             $post->setPublishedAt(new \DateTime('now - '.$i.'days'));
+
+            $this->addRandomTags($post);
 
             foreach (range(1, 5) as $j) {
                 $comment = new Comment();
 
-                $comment->setAuthorEmail('john_user@symfony.com');
+                $comment->setAuthor($this->getReference('john-user'));
                 $comment->setPublishedAt(new \DateTime('now + '.($i + $j).'seconds'));
                 $comment->setContent($this->getRandomCommentContent());
                 $comment->setPost($post);
@@ -98,14 +77,38 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
         $manager->flush();
     }
 
+<<<<<<< HEAD:src/AppBundle/DataFixtures/ORM/PostFixtures.php
     /**
-     * {@inheritdoc}
+     * Instead of defining the exact order in which the fixtures files must be loaded,
+     * this method defines which other fixtures this file depends on. Then, Doctrine
+     * will figure out the best order to fit all the dependencies.
+     *
+     * @return array
      */
-    public function setContainer(ContainerInterface $container = null)
+    public function getDependencies()
     {
-        $this->container = $container;
+        return [
+            TagFixtures::class,
+            UserFixtures::class,
+        ];
     }
 
+    private function addRandomTags(Post $post)
+    {
+        if (0 === $count = mt_rand(0, 3)) {
+            return;
+        }
+
+        $indexes = (array) array_rand(TagFixtures::$names, $count);
+        foreach ($indexes as $index) {
+            /** @var Tag $tag */
+            $tag = $this->getReference('tag-'.$index);
+            $post->addTag($tag);
+        }
+    }
+
+=======
+>>>>>>> pull/431:src/AppBundle/DataFixtures/ORM/LoadFixtures.php
     private function getPostContent()
     {
         return <<<'MARKDOWN'
@@ -164,14 +167,22 @@ MARKDOWN;
             'Sed varius a risus eget aliquam',
             'Nunc viverra elit ac laoreet suscipit',
             'Pellentesque et sapien pulvinar consectetur',
+            'Ubi est barbatus nix',
+            'Abnobas sunt hilotaes de placidus vita',
+            'Ubi est audax amicitia',
+            'Eposs sunt solems de superbus fortis',
+            'Vae humani generis',
+            'Diatrias tolerare tanquam noster caesium',
+            'Teres talis saepe tractare de camerarius flavum sensorem',
+            'Silva de secundus galatae demitto quadra',
+            'Sunt accentores vitare salvus flavum parses',
+            'Potus sensim ad ferox abnoba',
+            'Sunt seculaes transferre talis camerarius fluctuies',
+            'Era brevis ratione est',
+            'Sunt torquises imitari velox mirabilis medicinaes',
+            'Mineralis persuadere omnes finises desiderium',
+            'Bassus fatalis classiss virtualiter transferre de flavum',
         ];
-    }
-
-    private function getRandomPostTitle()
-    {
-        $titles = $this->getPhrases();
-
-        return $titles[array_rand($titles)];
     }
 
     private function getRandomPostSummary($maxLength = 255)

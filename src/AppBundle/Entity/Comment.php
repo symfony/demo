@@ -52,29 +52,29 @@ class Comment
      * @ORM\Column(type="text")
      * @Assert\NotBlank(message="comment.blank")
      * @Assert\Length(
-     *     min = "5",
-     *     minMessage = "comment.too_short",
-     *     max = "10000",
-     *     maxMessage = "comment.too_long"
+     *     min=5,
+     *     minMessage="comment.too_short",
+     *     max=10000,
+     *     maxMessage="comment.too_long"
      * )
      */
     private $content;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(type="string")
-     * @Assert\Email()
-     */
-    private $authorEmail;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(type="datetime")
-     * @Assert\DateTime()
+     * @Assert\DateTime
      */
     private $publishedAt;
+
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $author;
 
     public function __construct()
     {
@@ -82,7 +82,7 @@ class Comment
     }
 
     /**
-     * @Assert\IsTrue(message = "comment.is_spam")
+     * @Assert\IsTrue(message="comment.is_spam")
      */
     public function isLegitComment()
     {
@@ -109,19 +109,6 @@ class Comment
         $this->content = $content;
     }
 
-    public function getAuthorEmail()
-    {
-        return $this->authorEmail;
-    }
-
-    /**
-     * @param string $authorEmail
-     */
-    public function setAuthorEmail($authorEmail)
-    {
-        $this->authorEmail = $authorEmail;
-    }
-
     public function getPublishedAt()
     {
         return $this->publishedAt;
@@ -130,6 +117,22 @@ class Comment
     public function setPublishedAt(\DateTime $publishedAt)
     {
         $this->publishedAt = $publishedAt;
+    }
+
+    /**
+     * @return User
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * @param User $author
+     */
+    public function setAuthor(User $author)
+    {
+        $this->author = $author;
     }
 
     public function getPost()

@@ -27,6 +27,15 @@ i {
     margin-right: 0.25em
 }
 
+.table.table-middle-aligned th,
+.table.table-middle-aligned td {
+    vertical-align: middle;
+}
+
+/* Utilities
+   ------------------------------------------------------------------------- */
+.m-b-0 { margin-bottom: 0 }
+
 /* Page elements
    ------------------------------------------------------------------------- */
 body {
@@ -118,6 +127,13 @@ footer #footer-resources i {
     min-width: 75px
 }
 
+/* Misc. elements
+   ------------------------------------------------------------------------- */
+.section.rss a {
+    color: #f39c12;
+    font-size: 21px;
+}
+
 /* Forms
    ------------------------------------------------------------------------- */
 .form-group.has-error .form-control {
@@ -135,8 +151,12 @@ footer #footer-resources i {
     padding: 1em
 }
 
-.form-group.has-error .help-block ul {
+.form-group.has-error .help-block ul,
+.form-group.has-error .help-block li {
     margin-bottom: 0
+}
+.form-group.has-error .help-block li + li {
+    margin-top: 0.5em;
 }
 
 textarea {
@@ -187,20 +207,60 @@ body#login #login-users-help p .console {
     padding: 10px
 }
 
+/* Common Blog page elements
+   ------------------------------------------------------------------------- */
+.post-metadata {
+    color: #b4bcc2;
+    font-size: 19px;
+    margin-bottom: 16px;
+}
+.post-metadata .metadata {
+    margin-right: 1.5em;
+}
+
+.post-tags .label {
+    margin-right: 5px;
+}
+
 /* Page: 'Blog index'
    ------------------------------------------------------------------------- */
-body#blog_index h1 {
+body#blog_index h1,
+body#blog_index p {
     margin-bottom: 0.5em
 }
 
 body#blog_index article.post {
-    margin-bottom: 3em
+    margin-bottom: 3em;
+}
+
+body#blog_index .post-metadata {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+body#blog_index .post-tags .label-default {
+    background-color: #e9ecec;
+    color: #6d8283;
+}
+body#blog_index .post-tags .label-default i {
+    color: #a3b2b2;
 }
 
 /* Page: 'Blog post show'
    ------------------------------------------------------------------------- */
 body#blog_post_show h3 {
     margin-bottom: 0.75em
+}
+
+body#blog_post_show .post-tags .label-default {
+    background-color: #e9ecec;
+    color: #6D8283;
+    font-size: 16px;
+    margin-right: 10px;
+    padding: .4em 1em .5em;
+}
+body#blog_post_show .post-tags .label-default i {
+    color: #95A6A7;
 }
 
 body#blog_post_show #post-add-comment {
@@ -243,4 +303,24 @@ body#admin_post_index .item-actions {
 
 body#admin_post_index .item-actions a.btn + a.btn {
     margin-left: 4px
+}
+
+/* Page: 'Backend post show'
+   ------------------------------------------------------------------------- */
+body#admin_post_show .post-tags .label-default {
+    background-color: #e9ecec;
+    color: #6D8283;
+    font-size: 16px;
+    margin-right: 10px;
+    padding: .4em 1em .5em;
+}
+body#admin_post_show .post-tags .label-default i {
+    color: #95A6A7;
+}
+
+
+@media (min-width: 768px) and (max-width: 1200px) {
+    .container {
+        width: 98%;
+    }
 }
