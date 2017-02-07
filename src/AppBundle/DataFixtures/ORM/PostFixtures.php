@@ -77,6 +77,7 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface,
         $manager->flush();
     }
 
+<<<<<<< HEAD:src/AppBundle/DataFixtures/ORM/PostFixtures.php
     /**
      * Instead of defining the exact order in which the fixtures files must be loaded,
      * this method defines which other fixtures this file depends on. Then, Doctrine
@@ -106,6 +107,8 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface,
         }
     }
 
+=======
+>>>>>>> pull/431:src/AppBundle/DataFixtures/ORM/LoadFixtures.php
     private function getPostContent()
     {
         return <<<'MARKDOWN'
