@@ -1,0 +1,28 @@
+---------------------------------------------------------------------------
+
+by voronkovich at 2017-02-06T20:54:46Z
+
+@yceruto , IMO it is a platform-specific issue, so we shouldn't fix it in the demo application.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-02-06T20:59:32Z
+
+I tend to agree with @voronkovich ... it may be even confusing for newcomers and they might think that they always need to do this.
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-02-06T22:58:19Z
+
+I'm agree that it's a platform-specific issue, but it's the default one, so currently this works wrong for newcomers. We can insert a comment about this then? Something like:
+```
+// This is necessary for SQLite platform only, you can remove it for another platform.
+$post->getTags()->clear();
+```
+What do you think?
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-02-06T23:13:20Z
+
+I'm also thinking when we need to test the Post "Delete/New" actions, if won't fix that, then the SQLite DB will have an invalid state (i.e. related to tags).
