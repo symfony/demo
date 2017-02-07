@@ -6,9 +6,6 @@ $finder = PhpCsFixer\Finder::create()
     ->exclude('var')
     ->exclude('vendor')
     ->notPath('web/config.php')
-    // Doctrine fixtures are excluded to avoid these PHP-CS-Fixer errors:
-    // "Files were not fixed due to errors reported during linting before fixing"
-    ->notPath('DataFixtures')
 ;
 
 return PhpCsFixer\Config::create()
