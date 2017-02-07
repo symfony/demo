@@ -75,7 +75,7 @@ class DefaultControllerTest extends WebTestCase
 
         $this->assertTrue($client->getResponse()->isRedirect());
 
-        $this->assertEquals(
+        $this->assertSame(
             'http://localhost/en/login',
             $client->getResponse()->getTargetUrl(),
             sprintf('The %s secure URL redirects to the login form.', $url)

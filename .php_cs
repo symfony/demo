@@ -2,15 +2,10 @@
 <?php
 
 $finder = PhpCsFixer\Finder::create()
-    ->files()
-    ->name('*.php')
-    ->name('*.twig')
-    ->in('app/Resources')
-    ->in('src')
-    ->append([
-        'web/app.php',
-        'web/app_dev.php',
-    ])
+    ->in(__DIR__)
+    ->exclude('var')
+    ->exclude('vendor')
+    ->notPath('web/config.php')
 ;
 
 return PhpCsFixer\Config::create()
