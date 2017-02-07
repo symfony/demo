@@ -44,10 +44,10 @@ class TagsInputType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            // We need to transform the tags collection into a comma separated string format
-            // so we are reusing an existing one to simplify the code, but you could build
-            // only one to do all transformation (i.e. Collection <-> string).
-            // Transformation flow: Collection <-> array <-> string
+            // The Tag collection must be transformed into a comma separated string.
+            // We could create a custom transformer to do Collection <-> string in one step,
+            // but here we're doing the transformation in two steps (Collection <-> array <-> string)
+            // and reuse the existing CollectionToArrayTransformer.
             ->addModelTransformer(new CollectionToArrayTransformer(), true)
             ->addModelTransformer(new TagArrayToStringTransformer($this->manager), true)
         ;
