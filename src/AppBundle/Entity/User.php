@@ -32,6 +32,13 @@ class User implements UserInterface
     /**
      * @var string
      *
+     * @ORM\Column(type="string")
+     */
+    private $fullName;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(type="string", unique=true)
      */
     private $username;
@@ -60,6 +67,19 @@ class User implements UserInterface
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @param string $fullName
+     */
+    public function setFullName($fullName)
+    {
+        $this->fullName = $fullName;
+    }
+
+    public function getFullName()
+    {
+        return $this->fullName;
     }
 
     public function getUsername()
