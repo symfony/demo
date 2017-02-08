@@ -61,6 +61,7 @@ class AddUserCommand extends ContainerAwareCommand
             ->addArgument('username', InputArgument::OPTIONAL, 'The username of the new user')
             ->addArgument('password', InputArgument::OPTIONAL, 'The plain password of the new user')
             ->addArgument('email', InputArgument::OPTIONAL, 'The email of the new user')
+            ->addArgument('full-name', InputArgument::OPTIONAL, 'The full name of the new user')
             ->addOption('admin', null, InputOption::VALUE_NONE, 'If set, the user is created as an administrator')
         ;
     }
@@ -90,7 +91,7 @@ class AddUserCommand extends ContainerAwareCommand
      */
     protected function interact(InputInterface $input, OutputInterface $output)
     {
-        if (null !== $input->getArgument('username') && null !== $input->getArgument('password') && null !== $input->getArgument('email')) {
+        if (null !== $input->getArgument('username') && null !== $input->getArgument('password') && null !== $input->getArgument('email') && null !== $input->getArgument('full-name')) {
             return;
         }
 
@@ -163,6 +164,19 @@ class AddUserCommand extends ContainerAwareCommand
         } else {
             $output->writeln(' > <info>Email</info>: '.$email);
         }
+
+        // Ask for the full name if it's not defined
+        $fullName = $input->getArgument('full-name');
+        if (null === $fullName) {
+            $question = new Question(' > <info>Full Name</info>: ');
+            $question->setValidator([$this, 'fullNameValidator']);
+            $question->setMaxAttempts(self::MAX_ATTEMPTS);
+
+            $fullName = $console->ask($input, $output, $question);
+            $input->setArgument('full-name', $fullName);
+        } else {
+            $output->writeln(' > <info>Full Name</info>: '.$fullName);
+        }
     }
 
     /**
@@ -176,13 +190,15 @@ class AddUserCommand extends ContainerAwareCommand
         $username = $input->getArgument('username');
         $plainPassword = $input->getArgument('password');
         $email = $input->getArgument('email');
+        $fullName = $input->getArgument('full-name');
         $isAdmin = $input->getOption('admin');
 
         // make sure to validate the user data is correct
-        $this->validateUserData($username, $plainPassword, $email);
+        $this->validateUserData($username, $plainPassword, $email, $fullName);
 
         // create the user and encode its password
         $user = new User();
+        $user->setFullName($fullName);
         $user->setUsername($username);
         $user->setEmail($email);
         $user->setRoles([$isAdmin ? 'ROLE_ADMIN' : 'ROLE_USER']);
@@ -244,7 +260,22 @@ class AddUserCommand extends ContainerAwareCommand
         return $email;
     }
 
-    private function validateUserData($username, $plainPassword, $email)
+    /**
+     * This internal method should be private, but it's declared as public to
+     * maintain PHP 5.3 compatibility when using it in a callback.
+     *
+     * @internal
+     */
+    public function fullNameValidator($fullName)
+    {
+        if (empty($fullName)) {
+            throw new \Exception('The full name can not be empty.');
+        }
+
+        return $fullName;
+    }
+
+    private function validateUserData($username, $plainPassword, $email, $fullName)
     {
         $userRepository = $this->entityManager->getRepository(User::class);
 
@@ -258,6 +289,7 @@ class AddUserCommand extends ContainerAwareCommand
         // validate password and email if is not this input means interactive.
         $this->passwordValidator($plainPassword);
         $this->emailValidator($email);
+        $this->fullNameValidator($fullName);
 
         // check if a user with the same email already exists.
         $existingEmail = $userRepository->findOneBy(['email' => $email]);
