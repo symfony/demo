@@ -59,7 +59,7 @@ class BlogControllerTest extends WebTestCase
     public function testAdminUsers($httpMethod, $url, $statusCode)
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => 'anna_admin',
+            'PHP_AUTH_USER' => 'jane_admin',
             'PHP_AUTH_PW' => 'kitten',
         ]);
 
@@ -78,7 +78,7 @@ class BlogControllerTest extends WebTestCase
     public function testBackendHomepage()
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => 'anna_admin',
+            'PHP_AUTH_USER' => 'jane_admin',
             'PHP_AUTH_PW' => 'kitten',
         ]);
 
