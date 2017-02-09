@@ -7,6 +7,17 @@ services:
     markdown:
         class: AppBundle\Utils\Markdown
 
+    # Defining Add user command as service
+    # needs to use some other services, such as the entity manager and password encoder from security
+    # We don't need to extends ContainerAwareCommand
+    app.command.add_user:
+      class: AppBundle\Command\AddUserCommand
+      calls:
+          - ['setEntityManager', ['@doctrine.orm.default_entity_manager']]
+          - ['setPasswordEncoder', ['@security.password_encoder']]
+      tags:
+          -  { name: console.command }
+
     # These are the Twig extensions that create new filters and functions for
     # using them in the templates
     app.twig.app_extension:
