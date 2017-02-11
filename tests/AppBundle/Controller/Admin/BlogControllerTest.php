@@ -11,6 +11,7 @@
 
 namespace Tests\AppBundle\Controller\Admin;
 
+use AppBundle\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -54,40 +55,62 @@ class BlogControllerTest extends WebTestCase
     }
 
     /**
-     * @dataProvider getUrlsForAdminUsers
+     * @return \Symfony\Bundle\FrameworkBundle\Client
      */
-    public function testAdminUsers($httpMethod, $url, $statusCode)
+    private function getAdminClient()
     {
-        $client = static::createClient([], [
+        return static::createClient([], [
             'PHP_AUTH_USER' => 'jane_admin',
             'PHP_AUTH_PW' => 'kitten',
         ]);
-
-        $client->request($httpMethod, $url);
-        $this->assertSame($statusCode, $client->getResponse()->getStatusCode());
     }
 
-    public function getUrlsForAdminUsers()
+    public function testAdminBackendHomePage()
     {
-        yield ['GET', '/en/admin/post/', Response::HTTP_OK];
-        yield ['GET', '/en/admin/post/1', Response::HTTP_OK];
-        yield ['GET', '/en/admin/post/1/edit', Response::HTTP_OK];
-        yield ['POST', '/en/admin/post/1/delete', Response::HTTP_FOUND];
-    }
-
-    public function testBackendHomepage()
-    {
-        $client = static::createClient([], [
-            'PHP_AUTH_USER' => 'jane_admin',
-            'PHP_AUTH_PW' => 'kitten',
-        ]);
+        $client = $this->getAdminClient();
 
         $crawler = $client->request('GET', '/en/admin/post/');
+        $this->assertSame(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 
         $this->assertCount(
             30,
             $crawler->filter('body#admin_post_index #main tbody tr'),
             'The backend homepage displays all the available posts.'
         );
+    }
+
+    public function testAdminDeletePost()
+    {
+        $client = $this->getAdminClient();
+
+        $crawler = $client->request('GET', '/en/admin/post/1');
+
+        $client->submit($crawler->filter('form')->form());
+
+        $this->assertSame(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
+
+        $post = $client->getContainer()->get('doctrine')->getRepository(Post::class)->find(1);
+        $this->assertNull($post);
+    }
+
+    public function testAdminEditPost()
+    {
+        $client = $this->getAdminClient();
+
+        $crawler = $client->request('GET', '/en/admin/post/1/edit');
+
+        $newTitle = 'what a nice new title!';
+
+        $form = $crawler->filter('form')->form([
+            'post[title]' => $newTitle,
+        ]);
+
+        $client->submit($form);
+
+        $this->assertSame(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
+
+        /** @var Post $post */
+        $post = $client->getContainer()->get('doctrine')->getRepository(Post::class)->find(1);
+        $this->assertSame($newTitle, $post->getTitle());
     }
 }

@@ -28,4 +28,8 @@
             </exclude>
         </whitelist>
     </filter>
+
+    <listeners>
+        <listener class="\DAMA\DoctrineTestBundle\PHPUnit\PHPUnitStaticDbConnectionListener" file="vendor/dama/doctrine-test-bundle/src/DAMA/DoctrineTestBundle/PHPUnit/PHPUnitStaticDbConnectionListener.php" />
+    </listeners>
 </phpunit>
