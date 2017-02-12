@@ -35,8 +35,9 @@ class PostRepository extends EntityRepository
     {
         return $this->getEntityManager()
             ->createQuery('
-                SELECT p
+                SELECT p, t
                 FROM AppBundle:Post p
+                LEFT JOIN p.tags t
                 WHERE p.publishedAt <= :now
                 ORDER BY p.publishedAt DESC
             ')
