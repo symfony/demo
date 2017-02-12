@@ -52,7 +52,7 @@ class PostRepository extends EntityRepository
 
     private function createPaginator(Query $query, $page)
     {
-        $paginator = new Pagerfanta(new DoctrineORMAdapter($query, false));
+        $paginator = new Pagerfanta(new DoctrineORMAdapter($query));
         $paginator->setMaxPerPage(Post::NUM_ITEMS);
         $paginator->setCurrentPage($page);
 
