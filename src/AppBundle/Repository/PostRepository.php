@@ -25,15 +25,18 @@ use Pagerfanta\Pagerfanta;
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
+ * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
 class PostRepository extends EntityRepository
 {
     /**
-     * @return Query
+     * @param int $page
+     *
+     * @return Pagerfanta
      */
-    public function queryLatest()
+    public function findLatest($page = 1)
     {
-        return $this->getEntityManager()
+        $query = $this->getEntityManager()
             ->createQuery('
                 SELECT p, t
                 FROM AppBundle:Post p
@@ -43,16 +46,13 @@ class PostRepository extends EntityRepository
             ')
             ->setParameter('now', new \DateTime())
         ;
+
+        return $this->createPaginator($query, $page);
     }
 
-    /**
-     * @param int $page
-     *
-     * @return Pagerfanta
-     */
-    public function findLatest($page = 1)
+    private function createPaginator(Query $query, $page)
     {
-        $paginator = new Pagerfanta(new DoctrineORMAdapter($this->queryLatest(), false));
+        $paginator = new Pagerfanta(new DoctrineORMAdapter($query, false));
         $paginator->setMaxPerPage(Post::NUM_ITEMS);
         $paginator->setCurrentPage($page);
 
