@@ -92,16 +92,15 @@ class BlogController extends Controller
      */
     public function commentNewAction(Request $request, Post $post)
     {
-        $form = $this->createForm(CommentType::class);
+        $comment = new Comment();
+        $comment->setAuthor($this->getUser());
+        $comment->setPost($post);
+
+        $form = $this->createForm(CommentType::class, $comment);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var Comment $comment */
-            $comment = $form->getData();
-            $comment->setAuthor($this->getUser());
-            $comment->setPost($post);
-
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($comment);
             $entityManager->flush();
