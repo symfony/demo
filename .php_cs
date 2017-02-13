@@ -25,4 +25,5 @@ return PhpCsFixer\Config::create()
         'strict_comparison' => true,
     ])
     ->setFinder($finder)
+    ->setCacheFile(__DIR__.'/var/.php_cs.cache')
 ;
