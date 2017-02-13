@@ -36,7 +36,9 @@ class AppKernel extends Kernel
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
 
             if ($this->getEnvironment() === 'test') {
-                $bundles[] = new \DAMA\DoctrineTestBundle\DAMADoctrineTestBundle();
+                // this bundle is used to have isolated phpunit tests when interacting with doctrine & the database
+                // and is therefore only loaded for the 'test' environment
+                $bundles[] = new DAMA\DoctrineTestBundle\DAMADoctrineTestBundle();
             }
         }
 

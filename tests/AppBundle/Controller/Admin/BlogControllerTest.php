@@ -79,6 +79,13 @@ class BlogControllerTest extends WebTestCase
         );
     }
 
+    /**
+     * This test will manipulate the database state by deleting a Post.
+     * All changes to the database are rolled back before the next test case is executed.
+     * This is done by using https://github.com/dmaicher/doctrine-test-bundle.
+     *
+     * Therefore in the following test case we can edit the Post with ID=1 although we deleted it in this test.
+     */
     public function testAdminDeletePost()
     {
         $client = $this->getAdminClient();
