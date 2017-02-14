@@ -17,16 +17,14 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\ResultSetMapping;
 
 /**
- * This custom Doctrine repository contains some methods which are useful when
- * querying tags and
+ * This custom Doctrine repository contains some methods to about tags.
  *
  * See http://symfony.com/doc/current/book/doctrine.html#custom-repository-classes
- *
  */
 class TagRepository extends EntityRepository
 {
     /**
-     * Remove unused Tag from the Database
+     * Remove unused Tag from the Database.
      */
     public function cleanUnusedTags()
     {
