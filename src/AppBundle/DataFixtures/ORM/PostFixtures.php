@@ -41,10 +41,7 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface,
      */
     public function load(ObjectManager $manager)
     {
-        $phrases = $this->getPhrases();
-        shuffle($phrases);
-
-        foreach ($phrases as $i => $title) {
+        foreach ($this->getRandomPostTiles() as $i => $title) {
             $post = new Post();
 
             $post->setTitle($title);
@@ -180,6 +177,18 @@ MARKDOWN;
             'Mineralis persuadere omnes finises desiderium',
             'Bassus fatalis classiss virtualiter transferre de flavum',
         ];
+    }
+
+    private function getRandomPostTiles()
+    {
+        $phrases = $this->getPhrases();
+
+        // this ensures that the first title is always 'Lorem Ipsum...'
+        $loremIpsumPhrase = array_shift($phrases);
+        shuffle($phrases);
+        array_unshift($phrases, $loremIpsumPhrase);
+
+        return $phrases;
     }
 
     private function getRandomPostSummary($maxLength = 255)
