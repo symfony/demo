@@ -193,8 +193,13 @@ MARKDOWN;
 
         $numPhrases = mt_rand(6, 12);
         shuffle($phrases);
+        $phrases = array_slice($phrases, 0, $numPhrases - 1);
 
-        return substr(implode(' ', array_slice($phrases, 0, $numPhrases - 1)), 0, $maxLength);
+        while (strlen($summary = implode('. ', $phrases).'.') > $maxLength) {
+            array_pop($phrases);
+        }
+
+        return $summary;
     }
 
     private function getRandomCommentContent()
