@@ -91,11 +91,7 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface,
 
     private function addRandomTags(Post $post)
     {
-        if (0 === $count = mt_rand(0, 3)) {
-            return;
-        }
-
-        $indexes = (array) array_rand(TagFixtures::$names, $count);
+        $indexes = (array) array_rand(TagFixtures::$names, mt_rand(1, 3));
         foreach ($indexes as $index) {
             /** @var Tag $tag */
             $tag = $this->getReference('tag-'.$index);
