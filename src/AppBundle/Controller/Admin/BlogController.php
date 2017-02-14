@@ -12,6 +12,7 @@
 namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Post;
+use AppBundle\Entity\Tag;
 use AppBundle\Form\PostType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -147,6 +148,7 @@ class BlogController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $post->setSlug($this->get('slugger')->slugify($post->getTitle()));
             $entityManager->flush();
+            $this->getDoctrine()->getRepository(Tag::class)->cleanUnusedTags();
 
             $this->addFlash('success', 'post.updated_successfully');
 
@@ -184,6 +186,7 @@ class BlogController extends Controller
 
         $entityManager->remove($post);
         $entityManager->flush();
+        $this->getDoctrine()->getRepository(Tag::class)->cleanUnusedTags();
 
         $this->addFlash('success', 'post.deleted_successfully');
 
