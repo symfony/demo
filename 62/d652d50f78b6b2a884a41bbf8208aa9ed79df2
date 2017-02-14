@@ -1,0 +1,17 @@
+---------------------------------------------------------------------------
+
+by Grafikart at 2017-02-14T08:44:59Z
+
+I noticed this issue too but I'm not sure avout this fix since the LIMIT is then applied to the tags. If the first post has 10 tags, then it will be the only one in the listing right ?
+
+Doctrine doesn't seem to work well in this case. My solution for this kind of issues is to hydrate manually the entities using a new query on the joinTable.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-02-14T09:09:00Z
+
+@Grafikart I'm not sure I understand your comment. This is how join queries are supposed to work in Doctrine. I always use a code similar to this one. I've just tested this PR locally and it seems to be working as expected. The results are the same, but the database queries:
+
+| Before | After
+| --- | ---
+| ![db-before](https://cloud.githubusercontent.com/assets/73419/22922320/8b1508e8-f29d-11e6-8810-be394f7480bf.png) | ![db-after](https://cloud.githubusercontent.com/assets/73419/22922322/8bfc746c-f29d-11e6-9123-7c5e84f4b5f6.png)
