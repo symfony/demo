@@ -222,7 +222,10 @@ class AddUserCommand extends ContainerAwareCommand
         }
     }
 
-    private function passwordValidator($plainPassword)
+    /**
+     * @internal
+     */
+    public function passwordValidator($plainPassword)
     {
         if (empty($plainPassword)) {
             throw new \Exception('The password can not be empty.');
@@ -235,7 +238,10 @@ class AddUserCommand extends ContainerAwareCommand
         return $plainPassword;
     }
 
-    private function emailValidator($email)
+    /**
+     * @internal
+     */
+    public function emailValidator($email)
     {
         if (empty($email)) {
             throw new \Exception('The email can not be empty.');
@@ -248,7 +254,10 @@ class AddUserCommand extends ContainerAwareCommand
         return $email;
     }
 
-    private function fullNameValidator($fullName)
+    /**
+     * @internal
+     */
+    public function fullNameValidator($fullName)
     {
         if (empty($fullName)) {
             throw new \Exception('The full name can not be empty.');
