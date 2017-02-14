@@ -222,13 +222,7 @@ class AddUserCommand extends ContainerAwareCommand
         }
     }
 
-    /**
-     * This internal method should be private, but it's declared as public to
-     * maintain PHP 5.3 compatibility when using it in a callback.
-     *
-     * @internal
-     */
-    public function passwordValidator($plainPassword)
+    private function passwordValidator($plainPassword)
     {
         if (empty($plainPassword)) {
             throw new \Exception('The password can not be empty.');
@@ -241,13 +235,7 @@ class AddUserCommand extends ContainerAwareCommand
         return $plainPassword;
     }
 
-    /**
-     * This internal method should be private, but it's declared as public to
-     * maintain PHP 5.3 compatibility when using it in a callback.
-     *
-     * @internal
-     */
-    public function emailValidator($email)
+    private function emailValidator($email)
     {
         if (empty($email)) {
             throw new \Exception('The email can not be empty.');
@@ -260,13 +248,7 @@ class AddUserCommand extends ContainerAwareCommand
         return $email;
     }
 
-    /**
-     * This internal method should be private, but it's declared as public to
-     * maintain PHP 5.3 compatibility when using it in a callback.
-     *
-     * @internal
-     */
-    public function fullNameValidator($fullName)
+    private function fullNameValidator($fullName)
     {
         if (empty($fullName)) {
             throw new \Exception('The full name can not be empty.');
