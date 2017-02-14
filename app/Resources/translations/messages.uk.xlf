@@ -202,6 +202,10 @@
                 <source>label.published_at</source>
                 <target>Опубліковано</target>
             </trans-unit>
+            <trans-unit id="label.tags">
+                <source>label.tags</source>
+                <target>Теги</target>
+            </trans-unit>
             <trans-unit id="label.actions">
                 <source>label.actions</source>
                 <target>Дії</target>
@@ -243,6 +247,10 @@
                 <source>menu.logout</source>
                 <target>Вийти</target>
             </trans-unit>
+            <trans-unit id="menu.rss">
+                <source>menu.rss</source>
+                <target>RSS Записів Блогу</target>
+            </trans-unit>
 
             <trans-unit id="post.to_publish_a_comment">
                 <source>post.to_publish_a_comment</source>
@@ -275,6 +283,15 @@
             <trans-unit id="post.deleted_successfully">
                 <source>post.deleted_successfully</source>
                 <target>Запис успішно видалений!</target>
+            </trans-unit>
+
+            <trans-unit id="notification.comment_created">
+                <source>notification.comment_created</source>
+                <target>Ваш запис отримав коментар!</target>
+            </trans-unit>
+            <trans-unit id="notification.comment_created.description">
+                <source>notification.comment_created.description</source>
+                <target><![CDATA[Ваш запис "%title%" отримав новий коментар. Ви можете прочитати цей коментар, перейшовши за <a href="%link%">цим посиланням</a>]]></target>
             </trans-unit>
 
             <trans-unit id="help.app_description">
@@ -316,6 +333,15 @@
             <trans-unit id="help.more_information">
                 <source>help.more_information</source>
                 <target><![CDATA[Для додаткової інформації зверніться до <a href="http://symfony.com/doc">Symfony документації</a>.]]></target>
+            </trans-unit>
+
+            <trans-unit id="rss.title">
+                <source>rss.title</source>
+                <target>Symfony Demo блог</target>
+            </trans-unit>
+            <trans-unit id="rss.description">
+                <source>rss.description</source>
+                <target>Найновіші записи, опубліковані в Symfony Demo блозі</target>
             </trans-unit>
         </body>
     </file>
