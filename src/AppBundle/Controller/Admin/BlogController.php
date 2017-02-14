@@ -147,8 +147,10 @@ class BlogController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $post->setSlug($this->get('slugger')->slugify($post->getTitle()));
-            $entityManager->flush();
-            $this->getDoctrine()->getRepository(Tag::class)->cleanUnusedTags();
+            $entityManager->transactional(function ($entityManager) {
+                $entityManager->flush();
+                $this->getDoctrine()->getRepository(Tag::class)->cleanUnusedTags();
+            });
 
             $this->addFlash('success', 'post.updated_successfully');
 
@@ -178,15 +180,14 @@ class BlogController extends Controller
         }
 
         $entityManager = $this->getDoctrine()->getManager();
-
-        // Delete the tags associated with this blog post. This is done automatically
-        // by Doctrine, except for SQLite (the database used in this application)
-        // because foreign key support is not enabled by default in SQLite
-        $post->getTags()->clear();
-
-        $entityManager->remove($post);
-        $entityManager->flush();
-        $this->getDoctrine()->getRepository(Tag::class)->cleanUnusedTags();
+        $entityManager->transactional(function ($entityManager) use ($post) {
+            // Delete the tags associated with this blog post. This is done automatically
+            // by Doctrine, except for SQLite (the database used in this application)
+            // because foreign key support is not enabled by default in SQLite
+            $post->getTags()->clear();
+            $entityManager->remove($post);
+            $this->getDoctrine()->getRepository(Tag::class)->cleanUnusedTags();
+        });
 
         $this->addFlash('success', 'post.deleted_successfully');
 
