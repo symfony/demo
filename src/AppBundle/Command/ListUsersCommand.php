@@ -93,7 +93,7 @@ HELP
 
         // Doctrine query returns an array of objects and we need an array of plain arrays
         $usersAsPlainArrays = array_map(function (User $user) {
-            return [$user->getId(), $user->getUsername(), $user->getEmail(), implode(', ', $user->getRoles())];
+            return [$user->getId(), $user->getFullName(), $user->getUsername(), $user->getEmail(), implode(', ', $user->getRoles())];
         }, $users);
 
         // In your console commands you should always use the regular output type,
@@ -107,7 +107,7 @@ HELP
 
         $table = new Table($bufferedOutput);
         $table
-            ->setHeaders(['ID', 'Username', 'Email', 'Roles'])
+            ->setHeaders(['ID', 'Full Name', 'Username', 'Email', 'Roles'])
             ->setRows($usersAsPlainArrays)
         ;
         $table->render();

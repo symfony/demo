@@ -54,7 +54,7 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface,
             // "References" are the way to share objects between fixtures defined
             // in different files. This reference has been added in the UserFixtures
             // file and it contains an instance of the User entity.
-            $post->setAuthor($this->getReference('anna-admin'));
+            $post->setAuthor($this->getReference('jane-admin'));
             $post->setPublishedAt(new \DateTime('now - '.$i.'days'));
 
             $this->addRandomTags($post);
