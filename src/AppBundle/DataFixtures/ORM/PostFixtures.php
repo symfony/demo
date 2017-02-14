@@ -54,7 +54,10 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface,
             $post->setAuthor($this->getReference('jane-admin'));
             $post->setPublishedAt(new \DateTime('now - '.$i.'days'));
 
-            $this->addRandomTags($post);
+            // for aesthetic reasons, the first blog post always has 2 tags
+            foreach ($this->getRandomTags($i > 0 ? mt_rand(0, 3) : 2) as $tag) {
+                $post->addTag($tag);
+            }
 
             foreach (range(1, 5) as $j) {
                 $comment = new Comment();
@@ -89,18 +92,20 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface,
         ];
     }
 
-    private function addRandomTags(Post $post)
+    private function getRandomTags($numTags = 0)
     {
-        if (0 === $count = mt_rand(0, 3)) {
-            return;
+        $tags = [];
+
+        if (0 === $numTags) {
+            return $tags;
         }
 
-        $indexes = (array) array_rand(TagFixtures::$names, $count);
+        $indexes = (array) array_rand(TagFixtures::$names, $numTags);
         foreach ($indexes as $index) {
-            /** @var Tag $tag */
-            $tag = $this->getReference('tag-'.$index);
-            $post->addTag($tag);
+            $tags[] = $this->getReference('tag-'.$index);
         }
+
+        return $tags;
     }
 
     private function getPostContent()
@@ -197,8 +202,13 @@ MARKDOWN;
 
         $numPhrases = mt_rand(6, 12);
         shuffle($phrases);
+        $phrases = array_slice($phrases, 0, $numPhrases - 1);
 
-        return substr(implode(' ', array_slice($phrases, 0, $numPhrases - 1)), 0, $maxLength);
+        while (strlen($summary = implode('. ', $phrases).'.') > $maxLength) {
+            array_pop($phrases);
+        }
+
+        return $summary;
     }
 
     private function getRandomCommentContent()
