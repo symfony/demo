@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TagRepository")
  * @ORM\Table(name="symfony_demo_tag")
  *
  * Defines the properties of the Tag entity to represent the post tags.
@@ -24,6 +24,13 @@ class Tag implements \JsonSerializable
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @var array
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Post", mappedBy="tags")
+     */
+    private $posts;
 
     /**
      * @var string
@@ -65,5 +72,46 @@ class Tag implements \JsonSerializable
     public function __toString()
     {
         return $this->name;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add post
+     *
+     * @param \AppBundle\Entity\Post $post
+     *
+     * @return Tag
+     */
+    public function addPost(\AppBundle\Entity\Post $post)
+    {
+        $this->posts[] = $post;
+
+        return $this;
+    }
+
+    /**
+     * Remove post
+     *
+     * @param \AppBundle\Entity\Post $post
+     */
+    public function removePost(\AppBundle\Entity\Post $post)
+    {
+        $this->posts->removeElement($post);
+    }
+
+    /**
+     * Get posts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPosts()
+    {
+        return $this->posts;
     }
 }
