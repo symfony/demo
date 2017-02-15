@@ -1,0 +1,19 @@
+---------------------------------------------------------------------------
+
+by stof at 2017-02-14T11:44:57Z
+
+> Add at least 1 tag to every blog post, to make the design more consistent
+
+The validation of posts does not require having at least 1 tag. So if the design does not support such case, it means that there is a bug in the code, not that fixtures should be changed
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-02-15T08:45:08Z
+
+I've changed the fixtures again: posts can have 0 tags ... but the first post now always has 2 tags, to make the application look better.
+
+---------------------------------------------------------------------------
+
+by stof at 2017-02-15T08:46:58Z
+
+👍
