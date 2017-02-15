@@ -80,19 +80,16 @@ class BlogControllerTest extends WebTestCase
     }
 
     /**
-     * This test will manipulate the database state by deleting a Post.
-     * All changes to the database are rolled back before the next test case is executed.
-     * This is done by using https://github.com/dmaicher/doctrine-test-bundle.
-     *
-     * Therefore in the following test case we can edit the Post with ID=1 although we deleted it in this test.
+     * This test changes the database contents by deleting a blog post. However,
+     * thanks to the DAMADoctrineTestBundle and its PRPUnit listener, all changes
+     * to the database are rolled back when this test completes. This means that
+     * all the application tests begin with the same database contents.
      */
     public function testAdminDeletePost()
     {
         $client = $this->getAdminClient();
-
         $crawler = $client->request('GET', '/en/admin/post/1');
-
-        $client->submit($crawler->filter('form')->form());
+        $client->submit($crawler->filter('#delete-form')->form());
 
         $this->assertSame(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
 
@@ -100,24 +97,27 @@ class BlogControllerTest extends WebTestCase
         $this->assertNull($post);
     }
 
+    /**
+     * This test changes the database contents by editing a blog post. However,
+     * thanks to the DAMADoctrineTestBundle and its PRPUnit listener, all changes
+     * to the database are rolled back when this test completes. This means that
+     * all the application tests begin with the same database contents.
+     */
     public function testAdminEditPost()
     {
+        $newBlogPostTitle = 'Blog Post Title '.mt_rand();
+
         $client = $this->getAdminClient();
-
         $crawler = $client->request('GET', '/en/admin/post/1/edit');
-
-        $newTitle = 'what a nice new title!';
-
-        $form = $crawler->filter('form')->form([
-            'post[title]' => $newTitle,
+        $form = $crawler->selectButton('Save changes')->form([
+            'post[title]' => $newBlogPostTitle,
         ]);
-
         $client->submit($form);
 
         $this->assertSame(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
 
         /** @var Post $post */
         $post = $client->getContainer()->get('doctrine')->getRepository(Post::class)->find(1);
-        $this->assertSame($newTitle, $post->getTitle());
+        $this->assertSame($newBlogPostTitle, $post->getTitle());
     }
 }
