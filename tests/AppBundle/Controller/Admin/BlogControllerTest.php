@@ -81,7 +81,7 @@ class BlogControllerTest extends WebTestCase
 
     /**
      * This test changes the database contents by deleting a blog post. However,
-     * thanks to the DAMADoctrineTestBundle and its PRPUnit listener, all changes
+     * thanks to the DAMADoctrineTestBundle and its PHPUnit listener, all changes
      * to the database are rolled back when this test completes. This means that
      * all the application tests begin with the same database contents.
      */
@@ -99,7 +99,7 @@ class BlogControllerTest extends WebTestCase
 
     /**
      * This test changes the database contents by editing a blog post. However,
-     * thanks to the DAMADoctrineTestBundle and its PRPUnit listener, all changes
+     * thanks to the DAMADoctrineTestBundle and its PHPUnit listener, all changes
      * to the database are rolled back when this test completes. This means that
      * all the application tests begin with the same database contents.
      */
