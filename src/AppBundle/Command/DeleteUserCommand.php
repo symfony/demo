@@ -31,6 +31,8 @@ use Symfony\Component\Console\Question\Question;
  * the full explanation about Symfony commands.
  *
  * See http://symfony.com/doc/current/cookbook/console/console_command.html
+ * For more advanced uses, commands can be defined as services too. See
+ * https://symfony.com/doc/current/console/commands_as_services.html
  *
  * @author Oleg Voronkovich <oleg-voronkovich@yandex.ru>
  */

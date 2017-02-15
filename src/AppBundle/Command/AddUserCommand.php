@@ -33,6 +33,8 @@ use Symfony\Component\Console\Question\Question;
  *     $ php bin/console app:add-user -vv
  *
  * See http://symfony.com/doc/current/cookbook/console/console_command.html
+ * For more advanced uses, commands can be defined as services too. See
+ * https://symfony.com/doc/current/console/commands_as_services.html
  *
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  * @author Yonel Ceruto <yonelceruto@gmail.com>
