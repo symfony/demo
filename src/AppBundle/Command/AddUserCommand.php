@@ -223,8 +223,6 @@ class AddUserCommand extends ContainerAwareCommand
     }
 
     /**
-     * This internal method should be private, but PHP requires callbacks to be declared public.
-     *
      * @internal
      */
     public function passwordValidator($plainPassword)
@@ -241,8 +239,6 @@ class AddUserCommand extends ContainerAwareCommand
     }
 
     /**
-     * This internal method should be private, but PHP requires callbacks to be declared public.
-     *
      * @internal
      */
     public function emailValidator($email)
@@ -259,8 +255,6 @@ class AddUserCommand extends ContainerAwareCommand
     }
 
     /**
-     * This internal method should be private, but PHP requires callbacks to be declared public.
-     *
      * @internal
      */
     public function fullNameValidator($fullName)
