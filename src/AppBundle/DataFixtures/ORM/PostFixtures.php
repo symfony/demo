@@ -49,10 +49,15 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface,
             $post->setSummary($this->getRandomPostSummary());
             $post->setSlug($this->container->get('slugger')->slugify($post->getTitle()));
             $post->setContent($this->getPostContent());
-            // "References" are the way to share objects between fixtures defined
-            // in different files. This reference has been added in the UserFixtures
-            // file and it contains an instance of the User entity.
-            $post->setAuthor($this->getReference('jane-admin'));
+            // This ensures that the first post is written by Jane Doe
+            if (0 === $i) {
+                // "References" are the way to share objects between fixtures defined
+                // in different files. This reference has been added in the UserFixtures
+                // file and it contains an instance of the User entity.
+                $post->setAuthor($this->getReference('jane-admin'));
+            } else {
+                $post->setAuthor($this->getRandomUser());
+            }
             $post->setPublishedAt(new \DateTime('now - '.$i.'days'));
 
             // for aesthetic reasons, the first blog post always has 2 tags
@@ -91,6 +96,14 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface,
             TagFixtures::class,
             UserFixtures::class,
         ];
+    }
+
+    private function getRandomUser()
+    {
+        $admins = ['jane-admin', 'tom-admin', 'bob-admin'];
+        $index = array_rand($admins);
+
+        return $this->getReference($admins[$index]);
     }
 
     private function getRandomTags($numTags = 0)
