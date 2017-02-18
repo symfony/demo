@@ -14,6 +14,7 @@ namespace AppBundle\DataFixtures\ORM;
 use AppBundle\Entity\Tag;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Tests\FixturesTrait;
 
 /**
  * Defines the sample blog tags to load in the database before running the unit
@@ -27,24 +28,14 @@ use Doctrine\Common\Persistence\ObjectManager;
  */
 class TagFixtures extends AbstractFixture
 {
-    public static $names = [
-        'lorem',
-        'ipsum',
-        'consectetur',
-        'adipiscing',
-        'incididunt',
-        'labore',
-        'voluptate',
-        'dolore',
-        'pariatur',
-    ];
+    use FixturesTrait;
 
     /**
      * {@inheritdoc}
      */
     public function load(ObjectManager $manager)
     {
-        foreach (self::$names as $index => $name) {
+        foreach ($this->getTagNames() as $index => $name) {
             $tag = new Tag();
             $tag->setName($name);
 
