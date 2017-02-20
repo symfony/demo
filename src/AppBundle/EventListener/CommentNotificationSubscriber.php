@@ -12,6 +12,7 @@
 namespace AppBundle\EventListener;
 
 use AppBundle\Entity\Comment;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -21,7 +22,7 @@ use Symfony\Component\Translation\TranslatorInterface;
  *
  * @author Oleg Voronkovich <oleg-voronkovich@yandex.ru>
  */
-class CommentNotificationListener
+class CommentNotificationSubscriber implements EventSubscriberInterface
 {
     /**
      * @var \Swift_Mailer
@@ -94,5 +95,12 @@ class CommentNotificationListener
         // However, you can inspect the contents of those unsent emails using the debug toolbar.
         // See http://symfony.com/doc/current/email/dev_environment.html#viewing-from-the-web-debug-toolbar
         $this->mailer->send($message);
+    }
+
+    public static function getSubscribedEvents()
+    {
+        return [
+            'comment.created' => 'onCommentCreated',
+        ];
     }
 }

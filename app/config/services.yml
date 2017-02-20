@@ -111,12 +111,5 @@ services:
     AppBundle\EventListener\RedirectToPreferredLocaleSubscriber:
         $locales: '%app_locales%'
 
-    # Event Listeners are classes that listen to one or more specific events.
-    # Those events are defined in the tags added to the service definition.
-    # See http://symfony.com/doc/current/event_dispatcher.html#creating-an-event-listener
-    AppBundle\EventListener\CommentNotificationListener:
+    AppBundle\EventListener\CommentNotificationSubscriber:
         $sender: '%app.notifications.email_sender%'
-        # The "method" attribute of this tag is optional and defaults to "on + camelCasedEventName"
-        # If the event is "comment.created" the method executed by default is "onCommentCreated()".
-        tags:
-            - { name: kernel.event_listener, event: comment.created, method: onCommentCreated }
