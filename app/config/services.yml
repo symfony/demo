@@ -51,18 +51,17 @@ services:
     # In this example, the classes found in the following directories will be
     # automatically registered as services:
     #
+    # * src/AppBundle/EventListener/
     # * src/AppBundle/Form/Type/
     # * src/AppBundle/Security/
     # * src/AppBundle/Twig/
     # * src/AppBundle/Utils/
     #
-    # Thus, only the classes whose corresponding filename ends with the "Subscriber.php"
-    # suffix in the src/AppBundle/EventListener/ directory will be registered as
-    # services in the service container. Other classes of this directory will be simply
-    # ignored.
+    # The "resource" attribute can accept more specific glob patterns like
+    # "{EventListener/*Subscriber.php,Form/Type/*Type.php}".
     AppBundle\:
         # Register all classes in the src/AppBundle directory as services
-        resource: '../../src/AppBundle/{EventListener/*Subscriber.php,Form/Type,Security,Twig,Utils}'
+        resource: '../../src/AppBundle/{EventListener,Form/Type,Security,Twig,Utils}'
 
     # The other section defines a rule to automatically register and autowire the
     # controller classes found in the src/AppBundle/Controller/ directory.
@@ -116,7 +115,7 @@ services:
     # Those events are defined in the tags added to the service definition.
     # See http://symfony.com/doc/current/event_dispatcher.html#creating-an-event-listener
     AppBundle\EventListener\CommentNotificationListener:
-        arguments: ['@mailer', '@router', '@translator', '%app.notifications.email_sender%']
+        $sender: '%app.notifications.email_sender%'
         # The "method" attribute of this tag is optional and defaults to "on + camelCasedEventName"
         # If the event is "comment.created" the method executed by default is "onCommentCreated()".
         tags:
