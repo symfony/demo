@@ -30,9 +30,9 @@ class DateTimePickerType extends AbstractType
 {
     private $formatConverter;
 
-    public function __construct()
+    public function __construct(MomentFormatConverter $converter)
     {
-        $this->formatConverter = new MomentFormatConverter();
+        $this->formatConverter = $converter;
     }
 
     /**
