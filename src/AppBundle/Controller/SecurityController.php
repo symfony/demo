@@ -26,11 +26,6 @@ class SecurityController extends Controller
 {
     private $helper;
 
-    /**
-     * Constructor.
-     *
-     * @param AuthenticationUtils $helper
-     */
     public function __construct(AuthenticationUtils $helper)
     {
         $this->helper = $helper;
