@@ -14,6 +14,10 @@
                 <source>post.too_short_content</source>
                 <target>Зміст запису занадто короткий (мінімум {{ limit }} символів).</target>
             </trans-unit>
+            <trans-unit id="post.too_many_tags">
+                <source>post.too_many_tags</source>
+                <target>Занадто багато тегів (додайте {{ limit }} тегів або менше)</target>
+            </trans-unit>
             <trans-unit id="comment.blank">
                 <source>comment.blank</source>
                 <target>Будь ласка, не залишайте текст коментаря порожнім!</target>
