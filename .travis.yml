@@ -27,4 +27,3 @@ script:
   - ./vendor/bin/php-cs-fixer fix --diff --dry-run -v
   - ./bin/console lint:yaml app/config
   - ./bin/console lint:twig app/Resources/views
-  - ./bin/console lint:xliff app/Resources/translations
