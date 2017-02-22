@@ -24,7 +24,12 @@ install:
 
 script:
   - ./vendor/bin/phpunit
+  # this checks that the source code follows the Symfony Code Syntax rules
   - ./vendor/bin/php-cs-fixer fix --diff --dry-run -v
+  # this checks that the YAML config files contain no syntax errors
   - ./bin/console lint:yaml app/config
   - ./bin/console lint:yaml @CodeExplorerBundle
+  # this checks that the Twig template files contain no syntax errors
   - ./bin/console lint:twig app/Resources @CodeExplorerBundle
+  # this checks that the application doesn't use dependencies with known security vulnerabilities
+  - ./bin/console security:check
