@@ -25,3 +25,6 @@ install:
 script:
   - ./vendor/bin/phpunit
   - ./vendor/bin/php-cs-fixer fix --diff --dry-run -v
+  - ./bin/console lint:yaml app/config
+  - ./bin/console lint:yaml @CodeExplorerBundle
+  - ./bin/console lint:twig app/Resources @CodeExplorerBundle
