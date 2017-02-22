@@ -26,5 +26,5 @@ script:
   - ./vendor/bin/phpunit
   - ./vendor/bin/php-cs-fixer fix --diff --dry-run -v
   - ./bin/console lint:yaml app/config
-  - ./bin/console lint:yaml src/CodeExplorerBundle/Resources/config
-  - ./bin/console lint:twig app/Resources/views src/CodeExplorerBundle/Resources/views
+  - ./bin/console lint:yaml @CodeExplorerBundle
+  - ./bin/console lint:twig app/Resources/views @CodeExplorerBundle
