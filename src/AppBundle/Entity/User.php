@@ -167,7 +167,7 @@ class User implements UserInterface, \Serializable
     /** @see \Serializable::serialize() */
     public function serialize()
     {
-        return serialize([(
+        return serialize([
             $this->id,
             $this->username,
             $this->password,
