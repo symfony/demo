@@ -98,6 +98,6 @@ class CommentNotificationListener
         // Symfony comes with an outside library - called Monolog - that allows you to create logs
         // See http://symfony.com/doc/current/logging.html#logging-a-message
         $logger = $this->get('logger');
-        $logger->info('Comment created on ' . $linkToPost);
+        $logger->info('Comment created on '.$linkToPost);
     }
 }
