@@ -94,5 +94,10 @@ class CommentNotificationListener
         // However, you can inspect the contents of those unsent emails using the debug toolbar.
         // See http://symfony.com/doc/current/email/dev_environment.html#viewing-from-the-web-debug-toolbar
         $this->mailer->send($message);
+
+        // Symfony comes with an outside library - called Monolog - that allows you to create logs
+        // See http://symfony.com/doc/current/logging.html#logging-a-message
+        $logger = $this->get('logger');
+        $logger->info('Comment created on ' . $linkToPost);
     }
 }
