@@ -15,11 +15,13 @@ use AppBundle\Entity\Comment;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Translation\TranslatorInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Notifies post's author about new comments.
  *
  * @author Oleg Voronkovich <oleg-voronkovich@yandex.ru>
+ * @author Arnaud PETITPAS <arnaudpetitpas@protonmail.ch>
  */
 class CommentNotificationListener
 {
@@ -44,19 +46,26 @@ class CommentNotificationListener
     private $sender;
 
     /**
+    * @var LoggerInterface
+    */
+    private $logger;
+
+    /**
      * Constructor.
      *
      * @param \Swift_Mailer         $mailer
      * @param UrlGeneratorInterface $urlGenerator
      * @param TranslatorInterface   $translator
      * @param string                $sender
+     * @param LoggerInterface       $logger
      */
-    public function __construct(\Swift_Mailer $mailer, UrlGeneratorInterface $urlGenerator, TranslatorInterface $translator, $sender)
+    public function __construct(\Swift_Mailer $mailer, UrlGeneratorInterface $urlGenerator, TranslatorInterface $translator, $sender, LoggerInterface $logger)
     {
         $this->mailer = $mailer;
         $this->urlGenerator = $urlGenerator;
         $this->translator = $translator;
         $this->sender = $sender;
+        $this->logger = $logger;
     }
 
     /**
@@ -96,8 +105,9 @@ class CommentNotificationListener
         $this->mailer->send($message);
 
         // Symfony comes with an outside library - called Monolog - that allows you to create logs
-        // See http://symfony.com/doc/current/logging.html#logging-a-message
-        $logger = $this->get('logger');
-        $logger->info('Comment created on '.$linkToPost);
+        // Because we are in a service, the logger service need to be injected in the constructor
+        // We cannot use $logger = $this->get('logger') here.
+        // See http://symfony.com/doc/current/logging.html#using-a-logger-inside-a-service
+        $this->logger->info('New comment created - '.$linkToPost);
     }
 }
