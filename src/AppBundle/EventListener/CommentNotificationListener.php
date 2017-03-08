@@ -12,10 +12,10 @@
 namespace AppBundle\EventListener;
 
 use AppBundle\Entity\Comment;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Translation\TranslatorInterface;
-use Psr\Log\LoggerInterface;
 
 /**
  * Notifies post's author about new comments.
@@ -46,8 +46,8 @@ class CommentNotificationListener
     private $sender;
 
     /**
-    * @var LoggerInterface
-    */
+     * @var LoggerInterface
+     */
     private $logger;
 
     /**
