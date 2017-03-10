@@ -19,6 +19,43 @@
                 <target>Licence MIT</target>
             </trans-unit>
 
+            <trans-unit id="http_error.name">
+                <source>http_error.name</source>
+                <target>Erreur %status_code%</target>
+            </trans-unit>
+            <trans-unit id="http_error.description">
+                <source>http_error.description</source>
+                <target>Il y a eu une erreur inconnue (HTTP %status_code%) qui a empêché l'aboutissement de votre requête.</target>
+            </trans-unit>
+            <trans-unit id="http_error.suggestion">
+                <source>http_error.suggestion</source>
+                <target><![CDATA[Essayez de recharger cette page dans quelques minutes ou <a href="%url%">retournez sur la page principale</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="http_error_403.description">
+                <source>http_error_403.description</source>
+                <target>Vous n'avez pas les droits pour accéder à cette ressource.</target>
+            </trans-unit>
+            <trans-unit id="http_error_403.suggestion">
+                <source>http_error_403.suggestion</source>
+                <target>Demandez à votre manager ou à votre administrateur système de vous donner les droits pour accéder à cette ressource.</target>
+            </trans-unit>
+            <trans-unit id="http_error_404.description">
+                <source>http_error_404.description</source>
+                <target>Nous n'avons pas pu trouver la page demandée.</target>
+            </trans-unit>
+            <trans-unit id="http_error_404.suggestion">
+                <source>http_error_404.suggestion</source>
+                <target><![CDATA[Vérifiez si l'URL ne comporte pas d'erreurs ou <a href="%url%">retournez sur la page principale</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="http_error_500.description">
+                <source>http_error_500.description</source>
+                <target>Il y a eu une erreur interne du serveur.</target>
+            </trans-unit>
+            <trans-unit id="http_error_500.suggestion">
+                <source>http_error_500.suggestion</source>
+                <target><![CDATA[Essayez de recharger cette page dans quelques minutes ou <a href="%url%">retournez sur la page principale</a>.]]></target>
+            </trans-unit>
+
             <trans-unit id="title.homepage">
                 <source>title.homepage</source>
                 <target><![CDATA[Bienvenue sur l'application <strong>Symfony Demo</strong>]]></target>
@@ -37,7 +74,7 @@
             </trans-unit>
             <trans-unit id="title.login_help">
                 <source>title.login_help</source>
-                <target>Try either of the following users</target>
+                <target>Essayez avec l'un des utilisateurs suivants</target>
             </trans-unit>
             <trans-unit id="title.login">
                 <source>title.login</source>
@@ -54,6 +91,10 @@
             <trans-unit id="title.add_comment">
                 <source>title.add_comment</source>
                 <target>Laisser un commentaire</target>
+            </trans-unit>
+            <trans-unit id="title.comment_error">
+                <source>title.comment_error</source>
+                <target>Il y a eu une erreur lors de la suppression de votre commentaire.</target>
             </trans-unit>
 
             <trans-unit id="action.show">
@@ -80,13 +121,33 @@
                 <source>action.delete_post</source>
                 <target>Supprimer l'article</target>
             </trans-unit>
-            <trans-unit id="action.create_post">
-                <source>action.create_post</source>
-                <target>Créer un nouvel article</target>
+            <trans-unit id="delete_post_modal.title">
+                <source>delete_post_modal.title</source>
+                <target>Êtes-vous sûr de vouloir supprimer ce post ?</target>
+            </trans-unit>
+            <trans-unit id="delete_post_modal.body">
+                <source>delete_post_modal.body</source>
+                <target>Cette action ne peut pas être annulée.</target>
+            </trans-unit>
+            <trans-unit id="label.delete_post">
+                <source>label.delete_post</source>
+                <target>Supprimer l'article</target>
+            </trans-unit>
+            <trans-unit id="label.cancel">
+                <source>label.cancel</source>
+                <target>Annuler</target>
             </trans-unit>
             <trans-unit id="label.create_post">
                 <source>label.create_post</source>
                 <target>Créer un article</target>
+            </trans-unit>
+            <trans-unit id="action.create_post">
+                <source>action.create_post</source>
+                <target>Créer un nouvel article</target>
+            </trans-unit>
+            <trans-unit id="label.save_and_create_new">
+                <source>label.save_and_create_new</source>
+                <target>Enregistrer et créer un nouveau</target>
             </trans-unit>
             <trans-unit id="action.back_to_list">
                 <source>action.back_to_list</source>
@@ -145,6 +206,10 @@
                 <source>label.published_at</source>
                 <target>Publié le</target>
             </trans-unit>
+            <trans-unit id="label.tags">
+                <source>label.tags</source>
+                <target>Tags</target>
+            </trans-unit>
             <trans-unit id="label.actions">
                 <source>label.actions</source>
                 <target>Actions</target>
@@ -161,6 +226,10 @@
             <trans-unit id="menu.toggle_nav">
                 <source>menu.toggle_nav</source>
                 <target>Activer ou désactiver la navigation</target>
+            </trans-unit>
+            <trans-unit id="menu.choose_language">
+                <source>menu.choose_language</source>
+                <target>Choisir la langue</target>
             </trans-unit>
             <trans-unit id="menu.post_list">
                 <source>menu.post_list</source>
@@ -182,6 +251,10 @@
                 <source>menu.logout</source>
                 <target>Déconnexion</target>
             </trans-unit>
+            <trans-unit id="menu.rss">
+                <source>menu.rss</source>
+                <target>Blog Posts RSS</target>
+            </trans-unit>
 
             <trans-unit id="post.to_publish_a_comment">
                 <source>post.to_publish_a_comment</source>
@@ -198,6 +271,31 @@
             <trans-unit id="post.no_comments">
                 <source>post.no_comments</source>
                 <target>Soyez le premier à commenter cet article.</target>
+            </trans-unit>
+            <trans-unit id="post.no_posts_found">
+                <source>post.no_posts_found</source>
+                <target>Aucun article trouvé.</target>
+            </trans-unit>
+            <trans-unit id="post.created_successfully">
+                <source>post.created_successfully</source>
+                <target>Article créé avec succès !</target>
+            </trans-unit>
+            <trans-unit id="post.updated_successfully">
+                <source>post.updated_successfully</source>
+                <target>Article mis à jour avec succès !</target>
+            </trans-unit>
+            <trans-unit id="post.deleted_successfully">
+                <source>post.deleted_successfully</source>
+                <target>Article supprimé avec succès !</target>
+            </trans-unit>
+
+            <trans-unit id="notification.comment_created">
+                <source>notification.comment_created</source>
+                <target>Votre article a reçu un commentaire !</target>
+            </trans-unit>
+            <trans-unit id="notification.comment_created.description">
+                <source>notification.comment_created.description</source>
+                <target><![CDATA[Votre article "%title%" a reçu un nouveau commentaire. Vous pouvez lire le commentaire en suivant <a href="%link%">ce lien</a>]]></target>
             </trans-unit>
 
             <trans-unit id="help.app_description">
@@ -239,6 +337,15 @@
             <trans-unit id="help.more_information">
                 <source>help.more_information</source>
                 <target><![CDATA[Pour plus d'informations, consultez la <a href="http://symfony.com/doc">documentation de Symfony</a>.]]></target>
+            </trans-unit>
+
+            <trans-unit id="rss.title">
+                <source>rss.title</source>
+                <target>Blog de démo Symfony</target>
+            </trans-unit>
+            <trans-unit id="rss.description">
+                <source>rss.description</source>
+                <target>Derniers articles publiés sur le blog de démo Symfony</target>
             </trans-unit>
         </body>
     </file>
