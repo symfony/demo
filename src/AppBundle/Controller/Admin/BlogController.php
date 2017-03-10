@@ -86,7 +86,7 @@ class BlogController extends Controller
         // However, we explicitly add it to improve code readability.
         // See http://symfony.com/doc/current/best_practices/forms.html#handling-form-submits
         if ($form->isSubmitted() && $form->isValid()) {
-            $post->setSlug($this->get('slugger')->slugify($post->getTitle()));
+            $post->setSlug($this->getSlugger()->slugify($post->getTitle()));
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($post);
@@ -145,7 +145,7 @@ class BlogController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $post->setSlug($this->get('slugger')->slugify($post->getTitle()));
+            $post->setSlug($this->getSlugger()->slugify($post->getTitle()));
             $entityManager->flush();
 
             $this->addFlash('success', 'post.updated_successfully');
@@ -188,5 +188,13 @@ class BlogController extends Controller
         $this->addFlash('success', 'post.deleted_successfully');
 
         return $this->redirectToRoute('admin_post_index');
+    }
+
+    /**
+     * Must be protected to allow Symfony DIC to create a proxy.
+     */
+    protected function getSlugger()
+    {
+        throw new \BadMethodCallException('No slugger provided.');
     }
 }
