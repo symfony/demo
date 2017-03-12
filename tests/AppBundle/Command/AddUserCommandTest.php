@@ -58,7 +58,7 @@ class AddUserCommandTest extends KernelTestCase
             $isAdmin ? ['--admin' => 1] : [],
             // these are the responses given to the questions asked by the command
             // to get the value of the missing required arguments
-            array_values($this->userdata)
+            array_values($this->userData)
         );
 
         $this->assertUserCreated($isAdmin);
