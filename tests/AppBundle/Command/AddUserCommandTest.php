@@ -76,7 +76,7 @@ class AddUserCommandTest extends KernelTestCase
 
     /**
      * This helper method checks that the user was correctly created and saved
-     * it in the database.
+     * in the database.
      */
     private function assertUserCreated($isAdmin)
     {
@@ -94,10 +94,10 @@ class AddUserCommandTest extends KernelTestCase
 
     /**
      * This helper method abstracts the boilerplate code needed to test the
-     * execution of a command. When the command is executed non-interactively,
-     * all its arguments are passed in $arguments. If some needed argument is
-     * missing, the command will ask for it interactively. Use the $inputs
-     * argument to define the answers to provide to the command.
+     * execution of a command.
+     *
+     * @param  array  $arguments All the arguments passed when executing the command
+     * @param  array  $inputs    The (optional) answers given to the command when it asks for the value of the missing arguments
      */
     private function executeCommand(array $arguments, array $inputs = [])
     {
