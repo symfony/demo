@@ -54,8 +54,9 @@ class TagArrayToStringTransformer implements DataTransformerInterface
             return [];
         }
 
-        $names = array_unique(array_map('trim', explode(',', $string)));
-
+        $names = array_filter(array_unique(array_map('trim', explode(',', $string))), function ($name) {
+            return !empty($name);
+        });
 
         // Get the current tags and find the new ones that should be created.
         $tags = $this->manager->getRepository(Tag::class)->findBy([

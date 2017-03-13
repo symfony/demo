@@ -59,6 +59,16 @@ class TagArrayToStringTransformerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
+     * Too many commas.
+     */
+    public function testCreateTheRightAmountOfTagsWithTooManyCommas()
+    {
+        $transformer = $this->getMockedTransformer();
+        $this->assertCount(3, $transformer->reverseTransform('Hello, Demo,, How'));
+        $this->assertCount(3, $transformer->reverseTransform('Hello, Demo, How,'));
+    }
+
+    /**
      * Spaces at the end (and begining) of a world shouldn't matter.
      */
     public function testTrimNames()
