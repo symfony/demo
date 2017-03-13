@@ -11,7 +11,8 @@ class TagArrayToStringTransformerTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
-     * Get a mocked instance of the TagArrayToStringTransformer
+     * Get a mocked instance of the TagArrayToStringTransformer.
+     *
      * @return TagArrayToStringTransformer
      */
     public function getMockedTransformer($findByReturn = [])
@@ -35,7 +36,8 @@ class TagArrayToStringTransformerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Creates a new TagEntity instance
+     * Creates a new TagEntity instance.
+     *
      * @param $name
      * @return Tag
      */
@@ -47,26 +49,26 @@ class TagArrayToStringTransformerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures tags are created correctly
+     * Ensures tags are created correctly.
      */
     public function testCreateTheRightAmountOfTags()
     {
         $tags = $this->getMockedTransformer()->reverseTransform('Hello, Demo, How');
         $this->assertCount(3, $tags);
-        $this->assertEquals('Hello', $tags[0]->getName());
+        $this->assertSame('Hello', $tags[0]->getName());
     }
 
     /**
-     * Spaces at the end (and begining) of a world shouldn't matter
+     * Spaces at the end (and begining) of a world shouldn't matter.
      */
     public function testTrimNames()
     {
         $tags = $this->getMockedTransformer()->reverseTransform('   Hello   ');
-        $this->assertEquals('Hello', $tags[0]->getName());
+        $this->assertSame('Hello', $tags[0]->getName());
     }
 
     /**
-     * Duplicate tags shouldn't create new entities
+     * Duplicate tags shouldn't create new entities.
      */
     public function testDuplicateNames()
     {
@@ -75,30 +77,30 @@ class TagArrayToStringTransformerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * This test ensure that the transformer uses tag already persisted in the Database
+     * This test ensure that the transformer uses tag already persisted in the Database.
      */
     public function testUsesAlreadyDefinedTags()
     {
         $persisted_tags = [
             $this->createTag('Hello'),
-            $this->createTag('World')
+            $this->createTag('World'),
         ];
         $tags = $this->getMockedTransformer($persisted_tags)->reverseTransform('Hello, World, How, Are, You');
         $this->assertCount(5, $tags);
-        $this->assertEquals($persisted_tags[0], $tags[0]);
-        $this->assertEquals($persisted_tags[1], $tags[1]);
+        $this->assertSame($persisted_tags[0], $tags[0]);
+        $this->assertSame($persisted_tags[1], $tags[1]);
     }
 
     /**
-     * Tags should be transformed into a string 
+     * Tags should be transformed into a string.
      */
     public function testTransform () {
         $persisted_tags = [
             $this->createTag('Hello'),
-            $this->createTag('World')
+            $this->createTag('World'),
         ];
         $transformed = $this->getMockedTransformer()->transform($persisted_tags);
-        $this->assertEquals('Hello,World', $transformed);
+        $this->assertSame('Hello,World', $transformed);
     }
 
 }
