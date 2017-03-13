@@ -41,7 +41,7 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface,
      */
     public function load(ObjectManager $manager)
     {
-        foreach ($this->getRandomPostTiles() as $i => $title) {
+        foreach ($this->getRandomPostTitles() as $i => $title) {
             $post = new Post();
 
             $post->setTitle($title);
@@ -184,7 +184,7 @@ MARKDOWN;
         ];
     }
 
-    private function getRandomPostTiles()
+    private function getRandomPostTitles()
     {
         $phrases = $this->getPhrases();
 
