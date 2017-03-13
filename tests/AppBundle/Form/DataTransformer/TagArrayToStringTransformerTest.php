@@ -7,6 +7,13 @@ use AppBundle\Form\DataTransformer\TagArrayToStringTransformer;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityRepository;
 
+/**
+ * Tests that tags are transformed correctly using the data transformer.
+ *
+ * See http://symfony.com/doc/current/testing/database.html
+ *
+ * @author Jonathan Boyer <contact@grafikart.fr>
+ */
 class TagArrayToStringTransformerTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -70,7 +77,7 @@ class TagArrayToStringTransformerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Spaces at the end (and begining) of a world shouldn't matter.
+     * Spaces at the end (and beginning) of a world shouldn't matter.
      */
     public function testTrimNames()
     {
@@ -92,14 +99,14 @@ class TagArrayToStringTransformerTest extends \PHPUnit\Framework\TestCase
      */
     public function testUsesAlreadyDefinedTags()
     {
-        $persisted_tags = [
+        $persistedTags = [
             $this->createTag('Hello'),
             $this->createTag('World'),
         ];
-        $tags = $this->getMockedTransformer($persisted_tags)->reverseTransform('Hello, World, How, Are, You');
+        $tags = $this->getMockedTransformer($persistedTags)->reverseTransform('Hello, World, How, Are, You');
         $this->assertCount(5, $tags);
-        $this->assertSame($persisted_tags[0], $tags[0]);
-        $this->assertSame($persisted_tags[1], $tags[1]);
+        $this->assertSame($persistedTags[0], $tags[0]);
+        $this->assertSame($persistedTags[1], $tags[1]);
     }
 
     /**
@@ -107,11 +114,11 @@ class TagArrayToStringTransformerTest extends \PHPUnit\Framework\TestCase
      */
     public function testTransform()
     {
-        $persisted_tags = [
+        $persistedTags = [
             $this->createTag('Hello'),
             $this->createTag('World'),
         ];
-        $transformed = $this->getMockedTransformer()->transform($persisted_tags);
+        $transformed = $this->getMockedTransformer()->transform($persistedTags);
         $this->assertSame('Hello,World', $transformed);
     }
 }
