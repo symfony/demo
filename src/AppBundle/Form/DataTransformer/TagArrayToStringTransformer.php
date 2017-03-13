@@ -54,7 +54,10 @@ class TagArrayToStringTransformer implements DataTransformerInterface
             return [];
         }
 
-        $names = explode(',', $string);
+        $names = array_unique(array_map(function($name) {
+            return trim($name);
+        }, explode(',', $string)));
+
 
         // Get the current tags and find the new ones that should be created.
         $tags = $this->manager->getRepository(Tag::class)->findBy([
