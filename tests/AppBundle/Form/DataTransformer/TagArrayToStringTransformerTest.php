@@ -9,7 +9,6 @@ use Doctrine\ORM\EntityRepository;
 
 class TagArrayToStringTransformerTest extends \PHPUnit\Framework\TestCase
 {
-
     /**
      * Get a mocked instance of the TagArrayToStringTransformer.
      *
@@ -39,12 +38,14 @@ class TagArrayToStringTransformerTest extends \PHPUnit\Framework\TestCase
      * Creates a new TagEntity instance.
      *
      * @param $name
+     *
      * @return Tag
      */
     public function createTag($name)
     {
         $tag = new Tag();
         $tag->setName($name);
+
         return $tag;
     }
 
@@ -104,7 +105,8 @@ class TagArrayToStringTransformerTest extends \PHPUnit\Framework\TestCase
     /**
      * Tags should be transformed into a string.
      */
-    public function testTransform () {
+    public function testTransform()
+    {
         $persisted_tags = [
             $this->createTag('Hello'),
             $this->createTag('World'),
@@ -112,5 +114,4 @@ class TagArrayToStringTransformerTest extends \PHPUnit\Framework\TestCase
         $transformed = $this->getMockedTransformer()->transform($persisted_tags);
         $this->assertSame('Hello,World', $transformed);
     }
-
 }
