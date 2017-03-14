@@ -1,0 +1,55 @@
+---------------------------------------------------------------------------
+
+by yceruto at 2017-02-23T14:14:28Z
+
+@javiereguiluz @bocharsky-bw done!
+
+* Now the fixtures and tests using a `FixturesTrait` for common methods.
+* and all controller test case now extending from `ControllerTestCase` to use common decriptive methods and strict assertions for response instances.
+
+Status: Need Reviews :)
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-02-24T12:10:28Z
+
+I'm not that sure about `tests/ControllerTestCase.php`. For experienced Symfony developers makes sense ... but for newcomers? They probably see that and think ... *"mmm, it's pretty complex to create just one simple functional test ... first I need to create this special ControllerTestCase, then I need to create my tests, etc."*
+
+I'm not asking to removing this (yet) ... but let's think a bit about it. Thanks!
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-02-24T13:32:10Z
+
+This `ControllerTestCase` is just an utility class to make tests more descriptive and simple, it's more related to basic POO inheritance and DRY (no Symfony/funtional Tests related).
+
+I think it's good to show to newcomers good practices related to how to simplify their tests too. For newcomers of "Symfony framework" it should be easy to understand I think, anyway a nice class description could clarify possible misinterpretations,
+
+EDIT: but I'm fine with removing this class, if you prefer :) (or part of it)
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-02-24T14:08:58Z
+
+Maybe I could remove the response assertions and leave only the client creation methods, what do you think?
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-03-14T09:39:45Z
+
+Last changes:
+* Moved response assert to the tests methods again
+* Changed controller test inheritance by trait helper
+* Added comments
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-03-14T14:25:32Z
+
+Rebased (https://github.com/symfony/symfony-demo/pull/502 conflicts resolved)
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-03-14T15:26:50Z
+
+@yceruto thanks for all the changes and for rebasing, etc. There are a lot of things that I like in this PR, so I'm going to merge it now. However, there are some things that I don't like because it's not a practice promoted by Symfony (although your proposal works perfectly and it's technically correct). So, I'm going to create a PR soon after to revert some changes. Thanks!
