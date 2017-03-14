@@ -99,9 +99,9 @@ class TagArrayToStringTransformerTest extends \PHPUnit\Framework\TestCase
 
     /**
      * This helper method mocks the real TagArrayToStringTransformer class to
-     * simplify the tests. See https://phpunit.de/manual/current/en/test-doubles.html
+     * simplify the tests. See https://phpunit.de/manual/current/en/test-doubles.html.
      *
-     * @param  array $findByReturnValues The values returned when calling to the findBy() method
+     * @param array $findByReturnValues The values returned when calling to the findBy() method
      * 
      * @return TagArrayToStringTransformer
      */
