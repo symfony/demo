@@ -22,6 +22,7 @@ use Symfony\Component\Form\DataTransformerInterface;
  * See http://symfony.com/doc/current/form/data_transformers.html
  *
  * @author Yonel Ceruto <yonelceruto@gmail.com>
+ * @author Jonathan Boyer <contact@grafikart.fr>
  */
 class TagArrayToStringTransformer implements DataTransformerInterface
 {
@@ -54,7 +55,7 @@ class TagArrayToStringTransformer implements DataTransformerInterface
             return [];
         }
 
-        $names = explode(',', $string);
+        $names = array_filter(array_unique(array_map('trim', explode(',', $string))));
 
         // Get the current tags and find the new ones that should be created.
         $tags = $this->manager->getRepository(Tag::class)->findBy([
