@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Symfony package.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Tests\AppBundle\Form\DataTransformer;
 
 use AppBundle\Entity\Tag;
@@ -11,8 +20,6 @@ use Doctrine\ORM\EntityRepository;
  * Tests that tags are transformed correctly using the data transformer.
  *
  * See http://symfony.com/doc/current/testing/database.html
- *
- * @author Jonathan Boyer <contact@grafikart.fr>
  */
 class TagArrayToStringTransformerTest extends \PHPUnit\Framework\TestCase
 {
