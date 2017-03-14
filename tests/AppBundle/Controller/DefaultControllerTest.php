@@ -13,6 +13,8 @@ namespace Tests\AppBundle\Controller;
 
 use AppBundle\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\HttpFoundation\Response;
+use Tests\ControllerTestTrait;
 
 /**
  * Functional test that implements a "smoke test" of all the public and secure
@@ -26,6 +28,8 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 class DefaultControllerTest extends WebTestCase
 {
+    use ControllerTestTrait;
+
     /**
      * PHPUnit's data providers allow to execute the same tests repeated times
      * using a different set of data each time.
@@ -35,11 +39,12 @@ class DefaultControllerTest extends WebTestCase
      */
     public function testPublicUrls($url)
     {
-        $client = self::createClient();
+        $client = $this->getAnonymousClient();
         $client->request('GET', $url);
 
-        $this->assertTrue(
-            $client->getResponse()->isSuccessful(),
+        $this->assertSame(
+            Response::HTTP_OK,
+            $client->getResponse()->getStatusCode(),
             sprintf('The %s public URL loads correctly.', $url)
         );
     }
@@ -54,11 +59,11 @@ class DefaultControllerTest extends WebTestCase
     public function testPublicBlogPost()
     {
         // the service container is always available via the client
-        $client = self::createClient();
+        $client = $this->getAnonymousClient();
         $blogPost = $client->getContainer()->get('doctrine')->getRepository(Post::class)->find(1);
         $client->request('GET', sprintf('/en/blog/posts/%s', $blogPost->getSlug()));
 
-        $this->assertTrue($client->getResponse()->isSuccessful());
+        $this->assertSame(Response::HTTP_OK, $client->getResponse()->getStatusCode());
     }
 
     /**
@@ -70,14 +75,14 @@ class DefaultControllerTest extends WebTestCase
      */
     public function testSecureUrls($url)
     {
-        $client = self::createClient();
+        $client = $this->getAnonymousClient();
         $client->request('GET', $url);
 
-        $this->assertTrue($client->getResponse()->isRedirect());
-
+        $response = $client->getResponse();
+        $this->assertSame(Response::HTTP_FOUND, $response->getStatusCode());
         $this->assertSame(
             'http://localhost/en/login',
-            $client->getResponse()->getTargetUrl(),
+            $response->getTargetUrl(),
             sprintf('The %s secure URL redirects to the login form.', $url)
         );
     }
