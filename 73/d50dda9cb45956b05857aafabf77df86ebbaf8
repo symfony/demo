@@ -1,0 +1,17 @@
+---------------------------------------------------------------------------
+
+by Grafikart at 2017-03-13T11:23:41Z
+
+@javiereguiluz the array_map, array_filter, explode is getting out of control, how would you improve the readability of this ? I wanted to avoid Intermediary variables :(
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-03-13T11:28:34Z
+
+@Grafikart `array_filter` without arguments filters empty elements (I learned this nice trick here: http://stackoverflow.com/a/3654309/2804294)  I don't know if it's readable ... but i's a bit shorter/simpler. Thanks!
+
+---------------------------------------------------------------------------
+
+by Grafikart at 2017-03-13T11:30:12Z
+
+Nice tip indeed
