@@ -14,7 +14,6 @@ namespace Tests\AppBundle\Controller\Admin;
 use AppBundle\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
-use Tests\ControllerTestTrait;
 use Tests\FixturesTrait;
 
 /**
@@ -34,7 +33,6 @@ use Tests\FixturesTrait;
  */
 class BlogControllerTest extends WebTestCase
 {
-    use ControllerTestTrait;
     use FixturesTrait;
 
     /**
@@ -42,7 +40,10 @@ class BlogControllerTest extends WebTestCase
      */
     public function testAccessDeniedForRegularUsers($httpMethod, $url)
     {
-        $client = $this->getUserClient();
+        $client = static::createClient([], [
+            'PHP_AUTH_USER' => 'john_user',
+            'PHP_AUTH_PW' => 'kitten',
+        ]);
 
         $client->request($httpMethod, $url);
         $this->assertSame(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
@@ -58,7 +59,10 @@ class BlogControllerTest extends WebTestCase
 
     public function testAdminBackendHomePage()
     {
-        $client = $this->getAdminClient();
+        $client = static::createClient([], [
+            'PHP_AUTH_USER' => 'jane_admin',
+            'PHP_AUTH_PW' => 'kitten',
+        ]);
 
         $crawler = $client->request('GET', '/en/admin/post/');
         $this->assertSame(Response::HTTP_OK, $client->getResponse()->getStatusCode());
@@ -82,7 +86,10 @@ class BlogControllerTest extends WebTestCase
         $postSummary = $this->getRandomPostSummary();
         $postContent = $this->getPostContent();
 
-        $client = $this->getAdminClient();
+        $client = static::createClient([], [
+            'PHP_AUTH_USER' => 'jane_admin',
+            'PHP_AUTH_PW' => 'kitten',
+        ]);
         $crawler = $client->request('GET', '/en/admin/post/new');
         $form = $crawler->selectButton('Create post')->form([
             'post[title]' => $postTitle,
@@ -103,7 +110,10 @@ class BlogControllerTest extends WebTestCase
 
     public function testAdminShowPost()
     {
-        $client = $this->getAdminClient();
+        $client = static::createClient([], [
+            'PHP_AUTH_USER' => 'jane_admin',
+            'PHP_AUTH_PW' => 'kitten',
+        ]);
         $client->request('GET', '/en/admin/post/1');
 
         $this->assertSame(Response::HTTP_OK, $client->getResponse()->getStatusCode());
@@ -119,7 +129,10 @@ class BlogControllerTest extends WebTestCase
     {
         $newBlogPostTitle = 'Blog Post Title '.mt_rand();
 
-        $client = $this->getAdminClient();
+        $client = static::createClient([], [
+            'PHP_AUTH_USER' => 'jane_admin',
+            'PHP_AUTH_PW' => 'kitten',
+        ]);
         $crawler = $client->request('GET', '/en/admin/post/1/edit');
         $form = $crawler->selectButton('Save changes')->form([
             'post[title]' => $newBlogPostTitle,
@@ -141,7 +154,10 @@ class BlogControllerTest extends WebTestCase
      */
     public function testAdminDeletePost()
     {
-        $client = $this->getAdminClient();
+        $client = static::createClient([], [
+            'PHP_AUTH_USER' => 'jane_admin',
+            'PHP_AUTH_PW' => 'kitten',
+        ]);
         $crawler = $client->request('GET', '/en/admin/post/1');
         $client->submit($crawler->filter('#delete-form')->form());
 
