@@ -1,0 +1,35 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-03-15T15:13:11Z
+
+Now the tests fail because the PHP files in `app/` and `web/` don't have this header. We won't add it to those files, so how can we solve this?
+
+---------------------------------------------------------------------------
+
+by apetitpa at 2017-03-15T15:28:10Z
+
+Add `->notPath('web/app_dev.php')` etc to $finder in .php_cs file ? But this would exclude those files from other checks. I don't know if this is something acceptable.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-03-15T15:29:41Z
+
+Yes ... but we want the rest of the rules applied to app/ and web/ files :(
+
+---------------------------------------------------------------------------
+
+by apetitpa at 2017-03-15T15:40:32Z
+
+I don't think there is a way to exclude some checks for a particular path. Maybe this could be a new feature.
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-03-15T16:20:22Z
+
+@javiereguiluz if we let the license be included in these files?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-03-15T16:38:38Z
+
+@yceruto let's do that because I honestly see no other solution.
