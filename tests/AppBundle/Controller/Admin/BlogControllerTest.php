@@ -11,10 +11,10 @@
 
 namespace Tests\AppBundle\Controller\Admin;
 
+use AppBundle\DataFixtures\FixturesTrait;
 use AppBundle\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
-use Tests\FixturesTrait;
 
 /**
  * Functional test for the controllers defined inside the BlogController used

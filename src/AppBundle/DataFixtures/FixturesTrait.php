@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Tests;
+namespace AppBundle\DataFixtures;
 
 /**
  * Helper class to create fixtures contents.

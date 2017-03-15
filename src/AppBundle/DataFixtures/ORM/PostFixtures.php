@@ -11,6 +11,7 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
+use AppBundle\DataFixtures\FixturesTrait;
 use AppBundle\Entity\Comment;
 use AppBundle\Entity\Post;
 use Doctrine\Common\DataFixtures\AbstractFixture;
@@ -18,7 +19,6 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
-use Tests\FixturesTrait;
 
 /**
  * Defines the sample blog posts to load in the database before running the unit

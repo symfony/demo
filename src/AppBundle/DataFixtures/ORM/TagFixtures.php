@@ -11,10 +11,10 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
+use AppBundle\DataFixtures\FixturesTrait;
 use AppBundle\Entity\Tag;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use Tests\FixturesTrait;
 
 /**
  * Defines the sample blog tags to load in the database before running the unit
