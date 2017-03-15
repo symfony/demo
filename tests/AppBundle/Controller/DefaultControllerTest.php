@@ -14,7 +14,6 @@ namespace Tests\AppBundle\Controller;
 use AppBundle\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
-use Tests\ControllerTestTrait;
 
 /**
  * Functional test that implements a "smoke test" of all the public and secure
@@ -28,8 +27,6 @@ use Tests\ControllerTestTrait;
  */
 class DefaultControllerTest extends WebTestCase
 {
-    use ControllerTestTrait;
-
     /**
      * PHPUnit's data providers allow to execute the same tests repeated times
      * using a different set of data each time.
@@ -39,7 +36,7 @@ class DefaultControllerTest extends WebTestCase
      */
     public function testPublicUrls($url)
     {
-        $client = $this->getAnonymousClient();
+        $client = static::createClient();
         $client->request('GET', $url);
 
         $this->assertSame(
@@ -58,8 +55,8 @@ class DefaultControllerTest extends WebTestCase
      */
     public function testPublicBlogPost()
     {
-        // the service container is always available via the client
-        $client = $this->getAnonymousClient();
+        $client = static::createClient();
+        // the service container is always available via the test client
         $blogPost = $client->getContainer()->get('doctrine')->getRepository(Post::class)->find(1);
         $client->request('GET', sprintf('/en/blog/posts/%s', $blogPost->getSlug()));
 
@@ -75,7 +72,7 @@ class DefaultControllerTest extends WebTestCase
      */
     public function testSecureUrls($url)
     {
-        $client = $this->getAnonymousClient();
+        $client = static::createClient();
         $client->request('GET', $url);
 
         $response = $client->getResponse();

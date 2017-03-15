@@ -15,7 +15,6 @@ use AppBundle\DataFixtures\FixturesTrait;
 use AppBundle\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
-use Tests\ControllerTestTrait;
 
 /**
  * Functional test for the controllers defined inside BlogController.
@@ -29,12 +28,11 @@ use Tests\ControllerTestTrait;
  */
 class BlogControllerTest extends WebTestCase
 {
-    use ControllerTestTrait;
     use FixturesTrait;
 
     public function testIndex()
     {
-        $client = $this->getAnonymousClient();
+        $client = static::createClient();
         $crawler = $client->request('GET', '/en/blog/');
 
         $this->assertCount(
@@ -46,7 +44,7 @@ class BlogControllerTest extends WebTestCase
 
     public function testRss()
     {
-        $client = $this->getAnonymousClient();
+        $client = static::createClient();
         $crawler = $client->request('GET', '/en/blog/rss.xml');
 
         $this->assertSame(
@@ -69,7 +67,10 @@ class BlogControllerTest extends WebTestCase
      */
     public function testNewComment()
     {
-        $client = $this->getUserClient();
+        $client = static::createClient([], [
+            'PHP_AUTH_USER' => 'john_user',
+            'PHP_AUTH_PW' => 'kitten',
+        ]);
 
         /** @var Post $post */
         $post = $client->getContainer()->get('doctrine')->getRepository(Post::class)->find(1);
@@ -85,7 +86,8 @@ class BlogControllerTest extends WebTestCase
         $this->assertSame(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
 
         $post = $client->getContainer()->get('doctrine')->getRepository(Post::class)->find(1);
-        // The first one is the last inserted (See descending order of comments association).
+        // The first one is the most recent comment because of the automatic sorting
+        // defined in the comments association of the Post entity
         $comment = $post->getComments()->first();
 
         $this->assertSame($commentsCount + 1, $post->getComments()->count());
