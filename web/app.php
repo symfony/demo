@@ -28,7 +28,7 @@ if (PHP_VERSION_ID < 70000) {
 // $loader->unregister();
 // $apcLoader->register(true);
 
-$kernel = new AppKernel('prod', false);
+$kernel = new AppKernel('prod', true);//因为缓存无法启动ApiDoc
 if (PHP_VERSION_ID < 70000) {
     $kernel->loadClassCache();
 }
