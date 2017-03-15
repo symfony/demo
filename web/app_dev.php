@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Symfony package.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 // This is the front controller used when executing the application in the
 // development environment ('dev'). See:
 //   * http://symfony.com/doc/current/cookbook/configuration/front_controllers_and_kernel.html
