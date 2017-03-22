@@ -15,8 +15,10 @@ use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 
 /**
- * This is an example of a database migration using the DoctrineMigrationsBundle.
- * Here we add a new column to the symfony_demo_user table matching the fullName User property.
+ * Example of a database migration using the DoctrineMigrationsBundle.
+ * Here we add a new column to the symfony_demo_user table to match the fullName User property.
+ * Note that this migration has already been applied, use `php bin/console doctrine:migrations:status`
+ * to see this by yourself.
  *
  * @see http://symfony.com/doc/master/bundles/DoctrineMigrationsBundle/index.html
  *
