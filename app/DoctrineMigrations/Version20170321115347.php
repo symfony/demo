@@ -31,9 +31,8 @@ class Version20170321115347 extends AbstractMigration
      */
     public function up(Schema $schema)
     {
-        $this->addSql('ALTER TABLE symfony_demo_user ADD fullName VARCHAR(255) DEFAULT NULL');
+        $this->addSql('ALTER TABLE symfony_demo_user ADD fullName VARCHAR(255) NOT NULL DEFAULT "Unknown"');
         $this->addSql('UPDATE symfony_demo_user SET fullName = username');
-        $this->addSql('ALTER TABLE symfony_demo_user CHANGE fullName fullName VARCHAR(255) NOT NULL');
     }
 
     /**
