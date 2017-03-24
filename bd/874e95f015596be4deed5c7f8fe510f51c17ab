@@ -1,0 +1,45 @@
+---------------------------------------------------------------------------
+
+by dzuelke at 2016-11-29T06:53:58Z
+
+*poke* :)
+
+---------------------------------------------------------------------------
+
+by dzuelke at 2016-11-30T02:38:20Z
+
+Any chance to get this merged before SymfonyCon begins @javiereguiluz? :)
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2016-11-30T07:21:04Z
+
+I know nothing about Heroku ... so I cannot review or test this myself. I was waiting to receive any approval/reject comment from anyone.
+
+Luckily you are trustworthy, so I guess I'll have to merge this blindly.
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2016-11-30T08:01:08Z
+
+Has CI already worked on Heroku for users? I triggered an error in unit tests [here](https://github.com/bocharsky-bw/symfony-demo/blob/patch-1/tests/AppBundle/Utils/SluggerTest.php#L33), but Heroku still successfully build the app without any errors.
+
+Should we wait until this feature will be stable and available for all Heroku users? I see you mentioned it's currently in beta.
+
+---------------------------------------------------------------------------
+
+by stof at 2016-11-30T08:45:59Z
+
+@dzuelke is there any doc about Heroku CI anywhere ? I haven't found any
+
+---------------------------------------------------------------------------
+
+by dzuelke at 2016-11-30T12:28:05Z
+
+It's in private beta, @bocharsky-bw and @stof. I'm also happy to wait with this PR until it's GA, @javiereguiluz :)
+
+---------------------------------------------------------------------------
+
+by dzuelke at 2017-03-23T21:34:12Z
+
+This is now in public beta, so merge away, @stof or @bocharsky-bw :)
