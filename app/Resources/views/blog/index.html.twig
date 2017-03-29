@@ -6,7 +6,7 @@
     {% for post in posts %}
         <article class="post">
             <h2>
-                <a href="{{ path('blog_post', { slug: post.slug }) }}">
+                <a href="{{ path('blog_post', {slug: post.slug}) }}">
                     {{ post.title }}
                 </a>
             </h2>
@@ -26,7 +26,7 @@
 
     {% if posts.haveToPaginate %}
         <div class="navigation text-center">
-            {{ pagerfanta(posts, 'twitter_bootstrap3_translated', { routeName: 'blog_index_paginated' }) }}
+            {{ pagerfanta(posts, 'twitter_bootstrap3_translated', {routeName: 'blog_index_paginated'}) }}
         </div>
     {% endif %}
 {% endblock %}

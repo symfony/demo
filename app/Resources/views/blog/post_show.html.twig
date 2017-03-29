@@ -22,7 +22,7 @@
         See http://symfony.com/doc/current/cookbook/security/remember_me.html#forcing-the-user-to-re-authenticate-before-accessing-certain-resources
         #}
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            {{ render(controller('AppBundle:Blog:commentForm', { 'id': post.id })) }}
+            {{ render(controller('AppBundle:Blog:commentForm', {'id': post.id})) }}
         {% else %}
             <p>
                 <a class="btn btn-success" href="{{ path('security_login') }}">
@@ -59,7 +59,7 @@
 {% block sidebar %}
     {% if is_granted('edit', post) %}
         <div class="section">
-            <a class="btn btn-lg btn-block btn-success" href="{{ path('admin_post_edit', { id: post.id }) }}">
+            <a class="btn btn-lg btn-block btn-success" href="{{ path('admin_post_edit', {id: post.id}) }}">
                 <i class="fa fa-edit" aria-hidden="true"></i> {{ 'action.edit_post'|trans }}
             </a>
         </div>
