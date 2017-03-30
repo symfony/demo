@@ -3,7 +3,7 @@
     test the server-side validation errors from the browser. To temporarily
     disable this validation, add the 'novalidate' attribute:
 
-    {{ form_start(form, { attr: { novalidate: 'novalidate' } }) }}
+    {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
 #}
 
 {% if show_confirmation|default(false) %}
@@ -11,7 +11,7 @@
     {{ include('blog/_delete_post_confirmation.html.twig') }}
 {% endif %}
 
-{{ form_start(form, { attr: attr|default({}) }) }}
+{{ form_start(form, {attr: attr|default({})}) }}
     {{ form_widget(form) }}
 
     <input type="submit" value="{{ button_label|default('label.create_post'|trans) }}"

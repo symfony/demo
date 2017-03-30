@@ -21,13 +21,13 @@
 
 {% block sidebar %}
     <div class="section">
-        <a href="{{ path('admin_post_edit', { id: post.id }) }}" class="btn btn-lg btn-block btn-success">
+        <a href="{{ path('admin_post_edit', {id: post.id}) }}" class="btn btn-lg btn-block btn-success">
             <i class="fa fa-edit" aria-hidden="true"></i> {{ 'action.edit_contents'|trans }}
         </a>
     </div>
 
     <div class="section">
-        {{ include('admin/blog/_delete_form.html.twig', { post: post }, with_context = false) }}
+        {{ include('admin/blog/_delete_form.html.twig', {post: post}, with_context = false) }}
     </div>
 
     {{ parent() }}
