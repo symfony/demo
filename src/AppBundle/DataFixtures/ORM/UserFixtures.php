@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
 /**
- * Defines the sample users to load in the database befre running the unit and
+ * Defines the sample users to load in the database before running the unit and
  * functional tests. Execute this command to load the data.
  *
  *   $ php bin/console doctrine:fixtures:load
