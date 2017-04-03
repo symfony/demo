@@ -224,8 +224,8 @@ body#login #login-users-help p .console {
 
 /* Page: 'Blog index'
    ------------------------------------------------------------------------- */
-body#blog_index h1,
-body#blog_index p {
+body#blog_index #main h1,
+body#blog_index #main p {
     margin-bottom: 0.5em
 }
 
@@ -248,7 +248,7 @@ body#blog_index .post-tags .label-default i {
 
 /* Page: 'Blog post show'
    ------------------------------------------------------------------------- */
-body#blog_post_show h3 {
+body#blog_post_show #main h3 {
     margin-bottom: 0.75em
 }
 
