@@ -66,4 +66,25 @@
                 .modal('show');
         }
     });
+
+    window.SymfonyDemo = {
+        /**
+         * Render a Markdown input to formatted HTML
+         *
+         * @param {String} text
+         * @param {String} preview
+         * @param {String} previewUrl
+         */
+        preview: function (text, preview, previewUrl) {
+            var out = $(preview);
+
+            out.html('Loading preview...');
+
+            $.post(
+                previewUrl,
+                {text: $(text).val()},
+                function (r) { out.html(r.data); }
+            );
+        }
+    }
 })(window.jQuery);

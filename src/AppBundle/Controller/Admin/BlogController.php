@@ -18,6 +18,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -188,5 +189,27 @@ class BlogController extends Controller
         $this->addFlash('success', 'post.deleted_successfully');
 
         return $this->redirectToRoute('admin_post_index');
+    }
+
+    /**
+     * Converts a markdown string to HTML.
+     *
+     * @Route("/preview", name="preview")
+     *
+     * This method uses the JsonResponse class which takes care of setting the
+     * correct content type for the response.
+     */
+    public function previewAction(Request $request)
+    {
+        $response = [];
+        $text = $request->request->get('text');
+
+        if (!$text) {
+            $response['data'] = 'Nothing to preview...';
+        } else {
+            $response['data'] = $this->get('markdown')->toHtml($text);
+        }
+
+        return new JsonResponse($response);
     }
 }

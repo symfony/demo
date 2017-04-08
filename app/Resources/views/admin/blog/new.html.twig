@@ -1,5 +1,16 @@
 {% extends 'admin/layout.html.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $('a[data-toggle="tab"]').on('click', function (e) {
+            if ('#previewId' == $(e.target).attr('href')) {
+                SymfonyDemo.preview('#post_content', '#previewId', '{{ path('preview') }}');
+            }
+        });
+    </script>
+{% endblock %}
+
 {% block body_id 'admin_post_new' %}
 
 {% block main %}
