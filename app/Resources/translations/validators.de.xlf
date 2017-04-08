@@ -30,6 +30,10 @@
             <source>comment.is_spam</source>
             <target>Der Inhalt des Kommentars wird als Spam eingestuft.</target>
         </trans-unit>
+        <trans-unit id="post.too_many_tags">
+            <source>post.too_many_tags</source>
+            <target>Zu viele Tags (höchstens {{ limit }} Tags sind erlaubt)</target>
+        </trans-unit>
         </body>
     </file>
 </xliff>
