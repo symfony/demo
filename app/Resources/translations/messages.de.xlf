@@ -276,6 +276,30 @@
                 <source>help.more_information</source>
                 <target><![CDATA[Für mehr Informationen schaue in die offizielle <a href="http://symfony.com/doc">Symfony Dokumentation</a>.]]></target>
             </trans-unit>
+            <trans-unit id="action.show_post">
+                <source>action.show_post</source>
+                <target>Beitrag anzeigen</target>
+            </trans-unit>
+            <trans-unit id="rss.title">
+                <source>rss.title</source>
+                <target>Blog</target>
+            </trans-unit>
+            <trans-unit id="menu.choose_language">
+                <source>menu.choose_language</source>
+                <target>Sprache wählen</target>
+            </trans-unit>
+            <trans-unit id="rss.description">
+                <source>rss.description</source>
+                <target>Die neuesten Posts, die auf dem Symfony Blog veröffentlicht wurden.</target>
+            </trans-unit>
+            <trans-unit id="menu.rss">
+                <source>menu.rss</source>
+                <target>Blog Posts RSS</target>
+            </trans-unit>
+            <trans-unit id="label.tags">
+                <source>label.tags</source>
+                <target>Tags</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
