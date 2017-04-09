@@ -194,22 +194,16 @@ class BlogController extends Controller
     /**
      * Converts a markdown string to HTML.
      *
-     * @Route("/preview", name="preview")
+     * @Route("/preview", name="admin_post_content_preview")
      *
      * This method uses the JsonResponse class which takes care of setting the
      * correct content type for the response.
      */
     public function previewAction(Request $request)
     {
-        $response = [];
-        $text = $request->request->get('text');
-
-        if (!$text) {
-            $response['data'] = 'Nothing to preview...';
-        } else {
-            $response['data'] = $this->get('markdown')->toHtml($text);
-        }
-
-        return new JsonResponse($response);
+        return $this->json([
+            'data' => $this->get('markdown')
+                ->toHtml($request->request->get('text')),
+        ]);
     }
 }

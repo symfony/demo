@@ -25,7 +25,7 @@
     </div>
 {% endblock %}
 
-{% block editor_widget %}
+{% block _post_editor_widget %}
     <ul class="nav nav-tabs">
         <li class="active"><a href="#writeId" data-toggle="tab">{{ 'label.write'|trans }}</a></li>
         <li><a href="#previewId" data-toggle="tab">{{ 'label.preview'|trans }}</a></li>
@@ -34,6 +34,6 @@
         <div class="tab-pane active" id="writeId">
             {{ block('textarea_widget') }}
         </div>
-        <div class="tab-pane" style="min-height: 200px;" id="previewId"></div>
+        <div class="tab-pane" id="previewId"></div>
     </div>
 {% endblock %}

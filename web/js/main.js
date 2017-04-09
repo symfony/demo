@@ -78,12 +78,12 @@
         preview: function (text, preview, previewUrl) {
             var out = $(preview);
 
-            out.html('Loading preview...');
+            out.empty().addClass('loading');
 
             $.post(
                 previewUrl,
                 {text: $(text).val()},
-                function (r) { out.html(r.data); }
+                function (r) { out.html(r.data).removeClass('loading'); }
             );
         }
     }
