@@ -12,6 +12,7 @@
 namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 /**
  * Defines a custom form field type used to display a markdown editor with preview functionality.
@@ -22,4 +23,11 @@ use Symfony\Component\Form\AbstractType;
  */
 class EditorType extends AbstractType
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function getParent()
+    {
+        return TextareaType::class;
+    }
 }
