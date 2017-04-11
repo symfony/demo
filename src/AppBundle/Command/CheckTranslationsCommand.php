@@ -19,16 +19,17 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Translation\DataCollectorTranslator;
 
 /**
- * Class CheckTranslationsCommand
- * @package AppBundle\Command
+ * Class CheckTranslationsCommand.
  */
 class CheckTranslationsCommand extends ContainerAwareCommand
 {
     /**
      * This command uses the SymfonyStyle class which has a lot of helpful methods
      * to style the console output, including tables and progress bars.
+     *
      * @see http://symfony.com/doc/current/console/style.html
      * @see http://api.symfony.com/3.2/Symfony/Component/Console/Style/SymfonyStyle.html
+     *
      * @var SymfonyStyle
      */
     private $io = null;
@@ -58,10 +59,10 @@ class CheckTranslationsCommand extends ContainerAwareCommand
      */
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
-        $this->locales        = explode('|', $this->getContainer()->getParameter('app_locales'));
+        $this->locales = explode('|', $this->getContainer()->getParameter('app_locales'));
         $this->fallbackLocale = 'en';
-        $this->translator     = $this->getContainer()->get('translator');
-        $this->io             = new SymfonyStyle($input, $output);
+        $this->translator = $this->getContainer()->get('translator');
+        $this->io = new SymfonyStyle($input, $output);
 
         $this->translator->setLocale($this->fallbackLocale);
     }
@@ -76,7 +77,7 @@ class CheckTranslationsCommand extends ContainerAwareCommand
         $locale = $input->getArgument('locale');
 
         if ($locale) {
-            if (false == in_array($locale, $this->locales)) {
+            if (false === in_array($locale, $this->locales)) {
                 throw new \UnexpectedValueException(
                     ' The given locale does not exist. Valid locale: '.implode(', ', $this->locales)
                 );
@@ -94,20 +95,20 @@ class CheckTranslationsCommand extends ContainerAwareCommand
         $checks = [];
 
         foreach ($this->locales as $locale) {
-            if ($locale == $this->fallbackLocale) {
+            if ($locale === $this->fallbackLocale) {
                 continue;
             }
 
             $check = [];
 
-            $check['Locale']      = $locale;
-            $check['Missing']     = 0;
+            $check['Locale'] = $locale;
+            $check['Missing'] = 0;
             $check['Superfluous'] = 0;
 
             $catalogue = $this->translator->getCatalogue($locale)->all();
 
             foreach ($catalogue as $domain => $messages) {
-                $check['Missing']     += count(array_diff_key($fallbackMessages[$domain], $messages));
+                $check['Missing'] += count(array_diff_key($fallbackMessages[$domain], $messages));
                 $check['Superfluous'] += count(array_diff_key($messages, $fallbackMessages[$domain]));
             }
 
@@ -121,12 +122,12 @@ class CheckTranslationsCommand extends ContainerAwareCommand
     private function check($locale)
     {
         $fallbackMessages = $this->translator->getCatalogue()->all();
-        $localeMessages   = $this->translator->getCatalogue($locale)->all();
+        $localeMessages = $this->translator->getCatalogue($locale)->all();
 
         $missingStrings = [];
 
         foreach ($fallbackMessages as $domain => $messages) {
-            if (false == array_key_exists($domain, $localeMessages)) {
+            if (false === array_key_exists($domain, $localeMessages)) {
                 $this->io->error(sprintf('The domain "%s" does not exist for locales "%s"', $domain, $locale));
                 continue;
             }
