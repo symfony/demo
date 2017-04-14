@@ -36,7 +36,7 @@ class TagArrayToStringTransformerTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Ensures that empty tags and errors in the number of commas are
-     * dealed correctly.
+     * dealt correctly.
      */
     public function testCreateTheRightAmountOfTagsWithTooManyCommas()
     {
