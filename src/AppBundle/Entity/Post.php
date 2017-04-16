@@ -119,6 +119,9 @@ class Post
      */
     private $tags;
 
+    /**
+     *
+     */
     public function __construct()
     {
         $this->publishedAt = new \DateTime();
@@ -126,11 +129,17 @@ class Post
         $this->tags = new ArrayCollection();
     }
 
+    /**
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @return string
+     */
     public function getTitle()
     {
         return $this->title;
@@ -144,6 +153,9 @@ class Post
         $this->title = $title;
     }
 
+    /**
+     * @return string
+     */
     public function getSlug()
     {
         return $this->slug;
@@ -157,6 +169,9 @@ class Post
         $this->slug = $slug;
     }
 
+    /**
+     * @return string
+     */
     public function getContent()
     {
         return $this->content;
@@ -170,11 +185,17 @@ class Post
         $this->content = $content;
     }
 
+    /**
+     * @return \DateTime
+     */
     public function getPublishedAt()
     {
         return $this->publishedAt;
     }
 
+    /**
+     * @param \DateTime $publishedAt
+     */
     public function setPublishedAt(\DateTime $publishedAt)
     {
         $this->publishedAt = $publishedAt;
@@ -196,22 +217,34 @@ class Post
         $this->author = $author;
     }
 
+    /**
+     * @return Comment[]|ArrayCollection
+     */
     public function getComments()
     {
         return $this->comments;
     }
 
+    /**
+     * @param Comment $comment
+     */
     public function addComment(Comment $comment)
     {
         $this->comments->add($comment);
         $comment->setPost($this);
     }
 
+    /**
+     * @param Comment $comment
+     */
     public function removeComment(Comment $comment)
     {
         $this->comments->removeElement($comment);
     }
 
+    /**
+     * @return string
+     */
     public function getSummary()
     {
         return $this->summary;
@@ -225,6 +258,9 @@ class Post
         $this->summary = $summary;
     }
 
+    /**
+     * @param Tag $tag
+     */
     public function addTag(Tag $tag)
     {
         if (!$this->tags->contains($tag)) {
@@ -232,11 +268,17 @@ class Post
         }
     }
 
+    /**
+     * @param Tag $tag
+     */
     public function removeTag(Tag $tag)
     {
         $this->tags->removeElement($tag);
     }
 
+    /**
+     * @return Tag[]|ArrayCollection
+     */
     public function getTags()
     {
         return $this->tags;

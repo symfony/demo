@@ -73,6 +73,9 @@ class User implements UserInterface
      */
     private $roles = [];
 
+    /**
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
@@ -86,11 +89,17 @@ class User implements UserInterface
         $this->fullName = $fullName;
     }
 
+    /**
+     * @return string
+     */
     public function getFullName()
     {
         return $this->fullName;
     }
 
+    /**
+     * @return string
+     */
     public function getUsername()
     {
         return $this->username;
@@ -104,6 +113,9 @@ class User implements UserInterface
         $this->username = $username;
     }
 
+    /**
+     * @return string
+     */
     public function getEmail()
     {
         return $this->email;
@@ -117,6 +129,9 @@ class User implements UserInterface
         $this->email = $email;
     }
 
+    /**
+     * @return string
+     */
     public function getPassword()
     {
         return $this->password;
@@ -145,6 +160,9 @@ class User implements UserInterface
         return array_unique($roles);
     }
 
+    /**
+     * @param array $roles
+     */
     public function setRoles(array $roles)
     {
         $this->roles = $roles;
