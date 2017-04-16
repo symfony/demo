@@ -33,4 +33,4 @@ script:
   # this checks that the Twig template files contain no syntax errors
   - ./bin/console lint:twig app/Resources @CodeExplorerBundle
   # this checks that the application doesn't use dependencies with known security vulnerabilities
-  - ./bin/console security:check
+  #- ./bin/console security:check
