@@ -76,9 +76,6 @@ class Comment
      */
     private $author;
 
-    /**
-     *
-     */
     public function __construct()
     {
         $this->publishedAt = new \DateTime();

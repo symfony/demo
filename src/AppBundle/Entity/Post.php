@@ -119,9 +119,6 @@ class Post
      */
     private $tags;
 
-    /**
-     *
-     */
     public function __construct()
     {
         $this->publishedAt = new \DateTime();
