@@ -313,6 +313,42 @@
                 <source>help.more_information</source>
                 <target><![CDATA[Para más información, consulta la <a href="http://symfony.com/doc">documentación de Symfony</a>.]]></target>
             </trans-unit>
+            <trans-unit id="action.show_post">
+                <source>action.show_post</source>
+                <target>Mostrar artículo</target>
+            </trans-unit>
+            <trans-unit id="menu.rss">
+                <source>menu.rss</source>
+                <target>RSS del blog</target>
+            </trans-unit>
+            <trans-unit id="post.created_successfully">
+                <source>post.created_successfully</source>
+                <target>¡Artículo creado con éxito!</target>
+            </trans-unit>
+            <trans-unit id="post.updated_successfully">
+                <source>post.updated_successfully</source>
+                <target>¡Artículo actualizado con éxito!</target>
+            </trans-unit>
+            <trans-unit id="post.deleted_successfully">
+                <source>post.deleted_successfully</source>
+                <target>¡Artículo eliminado con éxito!</target>
+            </trans-unit>
+            <trans-unit id="notification.comment_created">
+                <source>notification.comment_created</source>
+                <target>¡Su artículo recibió un comentario!</target>
+            </trans-unit>
+            <trans-unit id="notification.comment_created.description">
+                <source>notification.comment_created.description</source>
+                <target>Su artículo "%title%" recibió un comentario nuevo. Puede leer el comentario siguiendo <a href="%link%">este enlace</a></target>
+            </trans-unit>
+            <trans-unit id="rss.title">
+                <source>rss.title</source>
+                <target>Blog de Symfony Demo</target>
+            </trans-unit>
+            <trans-unit id="rss.description">
+                <source>rss.description</source>
+                <target>Publicaciones más recientes publicadas en el blog de Symfony Demo</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
