@@ -276,6 +276,78 @@
                 <source>help.more_information</source>
                 <target><![CDATA[Für mehr Informationen schaue in die offizielle <a href="http://symfony.com/doc">Symfony Dokumentation</a>.]]></target>
             </trans-unit>
+            <trans-unit id="action.show_post">
+                <source>action.show_post</source>
+                <target>Beitrag anzeigen</target>
+            </trans-unit>
+            <trans-unit id="rss.title">
+                <source>rss.title</source>
+                <target>Blog</target>
+            </trans-unit>
+            <trans-unit id="menu.choose_language">
+                <source>menu.choose_language</source>
+                <target>Sprache wählen</target>
+            </trans-unit>
+            <trans-unit id="rss.description">
+                <source>rss.description</source>
+                <target>Die neuesten Posts, die auf dem Symfony Blog veröffentlicht wurden.</target>
+            </trans-unit>
+            <trans-unit id="menu.rss">
+                <source>menu.rss</source>
+                <target>Blog Posts RSS</target>
+            </trans-unit>
+            <trans-unit id="label.tags">
+                <source>label.tags</source>
+                <target>Tags</target>
+            </trans-unit>
+            <trans-unit id="http_error.name">
+                <source>http_error.name</source>
+                <target>Fehler %status_code%</target>
+            </trans-unit>
+            <trans-unit id="http_error.description">
+                <source>http_error.description</source>
+                <target>Ein unbekannter Fehler (HTTP %status_code%) ist aufgetreten. Deine Anfrage konnte deswegen nicht ausgeführt werden.</target>
+            </trans-unit>
+            <trans-unit id="http_error.suggestion">
+                <source>http_error.suggestion</source>
+                <target><![CDATA[Versuche diese Seite in einigen Minuten erneut zu laden oder <a href="%url%">gehe zurück zur Homepage</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="http_error_403.description">
+                <source>http_error_403.description</source>
+                <target>Du hast keine Berechtigung, auf diese Ressource zuzugreifen.</target>
+            </trans-unit>
+            <trans-unit id="http_error_403.suggestion">
+                <source>http_error_403.suggestion</source>
+                <target>Frage deinen Manager oder Systemadministrator, um dir Zugriff auf diese Ressource zu gewähren.</target>
+            </trans-unit>
+            <trans-unit id="http_error_404.description">
+                <source>http_error_404.description</source>
+                <target>Wir konnten die von dir angeforderte Seite nicht finden.</target>
+            </trans-unit>
+            <trans-unit id="http_error_404.suggestion">
+                <source>http_error_404.suggestion</source>
+                <target><![CDATA[Überprüfe Rechtschreibfehler in der URL oder <a href="%url%">gehe zurück zur Homepage</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="http_error_500.description">
+                <source>http_error_500.description</source>
+                <target>Es gab einen internen Serverfehler.</target>
+            </trans-unit>
+            <trans-unit id="http_error_500.suggestion">
+                <source>http_error_500.suggestion</source>
+                <target><![CDATA[Versuche diese Seite in einigen Minuten erneut zu laden oder <a href="%url%">gehe zurück zur Homepage</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="title.login_help">
+                <source>title.login_help</source>
+                <target>Versuche einen der folgenden Benutzer</target>
+            </trans-unit>
+            <trans-unit id="notification.comment_created">
+                <source>notification.comment_created</source>
+                <target>Dein Beitrag hat einen Kommentar erhalten!</target>
+            </trans-unit>
+            <trans-unit id="notification.comment_created.description">
+                <source>notification.comment_created.description</source>
+                <target><![CDATA[Dein Beitrag "%title%" hat einen Kommentar erhalten. Du kannst den Kommentar lesen, wenn du <a href="%link%">diesem Link</a> folgst.]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
