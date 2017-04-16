@@ -1,4 +1,7 @@
 services:
+    app.translation.dumper.xliff:
+        class: AppBundle\Dumper\AppXliffFileDumper
+
     # First we define some basic services to make these utilities available in
     # the entire application
     slugger:
