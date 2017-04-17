@@ -94,7 +94,8 @@ class BlogController extends Controller
     {
         $comment = new Comment();
         $comment->setAuthor($this->getUser());
-        $comment->setPost($post);
+
+        $post->addComment($comment);
 
         $form = $this->createForm(CommentType::class, $comment);
 
