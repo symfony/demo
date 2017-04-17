@@ -11,11 +11,12 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="symfony_demo_user")
  *
  * Defines the properties of the User entity to represent the application users.
