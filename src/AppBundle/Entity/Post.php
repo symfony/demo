@@ -203,13 +203,17 @@ class Post
 
     public function addComment(Comment $comment)
     {
-        $this->comments->add($comment);
-        $comment->setPost($this);
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setPost($this);
+        }
     }
 
     public function removeComment(Comment $comment)
     {
-        $this->comments->removeElement($comment);
+        if ($this->comments->removeElement($comment)) {
+            $comment->setPost(null);
+        }
     }
 
     public function getSummary()

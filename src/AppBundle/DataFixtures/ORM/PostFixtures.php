@@ -66,10 +66,10 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface,
                 $comment->setAuthor($this->getReference('john-user'));
                 $comment->setPublishedAt(new \DateTime('now + '.($i + $j).'seconds'));
                 $comment->setContent($this->getRandomCommentContent());
-                $comment->setPost($post);
+
+                $post->addComment($comment);
 
                 $manager->persist($comment);
-                $post->addComment($comment);
             }
 
             $manager->persist($post);
