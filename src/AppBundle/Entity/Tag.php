@@ -41,9 +41,6 @@ class Tag implements \JsonSerializable
      */
     private $name;
 
-    /**
-     * @return int
-     */
     public function getId()
     {
         return $this->id;
@@ -57,9 +54,6 @@ class Tag implements \JsonSerializable
         $this->name = $name;
     }
 
-    /**
-     * @return string
-     */
     public function getName()
     {
         return $this->name;
@@ -77,9 +71,6 @@ class Tag implements \JsonSerializable
         return $this->name;
     }
 
-    /**
-     * @return string
-     */
     public function __toString()
     {
         return $this->name;
