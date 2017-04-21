@@ -1,0 +1,15 @@
+---------------------------------------------------------------------------
+
+by stof at 2017-04-21T10:04:49Z
+
+why specifying an endpoint ? This looks weird to me (especially given that you disable SSL to perform security-related checks)
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2017-04-21T10:20:53Z
+
+It's a temporary workaround as I understand. Somehow it doesn't work on Travis without specifying the endpoint and throw the next error:
+> An error occurred: gnutls_handshake() failed: A TLS fatal alert has been received..
+
+You can see it in build logs of my first comment in this PR:
+https://travis-ci.org/symfony/symfony-demo/jobs/224110287
