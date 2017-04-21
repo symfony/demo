@@ -73,9 +73,6 @@ class User implements UserInterface, \Serializable
      */
     private $roles = [];
 
-    /**
-     * @return int
-     */
     public function getId()
     {
         return $this->id;
@@ -89,17 +86,11 @@ class User implements UserInterface, \Serializable
         $this->fullName = $fullName;
     }
 
-    /**
-     * @return string
-     */
     public function getFullName()
     {
         return $this->fullName;
     }
 
-    /**
-     * @return string
-     */
     public function getUsername()
     {
         return $this->username;
@@ -113,9 +104,6 @@ class User implements UserInterface, \Serializable
         $this->username = $username;
     }
 
-    /**
-     * @return string
-     */
     public function getEmail()
     {
         return $this->email;
@@ -129,9 +117,6 @@ class User implements UserInterface, \Serializable
         $this->email = $email;
     }
 
-    /**
-     * @return string
-     */
     public function getPassword()
     {
         return $this->password;
@@ -160,9 +145,6 @@ class User implements UserInterface, \Serializable
         return array_unique($roles);
     }
 
-    /**
-     * @param array $roles
-     */
     public function setRoles(array $roles)
     {
         $this->roles = $roles;
