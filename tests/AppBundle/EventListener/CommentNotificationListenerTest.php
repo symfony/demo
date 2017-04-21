@@ -37,22 +37,24 @@ class CommentNotificationListenerTest extends \PHPUnit_Framework_TestCase
         $urlGeneratorProphecy = $this->prophesize(UrlGeneratorInterface::class);
         $translatorProphecy = $this->prophesize(TranslatorInterface::class);
 
-        $user = new User();
-        $user->setEmail('bar@foo.fr');
+        $userProphecy = $this->prophesize(User::class);
+        $userProphecy->getEmail('fabien@symfony.com');
 
-        $post = new Post();
-        $post->setTitle('bar foo');
-        $post->setAuthor($user);
-        $post->setSlug('bar-foo');
+        $postProphecy = $this->prophesize(Post::class);
+        $postProphecy->getTitle()->willReturn('bar foo');
+        $postProphecy->getAuthor()->willReturn('fabien');
+        $postProphecy->getSlug()->willReturn('bar-foo');
+        $postProphecy->getAuthor()->willReturn($userProphecy->reveal());
 
-        $comment = new Comment();
-        $comment->setPost($post);
+        $commentProphecy = $this->prophesize(Comment::class);
+        $commentProphecy->getId()->willReturn(241);
+        $commentProphecy->getPost()->willReturn($postProphecy->reveal());
 
-        $event = new GenericEvent($comment);
+        $event = new GenericEvent($commentProphecy->reveal());
 
-        $urlGeneratorProphecy->generate("blog_post", ["slug" => "bar-foo", "_fragment" => "comment_"], 0)->willReturn('http://foo.bar')->shouldBeCalled();
-        $translatorProphecy->trans('notification.comment_created')->shouldBeCalled();
-        $translatorProphecy->trans("notification.comment_created.description", ["%title%" => "bar foo", "%link%" => "http://foo.bar"])->shouldBeCalled();
+        $urlGeneratorProphecy->generate('blog_post', ['slug' => 'bar-foo', '_fragment' => 'comment_241'], 0)->willReturn('http://foo.sf')->shouldBeCalled();
+        $translatorProphecy->trans("notification.comment_created")->shouldBeCalled();
+        $translatorProphecy->trans("notification.comment_created.description", ["%title%" => "bar foo", "%link%" => "http://foo.sf"])->shouldBeCalled();
 
         $listener = new CommentNotificationListener($mailerProphecy->reveal(), $urlGeneratorProphecy->reveal(), $translatorProphecy->reveal(), 'foo@bar.sf');
         $listener->onCommentCreated($event);
