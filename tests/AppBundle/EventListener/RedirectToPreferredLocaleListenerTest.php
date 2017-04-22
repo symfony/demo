@@ -12,7 +12,6 @@
 namespace Tests\AppBundle\EventListener;
 
 use AppBundle\EventListener\RedirectToPreferredLocaleListener;
-use Symfony\Component\HttpFoundation\HeaderBag;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
@@ -20,7 +19,7 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
- * Unit test for the event listener
+ * Unit test for the event listener.
  *
  * See http://symfony.com/doc/current/book/testing.html#unit-tests
  *
@@ -97,7 +96,7 @@ class RedirectToPreferredLocaleListenerTest extends \PHPUnit_Framework_TestCase
         $httpKernelProphecy = $this->prophesize(HttpKernelInterface::class);
         $event = new GetResponseEvent($httpKernelProphecy->reveal(), $request, HttpKernelInterface::MASTER_REQUEST);
 
-        $this->urlGeneratorProphecy->generate("homepage", ["_locale" => "fr"])->willReturn('http://foo.sf');
+        $this->urlGeneratorProphecy->generate('homepage', ['_locale' => 'fr'])->willReturn('http://foo.sf');
 
         $this->listener->onKernelRequest($event);
 
