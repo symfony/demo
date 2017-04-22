@@ -15,6 +15,7 @@ use AppBundle\Entity\Comment;
 use AppBundle\Entity\Post;
 use AppBundle\Entity\User;
 use AppBundle\EventListener\CommentNotificationListener;
+use Prophecy\Argument;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -58,5 +59,7 @@ class CommentNotificationListenerTest extends \PHPUnit_Framework_TestCase
 
         $listener = new CommentNotificationListener($mailerProphecy->reveal(), $urlGeneratorProphecy->reveal(), $translatorProphecy->reveal(), 'foo@bar.sf');
         $listener->onCommentCreated($event);
+
+        $mailerProphecy->send(Argument::type(\Swift_Message::class))->shouldBeCalled();
     }
 }
