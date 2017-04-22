@@ -21,7 +21,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
- * Unit test for the event listener
+ * Unit test for the event listener.
  *
  * See http://symfony.com/doc/current/book/testing.html#unit-tests
  *
@@ -54,8 +54,8 @@ class CommentNotificationListenerTest extends \PHPUnit_Framework_TestCase
         $event = new GenericEvent($commentProphecy->reveal());
 
         $urlGeneratorProphecy->generate('blog_post', ['slug' => 'bar-foo', '_fragment' => 'comment_241'], 0)->willReturn('http://foo.sf')->shouldBeCalled();
-        $translatorProphecy->trans("notification.comment_created")->shouldBeCalled();
-        $translatorProphecy->trans("notification.comment_created.description", ["%title%" => "bar foo", "%link%" => "http://foo.sf"])->shouldBeCalled();
+        $translatorProphecy->trans('notification.comment_created')->shouldBeCalled();
+        $translatorProphecy->trans('notification.comment_created.description', ['%title%' => 'bar foo', '%link%' => 'http://foo.sf'])->shouldBeCalled();
 
         $listener = new CommentNotificationListener($mailerProphecy->reveal(), $urlGeneratorProphecy->reveal(), $translatorProphecy->reveal(), 'foo@bar.sf');
         $listener->onCommentCreated($event);
