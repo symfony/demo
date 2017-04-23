@@ -55,9 +55,7 @@ class RedirectToPreferredLocaleListenerTest extends \PHPUnit_Framework_TestCase
         $this->eventProphecy->getRequest()->willReturn($this->requestProphecy->reveal())->shouldBeCalled();
         $this->eventProphecy->isMasterRequest()->willReturn(false)->shouldBeCalled();
 
-        $return = $this->listener->onKernelRequest($this->eventProphecy->reveal());
-
-        $this->assertNull($return);
+        $this->listener->onKernelRequest($this->eventProphecy->reveal());
     }
 
     public function testOnKernelRequestWhenGetPathInfoIsNotDefault()
@@ -67,9 +65,7 @@ class RedirectToPreferredLocaleListenerTest extends \PHPUnit_Framework_TestCase
         $this->eventProphecy->getRequest()->willReturn($this->requestProphecy->reveal())->shouldBeCalled();
         $this->eventProphecy->isMasterRequest()->willReturn(false)->shouldBeCalled();
 
-        $return = $this->listener->onKernelRequest($this->eventProphecy->reveal());
-
-        $this->assertNull($return);
+        $this->listener->onKernelRequest($this->eventProphecy->reveal());
     }
 
     public function testOnKernelRequestWhenSameHttpHost()
@@ -81,9 +77,7 @@ class RedirectToPreferredLocaleListenerTest extends \PHPUnit_Framework_TestCase
         $this->eventProphecy->getRequest()->willReturn($request)->shouldBeCalled();
         $this->eventProphecy->isMasterRequest()->willReturn(true)->shouldBeCalled();
 
-        $return = $this->listener->onKernelRequest($this->eventProphecy->reveal());
-
-        $this->assertNull($return);
+        $this->listener->onKernelRequest($this->eventProphecy->reveal());
     }
 
     public function testOnKernelRequestWhenPreferredLanguageNotSame()
