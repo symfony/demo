@@ -32,7 +32,7 @@ use Symfony\Component\Console\Question\Question;
  *
  *     $ php bin/console app:add-user -vv
  *
- * See http://symfony.com/doc/current/cookbook/console/console_command.html
+ * See https://symfony.com/doc/current/cookbook/console/console_command.html
  * For more advanced uses, commands can be defined as services too. See
  * https://symfony.com/doc/current/console/commands_as_services.html
  *
@@ -59,7 +59,7 @@ class AddUserCommand extends ContainerAwareCommand
             ->setDescription('Creates users and stores them in the database')
             ->setHelp($this->getCommandHelp())
             // commands can optionally define arguments and/or options (mandatory and optional)
-            // see http://symfony.com/doc/current/components/console/console_arguments.html
+            // see https://symfony.com/doc/current/components/console/console_arguments.html
             ->addArgument('username', InputArgument::OPTIONAL, 'The username of the new user')
             ->addArgument('password', InputArgument::OPTIONAL, 'The plain password of the new user')
             ->addArgument('email', InputArgument::OPTIONAL, 'The email of the new user')
@@ -118,7 +118,7 @@ class AddUserCommand extends ContainerAwareCommand
             '',
         ]);
 
-        // See http://symfony.com/doc/current/components/console/helpers/questionhelper.html
+        // See https://symfony.com/doc/current/components/console/helpers/questionhelper.html
         $console = $this->getHelper('question');
 
         // Ask for the username if it's not defined
@@ -205,7 +205,7 @@ class AddUserCommand extends ContainerAwareCommand
         $user->setEmail($email);
         $user->setRoles([$isAdmin ? 'ROLE_ADMIN' : 'ROLE_USER']);
 
-        // See http://symfony.com/doc/current/book/security.html#security-encoding-password
+        // See https://symfony.com/doc/current/book/security.html#security-encoding-password
         $encoder = $this->getContainer()->get('security.password_encoder');
         $encodedPassword = $encoder->encodePassword($user, $plainPassword);
         $user->setPassword($encodedPassword);

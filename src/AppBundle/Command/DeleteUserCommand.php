@@ -30,7 +30,7 @@ use Symfony\Component\Console\Question\Question;
  * Check out the code of the src/AppBundle/Command/AddUserCommand.php file for
  * the full explanation about Symfony commands.
  *
- * See http://symfony.com/doc/current/cookbook/console/console_command.html
+ * See https://symfony.com/doc/current/cookbook/console/console_command.html
  * For more advanced uses, commands can be defined as services too. See
  * https://symfony.com/doc/current/console/commands_as_services.html
  *

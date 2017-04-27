@@ -28,7 +28,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  *
  *     $ php bin/console app:list-users
  *
- * See http://symfony.com/doc/current/cookbook/console/console_command.html
+ * See https://symfony.com/doc/current/cookbook/console/console_command.html
  * For more advanced uses, commands can be defined as services too. See
  * https://symfony.com/doc/current/console/commands_as_services.html
  *
@@ -68,7 +68,7 @@ the email address specified in the <comment>--send-to</comment> option:
 HELP
             )
             // commands can optionally define arguments and/or options (mandatory and optional)
-            // see http://symfony.com/doc/current/components/console/console_arguments.html
+            // see https://symfony.com/doc/current/components/console/console_arguments.html
             ->addOption('max-results', null, InputOption::VALUE_OPTIONAL, 'Limits the number of users listed', 50)
             ->addOption('send-to', null, InputOption::VALUE_OPTIONAL, 'If set, the result is sent to the given email address')
         ;
@@ -132,7 +132,7 @@ HELP
      */
     private function sendReport($contents, $recipient)
     {
-        // See http://symfony.com/doc/current/cookbook/email/email.html
+        // See https://symfony.com/doc/current/cookbook/email/email.html
         $mailer = $this->getContainer()->get('mailer');
 
         $message = $mailer->createMessage()

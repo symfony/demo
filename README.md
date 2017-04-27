@@ -11,7 +11,7 @@ Requirements
 
   * PHP 5.5.9 or higher;
   * PDO-SQLite PHP extension enabled;
-  * and the [usual Symfony application requirements](http://symfony.com/doc/current/reference/requirements.html).
+  * and the [usual Symfony application requirements](https://symfony.com/doc/current/reference/requirements.html).
 
 If unsure about meeting these requirements, download the demo application and
 browse the `http://localhost:8000/config.php` script to get more detailed
@@ -66,7 +66,7 @@ terminal.
 > If you want to use a fully-featured web server (like Nginx or Apache) to run
 > Symfony Demo application, configure it to point at the `web/` directory of the project.
 > For more details, see:
-> http://symfony.com/doc/current/cookbook/configuration/web_server_configuration.html
+> https://symfony.com/doc/current/cookbook/configuration/web_server_configuration.html
 
 Troubleshooting
 ---------------

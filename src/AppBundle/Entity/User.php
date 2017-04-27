@@ -19,10 +19,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="symfony_demo_user")
  *
  * Defines the properties of the User entity to represent the application users.
- * See http://symfony.com/doc/current/book/doctrine.html#creating-an-entity-class
+ * See https://symfony.com/doc/current/book/doctrine.html#creating-an-entity-class
  *
  * Tip: if you have an existing database, you can generate these entity class automatically.
- * See http://symfony.com/doc/current/cookbook/doctrine/reverse_engineering.html
+ * See https://symfony.com/doc/current/cookbook/doctrine/reverse_engineering.html
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
@@ -157,7 +157,7 @@ class User implements UserInterface, \Serializable
      */
     public function getSalt()
     {
-        // See "Do you need to use a Salt?" at http://symfony.com/doc/current/cookbook/security/entity_provider.html
+        // See "Do you need to use a Salt?" at https://symfony.com/doc/current/cookbook/security/entity_provider.html
         // we're using bcrypt in security.yml to encode the password, so
         // the salt value is built-in and you don't have to generate one
     }

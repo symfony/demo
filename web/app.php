@@ -11,8 +11,8 @@
 
 // This is the front controller used when executing the application in the
 // production environment ('prod'). See:
-//   * http://symfony.com/doc/current/cookbook/configuration/front_controllers_and_kernel.html
-//   * http://symfony.com/doc/current/cookbook/configuration/environments.html
+//   * https://symfony.com/doc/current/cookbook/configuration/front_controllers_and_kernel.html
+//   * https://symfony.com/doc/current/cookbook/configuration/environments.html
 
 use Symfony\Component\HttpFoundation\Request;
 
@@ -26,7 +26,7 @@ if (PHP_VERSION_ID < 70000) {
 
 // If your web server provides APC support for PHP applications, uncomment these
 // lines to use APC for class autoloading. This can improve application performance
-// very significantly. See http://symfony.com/doc/current/components/class_loader/cache_class_loader.html#apcclassloader
+// very significantly. See https://symfony.com/doc/current/components/class_loader/cache_class_loader.html#apcclassloader
 
 // NOTE: The first argument of ApcClassLoader() is the prefix used to prevent
 // cache key conflicts. In a real Symfony application, make sure to change
@@ -44,12 +44,12 @@ if (PHP_VERSION_ID < 70000) {
 
 // When using the HTTP Cache to improve application performance, the application
 // kernel is wrapped by the AppCache class to activate the built-in reverse proxy.
-// See http://symfony.com/doc/current/book/http_cache.html#symfony-reverse-proxy
+// See https://symfony.com/doc/current/book/http_cache.html#symfony-reverse-proxy
 $kernel = new AppCache($kernel);
 
 // If you use HTTP Cache and your application relies on the _method request parameter
 // to get the intended HTTP method, uncomment this line.
-// See http://symfony.com/doc/current/reference/configuration/framework.html#http-method-override
+// See https://symfony.com/doc/current/reference/configuration/framework.html#http-method-override
 Request::enableHttpMethodParameterOverride();
 
 $request = Request::createFromGlobals();

@@ -24,7 +24,7 @@ services:
 
     # Defining a form type as a service is only required when the form type
     # needs to use some other services, such as the entity manager.
-    # See http://symfony.com/doc/current/best_practices/forms.html
+    # See https://symfony.com/doc/current/best_practices/forms.html
     app.form.type.tagsinput:
         class: AppBundle\Form\Type\TagsInputType
         arguments: ['@doctrine.orm.entity_manager']
@@ -33,7 +33,7 @@ services:
 
     # Event Listeners are classes that listen to one or more specific events.
     # Those events are defined in the tags added to the service definition.
-    # See http://symfony.com/doc/current/event_dispatcher.html#creating-an-event-listener
+    # See https://symfony.com/doc/current/event_dispatcher.html#creating-an-event-listener
     app.redirect_to_preferred_locale_listener:
         class: AppBundle\EventListener\RedirectToPreferredLocaleListener
         arguments: ['@router', '%app_locales%', '%locale%']
@@ -51,7 +51,7 @@ services:
     # Event subscribers are similar to event listeners but they don't need service tags.
     # Instead, the PHP class of the event subscriber includes a method that returns
     # the list of events listened by that class.
-    # See http://symfony.com/doc/current/event_dispatcher.html#creating-an-event-subscriber
+    # See https://symfony.com/doc/current/event_dispatcher.html#creating-an-event-subscriber
     app.requirements_subscriber:
         class: AppBundle\EventListener\CheckRequirementsSubscriber
         arguments: ['@doctrine.orm.entity_manager']
@@ -59,7 +59,7 @@ services:
             - { name: kernel.event_subscriber }
 
     # To inject the voter into the security layer, you must declare it as a service and tag it with security.voter.
-    # See http://symfony.com/doc/current/security/voters.html#configuring-the-voter
+    # See https://symfony.com/doc/current/security/voters.html#configuring-the-voter
     app.post_voter:
         class: AppBundle\Security\PostVoter
         public: false

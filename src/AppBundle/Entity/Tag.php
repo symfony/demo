@@ -19,7 +19,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * Defines the properties of the Tag entity to represent the post tags.
  *
- * See http://symfony.com/doc/current/book/doctrine.html#creating-an-entity-class
+ * See https://symfony.com/doc/current/book/doctrine.html#creating-an-entity-class
  *
  * @author Yonel Ceruto <yonelceruto@gmail.com>
  */

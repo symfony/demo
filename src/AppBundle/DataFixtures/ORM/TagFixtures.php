@@ -22,7 +22,7 @@ use Doctrine\Common\Persistence\ObjectManager;
  *
  *   $ php bin/console doctrine:fixtures:load
  *
- * See http://symfony.com/doc/current/bundles/DoctrineFixturesBundle/index.html
+ * See https://symfony.com/doc/current/bundles/DoctrineFixturesBundle/index.html
  *
  * @author Yonel Ceruto <yonelceruto@gmail.com>
  */

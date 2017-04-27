@@ -44,12 +44,12 @@ class CheckRequirementsSubscriber implements EventSubscriberInterface
     // Event Subscribers must define this method to declare the events they
     // listen to. You can listen to several events, execute more than one method
     // for each event and set the priority of each event too.
-    // See http://symfony.com/doc/current/event_dispatcher.html#creating-an-event-subscriber
+    // See https://symfony.com/doc/current/event_dispatcher.html#creating-an-event-subscriber
     public static function getSubscribedEvents()
     {
         return [
             // Exceptions are one of the events defined by the Console. See the
-            // rest here: http://symfony.com/doc/current/components/console/events.html
+            // rest here: https://symfony.com/doc/current/components/console/events.html
             ConsoleEvents::EXCEPTION => 'handleConsoleException',
             // See: http://api.symfony.com/master/Symfony/Component/HttpKernel/KernelEvents.html
             KernelEvents::EXCEPTION => 'handleKernelException',

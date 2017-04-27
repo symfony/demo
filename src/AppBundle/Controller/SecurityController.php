@@ -16,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * Controller used to manage the application security.
- * See http://symfony.com/doc/current/cookbook/security/form_login_setup.html.
+ * See https://symfony.com/doc/current/cookbook/security/form_login_setup.html.
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>

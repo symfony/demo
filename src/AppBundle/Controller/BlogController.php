@@ -44,7 +44,7 @@ class BlogController extends Controller
      *
      * NOTE: For standard formats, Symfony will also automatically choose the best
      * Content-Type header for the response.
-     * See http://symfony.com/doc/current/quick_tour/the_controller.html#using-formats
+     * See https://symfony.com/doc/current/quick_tour/the_controller.html#using-formats
      */
     public function indexAction($page, $_format)
     {
@@ -63,7 +63,7 @@ class BlogController extends Controller
      * NOTE: The $post controller argument is automatically injected by Symfony
      * after performing a database query looking for a Post with the 'slug'
      * value given in the route.
-     * See http://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html
+     * See https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html
      */
     public function postShowAction(Post $post)
     {
@@ -88,7 +88,7 @@ class BlogController extends Controller
      *
      * NOTE: The ParamConverter mapping is required because the route parameter
      * (postSlug) doesn't match any of the Doctrine entity properties (slug).
-     * See http://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html#doctrine-converter
+     * See https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html#doctrine-converter
      */
     public function commentNewAction(Request $request, Post $post)
     {
@@ -109,14 +109,14 @@ class BlogController extends Controller
             // For simple applications, use the GenericEvent object provided by Symfony
             // to pass some PHP variables. For more complex applications, define your
             // own event object classes.
-            // See http://symfony.com/doc/current/components/event_dispatcher/generic_event.html
+            // See https://symfony.com/doc/current/components/event_dispatcher/generic_event.html
             $event = new GenericEvent($comment);
 
             // When an event is dispatched, Symfony notifies it to all the listeners
             // and subscribers registered to it. Listeners can modify the information
             // passed in the event and they can even modify the execution flow, so
             // there's no guarantee that the rest of this controller will be executed.
-            // See http://symfony.com/doc/current/components/event_dispatcher.html
+            // See https://symfony.com/doc/current/components/event_dispatcher.html
             $this->get('event_dispatcher')->dispatch(Events::COMMENT_CREATED, $event);
 
             return $this->redirectToRoute('blog_post', ['slug' => $post->getSlug()]);

@@ -22,7 +22,7 @@ final class Events
 {
     /**
      * For the event naming conventions, see:
-     * http://symfony.com/doc/current/components/event_dispatcher.html#naming-conventions.
+     * https://symfony.com/doc/current/components/event_dispatcher.html#naming-conventions.
      *
      * @Event("Symfony\Component\EventDispatcher\GenericEvent")
      *

@@ -19,7 +19,7 @@ use Doctrine\ORM\EntityRepository;
 /**
  * Tests that tags are transformed correctly using the data transformer.
  *
- * See http://symfony.com/doc/current/testing/database.html
+ * See https://symfony.com/doc/current/testing/database.html
  */
 class TagArrayToStringTransformerTest extends \PHPUnit\Framework\TestCase
 {
