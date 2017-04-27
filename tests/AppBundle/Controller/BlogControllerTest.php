@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Functional test for the controllers defined inside BlogController.
  *
- * See http://symfony.com/doc/current/book/testing.html#functional-tests
+ * See https://symfony.com/doc/current/book/testing.html#functional-tests
  *
  * Execute the application tests using this command (requires PHPUnit to be installed):
  *

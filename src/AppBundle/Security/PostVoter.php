@@ -20,7 +20,7 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
  * It grants or denies permissions for actions related to blog posts (such as
  * showing, editing and deleting posts).
  *
- * See http://symfony.com/doc/current/security/voters.html
+ * See https://symfony.com/doc/current/security/voters.html
  *
  * @author Yonel Ceruto <yonelceruto@gmail.com>
  */

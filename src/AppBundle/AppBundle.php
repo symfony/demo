@@ -21,11 +21,11 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  *
  *   * Reusable Bundles: they are meant to be shared between different applications.
  *     A lot of them are even publicly available in sites like packagist.org.
- *     See http://symfony.com/doc/current/cookbook/bundles/best_practices.html
+ *     See https://symfony.com/doc/current/cookbook/bundles/best_practices.html
  *   * Application bundles: they are never shared, not even with other of your
  *     applications. This allows them to be less strict in some conventions and
  *     their code is usually simpler.
- *     See http://symfony.com/doc/current/best_practices/business-logic.html
+ *     See https://symfony.com/doc/current/best_practices/business-logic.html
  *
  * The AppBundle is an application bundle that is already created when you install
  * Symfony. Using AppBundle to start developing your Symfony application is

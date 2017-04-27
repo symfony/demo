@@ -21,10 +21,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * Defines the properties of the Post entity to represent the blog posts.
  *
- * See http://symfony.com/doc/current/book/doctrine.html#creating-an-entity-class
+ * See https://symfony.com/doc/current/book/doctrine.html#creating-an-entity-class
  *
  * Tip: if you have an existing database, you can generate these entity class automatically.
- * See http://symfony.com/doc/current/cookbook/doctrine/reverse_engineering.html
+ * See https://symfony.com/doc/current/cookbook/doctrine/reverse_engineering.html
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
@@ -36,7 +36,7 @@ class Post
      * Use constants to define configuration options that rarely change instead
      * of specifying them in app/config/config.yml.
      *
-     * See http://symfony.com/doc/current/best_practices/configuration.html#constants-vs-configuration-options
+     * See https://symfony.com/doc/current/best_practices/configuration.html#constants-vs-configuration-options
      */
     const NUM_ITEMS = 10;
 

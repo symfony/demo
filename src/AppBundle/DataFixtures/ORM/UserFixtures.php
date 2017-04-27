@@ -23,7 +23,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareTrait;
  *
  *   $ php bin/console doctrine:fixtures:load
  *
- * See http://symfony.com/doc/current/bundles/DoctrineFixturesBundle/index.html
+ * See https://symfony.com/doc/current/bundles/DoctrineFixturesBundle/index.html
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>

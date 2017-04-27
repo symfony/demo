@@ -25,7 +25,7 @@ use Symfony\Component\Form\FormView;
  * Defines the custom form field type used to manipulate tags values across
  * Bootstrap-tagsinput javascript plugin.
  *
- * See http://symfony.com/doc/current/cookbook/form/create_custom_field_type.html
+ * See https://symfony.com/doc/current/cookbook/form/create_custom_field_type.html
  *
  * @author Yonel Ceruto <yonelceruto@gmail.com>
  */

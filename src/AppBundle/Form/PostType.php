@@ -34,7 +34,7 @@ class PostType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         // For the full reference of options defined by each form field type
-        // see http://symfony.com/doc/current/reference/forms/types.html
+        // see https://symfony.com/doc/current/reference/forms/types.html
 
         // By default, form fields include the 'required' attribute, which enables
         // the client-side form validation. This means that you can't test the

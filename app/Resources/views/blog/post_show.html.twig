@@ -19,7 +19,7 @@
         his/her credentials (login + password) during this session. If he/she
         is automatically logged via the 'Remember Me' functionality, he/she won't
         be able to add a comment.
-        See http://symfony.com/doc/current/cookbook/security/remember_me.html#forcing-the-user-to-re-authenticate-before-accessing-certain-resources
+        See https://symfony.com/doc/current/cookbook/security/remember_me.html#forcing-the-user-to-re-authenticate-before-accessing-certain-resources
         #}
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             {{ render(controller('AppBundle:Blog:commentForm', {'id': post.id})) }}
