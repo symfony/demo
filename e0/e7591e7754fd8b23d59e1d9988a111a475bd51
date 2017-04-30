@@ -1,0 +1,19 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-04-23T11:21:34Z
+
+@B-Galati thanks for this contribution! However, I'm not entirely sure this is the right thing to do for this project. The `.php_cs` file defines the rules for our own code. If we create a `.php_cs.dist` file is like saying to our users: *"hey, .php_cs.dist are our default CS rules ... but you can change them if you want in your own .php_cs file"*. Well, you can't change those rules. If you change them, we won't merge your PRs.
+
+Do you agree that in this case and for this project, the `.php_cs` file should always be forced to all users and no customization is possible?
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2017-04-23T19:40:23Z
+
+@javiereguiluz I agree that we should force the rules we have before merging new PRs. But I'm OK with `.php_cs.dist`  since this way we will allow developers to play with coding standards locally without having dirty repository state. Actually, the same for `phpunit.xml.dist`. Why don't we force devs with `phpunit.xml` file? So I think it's a good idea to rename this to `.php_cs.dist` since it's a good practice. Anyway, I run php-cs-fixer very rare locally before pushing code and always rely on CI. And if the tests are failed, then I need to run it locally to be sure they're fixed before pushing changes the second time.
+
+---------------------------------------------------------------------------
+
+by B-Galati at 2017-04-23T23:02:04Z
+
+@javiereguiluz I totally agree with @bocharsky-bw. As long as the CI is enforcing mandatory rules, there is no harm to allow for more flexibility to my point of view.
