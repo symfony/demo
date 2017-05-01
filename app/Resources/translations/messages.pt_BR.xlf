@@ -97,6 +97,10 @@
                 <source>action.show</source>
                 <target>Exibir</target>
             </trans-unit>
+            <trans-unit id="action.show_post">
+                <source>action.show_post</source>
+                <target>Exibir o post</target>
+            </trans-unit>
             <trans-unit id="action.show_code">
                 <source>action.show_code</source>
                 <target>Mostrar o código</target>
@@ -188,7 +192,7 @@
             </trans-unit>
             <trans-unit id="label.role">
                 <source>label.role</source>
-                <target>Role</target>
+                <target>Perfil</target>
             </trans-unit>
             <trans-unit id="label.content">
                 <source>label.content</source>
@@ -201,6 +205,10 @@
             <trans-unit id="label.published_at">
                 <source>label.published_at</source>
                 <target>Publicado em</target>
+            </trans-unit>
+            <trans-unit id="label.tags">
+                <source>label.tags</source>
+                <target>Tags</target>
             </trans-unit>
             <trans-unit id="label.actions">
                 <source>label.actions</source>
@@ -218,6 +226,10 @@
             <trans-unit id="menu.toggle_nav">
                 <source>menu.toggle_nav</source>
                 <target>Alternar navegação</target>
+            </trans-unit>
+            <trans-unit id="menu.choose_language">
+                <source>menu.choose_language</source>
+                <target>Escolha o idioma</target>
             </trans-unit>
             <trans-unit id="menu.post_list">
                 <source>menu.post_list</source>
@@ -238,6 +250,10 @@
             <trans-unit id="menu.logout">
                 <source>menu.logout</source>
                 <target>Sair</target>
+            </trans-unit>
+            <trans-unit id="menu.rss">
+                <source>menu.rss</source>
+                <target>RSS do Blog</target>
             </trans-unit>
 
             <trans-unit id="post.to_publish_a_comment">
@@ -271,6 +287,15 @@
             <trans-unit id="post.deleted_successfully">
                 <source>post.deleted_successfully</source>
                 <target>Post excluído com sucesso!</target>
+            </trans-unit>
+
+            <trans-unit id="notification.comment_created">
+                <source>notification.comment_created</source>
+                <target>Seu post recebeu um comentário!</target>
+            </trans-unit>
+            <trans-unit id="notification.comment_created.description">
+                <source>notification.comment_created.description</source>
+                <target><![CDATA[Seu post "%title%" recebeu um novo comentário. Você pode ler o comentário através <a href="%link%">deste link</a>]]></target>
             </trans-unit>
 
             <trans-unit id="help.app_description">
@@ -312,6 +337,15 @@
             <trans-unit id="help.more_information">
                 <source>help.more_information</source>
                 <target><![CDATA[Para mais informações, visite a <a href="https://symfony.com/doc">documentação do Symfony</a>.]]></target>
+            </trans-unit>
+
+            <trans-unit id="rss.title">
+                <source>rss.title</source>
+                <target>Symfony Demo blog</target>
+            </trans-unit>
+            <trans-unit id="rss.description">
+                <source>rss.description</source>
+                <target>Posts mais recentes publicados no blog Symfony Demo</target>
             </trans-unit>
         </body>
     </file>
