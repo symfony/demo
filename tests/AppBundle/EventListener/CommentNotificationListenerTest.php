@@ -29,37 +29,40 @@ use Symfony\Component\Translation\TranslatorInterface;
  *
  *     $ cd your-symfony-project/
  *     $ ./vendor/bin/phpunit
+ *
+ * @author Michael COULLERET <michael.coulleret@gmail.com>
  */
 class CommentNotificationListenerTest extends \PHPUnit_Framework_TestCase
 {
-    public function testOnCommentCreated()
+    public function testListenerOnCommentCreated()
     {
-        $mailerProphecy = $this->prophesize(\Swift_Mailer::class);
-        $urlGeneratorProphecy = $this->prophesize(UrlGeneratorInterface::class);
-        $translatorProphecy = $this->prophesize(TranslatorInterface::class);
+        $mailer = $this->prophesize(\Swift_Mailer::class);
+        $urlGenerator = $this->prophesize(UrlGeneratorInterface::class);
+        $translator = $this->prophesize(TranslatorInterface::class);
 
-        $userProphecy = $this->prophesize(User::class);
-        $userProphecy->getEmail('fabien@symfony.com');
+        $user = $this->prophesize(User::class);
+        $user->getEmail('fabien@symfony.com');
 
-        $postProphecy = $this->prophesize(Post::class);
-        $postProphecy->getTitle()->willReturn('bar foo');
-        $postProphecy->getAuthor()->willReturn('fabien');
-        $postProphecy->getSlug()->willReturn('bar-foo');
-        $postProphecy->getAuthor()->willReturn($userProphecy->reveal());
+        $post = $this->prophesize(Post::class);
+        $post->getTitle()->willReturn('bar foo');
+        $post->getAuthor()->willReturn('fabien');
+        $post->getSlug()->willReturn('bar-foo');
+        $post->getAuthor()->willReturn($user->reveal());
 
-        $commentProphecy = $this->prophesize(Comment::class);
-        $commentProphecy->getId()->willReturn(241);
-        $commentProphecy->getPost()->willReturn($postProphecy->reveal());
+        $comment = $this->prophesize(Comment::class);
+        $comment->getId()->willReturn(241);
+        $comment->getPost()->willReturn($post->reveal());
 
-        $event = new GenericEvent($commentProphecy->reveal());
+        $event = new GenericEvent($comment->reveal());
 
-        $urlGeneratorProphecy->generate('blog_post', ['slug' => 'bar-foo', '_fragment' => 'comment_241'], 0)->willReturn('http://foo.sf')->shouldBeCalled();
-        $translatorProphecy->trans('notification.comment_created')->shouldBeCalled();
-        $translatorProphecy->trans('notification.comment_created.description', ['%title%' => 'bar foo', '%link%' => 'http://foo.sf'])->shouldBeCalled();
+        $urlGenerator->generate('blog_post', ['slug' => 'bar-foo', '_fragment' => 'comment_241'], 0)->willReturn('https://foo.sf')->shouldBeCalled();
 
-        $listener = new CommentNotificationListener($mailerProphecy->reveal(), $urlGeneratorProphecy->reveal(), $translatorProphecy->reveal(), 'foo@bar.sf');
+        $translator->trans('notification.comment_created')->shouldBeCalled();
+        $translator->trans('notification.comment_created.description', ['%title%' => 'bar foo', '%link%' => 'https://foo.sf'])->shouldBeCalled();
+
+        $listener = new CommentNotificationListener($mailer->reveal(), $urlGenerator->reveal(), $translator->reveal(), 'foo@bar.sf');
         $listener->onCommentCreated($event);
 
-        $mailerProphecy->send(Argument::type(\Swift_Message::class))->shouldBeCalled();
+        $mailer->send(Argument::type(\Swift_Message::class))->shouldBeCalled();
     }
 }
