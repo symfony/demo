@@ -27,70 +27,72 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  *
  *     $ cd your-symfony-project/
  *     $ ./vendor/bin/phpunit
+ *
+ * @author Michael COULLERET <michael.coulleret@gmail.com>
  */
 class RedirectToPreferredLocaleListenerTest extends \PHPUnit_Framework_TestCase
 {
-    private $requestProphecy;
-    private $urlGeneratorProphecy;
-    private $eventProphecy;
+    private $request;
+    private $urlGenerator;
+    private $event;
     private $listener;
 
     public function setUp()
     {
-        $this->requestProphecy = $this->prophesize(Request::class);
-        $this->urlGeneratorProphecy = $this->prophesize(UrlGeneratorInterface::class);
-        $this->eventProphecy = $this->prophesize(GetResponseEvent::class);
-        $this->listener = new RedirectToPreferredLocaleListener($this->urlGeneratorProphecy->reveal(), 'en|fr|es');
+        $this->request = $this->prophesize(Request::class);
+        $this->urlGenerator = $this->prophesize(UrlGeneratorInterface::class);
+        $this->event = $this->prophesize(GetResponseEvent::class);
+        $this->listener = new RedirectToPreferredLocaleListener($this->urlGenerator->reveal(), 'en|fr|es');
     }
 
-    public function testOnKernelRequestUnexpectedValueException()
+    public function testListenerOnKernelRequestUnexpectedValueException()
     {
         $this->setExpectedException(\UnexpectedValueException::class);
 
-        new RedirectToPreferredLocaleListener($this->urlGeneratorProphecy->reveal(), 'en|fr|es', 'fi');
+        new RedirectToPreferredLocaleListener($this->urlGenerator->reveal(), 'en|fr|es', 'fi');
     }
 
-    public function testOnKernelRequestWhenIsMasterRequest()
+    public function testListenerOnKernelRequestWhenIsMasterRequest()
     {
-        $this->eventProphecy->getRequest()->willReturn($this->requestProphecy->reveal())->shouldBeCalled();
-        $this->eventProphecy->isMasterRequest()->willReturn(false)->shouldBeCalled();
+        $this->event->getRequest()->willReturn($this->request->reveal())->shouldBeCalled();
+        $this->event->isMasterRequest()->willReturn(false)->shouldBeCalled();
 
-        $this->listener->onKernelRequest($this->eventProphecy->reveal());
+        $this->listener->onKernelRequest($this->event->reveal());
     }
 
-    public function testOnKernelRequestWhenGetPathInfoIsNotDefault()
+    public function testListenerOnKernelRequestWhenGetPathInfoIsNotDefault()
     {
-        $this->requestProphecy->getPathInfo()->willReturn('/foo');
+        $this->request->getPathInfo()->willReturn('/foo');
 
-        $this->eventProphecy->getRequest()->willReturn($this->requestProphecy->reveal())->shouldBeCalled();
-        $this->eventProphecy->isMasterRequest()->willReturn(false)->shouldBeCalled();
+        $this->event->getRequest()->willReturn($this->request->reveal())->shouldBeCalled();
+        $this->event->isMasterRequest()->willReturn(false)->shouldBeCalled();
 
-        $this->listener->onKernelRequest($this->eventProphecy->reveal());
+        $this->listener->onKernelRequest($this->event->reveal());
     }
 
-    public function testOnKernelRequestWhenSameHttpHost()
-    {
-        $request = new Request();
-        $request->headers->set('referer', 'http://foo.bar');
-        $request->headers->set('HOST', 'foo.bar');
-
-        $this->eventProphecy->getRequest()->willReturn($request)->shouldBeCalled();
-        $this->eventProphecy->isMasterRequest()->willReturn(true)->shouldBeCalled();
-
-        $this->listener->onKernelRequest($this->eventProphecy->reveal());
-    }
-
-    public function testOnKernelRequestWhenPreferredLanguageNotSame()
+    public function testListenerOnKernelRequestWhenSameHttpHost()
     {
         $request = new Request();
-        $request->headers->set('referer', 'http://foo.bar');
-        $request->headers->set('HOST', 'bar.fo');
+        $request->headers->set('referer', 'https://foo.sf');
+        $request->headers->set('HOST', 'foo.sf');
+
+        $this->event->getRequest()->willReturn($request)->shouldBeCalled();
+        $this->event->isMasterRequest()->willReturn(true)->shouldBeCalled();
+
+        $this->listener->onKernelRequest($this->event->reveal());
+    }
+
+    public function testListenerOnKernelRequestWhenPreferredLanguageNotSame()
+    {
+        $request = new Request();
+        $request->headers->set('referer', 'https://foo.sf');
+        $request->headers->set('HOST', 'bar.sf');
         $request->headers->set('Accept-Language', 'fr');
 
-        $httpKernelProphecy = $this->prophesize(HttpKernelInterface::class);
-        $event = new GetResponseEvent($httpKernelProphecy->reveal(), $request, HttpKernelInterface::MASTER_REQUEST);
+        $httpKernel = $this->prophesize(HttpKernelInterface::class);
+        $event = new GetResponseEvent($httpKernel->reveal(), $request, HttpKernelInterface::MASTER_REQUEST);
 
-        $this->urlGeneratorProphecy->generate('homepage', ['_locale' => 'fr'])->willReturn('http://foo.sf');
+        $this->urlGenerator->generate('homepage', ['_locale' => 'fr'])->willReturn('https://foo.sf');
 
         $this->listener->onKernelRequest($event);
 
