@@ -11,10 +11,8 @@
 
 namespace Tests\AppBundle\Controller;
 
-use AppBundle\DataFixtures\FixturesTrait;
 use AppBundle\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Functional test for the controllers defined inside BlogController.
@@ -28,8 +26,6 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class BlogControllerTest extends WebTestCase
 {
-    use FixturesTrait;
-
     public function testIndex()
     {
         $client = static::createClient();
@@ -71,26 +67,21 @@ class BlogControllerTest extends WebTestCase
             'PHP_AUTH_USER' => 'john_user',
             'PHP_AUTH_PW' => 'kitten',
         ]);
+        $client->followRedirects();
 
-        /** @var Post $post */
-        $post = $client->getContainer()->get('doctrine')->getRepository(Post::class)->find(1);
-        $commentContent = $this->getRandomCommentContent();
-        $commentsCount = $post->getComments()->count();
+        // Find first blog post
+        $crawler = $client->request('GET', '/en/blog/');
+        $postLink = $crawler->filter('article.post > h2 a')->link();
 
-        $crawler = $client->request('GET', '/en/blog/posts/'.$post->getSlug());
+        $crawler = $client->click($postLink);
+
         $form = $crawler->selectButton('Publish comment')->form([
-            'comment[content]' => $commentContent,
+            'comment[content]' => 'Hi, Symfony!',
         ]);
-        $client->submit($form);
+        $crawler = $client->submit($form);
 
-        $this->assertSame(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
+        $newComment = $crawler->filter('.post-comment')->first()->filter('div > p')->text();
 
-        $post = $client->getContainer()->get('doctrine')->getRepository(Post::class)->find(1);
-        // The first one is the most recent comment because of the automatic sorting
-        // defined in the comments association of the Post entity
-        $comment = $post->getComments()->first();
-
-        $this->assertSame($commentsCount + 1, $post->getComments()->count());
-        $this->assertSame($commentContent, $comment->getContent());
+        $this->assertSame('Hi, Symfony!', $newComment);
     }
 }
