@@ -13,7 +13,7 @@ namespace AppBundle\Form\Type;
 
 use AppBundle\Entity\Tag;
 use AppBundle\Form\DataTransformer\TagArrayToStringTransformer;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\DataTransformer\CollectionToArrayTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -31,11 +31,11 @@ use Symfony\Component\Form\FormView;
  */
 class TagsInputType extends AbstractType
 {
-    private $manager;
+    private $repository;
 
-    public function __construct(ObjectManager $manager)
+    public function __construct(EntityRepository $repository)
     {
-        $this->manager = $manager;
+        $this->repository = $repository;
     }
 
     /**
@@ -49,7 +49,7 @@ class TagsInputType extends AbstractType
             // but here we're doing the transformation in two steps (Collection <-> array <-> string)
             // and reuse the existing CollectionToArrayTransformer.
             ->addModelTransformer(new CollectionToArrayTransformer(), true)
-            ->addModelTransformer(new TagArrayToStringTransformer($this->manager), true)
+            ->addModelTransformer(new TagArrayToStringTransformer($this->repository), true)
         ;
     }
 
@@ -58,7 +58,7 @@ class TagsInputType extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['tags'] = $this->manager->getRepository(Tag::class)->findAll();
+        $view->vars['tags'] = $this->repository->findAll();
     }
 
     /**
