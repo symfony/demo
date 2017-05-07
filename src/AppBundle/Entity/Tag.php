@@ -14,7 +14,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TagRepository")
  * @ORM\Table(name="symfony_demo_tag")
  *
  * Defines the properties of the Tag entity to represent the post tags.

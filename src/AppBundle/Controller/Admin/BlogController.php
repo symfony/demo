@@ -12,6 +12,7 @@
 namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Post;
+use AppBundle\Entity\Tag;
 use AppBundle\Form\PostType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -146,7 +147,10 @@ class BlogController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $post->setSlug($this->get('slugger')->slugify($post->getTitle()));
-            $entityManager->flush();
+            $entityManager->transactional(function ($entityManager) {
+                $entityManager->flush();
+                $this->getDoctrine()->getRepository(Tag::class)->cleanUnusedTags();
+            });
 
             $this->addFlash('success', 'post.updated_successfully');
 
@@ -176,14 +180,14 @@ class BlogController extends Controller
         }
 
         $entityManager = $this->getDoctrine()->getManager();
-
-        // Delete the tags associated with this blog post. This is done automatically
-        // by Doctrine, except for SQLite (the database used in this application)
-        // because foreign key support is not enabled by default in SQLite
-        $post->getTags()->clear();
-
-        $entityManager->remove($post);
-        $entityManager->flush();
+        $entityManager->transactional(function ($entityManager) use ($post) {
+            // Delete the tags associated with this blog post. This is done automatically
+            // by Doctrine, except for SQLite (the database used in this application)
+            // because foreign key support is not enabled by default in SQLite
+            $post->getTags()->clear();
+            $entityManager->remove($post);
+            $this->getDoctrine()->getRepository(Tag::class)->cleanUnusedTags();
+        });
 
         $this->addFlash('success', 'post.deleted_successfully');
 
