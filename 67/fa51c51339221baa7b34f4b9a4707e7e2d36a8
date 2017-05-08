@@ -1,0 +1,23 @@
+---------------------------------------------------------------------------
+
+by dmaicher at 2017-05-02T22:44:03Z
+
+Thanks for the report :wink: I actually think I found the problem which lies inside `dama/doctrine-test-bundle`.
+
+I will look into this tomorrow and will let you know asap.
+
+---------------------------------------------------------------------------
+
+by dmaicher at 2017-05-03T07:26:29Z
+
+@voronkovich there is a new release that fixes the problem :wink:
+
+https://github.com/dmaicher/doctrine-test-bundle/releases/tag/v1.0.12
+
+So if you run `composer update dama/doctrine-test-bundle` and commit the changes the build should pass.
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2017-05-03T13:52:45Z
+
+@dmaicher, test passes! Thank you very much!
