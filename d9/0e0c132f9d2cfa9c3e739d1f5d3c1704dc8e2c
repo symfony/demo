@@ -1,0 +1,248 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-04-16T15:37:45Z
+
+What's the reasoning for removing these methods? Thanks!
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2017-04-16T19:41:29Z
+
+@javiereguiluz, we don't use these methods, so, I think we dont need them.
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2017-04-17T11:13:26Z
+
+Probably we have to use these methods in [BlogController::commentNewAction()](https://github.com/symfony/symfony-demo/blob/master/src/AppBundle/Controller/BlogController.php#L97) instead of setting the Post entity directly? This way we will update inverse side as well
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-04-17T16:25:44Z
+
+The two ways are fine to me, but will there some situation where we need that the inversed side stay updated to get all comments from current post "just after add a new one, before persist/flush the comment", so my opinion is to use `$post->addComment()` instead of `$comment->setPost()` to keep both side updated always. Anyway the second statement is called inside the first one.
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-04-17T16:53:01Z
+
+Still when `removeComment()` is not actually used, I think it's useful to show who remove one element from some doctrine collection, also this method need to be fixed to set `null` the owning side:
+```
+public function removeComment(Comment $comment)
+{
+    $this->comments->removeElement($comment);
+    $comment->setPost(null);
+}
+```
+http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/reference/working-with-associations.html#removing-associations
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2017-04-17T19:49:43Z
+
+@bocharsky-bw, @yceruto, I think you're right. I've updated the PR.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-04-23T11:34:33Z
+
+@yceruto @bocharsky-bw are you OK with the latest changes made by @voronkovich? They look OK to me. Thanks!
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2017-04-23T19:55:21Z
+
+LGTM, but some tests are failed
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-04-24T18:04:48Z
+
+:+1:
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-04-30T14:51:33Z
+
+I'd like to merge this ... but there's still 1 failing test. Thanks!
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2017-04-30T15:27:41Z
+
+@javiereguiluz, See https://github.com/symfony/symfony-demo/issues/554
+
+---------------------------------------------------------------------------
+
+by dmaicher at 2017-05-01T08:43:37Z
+
+@voronkovich the problem with the introduced changes is that the sorting is not correct anymore as stated in the comment here: https://github.com/symfony/symfony-demo/blob/master/tests/AppBundle/Controller/BlogControllerTest.php#L89
+
+We append the comment at the end of the collection.
+
+To make the tests work again we have to remove the post from the EM and fetch it again to let Doctrine handle correct sorting and the first comment will match again.
+
+A simple `$client->getContainer()->get('doctrine')->getManager()->clear();` will be enough:
+
+```diff
+--- a/tests/AppBundle/Controller/BlogControllerTest.php
++++ b/tests/AppBundle/Controller/BlogControllerTest.php
+@@ -84,6 +84,8 @@ class BlogControllerTest extends WebTestCase
+         $client->submit($form);
+
+         $this->assertSame(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
++
++        $client->getContainer()->get('doctrine')->getManager()->clear();
+
+         $post = $client->getContainer()->get('doctrine')->getRepository(Post::class)->find(1);
+         // The first one is the most recent comment because of the automatic sorting
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2017-05-01T13:41:37Z
+
+@dmaicher, You're totally right! Thank you very much!
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2017-05-02T16:55:23Z
+
+@javiereguiluz, I've fixed the tests.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-05-08T08:51:29Z
+
+@voronkovich something horrible has happened in this PR and some changes have been lost. I edited 1 file to add some help notes. These are the full contents of the test that I modified, so you can restore it:
+
+```php
+<?php
+
+/*
+ * This file is part of the Symfony package.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Tests\AppBundle\Controller;
+
+use AppBundle\DataFixtures\FixturesTrait;
+use AppBundle\Entity\Post;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\HttpFoundation\Response;
+
+/**
+ * Functional test for the controllers defined inside BlogController.
+ *
+ * See http://symfony.com/doc/current/book/testing.html#functional-tests
+ *
+ * Execute the application tests using this command (requires PHPUnit to be installed):
+ *
+ *     $ cd your-symfony-project/
+ *     $ ./vendor/bin/phpunit
+ */
+class BlogControllerTest extends WebTestCase
+{
+    use FixturesTrait;
+
+    public function testIndex()
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/en/blog/');
+
+        $this->assertCount(
+            Post::NUM_ITEMS,
+            $crawler->filter('article.post'),
+            'The homepage displays the right number of posts.'
+        );
+    }
+
+    public function testRss()
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/en/blog/rss.xml');
+
+        $this->assertSame(
+            'text/xml; charset=UTF-8',
+            $client->getResponse()->headers->get('Content-Type')
+        );
+
+        $this->assertCount(
+            Post::NUM_ITEMS,
+            $crawler->filter('item'),
+            'The xml file displays the right number of posts.'
+        );
+    }
+
+    /**
+     * This test changes the database contents by creating a new comment. However,
+     * thanks to the DAMADoctrineTestBundle and its PHPUnit listener, all changes
+     * to the database are rolled back when this test completes. This means that
+     * all the application tests begin with the same database contents.
+     */
+    public function testNewComment()
+    {
+        $client = static::createClient([], [
+            'PHP_AUTH_USER' => 'john_user',
+            'PHP_AUTH_PW' => 'kitten',
+        ]);
+
+        /** @var Post $post */
+        $post = $client->getContainer()->get('doctrine')->getRepository(Post::class)->find(1);
+        $commentContent = $this->getRandomCommentContent();
+        $commentsCount = $post->getComments()->count();
+
+        $crawler = $client->request('GET', '/en/blog/posts/'.$post->getSlug());
+        $form = $crawler->selectButton('Publish comment')->form([
+            'comment[content]' => $commentContent,
+        ]);
+        $client->submit($form);
+
+        $this->assertSame(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
+
+        // in order to improve performance, Doctrine doesn't make database calls to
+        // get the objects already present in memory. This means that this test will fail
+        // because new comments are added at the end of the list of comments and the
+        // "@ORM\OrderBy()" defined in the Post entity won't be respected. The solution
+        // is to call the clear() method on the Entity Manager, which removes the in-memory
+        // changes and forces loading objects from the database again.
+        $client->getContainer()->get('doctrine')->getManager()->clear();
+
+        // The first one is the most recent comment because of the automatic sorting
+        // defined in the comments association of the Post entity. This test can only
+        // work when using the clear() method as explained in the above comment.
+        $post = $client->getContainer()->get('doctrine')->getRepository(Post::class)->find(1);
+        $comment = $post->getComments()->first();
+
+        $this->assertSame($commentsCount + 1, $post->getComments()->count());
+        $this->assertSame($commentContent, $comment->getContent());
+    }
+}
+```
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2017-05-08T08:54:21Z
+
+@javiereguiluz, I've dropped some changes, so now this PR can be merged.
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2017-05-08T08:59:53Z
+
+@javiereguiluz, AppVeyour says: "AppVeyor was unable to build non-mergeable pull request", but I don't know how to fix it :(
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-05-08T09:11:49Z
+
+Thanks! So this means that we no longer need the ->clear() method in the test?
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2017-05-08T09:13:07Z
+
+@javiereguiluz, yes!
