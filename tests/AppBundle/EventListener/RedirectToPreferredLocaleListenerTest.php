@@ -45,7 +45,14 @@ class RedirectToPreferredLocaleListenerTest extends \PHPUnit_Framework_TestCase
         $this->listener = new RedirectToPreferredLocaleListener($this->urlGenerator->reveal(), 'en|fr|es');
     }
 
-    public function testListenerOnKernelRequestUnexpectedValueException()
+    public function testListenerOnKernelRequestUnexpectedValueExceptionWhenLocaleIsEmpty()
+    {
+        $this->setExpectedException(\UnexpectedValueException::class);
+
+        new RedirectToPreferredLocaleListener($this->urlGenerator->reveal(), '', 'fr');
+    }
+
+    public function testListenerOnKernelRequestUnexpectedValueExceptionWhenLocaleIsMissing()
     {
         $this->setExpectedException(\UnexpectedValueException::class);
 
