@@ -151,7 +151,7 @@ class AddUserCommand extends ContainerAwareCommand
             $password = $console->ask($input, $output, $question);
             $input->setArgument('password', $password);
         } else {
-            $output->writeln(' > <info>Password</info>: '.str_repeat('*', strlen($password)));
+            $output->writeln(' > <info>Password</info>: '.str_repeat('*', mb_strlen($password)));
         }
 
         // Ask for the email if it's not defined
@@ -233,7 +233,7 @@ class AddUserCommand extends ContainerAwareCommand
             throw new \Exception('The password can not be empty.');
         }
 
-        if (strlen(trim($plainPassword)) < 6) {
+        if (mb_strlen(trim($plainPassword)) < 6) {
             throw new \Exception('The password must be at least 6 characters long.');
         }
 
@@ -249,7 +249,7 @@ class AddUserCommand extends ContainerAwareCommand
             throw new \Exception('The email can not be empty.');
         }
 
-        if (false === strpos($email, '@')) {
+        if (false === mb_strpos($email, '@')) {
             throw new \Exception('The email should look like a real email.');
         }
 

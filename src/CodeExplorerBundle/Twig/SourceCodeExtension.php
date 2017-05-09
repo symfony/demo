@@ -126,12 +126,12 @@ class SourceCodeExtension extends \Twig_Extension
         $codeLines = explode("\n", $code);
 
         $indentedLines = array_filter($codeLines, function ($lineOfCode) {
-            return '' === $lineOfCode || '    ' === substr($lineOfCode, 0, 4);
+            return '' === $lineOfCode || '    ' === mb_substr($lineOfCode, 0, 4);
         });
 
         if (count($indentedLines) === count($codeLines)) {
             $formattedCode = array_map(function ($lineOfCode) {
-                return substr($lineOfCode, 4);
+                return mb_substr($lineOfCode, 4);
             }, $codeLines);
             $formattedCode = implode("\n", $formattedCode);
         }

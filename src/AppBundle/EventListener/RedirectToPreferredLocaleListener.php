@@ -60,7 +60,7 @@ class RedirectToPreferredLocaleListener
 
         $this->defaultLocale = $defaultLocale ?: $this->locales[0];
 
-        if (!in_array($this->defaultLocale, $this->locales)) {
+        if (!in_array($this->defaultLocale, $this->locales, true)) {
             throw new \UnexpectedValueException(sprintf('The default locale ("%s") must be one of "%s".', $this->defaultLocale, $locales));
         }
 
@@ -84,7 +84,7 @@ class RedirectToPreferredLocaleListener
         }
         // Ignore requests from referrers with the same HTTP host in order to prevent
         // changing language for users who possibly already selected it for this application.
-        if (0 === stripos($request->headers->get('referer'), $request->getSchemeAndHttpHost())) {
+        if (0 === mb_stripos($request->headers->get('referer'), $request->getSchemeAndHttpHost())) {
             return;
         }
 
