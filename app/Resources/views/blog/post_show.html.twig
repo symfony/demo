@@ -33,7 +33,9 @@
         {% endif %}
     </div>
 
-    <h3>{{ 'post.num_comments'|transchoice(post.comments|length) }}</h3>
+    <h3>
+        <i class="fa fa-comments" aria-hidden="true"></i> {{ 'post.num_comments'|transchoice(post.comments|length) }}
+    </h3>
 
     {% for comment in post.comments %}
         <div class="row post-comment">
