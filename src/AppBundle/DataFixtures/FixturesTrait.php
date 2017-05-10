@@ -127,7 +127,7 @@ MARKDOWN;
         shuffle($phrases);
         $phrases = array_slice($phrases, 0, $numPhrases - 1);
 
-        while (strlen($summary = implode('. ', $phrases).'.') > $maxLength) {
+        while (mb_strlen($summary = implode('. ', $phrases).'.') > $maxLength) {
             array_pop($phrases);
         }
 

@@ -86,7 +86,7 @@ class Comment
      */
     public function isLegitComment()
     {
-        $containsInvalidCharacters = false !== strpos($this->content, '@');
+        $containsInvalidCharacters = false !== mb_strpos($this->content, '@');
 
         return !$containsInvalidCharacters;
     }

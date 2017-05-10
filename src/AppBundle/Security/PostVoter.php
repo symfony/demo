@@ -38,7 +38,7 @@ class PostVoter extends Voter
     protected function supports($attribute, $subject)
     {
         // this voter is only executed for three specific permissions on Post objects
-        return $subject instanceof Post && in_array($attribute, [self::SHOW, self::EDIT, self::DELETE]);
+        return $subject instanceof Post && in_array($attribute, [self::SHOW, self::EDIT, self::DELETE], true);
     }
 
     /**
