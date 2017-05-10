@@ -14,7 +14,9 @@
     #}
 
     <fieldset>
-        <legend>{{ 'title.add_comment'|trans }}</legend>
+        <legend>
+            <i class="fa fa-comment" aria-hidden="true"></i> {{ 'title.add_comment'|trans }}
+        </legend>
 
         {# Render any global form error (e.g. when a constraint on a public getter method failed) #}
         {{ form_errors(form) }}
@@ -29,7 +31,9 @@
         </div>
 
         <div class="form-group">
-            <button class="btn btn-primary pull-right" type="submit">{{ 'action.publish_comment'|trans }}</button>
+            <button class="btn btn-primary pull-right" type="submit">
+                <i class="fa fa-paper-plane" aria-hidden="true"></i> {{ 'action.publish_comment'|trans }}
+            </button>
         </div>
     </fieldset>
 {{ form_end(form) }}

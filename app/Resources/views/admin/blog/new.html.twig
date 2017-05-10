@@ -12,10 +12,12 @@
         {{ form_row(form.publishedAt) }}
         {{ form_row(form.tags) }}
 
-        <input type="submit" value="{{ 'label.create_post'|trans }}" class="btn btn-primary" />
+        <button type="submit" class="btn btn-primary">
+            <i class="fa fa-save" aria-hidden="true"></i> {{ 'label.create_post'|trans }}
+        </button>
         {{ form_widget(form.saveAndCreateNew, {label: 'label.save_and_create_new', attr: {class: 'btn btn-primary'}}) }}
         <a href="{{ path('admin_post_index') }}" class="btn btn-link">
-            {{ 'action.back_to_list'|trans }}
+            <i class="fa fa-list-alt" aria-hidden="true"></i> {{ 'action.back_to_list'|trans }}
         </a>
     {{ form_end(form) }}
 {% endblock %}

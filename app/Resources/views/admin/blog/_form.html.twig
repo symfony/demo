@@ -14,12 +14,13 @@
 {{ form_start(form, {attr: attr|default({})}) }}
     {{ form_widget(form) }}
 
-    <input type="submit" value="{{ button_label|default('label.create_post'|trans) }}"
-           class="{{ button_css|default("btn btn-primary") }}" />
+    <button type="submit" class="{{ button_css|default("btn btn-primary") }}">
+        <i class="fa fa-save" aria-hidden="true"></i> {{ button_label|default('label.create_post'|trans) }}
+    </button>
 
     {% if include_back_to_home_link|default(false) %}
         <a href="{{ path('admin_post_index') }}" class="btn btn-link">
-            {{ 'action.back_to_list'|trans }}
+            <i class="fa fa-list-alt" aria-hidden="true"></i> {{ 'action.back_to_list'|trans }}
         </a>
     {% endif %}
 {{ form_end(form) }}
