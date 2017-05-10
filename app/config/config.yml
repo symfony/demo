@@ -89,3 +89,11 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+# Doctrine Migrations Configuration (used to apply migrations to databases)
+# http://symfony.com/doc/master/bundles/DoctrineMigrationsBundle/index.html
+doctrine_migrations:
+    dir_name: "%kernel.root_dir%/DoctrineMigrations"
+    namespace: Application\Migrations
+    table_name: migration_versions
+    name: Application Migrations
