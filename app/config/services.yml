@@ -15,7 +15,7 @@ services:
         resource: '../../src/AppBundle/*'
         # you can exclude directories or files
         # but if a service is unused, it's removed anyway
-        exclude: '../../src/AppBundle/{Entity,Repository}'
+        exclude: '../../src/AppBundle/{Controller,Entity,Repository}'
 
     # controllers are imported separately to make sure they're public
     # and have a tag that allows actions to type-hint services
@@ -40,7 +40,4 @@ services:
             $defaultLocale: '%locale%'
 
     Twig_Extensions_Extension_Intl:
-        public: false
         class:  Twig_Extensions_Extension_Intl
-        tags:
-            - { name: twig.extension }
