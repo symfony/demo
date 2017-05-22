@@ -13,6 +13,7 @@ namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Post;
 use AppBundle\Form\PostType;
+use AppBundle\Utils\Slugger;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -70,7 +71,7 @@ class BlogController extends Controller
      * to constraint the HTTP methods each controller responds to (by default
      * it responds to all methods).
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, Slugger $slugger)
     {
         $post = new Post();
         $post->setAuthor($this->getUser());
@@ -86,7 +87,7 @@ class BlogController extends Controller
         // However, we explicitly add it to improve code readability.
         // See https://symfony.com/doc/current/best_practices/forms.html#handling-form-submits
         if ($form->isSubmitted() && $form->isValid()) {
-            $post->setSlug($this->get('slugger')->slugify($post->getTitle()));
+            $post->setSlug($slugger->slugify($post->getTitle()));
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($post);
@@ -134,7 +135,7 @@ class BlogController extends Controller
      * @Route("/{id}/edit", requirements={"id": "\d+"}, name="admin_post_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Post $post, Request $request)
+    public function editAction(Request $request, Post $post, Slugger $slugger)
     {
         $this->denyAccessUnlessGranted('edit', $post, 'Posts can only be edited by their authors.');
 
@@ -145,7 +146,7 @@ class BlogController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $post->setSlug($this->get('slugger')->slugify($post->getTitle()));
+            $post->setSlug($slugger->slugify($post->getTitle()));
             $entityManager->flush();
 
             $this->addFlash('success', 'post.updated_successfully');
