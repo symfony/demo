@@ -12,6 +12,8 @@
 namespace AppBundle\EventListener;
 
 use AppBundle\Entity\Comment;
+use AppBundle\Events;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -21,7 +23,7 @@ use Symfony\Component\Translation\TranslatorInterface;
  *
  * @author Oleg Voronkovich <oleg-voronkovich@yandex.ru>
  */
-class CommentNotificationListener
+class CommentNotificationSubscriber implements EventSubscriberInterface
 {
     /**
      * @var \Swift_Mailer
@@ -57,6 +59,13 @@ class CommentNotificationListener
         $this->urlGenerator = $urlGenerator;
         $this->translator = $translator;
         $this->sender = $sender;
+    }
+
+    public static function getSubscribedEvents()
+    {
+        return [
+            Events::COMMENT_CREATED => 'onCommentCreated',
+        ];
     }
 
     /**

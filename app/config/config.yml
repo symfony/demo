@@ -30,51 +30,50 @@ framework:
     # and with different cache configurations for each fragment
     # https://symfony.com/doc/current/book/http_cache.html#edge-side-includes
     esi:             { enabled: true }
-    translator:      { fallback: "%locale%" }
-    secret:          "%env(SYMFONY_SECRET)%"
+    translator:      { fallback: '%locale%' }
+    secret:          '%env(SYMFONY_SECRET)%'
     router:
-        resource: "%kernel.root_dir%/config/routing.yml"
+        resource: '%kernel.root_dir%/config/routing.yml'
         strict_requirements: ~
     form:            ~
     csrf_protection: ~
     validation:      { enable_annotations: true }
     templating:
         engines: ['twig']
-    default_locale:  "%locale%"
+    default_locale:  '%locale%'
     trusted_hosts:   ~
-    trusted_proxies: ~
     session:
         handler_id:  session.handler.native_file
-        save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
+        save_path:   '%kernel.project_dir%/var/sessions/%kernel.environment%'
     fragments:       ~
     http_method_override: true
     assets: ~
 
 # Twig Configuration (used for rendering application templates)
 twig:
-    debug:            "%kernel.debug%"
-    strict_variables: "%kernel.debug%"
+    debug:            '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
     form_themes:
-        - "form/layout.html.twig"
-        - "form/fields.html.twig"
+        - 'form/layout.html.twig'
+        - 'form/fields.html.twig'
 
 # Doctrine Configuration (used to access databases and manipulate their information)
 doctrine:
     dbal:
         # if you don't want to use SQLite, change the URL in parameters.yml or set the DATABASE_URL environment variable
-        url: "%env(DATABASE_URL)%"
+        url: '%env(DATABASE_URL)%'
 
         # instead of using a URL, you may also uncomment the following lines to configure your database
         # driver:   pdo_mysql
-        # host:     "%database_host%"
-        # port:     "%database_port%"
-        # dbname:   "%database_name%"
-        # user:     "%database_user%"
-        # password: "%database_password%"
+        # host:     '%database_host%'
+        # port:     '%database_port%'
+        # dbname:   '%database_name%'
+        # user:     '%database_user%'
+        # password: '%database_password%'
         # charset:  UTF8
 
     orm:
-        auto_generate_proxy_classes: "%kernel.debug%"
+        auto_generate_proxy_classes: '%kernel.debug%'
         auto_mapping: true
 
 # Swiftmailer Configuration (used to send emails)
@@ -84,8 +83,8 @@ doctrine:
 # stores options that change from one server to another
 #
 swiftmailer:
-    transport: "%mailer_transport%"
-    host:      "%mailer_host%"
-    username:  "%mailer_user%"
-    password:  "%mailer_password%"
+    transport: '%mailer_transport%'
+    host:      '%mailer_host%'
+    username:  '%mailer_user%'
+    password:  '%mailer_password%'
     spool:     { type: memory }
