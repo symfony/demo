@@ -15,15 +15,19 @@ use AppBundle\Entity\Comment;
 use AppBundle\Entity\Post;
 use AppBundle\Events;
 use AppBundle\Form\CommentType;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Controller used to manage blog contents in the public part of the site.
@@ -46,9 +50,9 @@ class BlogController extends Controller
      * Content-Type header for the response.
      * See https://symfony.com/doc/current/quick_tour/the_controller.html#using-formats
      */
-    public function indexAction($page, $_format)
+    public function indexAction(EntityManagerInterface $em, $page, $_format)
     {
-        $posts = $this->getDoctrine()->getRepository(Post::class)->findLatest($page);
+        $posts = $em->getRepository(Post::class)->findLatest($page);
 
         // Every template name also has two extensions that specify the format and
         // engine for that template.
@@ -65,7 +69,7 @@ class BlogController extends Controller
      * value given in the route.
      * See https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html
      */
-    public function postShowAction(Post $post)
+    public function postShowAction(Post $post, UserInterface $user = null)
     {
         // Symfony provides a function called 'dump()' which is an improved version
         // of the 'var_dump()' function. It's useful to quickly debug the contents
@@ -74,7 +78,7 @@ class BlogController extends Controller
         // This function can be used both in PHP files and Twig templates. The only
         // requirement is to have enabled the DebugBundle.
         if ('dev' === $this->getParameter('kernel.environment')) {
-            dump($post, $this->get('security.token_storage')->getToken()->getUser(), new \DateTime());
+            dump($post, $user, new \DateTime());
         }
 
         return $this->render('blog/post_show.html.twig', ['post' => $post]);
@@ -90,7 +94,7 @@ class BlogController extends Controller
      * (postSlug) doesn't match any of the Doctrine entity properties (slug).
      * See https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html#doctrine-converter
      */
-    public function commentNewAction(Request $request, Post $post)
+    public function commentNewAction(Request $request, Post $post, EntityManagerInterface $em, EventDispatcherInterface $eventDispatcher)
     {
         $comment = new Comment();
         $comment->setAuthor($this->getUser());
@@ -102,9 +106,8 @@ class BlogController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($comment);
-            $entityManager->flush();
+            $em->persist($comment);
+            $em->flush();
 
             // When triggering an event, you can optionally pass some information.
             // For simple applications, use the GenericEvent object provided by Symfony
@@ -118,7 +121,7 @@ class BlogController extends Controller
             // passed in the event and they can even modify the execution flow, so
             // there's no guarantee that the rest of this controller will be executed.
             // See https://symfony.com/doc/current/components/event_dispatcher.html
-            $this->get('event_dispatcher')->dispatch(Events::COMMENT_CREATED, $event);
+            $eventDispatcher->dispatch(Events::COMMENT_CREATED, $event);
 
             return $this->redirectToRoute('blog_post', ['slug' => $post->getSlug()]);
         }

@@ -14,12 +14,14 @@ namespace AppBundle\Controller\Admin;
 use AppBundle\Entity\Post;
 use AppBundle\Form\PostType;
 use AppBundle\Utils\Slugger;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Controller used to manage blog contents in the backend.
@@ -53,10 +55,9 @@ class BlogController extends Controller
      * @Route("/", name="admin_post_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(EntityManagerInterface $em, UserInterface $user = null)
     {
-        $entityManager = $this->getDoctrine()->getManager();
-        $posts = $entityManager->getRepository(Post::class)->findBy(['author' => $this->getUser()], ['publishedAt' => 'DESC']);
+        $posts = $em->getRepository(Post::class)->findBy(['author' => $user], ['publishedAt' => 'DESC']);
 
         return $this->render('admin/blog/index.html.twig', ['posts' => $posts]);
     }
@@ -71,10 +72,10 @@ class BlogController extends Controller
      * to constraint the HTTP methods each controller responds to (by default
      * it responds to all methods).
      */
-    public function newAction(Request $request, Slugger $slugger)
+    public function newAction(Request $request, UserInterface $user = null, Slugger $slugger)
     {
         $post = new Post();
-        $post->setAuthor($this->getUser());
+        $post->setAuthor($user);
 
         // See https://symfony.com/doc/current/book/forms.html#submitting-forms-with-multiple-buttons
         $form = $this->createForm(PostType::class, $post)
@@ -89,9 +90,8 @@ class BlogController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $post->setSlug($slugger->slugify($post->getTitle()));
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($post);
-            $entityManager->flush();
+            $em->persist($post);
+            $em->flush();
 
             // Flash messages are used to notify the user about the result of the
             // actions. They are deleted automatically from the session as soon
@@ -135,19 +135,16 @@ class BlogController extends Controller
      * @Route("/{id}/edit", requirements={"id": "\d+"}, name="admin_post_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Post $post, Slugger $slugger)
+    public function editAction(Request $request, EntityManagerInterface $em, Post $post, Slugger $slugger)
     {
         $this->denyAccessUnlessGranted('edit', $post, 'Posts can only be edited by their authors.');
 
-        $entityManager = $this->getDoctrine()->getManager();
-
         $form = $this->createForm(PostType::class, $post);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $post->setSlug($slugger->slugify($post->getTitle()));
-            $entityManager->flush();
+            $em->flush();
 
             $this->addFlash('success', 'post.updated_successfully');
 
@@ -170,21 +167,19 @@ class BlogController extends Controller
      * The Security annotation value is an expression (if it evaluates to false,
      * the authorization mechanism will prevent the user accessing this resource).
      */
-    public function deleteAction(Request $request, Post $post)
+    public function deleteAction(Request $request, EntityManagerInterface $em, Post $post)
     {
         if (!$this->isCsrfTokenValid('delete', $request->request->get('token'))) {
             return $this->redirectToRoute('admin_post_index');
         }
-
-        $entityManager = $this->getDoctrine()->getManager();
 
         // Delete the tags associated with this blog post. This is done automatically
         // by Doctrine, except for SQLite (the database used in this application)
         // because foreign key support is not enabled by default in SQLite
         $post->getTags()->clear();
 
-        $entityManager->remove($post);
-        $entityManager->flush();
+        $em->remove($post);
+        $em->flush();
 
         $this->addFlash('success', 'post.deleted_successfully');
 
