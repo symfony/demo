@@ -38,6 +38,7 @@ class ListUsersCommand extends Command
 {
     private $entityManager;
     private $mailer;
+    private $emailSender;
 
     public function __construct(EntityManagerInterface $em, \Swift_Mailer $mailer, $emailSender)
     {
