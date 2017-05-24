@@ -52,8 +52,8 @@ class RedirectToPreferredLocaleListener
     public function __construct(UrlGeneratorInterface $urlGenerator, $locales, $defaultLocale = null)
     {
         $this->urlGenerator = $urlGenerator;
+        $this->locales = array_filter(explode('|', trim($locales)));
 
-        $this->locales = explode('|', trim($locales));
         if (empty($this->locales)) {
             throw new \UnexpectedValueException('The list of supported locales must not be empty.');
         }
@@ -82,6 +82,7 @@ class RedirectToPreferredLocaleListener
         if (!$event->isMasterRequest() || '/' !== $request->getPathInfo()) {
             return;
         }
+
         // Ignore requests from referrers with the same HTTP host in order to prevent
         // changing language for users who possibly already selected it for this application.
         if (0 === mb_stripos($request->headers->get('referer'), $request->getSchemeAndHttpHost())) {
