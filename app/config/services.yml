@@ -42,7 +42,7 @@ services:
 
     app.comment_notification:
         class: AppBundle\EventListener\CommentNotificationListener
-        arguments: ['@mailer', '@router', '@translator', '%app.notifications.email_sender%']
+        arguments: ['@mailer', '@router', '@translator', '%app.notifications.email_sender%', '@logger']
         # The "method" attribute of this tag is optional and defaults to "on + camelCasedEventName"
         # If the event is "comment.created" the method executed by default is "onCommentCreated()".
         tags:
