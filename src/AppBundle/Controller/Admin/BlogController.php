@@ -72,7 +72,7 @@ class BlogController extends Controller
      * to constraint the HTTP methods each controller responds to (by default
      * it responds to all methods).
      */
-    public function newAction(Request $request, UserInterface $user = null, Slugger $slugger)
+    public function newAction(Request $request, EntityManagerInterface $em, UserInterface $user = null, Slugger $slugger)
     {
         $post = new Post();
         $post->setAuthor($user);
