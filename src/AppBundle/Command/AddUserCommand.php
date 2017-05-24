@@ -12,13 +12,15 @@
 namespace AppBundle\Command;
 
 use AppBundle\Entity\User;
-use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
+use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * A command console that creates users and stores them in the database.
@@ -39,14 +41,20 @@ use Symfony\Component\Console\Question\Question;
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
-class AddUserCommand extends ContainerAwareCommand
+class AddUserCommand extends Command
 {
     const MAX_ATTEMPTS = 5;
 
-    /**
-     * @var ObjectManager
-     */
     private $entityManager;
+    private $passwordEncoder;
+
+    public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $encoder)
+    {
+        parent::__construct();
+
+        $this->entityManager = $em;
+        $this->passwordEncoder = $encoder;
+    }
 
     /**
      * {@inheritdoc}
@@ -69,19 +77,6 @@ class AddUserCommand extends ContainerAwareCommand
     }
 
     /**
-     * This method is executed before the interact() and the execute() methods.
-     * It's main purpose is to initialize the variables used in the rest of the
-     * command methods.
-     *
-     * Beware that the input options and arguments are validated after executing
-     * the interact() method, so you can't blindly trust their values in this method.
-     */
-    protected function initialize(InputInterface $input, OutputInterface $output)
-    {
-        $this->entityManager = $this->getContainer()->get('doctrine')->getManager();
-    }
-
-    /**
      * This method is executed after initialize() and before execute(). Its purpose
      * is to check if some of the options/arguments are missing and interactively
      * ask the user for those values.
@@ -97,34 +92,28 @@ class AddUserCommand extends ContainerAwareCommand
             return;
         }
 
-        // multi-line messages can be displayed this way...
-        $output->writeln('');
-        $output->writeln('Add User Command Interactive Wizard');
-        $output->writeln('-----------------------------------');
+        // See: http://symfony.com/doc/current/console/style.html
+        $io = new SymfonyStyle($input, $output);
 
-        // ...but you can also pass an array of strings to the writeln() method
-        $output->writeln([
-            '',
-            'If you prefer to not use this interactive wizard, provide the',
-            'arguments required by this command as follows:',
+        // Use the title() method to display the title
+        $io->title('Add User Command Interactive Wizard');
+
+        // multi-line messages can be displayed this way...
+        $io->text('If you prefer to not use this interactive wizard, provide the');
+        $io->text('arguments required by this command as follows:');
+
+        // ...but you can also pass an array of strings to the text() method
+        $io->text([
             '',
             ' $ php bin/console app:add-user username password email@example.com',
             '',
-        ]);
-
-        $output->writeln([
-            '',
             'Now we\'ll ask you for the value of all the missing command arguments.',
-            '',
         ]);
-
-        // See https://symfony.com/doc/current/components/console/helpers/questionhelper.html
-        $console = $this->getHelper('question');
 
         // Ask for the username if it's not defined
         $username = $input->getArgument('username');
         if (null === $username) {
-            $question = new Question(' > <info>Username</info>: ');
+            $question = new Question('Username');
             $question->setValidator(function ($answer) {
                 if (empty($answer)) {
                     throw new \RuntimeException('The username cannot be empty');
@@ -134,50 +123,50 @@ class AddUserCommand extends ContainerAwareCommand
             });
             $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
-            $username = $console->ask($input, $output, $question);
+            $username = $io->askQuestion($question);
             $input->setArgument('username', $username);
         } else {
-            $output->writeln(' > <info>Username</info>: '.$username);
+            $io->text(' > <info>Username</info>: '.$username);
         }
 
         // Ask for the password if it's not defined
         $password = $input->getArgument('password');
         if (null === $password) {
-            $question = new Question(' > <info>Password</info> (your type will be hidden): ');
+            $question = new Question('Password (your type will be hidden)');
             $question->setValidator([$this, 'passwordValidator']);
             $question->setHidden(true);
             $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
-            $password = $console->ask($input, $output, $question);
+            $password = $io->askQuestion($question);
             $input->setArgument('password', $password);
         } else {
-            $output->writeln(' > <info>Password</info>: '.str_repeat('*', mb_strlen($password)));
+            $io->text(' > <info>Password</info>: '.str_repeat('*', mb_strlen($password)));
         }
 
         // Ask for the email if it's not defined
         $email = $input->getArgument('email');
         if (null === $email) {
-            $question = new Question(' > <info>Email</info>: ');
+            $question = new Question('Email');
             $question->setValidator([$this, 'emailValidator']);
             $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
-            $email = $console->ask($input, $output, $question);
+            $email = $io->askQuestion($question);
             $input->setArgument('email', $email);
         } else {
-            $output->writeln(' > <info>Email</info>: '.$email);
+            $io->text(' > <info>Email</info>: '.$email);
         }
 
         // Ask for the full name if it's not defined
         $fullName = $input->getArgument('full-name');
         if (null === $fullName) {
-            $question = new Question(' > <info>Full Name</info>: ');
+            $question = new Question('Full Name');
             $question->setValidator([$this, 'fullNameValidator']);
             $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
-            $fullName = $console->ask($input, $output, $question);
+            $fullName = $io->askQuestion($question);
             $input->setArgument('full-name', $fullName);
         } else {
-            $output->writeln(' > <info>Full Name</info>: '.$fullName);
+            $io->text(' > <info>Full Name</info>: '.$fullName);
         }
     }
 
@@ -188,6 +177,7 @@ class AddUserCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $startTime = microtime(true);
+        $io = new SymfonyStyle($input, $output);
 
         $username = $input->getArgument('username');
         $plainPassword = $input->getArgument('password');
@@ -206,21 +196,19 @@ class AddUserCommand extends ContainerAwareCommand
         $user->setRoles([$isAdmin ? 'ROLE_ADMIN' : 'ROLE_USER']);
 
         // See https://symfony.com/doc/current/book/security.html#security-encoding-password
-        $encoder = $this->getContainer()->get('security.password_encoder');
-        $encodedPassword = $encoder->encodePassword($user, $plainPassword);
+        $encodedPassword = $this->passwordEncoder->encodePassword($user, $plainPassword);
         $user->setPassword($encodedPassword);
 
         $this->entityManager->persist($user);
         $this->entityManager->flush();
 
-        $output->writeln('');
-        $output->writeln(sprintf('[OK] %s was successfully created: %s (%s)', $isAdmin ? 'Administrator user' : 'User', $user->getUsername(), $user->getEmail()));
+        $io->success(sprintf('%s was successfully created: %s (%s)', $isAdmin ? 'Administrator user' : 'User', $user->getUsername(), $user->getEmail()));
 
         if ($output->isVerbose()) {
             $finishTime = microtime(true);
             $elapsedTime = $finishTime - $startTime;
 
-            $output->writeln(sprintf('[INFO] New user database id: %d / Elapsed time: %.2f ms', $user->getId(), $elapsedTime * 1000));
+            $io->note(sprintf('New user database id: %d / Elapsed time: %.2f ms', $user->getId(), $elapsedTime * 1000));
         }
     }
 
