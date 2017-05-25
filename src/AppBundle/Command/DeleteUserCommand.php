@@ -17,7 +17,6 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
@@ -82,7 +81,6 @@ HELP
         // See: http://symfony.com/doc/current/console/style.html
         $io = new SymfonyStyle($input, $output);
 
-
         $io->title('Delete User Command Interactive Wizard');
 
         $io->text([
@@ -95,11 +93,8 @@ HELP
             '',
         ]);
 
-        $question = new Question(' > <info>Username</info>: ');
-        $question->setValidator([$this, 'usernameValidator']);
-        $question->setMaxAttempts(self::MAX_ATTEMPTS);
+        $username = $io->ask('Username', null, [$this, 'usernameValidator']);
 
-        $username = $io->askQuestion($question);
         $input->setArgument('username', $username);
     }
 
