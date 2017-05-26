@@ -55,9 +55,10 @@ class BlogController extends Controller
      * @Route("/", name="admin_post_index")
      * @Method("GET")
      */
-    public function indexAction(EntityManagerInterface $em, UserInterface $user = null)
+    public function indexAction()
     {
-        $posts = $em->getRepository(Post::class)->findBy(['author' => $user], ['publishedAt' => 'DESC']);
+        $em = $this->getDoctrine()->getManager();
+        $posts = $em->getRepository(Post::class)->findBy(['author' => $this->getUser()], ['publishedAt' => 'DESC']);
 
         return $this->render('admin/blog/index.html.twig', ['posts' => $posts]);
     }
@@ -72,10 +73,10 @@ class BlogController extends Controller
      * to constraint the HTTP methods each controller responds to (by default
      * it responds to all methods).
      */
-    public function newAction(Request $request, EntityManagerInterface $em, UserInterface $user = null, Slugger $slugger)
+    public function newAction(Request $request, Slugger $slugger)
     {
         $post = new Post();
-        $post->setAuthor($user);
+        $post->setAuthor($this->getUser());
 
         // See https://symfony.com/doc/current/book/forms.html#submitting-forms-with-multiple-buttons
         $form = $this->createForm(PostType::class, $post)
@@ -90,6 +91,7 @@ class BlogController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $post->setSlug($slugger->slugify($post->getTitle()));
 
+            $em = $this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();
 
@@ -135,7 +137,7 @@ class BlogController extends Controller
      * @Route("/{id}/edit", requirements={"id": "\d+"}, name="admin_post_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, EntityManagerInterface $em, Post $post, Slugger $slugger)
+    public function editAction(Request $request, Post $post, Slugger $slugger)
     {
         $this->denyAccessUnlessGranted('edit', $post, 'Posts can only be edited by their authors.');
 
@@ -144,7 +146,7 @@ class BlogController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $post->setSlug($slugger->slugify($post->getTitle()));
-            $em->flush();
+            $this->getDoctrine()->getManager()->flush();
 
             $this->addFlash('success', 'post.updated_successfully');
 
@@ -167,7 +169,7 @@ class BlogController extends Controller
      * The Security annotation value is an expression (if it evaluates to false,
      * the authorization mechanism will prevent the user accessing this resource).
      */
-    public function deleteAction(Request $request, EntityManagerInterface $em, Post $post)
+    public function deleteAction(Request $request, Post $post)
     {
         if (!$this->isCsrfTokenValid('delete', $request->request->get('token'))) {
             return $this->redirectToRoute('admin_post_index');
@@ -178,6 +180,7 @@ class BlogController extends Controller
         // because foreign key support is not enabled by default in SQLite
         $post->getTags()->clear();
 
+        $em = $this->getDoctrine()->getManager();
         $em->remove($post);
         $em->flush();
 

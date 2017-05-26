@@ -43,5 +43,5 @@ services:
             $locales: '%app_locales%'
             $defaultLocale: '%locale%'
 
-    Twig_Extensions_Extension_Intl:
-        class:  Twig_Extensions_Extension_Intl
+
+    Twig\Extensions\IntlExtension: ~
