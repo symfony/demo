@@ -47,7 +47,6 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface,
 
             $post->setTitle($title);
             $post->setSummary($this->getRandomPostSummary());
-            // TODO: fix this 'slugger' call
             $post->setSlug($this->container->get('slugger')->slugify($post->getTitle()));
             $post->setContent($this->getPostContent());
             // "References" are the way to share objects between fixtures defined
