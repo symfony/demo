@@ -12,6 +12,7 @@
 namespace AppBundle\EventListener;
 
 use AppBundle\Entity\Comment;
+use AppBundle\Events;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -63,7 +64,7 @@ class CommentNotificationSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            'comment.created' => 'onCommentCreated',
+            Events::COMMENT_CREATED => 'onCommentCreated',
         ];
     }
 
