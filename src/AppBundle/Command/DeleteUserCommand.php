@@ -100,7 +100,7 @@ HELP
         $helper = $this->getHelper('question');
 
         $question = new Question(' > <info>Username</info>: ');
-        $question->setValidator([$this, 'usernameValidator']);
+        $question->setValidator([$this->getContainer()->get('app.validator'), 'username']);
         $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
         $username = $helper->ask($input, $output, $question);
@@ -109,8 +109,8 @@ HELP
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $username = $input->getArgument('username');
-        $this->usernameValidator($username);
+        $validator = $this->getContainer()->get('app.validator');
+        $username = $validator->username($input->getArgument('username'));
 
         $repository = $this->entityManager->getRepository(User::class);
         /** @var User $user */
@@ -130,24 +130,5 @@ HELP
 
         $output->writeln('');
         $output->writeln(sprintf('[OK] User "%s" (ID: %d, email: %s) was successfully deleted.', $user->getUsername(), $userId, $user->getEmail()));
-    }
-
-    /**
-     * This internal method should be private, but it's declared public to
-     * maintain PHP 5.3 compatibility when using it in a callback.
-     *
-     * @internal
-     */
-    public function usernameValidator($username)
-    {
-        if (empty($username)) {
-            throw new \Exception('The username can not be empty.');
-        }
-
-        if (1 !== preg_match('/^[a-z_]+$/', $username)) {
-            throw new \Exception('The username must contain only lowercase latin characters and underscores.');
-        }
-
-        return $username;
     }
 }

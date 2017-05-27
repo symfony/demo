@@ -7,7 +7,10 @@ services:
     markdown:
         class: AppBundle\Utils\Markdown
 
-    # These are the Twig extensions that create new filters and functions for
+    app.validator:
+        class: AppBundle\Utils\Validator
+
+   # These are the Twig extensions that create new filters and functions for
     # using them in the templates
     app.twig.app_extension:
         public:    false
