@@ -13,11 +13,6 @@ namespace AppBundle\Utils;
 
 class Validator
 {
-    /**
-     * @param string $username
-     *
-     * @return string
-     */
     public function username($username)
     {
         if (empty($username)) {
@@ -31,11 +26,6 @@ class Validator
         return $username;
     }
 
-    /**
-     * @param string $plainPassword
-     *
-     * @return string
-     */
     public function password($plainPassword)
     {
         if (empty($plainPassword)) {
@@ -49,11 +39,6 @@ class Validator
         return $plainPassword;
     }
 
-    /**
-     * @param string $email
-     *
-     * @return string
-     */
     public function email($email)
     {
         if (empty($email)) {
@@ -67,11 +52,6 @@ class Validator
         return $email;
     }
 
-    /**
-     * @param string $fullName
-     *
-     * @return string
-     */
     public function fullName($fullName)
     {
         if (empty($fullName)) {
