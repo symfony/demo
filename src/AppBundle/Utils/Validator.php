@@ -17,7 +17,6 @@ class Validator
      * @param string $username
      *
      * @return string
-     * @throws \Exception
      */
     public function username($username)
     {
@@ -36,7 +35,6 @@ class Validator
      * @param string $plainPassword
      *
      * @return string
-     * @throws \Exception
      */
     public function password($plainPassword)
     {
@@ -55,7 +53,6 @@ class Validator
      * @param string $email
      *
      * @return string
-     * @throws \Exception
      */
     public function email($email)
     {
@@ -74,7 +71,6 @@ class Validator
      * @param string $fullName
      *
      * @return string
-     * @throws \Exception
      */
     public function fullName($fullName)
     {
