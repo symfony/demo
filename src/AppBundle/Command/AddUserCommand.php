@@ -127,7 +127,7 @@ class AddUserCommand extends ContainerAwareCommand
         $username = $input->getArgument('username');
         if (null === $username) {
             $question = new Question(' > <info>Username</info>: ');
-            $question->setValidator([$validator, 'username']);
+            $question->setValidator([$validator, 'validateUsername']);
             $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
             $username = $console->ask($input, $output, $question);
@@ -140,7 +140,7 @@ class AddUserCommand extends ContainerAwareCommand
         $password = $input->getArgument('password');
         if (null === $password) {
             $question = new Question(' > <info>Password</info> (your type will be hidden): ');
-            $question->setValidator([$validator, 'password']);
+            $question->setValidator([$validator, 'validatePassword']);
             $question->setHidden(true);
             $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
@@ -154,7 +154,7 @@ class AddUserCommand extends ContainerAwareCommand
         $email = $input->getArgument('email');
         if (null === $email) {
             $question = new Question(' > <info>Email</info>: ');
-            $question->setValidator([$validator, 'email']);
+            $question->setValidator([$validator, 'validateEmail']);
             $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
             $email = $console->ask($input, $output, $question);
@@ -167,7 +167,7 @@ class AddUserCommand extends ContainerAwareCommand
         $fullName = $input->getArgument('full-name');
         if (null === $fullName) {
             $question = new Question(' > <info>Full Name</info>: ');
-            $question->setValidator([$validator, 'fullName']);
+            $question->setValidator([$validator, 'validateFullName']);
             $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
             $fullName = $console->ask($input, $output, $question);
@@ -234,9 +234,9 @@ class AddUserCommand extends ContainerAwareCommand
         // validate password and email if is not this input means interactive.
         $validator = $this->getContainer()->get('app.validator');
 
-        $validator->password($plainPassword);
-        $validator->email($email);
-        $validator->fullName($fullName);
+        $validator->validatePassword($plainPassword);
+        $validator->validateEmail($email);
+        $validator->validateFullName($fullName);
 
         // check if a user with the same email already exists.
         $existingEmail = $userRepository->findOneBy(['email' => $email]);

@@ -13,7 +13,7 @@ namespace AppBundle\Utils;
 
 class Validator
 {
-    public function username($username)
+    public function validateUsername($username)
     {
         if (empty($username)) {
             throw new \Exception('The username can not be empty.');
@@ -26,7 +26,7 @@ class Validator
         return $username;
     }
 
-    public function password($plainPassword)
+    public function validatePassword($plainPassword)
     {
         if (empty($plainPassword)) {
             throw new \Exception('The password can not be empty.');
@@ -39,7 +39,7 @@ class Validator
         return $plainPassword;
     }
 
-    public function email($email)
+    public function validateEmail($email)
     {
         if (empty($email)) {
             throw new \Exception('The email can not be empty.');
@@ -52,7 +52,7 @@ class Validator
         return $email;
     }
 
-    public function fullName($fullName)
+    public function validateFullName($fullName)
     {
         if (empty($fullName)) {
             throw new \Exception('The full name can not be empty.');

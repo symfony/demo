@@ -100,7 +100,7 @@ HELP
         $helper = $this->getHelper('question');
 
         $question = new Question(' > <info>Username</info>: ');
-        $question->setValidator([$this->getContainer()->get('app.validator'), 'username']);
+        $question->setValidator([$this->getContainer()->get('app.validator'), 'validateUsername']);
         $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
         $username = $helper->ask($input, $output, $question);
@@ -110,7 +110,7 @@ HELP
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $validator = $this->getContainer()->get('app.validator');
-        $username = $validator->username($input->getArgument('username'));
+        $username = $validator->validateUsername($input->getArgument('username'));
 
         $repository = $this->entityManager->getRepository(User::class);
         /** @var User $user */
