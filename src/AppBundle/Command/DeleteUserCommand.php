@@ -20,7 +20,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 
 /**
- * A command console that deletes users from the database.
+ * A console command that deletes users from the database.
  *
  * To use this command, open a terminal window, enter into your project
  * directory and execute the following:
