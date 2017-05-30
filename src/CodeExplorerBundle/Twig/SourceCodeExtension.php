@@ -138,10 +138,4 @@ class SourceCodeExtension extends \Twig_Extension
 
         return $formattedCode;
     }
-
-    // the name of the Twig extension must be unique in the application
-    public function getName()
-    {
-        return 'code_explorer_source_code';
-    }
 }
