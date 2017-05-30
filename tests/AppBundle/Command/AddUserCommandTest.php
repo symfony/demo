@@ -103,7 +103,8 @@ class AddUserCommandTest extends KernelTestCase
     {
         self::bootKernel();
 
-        $command = new AddUserCommand();
+        $container = self::$kernel->getContainer();
+        $command = new AddUserCommand($container->get('doctrine')->getManager(), $container->get('security.password_encoder'));
         $command->setApplication(new Application(self::$kernel));
 
         $commandTester = new CommandTester($command);

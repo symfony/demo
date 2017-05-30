@@ -11,8 +11,10 @@
 
 namespace AppBundle\EventListener;
 
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
@@ -23,7 +25,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  *
  * @author Oleg Voronkovich <oleg-voronkovich@yandex.ru>
  */
-class RedirectToPreferredLocaleListener
+class RedirectToPreferredLocaleSubscriber implements EventSubscriberInterface
 {
     /**
      * @var UrlGeneratorInterface
@@ -69,6 +71,13 @@ class RedirectToPreferredLocaleListener
         // returns the first element when no an appropriate language is found
         array_unshift($this->locales, $this->defaultLocale);
         $this->locales = array_unique($this->locales);
+    }
+
+    public static function getSubscribedEvents()
+    {
+        return [
+            KernelEvents::REQUEST => 'onKernelRequest',
+        ];
     }
 
     /**
