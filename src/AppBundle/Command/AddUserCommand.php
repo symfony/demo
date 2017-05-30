@@ -19,7 +19,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * A command console that creates users and stores them in the database.
@@ -47,7 +47,7 @@ class AddUserCommand extends Command
     private $entityManager;
     private $passwordEncoder;
 
-    public function __construct(EntityManagerInterface $em, UserPasswordEncoder $encoder)
+    public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $encoder)
     {
         parent::__construct();
 
