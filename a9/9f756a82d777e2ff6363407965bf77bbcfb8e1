@@ -1,0 +1,57 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-05-30T09:16:23Z
+
+I need someone to explain me why I needed to make this change --> f3d8340 to make this work. Thanks!
+
+---------------------------------------------------------------------------
+
+by stof at 2017-05-30T09:35:36Z
+
+Well, your second commit is because what you defined was not a URL-based DSN for SQLite. It was only a path.
+If you want to use it in `url`, use `sqlite://%kernel.project_dir%/...`
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-05-30T09:46:13Z
+
+@stof that was the problem! I'm an idiot 😊
+
+However, if I change that, I now see this:
+
+```
+Symfony\Component\DependencyInjection\Exception\EnvParameterException:
+Incompatible use of dynamic environment variables "DATABASE_URL" found in parameters.
+
+symfony-demo/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Dumper/PhpDumper.php:182
+symfony-demo/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Kernel.php:743
+symfony-demo/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Kernel.php:569
+symfony-demo/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Kernel.php:119
+symfony-demo/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Test/KernelTestCase.php:157
+symfony-demo/tests/AppBundle/Command/AddUserCommandTest.php:104
+symfony-demo/tests/AppBundle/Command/AddUserCommandTest.php:41
+```
+
+---------------------------------------------------------------------------
+
+by stof at 2017-05-30T09:48:38Z
+
+hmm, this message is not clear
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2017-05-30T11:30:30Z
+
+@javiereguiluz, dumper throws an exception because you don't use the `DATABASE_URL` variable in the `test` environment.  See https://github.com/symfony/symfony/blob/v3.3.0/src/Symfony/Component/DependencyInjection/Dumper/PhpDumper.php#L182
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2017-05-30T11:41:52Z
+
+@javiereguiluz, see @dmaicher's comment https://github.com/symfony/symfony-demo/pull/557#issuecomment-300897014
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-05-30T12:57:02Z
+
+@voronkovich thanks for your comments. That was indeed the error and the proposed fix solved the issue. Thanks!
