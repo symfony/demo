@@ -12,6 +12,7 @@
 namespace AppBundle\Command;
 
 use AppBundle\Entity\User;
+use AppBundle\Utils\Validator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -41,12 +42,14 @@ class DeleteUserCommand extends Command
     const MAX_ATTEMPTS = 5;
 
     private $entityManager;
+    private $validator;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em, Validator $validator)
     {
         parent::__construct();
 
         $this->entityManager = $em;
+        $this->validator = $validator;
     }
 
     /**
@@ -99,7 +102,7 @@ HELP
         $helper = $this->getHelper('question');
 
         $question = new Question(' > <info>Username</info>: ');
-        $question->setValidator([$this->getContainer()->get('app.validator'), 'validateUsername']);
+        $question->setValidator([$this->validator, 'validateUsername']);
         $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
         $username = $helper->ask($input, $output, $question);
@@ -108,8 +111,7 @@ HELP
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $validator = $this->getContainer()->get('app.validator');
-        $username = $validator->validateUsername($input->getArgument('username'));
+        $username = $this->validator->validateUsername($input->getArgument('username'));
 
         $repository = $this->entityManager->getRepository(User::class);
         /** @var User $user */

@@ -12,6 +12,7 @@
 namespace AppBundle\Command;
 
 use AppBundle\Entity\User;
+use AppBundle\Utils\Validator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -46,13 +47,15 @@ class AddUserCommand extends Command
 
     private $entityManager;
     private $passwordEncoder;
+    private $validator;
 
-    public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $encoder)
+    public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $encoder, Validator $validator)
     {
         parent::__construct();
 
         $this->entityManager = $em;
         $this->passwordEncoder = $encoder;
+        $this->validator = $validator;
     }
 
     /**
@@ -91,8 +94,6 @@ class AddUserCommand extends Command
             return;
         }
 
-        $validator = $this->getContainer()->get('app.validator');
-
         // multi-line messages can be displayed this way...
         $output->writeln('');
         $output->writeln('Add User Command Interactive Wizard');
@@ -121,7 +122,7 @@ class AddUserCommand extends Command
         $username = $input->getArgument('username');
         if (null === $username) {
             $question = new Question(' > <info>Username</info>: ');
-            $question->setValidator([$validator, 'validateUsername']);
+            $question->setValidator([$this->validator, 'validateUsername']);
             $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
             $username = $console->ask($input, $output, $question);
@@ -134,7 +135,7 @@ class AddUserCommand extends Command
         $password = $input->getArgument('password');
         if (null === $password) {
             $question = new Question(' > <info>Password</info> (your type will be hidden): ');
-            $question->setValidator([$validator, 'validatePassword']);
+            $question->setValidator([$this->validator, 'validatePassword']);
             $question->setHidden(true);
             $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
@@ -148,7 +149,7 @@ class AddUserCommand extends Command
         $email = $input->getArgument('email');
         if (null === $email) {
             $question = new Question(' > <info>Email</info>: ');
-            $question->setValidator([$validator, 'validateEmail']);
+            $question->setValidator([$this->validator, 'validateEmail']);
             $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
             $email = $console->ask($input, $output, $question);
@@ -161,7 +162,7 @@ class AddUserCommand extends Command
         $fullName = $input->getArgument('full-name');
         if (null === $fullName) {
             $question = new Question(' > <info>Full Name</info>: ');
-            $question->setValidator([$validator, 'validateFullName']);
+            $question->setValidator([$this->validator, 'validateFullName']);
             $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
             $fullName = $console->ask($input, $output, $question);
@@ -225,11 +226,9 @@ class AddUserCommand extends Command
         }
 
         // validate password and email if is not this input means interactive.
-        $validator = $this->getContainer()->get('app.validator');
-
-        $validator->validatePassword($plainPassword);
-        $validator->validateEmail($email);
-        $validator->validateFullName($fullName);
+        $this->validator->validatePassword($plainPassword);
+        $this->validator->validateEmail($email);
+        $this->validator->validateFullName($fullName);
 
         // check if a user with the same email already exists.
         $existingEmail = $userRepository->findOneBy(['email' => $email]);
