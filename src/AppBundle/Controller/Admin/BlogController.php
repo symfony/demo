@@ -14,14 +14,12 @@ namespace AppBundle\Controller\Admin;
 use AppBundle\Entity\Post;
 use AppBundle\Form\PostType;
 use AppBundle\Utils\Slugger;
-use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Controller used to manage blog contents in the backend.
