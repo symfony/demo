@@ -23,12 +23,6 @@ namespace CodeExplorerBundle\Twig;
 class SourceCodeExtension extends \Twig_Extension
 {
     private $controller;
-    private $kernelRootDir;
-
-    public function __construct($kernelRootDir)
-    {
-        $this->kernelRootDir = $kernelRootDir;
-    }
 
     public function setController($controller)
     {
