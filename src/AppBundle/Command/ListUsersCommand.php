@@ -12,8 +12,8 @@
 namespace AppBundle\Command;
 
 use AppBundle\Entity\User;
-use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -34,12 +34,20 @@ use Symfony\Component\Console\Output\OutputInterface;
  *
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-class ListUsersCommand extends ContainerAwareCommand
+class ListUsersCommand extends Command
 {
-    /**
-     * @var ObjectManager
-     */
     private $entityManager;
+    private $mailer;
+    private $emailSender;
+
+    public function __construct(EntityManagerInterface $em, \Swift_Mailer $mailer, $emailSender)
+    {
+        parent::__construct();
+
+        $this->entityManager = $em;
+        $this->mailer = $mailer;
+        $this->emailSender = $emailSender;
+    }
 
     /**
      * {@inheritdoc}
@@ -72,15 +80,6 @@ HELP
             ->addOption('max-results', null, InputOption::VALUE_OPTIONAL, 'Limits the number of users listed', 50)
             ->addOption('send-to', null, InputOption::VALUE_OPTIONAL, 'If set, the result is sent to the given email address')
         ;
-    }
-
-    /**
-     * This method is executed before the the execute() method. It's main purpose
-     * is to initialize the variables used in the rest of the command methods.
-     */
-    protected function initialize(InputInterface $input, OutputInterface $output)
-    {
-        $this->entityManager = $this->getContainer()->get('doctrine')->getManager();
     }
 
     /**
@@ -133,15 +132,13 @@ HELP
     private function sendReport($contents, $recipient)
     {
         // See https://symfony.com/doc/current/cookbook/email/email.html
-        $mailer = $this->getContainer()->get('mailer');
-
-        $message = $mailer->createMessage()
+        $message = $this->mailer->createMessage()
             ->setSubject(sprintf('app:list-users report (%s)', date('Y-m-d H:i:s')))
-            ->setFrom($this->getContainer()->getParameter('app.notifications.email_sender'))
+            ->setFrom($this->emailSender)
             ->setTo($recipient)
             ->setBody($contents, 'text/plain')
         ;
 
-        $mailer->send($message);
+        $this->mailer->send($message);
     }
 }

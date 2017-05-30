@@ -1,83 +1,47 @@
 services:
-    # First we define some basic services to make these utilities available in
-    # the entire application
-    slugger:
-        class: AppBundle\Utils\Slugger
-
-    markdown:
-        class: AppBundle\Utils\Markdown
-
-    # These are the Twig extensions that create new filters and functions for
-    # using them in the templates
-    app.twig.app_extension:
-        public:    false
-        class:     AppBundle\Twig\AppExtension
-        arguments: ['@markdown', '%app_locales%']
-        tags:
-            - { name: twig.extension }
-
-    app.twig.intl_extension:
+    # default configuration for services in *this* file
+    _defaults:
+        # automatically injects dependencies in your services
+        autowire: true
+        # automatically registers your services as commands, event subscribers, etc.
+        autoconfigure: true
+        # this means you cannot fetch services directly from the container via $container->get()
+        # if you need to do this, you can override this setting on individual services
         public: false
-        class:  Twig_Extensions_Extension_Intl
-        tags:
-            - { name: twig.extension }
 
-    # Defining a form type as a service is only required when the form type
-    # needs to use some other services, such as the entity manager.
-    # See https://symfony.com/doc/current/best_practices/forms.html
-    app.form.type.tagsinput:
-        class: AppBundle\Form\Type\TagsInputType
-        arguments: ['@doctrine.orm.entity_manager']
-        tags:
-            - { name: form.type }
+    # makes classes in src/AppBundle available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    AppBundle\:
+        resource: '../../src/AppBundle/*'
+        # you can exclude directories or files
+        # but if a service is unused, it's removed anyway
+        exclude: '../../src/AppBundle/{Controller,Entity,Repository}'
 
-    # Event Listeners are classes that listen to one or more specific events.
-    # Those events are defined in the tags added to the service definition.
-    # See https://symfony.com/doc/current/event_dispatcher.html#creating-an-event-listener
-    app.redirect_to_preferred_locale_listener:
-        class: AppBundle\EventListener\RedirectToPreferredLocaleListener
-        arguments: ['@router', '%app_locales%', '%locale%']
-        tags:
-            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+    # controllers are imported separately to make sure they're public
+    # and have a tag that allows actions to type-hint services
+    AppBundle\Controller\:
+        resource: '../../src/AppBundle/Controller'
+        public: true
+        tags: ['controller.service_arguments']
 
-    app.comment_notification:
-        class: AppBundle\EventListener\CommentNotificationListener
-        arguments: ['@mailer', '@router', '@translator', '%app.notifications.email_sender%']
-        # The "method" attribute of this tag is optional and defaults to "on + camelCasedEventName"
-        # If the event is "comment.created" the method executed by default is "onCommentCreated()".
-        tags:
-            - { name: kernel.event_listener, event: comment.created, method: onCommentCreated }
+    # Autowiring can't guess the constructor arguments that are not type-hinted with
+    # classes (e.g. container parameters) so you must define those arguments explicitly
+    AppBundle\Command\ListUsersCommand:
+        arguments:
+            $emailSender: '%app.notifications.email_sender%'
 
-    # Event subscribers are similar to event listeners but they don't need service tags.
-    # Instead, the PHP class of the event subscriber includes a method that returns
-    # the list of events listened by that class.
-    # See https://symfony.com/doc/current/event_dispatcher.html#creating-an-event-subscriber
-    app.requirements_subscriber:
-        class: AppBundle\EventListener\CheckRequirementsSubscriber
-        arguments: ['@doctrine.orm.entity_manager']
-        tags:
-            - { name: kernel.event_subscriber }
+    AppBundle\Twig\AppExtension:
+        arguments:
+            $locales: '%app_locales%'
 
-    # To inject the voter into the security layer, you must declare it as a service and tag it with security.voter.
-    # See https://symfony.com/doc/current/security/voters.html#configuring-the-voter
-    app.post_voter:
-        class: AppBundle\Security\PostVoter
-        public: false
-        tags:
-            - { name: security.voter }
+    AppBundle\EventListener\CommentNotificationSubscriber:
+        arguments:
+            $sender: '%app.notifications.email_sender%'
 
-    # Uncomment the following lines to define a service for the Post Doctrine repository.
-    # It's not mandatory to create these services, but if you use repositories a lot,
-    # these services simplify your code:
-    #
-    # app.post_repository:
-    #     class:     Doctrine\ORM\EntityRepository
-    #     factory:   ['@doctrine.orm.entity_manager', getRepository]
-    #     arguments: [AppBundle\Entity\Post]
-    #
-    # // traditional code inside a controller
-    # $entityManager = $this->getDoctrine()->getManager();
-    # $posts = $entityManager->getRepository('AppBundle:Post')->findAll();
-    #
-    # // same code using repository services
-    # $posts = $this->get('app.post_repository')->findAll();
+    AppBundle\EventListener\RedirectToPreferredLocaleSubscriber:
+        arguments:
+            $locales: '%app_locales%'
+            $defaultLocale: '%locale%'
+
+    # needed for the localizeddate Twig filter
+    Twig\Extensions\IntlExtension: ~

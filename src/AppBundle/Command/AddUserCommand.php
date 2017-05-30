@@ -12,13 +12,14 @@
 namespace AppBundle\Command;
 
 use AppBundle\Entity\User;
-use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
 
 /**
  * A command console that creates users and stores them in the database.
@@ -39,14 +40,20 @@ use Symfony\Component\Console\Question\Question;
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
-class AddUserCommand extends ContainerAwareCommand
+class AddUserCommand extends Command
 {
     const MAX_ATTEMPTS = 5;
 
-    /**
-     * @var ObjectManager
-     */
     private $entityManager;
+    private $passwordEncoder;
+
+    public function __construct(EntityManagerInterface $em, UserPasswordEncoder $encoder)
+    {
+        parent::__construct();
+
+        $this->entityManager = $em;
+        $this->passwordEncoder = $encoder;
+    }
 
     /**
      * {@inheritdoc}
@@ -66,19 +73,6 @@ class AddUserCommand extends ContainerAwareCommand
             ->addArgument('full-name', InputArgument::OPTIONAL, 'The full name of the new user')
             ->addOption('admin', null, InputOption::VALUE_NONE, 'If set, the user is created as an administrator')
         ;
-    }
-
-    /**
-     * This method is executed before the interact() and the execute() methods.
-     * It's main purpose is to initialize the variables used in the rest of the
-     * command methods.
-     *
-     * Beware that the input options and arguments are validated after executing
-     * the interact() method, so you can't blindly trust their values in this method.
-     */
-    protected function initialize(InputInterface $input, OutputInterface $output)
-    {
-        $this->entityManager = $this->getContainer()->get('doctrine')->getManager();
     }
 
     /**
@@ -206,8 +200,7 @@ class AddUserCommand extends ContainerAwareCommand
         $user->setRoles([$isAdmin ? 'ROLE_ADMIN' : 'ROLE_USER']);
 
         // See https://symfony.com/doc/current/book/security.html#security-encoding-password
-        $encoder = $this->getContainer()->get('security.password_encoder');
-        $encodedPassword = $encoder->encodePassword($user, $plainPassword);
+        $encodedPassword = $this->passwordEncoder->encodePassword($user, $plainPassword);
         $user->setPassword($encodedPassword);
 
         $this->entityManager->persist($user);
