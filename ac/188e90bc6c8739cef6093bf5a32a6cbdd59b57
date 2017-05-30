@@ -1,0 +1,45 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-05-22T07:55:20Z
+
+Commands still extend from `ContainerAwareCommand` and get services with `$container->get()` What can we do about that? Thanks!
+
+---------------------------------------------------------------------------
+
+by weaverryan at 2017-05-22T13:47:25Z
+
+@javiereguiluz I'm a bit undecided about commands (what to officially recommend). In the docs, I've left the `$this->getContainer()->get()` in the commands, and just mentioned that you can use DI normally now that these are services. So, the answer would be, if you want, you can absolutely add a `__construct()` method to these commands and use normal DI.
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-05-22T14:07:08Z
+
+We could use `AbstractController` instead?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-05-22T14:53:57Z
+
+I've updated commands to use DI too. Please let me know other places where we can use the new features. Thanks!
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-05-25T09:43:41Z
+
+Ready for the final review before merge. Thanks!
+
+---------------------------------------------------------------------------
+
+by weaverryan at 2017-05-26T12:42:44Z
+
+About fixtures, the fixtures bundle should probably be updated to allow for fixtures to be a tagged service. The fact that you can't use autowiring for them is due to this shortcoming, which is with the bundle imo
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-05-30T07:06:33Z
+
+After upgrading to 3.3.0 final, I see these deprecations:
+
+![symfony-3-3-deprecations](https://cloud.githubusercontent.com/assets/73419/26571676/441a8784-4517-11e7-80df-676133bd6c8a.png)
+
+I've reported the issue on https://github.com/symfony/symfony/issues/22951
