@@ -21,7 +21,7 @@ web_profiler:
 # In this case we just need to define a different path for the application database.
 doctrine:
     dbal:
-        path: "%kernel.root_dir%/../var/data/blog_test.sqlite"
+        path: "%kernel.project_dir%/var/data/blog_test.sqlite"
 
 # this configuration simplifies testing URLs protected by the security mechanism
 # See https://symfony.com/doc/current/cookbook/testing/http_authentication.html
