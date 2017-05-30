@@ -62,16 +62,6 @@ doctrine:
     dbal:
         # if you don't want to use SQLite, change the URL in parameters.yml or set the DATABASE_URL environment variable
         url: '%env(DATABASE_URL)%'
-
-        # instead of using a URL, you may also uncomment the following lines to configure your database
-        # driver:   pdo_mysql
-        # host:     '%database_host%'
-        # port:     '%database_port%'
-        # dbname:   '%database_name%'
-        # user:     '%database_user%'
-        # password: '%database_password%'
-        # charset:  UTF8
-
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
         auto_mapping: true
@@ -83,8 +73,5 @@ doctrine:
 # stores options that change from one server to another
 #
 swiftmailer:
-    transport: '%mailer_transport%'
-    host:      '%mailer_host%'
-    username:  '%mailer_user%'
-    password:  '%mailer_password%'
-    spool:     { type: memory }
+    url : '%env(MAILER_URL)%'
+    spool: { type: memory }
