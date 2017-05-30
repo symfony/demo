@@ -95,14 +95,4 @@ class AppExtension extends \Twig_Extension
 
         return $locales;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        // the name of the Twig extension must be unique in the application. Consider
-        // using 'app.extension' if you only have one Twig extension in your application.
-        return 'app.extension';
-    }
 }

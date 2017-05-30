@@ -2,7 +2,6 @@ services:
     code_explorer.twig.source_code_extension:
         public:    false
         class:     CodeExplorerBundle\Twig\SourceCodeExtension
-        arguments: ['%kernel.root_dir%']
         tags:
             - { name: twig.extension }
 

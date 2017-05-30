@@ -12,9 +12,9 @@
 namespace AppBundle\EventListener;
 
 use Doctrine\DBAL\Exception\DriverException;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\ConsoleEvents;
-use Symfony\Component\Console\Event\ConsoleExceptionEvent;
+use Symfony\Component\Console\Event\ConsoleErrorEvent;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
@@ -30,13 +30,13 @@ use Symfony\Component\HttpKernel\KernelEvents;
  */
 class CheckRequirementsSubscriber implements EventSubscriberInterface
 {
-    /** @var EntityManager */
+    /** @var EntityManagerInterface */
     private $entityManager;
 
     /**
-     * @param EntityManager $entityManager
+     * @param EntityManagerInterface $entityManager
      */
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
     }
@@ -48,22 +48,22 @@ class CheckRequirementsSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            // Exceptions are one of the events defined by the Console. See the
+            // Errors are one of the events defined by the Console. See the
             // rest here: https://symfony.com/doc/current/components/console/events.html
-            ConsoleEvents::EXCEPTION => 'handleConsoleException',
+            ConsoleEvents::ERROR => 'handleConsoleError',
             // See: http://api.symfony.com/master/Symfony/Component/HttpKernel/KernelEvents.html
             KernelEvents::EXCEPTION => 'handleKernelException',
         ];
     }
 
     /**
-     * This method checks if there has been an exception in a command related to
+     * This method checks if there has been an error in a command related to
      * the database and then, it checks if the 'sqlite3' PHP extension is enabled
      * or not to display a better error message.
      *
-     * @param ConsoleExceptionEvent $event
+     * @param ConsoleErrorEvent $event
      */
-    public function handleConsoleException(ConsoleExceptionEvent $event)
+    public function handleConsoleError(ConsoleErrorEvent $event)
     {
         $commandNames = ['doctrine:fixtures:load', 'doctrine:database:create', 'doctrine:schema:create', 'doctrine:database:drop'];
 
