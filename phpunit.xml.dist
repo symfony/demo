@@ -10,7 +10,7 @@
     <php>
         <ini name="error_reporting" value="-1" />
         <server name="KERNEL_DIR" value="app/" />
-        <env name="DATABASE_URL" value="sqlite://%kernel.project_dir%/var/data/blog_test.sqlite"/>
+        <env name="DATABASE_URL" value="sqlite:///%kernel.project_dir%/var/data/blog_test.sqlite"/>
     </php>
 
     <testsuites>
