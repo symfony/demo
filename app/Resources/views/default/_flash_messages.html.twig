@@ -8,7 +8,7 @@
 #}
 
 <div class="messages">
-    {% for type, messages in app.flahses %}
+    {% for type, messages in app.flashes %}
         {% for message in messages %}
             {# Bootstrap alert, see http://getbootstrap.com/components/#alerts #}
             <div class="alert alert-dismissible alert-{{ type }}" role="alert">
