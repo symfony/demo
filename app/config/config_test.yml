@@ -1,6 +1,13 @@
 imports:
     - { resource: config_dev.yml }
 
+parameters:
+    # It's recommended to use a separate database for tests. This allows to have a
+    # fixed and known set of data fixtures, it simplifies the code of tests and it
+    # makes them more robust.
+    # In this case we just need to define a different path for the application database.
+    env(DATABASE_URL): 'sqlite:///%kernel.project_dir%/var/data/blog_test.sqlite'
+
 framework:
     test: ~
     session:
