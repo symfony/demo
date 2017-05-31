@@ -30,18 +30,17 @@ services:
         arguments:
             $emailSender: '%app.notifications.email_sender%'
 
+    # when the service definition only contains arguments, you can omit the
+    # 'arguments' key and define the arguments just below the service class
     AppBundle\Twig\AppExtension:
-        arguments:
-            $locales: '%app_locales%'
+        $locales: '%app_locales%'
 
     AppBundle\EventListener\CommentNotificationSubscriber:
-        arguments:
-            $sender: '%app.notifications.email_sender%'
+        $sender: '%app.notifications.email_sender%'
 
     AppBundle\EventListener\RedirectToPreferredLocaleSubscriber:
-        arguments:
-            $locales: '%app_locales%'
-            $defaultLocale: '%locale%'
+        $locales: '%app_locales%'
+        $defaultLocale: '%locale%'
 
     # needed for the localizeddate Twig filter
     Twig\Extensions\IntlExtension: ~
