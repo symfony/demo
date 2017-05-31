@@ -12,22 +12,18 @@
 namespace CodeExplorerBundle\EventListener;
 
 use CodeExplorerBundle\Twig\SourceCodeExtension;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
+use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
  * Defines the method that 'listens' to the 'kernel.controller' event, which is
  * triggered whenever a controller is executed in the application.
  *
- * See https://symfony.com/doc/current/book/internals.html#kernel-controller-event
- *
- * Tip: listeners are common in Symfony applications, but this particular listener
- * is too advanced and too specific for the demo application needs. For more common
- * examples see https://symfony.com/doc/current/cookbook/service_container/event_listener.html
- *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-class ControllerListener
+class ControllerListener implements EventSubscriberInterface
 {
     private $twigExtension;
 
@@ -44,5 +40,15 @@ class ControllerListener
         if ($event->isMasterRequest()) {
             $this->twigExtension->setController($event->getController());
         }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getSubscribedEvents()
+    {
+        return [
+            KernelEvents::CONTROLLER => 'registerCurrentController',
+        ];
     }
 }
