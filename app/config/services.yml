@@ -30,8 +30,8 @@ services:
         arguments:
             $emailSender: '%app.notifications.email_sender%'
 
-    # When your service definition only requires arguments to be specified,
-    # you can use a shorter syntax for these:
+    # when the service definition only contains arguments, you can omit the
+    # 'arguments' key and define the arguments just below the service class
     AppBundle\Twig\AppExtension:
         $locales: '%app_locales%'
 
