@@ -11,12 +11,13 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Repository\PostRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="AppBundle\Repository\PostRepository")
+ * @ORM\Entity(repositoryClass=PostRepository::class)
  * @ORM\Table(name="symfony_demo_post")
  *
  * Defines the properties of the Post entity to represent the blog posts.
