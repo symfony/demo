@@ -14,6 +14,7 @@ namespace AppBundle\DataFixtures\ORM;
 use AppBundle\DataFixtures\FixturesTrait;
 use AppBundle\Entity\Comment;
 use AppBundle\Entity\Post;
+use AppBundle\Utils\Slugger;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -47,7 +48,7 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface,
 
             $post->setTitle($title);
             $post->setSummary($this->getRandomPostSummary());
-            $post->setSlug($this->container->get('slugger')->slugify($post->getTitle()));
+            $post->setSlug($this->container->get(Slugger::class)->slugify($post->getTitle()));
             $post->setContent($this->getPostContent());
             // "References" are the way to share objects between fixtures defined
             // in different files. This reference has been added in the UserFixtures
