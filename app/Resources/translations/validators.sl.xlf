@@ -14,6 +14,10 @@
                 <source>post.too_short_content</source>
                 <target>Vsebina objave je prekratka (vsaj {{ limit }} znakov)</target>
             </trans-unit>
+            <trans-unit id="post.too_many_tags">
+                <source>post.too_many_tags</source>
+                <target>Preveč značk (dodajte {{ limit }} ali manj značk)</target>
+            </trans-unit>
             <trans-unit id="comment.blank">
                 <source>comment.blank</source>
                 <target>Ne pustite vašega komentarja praznega!</target>

@@ -12,8 +12,8 @@
 namespace AppBundle\Command;
 
 use AppBundle\Entity\User;
-use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -36,14 +36,18 @@ use Symfony\Component\Console\Question\Question;
  *
  * @author Oleg Voronkovich <oleg-voronkovich@yandex.ru>
  */
-class DeleteUserCommand extends ContainerAwareCommand
+class DeleteUserCommand extends Command
 {
     const MAX_ATTEMPTS = 5;
 
-    /**
-     * @var ObjectManager
-     */
     private $entityManager;
+
+    public function __construct(EntityManagerInterface $em)
+    {
+        parent::__construct();
+
+        $this->entityManager = $em;
+    }
 
     /**
      * {@inheritdoc}
@@ -65,11 +69,6 @@ provide the missing value:
   <info>php %command.full_name%</info>
 HELP
             );
-    }
-
-    protected function initialize(InputInterface $input, OutputInterface $output)
-    {
-        $this->entityManager = $this->getContainer()->get('doctrine')->getManager();
     }
 
     protected function interact(InputInterface $input, OutputInterface $output)

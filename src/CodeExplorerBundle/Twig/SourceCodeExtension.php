@@ -23,12 +23,6 @@ namespace CodeExplorerBundle\Twig;
 class SourceCodeExtension extends \Twig_Extension
 {
     private $controller;
-    private $kernelRootDir;
-
-    public function __construct($kernelRootDir)
-    {
-        $this->kernelRootDir = $kernelRootDir;
-    }
 
     public function setController($controller)
     {
@@ -137,11 +131,5 @@ class SourceCodeExtension extends \Twig_Extension
         }
 
         return $formattedCode;
-    }
-
-    // the name of the Twig extension must be unique in the application
-    public function getName()
-    {
-        return 'code_explorer_source_code';
     }
 }

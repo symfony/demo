@@ -21,6 +21,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -48,7 +49,8 @@ class BlogController extends Controller
      */
     public function indexAction($page, $_format)
     {
-        $posts = $this->getDoctrine()->getRepository(Post::class)->findLatest($page);
+        $em = $this->getDoctrine()->getManager();
+        $posts = $em->getRepository(Post::class)->findLatest($page);
 
         // Every template name also has two extensions that specify the format and
         // engine for that template.
@@ -74,7 +76,7 @@ class BlogController extends Controller
         // This function can be used both in PHP files and Twig templates. The only
         // requirement is to have enabled the DebugBundle.
         if ('dev' === $this->getParameter('kernel.environment')) {
-            dump($post, $this->get('security.token_storage')->getToken()->getUser(), new \DateTime());
+            dump($post, $this->getUser(), new \DateTime());
         }
 
         return $this->render('blog/post_show.html.twig', ['post' => $post]);
@@ -90,21 +92,19 @@ class BlogController extends Controller
      * (postSlug) doesn't match any of the Doctrine entity properties (slug).
      * See https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html#doctrine-converter
      */
-    public function commentNewAction(Request $request, Post $post)
+    public function commentNewAction(Request $request, Post $post, EventDispatcherInterface $eventDispatcher)
     {
         $comment = new Comment();
         $comment->setAuthor($this->getUser());
-
         $post->addComment($comment);
 
         $form = $this->createForm(CommentType::class, $comment);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($comment);
-            $entityManager->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->flush();
 
             // When triggering an event, you can optionally pass some information.
             // For simple applications, use the GenericEvent object provided by Symfony
@@ -118,7 +118,7 @@ class BlogController extends Controller
             // passed in the event and they can even modify the execution flow, so
             // there's no guarantee that the rest of this controller will be executed.
             // See https://symfony.com/doc/current/components/event_dispatcher.html
-            $this->get('event_dispatcher')->dispatch(Events::COMMENT_CREATED, $event);
+            $eventDispatcher->dispatch(Events::COMMENT_CREATED, $event);
 
             return $this->redirectToRoute('blog_post', ['slug' => $post->getSlug()]);
         }
