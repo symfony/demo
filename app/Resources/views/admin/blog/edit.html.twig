@@ -1,5 +1,10 @@
 {% extends 'admin/layout.html.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+    {{ include('admin/blog/_editor_actions.html.twig') }}
+{% endblock %}
+
 {% block body_id 'admin_post_edit' %}
 
 {% block main %}

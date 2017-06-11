@@ -1,0 +1,7 @@
+<script>
+    $('a[data-toggle="tab"]').on('click', function (e) {
+        if ('#previewId' == $(e.target).attr('href')) {
+            SymfonyDemo.preview('#post_content', '#previewId', '{{ path('admin_post_content_preview') }}');
+        }
+    });
+</script>
