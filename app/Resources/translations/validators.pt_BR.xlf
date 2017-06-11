@@ -14,6 +14,10 @@
                 <source>post.too_short_content</source>
                 <target>O conteúdo do post está muito curto (mínimo de {{ limit }} caracteres)</target>
             </trans-unit>
+            <trans-unit id="post.too_many_tags">
+                <source>post.too_many_tags</source>
+                <target>Tags demais (adicione {{ limit }} tags ou menos)</target>
+            </trans-unit>
             <trans-unit id="comment.blank">
                 <source>comment.blank</source>
                 <target>Por favor, não deixe seu comentário vazio!</target>
