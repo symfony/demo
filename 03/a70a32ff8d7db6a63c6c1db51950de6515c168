@@ -1,0 +1,21 @@
+---------------------------------------------------------------------------
+
+by yceruto at 2017-06-05T17:52:58Z
+
+Somehow this is working here https://github.com/symfony/symfony-demo/pull/580 without doing it public :/
+
+---------------------------------------------------------------------------
+
+by ogizanagi at 2017-06-05T17:59:52Z
+
+@yceruto : Sure it's working (I did that first, but then remembered we default to private services...so, was weird). As shown in https://github.com/symfony/symfony-demo/pull/580#issuecomment-306258476, this is because sf 3.3 still support getting private services, but we should avoid relying on this as it's now deprecated and will be removed in 4.0.
+
+However, I missed your PR, sorry 😕
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-06-05T18:12:43Z
+
+> [...]  this is because sf 3.3 still support getting private services, but we should avoid relying on this as it's now deprecated and will be removed in 4.0.
+
+Yep! I forgot that :weary:
