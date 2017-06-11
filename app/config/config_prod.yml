@@ -19,7 +19,7 @@ monolog:
             handler:      nested
         nested:
             type:  stream
-            path:  "%env(SYMFONY_LOG)%"
+            path:  '%env(LOG_URL)%'
             level: debug
         console:
             type:  console

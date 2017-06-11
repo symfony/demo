@@ -12,7 +12,7 @@ parameters:
     env(SYMFONY_SECRET): 'secret_value_for_symfony_demo_application'
 
     # Destination for log files; can also be "php://stderr" etc
-    env(SYMFONY_LOG): '%kernel.logs_dir%/%kernel.environment%.log'
+    env(LOG_URL): '%kernel.logs_dir%/%kernel.environment%.log'
 
     # this demo application uses an embedded SQLite database to simplify setup.
     # in a real Symfony application you probably will use a MySQL or PostgreSQL database
