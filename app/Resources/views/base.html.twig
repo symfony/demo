@@ -11,14 +11,9 @@
         <title>{% block title %}Symfony Demo application{% endblock %}</title>
         <link rel="alternate" type="application/rss+xml" title="{{ 'rss.title'|trans }}" href="{{ path('blog_rss') }}">
         {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('css/bootstrap-flatly-3.3.7.min.css') }}">
-            <link rel="stylesheet" href="{{ asset('css/font-awesome-4.6.3.min.css') }}">
-            <link rel="stylesheet" href="{{ asset('css/font-lato.css') }}">
-            <link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
-            <link rel="stylesheet" href="{{ asset('css/highlight-solarized-light.css') }}">
-            <link rel="stylesheet" href="{{ asset('css/bootstrap-tagsinput.css') }}">
-            <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+            <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
         {% endblock %}
+
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
 
@@ -137,13 +132,9 @@
         {% endblock %}
 
         {% block javascripts %}
-            <script src="{{ asset('js/jquery-2.2.4.min.js') }}"></script>
-            <script src="{{ asset('js/moment.min.js') }}"></script>
-            <script src="{{ asset('js/bootstrap-3.3.7.min.js') }}"></script>
-            <script src="{{ asset('js/highlight.pack.js') }}"></script>
-            <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
-            <script src="{{ asset('js/bootstrap-tagsinput.min.js') }}"></script>
-            <script src="{{ asset('js/main.js') }}"></script>
+            <script src="{{ asset('build/manifest.js') }}"></script>
+            <script src="{{ asset('build/js/common.js') }}"></script>
+            <script src="{{ asset('build/js/app.js') }}"></script>
         {% endblock %}
 
         {# it's not mandatory to set the timezone in localizeddate(). This is done to
