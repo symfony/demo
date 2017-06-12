@@ -1,4 +1,4 @@
-var Encore = require('@weaverryan/webpack-remix');
+var Encore = require('@symfony/webpack-encore');
 
 Encore
     .setOutputPath('web/build/')
