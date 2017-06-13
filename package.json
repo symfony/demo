@@ -14,5 +14,11 @@
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.5",
     "typeahead.js": "^0.11.1"
+  },
+  "scripts": {
+    "dev-server": "./node_modules/.bin/encore dev-server",
+    "dev": "./node_modules/.bin/encore dev",
+    "watch": "./node_modules/.bin/encore dev --watch",
+    "build": "./node_modules/.bin/encore production"
   }
 }
