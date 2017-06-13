@@ -1,0 +1,95 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-06-12T18:02:23Z
+
+When I try to compile the production assets, I get this error:
+
+```
+$ ./node_modules/.bin/encore production
+Running webpack ...
+
+ ERROR  Failed to compile with 8 errors                                                                                                                                                                                      7:59:36 PM
+
+These relative modules were not found:
+
+* ../fonts/lato-normal/lato-normal.woff2 in ./~/css-loader!./~/resolve-url-loader!./~/sass-loader/lib/loader.js?{"sourceMap":true}!./app/Resources/assets/scss/app.scss
+* ../fonts/lato-normal/lato-normal.woff in ./~/css-loader!./~/resolve-url-loader!./~/sass-loader/lib/loader.js?{"sourceMap":true}!./app/Resources/assets/scss/app.scss
+* ../fonts/lato-normal-italic/lato-normal-italic.woff2 in ./~/css-loader!./~/resolve-url-loader!./~/sass-loader/lib/loader.js?{"sourceMap":true}!./app/Resources/assets/scss/app.scss
+* ../fonts/lato-normal-italic/lato-normal-italic.woff in ./~/css-loader!./~/resolve-url-loader!./~/sass-loader/lib/loader.js?{"sourceMap":true}!./app/Resources/assets/scss/app.scss
+* ../fonts/lato-bold/lato-bold.woff2 in ./~/css-loader!./~/resolve-url-loader!./~/sass-loader/lib/loader.js?{"sourceMap":true}!./app/Resources/assets/scss/app.scss
+* ../fonts/lato-bold/lato-bold.woff in ./~/css-loader!./~/resolve-url-loader!./~/sass-loader/lib/loader.js?{"sourceMap":true}!./app/Resources/assets/scss/app.scss
+* ../fonts/lato-bold-italic/lato-bold-italic.woff2 in ./~/css-loader!./~/resolve-url-loader!./~/sass-loader/lib/loader.js?{"sourceMap":true}!./app/Resources/assets/scss/app.scss
+* ../fonts/lato-bold-italic/lato-bold-italic.woff in ./~/css-loader!./~/resolve-url-loader!./~/sass-loader/lib/loader.js?{"sourceMap":true}!./app/Resources/assets/scss/app.scss
+```
+
+---------------------------------------------------------------------------
+
+by weaverryan at 2017-06-12T19:12:25Z
+
+See https://github.com/symfony/webpack-encore/pull/4 for production error issue :)
+
+---------------------------------------------------------------------------
+
+by weaverryan at 2017-06-12T19:34:21Z
+
+About the tags thing, before, we had this file: https://github.com/symfony/symfony-demo/blob/master/web/css/bootstrap-tagsinput.css
+
+But this file was deleted, and is not being loaded in the new setup. You *do* have this in `main.scss`:
+
+```sass
+@import "~bootstrap-tagsinput/src/bootstrap-tagsinput.css";
+```
+
+But that doesn't have the same contents as the old `bootstrap-tagsinput.css`. If I bring back the old contents, it "looks" correctly.
+
+There is some other problem too, as even with this, I don't see the old tags. There's no JS error, but for some reason the autocomplete box thinks that there is never any results (I can see the class `tt-empty` in the DOM)
+
+---------------------------------------------------------------------------
+
+by weaverryan at 2017-06-12T19:49:54Z
+
+Production issue should be fixed in 0.7.2
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-06-12T22:34:42Z
+
+**CSS**
+The actual `web/css/bootstrap-tagsinput.css` (it includes typeahead style) is a custom stylesheet  adapted to current demo style (e.g. FontAwesome), so I suggest you use it as is, for now. Later we would include the originals overwriting the relevant classes.
+
+**JS**
+Try this:
+```diff
+  var source = new Bloodhound({
+      local: $input.data('tags'),
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      datumTokenizer: Bloodhound.tokenizers.whitespace
+  });
++ source.initialize();
+  $input.tagsinput({
+      trimValue: true,
+      focusClass: 'focus',
+      typeaheadjs: {
+          name: 'tags',
+-         source: source
++         source: source.ttAdapter()
+      }
+  });
+```
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-06-13T10:12:56Z
+
+I'm going to merge this "as is" although it's broken. That will allow others take over this and fix my mistakes. I removed all the `window.$ = $; window.jQuery = $` and now most features are broken (probably my fault!).
+
+List of things to fix:
+
+* Typeahead library is dead ... use a fork instead (Algolia probably is the most reassuring one)
+* The bootstrap datepicker doesn't work (it worked before removing the jQuery thing)
+* The highlighting doesn't work (it worked before ... but it generated a 600KB app.js because it includes ALL the highlighting languages, instead of just the PHP and Twig we need ... I tried to reduce the file size ... but now it doesn't work)
+* The modal window of "Show code" works ... but the modal window of "Delete post" doesn't work. It worked yesterday (so maybe again is the jQuery thing).
+
+---
+
+@alOneh knows all this well and he's very skilled with Webpack (he even updated the Symfony Demo to use pure Webpack, without Encore. See: https://github.com/alOneh/sf-live-2017-symfony-webpack/blob/master/webpack.config.js) So maybe this can be fixed between @weaverryan and @alOneh
