@@ -45,9 +45,7 @@ i {
 /* Page elements
    ------------------------------------------------------------------------- */
 body {
-  display: -webkit-flex;
   display: flex;
-  -webkit-flex-direction: column;
   flex-direction: column;
   min-height: 100vh
 }
@@ -65,7 +63,6 @@ header .locales a {
 }
 
 .body-container {
-  -webkit-flex: 1;
   flex: 1;
   /* needed to prevent pages with a very small height and browsers not supporting flex */
   min-height: 600px

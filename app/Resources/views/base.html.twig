@@ -132,6 +132,8 @@
         {% endblock %}
 
         {% block javascripts %}
+            <script src="{{ asset('build/manifest.js') }}"></script>
+            <script src="{{ asset('build/js/common.js') }}"></script>
             <script src="{{ asset('build/js/app.js') }}"></script>
         {% endblock %}
 
