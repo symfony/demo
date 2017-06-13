@@ -1,9 +1,7 @@
 require('eonasdan-bootstrap-datetimepicker');
 
-require('imports-loader?define=>false!typeahead.js/dist/typeahead.jquery.min.js');
-const Bloodhound = require('imports-loader?define=>false!typeahead.js/dist/bloodhound.js');
-window.Bloodhound = Bloodhound;
-require('../scss/bootstrap-tagsinput.scss');
+import typeahead from "typeahead.js";
+import Bloodhound from "bloodhound-js";
 require('bootstrap-tagsinput');
 
 $(function() {

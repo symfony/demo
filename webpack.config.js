@@ -5,6 +5,11 @@ Encore
     .setPublicPath('/build')
     .cleanupOutputBeforeBuild()
     .autoProvidejQuery()
+    .autoProvideVariables({
+        "window.jQuery": "jquery",
+        "window.Bloodhound": require.resolve('bloodhound-js'),
+        "jQuery.tagsinput": "bootstrap-tagsinput"
+    })
     .enableSassLoader()
     .enableVersioning(false)
     .createSharedEntry('js/common', ['jquery'])
