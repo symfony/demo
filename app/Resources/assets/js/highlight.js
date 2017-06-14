@@ -1,9 +1,8 @@
-var hljs = require('highlight.js/lib/highlight.js');
+import hljs from 'highlight.js/lib/highlight';
+import php from 'highlight.js/lib/languages/php';
+import twig from 'highlight.js/lib/languages/twig';
 
-hljs.configure({
-    languages: ['twig', 'php']
-});
+hljs.registerLanguage('php', php);
+hljs.registerLanguage('twig', twig);
 
 hljs.initHighlightingOnLoad();
-
-module.exports = hljs;
