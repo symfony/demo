@@ -1,0 +1,100 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-06-13T12:54:20Z
+
+Thanks a lot for working on this! I've tested your PR in the page where most JS is used (`/app_dev.php/en/admin/post/1/edit`) and:
+
+* The "Delete post" modal works
+* The datepicker works too
+* I don't see any error in the browser console
+
+However, the following doesn't work yet:
+
+* The label autocompletion
+* The code syntax highlight (the modal window appears, but the code shows no color)
+
+---------------------------------------------------------------------------
+
+by alOneh at 2017-06-13T12:56:56Z
+
+Yes I notice that the code don't get highlight colors, I'm working on it.
+
+---------------------------------------------------------------------------
+
+by alOneh at 2017-06-13T14:12:07Z
+
+@javiereguiluz all issues have been addressed
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-06-13T15:05:46Z
+
+I've reviewed your latest changes. Everything is indeed fixed. Thanks a lot!
+
+---
+
+Now I have 3 comments:
+
+1) Why "import" instead of "require" ? PHPStorm is showing some warning messages too:
+
+![js-error](https://user-images.githubusercontent.com/73419/27089272-3606759c-505a-11e7-8308-a2d8e022e51b.png)
+
+If "import" is the way to go, we should update Encore docs too.
+
+2) I don't remember if the autocomplete feature worked this way before ... but right now it only autocompletes de already existing tags of the post. This is not very intuitive. @yceruto maybe can confirm if this is the expected behavior:
+
+![label-autocomplete](https://user-images.githubusercontent.com/73419/27089288-3f8fdfe0-505a-11e7-9d99-5db829f22d19.png)
+
+3) The file sizes of the assets generated for production seems OK ... except for `app.js` ... which weights more than 600 KB because it includes the highlighting code for ALL languages (although you configured only PHP and Twig ... this happened to me too).
+
+![app-js-size](https://user-images.githubusercontent.com/73419/27089383-7c2b8ddc-505a-11e7-9c2b-ffe9d447b30d.png)
+
+---------------------------------------------------------------------------
+
+by alOneh at 2017-06-13T16:07:08Z
+
+1/ As we are in ES6 syntax we can use `import`, `require` is a ES2015 syntax to load modules, if you inspect your bundle you will see that webpack (due to Babel) transform those import by `require`. To fix the IDE issue you can switch the syntax to ES6 to get rid of warnings.
+
+3/ I drop the app.js size to 2 ko
+<img width="378" alt="capture d ecran 2017-06-13 a 18 06 29" src="https://user-images.githubusercontent.com/758625/27092302-182e3650-5063-11e7-97ec-9d75be90945b.png">
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-06-13T19:37:45Z
+
+@javiereguiluz AFAIK the expected autocomplete list will be all available tags (used or not) and you can also insert new ones (typing it there + `enter`). Just a few tags we have by default :)
+
+> [...] This is not very intuitive [...]
+
+I'm not sure what do you mean?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-06-14T07:40:01Z
+
+@alOneh I've tested your last changes and everything is great! To me this PR is now ready to be merged.
+
+The only optional change I'd like to do is to get rid of the moment.js library. It's humongous and it makes our admin.js to weight almost 400 KB 😱
+
+@yceruto never mind, let's keep it as is and we'll tweak it in the future if needed. Thanks!
+
+---------------------------------------------------------------------------
+
+by stof at 2017-06-14T07:45:46Z
+
+@alOneh does moment has a way to skip the import of the part loading locales dynamically, as you did for highlight.js ? This would avoid bundling all moment locales if we don't need them.
+
+---------------------------------------------------------------------------
+
+by alOneh at 2017-06-14T09:14:36Z
+
+@stof yes we can, I made a [fix](https://github.com/symfony/symfony-demo/pull/587/commits/71f145b740be29cf448295a74782037fc3d2add6) and after that the admin.js size is ~180 KB.
+<img width="384" alt="capture d ecran 2017-06-14 a 11 10 35" src="https://user-images.githubusercontent.com/758625/27124836-928a0ad4-50f2-11e7-8ade-ac9f600ed1ef.png">
+
+It can be ugly but as webpack config is an object we can do that even if it will be nice if we can add this kind of feature to the webpack-encore API. I'll make a proposal later.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-06-14T09:32:10Z
+
+Tested again and it works perfectly. This is now finished, so I'm merging it and later, if needed, @weaverryan can make any tweak to this config before releasing the new version of the Symfony Demo. Thanks @alOneh!
