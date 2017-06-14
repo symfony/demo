@@ -1,4 +1,5 @@
 var Encore = require('@symfony/webpack-encore');
+var webpack = require('webpack');
 
 Encore
     .setOutputPath('web/build/')
@@ -20,4 +21,8 @@ Encore
     .addStyleEntry('css/admin', ['./app/Resources/assets/scss/admin.scss'])
 ;
 
-module.exports = Encore.getWebpackConfig();
+var config = Encore.getWebpackConfig();
+
+config.plugins.push(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/));
+
+module.exports = config;
