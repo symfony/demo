@@ -1,10 +1,7 @@
-require('eonasdan-bootstrap-datetimepicker');
-
-require('imports-loader?define=>false!typeahead.js/dist/typeahead.jquery.min.js');
-const Bloodhound = require('imports-loader?define=>false!typeahead.js/dist/bloodhound.js');
-window.Bloodhound = Bloodhound;
-require('../scss/bootstrap-tagsinput.scss');
-require('bootstrap-tagsinput');
+import 'eonasdan-bootstrap-datetimepicker';
+import 'typeahead.js';
+import Bloodhound from "bloodhound-js";
+import 'bootstrap-tagsinput';
 
 $(function() {
     // Datetime picker initialization.
@@ -33,16 +30,17 @@ $(function() {
             datumTokenizer: Bloodhound.tokenizers.whitespace
         });
         source.initialize();
+
         $input.tagsinput({
             trimValue: true,
             focusClass: 'focus',
-            typeahead: {
+            typeaheadjs: {
                 name: 'tags',
                 source: source.ttAdapter()
             }
         });
     }
-})
+});
 
 // Handling the modal confirmation message.
 $(document).on('submit', 'form[data-confirmation]', function (event) {
