@@ -23,6 +23,9 @@ Encore
 
 var config = Encore.getWebpackConfig();
 
-config.plugins.push(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/));
+config.plugins.push(new webpack.ContextReplacementPlugin(
+    /moment[\/\\]locale$/,
+    /en|fr|de|es|cs|nl|ru|uk|ro|pt-br|pl|it|ja|id|ca|sl|hr|zh-cn/
+));
 
 module.exports = config;
