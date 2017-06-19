@@ -99,7 +99,7 @@ HELP
                 $user->getFullName(),
                 $user->getUsername(),
                 $user->getEmail(),
-                implode(', ', $user->getRoles())
+                implode(', ', $user->getRoles()),
             ];
         }, $users);
 
