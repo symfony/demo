@@ -1,0 +1,29 @@
+---------------------------------------------------------------------------
+
+by alOneh at 2017-06-16T08:46:58Z
+
+I was thinking about this solution, but if we had a new locale we have to update the webpack config...
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-06-16T11:48:25Z
+
+Yep, we have few options, I would say, let's forget about the size of the `admin.js` file and thus avoid updating both lists, or generate that part inside` webpack.config.js` from `cache: warmup`, or add a comment over `app_locales` to not forget this?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-06-16T12:42:56Z
+
+@yceruto yes, forgetting about the admin file size is one option ... the other one would be to remove moment.js entirely (I don't know what it does ... but it takes almost 400 KB, so it must do wonders).
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-06-16T14:25:33Z
+
+> yes, forgetting about the admin file size is one option
+
+:+1:
+
+> [...] the other one would be to remove moment.js entirely
+
+nop, it's a minimal requirements (http://eonasdan.github.io/bootstrap-datetimepicker/Installing/)
