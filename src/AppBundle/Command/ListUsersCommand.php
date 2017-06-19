@@ -110,7 +110,8 @@ HELP
         $table
             ->setHeaders(['ID', 'Full Name', 'Username', 'Email', 'Roles'])
             ->setRows($usersAsPlainArrays)
-        ;
+            ->setStyle(clone Table::getStyleDefinition('symfony-style-guide'))
+       ;
         $table->render();
 
         // instead of displaying the table of users, store it in a variable

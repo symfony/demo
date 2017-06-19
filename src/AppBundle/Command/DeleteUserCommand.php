@@ -17,7 +17,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Question\Question;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
  * A command console that deletes users from the database.
@@ -77,32 +77,23 @@ HELP
             return;
         }
 
-        $output->writeln('');
-        $output->writeln('Delete User Command Interactive Wizard');
-        $output->writeln('-----------------------------------');
+        // See: http://symfony.com/doc/current/console/style.html
+        $io = new SymfonyStyle($input, $output);
 
-        $output->writeln([
-            '',
+        $io->title('Delete User Command Interactive Wizard');
+
+        $io->text([
             'If you prefer to not use this interactive wizard, provide the',
             'arguments required by this command as follows:',
             '',
             ' $ php bin/console app:delete-user username',
             '',
-        ]);
-
-        $output->writeln([
-            '',
             'Now we\'ll ask you for the value of all the missing command arguments.',
             '',
         ]);
 
-        $helper = $this->getHelper('question');
+        $username = $io->ask('Username', null, [$this, 'usernameValidator']);
 
-        $question = new Question(' > <info>Username</info>: ');
-        $question->setValidator([$this, 'usernameValidator']);
-        $question->setMaxAttempts(self::MAX_ATTEMPTS);
-
-        $username = $helper->ask($input, $output, $question);
         $input->setArgument('username', $username);
     }
 
@@ -127,8 +118,8 @@ HELP
         $this->entityManager->remove($user);
         $this->entityManager->flush();
 
-        $output->writeln('');
-        $output->writeln(sprintf('[OK] User "%s" (ID: %d, email: %s) was successfully deleted.', $user->getUsername(), $userId, $user->getEmail()));
+        (new SymfonyStyle($input, $output))
+            ->success(sprintf('User "%s" (ID: %d, email: %s) was successfully deleted.', $user->getUsername(), $userId, $user->getEmail()));
     }
 
     /**
