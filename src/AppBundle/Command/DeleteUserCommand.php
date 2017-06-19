@@ -12,6 +12,7 @@
 namespace AppBundle\Command;
 
 use AppBundle\Entity\User;
+use AppBundle\Utils\Validator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -20,7 +21,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 
 /**
- * A command console that deletes users from the database.
+ * A console command that deletes users from the database.
  *
  * To use this command, open a terminal window, enter into your project
  * directory and execute the following:
@@ -41,12 +42,14 @@ class DeleteUserCommand extends Command
     const MAX_ATTEMPTS = 5;
 
     private $entityManager;
+    private $validator;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em, Validator $validator)
     {
         parent::__construct();
 
         $this->entityManager = $em;
+        $this->validator = $validator;
     }
 
     /**
@@ -99,7 +102,7 @@ HELP
         $helper = $this->getHelper('question');
 
         $question = new Question(' > <info>Username</info>: ');
-        $question->setValidator([$this, 'usernameValidator']);
+        $question->setValidator([$this->validator, 'validateUsername']);
         $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
         $username = $helper->ask($input, $output, $question);
@@ -108,8 +111,7 @@ HELP
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $username = $input->getArgument('username');
-        $this->usernameValidator($username);
+        $username = $this->validator->validateUsername($input->getArgument('username'));
 
         $repository = $this->entityManager->getRepository(User::class);
         /** @var User $user */
@@ -129,24 +131,5 @@ HELP
 
         $output->writeln('');
         $output->writeln(sprintf('[OK] User "%s" (ID: %d, email: %s) was successfully deleted.', $user->getUsername(), $userId, $user->getEmail()));
-    }
-
-    /**
-     * This internal method should be private, but it's declared public to
-     * maintain PHP 5.3 compatibility when using it in a callback.
-     *
-     * @internal
-     */
-    public function usernameValidator($username)
-    {
-        if (empty($username)) {
-            throw new \Exception('The username can not be empty.');
-        }
-
-        if (1 !== preg_match('/^[a-z_]+$/', $username)) {
-            throw new \Exception('The username must contain only lowercase latin characters and underscores.');
-        }
-
-        return $username;
     }
 }

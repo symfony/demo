@@ -12,6 +12,7 @@
 namespace AppBundle\Command;
 
 use AppBundle\Entity\User;
+use AppBundle\Utils\Validator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -22,7 +23,7 @@ use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
- * A command console that creates users and stores them in the database.
+ * A console command that creates users and stores them in the database.
  *
  * To use this command, open a terminal window, enter into your project
  * directory and execute the following:
@@ -46,13 +47,15 @@ class AddUserCommand extends Command
 
     private $entityManager;
     private $passwordEncoder;
+    private $validator;
 
-    public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $encoder)
+    public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $encoder, Validator $validator)
     {
         parent::__construct();
 
         $this->entityManager = $em;
         $this->passwordEncoder = $encoder;
+        $this->validator = $validator;
     }
 
     /**
@@ -119,13 +122,7 @@ class AddUserCommand extends Command
         $username = $input->getArgument('username');
         if (null === $username) {
             $question = new Question(' > <info>Username</info>: ');
-            $question->setValidator(function ($answer) {
-                if (empty($answer)) {
-                    throw new \RuntimeException('The username cannot be empty');
-                }
-
-                return $answer;
-            });
+            $question->setValidator([$this->validator, 'validateUsername']);
             $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
             $username = $console->ask($input, $output, $question);
@@ -138,7 +135,7 @@ class AddUserCommand extends Command
         $password = $input->getArgument('password');
         if (null === $password) {
             $question = new Question(' > <info>Password</info> (your type will be hidden): ');
-            $question->setValidator([$this, 'passwordValidator']);
+            $question->setValidator([$this->validator, 'validatePassword']);
             $question->setHidden(true);
             $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
@@ -152,7 +149,7 @@ class AddUserCommand extends Command
         $email = $input->getArgument('email');
         if (null === $email) {
             $question = new Question(' > <info>Email</info>: ');
-            $question->setValidator([$this, 'emailValidator']);
+            $question->setValidator([$this->validator, 'validateEmail']);
             $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
             $email = $console->ask($input, $output, $question);
@@ -165,7 +162,7 @@ class AddUserCommand extends Command
         $fullName = $input->getArgument('full-name');
         if (null === $fullName) {
             $question = new Question(' > <info>Full Name</info>: ');
-            $question->setValidator([$this, 'fullNameValidator']);
+            $question->setValidator([$this->validator, 'validateFullName']);
             $question->setMaxAttempts(self::MAX_ATTEMPTS);
 
             $fullName = $console->ask($input, $output, $question);
@@ -217,50 +214,6 @@ class AddUserCommand extends Command
         }
     }
 
-    /**
-     * @internal
-     */
-    public function passwordValidator($plainPassword)
-    {
-        if (empty($plainPassword)) {
-            throw new \Exception('The password can not be empty.');
-        }
-
-        if (mb_strlen(trim($plainPassword)) < 6) {
-            throw new \Exception('The password must be at least 6 characters long.');
-        }
-
-        return $plainPassword;
-    }
-
-    /**
-     * @internal
-     */
-    public function emailValidator($email)
-    {
-        if (empty($email)) {
-            throw new \Exception('The email can not be empty.');
-        }
-
-        if (false === mb_strpos($email, '@')) {
-            throw new \Exception('The email should look like a real email.');
-        }
-
-        return $email;
-    }
-
-    /**
-     * @internal
-     */
-    public function fullNameValidator($fullName)
-    {
-        if (empty($fullName)) {
-            throw new \Exception('The full name can not be empty.');
-        }
-
-        return $fullName;
-    }
-
     private function validateUserData($username, $plainPassword, $email, $fullName)
     {
         $userRepository = $this->entityManager->getRepository(User::class);
@@ -273,9 +226,9 @@ class AddUserCommand extends Command
         }
 
         // validate password and email if is not this input means interactive.
-        $this->passwordValidator($plainPassword);
-        $this->emailValidator($email);
-        $this->fullNameValidator($fullName);
+        $this->validator->validatePassword($plainPassword);
+        $this->validator->validateEmail($email);
+        $this->validator->validateFullName($fullName);
 
         // check if a user with the same email already exists.
         $existingEmail = $userRepository->findOneBy(['email' => $email]);
