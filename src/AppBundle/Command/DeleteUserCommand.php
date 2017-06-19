@@ -40,6 +40,7 @@ class DeleteUserCommand extends Command
 {
     const MAX_ATTEMPTS = 5;
 
+    private $io;
     private $entityManager;
 
     public function __construct(EntityManagerInterface $em)
@@ -71,18 +72,22 @@ HELP
             );
     }
 
+    protected function initialize(InputInterface $input, OutputInterface $output)
+    {
+        // SymfonyStyle is an optional feature that Symfony provides so you can
+        // apply a consistent look to the commands of your application.
+        // See https://symfony.com/doc/current/console/style.html
+        $this->io = new SymfonyStyle($input, $output);
+    }
+
     protected function interact(InputInterface $input, OutputInterface $output)
     {
         if (null !== $input->getArgument('username')) {
             return;
         }
 
-        // See: http://symfony.com/doc/current/console/style.html
-        $io = new SymfonyStyle($input, $output);
-
-        $io->title('Delete User Command Interactive Wizard');
-
-        $io->text([
+        $this->io->title('Delete User Command Interactive Wizard');
+        $this->io->text([
             'If you prefer to not use this interactive wizard, provide the',
             'arguments required by this command as follows:',
             '',
@@ -92,8 +97,7 @@ HELP
             '',
         ]);
 
-        $username = $io->ask('Username', null, [$this, 'usernameValidator']);
-
+        $username = $this->io->ask('Username', null, [$this, 'usernameValidator']);
         $input->setArgument('username', $username);
     }
 
@@ -118,8 +122,7 @@ HELP
         $this->entityManager->remove($user);
         $this->entityManager->flush();
 
-        (new SymfonyStyle($input, $output))
-            ->success(sprintf('User "%s" (ID: %d, email: %s) was successfully deleted.', $user->getUsername(), $userId, $user->getEmail()));
+        $this->io->success(sprintf('User "%s" (ID: %d, email: %s) was successfully deleted.', $user->getUsername(), $userId, $user->getEmail()));
     }
 
     /**
