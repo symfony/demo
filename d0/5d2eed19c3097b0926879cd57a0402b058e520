@@ -1,0 +1,11 @@
+---------------------------------------------------------------------------
+
+by ogizanagi at 2017-05-31T22:26:30Z
+
+Following https://github.com/symfony/symfony-demo/pull/576#pullrequestreview-41300264, I've updated the PR to use most of the new 3.3 DI features. But I still avoided to use PSR-4 autoloading & autowiring on the contrary of what we did for the AppBundle.
+
+> At first I thought as Maxime: let's show the new Symfony in AppBundle and the old Symfony in CodeExplorerBundle. But now I'm starting to think as Christophe. If this is the new and recommended Symfony ... why show the old Symfony too?
+
+Because we could consider this bundle as a more advanced entrypoint for intermediate developers, while the AppBundle is the main show case for newcomers. I still think it's important to show how to wire things manually and demonstrate the Symfony DI & its configuration capabilities. Developers can learn a lot by going deeper on how things work behind the scene (actually, it's not even that far, its only basic configuration we wrote since years. Still, it feels important to me).
+
+But if my concerns aren't shared, I can still update the PR to use PSR-4 autoloading & autowiring on the whole `src` directory instead. Let me know 😄
