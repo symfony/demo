@@ -28,11 +28,13 @@ class AddUserCommandTest extends KernelTestCase
 
     protected function setUp()
     {
-        // check if stty is supported, because it's needed for questions with hidden answers
         exec('stty 2>&1', $output, $exitcode);
+        $isSttySupported = 0 === $exitcode;
 
-        if (0 !== $exitcode) {
-            $this->markTestSkipped('`stty` is required to test commands.');
+        $isWindows = '\\' === DIRECTORY_SEPARATOR;
+
+        if ($isWindows || !$isSttySupported) {
+            $this->markTestSkipped('`stty` is required to test this command.');
         }
     }
 
