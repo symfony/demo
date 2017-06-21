@@ -26,6 +26,16 @@ class AddUserCommandTest extends KernelTestCase
         'full-name' => 'Chuck Norris',
     ];
 
+    protected function setUp()
+    {
+        // check if stty is supported, because it's needed for questions with hidden answers
+        exec('stty 2>&1', $output, $exitcode);
+
+        if (0 !== $exitcode) {
+            $this->markTestSkipped('`stty` is required to test commands.');
+        }
+    }
+
     /**
      * @dataProvider isAdminDataProvider
      *
