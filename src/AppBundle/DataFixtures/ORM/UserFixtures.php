@@ -54,7 +54,7 @@ class UserFixtures extends AbstractFixture implements ContainerAwareInterface
         $this->addReference('jane-admin', $janeAdmin);
 
         $tomAdmin = new User();
-        $tomAdmin->setFullName('Tom Good');
+        $tomAdmin->setFullName('Tom Doe');
         $tomAdmin->setUsername('tom_admin');
         $tomAdmin->setEmail('tom_admin@symfony.com');
         $tomAdmin->setRoles(['ROLE_ADMIN']);
@@ -62,16 +62,6 @@ class UserFixtures extends AbstractFixture implements ContainerAwareInterface
         $tomAdmin->setPassword($encodedPassword);
         $manager->persist($tomAdmin);
         $this->addReference('tom-admin', $tomAdmin);
-
-        $bobAdmin = new User();
-        $bobAdmin->setFullName('Bob Bad');
-        $bobAdmin->setUsername('bob_admin');
-        $bobAdmin->setEmail('bob_admin@symfony.com');
-        $bobAdmin->setRoles(['ROLE_ADMIN']);
-        $encodedPassword = $passwordEncoder->encodePassword($bobAdmin, 'kitten');
-        $bobAdmin->setPassword($encodedPassword);
-        $manager->persist($bobAdmin);
-        $this->addReference('bob-admin', $bobAdmin);
 
         $johnUser = new User();
         $johnUser->setFullName('John Doe');
