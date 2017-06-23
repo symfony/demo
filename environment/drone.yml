@@ -1,0 +1,67 @@
+version: '2.2'
+
+services:
+  gogs:
+    image: gogs/gogs:0.11.4
+    ports:
+      - 10022:10022
+      - 3000:3000
+    restart: always
+    depends_on:
+      - postgres
+    links:
+      - postgres
+
+  drone-server:
+    image: drone/drone:0.7.2
+    ports:
+      - 8000:8000
+    restart: always
+    environment:
+      - DRONE_OPEN=true
+      - DRONE_GOGS=true
+      - DRONE_GOGS_URL=http://gogs:3000
+      - DRONE_SECRET=${DRONE_SECRET:-55ad340609f4b30283e488832571415a}
+      - DRONE_SERVER_ADDR=drone-server:8000
+      - DRONE_DATABASE_DRIVER=postgres
+      - DRONE_DATABASE_DATASOURCE=postgres://${POSTGRES_USER:-drone}:${POSTGRES_PASSWORD:-drone}@postgres:5432/drone?sslmode=disable
+      - DRONE_NETWORK=${PROJECT:-drone}_default
+      - DRONE_ADMIN=dev
+    depends_on:
+      - gogs
+      - postgres
+    links:
+      - gogs
+      - postgres
+
+  drone-agent:
+    image: drone/drone:0.7.2
+    command: agent
+    restart: always
+    depends_on: [ drone-server ]
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - DRONE_SERVER=ws://drone-server:8000/ws/broker
+      - DRONE_SECRET=${DRONE_SECRET:-55ad340609f4b30283e488832571415a}
+    depends_on:
+      - gogs
+      - postgres
+    links:
+      - gogs
+      - postgres
+
+  postgres:
+    image: postgres:9.6
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:-drone}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-drone}
+
+networks:
+  default:
+    ipam:
+      config:
+        - subnet: 192.199.199.0/24

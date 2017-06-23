@@ -1,0 +1,54 @@
+version: '2.2'
+
+services:
+  data:
+    image: alpine:3.4
+    command: 'sleep 1'
+    volumes:
+      - "${WORKSPACE:-/Users/sergey/web/symfony-demo}:/var/www/html"
+      - "/var/www/html/var"
+
+  composer:
+    image: composer:1.4
+    command: 'install --prefer-dist --no-suggest --optimize-autoloader --no-interaction --ignore-platform-reqs'
+    working_dir: '/var/www/html'
+    volumes_from:
+      - data
+    healthcheck:
+      test: ["CMD-SHELL", "test -f vendor/autoload.php"]
+      interval: 30s
+      timeout: 5s
+      retries: 20
+
+  php:
+    image: ${SF_PHP:-sergeyz/php:7.1}
+    command: './bin/symfony_requirements'
+    working_dir: '/var/www/html'
+    depends_on:
+      composer: { condition: service_healthy }
+      database: { condition: service_healthy }
+    links:
+      - database
+    environment:
+      SYMFONY_ENV: test
+      SYMFONY_DEBUG: '0'
+    env_file:
+      - env/${SF_DB:-mysql}
+    volumes_from:
+      - data
+    healthcheck:
+      test: ["CMD-SHELL", "test -f app/config/parameters.yml"]
+      interval: 30s
+      timeout: 5s
+      retries: 20
+
+  database:
+    extends:
+      file: database.yml
+      service: database
+
+networks:
+  default:
+    ipam:
+      config:
+        - subnet: 192.${CI_BUILD_NUMBER:-1}.${CI_JOB_NUMBER:-1}${CI_JOB_PIPELINE_NUMBER}.0/24

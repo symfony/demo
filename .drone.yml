@@ -1,0 +1,79 @@
+workspace:
+  base: /p
+  path: sources
+
+pipeline:
+  phpunit:
+    group: tests
+    image: sergeyz/env:latest
+    environment:
+      - CI_JOB_PIPELINE_NUMBER=1
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    commands: >
+      docker-compose -f environment/docker-compose.yml -p sf${CI_BUILD_NUMBER}b${CI_JOB_NUMBER}j1p up -d;
+      docker-compose -f environment/docker-compose.yml -p sf${CI_BUILD_NUMBER}b${CI_JOB_NUMBER}j1p run php ./bin/console doctrine:schema:update --force;
+      docker-compose -f environment/docker-compose.yml -p sf${CI_BUILD_NUMBER}b${CI_JOB_NUMBER}j1p run php ./bin/console doctrine:fixtures:load;
+      docker-compose -f environment/docker-compose.yml -p sf${CI_BUILD_NUMBER}b${CI_JOB_NUMBER}j1p run php ./bin/phpunit --verbose;
+      docker-compose -f environment/docker-compose.yml -p sf${CI_BUILD_NUMBER}b${CI_JOB_NUMBER}j1p down -v;
+
+  php-cs-fixer:
+    group: tests
+    image: sergeyz/env:latest
+    environment:
+      - CI_JOB_PIPELINE_NUMBER=2
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    commands: >
+      docker-compose -f environment/docker-compose.yml -p sf${CI_BUILD_NUMBER}b${CI_JOB_NUMBER}j2p up -d;
+      docker-compose -f environment/docker-compose.yml -p sf${CI_BUILD_NUMBER}b${CI_JOB_NUMBER}j2p run php ./bin/php-cs-fixer fix --diff --dry-run -v;
+      docker-compose -f environment/docker-compose.yml -p sf${CI_BUILD_NUMBER}b${CI_JOB_NUMBER}j2p down -v;
+    when:
+      matrix:
+        SF_PHP: sergeyz/php:7.1
+        SF_DB: mysql
+
+  lint:
+    group: tests
+    image: sergeyz/env:latest
+    environment:
+      - CI_JOB_PIPELINE_NUMBER=3
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    commands: >
+      docker-compose -f environment/docker-compose.yml -p sf${CI_BUILD_NUMBER}b${CI_JOB_NUMBER}j3p up -d;
+      docker-compose -f environment/docker-compose.yml -p sf${CI_BUILD_NUMBER}b${CI_JOB_NUMBER}j3p run php ./bin/console lint:yaml app/config;
+      docker-compose -f environment/docker-compose.yml -p sf${CI_BUILD_NUMBER}b${CI_JOB_NUMBER}j3p run php ./bin/console lint:yaml @CodeExplorerBundle;
+      docker-compose -f environment/docker-compose.yml -p sf${CI_BUILD_NUMBER}b${CI_JOB_NUMBER}j3p run php ./bin/console lint:twig app/Resources @CodeExplorerBundle;
+      docker-compose -f environment/docker-compose.yml -p sf${CI_BUILD_NUMBER}b${CI_JOB_NUMBER}j3p run php ./bin/console lint:xliff app/Resources;
+      docker-compose -f environment/docker-compose.yml -p sf${CI_BUILD_NUMBER}b${CI_JOB_NUMBER}j3p down -v;
+    when:
+      matrix:
+        SF_PHP: sergeyz/php:7.1
+        SF_DB: mysql
+
+  security:
+    group: tests
+    image: sergeyz/env:latest
+    environment:
+      - CI_JOB_PIPELINE_NUMBER=4
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    commands: >
+      docker-compose -f environment/docker-compose.yml -p sf${CI_BUILD_NUMBER}b${CI_JOB_NUMBER}j4p up -d;
+      docker-compose -f environment/docker-compose.yml -p sf${CI_BUILD_NUMBER}b${CI_JOB_NUMBER}j4p run php ./bin/console security:check --end-point=http://security.sensiolabs.org/check_lock;
+      docker-compose -f environment/docker-compose.yml -p sf${CI_BUILD_NUMBER}b${CI_JOB_NUMBER}j4p down -v;
+    when:
+      matrix:
+        SF_PHP: sergeyz/php:7.1
+        SF_DB: mysql
+
+matrix:
+  SF_PHP:
+#    - sergeyz/php:5.5
+#    - sergeyz/php:5.6
+#    - sergeyz/php:7.0
+    - sergeyz/php:7.1
+  SF_DB:
+    - mysql
+    - postgres
