@@ -1,0 +1,40 @@
+version: '2.2'
+
+services:
+  database:
+    extends:
+      file: database.yml
+      service: ${SF_DB:-mysql}
+
+  mysql:
+    image: mysql:5.5
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: symfony
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping"]
+      interval: 30s
+      timeout: 5s
+      retries: 20
+    privileged: true
+    ports:
+      - "3306"
+    expose:
+      - "3306"
+
+  postgres:
+    image: postgres:9.6
+    environment:
+      POSTGRES_DB: symfony
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+    ports:
+      - "5432"
+    expose:
+      - "5432"
+    privileged: true
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -Uuser -dsymfony"]
+      interval: 30s
+      timeout: 5s
+      retries: 20
