@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-REGISTRY=
+REGISTRY=""
 
-if [ -n $1 ]; then
+if [ -n "$1"     ]; then
     REGISTRY=$1:5000/
 fi
 
