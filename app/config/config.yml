@@ -64,6 +64,9 @@ twig:
     form_themes:
         - 'form/layout.html.twig'
         - 'form/fields.html.twig'
+    paths:
+        "%kernel.project_dir%/templates/TwigBundle": Twig
+        "%kernel.project_dir%/templates": ~
 
 # Doctrine Configuration (used to access databases and manipulate their information)
 doctrine:
