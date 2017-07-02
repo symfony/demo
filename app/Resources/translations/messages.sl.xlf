@@ -97,6 +97,10 @@
                 <source>action.show</source>
                 <target>Prikaži</target>
             </trans-unit>
+            <trans-unit id="action.show_post">
+                <source>action.show_post</source>
+                <target>Prikaži objavo</target>
+            </trans-unit>
             <trans-unit id="action.show_code">
                 <source>action.show_code</source>
                 <target>Prikaži kodo</target>
@@ -202,6 +206,10 @@
                 <source>label.published_at</source>
                 <target>Objavljeno</target>
             </trans-unit>
+            <trans-unit id="label.tags">
+                <source>label.tags</source>
+                <target>Značke</target>
+            </trans-unit>
             <trans-unit id="label.actions">
                 <source>label.actions</source>
                 <target>Dejanja</target>
@@ -243,6 +251,10 @@
                 <source>menu.logout</source>
                 <target>Odjava</target>
             </trans-unit>
+            <trans-unit id="menu.rss">
+                <source>menu.rss</source>
+                <target>RSS objav bloga</target>
+            </trans-unit>
 
             <trans-unit id="post.to_publish_a_comment">
                 <source>post.to_publish_a_comment</source>
@@ -275,6 +287,15 @@
             <trans-unit id="post.deleted_successfully">
                 <source>post.deleted_successfully</source>
                 <target>Objava uspešno izbrisana!</target>
+            </trans-unit>
+
+            <trans-unit id="notification.comment_created">
+                <source>notification.comment_created</source>
+                <target>Vaša objava je prejela komentar!</target>
+            </trans-unit>
+            <trans-unit id="notification.comment_created.description">
+                <source>notification.comment_created.description</source>
+                <target><![CDATA[Vaša objava "%title%" je prejela nov komentar. Preberete ga lahko na <a href="%link%">tej povezavi</a>]]></target>
             </trans-unit>
 
             <trans-unit id="help.app_description">
@@ -316,6 +337,15 @@
             <trans-unit id="help.more_information">
                 <source>help.more_information</source>
                 <target><![CDATA[Za več informacij poglejte <a href="https://symfony.com/doc">dokumentacijo Symfony</a>.]]></target>
+            </trans-unit>
+
+            <trans-unit id="rss.title">
+                <source>rss.title</source>
+                <target>Symfony Demo blog</target>
+            </trans-unit>
+            <trans-unit id="rss.description">
+                <source>rss.description</source>
+                <target>Najnovejše objave objavljene na Symfony Demo blogu</target>
             </trans-unit>
         </body>
     </file>

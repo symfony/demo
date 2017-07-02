@@ -26,6 +26,18 @@ class AddUserCommandTest extends KernelTestCase
         'full-name' => 'Chuck Norris',
     ];
 
+    protected function setUp()
+    {
+        exec('stty 2>&1', $output, $exitcode);
+        $isSttySupported = 0 === $exitcode;
+
+        $isWindows = '\\' === DIRECTORY_SEPARATOR;
+
+        if ($isWindows || !$isSttySupported) {
+            $this->markTestSkipped('`stty` is required to test this command.');
+        }
+    }
+
     /**
      * @dataProvider isAdminDataProvider
      *

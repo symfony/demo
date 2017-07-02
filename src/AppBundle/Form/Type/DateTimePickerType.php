@@ -41,7 +41,7 @@ class DateTimePickerType extends AbstractType
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['attr']['data-date-format'] = $this->formatConverter->convert($options['format']);
-        $view->vars['attr']['data-date-locale'] = \Locale::getDefault();
+        $view->vars['attr']['data-date-locale'] = mb_strtolower(strtr(\Locale::getDefault(), '_', '-'));
     }
 
     /**

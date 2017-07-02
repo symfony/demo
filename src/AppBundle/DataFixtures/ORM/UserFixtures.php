@@ -53,6 +53,16 @@ class UserFixtures extends AbstractFixture implements ContainerAwareInterface
         // See https://symfony.com/doc/current/bundles/DoctrineFixturesBundle/index.html#sharing-objects-between-fixtures
         $this->addReference('jane-admin', $janeAdmin);
 
+        $tomAdmin = new User();
+        $tomAdmin->setFullName('Tom Doe');
+        $tomAdmin->setUsername('tom_admin');
+        $tomAdmin->setEmail('tom_admin@symfony.com');
+        $tomAdmin->setRoles(['ROLE_ADMIN']);
+        $encodedPassword = $passwordEncoder->encodePassword($tomAdmin, 'kitten');
+        $tomAdmin->setPassword($encodedPassword);
+        $manager->persist($tomAdmin);
+        $this->addReference('tom-admin', $tomAdmin);
+
         $johnUser = new User();
         $johnUser->setFullName('John Doe');
         $johnUser->setUsername('john_user');
