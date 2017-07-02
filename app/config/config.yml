@@ -30,7 +30,7 @@ framework:
     # and with different cache configurations for each fragment
     # https://symfony.com/doc/current/book/http_cache.html#edge-side-includes
     esi:             { enabled: true }
-    translator:      { fallback: '%locale%', paths: ["%kernel.project_dir%/translations"] }
+    translator:      { fallback: '%locale%', paths: ['%kernel.project_dir%/translations'] }
     secret:          '%env(SYMFONY_SECRET)%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -65,8 +65,8 @@ twig:
         - 'form/layout.html.twig'
         - 'form/fields.html.twig'
     paths:
-        "%kernel.project_dir%/templates/TwigBundle": Twig
-        "%kernel.project_dir%/templates": ~
+        '%kernel.project_dir%/templates/TwigBundle': Twig
+        '%kernel.project_dir%/templates': ~
 
 # Doctrine Configuration (used to access databases and manipulate their information)
 doctrine:
