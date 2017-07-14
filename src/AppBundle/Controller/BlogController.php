@@ -167,9 +167,9 @@ class BlogController extends Controller
 
         // Splits the query into terms and removes all terms which
         // length is less than 2
-        $terms = array_unique(explode(' ', strtolower($query)));
+        $terms = array_unique(explode(' ', mb_strtolower($query)));
         $terms = array_filter($terms, function ($term) {
-            return 2 <= strlen($term);
+            return 2 <= mb_strlen($term);
         });
 
         $posts = [];
