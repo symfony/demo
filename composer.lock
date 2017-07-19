@@ -2304,20 +2304,21 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v3.3.4",
+            "version": "v3.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "82f7cba3c272bcd266f2d27ad6f07832c2eb3a1c"
+                "reference": "b9a0d3d2393f683b28043e9dbf83b8bf6b347faa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/82f7cba3c272bcd266f2d27ad6f07832c2eb3a1c",
-                "reference": "82f7cba3c272bcd266f2d27ad6f07832c2eb3a1c",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/b9a0d3d2393f683b28043e9dbf83b8bf6b347faa",
+                "reference": "b9a0d3d2393f683b28043e9dbf83b8bf6b347faa",
                 "shasum": ""
             },
             "require": {
                 "doctrine/common": "~2.4",
+                "ext-xml": "*",
                 "fig/link-util": "^1.0",
                 "php": ">=5.5.9",
                 "psr/cache": "~1.0",
@@ -2333,7 +2334,7 @@
                 "twig/twig": "~1.34|~2.4"
             },
             "conflict": {
-                "phpdocumentor/reflection-docblock": "<3.0",
+                "phpdocumentor/reflection-docblock": "<3.0||>=3.2.0",
                 "phpdocumentor/type-resolver": "<0.2.0",
                 "phpunit/phpunit": "<4.8.35|<5.4.3,>=5.0"
             },
@@ -2452,7 +2453,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2017-07-05T13:28:34+00:00"
+            "time": "2017-07-17T19:08:46+00:00"
         },
         {
             "name": "twig/extensions",
@@ -2685,16 +2686,16 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v2.2.4",
+            "version": "v2.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "5191e01d0fa0f579eb709350306cd11ad6427ca6"
+                "reference": "27c2cd9d4abd2178b5b585fa2c3cca656d377c69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/5191e01d0fa0f579eb709350306cd11ad6427ca6",
-                "reference": "5191e01d0fa0f579eb709350306cd11ad6427ca6",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/27c2cd9d4abd2178b5b585fa2c3cca656d377c69",
+                "reference": "27c2cd9d4abd2178b5b585fa2c3cca656d377c69",
                 "shasum": ""
             },
             "require": {
@@ -2712,7 +2713,7 @@
                 "symfony/polyfill-php54": "^1.0",
                 "symfony/polyfill-php55": "^1.3",
                 "symfony/polyfill-php70": "^1.0",
-                "symfony/polyfill-xml": "^1.3",
+                "symfony/polyfill-php72": "^1.4",
                 "symfony/process": "^2.3 || ^3.0",
                 "symfony/stopwatch": "^2.5 || ^3.0"
             },
@@ -2728,7 +2729,6 @@
             },
             "suggest": {
                 "ext-mbstring": "For handling non-UTF8 characters in cache signature.",
-                "ext-xml": "For better performance.",
                 "symfony/polyfill-mbstring": "When enabling `ext-mbstring` is not possible."
             },
             "bin": [
@@ -2743,7 +2743,13 @@
             "autoload": {
                 "psr-4": {
                     "PhpCsFixer\\": "src/"
-                }
+                },
+                "classmap": [
+                    "tests/Test/AbstractFixerTestCase.php",
+                    "tests/Test/AbstractIntegrationTestCase.php",
+                    "tests/Test/IntegrationCase.php",
+                    "tests/Test/IntegrationCaseFactory.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2760,7 +2766,7 @@
                 }
             ],
             "description": "A tool to automatically fix PHP code style",
-            "time": "2017-05-24T21:55:27+00:00"
+            "time": "2017-07-18T15:16:38+00:00"
         },
         {
             "name": "gecko-packages/gecko-php-unit",
@@ -3802,16 +3808,16 @@
         },
         {
             "name": "sensio/generator-bundle",
-            "version": "v3.1.4",
+            "version": "v3.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioGeneratorBundle.git",
-                "reference": "37f9f4e165b033fb76cc2320838321cc57140e65"
+                "reference": "128bc5dabc91ca40b7445f094968dd70ccd58305"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/37f9f4e165b033fb76cc2320838321cc57140e65",
-                "reference": "37f9f4e165b033fb76cc2320838321cc57140e65",
+                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/128bc5dabc91ca40b7445f094968dd70ccd58305",
+                "reference": "128bc5dabc91ca40b7445f094968dd70ccd58305",
                 "shasum": ""
             },
             "require": {
@@ -3852,11 +3858,11 @@
                 }
             ],
             "description": "This bundle generates code for you",
-            "time": "2017-03-15T01:02:10+00:00"
+            "time": "2017-07-18T07:57:44+00:00"
         },
         {
             "name": "symfony/phpunit-bridge",
-            "version": "v3.3.4",
+            "version": "v3.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
@@ -4076,54 +4082,6 @@
                 }
             ],
             "description": "Symfony polyfill backporting some PHP 7.2+ features to lower PHP versions",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "compatibility",
-                "polyfill",
-                "portable",
-                "shim"
-            ],
-            "time": "2017-06-09T08:25:21+00:00"
-        },
-        {
-            "name": "symfony/polyfill-xml",
-            "version": "v1.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-xml.git",
-                "reference": "89326af9d173053826ae8fe26a6f49597ba4e9f3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-xml/zipball/89326af9d173053826ae8fe26a6f49597ba4e9f3",
-                "reference": "89326af9d173053826ae8fe26a6f49597ba4e9f3",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3",
-                "symfony/polyfill-php72": "~1.4"
-            },
-            "type": "metapackage",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.4-dev"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Grekas",
-                    "email": "p@tchwork.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony polyfill for xml's utf8_encode and utf8_decode functions",
             "homepage": "https://symfony.com",
             "keywords": [
                 "compatibility",
