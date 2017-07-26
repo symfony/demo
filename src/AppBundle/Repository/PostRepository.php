@@ -60,8 +60,15 @@ class PostRepository extends EntityRepository
         return $paginator;
     }
 
-    public function findByTerms(array $terms, $limit = Post::NUM_ITEMS)
+    public function findBySearchQuery($rawQuery, $limit = Post::NUM_ITEMS)
     {
+        $query = $this->sanitizeSearchQuery($rawQuery);
+        $terms = $this->extractSearchTerms($query);
+
+        if (empty($terms)) {
+            return [];
+        }
+
         $queryBuilder = $this->createQueryBuilder('p');
 
         foreach ($terms as $key => $term) {
@@ -76,5 +83,27 @@ class PostRepository extends EntityRepository
             ->setMaxResults($limit)
             ->getQuery()
             ->getResult();
+    }
+
+    private function sanitizeSearchQuery($query)
+    {
+        // remove all non-alphanumeric characters except whitespaces
+        return preg_replace('/[^[:alnum:] ]/', '', trim(preg_replace('/[[:space:]]+/', ' ', $query)));
+    }
+
+    /**
+     * Splits the query into terms and removes the ones which are too short.
+     *
+     * @param string $query
+     *
+     * @return array
+     */
+    private function extractSearchTerms($searchQuery)
+    {
+        $terms = array_unique(explode(' ', mb_strtolower($searchQuery)));
+
+        return array_filter($terms, function ($term) {
+            return 2 <= mb_strlen($term);
+        });
     }
 }

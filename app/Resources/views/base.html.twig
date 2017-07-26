@@ -37,13 +37,6 @@
                                 <span class="icon-bar"></span>
                             </button>
                         </div>
-                        <div class="search-bar col-sm-5">
-                            <form action="{{ path('blog_search') }}" method="get">
-                                <div class="input-group-sm">
-                                    <input name="q" type="text" class="form-control" placeholder="{{ 'post.search_for'|trans }}" autocomplete="off">
-                                </div>
-                            </form>
-                        </div>
                         <div class="navbar-collapse collapse">
                             <ul class="nav navbar-nav navbar-right">
 
@@ -70,6 +63,10 @@
                                         </a>
                                     </li>
                                 {% endif %}
+
+                                <li>
+                                    <a href="{{ path('blog_search') }}"> <i class="fa fa-search"></i> {{ 'menu.search'|trans }}</a>
+                                </li>
 
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="locales">
@@ -142,15 +139,6 @@
             <script src="{{ asset('build/manifest.js') }}"></script>
             <script src="{{ asset('build/js/common.js') }}"></script>
             <script src="{{ asset('build/js/app.js') }}"></script>
-            <script>
-                (function($) {
-                    $(function() {
-                        $('.search-bar input[name="q"]').instantSearch({
-                            noItemsFoundMessage: '{{ 'post.no_posts_found'|trans }}'
-                        });
-                    });
-                })(window.jQuery);
-            </script>
         {% endblock %}
 
         {# it's not mandatory to set the timezone in localizeddate(). This is done to

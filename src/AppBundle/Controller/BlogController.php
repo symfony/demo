@@ -160,31 +160,20 @@ class BlogController extends Controller
      */
     public function searchAction(Request $request)
     {
-        $query = $request->query->get('q', '');
-
-        // Sanitizing the query: removes all non-alphanumeric characters except whitespaces
-        $query = preg_replace('/[^[:alnum:] ]/', '', trim(preg_replace('/[[:space:]]+/', ' ', $query)));
-
-        // Splits the query into terms and removes all terms which
-        // length is less than 2
-        $terms = array_unique(explode(' ', mb_strtolower($query)));
-        $terms = array_filter($terms, function ($term) {
-            return 2 <= mb_strlen($term);
-        });
-
-        $posts = [];
-
-        if (!empty($terms)) {
-            $posts = $this->getDoctrine()->getRepository(Post::class)->findByTerms($terms);
+        if (!$request->isXmlHttpRequest()) {
+            return $this->render('blog/search.html.twig');
         }
 
-        $results = [];
+        $query = $request->query->get('q', '');
+        $posts = $this->getDoctrine()->getRepository(Post::class)->findBySearchQuery($query);
 
+        $results = [];
         foreach ($posts as $post) {
-            array_push($results, [
-                'result' => htmlspecialchars($post->getTitle()),
+            $results[] = [
+                'title' => htmlspecialchars($post->getTitle()),
+                'summary' => htmlspecialchars($post->getSummary()),
                 'url' => $this->generateUrl('blog_post', ['slug' => $post->getSlug()]),
-            ]);
+            ];
         }
 
         return new JsonResponse($results);

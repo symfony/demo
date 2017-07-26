@@ -1,12 +1,3 @@
-/*
- * This file is part of the Symfony package.
- *
- * (c) Fabien Potencier <fabien@symfony.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 /**
  * jQuery plugin for an instant searching.
  *
@@ -23,7 +14,7 @@
         minQueryLength: 2,
         maxPreviewItems: 10,
         previewDelay: 500,
-        noItemsFoundMessage: 'No items found'
+        noItemsFoundMessage: 'No results found.'
     };
 
     function debounce(fn, delay) {
@@ -55,17 +46,19 @@
         }
 
         var addItemToPreview = function(item) {
-            var $link = $('<a>').attr('href', item.url).text(item.result);
-            var $li = $('<li class="list-group-item">').append($link);
+            var $link = $('<a>').attr('href', item.url).text(item.title);
+            var $title = $('<h3>').attr('class', 'm-b-0').append($link);
+            var $summary = $('<p>').text(item.summary);
+            var $result = $('<div>').append($title).append($summary);
 
-            $preview.append($li);
+            $preview.append($result);
         }
 
         var noItemsFound = function() {
-            var $li = $('<li class="list-group-item">').text(config.noItemsFoundMessage);
+            var $result = $('<div>').text(config.noItemsFoundMessage);
 
             $preview.empty();
-            $preview.append($li);
+            $preview.append($result);
         }
 
         var updatePreview = function() {
