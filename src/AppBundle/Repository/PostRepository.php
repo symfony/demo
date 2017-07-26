@@ -60,18 +60,24 @@ class PostRepository extends EntityRepository
         return $paginator;
     }
 
+    /**
+     * @param string $rawQuery The search query as input by the user
+     * @param int $limit       The maximum number of results returned
+     *
+     * @return array
+     */
     public function findBySearchQuery($rawQuery, $limit = Post::NUM_ITEMS)
     {
         $query = $this->sanitizeSearchQuery($rawQuery);
-        $terms = $this->extractSearchTerms($query);
+        $searchTerms = $this->extractSearchTerms($query);
 
-        if (empty($terms)) {
+        if (0 === count($searchTerms)) {
             return [];
         }
 
         $queryBuilder = $this->createQueryBuilder('p');
 
-        foreach ($terms as $key => $term) {
+        foreach ($searchTerms as $key => $term) {
             $queryBuilder
                 ->orWhere('p.title LIKE :t_'.$key)
                 ->setParameter('t_'.$key, '%'.$term.'%')
@@ -85,14 +91,20 @@ class PostRepository extends EntityRepository
             ->getResult();
     }
 
+    /**
+     * Removes all non-alphanumeric characters except whitespaces
+     *
+     * @param string $query
+     *
+     * @return string
+     */
     private function sanitizeSearchQuery($query)
     {
-        // remove all non-alphanumeric characters except whitespaces
         return preg_replace('/[^[:alnum:] ]/', '', trim(preg_replace('/[[:space:]]+/', ' ', $query)));
     }
 
     /**
-     * Splits the query into terms and removes the ones which are too short.
+     * Splits the search query into terms and removes the ones which are irrelevant.
      *
      * @param string $query
      *

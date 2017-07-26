@@ -156,7 +156,7 @@ class BlogController extends Controller
      * @Route("/search", name="blog_search")
      * @Method("GET")
      *
-     * @return JsonResponse
+     * @return Response|JsonResponse
      */
     public function searchAction(Request $request)
     {
@@ -176,6 +176,6 @@ class BlogController extends Controller
             ];
         }
 
-        return new JsonResponse($results);
+        return $this->json($results);
     }
 }
