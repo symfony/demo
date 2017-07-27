@@ -62,7 +62,7 @@ class PostRepository extends EntityRepository
 
     /**
      * @param string $rawQuery The search query as input by the user
-     * @param int $limit       The maximum number of results returned
+     * @param int    $limit    The maximum number of results returned
      *
      * @return array
      */
@@ -92,7 +92,7 @@ class PostRepository extends EntityRepository
     }
 
     /**
-     * Removes all non-alphanumeric characters except whitespaces
+     * Removes all non-alphanumeric characters except whitespaces.
      *
      * @param string $query
      *
@@ -106,7 +106,7 @@ class PostRepository extends EntityRepository
     /**
      * Splits the search query into terms and removes the ones which are irrelevant.
      *
-     * @param string $query
+     * @param string $searchQuery
      *
      * @return array
      */
