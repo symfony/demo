@@ -1,4 +1,3 @@
-/app/config/parameters.yml
 /build/
 /node_modules/
 /phpunit.xml
@@ -15,10 +14,8 @@
 /var/sessions/*
 !var/sessions/.gitkeep
 !var/SymfonyRequirements.php
-/vendor/
-/web/bundles/
-/web/build/fonts/glyphicons-*
-/web/build/images/glyphicons-*
+/public/build/fonts/glyphicons-*
+/public/build/images/glyphicons-*
 ###> symfony/framework-bundle ###
 .env
 /public/bundles/
