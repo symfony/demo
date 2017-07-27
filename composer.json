@@ -10,6 +10,7 @@
         "erusev/parsedown": "^1.6",
         "ezyang/htmlpurifier": "^4.9",
         "sensio/framework-extra-bundle": "^3.0",
+        "symfony/asset": "^3.3",
         "symfony/flex": "^1.0",
         "symfony/form": "^3.3",
         "symfony/framework-bundle": "^3.3",
@@ -20,7 +21,9 @@
         "symfony/swiftmailer-bundle": "^3.0",
         "symfony/translation": "^3.3",
         "symfony/validator": "^3.3",
+        "symfony/var-dumper": "^3.3",
         "symfony/yaml": "^3.3",
+        "twig/extensions": "^1.5",
         "twig/twig": "^2.4",
         "white-october/pagerfanta-bundle": "^1.0"
     },
@@ -51,7 +54,7 @@
             "App\\Tests\\": "tests/"
         },
         "files": [
-            "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php"
+            "vendor/symfony/var-dumper/Resources/functions/dump.php"
         ]
     },
     "scripts": {
