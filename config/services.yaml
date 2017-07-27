@@ -61,4 +61,4 @@ services:
 
     App\Twig\SourceCodeExtension: ~
 
-    App\EventListener\ControllerListener: ['@CodeExplorerBundle\Twig\SourceCodeExtension']
+    App\EventListener\ControllerListener: ['@App\Twig\SourceCodeExtension']
