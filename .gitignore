@@ -19,3 +19,15 @@
 /web/bundles/
 /web/build/fonts/glyphicons-*
 /web/build/images/glyphicons-*
+###> symfony/framework-bundle ###
+.env
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+###> symfony/phpunit-bridge ###
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+###> symfony/web-server-bundle ###
+.web-server-pid
+###< symfony/web-server-bundle ###
