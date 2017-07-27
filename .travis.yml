@@ -21,7 +21,7 @@ install:
   - composer install
 
 script:
-  - ./vendor/bin/phpunit
+  - ./vendor/bin/simple-phpunit
   # this checks that the source code follows the Symfony Code Syntax rules
   - ./vendor/bin/php-cs-fixer fix --diff --dry-run -v
   # this checks that the YAML config files contain no syntax errors

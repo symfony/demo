@@ -38,8 +38,9 @@ class PostRepository extends EntityRepository
     {
         $query = $this->getEntityManager()
             ->createQuery('
-                SELECT p, t
+                SELECT p, a, t
                 FROM AppBundle:Post p
+                JOIN p.author a
                 LEFT JOIN p.tags t
                 WHERE p.publishedAt <= :now
                 ORDER BY p.publishedAt DESC
@@ -57,5 +58,64 @@ class PostRepository extends EntityRepository
         $paginator->setCurrentPage($page);
 
         return $paginator;
+    }
+
+    /**
+     * @param string $rawQuery The search query as input by the user
+     * @param int    $limit    The maximum number of results returned
+     *
+     * @return array
+     */
+    public function findBySearchQuery($rawQuery, $limit = Post::NUM_ITEMS)
+    {
+        $query = $this->sanitizeSearchQuery($rawQuery);
+        $searchTerms = $this->extractSearchTerms($query);
+
+        if (0 === count($searchTerms)) {
+            return [];
+        }
+
+        $queryBuilder = $this->createQueryBuilder('p');
+
+        foreach ($searchTerms as $key => $term) {
+            $queryBuilder
+                ->orWhere('p.title LIKE :t_'.$key)
+                ->setParameter('t_'.$key, '%'.$term.'%')
+            ;
+        }
+
+        return $queryBuilder
+            ->orderBy('p.publishedAt', 'DESC')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Removes all non-alphanumeric characters except whitespaces.
+     *
+     * @param string $query
+     *
+     * @return string
+     */
+    private function sanitizeSearchQuery($query)
+    {
+        return preg_replace('/[^[:alnum:] ]/', '', trim(preg_replace('/[[:space:]]+/', ' ', $query)));
+    }
+
+    /**
+     * Splits the search query into terms and removes the ones which are irrelevant.
+     *
+     * @param string $searchQuery
+     *
+     * @return array
+     */
+    private function extractSearchTerms($searchQuery)
+    {
+        $terms = array_unique(explode(' ', mb_strtolower($searchQuery)));
+
+        return array_filter($terms, function ($term) {
+            return 2 <= mb_strlen($term);
+        });
     }
 }
