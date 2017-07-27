@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Tests\AppBundle\Utils;
+namespace App\Tests\Utils;
 
-use AppBundle\Utils\Slugger;
+use App\Utils\Slugger;
 
 /**
  * Unit test for the application utils.

@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Tests\AppBundle\Utils;
+namespace App\Tests\Utils;
 
-use AppBundle\Utils\Validator;
+use App\Utils\Validator;
 
 class ValidatorTest extends \PHPUnit_Framework_TestCase
 {

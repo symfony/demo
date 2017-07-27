@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Tests\AppBundle\Form\DataTransformer;
+namespace App\Tests\Form\DataTransformer;
 
-use AppBundle\Entity\Tag;
-use AppBundle\Form\DataTransformer\TagArrayToStringTransformer;
+use App\Entity\Tag;
+use App\Form\DataTransformer\TagArrayToStringTransformer;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityRepository;
 

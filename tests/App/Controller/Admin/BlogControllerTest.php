@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Tests\AppBundle\Controller\Admin;
+namespace App\Tests\Controller\Admin;
 
-use AppBundle\DataFixtures\FixturesTrait;
-use AppBundle\Entity\Post;
+use App\DataFixtures\FixturesTrait;
+use App\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 

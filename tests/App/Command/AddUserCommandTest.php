@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Tests\Command;
+namespace App\Tests\Command;
 
-use AppBundle\Command\AddUserCommand;
-use AppBundle\Entity\User;
-use AppBundle\Utils\Validator;
+use App\Command\AddUserCommand;
+use App\Entity\User;
+use App\Utils\Validator;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
