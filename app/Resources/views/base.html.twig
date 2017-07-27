@@ -23,7 +23,7 @@
             <header>
                 <div class="navbar navbar-default navbar-static-top" role="navigation">
                     <div class="container">
-                        <div class="navbar-header">
+                        <div class="navbar-header col-md-3 col-lg-2">
                             <a class="navbar-brand" href="{{ path('homepage') }}">
                                 Symfony Demo
                             </a>
@@ -63,6 +63,10 @@
                                         </a>
                                     </li>
                                 {% endif %}
+
+                                <li>
+                                    <a href="{{ path('blog_search') }}"> <i class="fa fa-search"></i> {{ 'menu.search'|trans }}</a>
+                                </li>
 
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="locales">
