@@ -132,7 +132,7 @@ class AddUserCommand extends Command
         if (null !== $password) {
             $this->io->text(' > <info>Password</info>: '.str_repeat('*', mb_strlen($password)));
         } else {
-            $password = $this->io->askHidden('Password (your type will be hidden)', null, [$this, 'passwordValidator']);
+            $password = $this->io->askHidden('Password (your type will be hidden)', null, [$this, 'validatePassword']);
             $input->setArgument('password', $password);
         }
 
@@ -141,7 +141,7 @@ class AddUserCommand extends Command
         if (null !== $email) {
             $this->io->text(' > <info>Email</info>: '.$email);
         } else {
-            $email = $this->io->ask('Email', null, [$this, 'emailValidator']);
+            $email = $this->io->ask('Email', null, [$this->validator, 'validateEmail']);
             $input->setArgument('email', $email);
         }
 
@@ -150,7 +150,7 @@ class AddUserCommand extends Command
         if (null !== $fullName) {
             $this->io->text(' > <info>Full Name</info>: '.$fullName);
         } else {
-            $fullName = $this->io->ask('Full Name', null, [$this, 'fullNameValidator']);
+            $fullName = $this->io->ask('Full Name', null, [$this->validator, 'validateFullName']);
             $input->setArgument('full-name', $fullName);
         }
     }
