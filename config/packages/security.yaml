@@ -2,19 +2,23 @@ security:
     encoders:
         # Our user class and the algorithm we'll use to encode passwords
         # https://symfony.com/doc/current/security.html#c-encoding-the-user-s-password
-        AppBundle\Entity\User: bcrypt
+        App\Entity\User: bcrypt
 
     providers:
         # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
         # In this example, users are stored via Doctrine in the database
-        # To see the users at src/AppBundle/DataFixtures/ORM/LoadFixtures.php
+        # To see the users at src/App/DataFixtures/ORM/LoadFixtures.php
         # To load users from somewhere else: https://symfony.com/doc/current/security/custom_provider.html
         database_users:
-            entity: { class: AppBundle:User, property: username }
+            entity: { class: App:User, property: username }
 
     # https://symfony.com/doc/current/security.html#initial-security-yml-setup-authentication
     firewalls:
-        secured_area:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
             # this firewall applies to all URLs
             pattern: ^/
 
