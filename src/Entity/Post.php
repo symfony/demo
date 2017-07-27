@@ -16,7 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="AppBundle\Repository\PostRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
  * @ORM\Table(name="symfony_demo_post")
  *
  * Defines the properties of the Post entity to represent the blog posts.
@@ -92,7 +92,7 @@ class Post
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
      * @ORM\JoinColumn(nullable=false)
      */
     private $author;
@@ -112,7 +112,7 @@ class Post
     /**
      * @var Tag[]|ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\Tag", cascade={"persist"})
      * @ORM\JoinTable(name="symfony_demo_post_tag")
      * @ORM\OrderBy({"name": "ASC"})
      * @Assert\Count(max="4", maxMessage="post.too_many_tags")

@@ -68,7 +68,7 @@ class TagArrayToStringTransformer implements DataTransformerInterface
             $tags[] = $tag;
 
             // There's no need to persist these new tags because Doctrine does that automatically
-            // thanks to the cascade={"persist"} option in the AppBundle\Entity\Post::$tags property.
+            // thanks to the cascade={"persist"} option in the App\Entity\Post::$tags property.
         }
 
         // Return an array of tags to transform them back into a Doctrine Collection.

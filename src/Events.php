@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace AppBundle;
+namespace App;
 
 /**
  * This class defines the names of all the events dispatched in

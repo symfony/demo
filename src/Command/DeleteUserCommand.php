@@ -28,7 +28,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  *
  *     $ php bin/console app:delete-user
  *
- * Check out the code of the src/AppBundle/Command/AddUserCommand.php file for
+ * Check out the code of the src/App/Command/AddUserCommand.php file for
  * the full explanation about Symfony commands.
  *
  * See https://symfony.com/doc/current/cookbook/console/console_command.html
