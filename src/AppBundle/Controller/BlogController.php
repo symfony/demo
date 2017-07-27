@@ -23,6 +23,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -149,5 +150,32 @@ class BlogController extends Controller
             'post' => $post,
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/search", name="blog_search")
+     * @Method("GET")
+     *
+     * @return Response|JsonResponse
+     */
+    public function searchAction(Request $request)
+    {
+        if (!$request->isXmlHttpRequest()) {
+            return $this->render('blog/search.html.twig');
+        }
+
+        $query = $request->query->get('q', '');
+        $posts = $this->getDoctrine()->getRepository(Post::class)->findBySearchQuery($query);
+
+        $results = [];
+        foreach ($posts as $post) {
+            $results[] = [
+                'title' => htmlspecialchars($post->getTitle()),
+                'summary' => htmlspecialchars($post->getSummary()),
+                'url' => $this->generateUrl('blog_post', ['slug' => $post->getSlug()]),
+            ];
+        }
+
+        return $this->json($results);
     }
 }

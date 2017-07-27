@@ -12,6 +12,7 @@
 namespace AppBundle\Command;
 
 use AppBundle\Entity\User;
+use AppBundle\Utils\Validator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -20,7 +21,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
- * A command console that deletes users from the database.
+ * A console command that deletes users from the database.
  *
  * To use this command, open a terminal window, enter into your project
  * directory and execute the following:
@@ -40,13 +41,16 @@ class DeleteUserCommand extends Command
 {
     const MAX_ATTEMPTS = 5;
 
+    private $io;
     private $entityManager;
+    private $validator;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em, Validator $validator)
     {
         parent::__construct();
 
         $this->entityManager = $em;
+        $this->validator = $validator;
     }
 
     /**
@@ -71,18 +75,22 @@ HELP
             );
     }
 
+    protected function initialize(InputInterface $input, OutputInterface $output)
+    {
+        // SymfonyStyle is an optional feature that Symfony provides so you can
+        // apply a consistent look to the commands of your application.
+        // See https://symfony.com/doc/current/console/style.html
+        $this->io = new SymfonyStyle($input, $output);
+    }
+
     protected function interact(InputInterface $input, OutputInterface $output)
     {
         if (null !== $input->getArgument('username')) {
             return;
         }
 
-        // See: http://symfony.com/doc/current/console/style.html
-        $io = new SymfonyStyle($input, $output);
-
-        $io->title('Delete User Command Interactive Wizard');
-
-        $io->text([
+        $this->io->title('Delete User Command Interactive Wizard');
+        $this->io->text([
             'If you prefer to not use this interactive wizard, provide the',
             'arguments required by this command as follows:',
             '',
@@ -92,15 +100,13 @@ HELP
             '',
         ]);
 
-        $username = $io->ask('Username', null, [$this, 'usernameValidator']);
-
+        $username = $this->io->ask('Username', null, [$this, 'usernameValidator']);
         $input->setArgument('username', $username);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $username = $input->getArgument('username');
-        $this->usernameValidator($username);
+        $username = $this->validator->validateUsername($input->getArgument('username'));
 
         $repository = $this->entityManager->getRepository(User::class);
         /** @var User $user */
@@ -118,26 +124,6 @@ HELP
         $this->entityManager->remove($user);
         $this->entityManager->flush();
 
-        (new SymfonyStyle($input, $output))
-            ->success(sprintf('User "%s" (ID: %d, email: %s) was successfully deleted.', $user->getUsername(), $userId, $user->getEmail()));
-    }
-
-    /**
-     * This internal method should be private, but it's declared public to
-     * maintain PHP 5.3 compatibility when using it in a callback.
-     *
-     * @internal
-     */
-    public function usernameValidator($username)
-    {
-        if (empty($username)) {
-            throw new \Exception('The username can not be empty.');
-        }
-
-        if (1 !== preg_match('/^[a-z_]+$/', $username)) {
-            throw new \Exception('The username must contain only lowercase latin characters and underscores.');
-        }
-
-        return $username;
+        $this->io->success(sprintf('User "%s" (ID: %d, email: %s) was successfully deleted.', $user->getUsername(), $userId, $user->getEmail()));
     }
 }

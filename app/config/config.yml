@@ -51,6 +51,11 @@ framework:
         json_manifest_path: '%kernel.project_dir%/web/build/manifest.json'
     php_errors:
         log: true
+    cache:
+        # this value is used as part of the "namespace" generated for the cache item keys
+        # to avoid collisions when multiple apps share the same cache backend (e.g. a Redis server)
+        # See https://symfony.com/doc/current/reference/configuration/framework.html#prefix-seed
+        prefix_seed: symfony-demo
 
 # Twig Configuration (used for rendering application templates)
 twig:
