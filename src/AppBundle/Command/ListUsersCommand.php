@@ -21,7 +21,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
- * A command console that lists all the existing users.
+ * A console command that lists all the existing users.
  *
  * To use this command, open a terminal window, enter into your project directory
  * and execute the following:

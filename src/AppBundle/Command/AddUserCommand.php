@@ -12,6 +12,7 @@
 namespace AppBundle\Command;
 
 use AppBundle\Entity\User;
+use AppBundle\Utils\Validator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -23,7 +24,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Stopwatch\Stopwatch;
 
 /**
- * A command console that creates users and stores them in the database.
+ * A console command that creates users and stores them in the database.
  *
  * To use this command, open a terminal window, enter into your project
  * directory and execute the following:
@@ -48,13 +49,15 @@ class AddUserCommand extends Command
     private $io;
     private $entityManager;
     private $passwordEncoder;
+    private $validator;
 
-    public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $encoder)
+    public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $encoder, Validator $validator)
     {
         parent::__construct();
 
         $this->entityManager = $em;
         $this->passwordEncoder = $encoder;
+        $this->validator = $validator;
     }
 
     /**
@@ -120,14 +123,7 @@ class AddUserCommand extends Command
         if (null !== $username) {
             $this->io->text(' > <info>Username</info>: '.$username);
         } else {
-            $username = $this->io->ask('Username', null, function ($answer) {
-                if (empty($answer)) {
-                    throw new \RuntimeException('The username cannot be empty');
-                }
-
-                return $answer;
-            });
-
+            $username = $this->io->ask('Username', null, [$this->validator, 'validateUsername']);
             $input->setArgument('username', $username);
         }
 
@@ -136,7 +132,7 @@ class AddUserCommand extends Command
         if (null !== $password) {
             $this->io->text(' > <info>Password</info>: '.str_repeat('*', mb_strlen($password)));
         } else {
-            $password = $this->io->askHidden('Password (your type will be hidden)', null, [$this, 'passwordValidator']);
+            $password = $this->io->askHidden('Password (your type will be hidden)', null, [$this->validator, 'validatePassword']);
             $input->setArgument('password', $password);
         }
 
@@ -145,7 +141,7 @@ class AddUserCommand extends Command
         if (null !== $email) {
             $this->io->text(' > <info>Email</info>: '.$email);
         } else {
-            $email = $this->io->ask('Email', null, [$this, 'emailValidator']);
+            $email = $this->io->ask('Email', null, [$this->validator, 'validateEmail']);
             $input->setArgument('email', $email);
         }
 
@@ -154,7 +150,7 @@ class AddUserCommand extends Command
         if (null !== $fullName) {
             $this->io->text(' > <info>Full Name</info>: '.$fullName);
         } else {
-            $fullName = $this->io->ask('Full Name', null, [$this, 'fullNameValidator']);
+            $fullName = $this->io->ask('Full Name', null, [$this->validator, 'validateFullName']);
             $input->setArgument('full-name', $fullName);
         }
     }
@@ -199,50 +195,6 @@ class AddUserCommand extends Command
         }
     }
 
-    /**
-     * @internal
-     */
-    public function passwordValidator($plainPassword)
-    {
-        if (empty($plainPassword)) {
-            throw new \Exception('The password can not be empty.');
-        }
-
-        if (mb_strlen(trim($plainPassword)) < 6) {
-            throw new \Exception('The password must be at least 6 characters long.');
-        }
-
-        return $plainPassword;
-    }
-
-    /**
-     * @internal
-     */
-    public function emailValidator($email)
-    {
-        if (empty($email)) {
-            throw new \Exception('The email can not be empty.');
-        }
-
-        if (false === mb_strpos($email, '@')) {
-            throw new \Exception('The email should look like a real email.');
-        }
-
-        return $email;
-    }
-
-    /**
-     * @internal
-     */
-    public function fullNameValidator($fullName)
-    {
-        if (empty($fullName)) {
-            throw new \Exception('The full name can not be empty.');
-        }
-
-        return $fullName;
-    }
-
     private function validateUserData($username, $plainPassword, $email, $fullName)
     {
         $userRepository = $this->entityManager->getRepository(User::class);
@@ -255,9 +207,9 @@ class AddUserCommand extends Command
         }
 
         // validate password and email if is not this input means interactive.
-        $this->passwordValidator($plainPassword);
-        $this->emailValidator($email);
-        $this->fullNameValidator($fullName);
+        $this->validator->validatePassword($plainPassword);
+        $this->validator->validateEmail($email);
+        $this->validator->validateFullName($fullName);
 
         // check if a user with the same email already exists.
         $existingEmail = $userRepository->findOneBy(['email' => $email]);
