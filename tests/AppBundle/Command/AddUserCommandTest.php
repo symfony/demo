@@ -13,6 +13,7 @@ namespace Tests\Command;
 
 use AppBundle\Command\AddUserCommand;
 use AppBundle\Entity\User;
+use AppBundle\Utils\Validator;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
@@ -66,7 +67,7 @@ class AddUserCommandTest extends KernelTestCase
     public function testCreateUserInteractive($isAdmin)
     {
         $this->executeCommand(
-            // these are the arguments (only 1 is passed, the rest are missing)
+        // these are the arguments (only 1 is passed, the rest are missing)
             $isAdmin ? ['--admin' => 1] : [],
             // these are the responses given to the questions asked by the command
             // to get the value of the missing required arguments
@@ -116,7 +117,7 @@ class AddUserCommandTest extends KernelTestCase
         self::bootKernel();
 
         $container = self::$kernel->getContainer();
-        $command = new AddUserCommand($container->get('doctrine')->getManager(), $container->get('security.password_encoder'));
+        $command = new AddUserCommand($container->get('doctrine')->getManager(), $container->get('security.password_encoder'), new Validator());
         $command->setApplication(new Application(self::$kernel));
 
         $commandTester = new CommandTester($command);
