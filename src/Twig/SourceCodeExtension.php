@@ -15,7 +15,7 @@ namespace App\Twig;
  * CAUTION: this is an extremely advanced Twig extension. It's used to get the
  * source code of the controller and the template used to render the current
  * page. If you are starting with Symfony, don't look at this code and consider
- * studying instead the code of the src/AppBundle/Twig/AppExtension.php extension.
+ * studying instead the code of the src/App/Twig/AppExtension.php extension.
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
@@ -41,7 +41,7 @@ class SourceCodeExtension extends \Twig_Extension
 
     public function showSourceCode(\Twig_Environment $twig, $template)
     {
-        return $twig->render('@CodeExplorer/source_code.html.twig', [
+        return $twig->render('debug/source_code.html.twig', [
             'controller' => $this->getController(),
             'template' => $this->getTemplateSource($twig->resolveTemplate($template)),
         ]);
