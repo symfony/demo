@@ -2,5 +2,5 @@
 # See https://symfony.com/doc/current/cookbook/testing/http_authentication.html
 security:
     firewalls:
-        secured_area:
+        main:
             http_basic: ~
