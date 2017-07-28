@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace App\EventListener;
+namespace App\EventSubscriber;
 
 use App\Twig\SourceCodeExtension;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -23,13 +23,20 @@ use Symfony\Component\HttpKernel\KernelEvents;
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-class ControllerListener implements EventSubscriberInterface
+class ControllerSubscriber implements EventSubscriberInterface
 {
     private $twigExtension;
 
     public function __construct(SourceCodeExtension $twigExtension)
     {
         $this->twigExtension = $twigExtension;
+    }
+
+    public static function getSubscribedEvents()
+    {
+        return [
+            KernelEvents::CONTROLLER => 'registerCurrentController',
+        ];
     }
 
     public function registerCurrentController(FilterControllerEvent $event)
@@ -40,15 +47,5 @@ class ControllerListener implements EventSubscriberInterface
         if ($event->isMasterRequest()) {
             $this->twigExtension->setController($event->getController());
         }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function getSubscribedEvents()
-    {
-        return [
-            KernelEvents::CONTROLLER => 'registerCurrentController',
-        ];
     }
 }

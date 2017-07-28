@@ -43,10 +43,10 @@ services:
     App\Twig\AppExtension:
         $locales: '%app_locales%'
 
-    App\EventListener\CommentNotificationSubscriber:
+    App\EventSubscriber\CommentNotificationSubscriber:
         $sender: '%app.notifications.email_sender%'
 
-    App\EventListener\RedirectToPreferredLocaleSubscriber:
+    App\EventSubscriber\RedirectToPreferredLocaleSubscriber:
         $locales: '%app_locales%'
         $defaultLocale: '%locale%'
 
@@ -58,7 +58,3 @@ services:
     slugger:
         alias: App\Utils\Slugger
         public: true
-
-    App\Twig\SourceCodeExtension: ~
-
-    App\EventListener\ControllerListener: ['@App\Twig\SourceCodeExtension']
