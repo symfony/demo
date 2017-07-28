@@ -17,8 +17,6 @@ framework:
     # https://symfony.com/doc/current/book/http_cache.html#edge-side-includes
     esi: { enabled: true }
 
-    form: null
-
     fragments: null
 
     http_method_override: true
@@ -41,11 +39,3 @@ framework:
     trusted_hosts: null
 
     validation: { enable_annotations: true }
-
-    # https://symfony.com/doc/current/reference/configuration/framework.html#handler-id
-    #session:
-    #    handler_id: session.handler.native_file
-    #    save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
-    #esi: ~
-    #fragments: ~
-
