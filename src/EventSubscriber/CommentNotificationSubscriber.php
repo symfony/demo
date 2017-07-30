@@ -91,7 +91,7 @@ class CommentNotificationSubscriber implements EventSubscriberInterface
         // Symfony uses a library called SwiftMailer to send emails. That's why
         // email messages are created instantiating a Swift_Message class.
         // See https://symfony.com/doc/current/email.html#sending-emails
-        $message = \Swift_Message::newInstance()
+        $message = (new \Swift_Message())
             ->setSubject($subject)
             ->setTo($post->getAuthor()->getEmail())
             ->setFrom($this->sender)

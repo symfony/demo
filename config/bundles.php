@@ -14,4 +14,5 @@ return [
     'Symfony\Bundle\DebugBundle\DebugBundle' => ['dev' => true, 'test' => true],
     'Symfony\Bundle\WebServerBundle\WebServerBundle' => ['dev' => true],
     'Symfony\Bundle\WebProfilerBundle\WebProfilerBundle' => ['dev' => true, 'test' => true],
+    'DAMA\DoctrineTestBundle\DAMADoctrineTestBundle' => ['test' => true],
 ];
