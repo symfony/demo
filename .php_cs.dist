@@ -11,12 +11,12 @@ COMMENT;
 
 $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__)
+    ->exclude('config')
     ->exclude('var')
     ->exclude('web/bundles')
     ->exclude('web/css')
     ->exclude('web/fonts')
     ->exclude('web/js')
-    ->notPath('web/config.php')
 ;
 
 return PhpCsFixer\Config::create()
