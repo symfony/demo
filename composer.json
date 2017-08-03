@@ -25,7 +25,6 @@
         "symfony/templating": "^3.3",
         "symfony/translation": "^3.3",
         "symfony/validator": "^3.3",
-        "symfony/var-dumper": "^3.3",
         "symfony/yaml": "^3.3",
         "twig/extensions": "^1.5",
         "twig/twig": "^2.4",
@@ -38,6 +37,7 @@
         "symfony/dotenv": "^3.3",
         "symfony/phpunit-bridge": "^3.3",
         "symfony/profiler-pack": "^1.0",
+        "symfony/var-dumper": "^3.3",
         "symfony/web-server-bundle": "^3.3"
     },
     "config": {
@@ -57,10 +57,7 @@
     "autoload-dev": {
         "psr-4": {
             "App\\Tests\\": "tests/"
-        },
-        "files": [
-            "vendor/symfony/var-dumper/Resources/functions/dump.php"
-        ]
+        }
     },
     "scripts": {
         "auto-scripts": {
