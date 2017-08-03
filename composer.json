@@ -10,6 +10,7 @@
         "erusev/parsedown": "^1.6",
         "ezyang/htmlpurifier": "^4.9",
         "sensio/framework-extra-bundle": "^3.0",
+        "sensiolabs/security-checker": "^4.1",
         "symfony/asset": "^3.3",
         "symfony/browser-kit": "^3.3",
         "symfony/css-selector": "^3.3",
@@ -62,7 +63,8 @@
     "scripts": {
         "auto-scripts": {
             "make cache-warmup": "script",
-            "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd"
+            "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd",
+            "security-checker security:check": "script"
         }
     },
     "conflict": {
