@@ -8,7 +8,7 @@ framework:
         # See https://symfony.com/doc/current/reference/configuration/framework.html#prefix-seed
         prefix_seed: symfony-demo
 
-    csrf_protection: null
+    csrf_protection: { enabled: true }
 
     default_locale: '%locale%'
 
@@ -17,7 +17,7 @@ framework:
     # https://symfony.com/doc/current/book/http_cache.html#edge-side-includes
     esi: { enabled: true }
 
-    fragments: null
+    fragments: { enabled: true }
 
     http_method_override: true
 
