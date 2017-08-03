@@ -10,7 +10,7 @@ security:
         # To see the users at src/App/DataFixtures/ORM/LoadFixtures.php
         # To load users from somewhere else: https://symfony.com/doc/current/security/custom_provider.html
         database_users:
-            entity: { class: App:User, property: username }
+            entity: { class: App\Entity\User, property: username }
 
     # https://symfony.com/doc/current/security.html#initial-security-yml-setup-authentication
     firewalls:
