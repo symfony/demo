@@ -35,8 +35,7 @@ services:
 # Autowiring can't guess the constructor arguments that are not type-hinted with
     # classes (e.g. container parameters) so you must define those arguments explicitly
     App\Command\ListUsersCommand:
-        arguments:
-            $emailSender: '%app.notifications.email_sender%'
+        $emailSender: '%app.notifications.email_sender%'
 
     # when the service definition only contains arguments, you can omit the
     # 'arguments' key and define the arguments just below the service class
