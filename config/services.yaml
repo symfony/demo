@@ -32,7 +32,7 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
-# Autowiring can't guess the constructor arguments that are not type-hinted with
+    # Autowiring can't guess the constructor arguments that are not type-hinted with
     # classes (e.g. container parameters) so you must define those arguments explicitly
     App\Command\ListUsersCommand:
         $emailSender: '%app.notifications.email_sender%'
