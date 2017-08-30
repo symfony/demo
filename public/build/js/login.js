@@ -1,4 +1,1 @@
-webpackJsonp([6],{137:/*!****************************!*\
-  !*** ./assets/js/login.js ***!
-  \****************************/
-function(a,n,l){(function(a){a(function(){var n=a("#username"),l=a("#password");n.val()||l.val()||(n.val("jane_admin"),l.val("kitten"))})}).call(n,l(/*! jquery */1))}},[137]);
+webpackJsonp([6],{nxx7:function(n,a,l){(function(n){n(function(){var a=n("#username"),l=n("#password");a.val()||l.val()||(a.val("jane_admin"),l.val("kitten"))})}).call(a,l("7t+N"))}},["nxx7"]);

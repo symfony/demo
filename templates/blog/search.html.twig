@@ -5,10 +5,18 @@
     <script src="{{ asset('build/js/search.js') }}"></script>
 {% endblock %}
 
+{% block body_id 'blog_search' %}
+
 {% block main %}
     <form action="{{ path('blog_search') }}" method="get">
         <div class="form-group">
-            <input name="q" type="text" class="form-control search-field" placeholder="{{ 'post.search_for'|trans }}" autocomplete="off" autofocus>
+            <input name="q"
+                   class="form-control search-field"
+                   placeholder="{{ 'post.search_for'|trans }}"
+                   autocomplete="off"
+                   autofocus
+                   data-no-results-message="{{ 'post.search_no_results'|trans }}"
+            >
         </div>
     </form>
 
