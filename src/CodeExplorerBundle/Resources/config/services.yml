@@ -1,6 +1,0 @@
-services:
-    _defaults: { public: false, autoconfigure: true }
-
-    CodeExplorerBundle\Twig\SourceCodeExtension: ~
-
-    CodeExplorerBundle\EventListener\ControllerListener: ['@CodeExplorerBundle\Twig\SourceCodeExtension']

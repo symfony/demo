@@ -1,0 +1,53 @@
+security:
+    encoders:
+        # Our user class and the algorithm we'll use to encode passwords
+        # https://symfony.com/doc/current/security.html#c-encoding-the-user-s-password
+        App\Entity\User: bcrypt
+
+    providers:
+        # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+        # In this example, users are stored via Doctrine in the database
+        # To see the users at src/App/DataFixtures/ORM/LoadFixtures.php
+        # To load users from somewhere else: https://symfony.com/doc/current/security/custom_provider.html
+        database_users:
+            entity: { class: App\Entity\User, property: username }
+
+    # https://symfony.com/doc/current/security.html#initial-security-yml-setup-authentication
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            # this firewall applies to all URLs
+            pattern: ^/
+
+            # but the firewall does not require login on every page
+            # denying access is done in access_control or in your controllers
+            anonymous: true
+
+            # This allows the user to login by submitting a username and password
+            # Reference: https://symfony.com/doc/current/security/form_login_setup.html
+            form_login:
+                # The route name that the login form submits to
+                check_path: security_login
+                # The name of the route where the login form lives
+                # When the user tries to access a protected page, they are redirected here
+                login_path: security_login
+                # Secure the login form against CSRF
+                # Reference: https://symfony.com/doc/current/security/csrf_in_login_form.html
+                csrf_token_generator: security.csrf.token_manager
+                # The page users are redirect to when there is no previous page stored in the
+                # session (for example when the users access directly to the login page).
+                default_target_path: blog_index
+
+            logout:
+                # The route name the user can go to in order to logout
+                path: security_logout
+                # The name of the route to redirect to after logging out
+                target: homepage
+
+    access_control:
+        # this is a catch-all for the admin area
+        # additional security lives in the controllers
+        - { path: '^/(%app_locales%)/admin', roles: ROLE_ADMIN }
