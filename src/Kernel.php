@@ -14,6 +14,7 @@ namespace App;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 
@@ -25,6 +26,24 @@ final class Kernel extends BaseKernel
     use MicroKernelTrait;
 
     private const CONFIG_EXTS = '.{php,xml,yaml,yml}';
+
+    public function __construct($environment, $debug)
+    {
+        /*
+         * Workaround to avoid: An exception occurred in driver: SQLSTATE[HY000] [14] unable to open database file
+         * As environment variables is not supported yet to be used with configuration parameters.
+         *
+         * @TODO remove in 3.4
+         */
+
+        if (isset($_ENV['DATABASE_URL']) && false !== mb_strpos($_ENV['DATABASE_URL'], '%kernel.project_dir%')) {
+            (new Dotenv())->populate([
+                'DATABASE_URL' => str_replace('%kernel.project_dir%', $this->getProjectDir(), $_ENV['DATABASE_URL']),
+            ]);
+        }
+
+        parent::__construct($environment, $debug);
+    }
 
     public function getCacheDir(): string
     {
