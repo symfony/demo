@@ -8,9 +8,6 @@ cache:
 matrix:
   fast_finish: true
   include:
-    - php: 5.5
-    - php: 5.6
-    - php: 7.0
     - php: 7.1
 
 before_install:
@@ -21,15 +18,15 @@ install:
   - composer install
 
 script:
+  - cp .env.dist .env
   - ./vendor/bin/simple-phpunit
   # this checks that the source code follows the Symfony Code Syntax rules
   - ./vendor/bin/php-cs-fixer fix --diff --dry-run -v
   # this checks that the YAML config files contain no syntax errors
-  - ./bin/console lint:yaml app/config
-  - ./bin/console lint:yaml @CodeExplorerBundle
+  - ./bin/console lint:yaml config
   # this checks that the Twig template files contain no syntax errors
-  - ./bin/console lint:twig app/Resources @CodeExplorerBundle
+  - ./bin/console lint:twig templates
   # this checks that the XLIFF translations contain no syntax errors
-  - ./bin/console lint:xliff app/Resources
+  - ./bin/console lint:xliff translations
   # this checks that the application doesn't use dependencies with known security vulnerabilities
   - ./bin/console security:check --end-point=http://security.sensiolabs.org/check_lock
