@@ -1,9 +1,0 @@
-parameters:
-    # needed to avoid this fatal error:
-    # Symfony\Component\DependencyInjection\Exception\EnvParameterException:
-    # Environment variables "DATABASE_URL" are never used. Please, check your container's configuration.
-    ignore-this-parameter: '%env(DATABASE_URL)%'
-
-doctrine:
-    dbal:
-        url: 'sqlite:///var/data/blog_test.sqlite'
