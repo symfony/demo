@@ -14,9 +14,7 @@ $finder = PhpCsFixer\Finder::create()
     ->exclude('config')
     ->exclude('var')
     ->exclude('public/bundles')
-    ->exclude('public/css')
-    ->exclude('public/fonts')
-    ->exclude('public/js')
+    ->exclude('public/build')
 ;
 
 return PhpCsFixer\Config::create()
