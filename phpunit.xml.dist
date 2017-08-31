@@ -10,13 +10,7 @@
     <php>
         <ini name="error_reporting" value="-1" />
         <server name="KERNEL_CLASS" value="App\Kernel" />
-        <!--
-            TODO: if you don't define APP_SECRET env var, you see this error:
-            1) App\Tests\Controller\Admin\BlogControllerTest::testAccessDeniedForRegularUsers
-               with data set #0 ('GET', '/en/admin/post/')
-               Symfony\Component\DependencyInjection\Exception\EnvNotFoundException:
-               Environment variable not found: "APP_SECRET".
-        -->
+        <!-- Configure here all needed environment variables for 'test' env -->
         <env name="APP_SECRET" value="5a79a1c866efef9ca1800f971d689f3e"/>
         <env name="DATABASE_URL" value="sqlite:///var/data/blog_test.sqlite"/>
     </php>
