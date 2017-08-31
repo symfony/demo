@@ -64,7 +64,7 @@ class PostRepository extends EntityRepository
      * @param string $rawQuery The search query as input by the user
      * @param int    $limit    The maximum number of results returned
      *
-     * @return array
+     * @return Post[]
      */
     public function findBySearchQuery($rawQuery, $limit = Post::NUM_ITEMS)
     {
