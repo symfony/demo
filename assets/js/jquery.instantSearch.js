@@ -2,92 +2,105 @@
  * jQuery plugin for an instant searching.
  *
  * @author Oleg Voronkovich <oleg-voronkovich@yandex.ru>
+ * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
-(function($) {
-    $.fn.instantSearch = function(config) {
-        return this.each(function() {
-            initInstantSearch(this, $.extend(true, defaultConfig, config || {}));
-        });
+(function ($) {
+    'use strict';
+
+    String.prototype.render = function (parameters) {
+        return this.replace(/({{ (\w+) }})/g, function (match, pattern, name) {
+            return parameters[name];
+        })
     };
 
-    var defaultConfig = {
+    // INSTANTS SEARCH PUBLIC CLASS DEFINITION
+    // =======================================
+
+    var InstantSearch = function (element, options) {
+        this.$input = $(element);
+        this.$form = this.$input.closest('form');
+        this.$preview = $('<ul class="search-preview list-group">').appendTo(this.$form);
+        this.options = $.extend({}, InstantSearch.DEFAULTS, this.$input.data(), options);
+
+        this.$input.keyup(this.debounce());
+    };
+
+    InstantSearch.DEFAULTS = {
         minQueryLength: 2,
-        maxPreviewItems: 10,
-        previewDelay: 500,
-        noItemsFoundMessage: 'No results found.'
+        limit: 10,
+        delay: 500,
+        noResultsMessage: 'No results found',
+        itemTemplate: '\
+                <article class="post">\
+                    <h2><a href="{{ url }}">{{ title }}</a></h2>\
+                    <p class="post-metadata">\
+                       <span class="metadata"><i class="fa fa-calendar"></i> {{ date }}</span>\
+                       <span class="metadata"><i class="fa fa-user"></i> {{ author }}</span>\
+                    </p>\
+                    <p>{{ summary }}</p>\
+                </article>'
     };
 
-    function debounce(fn, delay) {
+    InstantSearch.prototype.debounce = function () {
+        var delay = this.options.delay;
+        var search = this.search;
         var timer = null;
+        var self = this;
+
         return function () {
-            var context = this, args = arguments;
             clearTimeout(timer);
             timer = setTimeout(function () {
-                fn.apply(context, args);
+                search.apply(self);
             }, delay);
         };
-    }
+    };
 
-    var initInstantSearch = function(el, config) {
-        var $input = $(el);
-        var $form = $input.closest('form');
-        var $preview = $('<ul class="search-preview list-group">').appendTo($form);
+    InstantSearch.prototype.search = function () {
+        var query = $.trim(this.$input.val()).replace(/\s{2,}/g, ' ');
+        if (query.length < this.options.minQueryLength) {
+            this.$preview.empty();
+            return;
+        }
 
-        var setPreviewItems = function(items) {
+        var self = this;
+        var data = this.$form.serializeArray();
+        data['l'] = this.limit;
+
+        $.getJSON(this.$form.attr('action'), data, function (items) {
+            self.show(items);
+        });
+    };
+
+    InstantSearch.prototype.show = function (items) {
+        var $preview = this.$preview;
+        var itemTemplate = this.options.itemTemplate;
+
+        if (0 === items.length) {
+            $preview.html(this.options.noResultsMessage);
+        } else {
             $preview.empty();
-
-            $.each(items, function(index, item) {
-                if (index > config.maxPreviewItems) {
-                    return;
-                }
-
-                addItemToPreview(item);
+            $.each(items, function (index, item) {
+                $preview.append(itemTemplate.render(item));
             });
         }
+    };
 
-        var addItemToPreview = function(item) {
-            var $link = $('<a>').attr('href', item.url).text(item.title);
-            var $title = $('<h3>').attr('class', 'm-b-0').append($link);
-            var $summary = $('<p>').text(item.summary);
-            var $result = $('<div>').append($title).append($summary);
+    // INSTANTS SEARCH PLUGIN DEFINITION
+    // =================================
 
-            $preview.append($result);
-        }
+    function Plugin(option) {
+        return this.each(function () {
+            var $this = $(this);
+            var instance = $this.data('instantSearch');
+            var options = typeof option === 'object' && option;
 
-        var noItemsFound = function() {
-            var $result = $('<div>').text(config.noItemsFoundMessage);
+            if (!instance) $this.data('instantSearch', (instance = new InstantSearch(this, options)));
 
-            $preview.empty();
-            $preview.append($result);
-        }
-
-        var updatePreview = function() {
-            var query = $.trim($input.val()).replace(/\s{2,}/g, ' ');
-
-            if (query.length < config.minQueryLength) {
-                $preview.empty();
-                return;
-            }
-
-            $.getJSON($form.attr('action') + '?' + $form.serialize(), function(items) {
-                if (items.length === 0) {
-                    noItemsFound();
-                    return;
-                }
-
-                setPreviewItems(items);
-            });
-        }
-
-        $input.focusout(function(e) {
-            $preview.fadeOut();
-        });
-
-        $input.focusin(function(e) {
-            $preview.fadeIn();
-            updatePreview();
-        });
-
-        $input.keyup(debounce(updatePreview, config.previewDelay));
+            if (option === 'search') instance.search();
+        })
     }
+
+    $.fn.instantSearch = Plugin;
+    $.fn.instantSearch.Constructor = InstantSearch;
+
 })(window.jQuery);

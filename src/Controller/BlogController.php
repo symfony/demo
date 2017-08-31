@@ -165,12 +165,15 @@ class BlogController extends Controller
         }
 
         $query = $request->query->get('q', '');
-        $posts = $this->getDoctrine()->getRepository(Post::class)->findBySearchQuery($query);
+        $limit = $request->query->get('l', 10);
+        $posts = $this->getDoctrine()->getRepository(Post::class)->findBySearchQuery($query, $limit);
 
         $results = [];
         foreach ($posts as $post) {
             $results[] = [
                 'title' => htmlspecialchars($post->getTitle()),
+                'date' => $post->getPublishedAt()->format('M d, Y'),
+                'author' => htmlspecialchars($post->getAuthor()->getFullName()),
                 'summary' => htmlspecialchars($post->getSummary()),
                 'url' => $this->generateUrl('blog_post', ['slug' => $post->getSlug()]),
             ];
