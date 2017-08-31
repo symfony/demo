@@ -52,7 +52,7 @@ First of all, create a `.env` file from a `.env.dist` template which contains de
 values of infrastructure-related configuration of this application:
 
 ```bash
-cp .env.dist .env
+$ cp .env.dist .env
 ```
 
 There is no need to configure a virtual host in your web server to access the application.
