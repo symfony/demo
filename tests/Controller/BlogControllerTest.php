@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace App\Tests\Controller;
+namespace Tests\App\Controller;
 
 use App\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace App\Tests\Command;
+namespace Tests\App\Command;
 
 use App\Command\AddUserCommand;
 use App\Entity\User;
