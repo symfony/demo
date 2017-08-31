@@ -48,6 +48,13 @@ most recent version executing the `symfony self-update` command.
 Usage
 -----
 
+First of all, create a `.env` file from a `.env.dist` template which contains default
+values of infrastructure-related configuration of this application:
+
+```bash
+cp .env.dist .env
+```
+
 There is no need to configure a virtual host in your web server to access the application.
 Just use the built-in web server:
 
