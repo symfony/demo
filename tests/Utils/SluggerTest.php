@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace App\Tests\Utils;
+namespace Tests\App\Utils;
 
 use App\Utils\Slugger;
 

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace App\Tests\Form\DataTransformer;
+namespace Tests\App\Form\DataTransformer;
 
 use App\Entity\Tag;
 use App\Form\DataTransformer\TagArrayToStringTransformer;

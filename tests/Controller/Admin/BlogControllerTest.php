@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace App\Tests\Controller\Admin;
+namespace Tests\App\Controller\Admin;
 
 use App\DataFixtures\FixturesTrait;
 use App\Entity\Post;
