@@ -52,7 +52,7 @@ final class Kernel extends BaseKernel
 
     public function getLogDir(): string
     {
-        return dirname(__DIR__).'/var/logs';
+        return dirname(__DIR__).'/var/log';
     }
 
     public function registerBundles(): iterable
