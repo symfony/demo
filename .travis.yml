@@ -18,7 +18,6 @@ install:
   - composer install
 
 script:
-  - cp .env.dist .env
   - ./vendor/bin/simple-phpunit
   # this checks that the source code follows the Symfony Code Syntax rules
   - ./vendor/bin/php-cs-fixer fix --diff --dry-run -v
