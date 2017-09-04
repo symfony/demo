@@ -29,20 +29,14 @@ use Symfony\Component\Intl\Intl;
  */
 class AppExtension extends \Twig_Extension
 {
-    /**
-     * @var Markdown
-     */
     private $parser;
-
-    /**
-     * @var array
-     */
+    private $localeCodes;
     private $locales;
 
     public function __construct(Markdown $parser, $locales)
     {
         $this->parser = $parser;
-        $this->locales = $locales;
+        $this->localeCodes = explode('|', $locales);
     }
 
     /**
@@ -86,13 +80,15 @@ class AppExtension extends \Twig_Extension
      */
     public function getLocales()
     {
-        $localeCodes = explode('|', $this->locales);
-
-        $locales = [];
-        foreach ($localeCodes as $localeCode) {
-            $locales[] = ['code' => $localeCode, 'name' => Intl::getLocaleBundle()->getLocaleName($localeCode, $localeCode)];
+        if (null !== $this->locales) {
+            return $this->locales;
         }
 
-        return $locales;
+        $this->locales = [];
+        foreach ($this->localeCodes as $localeCode) {
+            $this->locales[] = ['code' => $localeCode, 'name' => Intl::getLocaleBundle()->getLocaleName($localeCode, $localeCode)];
+        }
+
+        return $this->locales;
     }
 }

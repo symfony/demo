@@ -25,34 +25,11 @@ use Symfony\Component\Translation\TranslatorInterface;
  */
 class CommentNotificationSubscriber implements EventSubscriberInterface
 {
-    /**
-     * @var \Swift_Mailer
-     */
     private $mailer;
-
-    /**
-     * @var TranslatorInterface
-     */
     private $translator;
-
-    /**
-     * @var UrlGeneratorInterface
-     */
     private $urlGenerator;
-
-    /**
-     * @var string
-     */
     private $sender;
 
-    /**
-     * Constructor.
-     *
-     * @param \Swift_Mailer         $mailer
-     * @param UrlGeneratorInterface $urlGenerator
-     * @param TranslatorInterface   $translator
-     * @param string                $sender
-     */
     public function __construct(\Swift_Mailer $mailer, UrlGeneratorInterface $urlGenerator, TranslatorInterface $translator, $sender)
     {
         $this->mailer = $mailer;
@@ -68,9 +45,6 @@ class CommentNotificationSubscriber implements EventSubscriberInterface
         ];
     }
 
-    /**
-     * @param GenericEvent $event
-     */
     public function onCommentCreated(GenericEvent $event)
     {
         /** @var Comment $comment */
