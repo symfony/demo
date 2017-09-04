@@ -14,11 +14,10 @@ namespace App\DataFixtures\ORM;
 use App\DataFixtures\FixturesTrait;
 use App\Entity\Comment;
 use App\Entity\Post;
+use App\Utils\Slugger;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
 /**
  * Defines the sample blog posts to load in the database before running the unit
@@ -32,9 +31,8 @@ use Symfony\Component\DependencyInjection\ContainerAwareTrait;
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
-class PostFixtures extends AbstractFixture implements DependentFixtureInterface, ContainerAwareInterface
+class PostFixtures extends AbstractFixture implements DependentFixtureInterface
 {
-    use ContainerAwareTrait;
     use FixturesTrait;
 
     /**
@@ -47,7 +45,7 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface,
 
             $post->setTitle($title);
             $post->setSummary($this->getRandomPostSummary());
-            $post->setSlug($this->container->get('slugger')->slugify($post->getTitle()));
+            $post->setSlug(Slugger::slugify($post->getTitle()));
             $post->setContent($this->getPostContent());
             $post->setPublishedAt(new \DateTime('now - '.$i.'days'));
 

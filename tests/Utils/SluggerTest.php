@@ -30,10 +30,7 @@ class SluggerTest extends \PHPUnit_Framework_TestCase
      */
     public function testSlugify($string, $slug)
     {
-        $slugger = new Slugger();
-        $result = $slugger->slugify($string);
-
-        $this->assertSame($slug, $result);
+        $this->assertSame($slug, Slugger::slugify($string));
     }
 
     public function getSlugs()

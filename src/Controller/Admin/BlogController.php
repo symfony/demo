@@ -71,7 +71,7 @@ class BlogController extends Controller
      * to constraint the HTTP methods each controller responds to (by default
      * it responds to all methods).
      */
-    public function newAction(Request $request, Slugger $slugger)
+    public function newAction(Request $request)
     {
         $post = new Post();
         $post->setAuthor($this->getUser());
@@ -87,7 +87,7 @@ class BlogController extends Controller
         // However, we explicitly add it to improve code readability.
         // See https://symfony.com/doc/current/best_practices/forms.html#handling-form-submits
         if ($form->isSubmitted() && $form->isValid()) {
-            $post->setSlug($slugger->slugify($post->getTitle()));
+            $post->setSlug(Slugger::slugify($post->getTitle()));
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
@@ -135,7 +135,7 @@ class BlogController extends Controller
      * @Route("/{id}/edit", requirements={"id": "\d+"}, name="admin_post_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Post $post, Slugger $slugger)
+    public function editAction(Request $request, Post $post)
     {
         $this->denyAccessUnlessGranted('edit', $post, 'Posts can only be edited by their authors.');
 
@@ -143,7 +143,7 @@ class BlogController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $post->setSlug($slugger->slugify($post->getTitle()));
+            $post->setSlug(Slugger::slugify($post->getTitle()));
             $this->getDoctrine()->getManager()->flush();
 
             $this->addFlash('success', 'post.updated_successfully');
