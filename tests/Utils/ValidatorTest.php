@@ -12,8 +12,9 @@
 namespace App\Tests\Utils;
 
 use App\Utils\Validator;
+use PHPUnit\Framework\TestCase;
 
-class ValidatorTest extends \PHPUnit_Framework_TestCase
+class ValidatorTest extends TestCase
 {
     private $object;
 

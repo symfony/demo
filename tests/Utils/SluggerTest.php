@@ -12,6 +12,7 @@
 namespace App\Tests\Utils;
 
 use App\Utils\Slugger;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit test for the application utils.
@@ -23,7 +24,7 @@ use App\Utils\Slugger;
  *     $ cd your-symfony-project/
  *     $ ./vendor/bin/phpunit
  */
-class SluggerTest extends \PHPUnit_Framework_TestCase
+class SluggerTest extends TestCase
 {
     /**
      * @dataProvider getSlugs

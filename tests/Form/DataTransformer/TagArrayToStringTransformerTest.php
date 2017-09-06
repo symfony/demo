@@ -15,13 +15,14 @@ use App\Entity\Tag;
 use App\Form\DataTransformer\TagArrayToStringTransformer;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityRepository;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Tests that tags are transformed correctly using the data transformer.
  *
  * See https://symfony.com/doc/current/testing/database.html
  */
-class TagArrayToStringTransformerTest extends \PHPUnit\Framework\TestCase
+class TagArrayToStringTransformerTest extends TestCase
 {
     /**
      * Ensures that tags are created correctly.
