@@ -1,0 +1,7 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-09-06T09:52:26Z
+
+@20uf I think I understand your downvote ... but don't be afraid because this won't break PHPStorm autocompletion. Most of these annotations are indeed useless because PHPStorm already can infer their types (through the constructor or other assignments). There's at least one `string` annotation that we'll loose, but `string` typehint is not very useful anyway.
+
+Moreover, we now use PHP 7.1, so we can typehint everything and remove all PHPdoc.
