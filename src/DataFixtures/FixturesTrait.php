@@ -16,7 +16,7 @@ namespace App\DataFixtures;
  */
 trait FixturesTrait
 {
-    private function getPostContent()
+    private function getPostContent(): string
     {
         return <<<'MARKDOWN'
 Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod tempor
@@ -56,7 +56,7 @@ tincidunt, faucibus nisl in, aliquet libero.
 MARKDOWN;
     }
 
-    private function getPhrases()
+    private function getPhrases(): array
     {
         return [
             'Lorem ipsum dolor sit amet consectetur adipiscing elit',
@@ -92,7 +92,7 @@ MARKDOWN;
         ];
     }
 
-    private function getTagNames()
+    private function getTagNames(): array
     {
         return [
             'lorem',
@@ -107,7 +107,7 @@ MARKDOWN;
         ];
     }
 
-    private function getRandomPostTitles()
+    private function getRandomPostTitles(): array
     {
         $phrases = $this->getPhrases();
 
@@ -119,7 +119,7 @@ MARKDOWN;
         return $phrases;
     }
 
-    private function getRandomPostSummary($maxLength = 255)
+    private function getRandomPostSummary(int $maxLength = 255): string
     {
         $phrases = $this->getPhrases();
 
@@ -134,7 +134,7 @@ MARKDOWN;
         return $summary;
     }
 
-    private function getRandomCommentContent()
+    private function getRandomCommentContent(): string
     {
         $phrases = $this->getPhrases();
 

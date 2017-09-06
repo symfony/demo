@@ -12,6 +12,7 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -126,82 +127,67 @@ class Post
         $this->tags = new ArrayCollection();
     }
 
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getTitle()
+    public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * @param string $title
-     */
-    public function setTitle($title)
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
 
-    public function getSlug()
+    public function getSlug(): ?string
     {
         return $this->slug;
     }
 
-    /**
-     * @param string $slug
-     */
-    public function setSlug($slug)
+    public function setSlug(string $slug): void
     {
         $this->slug = $slug;
     }
 
-    public function getContent()
+    public function getContent(): ?string
     {
         return $this->content;
     }
 
-    /**
-     * @param string $content
-     */
-    public function setContent($content)
+    public function setContent(string $content): void
     {
         $this->content = $content;
     }
 
-    public function getPublishedAt()
+    public function getPublishedAt(): \DateTime
     {
         return $this->publishedAt;
     }
 
-    public function setPublishedAt(\DateTime $publishedAt)
+    public function setPublishedAt(\DateTime $publishedAt): void
     {
         $this->publishedAt = $publishedAt;
     }
 
-    /**
-     * @return User
-     */
-    public function getAuthor()
+    public function getAuthor(): User
     {
         return $this->author;
     }
 
-    /**
-     * @param User $author
-     */
-    public function setAuthor(User $author)
+    public function setAuthor(User $author): void
     {
         $this->author = $author;
     }
 
-    public function getComments()
+    public function getComments(): Collection
     {
         return $this->comments;
     }
 
-    public function addComment(Comment $comment)
+    public function addComment(Comment $comment): void
     {
         $comment->setPost($this);
         if (!$this->comments->contains($comment)) {
@@ -209,38 +195,35 @@ class Post
         }
     }
 
-    public function removeComment(Comment $comment)
+    public function removeComment(Comment $comment): void
     {
         $comment->setPost(null);
         $this->comments->removeElement($comment);
     }
 
-    public function getSummary()
+    public function getSummary(): ?string
     {
         return $this->summary;
     }
 
-    /**
-     * @param string $summary
-     */
-    public function setSummary($summary)
+    public function setSummary(string $summary): void
     {
         $this->summary = $summary;
     }
 
-    public function addTag(Tag $tag)
+    public function addTag(Tag $tag): void
     {
         if (!$this->tags->contains($tag)) {
             $this->tags->add($tag);
         }
     }
 
-    public function removeTag(Tag $tag)
+    public function removeTag(Tag $tag): void
     {
         $this->tags->removeElement($tag);
     }
 
-    public function getTags()
+    public function getTags(): Collection
     {
         return $this->tags;
     }
