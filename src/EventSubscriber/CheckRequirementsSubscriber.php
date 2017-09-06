@@ -30,12 +30,8 @@ use Symfony\Component\HttpKernel\KernelEvents;
  */
 class CheckRequirementsSubscriber implements EventSubscriberInterface
 {
-    /** @var EntityManagerInterface */
     private $entityManager;
 
-    /**
-     * @param EntityManagerInterface $entityManager
-     */
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
@@ -60,8 +56,6 @@ class CheckRequirementsSubscriber implements EventSubscriberInterface
      * This method checks if there has been an error in a command related to
      * the database and then, it checks if the 'sqlite3' PHP extension is enabled
      * or not to display a better error message.
-     *
-     * @param ConsoleErrorEvent $event
      */
     public function handleConsoleError(ConsoleErrorEvent $event)
     {
@@ -78,8 +72,6 @@ class CheckRequirementsSubscriber implements EventSubscriberInterface
     /**
      * This method checks if the triggered exception is related to the database
      * and then, it checks if the required 'sqlite3' PHP extension is enabled.
-     *
-     * @param GetResponseForExceptionEvent $event
      */
     public function handleKernelException(GetResponseForExceptionEvent $event)
     {
