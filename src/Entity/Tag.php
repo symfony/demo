@@ -41,20 +41,17 @@ class Tag implements \JsonSerializable
      */
     private $name;
 
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param string $name
-     */
-    public function setName($name)
+    public function setName(string $name): void
     {
         $this->name = $name;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -62,7 +59,7 @@ class Tag implements \JsonSerializable
     /**
      * {@inheritdoc}
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): string
     {
         // This entity implements JsonSerializable (http://php.net/manual/en/class.jsonserializable.php)
         // so this method is used to customize its JSON representation when json_encode()
@@ -71,7 +68,7 @@ class Tag implements \JsonSerializable
         return $this->name;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->name;
     }

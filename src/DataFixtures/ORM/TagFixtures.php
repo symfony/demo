@@ -33,7 +33,7 @@ class TagFixtures extends AbstractFixture
     /**
      * {@inheritdoc}
      */
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         foreach ($this->getTagNames() as $index => $name) {
             $tag = new Tag();
