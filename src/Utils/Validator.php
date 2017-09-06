@@ -11,6 +11,12 @@
 
 namespace App\Utils;
 
+/**
+ * This class is used to provide an example of integrating simple classes as
+ * services into a Symfony application.
+ *
+ * @author Javier Eguiluz <javier.eguiluz@gmail.com>
+ */
 class Validator
 {
     public function validateUsername($username)

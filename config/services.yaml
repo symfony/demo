@@ -51,9 +51,3 @@ services:
 
     # needed for the 'localizeddate' Twig filter
     Twig\Extensions\IntlExtension: ~
-
-    # the slugger service needs a public alias for getting it from
-    # the container when loading doctrine fixtures
-    slugger:
-        alias: App\Utils\Slugger
-        public: true
