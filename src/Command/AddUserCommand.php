@@ -44,8 +44,6 @@ use Symfony\Component\Stopwatch\Stopwatch;
  */
 class AddUserCommand extends Command
 {
-    const MAX_ATTEMPTS = 5;
-
     private $io;
     private $entityManager;
     private $passwordEncoder;
