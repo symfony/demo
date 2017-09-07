@@ -1,0 +1,14 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-09-07T08:06:38Z
+
+Looks great! @yceruto thanks for this.
+
+The only thing I don't like is this change:
+
+```diff
+-    public function showSourceCode(\Twig_Environment $twig, $template)
++    public function showSourceCode(Environment $twig, $template)
+```
+
+`Environment` looks confusing and out of place, because it has nothing to do with `Twig`, which is what we want here.
