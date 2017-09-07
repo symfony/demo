@@ -39,8 +39,6 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  */
 class DeleteUserCommand extends Command
 {
-    const MAX_ATTEMPTS = 5;
-
     private $io;
     private $entityManager;
     private $validator;
