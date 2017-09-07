@@ -100,7 +100,7 @@ HELP
             '',
         ]);
 
-        $username = $this->io->ask('Username', null, [$this, 'usernameValidator']);
+        $username = $this->io->ask('Username', null, [$this->validator, 'validateUsername']);
         $input->setArgument('username', $username);
     }
 
