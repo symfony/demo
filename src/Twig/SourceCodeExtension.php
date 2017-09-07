@@ -11,6 +11,11 @@
 
 namespace App\Twig;
 
+use Twig\Environment;
+use Twig\Extension\AbstractExtension;
+use Twig\Template;
+use Twig\TwigFunction;
+
 /**
  * CAUTION: this is an extremely advanced Twig extension. It's used to get the
  * source code of the controller and the template used to render the current
@@ -20,7 +25,7 @@ namespace App\Twig;
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-class SourceCodeExtension extends \Twig_Extension
+class SourceCodeExtension extends AbstractExtension
 {
     private $controller;
 
@@ -35,11 +40,11 @@ class SourceCodeExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('show_source_code', [$this, 'showSourceCode'], ['is_safe' => ['html'], 'needs_environment' => true]),
+            new TwigFunction('show_source_code', [$this, 'showSourceCode'], ['is_safe' => ['html'], 'needs_environment' => true]),
         ];
     }
 
-    public function showSourceCode(\Twig_Environment $twig, $template)
+    public function showSourceCode(Environment $twig, $template)
     {
         return $twig->render('debug/source_code.html.twig', [
             'controller' => $this->getController(),
@@ -91,7 +96,7 @@ class SourceCodeExtension extends \Twig_Extension
         return new \ReflectionFunction($callable);
     }
 
-    private function getTemplateSource(\Twig_Template $template)
+    private function getTemplateSource(Template $template)
     {
         $templateSource = $template->getSourceContext();
 
