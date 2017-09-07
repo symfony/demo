@@ -40,12 +40,8 @@ class MomentFormatConverter
 
     /**
      * Returns associated moment.js format.
-     *
-     * @param string $format PHP Date format
-     *
-     * @return string
      */
-    public function convert($format)
+    public function convert(string $format): string
     {
         return strtr($format, self::$formatConvertRules);
     }

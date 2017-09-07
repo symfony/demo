@@ -41,7 +41,7 @@ class CheckRequirementsSubscriber implements EventSubscriberInterface
     // listen to. You can listen to several events, execute more than one method
     // for each event and set the priority of each event too.
     // See https://symfony.com/doc/current/event_dispatcher.html#creating-an-event-subscriber
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             // Errors are one of the events defined by the Console. See the
@@ -57,7 +57,7 @@ class CheckRequirementsSubscriber implements EventSubscriberInterface
      * the database and then, it checks if the 'sqlite3' PHP extension is enabled
      * or not to display a better error message.
      */
-    public function handleConsoleError(ConsoleErrorEvent $event)
+    public function handleConsoleError(ConsoleErrorEvent $event): void
     {
         $commandNames = ['doctrine:fixtures:load', 'doctrine:database:create', 'doctrine:schema:create', 'doctrine:database:drop'];
 
@@ -73,7 +73,7 @@ class CheckRequirementsSubscriber implements EventSubscriberInterface
      * This method checks if the triggered exception is related to the database
      * and then, it checks if the required 'sqlite3' PHP extension is enabled.
      */
-    public function handleKernelException(GetResponseForExceptionEvent $event)
+    public function handleKernelException(GetResponseForExceptionEvent $event): void
     {
         $exception = $event->getException();
         // Since any exception thrown during a Twig template rendering is wrapped
@@ -91,10 +91,8 @@ class CheckRequirementsSubscriber implements EventSubscriberInterface
 
     /**
      * Checks if the application is using SQLite as its database.
-     *
-     * @return bool
      */
-    private function isSQLitePlatform()
+    private function isSQLitePlatform(): bool
     {
         $databasePlatform = $this->entityManager->getConnection()->getDatabasePlatform();
 

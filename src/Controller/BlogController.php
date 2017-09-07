@@ -23,7 +23,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -48,7 +47,7 @@ class BlogController extends Controller
      * Content-Type header for the response.
      * See https://symfony.com/doc/current/quick_tour/the_controller.html#using-formats
      */
-    public function indexAction($page, $_format)
+    public function indexAction(int $page, string $_format): Response
     {
         $em = $this->getDoctrine()->getManager();
         $posts = $em->getRepository(Post::class)->findLatest($page);
@@ -68,7 +67,7 @@ class BlogController extends Controller
      * value given in the route.
      * See https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html
      */
-    public function postShowAction(Post $post)
+    public function postShowAction(Post $post): Response
     {
         // Symfony provides a function called 'dump()' which is an improved version
         // of the 'var_dump()' function. It's useful to quickly debug the contents
@@ -93,7 +92,7 @@ class BlogController extends Controller
      * (postSlug) doesn't match any of the Doctrine entity properties (slug).
      * See https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html#doctrine-converter
      */
-    public function commentNewAction(Request $request, Post $post, EventDispatcherInterface $eventDispatcher)
+    public function commentNewAction(Request $request, Post $post, EventDispatcherInterface $eventDispatcher): Response
     {
         $comment = new Comment();
         $comment->setAuthor($this->getUser());
@@ -137,12 +136,8 @@ class BlogController extends Controller
      *
      * The "id" of the Post is passed in and then turned into a Post object
      * automatically by the ParamConverter.
-     *
-     * @param Post $post
-     *
-     * @return Response
      */
-    public function commentFormAction(Post $post)
+    public function commentFormAction(Post $post): Response
     {
         $form = $this->createForm(CommentType::class);
 
@@ -155,10 +150,8 @@ class BlogController extends Controller
     /**
      * @Route("/search", name="blog_search")
      * @Method("GET")
-     *
-     * @return Response|JsonResponse
      */
-    public function searchAction(Request $request)
+    public function searchAction(Request $request): Response
     {
         if (!$request->isXmlHttpRequest()) {
             return $this->render('blog/search.html.twig');

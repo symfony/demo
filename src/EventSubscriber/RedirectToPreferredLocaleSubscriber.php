@@ -27,31 +27,11 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 class RedirectToPreferredLocaleSubscriber implements EventSubscriberInterface
 {
-    /**
-     * @var UrlGeneratorInterface
-     */
     private $urlGenerator;
-
-    /**
-     * List of supported locales.
-     *
-     * @var string[]
-     */
     private $locales = [];
-
-    /**
-     * @var string
-     */
     private $defaultLocale = '';
 
-    /**
-     * Constructor.
-     *
-     * @param UrlGeneratorInterface $urlGenerator
-     * @param string                $locales       Supported locales separated by '|'
-     * @param string|null           $defaultLocale
-     */
-    public function __construct(UrlGeneratorInterface $urlGenerator, $locales, $defaultLocale = null)
+    public function __construct(UrlGeneratorInterface $urlGenerator, string $locales, string $defaultLocale = null)
     {
         $this->urlGenerator = $urlGenerator;
 
@@ -73,14 +53,14 @@ class RedirectToPreferredLocaleSubscriber implements EventSubscriberInterface
         $this->locales = array_unique($this->locales);
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             KernelEvents::REQUEST => 'onKernelRequest',
         ];
     }
 
-    public function onKernelRequest(GetResponseEvent $event)
+    public function onKernelRequest(GetResponseEvent $event): void
     {
         $request = $event->getRequest();
 

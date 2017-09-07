@@ -84,63 +84,54 @@ class Comment
     /**
      * @Assert\IsTrue(message="comment.is_spam")
      */
-    public function isLegitComment()
+    public function isLegitComment(): bool
     {
         $containsInvalidCharacters = false !== mb_strpos($this->content, '@');
 
         return !$containsInvalidCharacters;
     }
 
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getContent()
+    public function getContent(): ?string
     {
         return $this->content;
     }
 
-    /**
-     * @param string $content
-     */
-    public function setContent($content)
+    public function setContent(string $content): void
     {
         $this->content = $content;
     }
 
-    public function getPublishedAt()
+    public function getPublishedAt(): \DateTime
     {
         return $this->publishedAt;
     }
 
-    public function setPublishedAt(\DateTime $publishedAt)
+    public function setPublishedAt(\DateTime $publishedAt): void
     {
         $this->publishedAt = $publishedAt;
     }
 
-    /**
-     * @return User
-     */
-    public function getAuthor()
+    public function getAuthor(): User
     {
         return $this->author;
     }
 
-    /**
-     * @param User $author
-     */
-    public function setAuthor(User $author)
+    public function setAuthor(User $author): void
     {
         $this->author = $author;
     }
 
-    public function getPost()
+    public function getPost(): Post
     {
         return $this->post;
     }
 
-    public function setPost(Post $post)
+    public function setPost(Post $post): void
     {
         $this->post = $post;
     }

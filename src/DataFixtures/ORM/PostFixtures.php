@@ -14,6 +14,7 @@ namespace App\DataFixtures\ORM;
 use App\DataFixtures\FixturesTrait;
 use App\Entity\Comment;
 use App\Entity\Post;
+use App\Entity\User;
 use App\Utils\Slugger;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -38,7 +39,7 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface
     /**
      * {@inheritdoc}
      */
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         foreach ($this->getRandomPostTitles() as $i => $title) {
             $post = new Post();
@@ -82,10 +83,8 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface
      * Instead of defining the exact order in which the fixtures files must be loaded,
      * this method defines which other fixtures this file depends on. Then, Doctrine
      * will figure out the best order to fit all the dependencies.
-     *
-     * @return array
      */
-    public function getDependencies()
+    public function getDependencies(): array
     {
         return [
             TagFixtures::class,
@@ -93,7 +92,7 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface
         ];
     }
 
-    private function getRandomUser()
+    private function getRandomUser(): User
     {
         $admins = ['jane-admin', 'tom-admin'];
         $index = array_rand($admins);
@@ -101,7 +100,7 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface
         return $this->getReference($admins[$index]);
     }
 
-    private function getRandomTags($numTags = 0)
+    private function getRandomTags(int $numTags = 0): array
     {
         $tags = [];
 

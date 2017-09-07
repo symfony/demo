@@ -73,59 +73,47 @@ class User implements UserInterface, \Serializable
      */
     private $roles = [];
 
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param string $fullName
-     */
-    public function setFullName($fullName)
+    public function setFullName(string $fullName): void
     {
         $this->fullName = $fullName;
     }
 
-    public function getFullName()
+    public function getFullName(): string
     {
         return $this->fullName;
     }
 
-    public function getUsername()
+    public function getUsername(): string
     {
         return $this->username;
     }
 
-    /**
-     * @param string $username
-     */
-    public function setUsername($username)
+    public function setUsername(string $username): void
     {
         $this->username = $username;
     }
 
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
 
-    /**
-     * @param string $email
-     */
-    public function setEmail($email)
+    public function setEmail(string $email): void
     {
         $this->email = $email;
     }
 
-    public function getPassword()
+    public function getPassword(): string
     {
         return $this->password;
     }
 
-    /**
-     * @param string $password
-     */
-    public function setPassword($password)
+    public function setPassword(string $password): void
     {
         $this->password = $password;
     }
@@ -133,7 +121,7 @@ class User implements UserInterface, \Serializable
     /**
      * Returns the roles or permissions granted to the user for security.
      */
-    public function getRoles()
+    public function getRoles(): array
     {
         $roles = $this->roles;
 
@@ -145,7 +133,7 @@ class User implements UserInterface, \Serializable
         return array_unique($roles);
     }
 
-    public function setRoles(array $roles)
+    public function setRoles(array $roles): void
     {
         $this->roles = $roles;
     }
@@ -155,11 +143,13 @@ class User implements UserInterface, \Serializable
      *
      * {@inheritdoc}
      */
-    public function getSalt()
+    public function getSalt(): ?string
     {
         // See "Do you need to use a Salt?" at https://symfony.com/doc/current/cookbook/security/entity_provider.html
         // we're using bcrypt in security.yml to encode the password, so
         // the salt value is built-in and you don't have to generate one
+
+        return null;
     }
 
     /**
@@ -167,14 +157,16 @@ class User implements UserInterface, \Serializable
      *
      * {@inheritdoc}
      */
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
         // if you had a plainPassword property, you'd nullify it here
         // $this->plainPassword = null;
     }
 
-    /** @see \Serializable::serialize() */
-    public function serialize()
+    /**
+     * {@inheritdoc}
+     */
+    public function serialize(): string
     {
         return serialize([
             $this->id,
@@ -185,8 +177,10 @@ class User implements UserInterface, \Serializable
         ]);
     }
 
-    /** @see \Serializable::unserialize() */
-    public function unserialize($serialized)
+    /**
+     * {@inheritdoc}
+     */
+    public function unserialize($serialized): void
     {
         list(
             $this->id,

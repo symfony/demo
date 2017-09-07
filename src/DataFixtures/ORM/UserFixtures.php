@@ -36,7 +36,7 @@ class UserFixtures extends AbstractFixture implements ContainerAwareInterface
     /**
      * {@inheritdoc}
      */
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $passwordEncoder = $this->container->get('security.password_encoder');
 
