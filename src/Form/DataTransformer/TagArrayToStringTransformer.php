@@ -36,20 +36,20 @@ class TagArrayToStringTransformer implements DataTransformerInterface
     /**
      * {@inheritdoc}
      */
-    public function transform($array)
+    public function transform($tags): string
     {
         // The value received is an array of Tag objects generated with
         // Symfony\Bridge\Doctrine\Form\DataTransformer\CollectionToArrayTransformer::transform()
         // The value returned is a string that concatenates the string representation of those objects
 
-        /* @var Tag[] $array */
-        return implode(',', $array);
+        /* @var Tag[] $tags */
+        return implode(',', $tags);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function reverseTransform($string)
+    public function reverseTransform($string): array
     {
         if ('' === $string || null === $string) {
             return [];

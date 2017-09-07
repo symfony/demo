@@ -32,14 +32,14 @@ class ControllerSubscriber implements EventSubscriberInterface
         $this->twigExtension = $twigExtension;
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             KernelEvents::CONTROLLER => 'registerCurrentController',
         ];
     }
 
-    public function registerCurrentController(FilterControllerEvent $event)
+    public function registerCurrentController(FilterControllerEvent $event): void
     {
         // this check is needed because in Symfony a request can perform any
         // number of sub-requests. See

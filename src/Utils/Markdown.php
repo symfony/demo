@@ -34,12 +34,7 @@ class Markdown
         $this->purifier = new \HTMLPurifier($purifierConfig);
     }
 
-    /**
-     * @param string $text
-     *
-     * @return string
-     */
-    public function toHtml($text)
+    public function toHtml(string $text): string
     {
         $html = $this->parser->text($text);
         $safeHtml = $this->purifier->purify($html);

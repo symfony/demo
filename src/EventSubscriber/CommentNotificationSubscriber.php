@@ -38,14 +38,14 @@ class CommentNotificationSubscriber implements EventSubscriberInterface
         $this->sender = $sender;
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             Events::COMMENT_CREATED => 'onCommentCreated',
         ];
     }
 
-    public function onCommentCreated(GenericEvent $event)
+    public function onCommentCreated(GenericEvent $event): void
     {
         /** @var Comment $comment */
         $comment = $event->getSubject();

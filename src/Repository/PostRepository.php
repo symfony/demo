@@ -29,12 +29,7 @@ use Pagerfanta\Pagerfanta;
  */
 class PostRepository extends EntityRepository
 {
-    /**
-     * @param int $page
-     *
-     * @return Pagerfanta
-     */
-    public function findLatest($page = 1)
+    public function findLatest(int $page = 1): Pagerfanta
     {
         $query = $this->getEntityManager()
             ->createQuery('
@@ -51,7 +46,7 @@ class PostRepository extends EntityRepository
         return $this->createPaginator($query, $page);
     }
 
-    private function createPaginator(Query $query, $page)
+    private function createPaginator(Query $query, int $page): Pagerfanta
     {
         $paginator = new Pagerfanta(new DoctrineORMAdapter($query));
         $paginator->setMaxPerPage(Post::NUM_ITEMS);
@@ -61,12 +56,9 @@ class PostRepository extends EntityRepository
     }
 
     /**
-     * @param string $rawQuery The search query as input by the user
-     * @param int    $limit    The maximum number of results returned
-     *
      * @return Post[]
      */
-    public function findBySearchQuery($rawQuery, $limit = Post::NUM_ITEMS)
+    public function findBySearchQuery(string $rawQuery, int $limit = Post::NUM_ITEMS): array
     {
         $query = $this->sanitizeSearchQuery($rawQuery);
         $searchTerms = $this->extractSearchTerms($query);
@@ -93,24 +85,16 @@ class PostRepository extends EntityRepository
 
     /**
      * Removes all non-alphanumeric characters except whitespaces.
-     *
-     * @param string $query
-     *
-     * @return string
      */
-    private function sanitizeSearchQuery($query)
+    private function sanitizeSearchQuery(string $query): string
     {
         return preg_replace('/[^[:alnum:] ]/', '', trim(preg_replace('/[[:space:]]+/', ' ', $query)));
     }
 
     /**
      * Splits the search query into terms and removes the ones which are irrelevant.
-     *
-     * @param string $searchQuery
-     *
-     * @return array
      */
-    private function extractSearchTerms($searchQuery)
+    private function extractSearchTerms(string $searchQuery): array
     {
         $terms = array_unique(explode(' ', mb_strtolower($searchQuery)));
 

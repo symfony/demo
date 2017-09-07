@@ -19,7 +19,7 @@ namespace App\Utils;
  */
 class Validator
 {
-    public function validateUsername($username)
+    public function validateUsername(?string $username): string
     {
         if (empty($username)) {
             throw new \Exception('The username can not be empty.');
@@ -32,7 +32,7 @@ class Validator
         return $username;
     }
 
-    public function validatePassword($plainPassword)
+    public function validatePassword(?string $plainPassword): string
     {
         if (empty($plainPassword)) {
             throw new \Exception('The password can not be empty.');
@@ -45,7 +45,7 @@ class Validator
         return $plainPassword;
     }
 
-    public function validateEmail($email)
+    public function validateEmail(?string $email): string
     {
         if (empty($email)) {
             throw new \Exception('The email can not be empty.');
@@ -58,7 +58,7 @@ class Validator
         return $email;
     }
 
-    public function validateFullName($fullName)
+    public function validateFullName(?string $fullName): string
     {
         if (empty($fullName)) {
             throw new \Exception('The full name can not be empty.');
