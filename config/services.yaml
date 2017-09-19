@@ -29,7 +29,6 @@ services:
     # and have a tag that allows actions to type-hint services
     App\Controller\:
         resource: '../src/Controller'
-        public: true
         tags: ['controller.service_arguments']
 
     # Autowiring can't guess the constructor arguments that are not type-hinted with
