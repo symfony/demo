@@ -1,0 +1,14 @@
+---------------------------------------------------------------------------
+
+by stof at 2017-09-20T15:34:57Z
+
+this will avoid mistakes like what happened in #650 where the lock file was not updated with `composer update --lock`) (moving deps to dev deps or the opposite does not require changing the version of deps, but it impacts the lock file and composer was displaying a warning about outdated lock file when running `composer install`)
+
+---------------------------------------------------------------------------
+
+by stof at 2017-09-20T15:37:11Z
+
+Note that I added this on Travis only.
+Running this on both Travis and Appveyor is useless (the validator does not execute any of our code, and the JSON content will be the same on Windows and Linux).
+
+And Travis collapses the installation instruction so it is easier to reach the test output
