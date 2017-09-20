@@ -4,6 +4,11 @@ sudo: false
 cache:
   directories:
     - $HOME/.composer/cache/files
+    - $HOME/symfony-bridge/.phpunit
+
+env:
+  global:
+    - SYMFONY_PHPUNIT_DIR="$HOME/symfony-bridge/.phpunit"
 
 matrix:
   fast_finish: true
@@ -16,6 +21,7 @@ before_install:
 
 install:
   - composer install
+  - ./vendor/bin/simple-phpunit install
 
 script:
   - ./vendor/bin/simple-phpunit
