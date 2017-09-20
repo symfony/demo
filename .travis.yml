@@ -29,3 +29,5 @@ script:
   - ./bin/console lint:xliff translations
   # this checks that the application doesn't use dependencies with known security vulnerabilities
   - ./bin/console security:check --end-point=http://security.sensiolabs.org/check_lock
+  # this checks that the composer.json and composer.lock files are valid
+  - composer validate --strict
