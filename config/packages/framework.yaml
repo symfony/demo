@@ -36,6 +36,6 @@ framework:
         handler_id: session.handler.native_file
         save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
 
-    trusted_hosts: null
+    trusted_hosts: ~
 
     validation: { enable_annotations: true }
