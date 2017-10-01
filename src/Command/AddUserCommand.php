@@ -44,7 +44,11 @@ use Symfony\Component\Stopwatch\Stopwatch;
  */
 class AddUserCommand extends Command
 {
+    /**
+     * @var SymfonyStyle
+     */
     private $io;
+
     private $entityManager;
     private $passwordEncoder;
     private $validator;
@@ -130,7 +134,7 @@ class AddUserCommand extends Command
         if (null !== $password) {
             $this->io->text(' > <info>Password</info>: '.str_repeat('*', mb_strlen($password)));
         } else {
-            $password = $this->io->askHidden('Password (your type will be hidden)', null, [$this->validator, 'validatePassword']);
+            $password = $this->io->askHidden('Password (your type will be hidden)', [$this->validator, 'validatePassword']);
             $input->setArgument('password', $password);
         }
 
