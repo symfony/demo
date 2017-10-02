@@ -48,7 +48,7 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface
             $post->setSummary($this->getRandomPostSummary());
             $post->setSlug(Slugger::slugify($post->getTitle()));
             $post->setContent($this->getPostContent());
-            $post->setPublishedAt(new \DateTime('now - '.$i.'days'));
+            $post->setPublishedAt(new \DateTimeImmutable('now - '.$i.'days'));
 
             // Ensure that the first post is written by Jane Doe to simplify tests
             // "References" are the way to share objects between fixtures defined
@@ -65,7 +65,7 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface
                 $comment = new Comment();
 
                 $comment->setAuthor($this->getReference('john-user'));
-                $comment->setPublishedAt(new \DateTime('now + '.($i + $j).'seconds'));
+                $comment->setPublishedAt(new \DateTimeImmutable('now + '.($i + $j).'seconds'));
                 $comment->setContent($this->getRandomCommentContent());
 
                 $post->addComment($comment);

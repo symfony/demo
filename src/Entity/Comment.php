@@ -61,9 +61,9 @@ class Comment
     private $content;
 
     /**
-     * @var \DateTime
+     * @var \DateTimeImmutable
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime_immutable")
      * @Assert\DateTime
      */
     private $publishedAt;
@@ -78,7 +78,7 @@ class Comment
 
     public function __construct()
     {
-        $this->publishedAt = new \DateTime();
+        $this->publishedAt = new \DateTimeImmutable();
     }
 
     /**
@@ -106,12 +106,12 @@ class Comment
         $this->content = $content;
     }
 
-    public function getPublishedAt(): \DateTime
+    public function getPublishedAt(): \DateTimeInterface
     {
         return $this->publishedAt;
     }
 
-    public function setPublishedAt(\DateTime $publishedAt): void
+    public function setPublishedAt(\DateTimeInterface $publishedAt): void
     {
         $this->publishedAt = $publishedAt;
     }

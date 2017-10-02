@@ -40,7 +40,7 @@ class PostRepository extends EntityRepository
                 WHERE p.publishedAt <= :now
                 ORDER BY p.publishedAt DESC
             ')
-            ->setParameter('now', new \DateTime())
+            ->setParameter('now', new \DateTimeImmutable())
         ;
 
         return $this->createPaginator($query, $page);
