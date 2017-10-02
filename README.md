@@ -67,3 +67,13 @@ terminal.
 > Symfony Demo application, configure it to point at the `web/` directory of the project.
 > For more details, see:
 > https://symfony.com/doc/current/cookbook/configuration/web_server_configuration.html
+
+Testing
+-------
+
+Execute this command to run tests:
+
+```bash
+$ cd symfony_demo/
+$ ./vendor/bin/simple-phpunit
+```
