@@ -36,6 +36,9 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  */
 class ListUsersCommand extends Command
 {
+    // a good practice is to use the 'app:' prefix to group all your custom application commands
+    protected static $defaultName = 'app:list-users';
+
     private $entityManager;
     private $mailer;
     private $emailSender;
@@ -55,8 +58,6 @@ class ListUsersCommand extends Command
     protected function configure()
     {
         $this
-            // a good practice is to use the 'app:' prefix to group all your custom application commands
-            ->setName('app:list-users')
             ->setDescription('Lists all the existing users')
             ->setHelp(<<<'HELP'
 The <info>%command.name%</info> command lists all the users registered in the application:

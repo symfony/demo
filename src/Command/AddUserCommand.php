@@ -44,6 +44,10 @@ use Symfony\Component\Stopwatch\Stopwatch;
  */
 class AddUserCommand extends Command
 {
+    // to make your command lazily loaded, configure the $defaultName static property,
+    // so it will be instantiated only when the command is actually called.
+    protected static $defaultName = 'app:add-user';
+
     /**
      * @var SymfonyStyle
      */
@@ -68,8 +72,6 @@ class AddUserCommand extends Command
     protected function configure()
     {
         $this
-            // a good practice is to use the 'app:' prefix to group all your custom application commands
-            ->setName('app:add-user')
             ->setDescription('Creates users and stores them in the database')
             ->setHelp($this->getCommandHelp())
             // commands can optionally define arguments and/or options (mandatory and optional)
