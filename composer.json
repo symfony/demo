@@ -6,39 +6,39 @@
     "require": {
         "php": "^7.1.3",
         "ext-pdo_sqlite": "*",
-        "doctrine/doctrine-fixtures-bundle": "^2.3",
+        "doctrine/doctrine-fixtures-bundle": "^2.4",
         "erusev/parsedown": "^1.6",
         "ezyang/htmlpurifier": "^4.9",
-        "sensio/framework-extra-bundle": "^3.0",
+        "sensio/framework-extra-bundle": "^5.0",
         "sensiolabs/security-checker": "^4.1",
-        "symfony/asset": "^3.3",
-        "symfony/expression-language": "^3.3",
+        "symfony/asset": "^4.0",
+        "symfony/expression-language": "^4.0",
         "symfony/flex": "^1.0",
-        "symfony/form": "^3.3",
-        "symfony/framework-bundle": "^3.3",
+        "symfony/form": "^4.0",
+        "symfony/framework-bundle": "^4.0",
         "symfony/monolog-bundle": "^3.1",
         "symfony/orm-pack": "^1.0",
-        "symfony/polyfill-apcu": "^1.4",
-        "symfony/security-bundle": "^3.3",
-        "symfony/swiftmailer-bundle": "^3.0",
-        "symfony/translation": "^3.3",
-        "symfony/validator": "^3.3",
-        "symfony/yaml": "^3.3",
+        "symfony/polyfill-apcu": "^1.5",
+        "symfony/security-bundle": "^4.0",
+        "symfony/swiftmailer-bundle": "^3.1",
+        "symfony/translation": "^4.0",
+        "symfony/validator": "^4.0",
+        "symfony/yaml": "^4.0",
         "twig/extensions": "^1.5",
         "twig/twig": "^2.4",
-        "white-october/pagerfanta-bundle": "^1.0"
+        "white-october/pagerfanta-bundle": "^1.1"
     },
     "require-dev": {
         "dama/doctrine-test-bundle": "^4.0",
-        "friendsofphp/php-cs-fixer": "^2.4",
-        "symfony/browser-kit": "^3.3",
-        "symfony/css-selector": "^3.3",
-        "symfony/debug-bundle": "^3.3",
-        "symfony/dotenv": "^3.3",
-        "symfony/phpunit-bridge": "^3.3",
+        "friendsofphp/php-cs-fixer": "^2.7",
+        "symfony/browser-kit": "^4.0",
+        "symfony/css-selector": "^4.0",
+        "symfony/debug-bundle": "^4.0",
+        "symfony/dotenv": "^4.0",
+        "symfony/phpunit-bridge": "^4.0",
         "symfony/profiler-pack": "^1.0",
-        "symfony/var-dumper": "^3.3",
-        "symfony/web-server-bundle": "^3.3"
+        "symfony/var-dumper": "^4.0",
+        "symfony/web-server-bundle": "^4.0"
     },
     "config": {
         "platform": {
@@ -61,19 +61,18 @@
     },
     "scripts": {
         "auto-scripts": {
-            "make cache-warmup": "script",
+            "cache:clear": "symfony-cmd",
             "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd",
             "security-checker security:check": "script"
         }
     },
     "conflict": {
-        "symfony/symfony": "*",
-        "symfony/twig-bundle": "<3.3",
-        "symfony/debug": "<3.3"
+        "symfony/symfony": "*"
     },
+    "minimum-stability": "beta",
     "extra": {
         "symfony": {
-            "id": "",
+            "id": "01BY8QJHBGTYRP06WQFNY99EKP",
             "allow-contrib": true
         }
     }

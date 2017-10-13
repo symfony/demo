@@ -12,7 +12,7 @@
 namespace App\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
@@ -23,12 +23,12 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-class SecurityController extends Controller
+class SecurityController extends AbstractController
 {
     /**
      * @Route("/login", name="security_login")
      */
-    public function loginAction(AuthenticationUtils $helper): Response
+    public function login(AuthenticationUtils $helper): Response
     {
         return $this->render('security/login.html.twig', [
             // last username entered by the user (if any)
@@ -46,7 +46,7 @@ class SecurityController extends Controller
      *
      * @Route("/logout", name="security_logout")
      */
-    public function logoutAction(): void
+    public function logout(): void
     {
         throw new \Exception('This should never be reached!');
     }

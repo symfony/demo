@@ -5,8 +5,8 @@ framework:
     trusted_hosts: ~
     # https://symfony.com/doc/current/reference/configuration/framework.html#handler-id
     session:
-        handler_id: session.handler.native_file
-        save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
+        # The native PHP session handler will be used
+        handler_id: ~
     # When using the HTTP Cache, ESI allows to render page fragments separately
     # and with different cache configurations for each fragment
     # https://symfony.com/doc/current/book/http_cache.html#edge-side-includes
