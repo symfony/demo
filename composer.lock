@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "376bb830795bbcf2fe597a487ea961ff",
+    "content-hash": "7940b47fa109374255c39f1c18404923",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -4497,16 +4497,16 @@
         },
         {
             "name": "dama/doctrine-test-bundle",
-            "version": "v3.2.0",
+            "version": "v4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dmaicher/doctrine-test-bundle.git",
-                "reference": "0a96aed300fa4390291dbb9999daf836e2bd0a33"
+                "reference": "e06c622a92fdb877a4332135d4e52bfc7fee375b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dmaicher/doctrine-test-bundle/zipball/0a96aed300fa4390291dbb9999daf836e2bd0a33",
-                "reference": "0a96aed300fa4390291dbb9999daf836e2bd0a33",
+                "url": "https://api.github.com/repos/dmaicher/doctrine-test-bundle/zipball/e06c622a92fdb877a4332135d4e52bfc7fee375b",
+                "reference": "e06c622a92fdb877a4332135d4e52bfc7fee375b",
                 "shasum": ""
             },
             "require": {
@@ -4516,12 +4516,13 @@
                 "symfony/framework-bundle": "~2.7|~3.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~5.0"
+                "phpunit/phpunit": "^5.4.4|~6.0",
+                "symfony/yaml": "~2.7|~3.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.2.x-dev"
+                    "dev-master": "4.1.x-dev"
                 }
             },
             "autoload": {
@@ -4549,7 +4550,7 @@
                 "symfony 2",
                 "tests"
             ],
-            "time": "2017-08-15T11:57:21+00:00"
+            "time": "2017-10-16T18:16:10+00:00"
         },
         {
             "name": "friendsofphp/php-cs-fixer",
