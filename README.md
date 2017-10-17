@@ -40,6 +40,6 @@ Tests
 Execute this command to run tests:
 
 ```bash
-$ cd symfony_demo/
+$ cd symfony-demo/
 $ ./vendor/bin/simple-phpunit
 ```
