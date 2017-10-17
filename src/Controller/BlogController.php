@@ -69,15 +69,12 @@ class BlogController extends Controller
      */
     public function postShowAction(Post $post): Response
     {
-        // Symfony provides a function called 'dump()' which is an improved version
-        // of the 'var_dump()' function. It's useful to quickly debug the contents
-        // of any variable, but it's not available in the 'prod' environment to
-        // prevent any leak of sensitive information.
-        // This function can be used both in PHP files and Twig templates. The only
-        // requirement is to have enabled the DebugBundle.
-        if ('dev' === $this->getParameter('kernel.environment')) {
-            dump($post, $this->getUser(), new \DateTime());
-        }
+        // Symfony's 'dump()' function is an improved version of PHP's 'var_dump()' but
+        // it's not available in the 'prod' environment to prevent leaking sensitive information.
+        // It can be used both in PHP files and Twig templates, but it requires to
+        // have enabled the DebugBundle. Uncomment the following line to see it in action:
+        //
+        // dump($post, $this->getUser(), new \DateTime());
 
         return $this->render('blog/post_show.html.twig', ['post' => $post]);
     }
