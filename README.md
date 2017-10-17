@@ -9,7 +9,7 @@ Requirements
 
   * PHP 7.1.3 or higher;
   * PDO-SQLite PHP extension enabled;
-  * and the [usual Symfony application requirements](https://symfony.com/doc/current/reference/requirements.html).
+  * and the [usual Symfony application requirements][1].
 
 Installation
 ------------
@@ -17,7 +17,7 @@ Installation
 Execute this command to install the project:
 
 ```bash
-$ composer create symfony/symfony-demo
+$ composer create-project symfony/symfony-demo
 ```
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
@@ -34,6 +34,9 @@ $ cd symfony-demo/
 $ php bin/console server:run
 ```
 
+Alternatively, you can [configure a fully-featured web server][2] like Nginx
+or Apache to run the application.
+
 Tests
 -----
 
@@ -43,3 +46,6 @@ Execute this command to run tests:
 $ cd symfony-demo/
 $ ./vendor/bin/simple-phpunit
 ```
+
+[1]: https://symfony.com/doc/current/reference/requirements.html
+[2]: https://symfony.com/doc/current/cookbook/configuration/web_server_configuration.html
