@@ -17,7 +17,7 @@ use App\Utils\Slugger;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,7 +37,7 @@ use Symfony\Component\HttpFoundation\Response;
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-class BlogController extends Controller
+class BlogController extends AbstractController
 {
     /**
      * Lists all Post entities.
@@ -54,7 +54,7 @@ class BlogController extends Controller
      * @Route("/", name="admin_post_index")
      * @Method("GET")
      */
-    public function indexAction(): Response
+    public function index(): Response
     {
         $em = $this->getDoctrine()->getManager();
         $posts = $em->getRepository(Post::class)->findBy(['author' => $this->getUser()], ['publishedAt' => 'DESC']);
@@ -72,7 +72,7 @@ class BlogController extends Controller
      * to constraint the HTTP methods each controller responds to (by default
      * it responds to all methods).
      */
-    public function newAction(Request $request): Response
+    public function new(Request $request): Response
     {
         $post = new Post();
         $post->setAuthor($this->getUser());
@@ -119,7 +119,7 @@ class BlogController extends Controller
      * @Route("/{id}", requirements={"id": "\d+"}, name="admin_post_show")
      * @Method("GET")
      */
-    public function showAction(Post $post): Response
+    public function show(Post $post): Response
     {
         // This security check can also be performed
         // using an annotation: @Security("is_granted('show', post)")
@@ -136,7 +136,7 @@ class BlogController extends Controller
      * @Route("/{id}/edit", requirements={"id": "\d+"}, name="admin_post_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Post $post): Response
+    public function edit(Request $request, Post $post): Response
     {
         $this->denyAccessUnlessGranted('edit', $post, 'Posts can only be edited by their authors.');
 
@@ -168,7 +168,7 @@ class BlogController extends Controller
      * The Security annotation value is an expression (if it evaluates to false,
      * the authorization mechanism will prevent the user accessing this resource).
      */
-    public function deleteAction(Request $request, Post $post): Response
+    public function delete(Request $request, Post $post): Response
     {
         if (!$this->isCsrfTokenValid('delete', $request->request->get('token'))) {
             return $this->redirectToRoute('admin_post_index');

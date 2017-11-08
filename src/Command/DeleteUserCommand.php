@@ -39,6 +39,8 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  */
 class DeleteUserCommand extends Command
 {
+    protected static $defaultName = 'app:delete-user';
+
     private $io;
     private $entityManager;
     private $validator;
@@ -57,7 +59,6 @@ class DeleteUserCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('app:delete-user')
             ->setDescription('Deletes users from the database')
             ->addArgument('username', InputArgument::REQUIRED, 'The username of an existing user')
             ->setHelp(<<<'HELP'
