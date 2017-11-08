@@ -28,7 +28,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/login", name="security_login")
      */
-    public function loginAction(AuthenticationUtils $helper): Response
+    public function login(AuthenticationUtils $helper): Response
     {
         return $this->render('security/login.html.twig', [
             // last username entered by the user (if any)
@@ -46,7 +46,7 @@ class SecurityController extends AbstractController
      *
      * @Route("/logout", name="security_logout")
      */
-    public function logoutAction(): void
+    public function logout(): void
     {
         throw new \Exception('This should never be reached!');
     }

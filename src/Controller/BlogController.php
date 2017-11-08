@@ -47,7 +47,7 @@ class BlogController extends AbstractController
      * Content-Type header for the response.
      * See https://symfony.com/doc/current/quick_tour/the_controller.html#using-formats
      */
-    public function indexAction(int $page, string $_format): Response
+    public function index(int $page, string $_format): Response
     {
         $em = $this->getDoctrine()->getManager();
         $posts = $em->getRepository(Post::class)->findLatest($page);
@@ -67,7 +67,7 @@ class BlogController extends AbstractController
      * value given in the route.
      * See https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html
      */
-    public function postShowAction(Post $post): Response
+    public function postShow(Post $post): Response
     {
         // Symfony's 'dump()' function is an improved version of PHP's 'var_dump()' but
         // it's not available in the 'prod' environment to prevent leaking sensitive information.
@@ -89,7 +89,7 @@ class BlogController extends AbstractController
      * (postSlug) doesn't match any of the Doctrine entity properties (slug).
      * See https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html#doctrine-converter
      */
-    public function commentNewAction(Request $request, Post $post, EventDispatcherInterface $eventDispatcher): Response
+    public function commentNew(Request $request, Post $post, EventDispatcherInterface $eventDispatcher): Response
     {
         $comment = new Comment();
         $comment->setAuthor($this->getUser());
@@ -134,7 +134,7 @@ class BlogController extends AbstractController
      * The "id" of the Post is passed in and then turned into a Post object
      * automatically by the ParamConverter.
      */
-    public function commentFormAction(Post $post): Response
+    public function commentForm(Post $post): Response
     {
         $form = $this->createForm(CommentType::class);
 
@@ -148,7 +148,7 @@ class BlogController extends AbstractController
      * @Route("/search", name="blog_search")
      * @Method("GET")
      */
-    public function searchAction(Request $request): Response
+    public function search(Request $request): Response
     {
         if (!$request->isXmlHttpRequest()) {
             return $this->render('blog/search.html.twig');
