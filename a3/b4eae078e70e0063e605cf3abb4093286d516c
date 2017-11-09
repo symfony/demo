@@ -1,0 +1,222 @@
+---------------------------------------------------------------------------
+
+by yceruto at 2017-10-15T20:18:26Z
+
+> Relying on service auto-registration for type "App\Entity\Post" is deprecated since version 3.4 and won't be supported in 4.0. Create a service named "App\Entity\Post" instead.
+
+Even though it doesn't a blocker to migrate to 4.0, look weird auto-registration for classes that already are excluded by configuration `exclude: '../src/{...,Entity,...}'`
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-10-16T06:46:56Z
+
+The SwiftmailerBundle deprecations have been reported in https://github.com/symfony/swiftmailer-bundle/issues/191.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-10-16T07:11:51Z
+
+The WhiteOctoberPagerfantaBundle deprecation is being fixed in https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle/pull/173
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-10-16T07:41:48Z
+
+The strange deprecation related to `App\Entity\Post` has been reported here: https://github.com/symfony/symfony/issues/24569
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-10-17T06:36:39Z
+
+In this PR we can also move `src/Resources/TwigBundle/views/*` to `templates/bundles/TwigBundle/`
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-10-17T08:21:42Z
+
+Makefile was removed from Flex (see https://github.com/symfony/flex/pull/184) so we need to remove it here too. Thanks!
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-10-17T15:51:06Z
+
+@javiereguiluz done! also the session deprecations are gone after update vendors.
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-10-19T00:23:47Z
+
+* After https://github.com/symfony/swiftmailer-bundle/pull/200 "mailer" warning is gone.
+* Also I updated the `composer.json` to move all non-symfony deps to the latest stable version. (removed static constraints)
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-10-19T01:22:56Z
+
+* After https://github.com/symfony/swiftmailer-bundle/pull/203 remaining warnings from `swiftmailer-bundle` are gone.
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-10-19T13:39:28Z
+
+[`symfony/lts` v3 has been released](https://github.com/symfony/lts/releases/tag/v3) so, updating its constraint here.
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-10-19T20:28:04Z
+
+Doctrine warnings are gone after update to `doctrine/doctrine-bundle` 1.6.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-10-23T10:42:48Z
+
+@yceruto I'm testing the latest changes of this PR. Your work is great. Thank you!  I only have a question: when running tests I just see 1 deprecation, but when running the application in the browser I see many more. Do you know why?
+
+![deprecations](https://user-images.githubusercontent.com/73419/31885079-96b1c2f0-b7ef-11e7-9d77-aef8b4772dc7.png)
+
+---------------------------------------------------------------------------
+
+by stof at 2017-10-23T10:48:58Z
+
+@javiereguiluz I think some of them are coming from the DebugClassLoader, and so depend on whether the class is loaded or no.
+
+---------------------------------------------------------------------------
+
+by stof at 2017-10-23T10:50:11Z
+
+and the profiler also redisplays the deprecations from the compile-time, even though the cached container was used. The PHPUnit Bridge does not. It only reports deprecations actually happening during the tests.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-10-23T10:51:06Z
+
+Do you consider this behavior something to be improved? I'd like to run tests and get ALL deprecations, instead of having to browse the application manually. Thanks!
+
+---------------------------------------------------------------------------
+
+by stof at 2017-10-23T10:56:07Z
+
+@javiereguiluz reporting compile-time deprecations in the bridge would be quite hard. There is nothing triggering a `E_USER_DEPRECATED` here for them. The data collector is reading the cached file in which they were saved.
+The PHPUnit bridge cannot do it, as it cannot be sure that the test being executed actually used the container at all (most unit tests don't use it, and we don't want them to report deprecations from a previous functional test, as you would then have to mark the whole testsuite as legacy).
+If you want to have compile-time deprecations in your testsuite, write a test forcing a cache warmup so that the cache is not used.
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-10-23T12:36:13Z
+
+@dmaicher we might need a new release to avoid use `dev-master` constraint for Symfony 4 ;) thanks!
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-10-23T12:42:33Z
+
+We can't move forward until `white-october/pagerfanta-bundle` adds `FrameworkBundle` 4.0 compat in its `composer.json`.
+
+---------------------------------------------------------------------------
+
+by dmaicher at 2017-10-23T14:40:48Z
+
+@yceruto I created a new release that allows Symfony 4
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-10-26T13:46:32Z
+
+I've tested the latest changes and I still see these four deprecations. How can we solve them? Thanks!
+
+* The "Doctrine\DBAL\Configuration" class is considered internal When adding a new configuration option just write a getter/setter pair and add the option to the _attributes array with a proper default value. It may change without further notice. You should not use it from "Doctrine\ORM\Configuration".
+* Setting logout_on_user_change to false is deprecated as of 3.4 and will always be true in 4.0. Set logout_on_user_change to true in your firewall configuration.
+* The "Doctrine\DBAL\Configuration" class is considered internal When adding a new configuration option just write a getter/setter pair and add the option to the _attributes array with a proper default value. It may change without further notice. You should not use it from "Doctrine\ORM\Configuration".
+* Relying on service auto-registration for type "App\Entity\Post" is deprecated since version 3.4 and won't be supported in 4.0. Create a service named "App\Entity\Post" instead.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-10-27T07:41:29Z
+
+In my local fork I've removed all deprecations as follows:
+
+1) Change `"minimum-stability": "beta"` to `"minimum-stability": "dev"` so you can get the latest Symfony code and get rid of:
+
+    * The "Doctrine\DBAL\Configuration" class is considered internal When adding a new configuration option just write a getter/setter pair and add the option to the _attributes array with a proper default value. It may change without further notice. You should not use it from "Doctrine\ORM\Configuration".
+    * The "Doctrine\DBAL\Configuration" class is considered internal When adding a new configuration option just write a getter/setter pair and add the option to the _attributes array with a proper default value. It may change without further notice. You should not use it from "Doctrine\ORM\Configuration".
+
+2) Edit `config/packages/security.yaml` and add `logout_on_user_change: true` to the `main` firewall to get rid of:
+
+    * Setting logout_on_user_change to false is deprecated as of 3.4 and will always be true in 4.0. Set logout_on_user_change to true in your firewall configuration.
+
+3) Update the `src/Kernel.php` file according to https://github.com/symfony/recipes/pull/221/files to get rid of:
+
+    * Relying on service auto-registration for type "App\Entity\Post" is deprecated since version 3.4 and won't be supported in 4.0. Create a service named "App\Entity\Post" instead.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-10-29T18:39:15Z
+
+@yceruto minor comment. We should also update in this PR the following "bundle notation" to use the new FQCN-based notation: https://github.com/symfony/demo/blob/c68bcdd6373a92800d424a55809d3a386aeee00b/templates/base.html.twig#L101
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-10-31T04:04:23Z
+
+@javiereguiluz perhaps we can ignore 2 & 3, as they'll disappear in 4.0
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-10-31T17:32:52Z
+
+I don't know why, but after update deps `doctrine/doctrine-migrations-bundle` has been installed transitively, which it's weird :/
+
+---------------------------------------------------------------------------
+
+by ogizanagi at 2017-10-31T17:41:54Z
+
+@yceruto : It's now part of the [orm-pack](https://github.com/symfony/orm-pack/blob/master/composer.json)
+
+---------------------------------------------------------------------------
+
+by ogizanagi at 2017-10-31T18:56:21Z
+
+About
+
+> Relying on service auto-registration for type "App\Entity\Post" is deprecated since version 3.4 and won't be supported in 4.0. Create a service named "App\Entity\Post" instead. (isn't a blocker for 4.0)
+
+You should set the [`container.autowiring.strict_mode`](https://github.com/symfony/symfony/pull/24671) to true :)
+
+It's done directly in the Kernel in the [fwb recipe](https://github.com/symfony/recipes/blob/master/symfony/framework-bundle/3.3/src/Kernel.php#L39)
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-10-31T19:33:11Z
+
+@ogizanagi yeah, I know :) but [the parameter is useless in 4.0](https://github.com/symfony/symfony/blob/v4.0.0-BETA2/src/Symfony/Component/DependencyInjection/Compiler/AutowirePass.php) and this PR ends there.
+
+Same for the another one, setting `logout_on_user_change` to `true` removes the warning, but in 4.0 it's `true` by default, so we don't need to do something either.
+
+The only blocker to move to 4.0 is https://github.com/symfony/demo/pull/673#issuecomment-338646414 right now :/
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-11-02T18:42:11Z
+
+https://github.com/whiteoctober/WhiteOctoberPagerfantaBundle/pull/173 merged! We are already in Symfony 4.0!
+
+Just waiting for a new release of `white-october/pagerfanta-bundle` to see the test green.
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-11-06T13:55:15Z
+
+Tests are green now, this PR is ready? or should we wait for the stable release?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-11-08T21:22:55Z
+
+@yceruto to make your life easier, I think we should merge this as is ... and keep updating to other betas, RCs and the stable version in separate PRs. That would also help others test these changes more easily. If nobody disagrees with this idea, I'll merge it tomorrow morning. Thanks!
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-11-08T21:32:45Z
+
+@javiereguiluz totally agree!
