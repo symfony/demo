@@ -16,6 +16,11 @@ services:
         # this means you cannot fetch services directly from the container via $container->get()
         # if you need to do this, you can override this setting on individual services
         public: false
+        # defines the scalar arguments once and apply them to any service defined/created in this file
+        bind:
+            $locales: '%app_locales%'
+            $defaultLocale: '%locale%'
+            $emailSender: '%app.notifications.email_sender%'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -23,7 +28,7 @@ services:
         resource: '../src/*'
         # you can exclude directories or files
         # but if a service is unused, it's removed anyway
-        exclude: '../src/{Entity,Repository,Tests}'
+        exclude: '../src/{DataFixtures,Entity,Repository,Tests}'
 
     # controllers are imported separately to make sure they're public
     # and have a tag that allows actions to type-hint services
@@ -31,22 +36,7 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    # Autowiring can't guess the constructor arguments that are not type-hinted with
-    # classes (e.g. container parameters) so you must define those arguments explicitly
-    App\Command\ListUsersCommand:
-        $emailSender: '%app.notifications.email_sender%'
-
     # when the service definition only contains arguments, you can omit the
     # 'arguments' key and define the arguments just below the service class
-    App\Twig\AppExtension:
-        $locales: '%app_locales%'
-
     App\EventSubscriber\CommentNotificationSubscriber:
         $sender: '%app.notifications.email_sender%'
-
-    App\EventSubscriber\RedirectToPreferredLocaleSubscriber:
-        $locales: '%app_locales%'
-        $defaultLocale: '%locale%'
-
-    # needed for the 'localizeddate' Twig filter
-    Twig\Extensions\IntlExtension: ~

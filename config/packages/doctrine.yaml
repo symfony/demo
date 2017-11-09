@@ -1,6 +1,6 @@
 doctrine:
     dbal:
-        url: '%env(DATABASE_URL)%'
+        url: '%env(resolve:DATABASE_URL)%'
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore
