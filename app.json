@@ -26,10 +26,6 @@
             "description": "Extra entropy for %kernel.secret%; used for CSRF tokens, cookies and signed URLs.",
             "generator": "secret"
         },
-        "DATABASE_URL": {
-            "value": "sqlite:///var/data/blog.sqlite",
-            "description": "A DSN-like configuration string for the database server. See http://docs.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html#connecting-using-a-url"
-        },
         "MAILER_URL": {
             "value": "null://localhost",
             "description": "A DSN-like configuration string for the mail server. See https://symfony.com/doc/current/reference/configuration/swiftmailer.html#url"
