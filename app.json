@@ -22,11 +22,15 @@
         "APP_DEBUG": {
             "value": "0"
         },
-        "SYMFONY_LOG": "php://stderr",
         "APP_SECRET": {
             "description": "Extra entropy for %kernel.secret%; used for CSRF tokens, cookies and signed URLs.",
             "generator": "secret"
-        }
+        },
+        "MAILER_URL": {
+            "value": "null://localhost",
+            "description": "A DSN-like configuration string for the mail server. See https://symfony.com/doc/current/reference/configuration/swiftmailer.html#url"
+        },
+        "SYMFONY_LOG": "php://stderr"
     },
     "addons": [
         "heroku-postgresql"
