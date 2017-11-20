@@ -1,0 +1,19 @@
+---------------------------------------------------------------------------
+
+by yceruto at 2017-11-13T05:21:53Z
+
+What about to reflect the latest changes in https://github.com/symfony/symfony/pull/24860 and https://github.com/symfony/recipes/pull/249 in this PR? i.e. move `translations/` directory inside `config/`.
+
+---------------------------------------------------------------------------
+
+by yceruto at 2017-11-19T13:17:52Z
+
+>Travis failure: https://travis-ci.org/symfony/demo/builds/304273930#L636
+
+The `.travis.yml` configuration should be updated to check by `config/translations` instead?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-11-20T09:43:20Z
+
+Thanks for the reviews. I've fixed everything. I'd like to merge this as soon as possible to better prepare for the beta5 and/or final release. Thanks!
