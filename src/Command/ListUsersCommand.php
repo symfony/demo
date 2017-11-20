@@ -12,7 +12,7 @@
 namespace App\Command;
 
 use App\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\UserRepository;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -39,17 +39,17 @@ class ListUsersCommand extends Command
     // a good practice is to use the 'app:' prefix to group all your custom application commands
     protected static $defaultName = 'app:list-users';
 
-    private $entityManager;
     private $mailer;
     private $emailSender;
+    private $users;
 
-    public function __construct(EntityManagerInterface $em, \Swift_Mailer $mailer, $emailSender)
+    public function __construct(\Swift_Mailer $mailer, $emailSender, UserRepository $users)
     {
         parent::__construct();
 
-        $this->entityManager = $em;
         $this->mailer = $mailer;
         $this->emailSender = $emailSender;
+        $this->users = $users;
     }
 
     /**
@@ -91,7 +91,7 @@ HELP
     {
         $maxResults = $input->getOption('max-results');
         // Use ->findBy() instead of ->findAll() to allow result sorting and limiting
-        $users = $this->entityManager->getRepository(User::class)->findBy([], ['id' => 'DESC'], $maxResults);
+        $allUsers = $this->users->findBy([], ['id' => 'DESC'], $maxResults);
 
         // Doctrine query returns an array of objects and we need an array of plain arrays
         $usersAsPlainArrays = array_map(function (User $user) {
@@ -102,7 +102,7 @@ HELP
                 $user->getEmail(),
                 implode(', ', $user->getRoles()),
             ];
-        }, $users);
+        }, $allUsers);
 
         // In your console commands you should always use the regular output type,
         // which outputs contents directly in the console window. However, this
