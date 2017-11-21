@@ -15,6 +15,7 @@ use App\Entity\User;
 use App\Utils\Validator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Exception\RuntimeException;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -207,7 +208,7 @@ class AddUserCommand extends Command
         $existingUser = $userRepository->findOneBy(['username' => $username]);
 
         if (null !== $existingUser) {
-            throw new \RuntimeException(sprintf('There is already a user registered with the "%s" username.', $username));
+            throw new RuntimeException(sprintf('There is already a user registered with the "%s" username.', $username));
         }
 
         // validate password and email if is not this input means interactive.
@@ -219,7 +220,7 @@ class AddUserCommand extends Command
         $existingEmail = $userRepository->findOneBy(['email' => $email]);
 
         if (null !== $existingEmail) {
-            throw new \RuntimeException(sprintf('There is already a user registered with the "%s" email.', $email));
+            throw new RuntimeException(sprintf('There is already a user registered with the "%s" email.', $email));
         }
     }
 
