@@ -11,6 +11,8 @@
 
 namespace App\Utils;
 
+use Symfony\Component\Console\Exception\InvalidArgumentException;
+
 /**
  * This class is used to provide an example of integrating simple classes as
  * services into a Symfony application.
@@ -22,11 +24,11 @@ class Validator
     public function validateUsername(?string $username): string
     {
         if (empty($username)) {
-            throw new \Exception('The username can not be empty.');
+            throw new InvalidArgumentException('The username can not be empty.');
         }
 
         if (1 !== preg_match('/^[a-z_]+$/', $username)) {
-            throw new \Exception('The username must contain only lowercase latin characters and underscores.');
+            throw new InvalidArgumentException('The username must contain only lowercase latin characters and underscores.');
         }
 
         return $username;
@@ -35,11 +37,11 @@ class Validator
     public function validatePassword(?string $plainPassword): string
     {
         if (empty($plainPassword)) {
-            throw new \Exception('The password can not be empty.');
+            throw new InvalidArgumentException('The password can not be empty.');
         }
 
         if (mb_strlen(trim($plainPassword)) < 6) {
-            throw new \Exception('The password must be at least 6 characters long.');
+            throw new InvalidArgumentException('The password must be at least 6 characters long.');
         }
 
         return $plainPassword;
@@ -48,11 +50,11 @@ class Validator
     public function validateEmail(?string $email): string
     {
         if (empty($email)) {
-            throw new \Exception('The email can not be empty.');
+            throw new InvalidArgumentException('The email can not be empty.');
         }
 
         if (false === mb_strpos($email, '@')) {
-            throw new \Exception('The email should look like a real email.');
+            throw new InvalidArgumentException('The email should look like a real email.');
         }
 
         return $email;
@@ -61,7 +63,7 @@ class Validator
     public function validateFullName(?string $fullName): string
     {
         if (empty($fullName)) {
-            throw new \Exception('The full name can not be empty.');
+            throw new InvalidArgumentException('The full name can not be empty.');
         }
 
         return $fullName;

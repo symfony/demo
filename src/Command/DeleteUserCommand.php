@@ -15,6 +15,7 @@ use App\Entity\User;
 use App\Utils\Validator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Exception\RuntimeException;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -112,7 +113,7 @@ HELP
         $user = $repository->findOneByUsername($username);
 
         if (null === $user) {
-            throw new \RuntimeException(sprintf('User with username "%s" not found.', $username));
+            throw new RuntimeException(sprintf('User with username "%s" not found.', $username));
         }
 
         // After an entity has been removed its in-memory state is the same
