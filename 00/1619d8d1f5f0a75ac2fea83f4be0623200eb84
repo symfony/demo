@@ -1,0 +1,20 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-11-24T15:53:59Z
+
+I'm seeing this error when clicking on the Doctrine panel of the Debug Toolbar. The same happened in RC1 and I don't see any error in the other panels. Any clue? Should I report to main Symfony repo?
+
+![profiler_error](https://user-images.githubusercontent.com/73419/33217386-0c9a5c64-d138-11e7-8878-faed1d5c200e.png)
+
+---------------------------------------------------------------------------
+
+by ogizanagi at 2017-11-24T16:01:32Z
+
+this issue is already reported in the `symfony/symfony` and `doctrine-bundle` repository:
+
+- https://github.com/symfony/symfony/issues/24804
+- https://github.com/doctrine/DoctrineBundle/issues/73
+
+It's supposed to be fixed in https://github.com/doctrine/DoctrineBundle/pull/735
+
+but it's not part of the 1.8 release yet.
