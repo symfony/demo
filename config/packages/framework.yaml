@@ -3,9 +3,8 @@ framework:
     csrf_protection: { enabled: true }
     http_method_override: true
     trusted_hosts: ~
-    # https://symfony.com/doc/current/reference/configuration/framework.html#handler-id
     session:
-        # The native PHP session handler will be used
+        # With this config, PHP's native session handling is used
         handler_id: ~
     # When using the HTTP Cache, ESI allows to render page fragments separately
     # and with different cache configurations for each fragment
