@@ -12,6 +12,7 @@
 namespace App\Command;
 
 use App\Entity\User;
+use App\Repository\UserRepository;
 use App\Utils\Validator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
@@ -42,16 +43,19 @@ class DeleteUserCommand extends Command
 {
     protected static $defaultName = 'app:delete-user';
 
+    /** @var SymfonyStyle */
     private $io;
     private $entityManager;
     private $validator;
+    private $users;
 
-    public function __construct(EntityManagerInterface $em, Validator $validator)
+    public function __construct(EntityManagerInterface $em, Validator $validator, UserRepository $users)
     {
         parent::__construct();
 
         $this->entityManager = $em;
         $this->validator = $validator;
+        $this->users = $users;
     }
 
     /**
@@ -108,9 +112,8 @@ HELP
     {
         $username = $this->validator->validateUsername($input->getArgument('username'));
 
-        $repository = $this->entityManager->getRepository(User::class);
         /** @var User $user */
-        $user = $repository->findOneByUsername($username);
+        $user = $this->users->findOneByUsername($username);
 
         if (null === $user) {
             throw new RuntimeException(sprintf('User with username "%s" not found.', $username));

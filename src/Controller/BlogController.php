@@ -15,6 +15,7 @@ use App\Entity\Comment;
 use App\Entity\Post;
 use App\Events;
 use App\Form\CommentType;
+use App\Repository\PostRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -47,15 +48,14 @@ class BlogController extends AbstractController
      * Content-Type header for the response.
      * See https://symfony.com/doc/current/quick_tour/the_controller.html#using-formats
      */
-    public function index(int $page, string $_format): Response
+    public function index(int $page, string $_format, PostRepository $posts): Response
     {
-        $em = $this->getDoctrine()->getManager();
-        $posts = $em->getRepository(Post::class)->findLatest($page);
+        $latestPosts = $posts->findLatest($page);
 
         // Every template name also has two extensions that specify the format and
         // engine for that template.
         // See https://symfony.com/doc/current/templating.html#template-suffix
-        return $this->render('blog/index.'.$_format.'.twig', ['posts' => $posts]);
+        return $this->render('blog/index.'.$_format.'.twig', ['posts' => $latestPosts]);
     }
 
     /**
@@ -148,7 +148,7 @@ class BlogController extends AbstractController
      * @Route("/search", name="blog_search")
      * @Method("GET")
      */
-    public function search(Request $request): Response
+    public function search(Request $request, PostRepository $posts): Response
     {
         if (!$request->isXmlHttpRequest()) {
             return $this->render('blog/search.html.twig');
@@ -156,10 +156,10 @@ class BlogController extends AbstractController
 
         $query = $request->query->get('q', '');
         $limit = $request->query->get('l', 10);
-        $posts = $this->getDoctrine()->getRepository(Post::class)->findBySearchQuery($query, $limit);
+        $foundPosts = $posts->findBySearchQuery($query, $limit);
 
         $results = [];
-        foreach ($posts as $post) {
+        foreach ($foundPosts as $post) {
             $results[] = [
                 'title' => htmlspecialchars($post->getTitle()),
                 'date' => $post->getPublishedAt()->format('M d, Y'),
