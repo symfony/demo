@@ -1,5 +1,15 @@
+parameters:
+    # Adds a fallback DATABASE_URL if the env var is not set. This allows you
+    # to run cache:warmup even if your environment variables are not available
+    # yet. You should not need to change this value.
+    env(DATABASE_URL): ''
+
 doctrine:
     dbal:
+        driver: 'pdo_sqlite'
+        server_version: '3.15'
+        charset: utf8mb4
+
         url: '%env(resolve:DATABASE_URL)%'
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
@@ -10,5 +20,5 @@ doctrine:
                 is_bundle: false
                 type: annotation
                 dir: '%kernel.project_dir%/src/Entity'
-                prefix: 'App\Entity\'
+                prefix: 'App\Entity'
                 alias: App
