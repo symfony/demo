@@ -14,9 +14,13 @@ matrix:
   fast_finish: true
   include:
     - php: 7.1
+    - php: 7.2
+    - php: nightly
+  allow_failures:
+    - php: nightly
 
 before_install:
-  - phpenv config-rm xdebug.ini
+  - '[[ "$TRAVIS_PHP_VERSION" == "nightly" ]] || phpenv config-rm xdebug.ini'
   - composer self-update
 
 install:
@@ -26,7 +30,7 @@ install:
 script:
   - ./vendor/bin/simple-phpunit
   # this checks that the source code follows the Symfony Code Syntax rules
-  - ./vendor/bin/php-cs-fixer fix --diff --dry-run -v
+  - '[[ "$TRAVIS_PHP_VERSION" == "nightly" ]] || ./vendor/bin/php-cs-fixer fix --diff --dry-run -v'
   # this checks that the YAML config files contain no syntax errors
   - ./bin/console lint:yaml config
   # this checks that the Twig template files contain no syntax errors
