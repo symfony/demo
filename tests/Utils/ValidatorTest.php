@@ -34,13 +34,15 @@ class ValidatorTest extends TestCase
 
     public function testValidateUsernameEmpty()
     {
-        $this->setExpectedException('Exception', 'The username can not be empty.');
+        $this->expectException('Exception');
+        $this->expectExceptionMessage('The username can not be empty.');
         $this->object->validateUsername(null);
     }
 
     public function testValidateUsernameInvalid()
     {
-        $this->setExpectedException('Exception', 'The username must contain only lowercase latin characters and underscores.');
+        $this->expectException('Exception');
+        $this->expectExceptionMessage('The username must contain only lowercase latin characters and underscores.');
         $this->object->validateUsername('INVALID');
     }
 
@@ -53,13 +55,15 @@ class ValidatorTest extends TestCase
 
     public function testValidatePasswordEmpty()
     {
-        $this->setExpectedException('Exception', 'The password can not be empty.');
+        $this->expectException('Exception');
+        $this->expectExceptionMessage('The password can not be empty.');
         $this->object->validatePassword(null);
     }
 
     public function testValidatePasswordInvalid()
     {
-        $this->setExpectedException('Exception', 'The password must be at least 6 characters long.');
+        $this->expectException('Exception');
+        $this->expectExceptionMessage('The password must be at least 6 characters long.');
         $this->object->validatePassword('12345');
     }
 
@@ -72,13 +76,15 @@ class ValidatorTest extends TestCase
 
     public function testValidateEmailEmpty()
     {
-        $this->setExpectedException('Exception', 'The email can not be empty.');
+        $this->expectException('Exception');
+        $this->expectExceptionMessage('The email can not be empty.');
         $this->object->validateEmail(null);
     }
 
     public function testValidateEmailInvalid()
     {
-        $this->setExpectedException('Exception', 'The email should look like a real email.');
+        $this->expectException('Exception');
+        $this->expectExceptionMessage('The email should look like a real email.');
         $this->object->validateEmail('invalid');
     }
 
@@ -91,7 +97,8 @@ class ValidatorTest extends TestCase
 
     public function testValidateEmailFullName()
     {
-        $this->setExpectedException('Exception', 'The full name can not be empty.');
+        $this->expectException('Exception');
+        $this->expectExceptionMessage('The full name can not be empty.');
         $this->object->validateFullName(null);
     }
 }
