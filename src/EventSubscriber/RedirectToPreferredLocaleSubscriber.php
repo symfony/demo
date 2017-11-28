@@ -28,8 +28,8 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class RedirectToPreferredLocaleSubscriber implements EventSubscriberInterface
 {
     private $urlGenerator;
-    private $locales = [];
-    private $defaultLocale = '';
+    private $locales;
+    private $defaultLocale;
 
     public function __construct(UrlGeneratorInterface $urlGenerator, string $locales, string $defaultLocale = null)
     {
