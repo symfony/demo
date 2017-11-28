@@ -22,7 +22,7 @@ use Pagerfanta\Pagerfanta;
  * This custom Doctrine repository contains some methods which are useful when
  * querying for blog post information.
  *
- * See https://symfony.com/doc/current/book/doctrine.html#custom-repository-classes
+ * See https://symfony.com/doc/current/doctrine/repository.html
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>

@@ -20,7 +20,7 @@ use Doctrine\Common\Persistence\ManagerRegistry;
  * method to query for application user information. But it's always a good practice
  * to define a custom repository that will be used when the application grows.
  *
- * See https://symfony.com/doc/current/book/doctrine.html#custom-repository-classes
+ * See https://symfony.com/doc/current/doctrine/repository.html
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
