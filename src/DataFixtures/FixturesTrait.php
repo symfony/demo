@@ -123,7 +123,7 @@ MARKDOWN;
     {
         $phrases = $this->getPhrases();
 
-        $numPhrases = mt_rand(6, 12);
+        $numPhrases = random_int(6, 12);
         shuffle($phrases);
         $phrases = array_slice($phrases, 0, $numPhrases - 1);
 
@@ -138,7 +138,7 @@ MARKDOWN;
     {
         $phrases = $this->getPhrases();
 
-        $numPhrases = mt_rand(2, 15);
+        $numPhrases = random_int(2, 15);
         shuffle($phrases);
 
         return implode(' ', array_slice($phrases, 0, $numPhrases - 1));
