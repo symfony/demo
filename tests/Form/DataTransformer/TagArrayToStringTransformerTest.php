@@ -106,7 +106,7 @@ class TagArrayToStringTransformerTest extends TestCase
      *
      * @return TagArrayToStringTransformer
      */
-    private function getMockedTransformer($findByReturnValues = [])
+    private function getMockedTransformer(array $findByReturnValues = []): TagArrayToStringTransformer
     {
         $tagRepository = $this->getMockBuilder(EntityRepository::class)
             ->disableOriginalConstructor()
@@ -133,7 +133,7 @@ class TagArrayToStringTransformerTest extends TestCase
      *
      * @return Tag
      */
-    private function createTag($name)
+    private function createTag($name): Tag
     {
         $tag = new Tag();
         $tag->setName($name);
