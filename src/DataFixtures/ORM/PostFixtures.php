@@ -57,7 +57,7 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface
             $post->setAuthor(0 === $i ? $this->getReference('jane-admin') : $this->getRandomUser());
 
             // for aesthetic reasons, the first blog post always has 2 tags
-            foreach ($this->getRandomTags($i > 0 ? mt_rand(0, 3) : 2) as $tag) {
+            foreach ($this->getRandomTags($i > 0 ? random_int(0, 3) : 2) as $tag) {
                 $post->addTag($tag);
             }
 
