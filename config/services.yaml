@@ -30,12 +30,6 @@ services:
         # but if a service is unused, it's removed anyway
         exclude: '../src/{DataFixtures,Entity,Migrations,Tests}'
 
-    # controllers are imported separately to make sure they're public
-    # and have a tag that allows actions to type-hint services
-    App\Controller\:
-        resource: '../src/Controller'
-        tags: ['controller.service_arguments']
-
     # when the service definition only contains arguments, you can omit the
     # 'arguments' key and define the arguments just below the service class
     App\EventSubscriber\CommentNotificationSubscriber:
