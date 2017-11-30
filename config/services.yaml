@@ -28,7 +28,7 @@ services:
         resource: '../src/*'
         # you can exclude directories or files
         # but if a service is unused, it's removed anyway
-        exclude: '../src/{DataFixtures,Entity,Migrations,Tests}'
+        exclude: '../src/{Entity,Migrations,Tests}'
 
     # when the service definition only contains arguments, you can omit the
     # 'arguments' key and define the arguments just below the service class

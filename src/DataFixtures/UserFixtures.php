@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace App\DataFixtures\ORM;
+namespace App\DataFixtures;
 
 use App\Entity\User;
 use Doctrine\Common\DataFixtures\AbstractFixture;
