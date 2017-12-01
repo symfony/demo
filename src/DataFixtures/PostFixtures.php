@@ -9,9 +9,8 @@
  * file that was distributed with this source code.
  */
 
-namespace App\DataFixtures\ORM;
+namespace App\DataFixtures;
 
-use App\DataFixtures\FixturesTrait;
 use App\Entity\Comment;
 use App\Entity\Post;
 use App\Entity\User;
