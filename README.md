@@ -44,7 +44,7 @@ Execute this command to run tests:
 
 ```bash
 $ cd symfony-demo/
-$ ./vendor/bin/simple-phpunit
+$ php bin/phpunit
 ```
 
 [1]: https://symfony.com/doc/current/reference/requirements.html
