@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e4397c2f405ca6748a36ce08c33a5439",
+    "content-hash": "06c8704491e0381e328604789e30aa03",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -1748,16 +1748,16 @@
         },
         {
             "name": "sensio/framework-extra-bundle",
-            "version": "v5.1.1",
+            "version": "v5.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioFrameworkExtraBundle.git",
-                "reference": "4fc5d5ba02eee8bb02cc00548dfc5a98f6151fe8"
+                "reference": "28792a4e1a3237088ee1694098767833d079d56d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/4fc5d5ba02eee8bb02cc00548dfc5a98f6151fe8",
-                "reference": "4fc5d5ba02eee8bb02cc00548dfc5a98f6151fe8",
+                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/28792a4e1a3237088ee1694098767833d079d56d",
+                "reference": "28792a4e1a3237088ee1694098767833d079d56d",
                 "shasum": ""
             },
             "require": {
@@ -1813,7 +1813,7 @@
                 "annotations",
                 "controllers"
             ],
-            "time": "2017-11-30T14:53:48+00:00"
+            "time": "2017-12-01T00:43:37+00:00"
         },
         {
             "name": "sensiolabs/security-checker",
@@ -2587,16 +2587,16 @@
         },
         {
             "name": "symfony/flex",
-            "version": "v1.0.42",
+            "version": "v1.0.44",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/flex.git",
-                "reference": "a1117ae366eae895a449db63eda58035b112dda9"
+                "reference": "061fb1d3b3c5d3450afcb4d15c809a27ccdd4c3f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/flex/zipball/a1117ae366eae895a449db63eda58035b112dda9",
-                "reference": "a1117ae366eae895a449db63eda58035b112dda9",
+                "url": "https://api.github.com/repos/symfony/flex/zipball/061fb1d3b3c5d3450afcb4d15c809a27ccdd4c3f",
+                "reference": "061fb1d3b3c5d3450afcb4d15c809a27ccdd4c3f",
                 "shasum": ""
             },
             "require": {
@@ -2629,7 +2629,7 @@
                     "email": "fabien.potencier@gmail.com"
                 }
             ],
-            "time": "2017-11-29T02:36:07+00:00"
+            "time": "2017-12-03T00:59:08+00:00"
         },
         {
             "name": "symfony/form",
@@ -4619,6 +4619,56 @@
             "time": "2017-10-19T11:52:38+00:00"
         },
         {
+            "name": "easycorp/easy-log-handler",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/EasyCorp/easy-log-handler.git",
+                "reference": "79104f113f562ab6c677d482457d4474204d34a5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/EasyCorp/easy-log-handler/zipball/79104f113f562ab6c677d482457d4474204d34a5",
+                "reference": "79104f113f562ab6c677d482457d4474204d34a5",
+                "shasum": ""
+            },
+            "require": {
+                "monolog/monolog": "~1.6",
+                "php": ">=5.3.0",
+                "symfony/yaml": "~2.3|~3.0|~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "EasyCorp\\EasyLog\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Javier Eguiluz",
+                    "email": "javiereguiluz@gmail.com"
+                },
+                {
+                    "name": "Project Contributors",
+                    "homepage": "https://github.com/EasyCorp/easy-log-handler"
+                }
+            ],
+            "description": "A handler for Monolog that optimizes log messages to be processed by humans instead of software. Improve your productivity with logs that are easy to understand.",
+            "homepage": "https://github.com/EasyCorp/easy-log-handler",
+            "keywords": [
+                "easy",
+                "log",
+                "logging",
+                "monolog",
+                "productivity"
+            ],
+            "time": "2017-10-20T08:47:57+00:00"
+        },
+        {
             "name": "friendsofphp/php-cs-fixer",
             "version": "v2.8.3",
             "source": {
@@ -5017,6 +5067,37 @@
             "description": "Symfony DebugBundle",
             "homepage": "https://symfony.com",
             "time": "2017-11-24T14:34:08+00:00"
+        },
+        {
+            "name": "symfony/debug-pack",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/debug-pack.git",
+                "reference": "49e4492f347df60176375c285528f07ec1319f63"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/debug-pack/zipball/49e4492f347df60176375c285528f07ec1319f63",
+                "reference": "49e4492f347df60176375c285528f07ec1319f63",
+                "shasum": ""
+            },
+            "require": {
+                "easycorp/easy-log-handler": "^1.0.2",
+                "php": "^7.0",
+                "symfony/debug-bundle": "^3.3|^4.0",
+                "symfony/monolog-bundle": "^3.0",
+                "symfony/phpunit-bridge": "^3.3|^4.0",
+                "symfony/profiler-pack": "^1.0",
+                "symfony/var-dumper": "^3.3|^4.0"
+            },
+            "type": "metapackage",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A debug pack for Symfony projects",
+            "time": "2017-11-09T14:26:26+00:00"
         },
         {
             "name": "symfony/dom-crawler",
