@@ -1,0 +1,18 @@
+---------------------------------------------------------------------------
+
+by stof at 2017-12-04T11:21:55Z
+
+Note that for my work project, I even remove the `--skip-sync` option, so that forgetting to generate a DB migration (or making a mistake in it) also makes it red.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-12-04T11:27:49Z
+
+@stof would you recommend to remove `--skip-sync` here too? Thanks!
+
+---------------------------------------------------------------------------
+
+by stof at 2017-12-04T11:30:10Z
+
+it depends how you handle schema updates in the project.
+Looking at the Travis config, it does not seem to be creating the schema from scratch itself with `doctrine:schema:create` or `doctrine:schema:update`, so it might make sense to ensure the sync too, if the update of the schema requires an action by the contributor.
