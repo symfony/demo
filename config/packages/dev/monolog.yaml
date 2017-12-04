@@ -1,8 +1,8 @@
 monolog:
     handlers:
         main:
-            type: stream
-            path: '%kernel.logs_dir%/%kernel.environment%.log'
+            type: buffer
+            handler: easylog
             level: debug
             channels: ['!event']
         # uncomment to get logging in your browser

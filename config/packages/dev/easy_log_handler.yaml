@@ -1,0 +1,10 @@
+services:
+    EasyCorp\EasyLog\EasyLogHandler:
+        public: false
+        arguments: ['%kernel.logs_dir%/%kernel.environment%.log']
+
+monolog:
+    handlers:
+        easylog:
+            type: service
+            id:   EasyCorp\EasyLog\EasyLogHandler
