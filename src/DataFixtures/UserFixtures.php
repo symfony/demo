@@ -12,6 +12,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\User;
+use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -29,7 +30,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareTrait;
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
-class UserFixtures extends AbstractFixture implements ContainerAwareInterface
+class UserFixtures extends AbstractFixture implements ORMFixtureInterface, ContainerAwareInterface
 {
     use ContainerAwareTrait;
 

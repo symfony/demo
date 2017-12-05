@@ -15,6 +15,7 @@ use App\Entity\Comment;
 use App\Entity\Post;
 use App\Entity\User;
 use App\Utils\Slugger;
+use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -31,7 +32,7 @@ use Doctrine\Common\Persistence\ObjectManager;
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
-class PostFixtures extends AbstractFixture implements DependentFixtureInterface
+class PostFixtures extends AbstractFixture implements ORMFixtureInterface, DependentFixtureInterface
 {
     use FixturesTrait;
 

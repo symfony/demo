@@ -12,6 +12,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Tag;
+use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -25,7 +26,7 @@ use Doctrine\Common\Persistence\ObjectManager;
  *
  * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
-class TagFixtures extends AbstractFixture
+class TagFixtures extends AbstractFixture implements ORMFixtureInterface
 {
     use FixturesTrait;
 
