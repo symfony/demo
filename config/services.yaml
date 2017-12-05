@@ -30,6 +30,7 @@ services:
         # but if a service is unused, it's removed anyway
         exclude: '../src/{DataFixtures,Entity,Migrations,Tests}'
 
+    # tags fixtures classes for DoctrineFixturesBundle
     App\DataFixtures\:
         resource: '../src/DataFixtures/*'
         tags: [doctrine.fixture.orm]
