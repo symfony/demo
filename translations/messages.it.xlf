@@ -97,6 +97,10 @@
                 <source>action.show</source>
                 <target>Mostra</target>
             </trans-unit>
+            <trans-unit id="action.show_post">
+                <source>action.show_post</source>
+                <target>Mostra post</target>
+            </trans-unit>
             <trans-unit id="action.show_code">
                 <source>action.show_code</source>
                 <target>Mostra codice</target>
@@ -251,6 +255,10 @@
                 <source>menu.rss</source>
                 <target>RSS del blog</target>
             </trans-unit>
+            <trans-unit id="menu.search">
+                <source>menu.search</source>
+                <target>Ricercare</target>
+            </trans-unit>
 
             <trans-unit id="post.to_publish_a_comment">
                 <source>post.to_publish_a_comment</source>
@@ -283,6 +291,14 @@
             <trans-unit id="post.deleted_successfully">
                 <source>post.deleted_successfully</source>
                 <target>Post eliminato!</target>
+            </trans-unit>
+            <trans-unit id="post.search_for">
+                <source>post.search_for</source>
+                <target>Ricercare...</target>
+            </trans-unit>
+            <trans-unit id="post.search_no_results">
+                <source>post.search_no_results</source>
+                <target>Nessun risultato trovato</target>
             </trans-unit>
 
             <trans-unit id="notification.comment_created">

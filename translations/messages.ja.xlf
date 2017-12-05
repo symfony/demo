@@ -178,6 +178,14 @@
                 <source>menu.logout</source>
                 <target>ログアウト</target>
             </trans-unit>
+            <trans-unit id="menu.rss">
+                <source>menu.rss</source>
+                <target>ブログ投稿RSS</target>
+            </trans-unit>
+            <trans-unit id="menu.search">
+                <source>menu.search</source>
+                <target>サーチ</target>
+            </trans-unit>
 
             <trans-unit id="post.to_publish_a_comment">
                 <source>post.to_publish_a_comment</source>
@@ -194,6 +202,39 @@
             <trans-unit id="post.no_comments">
                 <source>post.no_comments</source>
                 <target>この記事へのコメントはまだ投稿されていません。</target>
+            </trans-unit>
+            <trans-unit id="post.no_posts_found">
+                <source>post.no_posts_found</source>
+                <target>投稿は見つかりませんでした。</target>
+            </trans-unit>
+            <trans-unit id="post.created_successfully">
+                <source>post.created_successfully</source>
+                <target>投稿は正常に作成されました！</target>
+            </trans-unit>
+            <trans-unit id="post.updated_successfully">
+                <source>post.updated_successfully</source>
+                <target>投稿は正常に更新されました！</target>
+            </trans-unit>
+            <trans-unit id="post.deleted_successfully">
+                <source>post.deleted_successfully</source>
+                <target>投稿は正常に削除されました！</target>
+            </trans-unit>
+            <trans-unit id="post.search_for">
+                <source>post.search_for</source>
+                <target>検索する...</target>
+            </trans-unit>
+            <trans-unit id="post.search_no_results">
+                <source>post.search_no_results</source>
+                <target>結果が見つかりません</target>
+            </trans-unit>
+
+            <trans-unit id="notification.comment_created">
+                <source>notification.comment_created</source>
+                <target>あなたの投稿はコメントを受け取った！</target>
+            </trans-unit>
+            <trans-unit id="notification.comment_created.description">
+                <source>notification.comment_created.description</source>
+                <target><![CDATA[あなたの投稿「%title%」に新しいコメントが届きました。<a href="%link%">このリンク</a>に沿ってコメントを読むことができます]]></target>
             </trans-unit>
 
             <trans-unit id="help.app_description">
