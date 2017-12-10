@@ -166,8 +166,8 @@ class BlogControllerTest extends WebTestCase
 
     private function generateRandomString(int $length): string
     {
-        $chars = ' 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-        return substr(str_shuffle(str_repeat($chars, ceil($length/strlen($chars)))), 1, $length);
+        return mb_substr(str_shuffle(str_repeat($chars, ceil($length / mb_strlen($chars)))), 1, $length);
     }
 }
