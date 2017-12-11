@@ -1,0 +1,11 @@
+---------------------------------------------------------------------------
+
+by yceruto at 2017-12-05T17:12:40Z
+
+I like this revamp, but we might need to keep the `FixturesTrait` into a separate file because it's used by `tests/Controller/Admin/BlogControllerTest.php` avoiding code duplication.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-12-10T11:53:05Z
+
+@yceruto you are right. However, when I was going to do that change, I realized that we barely use the fixtures trait in tests. So, what do you think if we just replace the entire fixtures trait just by the the `generateRandomString()` method added in 7c3e865?
