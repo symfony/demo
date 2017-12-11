@@ -104,7 +104,8 @@ class Post
      * @ORM\OneToMany(
      *      targetEntity="Comment",
      *      mappedBy="post",
-     *      orphanRemoval=true
+     *      orphanRemoval=true,
+     *      cascade={"persist"}
      * )
      * @ORM\OrderBy({"publishedAt": "DESC"})
      */
@@ -211,10 +212,12 @@ class Post
         $this->summary = $summary;
     }
 
-    public function addTag(Tag $tag): void
+    public function addTag(Tag ...$tags): void
     {
-        if (!$this->tags->contains($tag)) {
-            $this->tags->add($tag);
+        foreach ($tags as $tag) {
+            if (!$this->tags->contains($tag)) {
+                $this->tags->add($tag);
+            }
         }
     }
 
