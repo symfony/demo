@@ -11,7 +11,6 @@
 
 namespace App\Tests\Controller\Admin;
 
-use App\DataFixtures\FixturesTrait;
 use App\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,8 +32,6 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class BlogControllerTest extends WebTestCase
 {
-    use FixturesTrait;
-
     /**
      * @dataProvider getUrlsForRegularUsers
      */
@@ -83,8 +80,8 @@ class BlogControllerTest extends WebTestCase
     public function testAdminNewPost()
     {
         $postTitle = 'Blog Post Title '.mt_rand();
-        $postSummary = $this->getRandomPostSummary();
-        $postContent = $this->getPostContent();
+        $postSummary = $this->generateRandomString(255);
+        $postContent = $this->generateRandomString(1024);
 
         $client = static::createClient([], [
             'PHP_AUTH_USER' => 'jane_admin',
@@ -165,5 +162,12 @@ class BlogControllerTest extends WebTestCase
 
         $post = $client->getContainer()->get('doctrine')->getRepository(Post::class)->find(1);
         $this->assertNull($post);
+    }
+
+    private function generateRandomString(int $length): string
+    {
+        $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        return mb_substr(str_shuffle(str_repeat($chars, ceil($length / mb_strlen($chars)))), 1, $length);
     }
 }
