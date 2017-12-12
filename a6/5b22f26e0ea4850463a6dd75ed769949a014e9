@@ -1,0 +1,41 @@
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2017-12-11T11:31:23Z
+
+Something related to https://github.com/symfony/demo/pull/716#issuecomment-348763017
+
+Btw, do you have a link to that discussion @javiereguiluz ? Or is it something internal?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-12-11T11:37:06Z
+
+It was an internal discussion, so I can't link to it. Sorry.
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2017-12-11T15:25:45Z
+
+np! just wonder how it will go
+
+---------------------------------------------------------------------------
+
+by phpeek at 2017-12-11T22:14:37Z
+
+I'm 👍 on this.
+
+Until packs unfolding feature comes this is the right thing to do IMO.
+
+@garak Please run `composer update` and commit `composer.lock` to fix Travis.
+
+---------------------------------------------------------------------------
+
+by garak at 2017-12-12T10:00:29Z
+
+Travis fixed
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-12-12T11:47:53Z
+
+Let's merge this! But "unpacking packs" is coming very soon to Flex: https://github.com/symfony/flex/pull/241
