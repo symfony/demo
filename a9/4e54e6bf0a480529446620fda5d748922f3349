@@ -1,0 +1,24 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-11-07T07:43:30Z
+
+You are right ... but when we did the transition to Webpack Encore, this didn't work. In fact, the `autoProvidejQuery()` option is the only Encore feature that never works for me. I'm sure it's not Encore's fault but legacy jQuery code fault ... but still, we must be careful. Could you please double check that everything works in all browsers after removing this? Thanks!
+
+---------------------------------------------------------------------------
+
+by stof at 2017-11-07T12:16:29Z
+
+@javiereguiluz at some point, Encore reverted this change, before adding it again (after figuring out why something was not working). I think this explicit stuff might have been added in the demo during the reverting phase.
+
+> In fact, the `autoProvidejQuery()` option is the only Encore feature that never works for me. I'm sure it's not Encore's fault but legacy jQuery code fault ... but still, we must be careful.
+
+there is 2 kind of legacy code handling:
+
+- legacy libraries not supporting CommonJS `require` to get `jquery`, which are part of your webpack-processed assets. This is the case that `autoProvidejQuery` is covering
+- legacy application code in your project, which is **not** processed by webpack (for instance inline JS in your template) which expects to have a `jQuery` global variable (with plugins registered in it). `autoProvidejQuery` is **not** covering this case (`autoProvideVariables` is not either).
+
+---------------------------------------------------------------------------
+
+by mathop at 2017-12-04T04:41:10Z
+
+@javiereguiluz Sorry for the delay, it seems working fine with different browsers.
