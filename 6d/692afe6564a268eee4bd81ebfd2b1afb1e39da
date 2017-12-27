@@ -1,0 +1,30 @@
+---------------------------------------------------------------------------
+
+by jlagneau at 2017-12-25T07:56:07Z
+
+Thanks for this.
+
+Case insensitive searches works great with just your changes in `sanitizeSearchQuery`. It just won't work for uppercase non-ASCII characters in some DBMS like sqlite but it works out of the box with MySQL for example.
+
+E.g:
+Title contains `LorÉM`
+With sqlite, querying for  `LORÉM` works, while `lorém` and `lorem` won't.
+With mysql, querying for `LORÉM`, `lorém` or `lorem` works.
+
+If sqlite is mandatory, I'd say keep it like this as there's no simple way to change that ( http://sqlite.org/faq.html#q18 ). Maybe add a message in the search page to inform the user that searches are case sensitive for the UX?
+
+---------------------------------------------------------------------------
+
+by jkufner at 2017-12-25T09:23:35Z
+
+It is better to leave worrying about case sensitivity to database. Depending on configured collation it can compare strings according to local conventions. MySQL deals with this issue well, Sqlite not so much (at least in the default configuration) and it is ok ­— we should not expect much from the little Sqllite.
+
+I think the strtolower is an ugly hack to fix incompetent database. I would not expect such a thing in example application.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2017-12-27T14:48:18Z
+
+@jlagneau I prefer to not add this warning message yet because that requires a new content to translate in all languages and because by default we use SQLite and non-accented characters, so this always work as expected for most users.
+
+@jkufner I know that your comments were well intended, but I'd like to add a minor clarification about this --> *"... to fix incompetent database"*  We, the Symfony project, don't believe that SQLite is incompetent and we respect SQLite profoundly, as we do with all the other databases.
