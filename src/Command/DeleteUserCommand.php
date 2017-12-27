@@ -112,7 +112,7 @@ HELP
     {
         $username = $this->validator->validateUsername($input->getArgument('username'));
 
-        /** @var User $user */
+        /** @var User|null $user */
         $user = $this->users->findOneByUsername($username);
 
         if (null === $user) {
