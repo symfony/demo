@@ -11,7 +11,7 @@
     {% for type, messages in app.flashes %}
         {% for message in messages %}
             {# Bootstrap alert, see http://getbootstrap.com/components/#alerts #}
-            <div class="alert alert-dismissible alert-{{ type }}" role="alert">
+            <div class="alert alert-dismissible alert-{{ type }} fade in" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
