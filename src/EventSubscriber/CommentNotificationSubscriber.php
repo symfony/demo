@@ -72,7 +72,7 @@ class CommentNotificationSubscriber implements EventSubscriberInterface
             ->setBody($body, 'text/html')
         ;
 
-        // In app/config/config_dev.yml the 'disable_delivery' option is set to 'true'.
+        // In config/packages/dev/swiftmailer.yaml the 'disable_delivery' option is set to 'true'.
         // That's why in the development environment you won't actually receive any email.
         // However, you can inspect the contents of those unsent emails using the debug toolbar.
         // See https://symfony.com/doc/current/email/dev_environment.html#viewing-from-the-web-debug-toolbar
