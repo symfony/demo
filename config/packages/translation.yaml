@@ -1,9 +1,5 @@
 framework:
     default_locale: '%locale%'
     translator:
-        # TODO: remove the 'paths' option when this is included in a stable release:
-        # https://github.com/symfony/symfony/pull/25083
-        paths:
-            - '%kernel.project_dir%/translations/'
         fallbacks:
             - '%locale%'
