@@ -235,7 +235,11 @@
                 <source>post.deleted_successfully</source>
                 <target>Der Beitrag wurde erfolgreich gelöscht!</target>
             </trans-unit>
-
+            <trans-unit id="post.search_for">
+                <source>post.search_for</source>
+                <target>Suchen nach...</target>
+            </trans-unit>
+            
             <trans-unit id="help.app_description">
                 <source>help.app_description</source>
                 <target><![CDATA[Das ist eine <strong>Demo Applikation</strong>, die mit dem Symfony Framework gebaut wurde um eine Empfehlung für die Entwicklung auszusprechen.]]></target>
@@ -295,6 +299,10 @@
             <trans-unit id="menu.rss">
                 <source>menu.rss</source>
                 <target>Blog Posts RSS</target>
+            </trans-unit>
+            <trans-unit id="menu.search">
+                <source>menu.search</source>
+                <target>Suchen</target>
             </trans-unit>
             <trans-unit id="label.tags">
                 <source>label.tags</source>
