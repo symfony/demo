@@ -64,7 +64,7 @@ class PostRepository extends ServiceEntityRepository
     /**
      * @return Post[]
      */
-    public function findBySearchQuery(string $rawQuery, int $limit = Post::NUM_ITEMS): array
+    public function findBySearchQuery(string $rawQuery, int $limit = Post::NUM_ITEMS): iterable
     {
         $query = $this->sanitizeSearchQuery($rawQuery);
         $searchTerms = $this->extractSearchTerms($query);
