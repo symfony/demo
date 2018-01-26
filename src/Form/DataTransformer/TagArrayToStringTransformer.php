@@ -12,7 +12,7 @@
 namespace App\Form\DataTransformer;
 
 use App\Entity\Tag;
-use Doctrine\Common\Persistence\ObjectManager;
+use App\Repository\TagRepository;
 use Symfony\Component\Form\DataTransformerInterface;
 
 /**
@@ -26,11 +26,11 @@ use Symfony\Component\Form\DataTransformerInterface;
  */
 class TagArrayToStringTransformer implements DataTransformerInterface
 {
-    private $manager;
+    private $tags;
 
-    public function __construct(ObjectManager $manager)
+    public function __construct(TagRepository $tags)
     {
-        $this->manager = $manager;
+        $this->tags = $tags;
     }
 
     /**
@@ -58,7 +58,7 @@ class TagArrayToStringTransformer implements DataTransformerInterface
         $names = array_filter(array_unique(array_map('trim', explode(',', $string))));
 
         // Get the current tags and find the new ones that should be created.
-        $tags = $this->manager->getRepository(Tag::class)->findBy([
+        $tags = $this->tags->findBy([
             'name' => $names,
         ]);
         $newNames = array_diff($names, $tags);
