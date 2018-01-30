@@ -126,12 +126,12 @@ class Comment
         $this->author = $author;
     }
 
-    public function getPost(): Post
+    public function getPost(): ?Post
     {
         return $this->post;
     }
 
-    public function setPost(Post $post): void
+    public function setPost(?Post $post): void
     {
         $this->post = $post;
     }

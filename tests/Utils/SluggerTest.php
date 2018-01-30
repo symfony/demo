@@ -29,7 +29,7 @@ class SluggerTest extends TestCase
     /**
      * @dataProvider getSlugs
      */
-    public function testSlugify($string, $slug)
+    public function testSlugify(string $string, string $slug)
     {
         $this->assertSame($slug, Slugger::slugify($string));
     }

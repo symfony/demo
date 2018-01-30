@@ -28,9 +28,9 @@ class PostVoter extends Voter
 {
     // Defining these constants is overkill for this simple application, but for real
     // applications, it's a recommended practice to avoid relying on "magic strings"
-    const SHOW = 'show';
-    const EDIT = 'edit';
-    const DELETE = 'delete';
+    private const SHOW = 'show';
+    private const EDIT = 'edit';
+    private const DELETE = 'delete';
 
     /**
      * {@inheritdoc}

@@ -35,7 +35,7 @@ class BlogControllerTest extends WebTestCase
     /**
      * @dataProvider getUrlsForRegularUsers
      */
-    public function testAccessDeniedForRegularUsers($httpMethod, $url)
+    public function testAccessDeniedForRegularUsers(string $httpMethod, string $url)
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => 'john_user',

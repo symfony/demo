@@ -39,7 +39,7 @@ class Post
      *
      * See https://symfony.com/doc/current/best_practices/configuration.html#constants-vs-configuration-options
      */
-    const NUM_ITEMS = 10;
+    public const NUM_ITEMS = 10;
 
     /**
      * @var int
@@ -138,7 +138,7 @@ class Post
         return $this->title;
     }
 
-    public function setTitle(string $title): void
+    public function setTitle(?string $title): void
     {
         $this->title = $title;
     }
@@ -148,7 +148,7 @@ class Post
         return $this->slug;
     }
 
-    public function setSlug(string $slug): void
+    public function setSlug(?string $slug): void
     {
         $this->slug = $slug;
     }
@@ -158,7 +158,7 @@ class Post
         return $this->content;
     }
 
-    public function setContent(string $content): void
+    public function setContent(?string $content): void
     {
         $this->content = $content;
     }
@@ -168,7 +168,7 @@ class Post
         return $this->publishedAt;
     }
 
-    public function setPublishedAt(\DateTime $publishedAt): void
+    public function setPublishedAt(?\DateTime $publishedAt): void
     {
         $this->publishedAt = $publishedAt;
     }
@@ -178,7 +178,7 @@ class Post
         return $this->author;
     }
 
-    public function setAuthor(User $author): void
+    public function setAuthor(?User $author): void
     {
         $this->author = $author;
     }
@@ -188,7 +188,7 @@ class Post
         return $this->comments;
     }
 
-    public function addComment(Comment $comment): void
+    public function addComment(?Comment $comment): void
     {
         $comment->setPost($this);
         if (!$this->comments->contains($comment)) {
@@ -207,12 +207,12 @@ class Post
         return $this->summary;
     }
 
-    public function setSummary(string $summary): void
+    public function setSummary(?string $summary): void
     {
         $this->summary = $summary;
     }
 
-    public function addTag(Tag ...$tags): void
+    public function addTag(?Tag ...$tags): void
     {
         foreach ($tags as $tag) {
             if (!$this->tags->contains($tag)) {
