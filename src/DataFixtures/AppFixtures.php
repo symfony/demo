@@ -82,7 +82,7 @@ class AppFixtures extends Fixture
                 $comment = new Comment();
                 $comment->setAuthor($this->getReference('john_user'));
                 $comment->setContent($this->getRandomText(random_int(255, 512)));
-                $comment->setPublishedAt(new \DateTime('now + '.($i).'seconds'));
+                $comment->setPublishedAt(new \DateTime('now + '.$i.'seconds'));
 
                 $post->addComment($comment);
             }

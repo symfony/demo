@@ -34,7 +34,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * @dataProvider getPublicUrls
      */
-    public function testPublicUrls($url)
+    public function testPublicUrls(string $url)
     {
         $client = static::createClient();
         $client->request('GET', $url);
@@ -70,7 +70,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * @dataProvider getSecureUrls
      */
-    public function testSecureUrls($url)
+    public function testSecureUrls(string $url)
     {
         $client = static::createClient();
         $client->request('GET', $url);
