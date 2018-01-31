@@ -28,5 +28,5 @@ final class Events
      *
      * @var string
      */
-    const COMMENT_CREATED = 'comment.created';
+    public const COMMENT_CREATED = 'comment.created';
 }

@@ -117,7 +117,7 @@ class SourceCodeExtension extends AbstractExtension
         $codeLines = explode("\n", $code);
 
         $indentedLines = array_filter($codeLines, function ($lineOfCode) {
-            return '' === $lineOfCode || '    ' === mb_substr($lineOfCode, 0, 4);
+            return '' === $lineOfCode || 0 === mb_strpos($lineOfCode, '    ');
         });
 
         if (count($indentedLines) === count($codeLines)) {
