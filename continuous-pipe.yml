@@ -1,0 +1,38 @@
+variables:
+    - name: SYMFONY_ENV
+      value: prod
+
+tasks:
+    images:
+        build:
+            services:
+                web:
+                    image: ${IMAGE_NAME}
+                    naming_strategy: sha1
+    deployment:
+        deploy:
+            cluster: ${CLUSTER}
+            environment:
+                name: '"sfdemo-" ~ code_reference.branch'
+            services:
+                web:
+                    specification:
+                        accessibility:
+                            from_external: true
+                        environment_variable:
+                            - name: SYMFONY_ENV
+                              value: ${SYMFONY_ENV}
+
+pipelines:
+    - name: Production
+      condition: 'not(code_reference.branch matches "/^cpdev/")'
+      tasks:
+          - images
+          - manual_approval: ~
+          - deployment
+    - name: Remote
+      condition: 'code_reference.branch matches "/^cpdev/"'
+      tasks: [ images, deployment ]
+      variables:
+          - name: SYMFONY_ENV
+            value: dev

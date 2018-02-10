@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+    web:
+        build:
+            context: .
+        expose:
+            - 80
+            - 443
+        depends_on:
+            - database
+    database:
+        image: mysql:5.7
+        environment:
+            MYSQL_ROOT_PASSWORD: root
