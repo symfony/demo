@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+    web:
+        ports:
+            - 81:80
+            - 444:443
+        volumes:
+            - .:/app
+        environment:
+            APPLICATION_ENV: development
+            DEVELOPMENT_MODE: "false"
+            WEB_HTTP: "true"
