@@ -26,7 +26,7 @@
 
     {% if posts.haveToPaginate %}
         <div class="navigation text-center">
-            {{ pagerfanta(posts, 'twitter_bootstrap3_translated', {routeName: 'blog_index_paginated'}) }}
+            {{ pagerfanta(posts, 'twitter_bootstrap3_translated', {routeName: 'blog_index_paginated', routeParams: app.request.query.all}) }}
         </div>
     {% endif %}
 {% endblock %}
