@@ -25,7 +25,7 @@
             {{ render(controller('App\\Controller\\BlogController:commentForm', {'id': post.id})) }}
         {% else %}
             <p>
-                <a class="btn btn-success" href="{{ path('security_login') }}">
+                <a class="btn btn-success" href="{{ path('security_login', {'next': app.request.pathInfo}) }}">
                     <i class="fa fa-sign-in" aria-hidden="true"></i> {{ 'action.sign_in'|trans }}
                 </a>
                 {{ 'post.to_publish_a_comment'|trans }}
