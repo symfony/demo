@@ -12,7 +12,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Post;
-use App\Form\PostType;
+use App\Form\Type\PostType;
 use App\Repository\PostRepository;
 use App\Utils\Slugger;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
