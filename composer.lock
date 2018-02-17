@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "dfbd276982fbca323f374d038ff1eed8",
+    "content-hash": "d2e8ba26a8d38410e01d0a8c2e47bc27",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -4542,32 +4542,32 @@
         },
         {
             "name": "dama/doctrine-test-bundle",
-            "version": "v4.0.2",
+            "version": "v5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dmaicher/doctrine-test-bundle.git",
-                "reference": "438346b3380cc7675e37fbcdca912fdc33471d32"
+                "reference": "ccdea2ce9fec5048385d1b9b5bc7c4c3f32ab48f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dmaicher/doctrine-test-bundle/zipball/438346b3380cc7675e37fbcdca912fdc33471d32",
-                "reference": "438346b3380cc7675e37fbcdca912fdc33471d32",
+                "url": "https://api.github.com/repos/dmaicher/doctrine-test-bundle/zipball/ccdea2ce9fec5048385d1b9b5bc7c4c3f32ab48f",
+                "reference": "ccdea2ce9fec5048385d1b9b5bc7c4c3f32ab48f",
                 "shasum": ""
             },
             "require": {
                 "doctrine/dbal": "~2.5",
                 "doctrine/doctrine-bundle": "~1.4",
-                "php": ">=5.5.0",
+                "php": "^7.1",
                 "symfony/framework-bundle": "~2.7|~3.0|~4.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^5.4.4|~6.0",
+                "phpunit/phpunit": "~6.0|~7.0",
                 "symfony/yaml": "~2.7|~3.0"
             },
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.1.x-dev"
+                    "dev-master": "5.1.x-dev"
                 }
             },
             "autoload": {
@@ -4595,7 +4595,7 @@
                 "symfony 2",
                 "tests"
             ],
-            "time": "2018-01-13T13:14:27+00:00"
+            "time": "2018-02-05T12:10:27+00:00"
         },
         {
             "name": "friendsofphp/php-cs-fixer",
