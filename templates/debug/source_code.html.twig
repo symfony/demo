@@ -19,14 +19,14 @@
 
                 <div class="modal-body">
                     {% if controller %}
-                        <h3>{{ 'title.controller_code'|trans }}<small class="pull-right">{{ controller.file_path|format_file(controller.starting_line) }}</small></h3>
+                        <h3><a href="http://symfony.com/doc/current/controller.html" target="_blank">{{ 'title.controller_code'|trans }}</a><small class="pull-right">{{ controller.file_path|format_file(controller.starting_line) }}</small></h3>
                         <pre><code class="php">{{ controller.source_code }}</code></pre>
                     {% else %}
-                        <h3>{{ 'title.controller_code'|trans }}</h3>
+                        <h3><a href="http://symfony.com/doc/current/controller.html">{{ 'title.controller_code'|trans }}</a></h3>
                         <pre><code>{{ 'not_available'|trans }}</code></pre>
                     {% endif %}
 
-                    <h3>{{ 'title.twig_template_code'|trans }}<small class="pull-right">{{ template.file_path|format_file(template.starting_line) }}</small></h3>
+                    <h3><a href="http://symfony.com/doc/current/templating.html" target="_blank">{{ 'title.twig_template_code'|trans }}</a><small class="pull-right">{{ template.file_path|format_file(template.starting_line) }}</small></h3>
                     <pre><code class="twig">{{ template.source_code }}</code></pre>
                 </div>
             </div>
