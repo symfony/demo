@@ -35,3 +35,7 @@ services:
     # 'arguments' key and define the arguments just below the service class
     App\EventSubscriber\CommentNotificationSubscriber:
         $sender: '%app.notifications.email_sender%'
+
+    # Because we can not inject services into doctrine migration, we need to make this public
+    App\Service\MigrationInitialImport:
+        public: true

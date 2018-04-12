@@ -7,6 +7,9 @@ cache:
     - $HOME/symfony-bridge/.phpunit
 
 env:
+  - DB=sqlite
+  - DB=mysql
+  - DB=pgsql
   global:
     - SYMFONY_PHPUNIT_DIR="$HOME/symfony-bridge/.phpunit"
     - SYMFONY_PHPUNIT_VERSION="6.3"
@@ -27,6 +30,12 @@ before_install:
 install:
   - composer install
   - ./vendor/bin/simple-phpunit install
+
+before_script:
+  - echo "$DB"
+  - cp phpunit.xml.dist phpunit.xml
+  - if [[ "$DB" == "mysql" || "$DB" == "mariadb" ]]; then sed -i 's/sqlite:\/\/\/var\/data\/blog_test\.sqlite/mysql:\/\/travis@localhost\/test/' phpunit.xml; fi
+  - if [[ "$DB" == "pgsql" ]]; then sed -i 's/sqlite:\/\/\/var\/data\/blog_test\.sqlite/postgres:\/\/postgres@localhost\/test/' phpunit.xml; fi
 
 script:
   - ./vendor/bin/simple-phpunit
