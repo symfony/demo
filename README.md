@@ -31,6 +31,7 @@ browser at <http://localhost:8000>:
 
 ```bash
 $ cd symfony-demo/
+$ composer install
 $ php bin/console server:run
 ```
 
