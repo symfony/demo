@@ -1,5 +1,7 @@
 /build/
 /node_modules/
+npm-debug.log
+yarn-error.log
 /var/*
 !/var/cache
 /var/cache/*
@@ -16,7 +18,7 @@
 /public/build/images/glyphicons-*
 
 ###> symfony/framework-bundle ###
-.env
+/.env
 /public/bundles/
 /var/
 /vendor/
@@ -27,10 +29,10 @@
 ###< symfony/phpunit-bridge ###
 
 ###> symfony/web-server-bundle ###
-.web-server-pid
+/.web-server-pid
 ###< symfony/web-server-bundle ###
 
 ###> friendsofphp/php-cs-fixer ###
-.php_cs
-.php_cs.cache
+/.php_cs
+/.php_cs.cache
 ###< friendsofphp/php-cs-fixer ###
