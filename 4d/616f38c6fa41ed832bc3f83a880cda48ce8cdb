@@ -1,0 +1,33 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2018-04-25T12:52:44Z
+
+Not sure what's the best choice. Let's ask for help to some expert developers who are active in this repo: @voronkovich @bocharsky-bw @yceruto. Thanks!
+
+---------------------------------------------------------------------------
+
+by stof at 2018-04-25T14:03:36Z
+
+Why do we have `framework_extra.yml` configuring `framework` ? this looks weird (and useless, as FrameworkBundle already enables the annotation layer properly based on the fact that doctrine/annotations is installed)
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2018-04-25T17:10:43Z
+
+I agree with @stof. I think we should just delete the `framework_extra.yml` file.
+
+---------------------------------------------------------------------------
+
+by christickner at 2018-04-25T17:35:01Z
+
+agreed. removed the "framework" config from the file here: https://github.com/symfony/demo/pull/790/commits/a0638623271155d9a70da1828cc6bc30be7676af
+
+@voronkovich note that we can't delete the file entirely, as we have to explicitly disable `sensio_framework_extra.router.annotations` for this issue to be solved.
+
+All: should I squash, rebase on master, and force-push, or are we okay as is?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2018-04-26T07:15:29Z
+
+@christickner thanks for your work on this! There's no need to squash or rebase because the tool we use to merge things do that automatically. Cheers!
