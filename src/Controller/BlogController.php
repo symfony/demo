@@ -17,6 +17,7 @@ use App\Events;
 use App\Form\CommentType;
 use App\Repository\PostRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -78,7 +79,7 @@ class BlogController extends AbstractController
 
     /**
      * @Route("/comment/{postSlug}/new", methods={"POST"}, name="comment_new")
-     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     * @IsGranted("IS_AUTHENTICATED_FULLY")
      * @ParamConverter("post", options={"mapping": {"postSlug": "slug"}})
      *
      * NOTE: The ParamConverter mapping is required because the route parameter
