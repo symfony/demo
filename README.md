@@ -20,8 +20,6 @@ Execute this command to install the project:
 $ composer create-project symfony/symfony-demo
 ```
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-
 Usage
 -----
 
