@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "content-hash": "5574b48b5b8d31e4a5f5ca3b5945edd1",
@@ -1809,7 +1809,7 @@
         },
         {
             "name": "symfony/asset",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/asset.git",
@@ -1817,7 +1817,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/asset/zipball/362dab9ff1ab275368a5cac90c644d0d04918b65",
+                "url": "https://files.phpcomposer.com/files/symfony/asset/362dab9ff1ab275368a5cac90c644d0d04918b65.zip",
                 "reference": "362dab9ff1ab275368a5cac90c644d0d04918b65",
                 "shasum": ""
             },
@@ -1865,7 +1865,7 @@
         },
         {
             "name": "symfony/cache",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/cache.git",
@@ -1873,7 +1873,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/cache/zipball/4986efce97c002e58380e8c0474acbf72eda9339",
+                "url": "https://files.phpcomposer.com/files/symfony/cache/4986efce97c002e58380e8c0474acbf72eda9339.zip",
                 "reference": "4986efce97c002e58380e8c0474acbf72eda9339",
                 "shasum": ""
             },
@@ -1934,7 +1934,7 @@
         },
         {
             "name": "symfony/config",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
@@ -1942,7 +1942,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/5ceefc256caecc3e25147c4e5b933de71d0020c4",
+                "url": "https://files.phpcomposer.com/files/symfony/config/5ceefc256caecc3e25147c4e5b933de71d0020c4.zip",
                 "reference": "5ceefc256caecc3e25147c4e5b933de71d0020c4",
                 "shasum": ""
             },
@@ -1997,7 +1997,7 @@
         },
         {
             "name": "symfony/console",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
@@ -2005,7 +2005,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/694be1112b8fc9d86020207add0d8af5ccc6127a",
+                "url": "https://files.phpcomposer.com/files/symfony/console/694be1112b8fc9d86020207add0d8af5ccc6127a.zip",
                 "reference": "694be1112b8fc9d86020207add0d8af5ccc6127a",
                 "shasum": ""
             },
@@ -2065,7 +2065,7 @@
         },
         {
             "name": "symfony/debug",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
@@ -2073,7 +2073,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/449f8b00b28ab6e6912c3e6b920406143b27193b",
+                "url": "https://files.phpcomposer.com/files/symfony/debug/449f8b00b28ab6e6912c3e6b920406143b27193b.zip",
                 "reference": "449f8b00b28ab6e6912c3e6b920406143b27193b",
                 "shasum": ""
             },
@@ -2121,16 +2121,16 @@
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "5ff3af3d3401ce79e746e982bceaf3c04cc2e71e"
+                "reference": "f2a3f0dc640a28b8aedd51b47ad6e6c5cebb3c00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/5ff3af3d3401ce79e746e982bceaf3c04cc2e71e",
-                "reference": "5ff3af3d3401ce79e746e982bceaf3c04cc2e71e",
+                "url": "https://files.phpcomposer.com/files/symfony/dependency-injection/f2a3f0dc640a28b8aedd51b47ad6e6c5cebb3c00.zip",
+                "reference": "f2a3f0dc640a28b8aedd51b47ad6e6c5cebb3c00",
                 "shasum": ""
             },
             "require": {
@@ -2188,20 +2188,20 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-21T10:10:11+00:00"
+            "time": "2018-05-25T14:55:38+00:00"
         },
         {
             "name": "symfony/doctrine-bridge",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/doctrine-bridge.git",
-                "reference": "09bac59f007e5da22bea0d9d03da3ec7e91748bc"
+                "reference": "9d361867451d5397e46bb32056fa43921545676e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/doctrine-bridge/zipball/09bac59f007e5da22bea0d9d03da3ec7e91748bc",
-                "reference": "09bac59f007e5da22bea0d9d03da3ec7e91748bc",
+                "url": "https://files.phpcomposer.com/files/symfony/doctrine-bridge/9d361867451d5397e46bb32056fa43921545676e.zip",
+                "reference": "9d361867451d5397e46bb32056fa43921545676e",
                 "shasum": ""
             },
             "require": {
@@ -2268,11 +2268,11 @@
             ],
             "description": "Symfony Doctrine Bridge",
             "homepage": "https://symfony.com",
-            "time": "2018-05-21T11:08:00+00:00"
+            "time": "2018-05-16T14:41:07+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -2280,7 +2280,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/2391ed210a239868e7256eb6921b1bd83f3087b5",
+                "url": "https://files.phpcomposer.com/files/symfony/event-dispatcher/2391ed210a239868e7256eb6921b1bd83f3087b5.zip",
                 "reference": "2391ed210a239868e7256eb6921b1bd83f3087b5",
                 "shasum": ""
             },
@@ -2335,7 +2335,7 @@
         },
         {
             "name": "symfony/expression-language",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/expression-language.git",
@@ -2343,7 +2343,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/expression-language/zipball/2d0ffaa38ded0d31dd7a599a3b1f87200227a112",
+                "url": "https://files.phpcomposer.com/files/symfony/expression-language/2d0ffaa38ded0d31dd7a599a3b1f87200227a112.zip",
                 "reference": "2d0ffaa38ded0d31dd7a599a3b1f87200227a112",
                 "shasum": ""
             },
@@ -2385,7 +2385,7 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
@@ -2393,7 +2393,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/af9ad3520d652d6952b5d65ad568be2e9129a17d",
+                "url": "https://files.phpcomposer.com/files/symfony/filesystem/af9ad3520d652d6952b5d65ad568be2e9129a17d.zip",
                 "reference": "af9ad3520d652d6952b5d65ad568be2e9129a17d",
                 "shasum": ""
             },
@@ -2435,7 +2435,7 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
@@ -2443,7 +2443,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/087e2ee0d74464a4c6baac4e90417db7477dc238",
+                "url": "https://files.phpcomposer.com/files/symfony/finder/087e2ee0d74464a4c6baac4e90417db7477dc238.zip",
                 "reference": "087e2ee0d74464a4c6baac4e90417db7477dc238",
                 "shasum": ""
             },
@@ -2530,16 +2530,16 @@
         },
         {
             "name": "symfony/form",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/form.git",
-                "reference": "2be7899c36885187eaa005f769f73de420b3794a"
+                "reference": "4db3310b3e7c773cb9e2a94aede1100d4fb291c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/form/zipball/2be7899c36885187eaa005f769f73de420b3794a",
-                "reference": "2be7899c36885187eaa005f769f73de420b3794a",
+                "url": "https://files.phpcomposer.com/files/symfony/form/4db3310b3e7c773cb9e2a94aede1100d4fb291c8.zip",
+                "reference": "4db3310b3e7c773cb9e2a94aede1100d4fb291c8",
                 "shasum": ""
             },
             "require": {
@@ -2607,20 +2607,20 @@
             ],
             "description": "Symfony Form Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-21T10:10:11+00:00"
+            "time": "2018-05-23T13:33:23+00:00"
         },
         {
             "name": "symfony/framework-bundle",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/framework-bundle.git",
-                "reference": "7927aa74f193def5b998954c7bd431f0eced3567"
+                "reference": "814dd439f3f2e2db36109c7e519a539a77e60b60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/framework-bundle/zipball/7927aa74f193def5b998954c7bd431f0eced3567",
-                "reference": "7927aa74f193def5b998954c7bd431f0eced3567",
+                "url": "https://files.phpcomposer.com/files/symfony/framework-bundle/814dd439f3f2e2db36109c7e519a539a77e60b60.zip",
+                "reference": "814dd439f3f2e2db36109c7e519a539a77e60b60",
                 "shasum": ""
             },
             "require": {
@@ -2722,20 +2722,20 @@
             ],
             "description": "Symfony FrameworkBundle",
             "homepage": "https://symfony.com",
-            "time": "2018-05-21T10:59:05+00:00"
+            "time": "2018-05-25T14:32:25+00:00"
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "7e7b3c05ff74dff2f049dc71e74b7f0c7ee1daf6"
+                "reference": "a916c88390fb861ee21f12a92b107d51bb68af99"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/7e7b3c05ff74dff2f049dc71e74b7f0c7ee1daf6",
-                "reference": "7e7b3c05ff74dff2f049dc71e74b7f0c7ee1daf6",
+                "url": "https://files.phpcomposer.com/files/symfony/http-foundation/a916c88390fb861ee21f12a92b107d51bb68af99.zip",
+                "reference": "a916c88390fb861ee21f12a92b107d51bb68af99",
                 "shasum": ""
             },
             "require": {
@@ -2776,20 +2776,20 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-16T14:33:22+00:00"
+            "time": "2018-05-25T14:55:38+00:00"
         },
         {
             "name": "symfony/http-kernel",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-kernel.git",
-                "reference": "b6a9f819d0c44604001706a355d4988b7f6549c2"
+                "reference": "cf6da2f3f3e838f2c565638bf2eb3d5591e7c666"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/b6a9f819d0c44604001706a355d4988b7f6549c2",
-                "reference": "b6a9f819d0c44604001706a355d4988b7f6549c2",
+                "url": "https://files.phpcomposer.com/files/symfony/http-kernel/cf6da2f3f3e838f2c565638bf2eb3d5591e7c666.zip",
+                "reference": "cf6da2f3f3e838f2c565638bf2eb3d5591e7c666",
                 "shasum": ""
             },
             "require": {
@@ -2863,11 +2863,11 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-21T14:27:45+00:00"
+            "time": "2018-05-26T15:53:24+00:00"
         },
         {
             "name": "symfony/inflector",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/inflector.git",
@@ -2875,7 +2875,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/inflector/zipball/a55513ebd8aa4843300e325c84d0954a9d1f4ed8",
+                "url": "https://files.phpcomposer.com/files/symfony/inflector/a55513ebd8aa4843300e325c84d0954a9d1f4ed8.zip",
                 "reference": "a55513ebd8aa4843300e325c84d0954a9d1f4ed8",
                 "shasum": ""
             },
@@ -2925,7 +2925,7 @@
         },
         {
             "name": "symfony/intl",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/intl.git",
@@ -2933,7 +2933,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/intl/zipball/81a33d5ac539b66e1e898c1612fc37fae4f406ed",
+                "url": "https://files.phpcomposer.com/files/symfony/intl/81a33d5ac539b66e1e898c1612fc37fae4f406ed.zip",
                 "reference": "81a33d5ac539b66e1e898c1612fc37fae4f406ed",
                 "shasum": ""
             },
@@ -3000,7 +3000,7 @@
         },
         {
             "name": "symfony/monolog-bridge",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/monolog-bridge.git",
@@ -3008,7 +3008,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/monolog-bridge/zipball/c0fe8631641b370f926c9dc54f9cac154a9e503b",
+                "url": "https://files.phpcomposer.com/files/symfony/monolog-bridge/c0fe8631641b370f926c9dc54f9cac154a9e503b.zip",
                 "reference": "c0fe8631641b370f926c9dc54f9cac154a9e503b",
                 "shasum": ""
             },
@@ -3129,7 +3129,7 @@
         },
         {
             "name": "symfony/options-resolver",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/options-resolver.git",
@@ -3137,7 +3137,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/c8972436b713cec62ca5d5f5e26e691147515b69",
+                "url": "https://files.phpcomposer.com/files/symfony/options-resolver/c8972436b713cec62ca5d5f5e26e691147515b69.zip",
                 "reference": "c8972436b713cec62ca5d5f5e26e691147515b69",
                 "shasum": ""
             },
@@ -3355,7 +3355,7 @@
         },
         {
             "name": "symfony/property-access",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/property-access.git",
@@ -3363,7 +3363,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/property-access/zipball/54d122627e7b6768fe2d82234e8ebbdef4e86fba",
+                "url": "https://files.phpcomposer.com/files/symfony/property-access/54d122627e7b6768fe2d82234e8ebbdef4e86fba.zip",
                 "reference": "54d122627e7b6768fe2d82234e8ebbdef4e86fba",
                 "shasum": ""
             },
@@ -3422,16 +3422,16 @@
         },
         {
             "name": "symfony/routing",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/routing.git",
-                "reference": "54c81d22ee70981e77763b296b36097a6b669985"
+                "reference": "48c3d6e78097c434338a7bff3e53a316f7b8d5a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/routing/zipball/54c81d22ee70981e77763b296b36097a6b669985",
-                "reference": "54c81d22ee70981e77763b296b36097a6b669985",
+                "url": "https://files.phpcomposer.com/files/symfony/routing/48c3d6e78097c434338a7bff3e53a316f7b8d5a8.zip",
+                "reference": "48c3d6e78097c434338a7bff3e53a316f7b8d5a8",
                 "shasum": ""
             },
             "require": {
@@ -3496,20 +3496,20 @@
                 "uri",
                 "url"
             ],
-            "time": "2018-05-17T10:36:03+00:00"
+            "time": "2018-05-25T21:14:53+00:00"
         },
         {
             "name": "symfony/security",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/security.git",
-                "reference": "1f01fa96586b651f59a21ac16665e324bc292df9"
+                "reference": "26e4f111dcf5b74c59e5cf6ebe04f33b531c1517"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/security/zipball/1f01fa96586b651f59a21ac16665e324bc292df9",
-                "reference": "1f01fa96586b651f59a21ac16665e324bc292df9",
+                "url": "https://files.phpcomposer.com/files/symfony/security/26e4f111dcf5b74c59e5cf6ebe04f33b531c1517.zip",
+                "reference": "26e4f111dcf5b74c59e5cf6ebe04f33b531c1517",
                 "shasum": ""
             },
             "require": {
@@ -3573,20 +3573,20 @@
             ],
             "description": "Symfony Security Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-21T10:10:11+00:00"
+            "time": "2018-05-25T14:31:27+00:00"
         },
         {
             "name": "symfony/security-bundle",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/security-bundle.git",
-                "reference": "19f7f4d606321a113b9eeb21b295d63716056ff0"
+                "reference": "8ac1bc3575a40eb57e0ed84f00bcb5964986945b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/security-bundle/zipball/19f7f4d606321a113b9eeb21b295d63716056ff0",
-                "reference": "19f7f4d606321a113b9eeb21b295d63716056ff0",
+                "url": "https://files.phpcomposer.com/files/symfony/security-bundle/8ac1bc3575a40eb57e0ed84f00bcb5964986945b.zip",
+                "reference": "8ac1bc3575a40eb57e0ed84f00bcb5964986945b",
                 "shasum": ""
             },
             "require": {
@@ -3599,8 +3599,8 @@
             "conflict": {
                 "symfony/console": "<3.4",
                 "symfony/event-dispatcher": "<3.4",
-                "symfony/framework-bundle": "<4.1",
-                "symfony/security": "4.1.0-beta1",
+                "symfony/framework-bundle": "<=4.1-beta2",
+                "symfony/security": "4.1.0-beta1|4.1.0-beta2",
                 "symfony/var-dumper": "<3.4"
             },
             "require-dev": {
@@ -3654,7 +3654,7 @@
             ],
             "description": "Symfony SecurityBundle",
             "homepage": "https://symfony.com",
-            "time": "2018-05-16T15:17:48+00:00"
+            "time": "2018-05-25T13:53:35+00:00"
         },
         {
             "name": "symfony/swiftmailer-bundle",
@@ -3720,7 +3720,7 @@
         },
         {
             "name": "symfony/translation",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
@@ -3728,7 +3728,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/66dfa87fdb1fe656c0c62a2f0eb7870a6d420269",
+                "url": "https://files.phpcomposer.com/files/symfony/translation/66dfa87fdb1fe656c0c62a2f0eb7870a6d420269.zip",
                 "reference": "66dfa87fdb1fe656c0c62a2f0eb7870a6d420269",
                 "shasum": ""
             },
@@ -3789,7 +3789,7 @@
         },
         {
             "name": "symfony/twig-bridge",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/twig-bridge.git",
@@ -3797,7 +3797,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/twig-bridge/zipball/b2e4c10df6517d1fdbb053326387f8e1779ad76e",
+                "url": "https://files.phpcomposer.com/files/symfony/twig-bridge/b2e4c10df6517d1fdbb053326387f8e1779ad76e.zip",
                 "reference": "b2e4c10df6517d1fdbb053326387f8e1779ad76e",
                 "shasum": ""
             },
@@ -3879,7 +3879,7 @@
         },
         {
             "name": "symfony/twig-bundle",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/twig-bundle.git",
@@ -3887,7 +3887,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/twig-bundle/zipball/158bf522a8df74b0a322421bbde14a1647197007",
+                "url": "https://files.phpcomposer.com/files/symfony/twig-bundle/158bf522a8df74b0a322421bbde14a1647197007.zip",
                 "reference": "158bf522a8df74b0a322421bbde14a1647197007",
                 "shasum": ""
             },
@@ -3953,16 +3953,16 @@
         },
         {
             "name": "symfony/validator",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/validator.git",
-                "reference": "a73b1cb36500f5819f0bb7ec15040cc5bb971b22"
+                "reference": "00a8c4e4d817d6e70b6f9456f695ca052a524a97"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/validator/zipball/a73b1cb36500f5819f0bb7ec15040cc5bb971b22",
-                "reference": "a73b1cb36500f5819f0bb7ec15040cc5bb971b22",
+                "url": "https://files.phpcomposer.com/files/symfony/validator/00a8c4e4d817d6e70b6f9456f695ca052a524a97.zip",
+                "reference": "00a8c4e4d817d6e70b6f9456f695ca052a524a97",
                 "shasum": ""
             },
             "require": {
@@ -4035,11 +4035,11 @@
             ],
             "description": "Symfony Validator Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-21T10:10:11+00:00"
+            "time": "2018-05-25T14:55:38+00:00"
         },
         {
             "name": "symfony/yaml",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
@@ -4047,7 +4047,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/0659e9c73eb1cb99e40df23925339c15787fd117",
+                "url": "https://files.phpcomposer.com/files/symfony/yaml/0659e9c73eb1cb99e40df23925339c15787fd117.zip",
                 "reference": "0659e9c73eb1cb99e40df23925339c15787fd117",
                 "shasum": ""
             },
@@ -4821,7 +4821,7 @@
         },
         {
             "name": "symfony/browser-kit",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/browser-kit.git",
@@ -4829,7 +4829,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/browser-kit/zipball/16355a5d0f1499c77efee5ff68d8ea61624d4da1",
+                "url": "https://files.phpcomposer.com/files/symfony/browser-kit/16355a5d0f1499c77efee5ff68d8ea61624d4da1.zip",
                 "reference": "16355a5d0f1499c77efee5ff68d8ea61624d4da1",
                 "shasum": ""
             },
@@ -4878,7 +4878,7 @@
         },
         {
             "name": "symfony/css-selector",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
@@ -4886,7 +4886,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/css-selector/zipball/ac02c27e870bfc1c2dc32f34f56ea9bca275b96a",
+                "url": "https://files.phpcomposer.com/files/symfony/css-selector/ac02c27e870bfc1c2dc32f34f56ea9bca275b96a.zip",
                 "reference": "ac02c27e870bfc1c2dc32f34f56ea9bca275b96a",
                 "shasum": ""
             },
@@ -4931,7 +4931,7 @@
         },
         {
             "name": "symfony/debug-bundle",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug-bundle.git",
@@ -4939,7 +4939,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug-bundle/zipball/3158b762b15f9f8a037ace25c08c4c12ca4395dd",
+                "url": "https://files.phpcomposer.com/files/symfony/debug-bundle/3158b762b15f9f8a037ace25c08c4c12ca4395dd.zip",
                 "reference": "3158b762b15f9f8a037ace25c08c4c12ca4395dd",
                 "shasum": ""
             },
@@ -4996,7 +4996,7 @@
         },
         {
             "name": "symfony/dom-crawler",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dom-crawler.git",
@@ -5004,7 +5004,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/3350cacf151b48d903114ab8f7a4ccb23e07e10a",
+                "url": "https://files.phpcomposer.com/files/symfony/dom-crawler/3350cacf151b48d903114ab8f7a4ccb23e07e10a.zip",
                 "reference": "3350cacf151b48d903114ab8f7a4ccb23e07e10a",
                 "shasum": ""
             },
@@ -5053,7 +5053,7 @@
         },
         {
             "name": "symfony/dotenv",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dotenv.git",
@@ -5061,7 +5061,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dotenv/zipball/87350c54f178f529df544dd7a7b0712497392372",
+                "url": "https://files.phpcomposer.com/files/symfony/dotenv/87350c54f178f529df544dd7a7b0712497392372.zip",
                 "reference": "87350c54f178f529df544dd7a7b0712497392372",
                 "shasum": ""
             },
@@ -5110,16 +5110,16 @@
         },
         {
             "name": "symfony/phpunit-bridge",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
-                "reference": "e9e87d544dd6de512369eed5a674d40e76bb6c74"
+                "reference": "b3451fc442baaf9169e50491a059ef17582c4424"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/e9e87d544dd6de512369eed5a674d40e76bb6c74",
-                "reference": "e9e87d544dd6de512369eed5a674d40e76bb6c74",
+                "url": "https://files.phpcomposer.com/files/symfony/phpunit-bridge/b3451fc442baaf9169e50491a059ef17582c4424.zip",
+                "reference": "b3451fc442baaf9169e50491a059ef17582c4424",
                 "shasum": ""
             },
             "require": {
@@ -5172,7 +5172,7 @@
             ],
             "description": "Symfony PHPUnit Bridge",
             "homepage": "https://symfony.com",
-            "time": "2018-05-21T09:18:50+00:00"
+            "time": "2018-05-25T14:55:38+00:00"
         },
         {
             "name": "symfony/polyfill-php70",
@@ -5290,7 +5290,7 @@
         },
         {
             "name": "symfony/process",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
@@ -5298,7 +5298,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/aed55abfecb23d19697c196d02ca503399f11c9c",
+                "url": "https://files.phpcomposer.com/files/symfony/process/aed55abfecb23d19697c196d02ca503399f11c9c.zip",
                 "reference": "aed55abfecb23d19697c196d02ca503399f11c9c",
                 "shasum": ""
             },
@@ -5339,7 +5339,7 @@
         },
         {
             "name": "symfony/stopwatch",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/stopwatch.git",
@@ -5347,7 +5347,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/stopwatch/zipball/07463bbbbbfe119045a24c4a516f92ebd2752784",
+                "url": "https://files.phpcomposer.com/files/symfony/stopwatch/07463bbbbbfe119045a24c4a516f92ebd2752784.zip",
                 "reference": "07463bbbbbfe119045a24c4a516f92ebd2752784",
                 "shasum": ""
             },
@@ -5388,7 +5388,7 @@
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
@@ -5396,7 +5396,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/bc88ad53e825ebacc7b190bbd360781fce381c64",
+                "url": "https://files.phpcomposer.com/files/symfony/var-dumper/bc88ad53e825ebacc7b190bbd360781fce381c64.zip",
                 "reference": "bc88ad53e825ebacc7b190bbd360781fce381c64",
                 "shasum": ""
             },
@@ -5463,16 +5463,16 @@
         },
         {
             "name": "symfony/web-profiler-bundle",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/web-profiler-bundle.git",
-                "reference": "3f4941fb297e45d0cf962f2e3667702ced30d493"
+                "reference": "8b3914ac388b2c560d4dc162c8136d136245718b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/web-profiler-bundle/zipball/3f4941fb297e45d0cf962f2e3667702ced30d493",
-                "reference": "3f4941fb297e45d0cf962f2e3667702ced30d493",
+                "url": "https://files.phpcomposer.com/files/symfony/web-profiler-bundle/8b3914ac388b2c560d4dc162c8136d136245718b.zip",
+                "reference": "8b3914ac388b2c560d4dc162c8136d136245718b",
                 "shasum": ""
             },
             "require": {
@@ -5525,11 +5525,11 @@
             ],
             "description": "Symfony WebProfilerBundle",
             "homepage": "https://symfony.com",
-            "time": "2018-05-16T14:33:22+00:00"
+            "time": "2018-05-23T13:33:23+00:00"
         },
         {
             "name": "symfony/web-server-bundle",
-            "version": "v4.1.0-BETA2",
+            "version": "v4.1.0-BETA3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/web-server-bundle.git",
@@ -5537,7 +5537,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/web-server-bundle/zipball/d8f9acbb98e8ce8c45aabe9b695615bed0e77fb4",
+                "url": "https://files.phpcomposer.com/files/symfony/web-server-bundle/d8f9acbb98e8ce8c45aabe9b695615bed0e77fb4.zip",
                 "reference": "d8f9acbb98e8ce8c45aabe9b695615bed0e77fb4",
                 "shasum": ""
             },
