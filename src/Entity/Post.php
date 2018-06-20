@@ -70,6 +70,7 @@ class Post
      *
      * @ORM\Column(type="string")
      * @Assert\NotBlank(message="post.blank_summary")
+     * @Assert\Length(max=255)
      */
     private $summary;
 
