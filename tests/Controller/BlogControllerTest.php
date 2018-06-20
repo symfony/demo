@@ -84,4 +84,17 @@ class BlogControllerTest extends WebTestCase
 
         $this->assertSame('Hi, Symfony!', $newComment);
     }
+
+    public function testAjaxSearch()
+    {
+        $client = static::createClient();
+        $client->xmlHttpRequest('GET', '/en/blog/search', ['q' => 'lorem']);
+
+        $results = json_decode($client->getResponse()->getContent(), true);
+
+        $this->assertSame('application/json', $client->getResponse()->headers->get('Content-Type'));
+        $this->assertCount(1, $results);
+        $this->assertSame('Lorem ipsum dolor sit amet consectetur adipiscing elit', $results[0]['title']);
+        $this->assertSame('Jane Doe', $results[0]['author']);
+    }
 }

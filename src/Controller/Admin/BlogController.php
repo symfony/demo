@@ -114,7 +114,7 @@ class BlogController extends AbstractController
     /**
      * Finds and displays a Post entity.
      *
-     * @Route("/{id}", requirements={"id": "\d+"}, methods={"GET"}, name="admin_post_show")
+     * @Route("/{id<\d+>}", methods={"GET"}, name="admin_post_show")
      */
     public function show(Post $post): Response
     {
@@ -130,7 +130,7 @@ class BlogController extends AbstractController
     /**
      * Displays a form to edit an existing Post entity.
      *
-     * @Route("/{id}/edit", requirements={"id": "\d+"}, methods={"GET", "POST"}, name="admin_post_edit")
+     * @Route("/{id<\d+>}/edit",methods={"GET", "POST"}, name="admin_post_edit")
      * @IsGranted("edit", subject="post", message="Posts can only be edited by their authors.")
      */
     public function edit(Request $request, Post $post): Response
