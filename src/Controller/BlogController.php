@@ -46,7 +46,7 @@ class BlogController extends AbstractController
      * Content-Type header for the response.
      * See https://symfony.com/doc/current/quick_tour/the_controller.html#using-formats
      */
-    public function index(int $page, string $_format, PostRepository $posts): Response
+    public function index(int $page=1, string $_format='html', PostRepository $posts=null): Response
     {
         $latestPosts = $posts->findLatest($page);
 
