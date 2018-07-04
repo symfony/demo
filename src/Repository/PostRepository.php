@@ -12,6 +12,7 @@
 namespace App\Repository;
 
 use App\Entity\Post;
+use App\Entity\Tag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\Query;
@@ -35,21 +36,22 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
-    public function findLatest(int $page = 1): Pagerfanta
+    public function findLatest(int $page = 1, Tag $tag = null): Pagerfanta
     {
-        $query = $this->getEntityManager()
-            ->createQuery('
-                SELECT p, a, t
-                FROM App:Post p
-                JOIN p.author a
-                LEFT JOIN p.tags t
-                WHERE p.publishedAt <= :now
-                ORDER BY p.publishedAt DESC
-            ')
-            ->setParameter('now', new \DateTime())
-        ;
+        $qb = $this->createQueryBuilder('p')
+            ->addSelect('a', 't')
+            ->innerJoin('p.author', 'a')
+            ->leftJoin('p.tags', 't')
+            ->where('p.publishedAt <= :now')
+            ->orderBy('p.publishedAt', 'DESC')
+            ->setParameter('now', new \DateTime());
 
-        return $this->createPaginator($query, $page);
+        if (null !== $tag) {
+            $qb->andWhere(':tag MEMBER OF p.tags')
+                ->setParameter('tag', $tag);
+        }
+
+        return $this->createPaginator($qb->getQuery(), $page);
     }
 
     private function createPaginator(Query $query, int $page): Pagerfanta
