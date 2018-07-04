@@ -1,0 +1,41 @@
+---------------------------------------------------------------------------
+
+by yceruto at 2018-04-03T18:16:30Z
+
+This way selected tag is highlighted:
+
+![highlight-tag](https://user-images.githubusercontent.com/2028198/38267310-14974946-3749-11e8-9e53-137966dbd1c4.png)
+
+Credit to @voronkovich
+
+---------------------------------------------------------------------------
+
+by yceruto at 2018-07-02T13:30:40Z
+
+Is this something we want to improve? or does this seem irrelevant for demo purpose?
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2018-07-02T13:58:19Z
+
+This feature:
+
+- looks great;
+- requires so little changes in the codebase;
+- shows the use case for the Doctrine's operator `MEMBER OF`.
+
+IMHO, this PR should be merged.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2018-07-02T15:25:41Z
+
+Sorry I didn't merge this on time. I like it too. A ver minor comment: should we use `label-success` instead of `label-warning` to highlight the selected tag? This is how `label-success` would look:
+
+![label-highlight](https://user-images.githubusercontent.com/73419/42172631-e02d235e-7e1c-11e8-825f-7faa0722752f.png)
+
+---------------------------------------------------------------------------
+
+by yceruto at 2018-07-02T16:11:54Z
+
+Rebased and `label-success` applied.
