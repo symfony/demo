@@ -158,9 +158,6 @@ class BlogController extends AbstractController
      *
      * @Route("/{id}/delete", methods={"POST"}, name="admin_post_delete")
      * @IsGranted("delete", subject="post")
-     *
-     * The Security annotation value is an expression (if it evaluates to false,
-     * the authorization mechanism will prevent the user accessing this resource).
      */
     public function delete(Request $request, Post $post): Response
     {
