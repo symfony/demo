@@ -46,6 +46,11 @@ class PostVoter extends Voter
      */
     protected function voteOnAttribute($attribute, $post, TokenInterface $token): bool
     {
+        // all users are allowed to view posts
+        if (self::SHOW === $attribute) {
+            return true;
+        }
+
         $user = $token->getUser();
 
         // the user must be logged in; if not, deny permission
