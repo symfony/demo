@@ -4,11 +4,11 @@ sudo: false
 cache:
   directories:
     - $HOME/.composer/cache/files
-    - $HOME/symfony-bridge/.phpunit
+    - ./bin/.phpunit
 
 env:
   global:
-    - SYMFONY_PHPUNIT_DIR="$HOME/symfony-bridge/.phpunit"
+    - SYMFONY_PHPUNIT_DIR=./bin/.phpunit
 
 matrix:
   fast_finish: true
@@ -25,10 +25,10 @@ before_install:
 
 install:
   - composer install
-  - ./vendor/bin/simple-phpunit install
+  - ./bin/phpunit install
 
 script:
-  - ./vendor/bin/simple-phpunit
+  - ./bin/phpunit
   # this checks that the source code follows the Symfony Code Syntax rules
   - '[[ "$TRAVIS_PHP_VERSION" == "nightly" ]] || ./vendor/bin/php-cs-fixer fix --diff --dry-run -v'
   # this checks that the YAML config files contain no syntax errors
