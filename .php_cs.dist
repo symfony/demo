@@ -30,6 +30,7 @@ return PhpCsFixer\Config::create()
         'linebreak_after_opening_tag' => true,
         'mb_str_functions' => true,
         'no_php4_constructor' => true,
+        'no_superfluous_phpdoc_tags' => true,
         'no_unreachable_default_argument_value' => true,
         'no_useless_else' => true,
         'no_useless_return' => true,
