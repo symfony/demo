@@ -117,10 +117,8 @@ class TagArrayToStringTransformerTest extends TestCase
 
     /**
      * This helper method creates a Tag instance for the given tag name.
-     *
-     * @param string $name
      */
-    private function createTag($name): Tag
+    private function createTag(string $name): Tag
     {
         $tag = new Tag();
         $tag->setName($name);

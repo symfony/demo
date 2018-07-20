@@ -230,7 +230,7 @@ class AddUserCommand extends Command
      * it's too long, it's better to define a separate method to maintain the
      * code readability.
      */
-    private function getCommandHelp()
+    private function getCommandHelp(): string
     {
         return <<<'HELP'
 The <info>%command.name%</info> command creates new users and saves them in the database:

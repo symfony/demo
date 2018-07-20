@@ -33,7 +33,7 @@ class AppExtension extends AbstractExtension
     private $localeCodes;
     private $locales;
 
-    public function __construct(Markdown $parser, $locales)
+    public function __construct(Markdown $parser, string $locales)
     {
         $this->parser = $parser;
         $this->localeCodes = explode('|', $locales);
