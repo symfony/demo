@@ -23,7 +23,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 /**
  * Controller used to manage current user.
  *
- * @Route("/user")
+ * @Route("/profile")
  * @Security("has_role('ROLE_USER')")
  *
  * @author Romain Monteil <monteil.romain@gmail.com>
@@ -31,9 +31,9 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/", methods={"GET", "POST"}, name="user_index")
+     * @Route("/edit", methods={"GET", "POST"}, name="user_edit")
      */
-    public function index(Request $request): Response
+    public function edit(Request $request): Response
     {
         $user = $this->getUser();
 
@@ -45,19 +45,19 @@ class UserController extends AbstractController
 
             $this->addFlash('success', 'user.updated_successfully');
 
-            return $this->redirectToRoute('user_index');
+            return $this->redirectToRoute('user_edit');
         }
 
-        return $this->render('user/index.html.twig', [
+        return $this->render('user/edit.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/password", methods={"GET", "POST"}, name="user_password")
+     * @Route("/change-password", methods={"GET", "POST"}, name="user_change_password")
      */
-    public function password(Request $request, UserPasswordEncoderInterface $encoder): Response
+    public function changePassword(Request $request, UserPasswordEncoderInterface $encoder): Response
     {
         $user = $this->getUser();
 
@@ -67,13 +67,12 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setPassword($encoder->encodePassword($user, $form->get('newPassword')->getData()));
 
-            $em = $this->getDoctrine()->getManager();
-            $em->flush();
+            $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('security_logout');
         }
 
-        return $this->render('user/password.html.twig', [
+        return $this->render('user/change_password.html.twig', [
             'form' => $form->createView(),
         ]);
     }

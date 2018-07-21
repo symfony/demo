@@ -51,8 +51,8 @@ class UserControllerTest extends WebTestCase
 
     public function getUrlsForAnonymousUsers()
     {
-        yield ['GET', '/en/user/'];
-        yield ['GET', '/en/user/password'];
+        yield ['GET', '/en/profile/edit'];
+        yield ['GET', '/en/profile/change-password'];
     }
 
     public function testEditUser()
@@ -63,7 +63,7 @@ class UserControllerTest extends WebTestCase
             'PHP_AUTH_USER' => 'jane_admin',
             'PHP_AUTH_PW' => 'kitten',
         ]);
-        $crawler = $client->request('GET', '/en/user/');
+        $crawler = $client->request('GET', '/en/profile/edit');
         $form = $crawler->selectButton('Save changes')->form([
             'user[email]' => $newUserEmail,
         ]);
@@ -87,7 +87,7 @@ class UserControllerTest extends WebTestCase
             'PHP_AUTH_USER' => 'jane_admin',
             'PHP_AUTH_PW' => 'kitten',
         ]);
-        $crawler = $client->request('GET', '/en/user/password');
+        $crawler = $client->request('GET', '/en/profile/change-password');
         $form = $crawler->selectButton('Save changes')->form([
             'change_password[currentPassword]' => 'kitten',
             'change_password[newPassword][first]' => $newUserPassword,
