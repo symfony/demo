@@ -19,6 +19,42 @@
                 <target>MIT Licentie</target>
             </trans-unit>
 
+            <trans-unit id="http_error.name">
+                <source>http_error.name</source>
+                <target>Fout %status_code%</target>
+            </trans-unit>
+            <trans-unit id="http_error.description">
+                <source>http_error.description</source>
+                <target>Een onbekende fout (HTTP %status_code%) is opgetreden, waardoor de aanvraag niet gelukt is.</target>
+            </trans-unit>
+            <trans-unit id="http_error.suggestion">
+                <source>http_error.suggestion</source>
+                <target><![CDATA[Probeer de pagina over een paar minuten te herladen, of <a href="%url%">ga terug naar de beginpagina</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="http_error_403.description">
+                <source>http_error_403.description</source>
+                <target>Je hebt geen toestemming om deze bron op te vragen.</target>
+            </trans-unit>
+            <trans-unit id="http_error_403.suggestion">
+                <source>http_error_403.suggestion</source>
+                <target>Vraag je manager of systeembeheerder om toegang tot deze bron te krijgen.</target>
+            </trans-unit>
+            <trans-unit id="http_error_404.description">
+                <source>http_error_404.description</source>
+                <target>We konden de pagina die je opvroeg niet vinden.</target>
+            </trans-unit>
+            <trans-unit id="http_error_404.suggestion">
+                <source>http_error_404.suggestion</source>
+                <target><![CDATA[Controleer de URL op typefouten, of <a href="%url%">ga terug naar de beginpagina</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="http_error_500.description">
+                <source>http_error_500.description</source>
+                <target>Er is een interne serverfout opgetreden.</target>
+            </trans-unit>
+            <trans-unit id="http_error_500.suggestion">
+                <source>http_error_500.suggestion</source>
+                <target><![CDATA[Probeer de pagina over een paar minuten te herladen, of <a href="%url%">ga terug naar de beginpagina</a>.]]></target>
+            </trans-unit>
             <trans-unit id="title.homepage">
                 <source>title.homepage</source>
                 <target><![CDATA[Welkom bij de <strong>Symfony Demo</strong> applicatie]]></target>
@@ -41,7 +77,7 @@
             </trans-unit>
             <trans-unit id="title.post_list">
                 <source>title.post_list</source>
-                <target>Berichten Lijst</target>
+                <target>Berichtenlijst</target>
             </trans-unit>
             <trans-unit id="title.edit_post">
                 <source>title.edit_post</source>
@@ -53,12 +89,16 @@
             </trans-unit>
             <trans-unit id="title.comment_error">
                 <source>title.comment_error</source>
-                <target>Er is een fout opgetreden bij het opslaan van uw reactie</target>
+                <target>Er is een fout opgetreden bij het opslaan van je reactie</target>
             </trans-unit>
 
             <trans-unit id="action.show">
                 <source>action.show</source>
                 <target>Weergeven</target>
+            </trans-unit>
+            <trans-unit id="action.show_post">
+                <source>action.show_post</source>
+                <target>Bericht weergeven</target>
             </trans-unit>
             <trans-unit id="action.show_code">
                 <source>action.show_code</source>
@@ -80,17 +120,38 @@
                 <source>action.delete_post</source>
                 <target>Bericht verwijderen</target>
             </trans-unit>
+            <trans-unit id="delete_post_modal.title">
+                <source>delete_post_modal.title</source>
+                <target>Weet je zeker dat je dit bericht wilt verwijderen?</target>
+            </trans-unit>
+            <trans-unit id="delete_post_modal.body">
+                <source>delete_post_modal.body</source>
+                <target>Deze actie kan niet ongedaan gemaakt worden.</target>
+            </trans-unit>
+            <trans-unit id="label.delete_post">
+                <source>label.delete_post</source>
+                <target>Bericht verwijderen</target>
+            </trans-unit>
+            <trans-unit id="label.cancel">
+                <source>label.cancel</source>
+                <target>Annuleren</target>
+            </trans-unit>
+
             <trans-unit id="action.create_post">
                 <source>action.create_post</source>
-                <target>Nieuw bericht schrijven</target>
+                <target>Maak nieuw bericht</target>
             </trans-unit>
             <trans-unit id="label.create_post">
                 <source>label.create_post</source>
                 <target>Bericht maken</target>
             </trans-unit>
+            <trans-unit id="label.save_and_create_new">
+                <source>label.save_and_create_new</source>
+                <target>Opslaan en nieuwe maken</target>
+            </trans-unit>
             <trans-unit id="action.back_to_list">
                 <source>action.back_to_list</source>
-                <target>Terug naar de berichten lijst</target>
+                <target>Terug naar de berichtenlijst</target>
             </trans-unit>
             <trans-unit id="action.publish_comment">
                 <source>action.publish_comment</source>
@@ -143,7 +204,11 @@
             </trans-unit>
             <trans-unit id="label.published_at">
                 <source>label.published_at</source>
-                <target>Geplaatst</target>
+                <target>Geplaatst op</target>
+            </trans-unit>
+            <trans-unit id="label.tags">
+                <source>label.tags</source>
+                <target>Tags</target>
             </trans-unit>
             <trans-unit id="label.actions">
                 <source>label.actions</source>
@@ -151,7 +216,7 @@
             </trans-unit>
             <trans-unit id="title.post_new">
                 <source>title.post_new</source>
-                <target>Nieuw bericht</target>
+                <target>Bericht aanmaken</target>
             </trans-unit>
             <trans-unit id="action.edit_contents">
                 <source>action.edit_contents</source>
@@ -160,11 +225,15 @@
 
             <trans-unit id="menu.toggle_nav">
                 <source>menu.toggle_nav</source>
-                <target>Schakel navigatie</target>
+                <target>Wissel navigatie</target>
+            </trans-unit>
+            <trans-unit id="menu.choose_language">
+                <source>menu.choose_language</source>
+                <target>Taalkeuze</target>
             </trans-unit>
             <trans-unit id="menu.post_list">
                 <source>menu.post_list</source>
-                <target>Berichten lijst</target>
+                <target>Berichtenlijst</target>
             </trans-unit>
             <trans-unit id="menu.back_to_blog">
                 <source>menu.back_to_blog</source>
@@ -172,7 +241,7 @@
             </trans-unit>
             <trans-unit id="menu.homepage">
                 <source>menu.homepage</source>
-                <target>Homepagina</target>
+                <target>Beginpagina</target>
             </trans-unit>
             <trans-unit id="menu.admin">
                 <source>menu.admin</source>
@@ -181,6 +250,14 @@
             <trans-unit id="menu.logout">
                 <source>menu.logout</source>
                 <target>Uitloggen</target>
+            </trans-unit>
+            <trans-unit id="menu.rss">
+                <source>menu.rss</source>
+                <target>Blogberichten RSS</target>
+            </trans-unit>
+            <trans-unit id="menu.search">
+                <source>menu.search</source>
+                <target>Zoek</target>
             </trans-unit>
 
             <trans-unit id="post.to_publish_a_comment">
@@ -197,16 +274,49 @@
             </trans-unit>
             <trans-unit id="post.no_comments">
                 <source>post.no_comments</source>
-                <target>Wees de eerste om te reageren op dit bericht.</target>
+                <target>Reageer als eerste op dit bericht.</target>
+            </trans-unit>
+            <trans-unit id="post.no_posts_found">
+                <source>post.no_posts_found</source>
+                <target>Geen berichten gevonden.</target>
+            </trans-unit>
+            <trans-unit id="post.created_successfully">
+                <source>post.created_successfully</source>
+                <target>Bericht met succes aangemaakt!</target>
+            </trans-unit>
+            <trans-unit id="post.updated_successfully">
+                <source>post.updated_successfully</source>
+                <target>Bericht met succes bijgewerkt!</target>
+            </trans-unit>
+            <trans-unit id="post.deleted_successfully">
+                <source>post.deleted_successfully</source>
+                <target>Bericht met succes verwijderd!</target>
+            </trans-unit>
+            <trans-unit id="post.search_for">
+                <source>post.search_for</source>
+                <target>Zoek naar...</target>
+            </trans-unit>
+            <trans-unit id="post.search_no_results">
+                <source>post.search_no_results</source>
+                <target>No results found</target>
+            </trans-unit>
+
+            <trans-unit id="notification.comment_created">
+                <source>notification.comment_created</source>
+                <target>Er is een reactie bij je bericht geplaatst!</target>
+            </trans-unit>
+            <trans-unit id="notification.comment_created.description">
+                <source>notification.comment_created.description</source>
+                <target><![CDATA[Er is een nieuwe reactie bij je bericht "%title%"geplaatst. Je kunt de reactie lezen op <a href="%link%">deze link</a>]]></target>
             </trans-unit>
 
             <trans-unit id="help.app_description">
                 <source>help.app_description</source>
-                <target><![CDATA[Dit is een <strong>voorbeeld applicatie</strong>, gemaakt met het Symfony framework, die u een indruk geeft van de aanbevolen manier om een Symfony applicatie te ontwikkelen.]]></target>
+                <target><![CDATA[Dit is een <strong>voorbeeld applicatie</strong>, gemaakt met het Symfony Framework, die je een indruk geeft van de aanbevolen manier om een Symfony applicatie te ontwikkelen.]]></target>
             </trans-unit>
             <trans-unit id="help.show_code">
                 <source>help.show_code</source>
-                <target><![CDATA[Klik op deze knop om de broncode van de <strong>Controller</strong> en <strong>template</strong>, die gebruikt zijn bij het weergeven van deze pagina, te bekijken.]]></target>
+                <target><![CDATA[Klik op deze knop om de broncode te bekijken van de <strong>Controller</strong> en <strong>template</strong>, die gebruikt zijn bij het weergeven van deze pagina.]]></target>
             </trans-unit>
             <trans-unit id="help.browse_app">
                 <source>help.browse_app</source>
@@ -218,7 +328,7 @@
             </trans-unit>
             <trans-unit id="help.login_users">
                 <source>help.login_users</source>
-                <target>Probeer een van de volgende gebruikers</target>
+                <target>Probeer één van de volgende gebruikers</target>
             </trans-unit>
             <trans-unit id="help.role_user">
                 <source>help.role_user</source>
@@ -230,31 +340,24 @@
             </trans-unit>
             <trans-unit id="help.reload_fixtures">
                 <source>help.reload_fixtures</source>
-                <target>Als het niet lukt om in te loggen met deze gebruikers, probeer dan de applicatie instellingen te herladen door dit commando in de terminal uit te voeren:</target>
+                <target>Als het niet lukt om in te loggen met deze gebruikers, herlaad dan de applicatie instellingen door dit commando in de terminal uit te voeren:</target>
             </trans-unit>
             <trans-unit id="help.add_user">
                 <source>help.add_user</source>
-                <target>Als u een nieuwe gebruiker wilt toevoegen dan voer dit commando uit:</target>
+                <target>Als u een nieuwe gebruiker wilt toevoegen, voer dan dit commando uit:</target>
             </trans-unit>
             <trans-unit id="help.more_information">
                 <source>help.more_information</source>
-                <target><![CDATA[Voor meer informatie bekijk de <a href="https://symfony.com/doc">Symfony documentatie</a>.]]></target>
+                <target><![CDATA[Voor meer informatie, bekijk de <a href="https://symfony.com/doc">Symfony documentatie</a>.]]></target>
             </trans-unit>
-            <trans-unit id="delete_post_modal.title">
-                <source>delete_post_modal.title</source>
-                <target>Weet u zeker dat u dit bericht wilt verwijderen?</target>
+
+            <trans-unit id="rss.title">
+                <source>rss.title</source>
+                <target>Symfony Demo blog</target>
             </trans-unit>
-            <trans-unit id="delete_post_modal.body">
-                <source>delete_post_modal.body</source>
-                <target>Deze actie kan niet ongedaan gemaakt worden.</target>
-            </trans-unit>
-            <trans-unit id="label.cancel">
-                <source>label.cancel</source>
-                <target>Annuleren</target>
-            </trans-unit>
-            <trans-unit id="label.delete_post">
-                <source>label.delete_post</source>
-                <target>Verwijderen</target>
+            <trans-unit id="rss.description">
+                <source>rss.description</source>
+                <target>De meest recente berichten, gepubliceerd op De Symfony Demo blog</target>
             </trans-unit>
         </body>
     </file>
