@@ -1,0 +1,89 @@
+---------------------------------------------------------------------------
+
+by bobdenotter at 2018-08-12T13:42:59Z
+
+The build now breaks on this:
+
+```
+PHPUnit 6.5.11 by Sebastian Bergmann and contributors.
+
+Testing Project Test Suite
+..................................................                50 / 50 (100%)
+
+Time: 1.03 minutes, Memory: 56.25MB
+
+OK (50 tests, 92 assertions)
+
+Remaining deprecation notices (1)
+
+  1x: Doctrine\Common\ClassLoader is deprecated.
+    1x in BlogControllerTest::testAdminBackendHomePage from App\Tests\Controller\Admin
+```
+
+Which is something that (i think) needs to be fixed upstream:
+
+https://github.com/symfony/symfony/issues/28119
+
+---------------------------------------------------------------------------
+
+by bshaffer at 2018-08-14T22:24:34Z
+
+Looks like this demo application doesn't work w/o this fix. Is this still being maintained?
+
+---------------------------------------------------------------------------
+
+by stof at 2018-08-17T11:57:04Z
+
+a solution to avoid this issue would be to update Symfony packages, but not Doctrine ones (until Doctrine ORM makes another release removing the usage of the deprecated API)
+
+---------------------------------------------------------------------------
+
+by stof at 2018-08-17T11:58:11Z
+
+@bshaffer the demo app works. It reports being affected by a security vulnerability, but that's not "not working".
+And this PR cannot be merged as is, as it turns the CI red.
+
+---------------------------------------------------------------------------
+
+by bobdenotter at 2018-08-17T14:32:26Z
+
+@stof
+
+> a solution to avoid this issue would be to update Symfony packages, but not Doctrine ones
+
+I've updated the PR like that, but now Travis passes on PHP 7.2, but not on PHP 7.1:
+
+```
+Executing script security-checker security:check [KO]
+ [KO]
+Script security-checker security:check returned with error code 1
+!!
+!!    An error occurred: gnutls_handshake() failed: Handshake failed.
+!!
+!!
+Script @auto-scripts was called via post-install-cmd
+The command "composer install" failed and exited with 1 during .
+Your build has been stopped.
+```
+
+Suggestions on how to proceed?
+
+---------------------------------------------------------------------------
+
+by bshaffer at 2018-08-22T17:44:19Z
+
+I meant it doesn't work because it throws an error on `create-project`. You're right, if you ignore the error it works. But it breaks build scripts unless you suppress the error with ` || true`
+
+---------------------------------------------------------------------------
+
+by bobdenotter at 2018-08-25T16:33:53Z
+
+Update: That took a little bit of trial and error, but the tests are green again.
+
+ - Updated `symfony/*` components to 4.1.3
+ - Updated `composer/ca-bundle` to 1.1.2
+ - Set Travis to use PHP 7.1.18, instead of 7.1.6 or something
+
+See here for details on the TLS issue workaround: https://github.com/travis-ci/travis-ci/issues/6339
+
+If/when Travis fixes this properly, i'll revert travis.yml to use plain `7.1` again.
