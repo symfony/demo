@@ -230,7 +230,7 @@ MARKDOWN;
     {
         $tagNames = $this->getTagData();
         shuffle($tagNames);
-        $selectedTags = array_slice($tagNames, 0, random_int(2, 4));
+        $selectedTags = \array_slice($tagNames, 0, random_int(2, 4));
 
         return array_map(function ($tagName) { return $this->getReference('tag-'.$tagName); }, $selectedTags);
     }
