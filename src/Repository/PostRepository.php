@@ -71,7 +71,7 @@ class PostRepository extends ServiceEntityRepository
         $query = $this->sanitizeSearchQuery($rawQuery);
         $searchTerms = $this->extractSearchTerms($query);
 
-        if (0 === count($searchTerms)) {
+        if (0 === \count($searchTerms)) {
             return [];
         }
 

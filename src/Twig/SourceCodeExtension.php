@@ -62,7 +62,7 @@ class SourceCodeExtension extends AbstractExtension
         $method = $this->getCallableReflector($this->controller);
 
         $classCode = file($method->getFileName());
-        $methodCode = array_slice($classCode, $method->getStartLine() - 1, $method->getEndLine() - $method->getStartLine() + 1);
+        $methodCode = \array_slice($classCode, $method->getStartLine() - 1, $method->getEndLine() - $method->getStartLine() + 1);
         $controllerCode = '    '.$method->getDocComment()."\n".implode('', $methodCode);
 
         return [
@@ -79,11 +79,11 @@ class SourceCodeExtension extends AbstractExtension
      */
     private function getCallableReflector(callable $callable): \ReflectionFunctionAbstract
     {
-        if (is_array($callable)) {
+        if (\is_array($callable)) {
             return new \ReflectionMethod($callable[0], $callable[1]);
         }
 
-        if (is_object($callable) && !$callable instanceof \Closure) {
+        if (\is_object($callable) && !$callable instanceof \Closure) {
             $r = new \ReflectionObject($callable);
 
             return $r->getMethod('__invoke');
@@ -120,7 +120,7 @@ class SourceCodeExtension extends AbstractExtension
             return '' === $lineOfCode || 0 === mb_strpos($lineOfCode, '    ');
         });
 
-        if (count($indentedLines) === count($codeLines)) {
+        if (\count($indentedLines) === \count($codeLines)) {
             $formattedCode = array_map(function ($lineOfCode) {
                 return mb_substr($lineOfCode, 4);
             }, $codeLines);
