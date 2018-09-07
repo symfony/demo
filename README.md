@@ -22,7 +22,7 @@ Usage
 -----
 
 There's no need to configure anything to run the application. Just execute this
-command to start the built-in web server and access the application in your
+command to run the built-in web server and access the application in your
 browser at <http://localhost:8000>:
 
 ```bash
