@@ -11,7 +11,7 @@ services:
     volumes:
       - .:/var/www/html:rw,delegated
       - ./docker/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro
-    working_dir: /var/www/html
+    working_dir: /var/www/html/
     tty: true
 
   php:

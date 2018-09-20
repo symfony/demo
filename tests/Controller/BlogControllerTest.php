@@ -88,7 +88,7 @@ class BlogControllerTest extends WebTestCase
     public function testAjaxSearch()
     {
         $client = static::createClient();
-        $client->xmlHttpRequest('GET', '/en/blog/search', ['q' => 'lorem']);
+        $client->xmlHttpRequest('GET', '/en/blog/search', ['q' => 'Lorem']);
 
         $results = json_decode($client->getResponse()->getContent(), true);
 
