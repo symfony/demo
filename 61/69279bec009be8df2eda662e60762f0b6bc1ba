@@ -1,0 +1,45 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2018-09-07T07:24:49Z
+
+I'm not against replacing `enableVersioning()` by `configureFilenames()` ... as long as it's the recommended way in Webpack Encore and its docs. In this app we always do what Symfony Docs and Best Practices says. Thanks!
+
+---------------------------------------------------------------------------
+
+by bobdenotter at 2018-09-08T05:05:35Z
+
+PR updated, Travis is green.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2018-09-10T09:12:06Z
+
+@weaverryan quick ping: do you agree replacing `enableVersioning()` by `configureFilenames()` as a best practice in Webpack Encore? Thanks!
+
+---------------------------------------------------------------------------
+
+by weaverryan at 2018-09-25T15:19:58Z
+
+Hi guys!
+
+Hmm, I don't fully agree actually. If we were to have one "default" setting that we should encourage most people to use, it is to USE `enableVersioning()`. This is the default setting you get when you install the `encore-pack`, which works because the `json_manifest_path ` is setup for you to read the `manifest.json` file. So, it's free versioning support.
+
+Configuring the filenames so that the images do not include a hash is something that I think only a minority of users want. If you're using the `json_manifest_path`, then the image filename is read from the `manifest.json` file and is transformed into the versioned filename.
+
+So actually, I think we should go the other direction - *enable* versioning :).
+
+Cheers!
+
+---------------------------------------------------------------------------
+
+by weaverryan at 2018-09-25T15:28:47Z
+
+(but I like all the other changes - things do need to be updated, from time to time)
+
+---------------------------------------------------------------------------
+
+by bobdenotter at 2018-09-25T18:03:23Z
+
+> I think we should go the other direction - enable versioning :).
+
+That's fine with me, too. PR updated accordingly.
