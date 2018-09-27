@@ -10,7 +10,7 @@ Encore
         "jQuery.tagsinput": "bootstrap-tagsinput"
     })
     .enableSassLoader()
-    .enableVersioning(false)
+    .enableVersioning()
     .createSharedEntry('js/common', ['jquery'])
     .addEntry('js/app', './assets/js/app.js')
     .addEntry('js/login', './assets/js/login.js')
