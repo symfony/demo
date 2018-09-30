@@ -17,7 +17,7 @@
         <!-- define your env variables for the test env here -->
 
         <!-- ###+ doctrine/doctrine-bundle ### -->
-        <env name="DATABASE_URL" value="sqlite:///var/data/blog_test.sqlite"/>
+        <env name="DATABASE_URL" value="sqlite:///data/database_test.sqlite"/>
         <!-- ###- doctrine/doctrine-bundle ### -->
 
         <!-- ###+ symfony/swiftmailer-bundle ### -->
