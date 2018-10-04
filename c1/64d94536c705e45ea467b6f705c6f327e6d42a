@@ -1,0 +1,44 @@
+---------------------------------------------------------------------------
+
+by sebastianblum at 2018-09-29T14:08:25Z
+
+In the symfony docs, both can be find:
+What it the symfony best practise?
+
+* `{% if app.request.hasPreviousSession %}`
+* `{% if app.session.started %}`
+
+https://symfony.com/blog/new-in-symfony-3-3-improved-flash-messages Normally symfony should do it automatically or?
+
+---------------------------------------------------------------------------
+
+by andrerom at 2018-09-30T16:07:56Z
+
+@sebastianblum I think your question is more for @javiereguiluz or maybe rather @nicolas-grekas.
+
+I just picked this from the doc, as part of my talk [Take your Http caching to the next level with xkey & Fastly](https://twitter.com/andrerom/status/1045806806298185729) at Symfony Live London, and symfony-demo just happens to follow what ever doc says is best practice.
+
+But that said I agree, the framework should not trigger session start on things like this, if it can avoid it.
+
+---------------------------------------------------------------------------
+
+by nicolas-grekas at 2018-09-30T16:21:24Z
+
+The area where flash messages are displayed is by nature not cacheable, as its content can vary per user. Having no flash messages doesn't mean the page is cacheable: caching it would mean that the empty-state can be cached - which would mean that flash messages could be hidden to users that should see them (since the cached version would be served.)
+
+The only way I can think of to fix this once for all is by using a separate request for flash messages (i.e. either XHR or IFRAME or ESI).
+
+---------------------------------------------------------------------------
+
+by andrerom at 2018-09-30T16:38:37Z
+
+> The only way I can think of to fix this once for all is by using a separate request for flash messages (i.e. either XHR or IFRAME or ESI).
+
+True, that would probably be cleaner then how FosHttpCache works around this:
+https://foshttpcachebundle.readthedocs.io/en/latest/features/helpers/flash-message.html
+
+---------------------------------------------------------------------------
+
+by nicolas-grekas at 2018-09-30T17:18:58Z
+
+Let's display flashes only when the verb is POST!
