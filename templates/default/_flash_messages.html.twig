@@ -5,19 +5,27 @@
    A common practice to better distinguish between templates and fragments is to
    prefix fragments with an underscore. That's why this template is called
    '_flash_messages.html.twig' instead of 'flash_messages.html.twig'
+
+   We check if we have session before reading flashes as it otherwise triggers session start:
+   https://symfony.com/doc/current/session/avoid_session_start.html
+
+   TIP: With FOSHttpCache you can also adapt this to make it cache safe:
+   https://foshttpcachebundle.readthedocs.io/en/latest/features/helpers/flash-message.html
 #}
 
-<div class="messages">
-    {% for type, messages in app.flashes %}
-        {% for message in messages %}
-            {# Bootstrap alert, see http://getbootstrap.com/components/#alerts #}
-            <div class="alert alert-dismissible alert-{{ type }} fade in" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+{% if app.request.hasPreviousSession %}
+    <div class="messages">
+        {% for type, messages in app.flashes %}
+            {% for message in messages %}
+                {# Bootstrap alert, see http://getbootstrap.com/components/#alerts #}
+                <div class="alert alert-dismissible alert-{{ type }} fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
 
-                {{ message|trans }}
-            </div>
+                    {{ message|trans }}
+                </div>
+            {% endfor %}
         {% endfor %}
-    {% endfor %}
-</div>
+    </div>
+{% endif %}
