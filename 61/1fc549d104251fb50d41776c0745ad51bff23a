@@ -1,0 +1,14 @@
+---------------------------------------------------------------------------
+
+by bobdenotter at 2018-09-23T16:23:56Z
+
+Is there a reason that it's `App\Form\Type\ChangePasswordType` and `App\Form\UserType`? Id think they should _both_ be in `App\Form\`.
+
+---------------------------------------------------------------------------
+
+by sebastianblum at 2018-09-26T19:32:10Z
+
+@bobdenotter I think I can answer your question.
+Root Types should be in `App\Form`
+Child Types should be in `App\Form\Type`
+so in my opinion this behavior is the current symfony best practise
