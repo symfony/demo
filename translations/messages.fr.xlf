@@ -92,6 +92,14 @@
                 <source>title.comment_error</source>
                 <target>Il y a eu une erreur lors de la publication de votre commentaire.</target>
             </trans-unit>
+            <trans-unit id="title.edit_user">
+                <source>title.edit_user</source>
+                <target>Modifier l'utilisateur</target>
+            </trans-unit>
+            <trans-unit id="title.change_password">
+                <source>title.change_password</source>
+                <target>Modifier le mot de passe</target>
+            </trans-unit>
 
             <trans-unit id="action.show">
                 <source>action.show</source>
@@ -169,6 +177,14 @@
                 <source>action.browse_admin</source>
                 <target>Naviguer sur l'admin</target>
             </trans-unit>
+            <trans-unit id="action.edit_user">
+                <source>action.edit_user</source>
+                <target>Modifier l'utilisateur</target>
+            </trans-unit>
+            <trans-unit id="action.change_password">
+                <source>action.change_password</source>
+                <target>Modifier le mot de passe</target>
+            </trans-unit>
 
             <trans-unit id="label.title">
                 <source>label.title</source>
@@ -186,9 +202,29 @@
                 <source>label.username</source>
                 <target>Identifiant</target>
             </trans-unit>
+            <trans-unit id="label.fullname">
+                <source>label.fullname</source>
+                <target>Nom complet</target>
+            </trans-unit>
+            <trans-unit id="label.email">
+                <source>label.email</source>
+                <target>Mail</target>
+            </trans-unit>
             <trans-unit id="label.password">
                 <source>label.password</source>
                 <target>Mot de passe</target>
+            </trans-unit>
+            <trans-unit id="label.current_password">
+                <source>label.current_password</source>
+                <target>Mot de passe actuel</target>
+            </trans-unit>
+            <trans-unit id="label.new_password">
+                <source>label.new_password</source>
+                <target>Nouveau mot de passe</target>
+            </trans-unit>
+            <trans-unit id="label.new_password_confirm">
+                <source>label.new_password_confirm</source>
+                <target>Confirmer le mot de passe</target>
             </trans-unit>
             <trans-unit id="label.role">
                 <source>label.role</source>
@@ -247,6 +283,10 @@
                 <source>menu.admin</source>
                 <target>Admin</target>
             </trans-unit>
+            <trans-unit id="menu.user">
+                <source>menu.user</source>
+                <target>Compte</target>
+            </trans-unit>
             <trans-unit id="menu.logout">
                 <source>menu.logout</source>
                 <target>Déconnexion</target>
@@ -301,6 +341,11 @@
                 <target>Aucun résultat</target>
             </trans-unit>
 
+            <trans-unit id="user.updated_successfully">
+                <source>user.updated_successfully</source>
+                <target>Informations mises à jour avec succès !</target>
+            </trans-unit>
+
             <trans-unit id="notification.comment_created">
                 <source>notification.comment_created</source>
                 <target>Votre article a reçu un commentaire !</target>
@@ -349,6 +394,11 @@
             <trans-unit id="help.more_information">
                 <source>help.more_information</source>
                 <target><![CDATA[Pour plus d'informations, consultez la <a href="https://symfony.com/doc">documentation de Symfony</a>.]]></target>
+            </trans-unit>
+
+            <trans-unit id="info.change_password">
+                <source>info.change_password</source>
+                <target>Après avoir modifié votre mot de passe, vous serez déconnecté de l'application.</target>
             </trans-unit>
 
             <trans-unit id="rss.title">
