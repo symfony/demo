@@ -33,7 +33,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * See http://knpbundles.com/keyword/admin
  *
  * @Route("/admin/post")
- * @Security("has_role('ROLE_ADMIN')")
+ * @Security("is_granted('ROLE_ADMIN')")
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>

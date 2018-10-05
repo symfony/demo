@@ -24,7 +24,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  * Controller used to manage current user.
  *
  * @Route("/profile")
- * @Security("has_role('ROLE_USER')")
+ * @Security("is_granted('ROLE_USER')")
  *
  * @author Romain Monteil <monteil.romain@gmail.com>
  */
