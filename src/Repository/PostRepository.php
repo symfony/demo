@@ -46,7 +46,7 @@ class PostRepository extends ServiceEntityRepository
             ->orderBy('p.publishedAt', 'DESC')
             ->setParameter('now', new \DateTime());
 
-        if (null !== $tag) {
+        if (!is_null($tag)) {
             $qb->andWhere(':tag MEMBER OF p.tags')
                 ->setParameter('tag', $tag);
         }
