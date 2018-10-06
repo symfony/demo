@@ -112,7 +112,7 @@ class AddUserCommand extends Command
      */
     protected function interact(InputInterface $input, OutputInterface $output)
     {
-        if (null !== $input->getArgument('username') && null !== $input->getArgument('password') && null !== $input->getArgument('email') && null !== $input->getArgument('full-name')) {
+        if (!is_null($input->getArgument('username')) && !is_null($input->getArgument('password')) && !is_null($input->getArgument('email')) && !is_null($input->getArgument('full-name'))) {
             return;
         }
 
@@ -128,7 +128,7 @@ class AddUserCommand extends Command
 
         // Ask for the username if it's not defined
         $username = $input->getArgument('username');
-        if (null !== $username) {
+        if (!is_null($username)) {
             $this->io->text(' > <info>Username</info>: '.$username);
         } else {
             $username = $this->io->ask('Username', null, [$this->validator, 'validateUsername']);
@@ -137,7 +137,7 @@ class AddUserCommand extends Command
 
         // Ask for the password if it's not defined
         $password = $input->getArgument('password');
-        if (null !== $password) {
+        if (!is_null($password)) {
             $this->io->text(' > <info>Password</info>: '.str_repeat('*', mb_strlen($password)));
         } else {
             $password = $this->io->askHidden('Password (your type will be hidden)', [$this->validator, 'validatePassword']);
@@ -146,7 +146,7 @@ class AddUserCommand extends Command
 
         // Ask for the email if it's not defined
         $email = $input->getArgument('email');
-        if (null !== $email) {
+        if (!is_null($email)) {
             $this->io->text(' > <info>Email</info>: '.$email);
         } else {
             $email = $this->io->ask('Email', null, [$this->validator, 'validateEmail']);
@@ -155,7 +155,7 @@ class AddUserCommand extends Command
 
         // Ask for the full name if it's not defined
         $fullName = $input->getArgument('full-name');
-        if (null !== $fullName) {
+        if (!is_null($fullName)) {
             $this->io->text(' > <info>Full Name</info>: '.$fullName);
         } else {
             $fullName = $this->io->ask('Full Name', null, [$this->validator, 'validateFullName']);
@@ -208,7 +208,7 @@ class AddUserCommand extends Command
         // first check if a user with the same username already exists.
         $existingUser = $this->users->findOneBy(['username' => $username]);
 
-        if (null !== $existingUser) {
+        if (!is_null($existingUser)) {
             throw new RuntimeException(sprintf('There is already a user registered with the "%s" username.', $username));
         }
 
@@ -220,7 +220,7 @@ class AddUserCommand extends Command
         // check if a user with the same email already exists.
         $existingEmail = $this->users->findOneBy(['email' => $email]);
 
-        if (null !== $existingEmail) {
+        if (!is_null($existingEmail)) {
             throw new RuntimeException(sprintf('There is already a user registered with the "%s" email.', $email));
         }
     }

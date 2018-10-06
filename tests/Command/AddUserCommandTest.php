@@ -47,7 +47,7 @@ class AddUserCommandTest extends KernelTestCase
     public function testCreateUserNonInteractive(bool $isAdmin)
     {
         $input = $this->userData;
-        if ($isAdmin) {
+        if (!is_null($isAdmin)) {
             $input['--admin'] = 1;
         }
         $this->executeCommand($input);
