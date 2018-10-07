@@ -13,7 +13,7 @@ namespace App\Controller;
 
 use App\Form\Type\ChangePasswordType;
 use App\Form\UserType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +24,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  * Controller used to manage current user.
  *
  * @Route("/profile")
- * @Security("is_granted('ROLE_USER')")
+ * @IsGranted("ROLE_USER")
  *
  * @author Romain Monteil <monteil.romain@gmail.com>
  */
