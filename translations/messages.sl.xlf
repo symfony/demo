@@ -266,7 +266,7 @@
             </trans-unit>
             <trans-unit id="post.num_comments">
                 <source>post.num_comments</source>
-                <target>%count% komentar|%count% komentarja|%count% komentarji|%count% komentarjev</target>
+                <target>{count, plural, one {# komentar} two {# komentarja} few {# komentarji} other {# komentarjev}}</target>
             </trans-unit>
             <trans-unit id="post.commented_on">
                 <source>post.commented_on</source>

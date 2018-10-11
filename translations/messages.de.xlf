@@ -209,7 +209,7 @@
             </trans-unit>
             <trans-unit id="post.num_comments">
                 <source>post.num_comments</source>
-                <target>%count% Kommentar|%count% Kommentare</target>
+                <target>{count, plural, one {# Kommentar} other {# Kommentare}}</target>
             </trans-unit>
             <trans-unit id="post.commented_on">
                 <source>post.commented_on</source>
@@ -239,7 +239,7 @@
                 <source>post.search_for</source>
                 <target>Suchen nach...</target>
             </trans-unit>
-            
+
             <trans-unit id="help.app_description">
                 <source>help.app_description</source>
                 <target><![CDATA[Das ist eine <strong>Demo Applikation</strong>, die mit dem Symfony Framework gebaut wurde um eine Empfehlung für die Entwicklung auszusprechen.]]></target>

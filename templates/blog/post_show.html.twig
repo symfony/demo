@@ -34,7 +34,7 @@
     </div>
 
     <h3>
-        <i class="fa fa-comments" aria-hidden="true"></i> {{ 'post.num_comments'|transchoice(post.comments|length) }}
+        <i class="fa fa-comments" aria-hidden="true"></i> {{ 'post.num_comments'|trans({ 'count': post.comments|length }) }}
     </h3>
 
     {% for comment in post.comments %}
