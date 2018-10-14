@@ -230,9 +230,17 @@
                 <source>label.role</source>
                 <target>Rôle</target>
             </trans-unit>
+            <trans-unit id="label.avatar">
+                <source>label.avatar</source>
+                <target>Avatar</target>
+            </trans-unit>
             <trans-unit id="label.content">
                 <source>label.content</source>
                 <target>Contenu</target>
+            </trans-unit>
+            <trans-unit id="label.thumbnail">
+                <source>label.thumbnail</source>
+                <target>Vignette</target>
             </trans-unit>
             <trans-unit id="label.summary">
                 <source>label.summary</source>
@@ -407,9 +415,17 @@
                 <source>help.post_content</source>
                 <target>Utilisez du Markdown pour formater le contenu de l'article. Le HTML est également autorisé.</target>
             </trans-unit>
+            <trans-unit id="help.post_thumbnail">
+                <source>help.post_thumbnail</source>
+                <target>Taille max : 1Mo - formats acceptés : jpg, jpeg, png - dimension max : 1000x500</target>
+            </trans-unit>
             <trans-unit id="help.comment_content">
                 <source>help.comment_content</source>
                 <target>Les commentaires non conformes à notre code de conduite seront modérés.</target>
+            </trans-unit>
+            <trans-unit id="help.user_avatar">
+                <source>help.user_avatar</source>
+                <target>Taille max : 500Ko - formats acceptés : jpg, jpeg, png - dimension max : 500x500</target>
             </trans-unit>
 
             <trans-unit id="info.change_password">

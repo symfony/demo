@@ -14,6 +14,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -49,6 +50,11 @@ class UserType extends AbstractType
             ])
             ->add('email', EmailType::class, [
                 'label' => 'label.email',
+            ])
+            ->add('avatar_file', FileType::class, [
+                'label' => 'label.avatar',
+                'help' => 'help.user_avatar',
+                'required' => false,
             ])
         ;
     }

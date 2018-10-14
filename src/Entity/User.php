@@ -11,13 +11,20 @@
 
 namespace App\Entity;
 
+use App\Annotation\Uploadable;
+use App\Annotation\UploadableField;
+use App\Entity\Interfaces\TimestampableEntityInterface;
+use App\Entity\Traits\TimestampableEntityTrait;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(name="symfony_demo_user")
+ * @ORM\HasLifecycleCallbacks()
+ * @Uploadable()
  *
  * Defines the properties of the User entity to represent the application users.
  * See https://symfony.com/doc/current/book/doctrine.html#creating-an-entity-class
@@ -28,8 +35,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-class User implements UserInterface, \Serializable
+class User implements UserInterface, TimestampableEntityInterface, \Serializable
 {
+    use TimestampableEntityTrait;
+
     /**
      * @var int
      *
@@ -70,6 +79,27 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     */
+    private $avatar;
+
+    /**
+     * @Assert\Image(
+     *     mimeTypes={
+     *      "image/jpeg",
+     *      "image/png"
+     *     },
+     *     maxSize="500k",
+     *     maxWidth="500",
+     *     maxHeight="500"
+     * )
+     * @UploadableField(filename="avatar", path="users")
+     */
+    private $avatarFile;
 
     /**
      * @var array
@@ -121,6 +151,32 @@ class User implements UserInterface, \Serializable
     public function setPassword(string $password): void
     {
         $this->password = $password;
+    }
+
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(string $avatar)
+    {
+        $this->avatar = $avatar;
+    }
+
+    public function getAvatarFile(): ?File
+    {
+        return $this->avatarFile;
+    }
+
+    public function setAvatarFile(?File $avatarFile)
+    {
+        $this->avatarFile = $avatarFile;
+
+        // the avatarFile field not being mapped with ORM, we force the change of a property that is mapped
+        // so that the change of this field is taken into account when updating the entity.
+        if (null !== $avatarFile) {
+            $this->updatedAt = new \DateTime();
+        }
     }
 
     /**

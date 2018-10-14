@@ -11,14 +11,21 @@
 
 namespace App\Entity;
 
+use App\Annotation\Uploadable;
+use App\Annotation\UploadableField;
+use App\Entity\Interfaces\TimestampableEntityInterface;
+use App\Entity\Traits\TimestampableEntityTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
  * @ORM\Table(name="symfony_demo_post")
+ * @ORM\HasLifecycleCallbacks()
+ * @Uploadable()
  *
  * Defines the properties of the Post entity to represent the blog posts.
  *
@@ -31,8 +38,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
-class Post
+class Post implements TimestampableEntityInterface
 {
+    use TimestampableEntityTrait;
+
     /**
      * Use constants to define configuration options that rarely change instead
      * of specifying them under parameters section in config/services.yaml file.
@@ -89,6 +98,27 @@ class Post
      * @ORM\Column(type="datetime")
      */
     private $publishedAt;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="text")
+     */
+    private $thumbnail;
+
+    /**
+     * @Assert\Image(
+     *     mimeTypes={
+     *      "image/jpeg",
+     *      "image/png"
+     *     },
+     *     maxSize="1M",
+     *     maxWidth="1000",
+     *     maxHeight="500"
+     * )
+     * @UploadableField(filename="thumbnail", path="posts")
+     */
+    private $thumbnailFile;
 
     /**
      * @var User
@@ -171,6 +201,32 @@ class Post
     public function setPublishedAt(\DateTime $publishedAt): void
     {
         $this->publishedAt = $publishedAt;
+    }
+
+    public function getThumbnail(): ?string
+    {
+        return $this->thumbnail;
+    }
+
+    public function setThumbnail(string $thumbnail): void
+    {
+        $this->thumbnail = $thumbnail;
+    }
+
+    public function getThumbnailFile(): ?File
+    {
+        return $this->thumbnailFile;
+    }
+
+    public function setThumbnailFile(File $thumbnailFile): void
+    {
+        $this->thumbnailFile = $thumbnailFile;
+
+        // the thumbnailFile field not being mapped with ORM, we force the change of a property that is mapped
+        // so that the change of this field is taken into account when updating the entity.
+        if (null !== $thumbnailFile) {
+            $this->updatedAt = new \DateTime();
+        }
     }
 
     public function getAuthor(): ?User

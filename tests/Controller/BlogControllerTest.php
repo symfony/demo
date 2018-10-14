@@ -71,7 +71,7 @@ class BlogControllerTest extends WebTestCase
 
         // Find first blog post
         $crawler = $client->request('GET', '/en/blog/');
-        $postLink = $crawler->filter('article.post > h2 a')->link();
+        $postLink = $crawler->filter('article.post > a')->link();
 
         $crawler = $client->click($postLink);
 

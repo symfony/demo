@@ -5,11 +5,13 @@
 {% block main %}
     {% for post in paginator.results %}
         <article class="post">
-            <h2>
-                <a href="{{ path('blog_post', {slug: post.slug}) }}">
-                    {{ post.title }}
-                </a>
-            </h2>
+            <a href="{{ path('blog_post', {slug: post.slug}) }}">
+                {% if post.thumbnail is defined and post.thumbnail is not empty %}
+                    <img src="{{ asset('uploads/posts/' ~ post.thumbnail) }}" class="img-thumbnail">
+                {% endif %}
+
+                <h2>{{ post.title }}</h2>
+            </a>
 
             <p class="post-metadata">
                 <span class="metadata"><i class="fa fa-calendar"></i> {{ post.publishedAt|localizeddate('long', 'medium', null, 'UTC') }}</span>

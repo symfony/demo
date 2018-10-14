@@ -230,9 +230,17 @@
                 <source>label.role</source>
                 <target>Role</target>
             </trans-unit>
+            <trans-unit id="label.avatar">
+                <source>label.avatar</source>
+                <target>Avatar</target>
+            </trans-unit>
             <trans-unit id="label.content">
                 <source>label.content</source>
                 <target>Content</target>
+            </trans-unit>
+            <trans-unit id="label.thumbnail">
+                <source>label.thumbnail</source>
+                <target>Thumbnail</target>
             </trans-unit>
             <trans-unit id="label.summary">
                 <source>label.summary</source>
@@ -407,9 +415,17 @@
                 <source>help.post_content</source>
                 <target>Use Markdown to format the blog post contents. HTML is allowed too.</target>
             </trans-unit>
+            <trans-unit id="help.post_thumbnail">
+                <source>help.post_thumbnail</source>
+                <target>Maximum size: 1MB - accepted formats: jpg, jpeg, png - maximum dimension: 1000x500</target>
+            </trans-unit>
             <trans-unit id="help.comment_content">
                 <source>help.comment_content</source>
                 <target>Comments not complying with our Code of Conduct will be moderated.</target>
+            </trans-unit>
+            <trans-unit id="help.user_avatar">
+                <source>help.user_avatar</source>
+                <target>Maximum size: 500KO - accepted formats: jpg, jpeg, png - maximum dimension: 500x500</target>
             </trans-unit>
 
             <trans-unit id="info.change_password">

@@ -6,7 +6,22 @@
     <h1>{{ 'title.edit_user'|trans }}</h1>
 
     {{ form_start(form) }}
-        {{ form_widget(form) }}
+        {{ form_errors(form) }}
+
+        {{ form_row(form.username) }}
+        {{ form_row(form.fullName) }}
+        {{ form_row(form.email) }}
+
+        <div class="form-group">
+            {% if app.user.avatar is defined and app.user.avatar is not empty %}
+                <div class="thumbnail">
+                    <img src="{{ asset('uploads/users/' ~ app.user.avatar) }}" title="{{ app.user.username }}" alt="{{ 'label.avatar'|trans }}">
+                </div>
+            {% endif %}
+            {{ form_label(form.avatar_file) }}
+            {{ form_widget(form.avatar_file) }}
+            {{ form_help(form.avatar_file) }}
+        </div>
 
         <button type="submit" class="btn btn-primary">
             <i class="fa fa-save" aria-hidden="true"></i> {{ 'action.save'|trans }}

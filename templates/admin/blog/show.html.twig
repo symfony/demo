@@ -3,6 +3,10 @@
 {% block body_id 'admin_post_show' %}
 
 {% block main %}
+    {% if post.thumbnail is defined and post.thumbnail is not empty %}
+        <img src="{{ asset('uploads/posts/' ~ post.thumbnail) }}" class="img-thumbnail">
+    {% endif %}
+
     <h1>{{ post.title }}</h1>
 
     <p class="post-metadata">
