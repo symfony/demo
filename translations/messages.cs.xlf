@@ -189,7 +189,7 @@
             </trans-unit>
             <trans-unit id="post.num_comments">
                 <source>post.num_comments</source>
-                <target>%count% komentář|%count% komentáře|%count% komentářů</target>
+                <target>{count, plural, one {# komentář} few {# komentáře} other {# komentářů}}</target>
             </trans-unit>
             <trans-unit id="post.commented_on">
                 <source>post.commented_on</source>
