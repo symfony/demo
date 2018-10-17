@@ -306,7 +306,7 @@
             </trans-unit>
             <trans-unit id="post.num_comments">
                 <source>post.num_comments</source>
-                <target>%count% commentaire|%count% commentaires</target>
+                <target>{count, plural, one {# commentaire} other {# commentaires}}</target>
             </trans-unit>
             <trans-unit id="post.commented_on">
                 <source>post.commented_on</source>
