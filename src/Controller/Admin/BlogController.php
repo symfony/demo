@@ -118,7 +118,7 @@ class BlogController extends AbstractController
     public function show(Post $post): Response
     {
         // This security check can also be performed
-        // using an annotation: @IsGranted("show", subject="post")
+        // using an annotation: @IsGranted("show", subject="post", message="Posts can only be shown to their authors.")
         $this->denyAccessUnlessGranted('show', $post, 'Posts can only be shown to their authors.');
 
         return $this->render('admin/blog/show.html.twig', [
