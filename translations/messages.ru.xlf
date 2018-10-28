@@ -92,6 +92,14 @@
                 <source>title.comment_error</source>
                 <target>Произошла ошибка во время публикации вашего комментария</target>
             </trans-unit>
+            <trans-unit id="title.edit_user">
+                <source>title.edit_user</source>
+                <target>Изменить пользователя</target>
+            </trans-unit>
+            <trans-unit id="title.change_password">
+                <source>title.change_password</source>
+                <target>Изменить пароль</target>
+            </trans-unit>
 
             <trans-unit id="action.show">
                 <source>action.show</source>
@@ -169,6 +177,14 @@
                 <source>action.browse_admin</source>
                 <target>Перейти в панель управления</target>
             </trans-unit>
+            <trans-unit id="action.edit_user">
+                <source>action.edit_user</source>
+                <target>Изменить пользователя</target>
+            </trans-unit>
+            <trans-unit id="action.change_password">
+                <source>action.change_password</source>
+                <target>Изменить пароль</target>
+            </trans-unit>
 
             <trans-unit id="label.title">
                 <source>label.title</source>
@@ -186,9 +202,29 @@
                 <source>label.username</source>
                 <target>Логин</target>
             </trans-unit>
+            <trans-unit id="label.fullname">
+                <source>label.fullname</source>
+                <target>Полное имя</target>
+            </trans-unit>
+            <trans-unit id="label.email">
+                <source>label.email</source>
+                <target>Email</target>
+            </trans-unit>
             <trans-unit id="label.password">
                 <source>label.password</source>
                 <target>Пароль</target>
+            </trans-unit>
+            <trans-unit id="label.current_password">
+                <source>label.current_password</source>
+                <target>Текущий пароль</target>
+            </trans-unit>
+            <trans-unit id="label.new_password">
+                <source>label.new_password</source>
+                <target>Новый пароль</target>
+            </trans-unit>
+            <trans-unit id="label.new_password_confirm">
+                <source>label.new_password_confirm</source>
+                <target>Подтвердите пароль</target>
             </trans-unit>
             <trans-unit id="label.role">
                 <source>label.role</source>
@@ -246,6 +282,10 @@
             <trans-unit id="menu.admin">
                 <source>menu.admin</source>
                 <target>Панель управления</target>
+            </trans-unit>
+            <trans-unit id="menu.user">
+                <source>menu.user</source>
+                <target>Аккаунт</target>
             </trans-unit>
             <trans-unit id="menu.logout">
                 <source>menu.logout</source>
@@ -349,6 +389,11 @@
             <trans-unit id="help.more_information">
                 <source>help.more_information</source>
                 <target><![CDATA[Для дополнительной информации обратитесь к <a href="https://symfony.com/doc">Symfony документации</a>.]]></target>
+            </trans-unit>
+
+            <trans-unit id="info.change_password">
+                <source>info.change_password</source>
+                <target>После изменения пароля Вам потребуется заново авторизоваться в приложении.</target>
             </trans-unit>
 
             <trans-unit id="rss.title">
