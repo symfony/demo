@@ -13,8 +13,6 @@ namespace App\Tests\Command;
 
 use App\Command\AddUserCommand;
 use App\Entity\User;
-use App\Utils\Validator;
-use Doctrine\Bundle\DoctrineBundle\Registry;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
@@ -115,10 +113,8 @@ class AddUserCommandTest extends KernelTestCase
     {
         self::bootKernel();
 
-        $container = self::$kernel->getContainer();
-        /** @var Registry $doctrine */
-        $doctrine = $container->get('doctrine');
-        $command = new AddUserCommand($doctrine->getManager(), $container->get('security.password_encoder'), new Validator(), $doctrine->getRepository(User::class));
+        // this uses a special testing container that allows you to fetch private services
+        $command = self::$container->get(AddUserCommand::class);
         $command->setApplication(new Application(self::$kernel));
 
         $commandTester = new CommandTester($command);
