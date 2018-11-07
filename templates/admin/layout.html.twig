@@ -9,12 +9,12 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('build/css/admin.css') }}">
+    {{ encore_entry_link_tags('css/admin') }}
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('build/js/admin.js') }}"></script>
+    {{ encore_entry_script_tags('js/admin') }}
 {% endblock %}
 
 {% block header_navigation_links %}
