@@ -11,7 +11,7 @@ Encore
     })
     .enableSassLoader()
     .enableVersioning()
-    .createSharedEntry('js/common', ['jquery'])
+    .splitEntryChunks('js/common', ['jquery'])
     .addEntry('js/app', './assets/js/app.js')
     .addEntry('js/login', './assets/js/login.js')
     .addEntry('js/admin', './assets/js/admin.js')
