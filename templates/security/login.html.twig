@@ -4,7 +4,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('build/js/login.js') }}"></script>
+    {{ encore_entry_script_tags('js/login') }}
 {% endblock %}
 
 {% block main %}
