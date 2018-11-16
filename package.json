@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "@symfony/webpack-encore": "^0.21.0",
+    "@symfony/webpack-encore": "^0.22.0",
     "bloodhound-js": "^1.2.3",
     "bootstrap-sass": "^3.3.7",
     "bootstrap-tagsinput": "^0.7.1",
@@ -15,10 +15,12 @@
     "sass-loader": "^7.1.0",
     "typeahead.js": "^0.11.1"
   },
+  "license": "UNLICENSED",
+  "private": true,
   "scripts": {
-    "dev-server": "./node_modules/.bin/encore dev-server",
-    "dev": "./node_modules/.bin/encore dev",
-    "watch": "./node_modules/.bin/encore dev --watch",
-    "build": "./node_modules/.bin/encore production"
+    "dev-server": "encore dev-server",
+    "dev": "encore dev",
+    "watch": "encore dev --watch",
+    "build": "encore production --progress"
   }
 }

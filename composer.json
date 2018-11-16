@@ -14,20 +14,20 @@
         "ezyang/htmlpurifier": "^4.9",
         "sensio/framework-extra-bundle": "^5.0",
         "sensiolabs/security-checker": "^5.0",
-        "symfony/asset": "4.2.0-beta1",
-        "symfony/expression-language": "4.2.0-beta1",
+        "symfony/asset": "4.2.*",
+        "symfony/expression-language": "4.2.*",
         "symfony/flex": "^1.1",
-        "symfony/form": "4.2.0-beta1",
-        "symfony/framework-bundle": "4.2.0-beta1",
+        "symfony/form": "4.2.*",
+        "symfony/framework-bundle": "4.2.*",
         "symfony/monolog-bundle": "^3.1",
         "symfony/polyfill-php72": "^1.8",
-        "symfony/security-bundle": "4.2.0-beta1",
+        "symfony/security-bundle": "4.2.*",
         "symfony/swiftmailer-bundle": "^3.1",
-        "symfony/translation": "4.2.0-beta1",
-        "symfony/twig-bundle": "4.2.0-beta1",
-        "symfony/validator": "4.2.0-beta1",
+        "symfony/translation": "4.2.*",
+        "symfony/twig-bundle": "4.2.*",
+        "symfony/validator": "4.2.*",
         "symfony/webpack-encore-bundle": "dev-master",
-        "symfony/yaml": "4.2.0-beta1",
+        "symfony/yaml": "4.2.*",
         "twig/extensions": "^1.5",
         "white-october/pagerfanta-bundle": "^1.1"
     },
@@ -35,14 +35,14 @@
         "dama/doctrine-test-bundle": "^5.0",
         "doctrine/doctrine-fixtures-bundle": "^3.0",
         "friendsofphp/php-cs-fixer": "^2.12",
-        "symfony/browser-kit": "4.2.0-beta1",
-        "symfony/css-selector": "4.2.0-beta1",
-        "symfony/debug-bundle": "4.2.0-beta1",
-        "symfony/dotenv": "4.2.0-beta1",
-        "symfony/phpunit-bridge": "4.2.0-beta1",
-        "symfony/stopwatch": "4.2.0-beta1",
-        "symfony/web-profiler-bundle": "4.2.0-beta1",
-        "symfony/web-server-bundle": "4.2.0-beta1"
+        "symfony/browser-kit": "4.2.*",
+        "symfony/css-selector": "4.2.*",
+        "symfony/debug-bundle": "4.2.*",
+        "symfony/dotenv": "4.2.*",
+        "symfony/phpunit-bridge": "4.2.*",
+        "symfony/stopwatch": "4.2.*",
+        "symfony/web-profiler-bundle": "4.2.*",
+        "symfony/web-server-bundle": "4.2.*"
     },
     "config": {
         "platform": {
@@ -81,7 +81,8 @@
     },
     "extra": {
         "symfony": {
-            "allow-contrib": true
+            "allow-contrib": true,
+            "require": "4.2.*"
         }
     }
 }
