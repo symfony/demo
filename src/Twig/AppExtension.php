@@ -11,6 +11,7 @@
 
 namespace App\Twig;
 
+use App\EventSubscriber\DisableHttpCachingSubscriber;
 use App\Utils\Markdown;
 use Symfony\Component\Intl\Intl;
 use Twig\Extension\AbstractExtension;
@@ -32,11 +33,13 @@ class AppExtension extends AbstractExtension
     private $parser;
     private $localeCodes;
     private $locales;
+    private $httpCaching;
 
-    public function __construct(Markdown $parser, string $locales)
+    public function __construct(Markdown $parser, string $locales, DisableHttpCachingSubscriber $httpCaching)
     {
         $this->parser = $parser;
         $this->localeCodes = explode('|', $locales);
+        $this->httpCaching = $httpCaching;
     }
 
     /**
@@ -56,6 +59,7 @@ class AppExtension extends AbstractExtension
     {
         return [
             new TwigFunction('locales', [$this, 'getLocales']),
+            new TwigFunction('disable_http_caching', [$this, 'disableHttpCaching']),
         ];
     }
 
@@ -84,5 +88,10 @@ class AppExtension extends AbstractExtension
         }
 
         return $this->locales;
+    }
+
+    public function disableHttpCaching(): void
+    {
+        $this->httpCaching->disableHttpCaching();
     }
 }
