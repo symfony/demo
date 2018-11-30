@@ -9,7 +9,7 @@ cache:
 env:
   global:
     - SYMFONY_PHPUNIT_DIR=./bin/.phpunit
-    - SYMFONY_DEPRECATIONS_HELPER=9
+    - SYMFONY_DEPRECATIONS_HELPER=29
 
 matrix:
   fast_finish: true
