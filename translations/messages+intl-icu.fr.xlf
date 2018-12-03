@@ -395,6 +395,22 @@
                 <source>help.more_information</source>
                 <target><![CDATA[Pour plus d'informations, consultez la <a href="https://symfony.com/doc">documentation de Symfony</a>.]]></target>
             </trans-unit>
+            <trans-unit id="help.summary">
+                <source>help.summary</source>
+                <target>Les résumés ne peuvent pas contenir de contenu Markdown ou HTML ; seulement du texte brut.</target>
+            </trans-unit>
+            <trans-unit id="help.published_at">
+                <source>help.published_at</source>
+                <target>Sélectionnez une date future pour programmer la publication de l'article.</target>
+            </trans-unit>
+            <trans-unit id="help.post_content">
+                <source>help.post_content</source>
+                <target>Utilisez du Markdown pour formater le contenu de l'article. Le HTML est également autorisé.</target>
+            </trans-unit>
+            <trans-unit id="help.comment_content">
+                <source>help.comment_content</source>
+                <target>Les commentaires non conformes à notre code de conduite seront modérés.</target>
+            </trans-unit>
 
             <trans-unit id="info.change_password">
                 <source>info.change_password</source>

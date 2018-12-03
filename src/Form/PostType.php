@@ -48,17 +48,17 @@ class PostType extends AbstractType
                 'label' => 'label.title',
             ])
             ->add('summary', TextareaType::class, [
-                'help' => 'Summaries can\'t contain Markdown or HTML contents; only plain text.',
+                'help' => 'help.summary',
                 'label' => 'label.summary',
             ])
             ->add('content', null, [
                 'attr' => ['rows' => 20],
-                'help' => 'Use Markdown to format the blog post contents. HTML is allowed too.',
+                'help' => 'help.post_content',
                 'label' => 'label.content',
             ])
             ->add('publishedAt', DateTimePickerType::class, [
                 'label' => 'label.published_at',
-                'help' => 'Set the date in the future to schedule the blog post publication.',
+                'help' => 'help.published_at',
             ])
             ->add('tags', TagsInputType::class, [
                 'label' => 'label.tags',
