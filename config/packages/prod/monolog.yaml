@@ -7,9 +7,17 @@ monolog:
             excluded_http_codes: [404]
         nested:
             type: stream
-            path: '%kernel.logs_dir%/%kernel.environment%.log'
+            path: "%kernel.logs_dir%/%kernel.environment%.log"
             level: debug
         console:
-            type:   console
+            type: console
             process_psr_3_messages: false
-            channels: ['!event', '!doctrine']
+            channels: ["!event", "!doctrine"]
+        deprecation:
+            type: stream
+            path: "%kernel.logs_dir%/%kernel.environment%.deprecations.log"
+        deprecation_filter:
+            type: filter
+            handler: deprecation
+            max_level: info
+            channels: ["php"]
