@@ -395,6 +395,22 @@
                 <source>help.more_information</source>
                 <target><![CDATA[For more information, check out the <a href="https://symfony.com/doc">Symfony doc</a>.]]></target>
             </trans-unit>
+            <trans-unit id="help.summary">
+                <source>help.summary</source>
+                <target>Summaries can't contain Markdown or HTML contents; only plain text.</target>
+            </trans-unit>
+            <trans-unit id="help.published_at">
+                <source>help.published_at</source>
+                <target>Set the date in the future to schedule the blog post publication.</target>
+            </trans-unit>
+            <trans-unit id="help.post_content">
+                <source>help.post_content</source>
+                <target>Use Markdown to format the blog post contents. HTML is allowed too.</target>
+            </trans-unit>
+            <trans-unit id="help.comment_content">
+                <source>help.comment_content</source>
+                <target>Comments not complying with our Code of Conduct will be moderated.</target>
+            </trans-unit>
 
             <trans-unit id="info.change_password">
                 <source>info.change_password</source>
