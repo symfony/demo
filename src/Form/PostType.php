@@ -48,7 +48,7 @@ class PostType extends AbstractType
                 'label' => 'label.title',
             ])
             ->add('summary', TextareaType::class, [
-                'help' => 'help.summary',
+                'help' => 'help.post_summary',
                 'label' => 'label.summary',
             ])
             ->add('content', null, [
@@ -58,7 +58,7 @@ class PostType extends AbstractType
             ])
             ->add('publishedAt', DateTimePickerType::class, [
                 'label' => 'label.published_at',
-                'help' => 'help.published_at',
+                'help' => 'help.post_publication',
             ])
             ->add('tags', TagsInputType::class, [
                 'label' => 'label.tags',
