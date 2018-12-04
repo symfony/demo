@@ -45,7 +45,7 @@
             </trans-unit>
             <trans-unit id="title.edit_post">
                 <source>title.edit_post</source>
-                <target>#%id% この記事を編集</target>
+                <target>#{id, number} この記事を編集</target>
             </trans-unit>
             <trans-unit id="title.add_comment">
                 <source>title.add_comment</source>
@@ -234,7 +234,7 @@
             </trans-unit>
             <trans-unit id="notification.comment_created.description">
                 <source>notification.comment_created.description</source>
-                <target><![CDATA[あなたの投稿「%title%」に新しいコメントが届きました。<a href="%link%">このリンク</a>に沿ってコメントを読むことができます]]></target>
+                <target><![CDATA[あなたの投稿「{title}」に新しいコメントが届きました。<a href="{link}">このリンク</a>に沿ってコメントを読むことができます]]></target>
             </trans-unit>
 
             <trans-unit id="help.app_description">

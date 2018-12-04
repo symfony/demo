@@ -21,15 +21,15 @@
 
             <trans-unit id="http_error.name">
                 <source>http_error.name</source>
-                <target>Ошибка %status_code%</target>
+                <target>Ошибка {status_code, number}</target>
             </trans-unit>
             <trans-unit id="http_error.description">
                 <source>http_error.description</source>
-                <target>Произошла неизвестная ошибка (HTTP %status_code%), которая помешала выполнить ваш запрос.</target>
+                <target>Произошла неизвестная ошибка (HTTP {status_code, number}), которая помешала выполнить ваш запрос.</target>
             </trans-unit>
             <trans-unit id="http_error.suggestion">
                 <source>http_error.suggestion</source>
-                <target><![CDATA[Попробуйте загрузить эту страницу снова через несколько минут или <a href="%url%">вернитесь на главную страницу</a>.]]></target>
+                <target><![CDATA[Попробуйте загрузить эту страницу снова через несколько минут или <a href="{url}">вернитесь на главную страницу</a>.]]></target>
             </trans-unit>
             <trans-unit id="http_error_403.description">
                 <source>http_error_403.description</source>
@@ -45,7 +45,7 @@
             </trans-unit>
             <trans-unit id="http_error_404.suggestion">
                 <source>http_error_404.suggestion</source>
-                <target><![CDATA[Проверьте корректность введенного URL или <a href="%url%">вернитесь на главную страницу</a>.]]></target>
+                <target><![CDATA[Проверьте корректность введенного URL или <a href="{url}">вернитесь на главную страницу</a>.]]></target>
             </trans-unit>
             <trans-unit id="http_error_500.description">
                 <source>http_error_500.description</source>
@@ -53,7 +53,7 @@
             </trans-unit>
             <trans-unit id="http_error_500.suggestion">
                 <source>http_error_500.suggestion</source>
-                <target><![CDATA[Попробуйте загрузить эту страницу снова через несколько минут или <a href="%url%">вернитесь на главную страницу</a>.]]></target>
+                <target><![CDATA[Попробуйте загрузить эту страницу снова через несколько минут или <a href="{url}">вернитесь на главную страницу</a>.]]></target>
             </trans-unit>
 
             <trans-unit id="title.homepage">
@@ -82,7 +82,7 @@
             </trans-unit>
             <trans-unit id="title.edit_post">
                 <source>title.edit_post</source>
-                <target>Изменение записи #%id%</target>
+                <target>Изменение записи #{id, number}</target>
             </trans-unit>
             <trans-unit id="title.add_comment">
                 <source>title.add_comment</source>
@@ -347,7 +347,7 @@
             </trans-unit>
             <trans-unit id="notification.comment_created.description">
                 <source>notification.comment_created.description</source>
-                <target><![CDATA[Ваша запись "%title%" получила новый комментарий. Вы можете прочесть этот коментарий, перейдя по <a href="%link%">этой ссылке</a>]]></target>
+                <target><![CDATA[Ваша запись "{title}" получила новый комментарий. Вы можете прочесть этот коментарий, перейдя по <a href="{link}">этой ссылке</a>]]></target>
             </trans-unit>
 
             <trans-unit id="help.app_description">

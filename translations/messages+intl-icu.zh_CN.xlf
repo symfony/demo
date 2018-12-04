@@ -21,15 +21,15 @@
 
             <trans-unit id="http_error.name">
                 <source>http_error.name</source>
-                <target>错误 %status_code%</target>
+                <target>错误 {status_code, number}</target>
             </trans-unit>
             <trans-unit id="http_error.description">
                 <source>http_error.description</source>
-                <target>有未知错误 (HTTP %status_code%) 阻止你的请求.</target>
+                <target>有未知错误 (HTTP {status_code, number}) 阻止你的请求.</target>
             </trans-unit>
             <trans-unit id="http_error.suggestion">
                 <source>http_error.suggestion</source>
-                <target><![CDATA[尝试在几分钟后重新加载此页或者 <a href="%url%">返回首页</a>.]]></target>
+                <target><![CDATA[尝试在几分钟后重新加载此页或者 <a href="{url}">返回首页</a>.]]></target>
             </trans-unit>
             <trans-unit id="http_error_403.description">
                 <source>http_error_403.description</source>
@@ -45,7 +45,7 @@
             </trans-unit>
             <trans-unit id="http_error_404.suggestion">
                 <source>http_error_404.suggestion</source>
-                <target><![CDATA[请检查链接中的拼写错误或者 <a href="%url%">返回首页</a>.]]></target>
+                <target><![CDATA[请检查链接中的拼写错误或者 <a href="{url}">返回首页</a>.]]></target>
             </trans-unit>
             <trans-unit id="http_error_500.description">
                 <source>http_error_500.description</source>
@@ -53,7 +53,7 @@
             </trans-unit>
             <trans-unit id="http_error_500.suggestion">
                 <source>http_error_500.suggestion</source>
-                <target><![CDATA[尝试在几分钟后重新加载此页或者 <a href="%url%">返回首页</a>.]]></target>
+                <target><![CDATA[尝试在几分钟后重新加载此页或者 <a href="{url}">返回首页</a>.]]></target>
             </trans-unit>
 
             <trans-unit id="title.homepage">
@@ -82,7 +82,7 @@
             </trans-unit>
             <trans-unit id="title.edit_post">
                 <source>title.edit_post</source>
-                <target>编辑文章 #%id%</target>
+                <target>编辑文章 #{id, number}</target>
             </trans-unit>
             <trans-unit id="title.add_comment">
                 <source>title.add_comment</source>
@@ -295,7 +295,7 @@
             </trans-unit>
             <trans-unit id="notification.comment_created.description">
                 <source>notification.comment_created.description</source>
-                <target><![CDATA[你的文章 "%title%" 收到一条新评论. <a href="%link%">查看评论</a>]]></target>
+                <target><![CDATA[你的文章 "{title}" 收到一条新评论. <a href="{link}">查看评论</a>]]></target>
             </trans-unit>
 
             <trans-unit id="help.app_description">

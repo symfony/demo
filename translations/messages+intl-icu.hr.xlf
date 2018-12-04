@@ -21,15 +21,15 @@
 
             <trans-unit id="http_error.name">
                 <source>http_error.name</source>
-                <target>Greška %status_code%</target>
+                <target>Greška {status_code, number}</target>
             </trans-unit>
             <trans-unit id="http_error.description">
                 <source>http_error.description</source>
-                <target>Desila se nepoznata greška (HTTP %status_code%), koja je spriječila završetak zahtjeva.</target>
+                <target>Desila se nepoznata greška (HTTP {status_code, number}), koja je spriječila završetak zahtjeva.</target>
             </trans-unit>
             <trans-unit id="http_error.suggestion">
                 <source>http_error.suggestion</source>
-                <target><![CDATA[Pokušajte ponovno učitati stranicu nakon nekoliko minuta ili <a href="%url%">se vratite na početnu stranicu</a>.]]></target>
+                <target><![CDATA[Pokušajte ponovno učitati stranicu nakon nekoliko minuta ili <a href="{url}">se vratite na početnu stranicu</a>.]]></target>
             </trans-unit>
             <trans-unit id="http_error_403.description">
                 <source>http_error_403.description</source>
@@ -45,7 +45,7 @@
             </trans-unit>
             <trans-unit id="http_error_404.suggestion">
                 <source>http_error_404.suggestion</source>
-                <target><![CDATA[Provjerite ima li pravopisne greške unutar URL adrese ili <a href="%url%">se vratite na početnu stranicu</a>.]]></target>
+                <target><![CDATA[Provjerite ima li pravopisne greške unutar URL adrese ili <a href="{url}">se vratite na početnu stranicu</a>.]]></target>
             </trans-unit>
             <trans-unit id="http_error_500.description">
                 <source>http_error_500.description</source>
@@ -53,7 +53,7 @@
             </trans-unit>
             <trans-unit id="http_error_500.suggestion">
                 <source>http_error_500.suggestion</source>
-                <target><![CDATA[Pokušajte ponovno učitati stranicu nakon nekoliko minuta ili <a href="%url%">se vratite na početnu stranicu</a>.]]></target>
+                <target><![CDATA[Pokušajte ponovno učitati stranicu nakon nekoliko minuta ili <a href="{url}">se vratite na početnu stranicu</a>.]]></target>
             </trans-unit>
             <trans-unit id="title.homepage">
                 <source>title.homepage</source>
@@ -81,7 +81,7 @@
             </trans-unit>
             <trans-unit id="title.edit_post">
                 <source>title.edit_post</source>
-                <target>Uredi članak #%id%</target>
+                <target>Uredi članak #{id, number}</target>
             </trans-unit>
             <trans-unit id="title.add_comment">
                 <source>title.add_comment</source>
@@ -287,7 +287,7 @@
             </trans-unit>
             <trans-unit id="notification.comment_created.description">
                 <source>notification.comment_created.description</source>
-                <target><![CDATA[Vaš članak "%title%" je komentiran. Možete pročitati komentar prateći <a href="%link%">ovu poveznicu</a>]]></target>
+                <target><![CDATA[Vaš članak "{title}" je komentiran. Možete pročitati komentar prateći <a href="{link}">ovu poveznicu</a>]]></target>
             </trans-unit>
 
             <trans-unit id="help.app_description">

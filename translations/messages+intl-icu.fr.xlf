@@ -21,15 +21,15 @@
 
             <trans-unit id="http_error.name">
                 <source>http_error.name</source>
-                <target>Erreur %status_code%</target>
+                <target>Erreur {status_code, number}</target>
             </trans-unit>
             <trans-unit id="http_error.description">
                 <source>http_error.description</source>
-                <target>Il y a eu une erreur inconnue (HTTP %status_code%) qui a empêché l'aboutissement de votre requête.</target>
+                <target>Il y a eu une erreur inconnue (HTTP {status_code, number}) qui a empêché l'aboutissement de votre requête.</target>
             </trans-unit>
             <trans-unit id="http_error.suggestion">
                 <source>http_error.suggestion</source>
-                <target><![CDATA[Essayez de recharger cette page dans quelques minutes ou <a href="%url%">retournez sur la page principale</a>.]]></target>
+                <target><![CDATA[Essayez de recharger cette page dans quelques minutes ou <a href="{url}">retournez sur la page principale</a>.]]></target>
             </trans-unit>
             <trans-unit id="http_error_403.description">
                 <source>http_error_403.description</source>
@@ -45,7 +45,7 @@
             </trans-unit>
             <trans-unit id="http_error_404.suggestion">
                 <source>http_error_404.suggestion</source>
-                <target><![CDATA[Vérifiez si l'URL ne comporte pas d'erreurs ou <a href="%url%">retournez sur la page principale</a>.]]></target>
+                <target><![CDATA[Vérifiez si l'URL ne comporte pas d'erreurs ou <a href="{url}">retournez sur la page principale</a>.]]></target>
             </trans-unit>
             <trans-unit id="http_error_500.description">
                 <source>http_error_500.description</source>
@@ -53,7 +53,7 @@
             </trans-unit>
             <trans-unit id="http_error_500.suggestion">
                 <source>http_error_500.suggestion</source>
-                <target><![CDATA[Essayez de recharger cette page dans quelques minutes ou <a href="%url%">retournez sur la page principale</a>.]]></target>
+                <target><![CDATA[Essayez de recharger cette page dans quelques minutes ou <a href="{url}">retournez sur la page principale</a>.]]></target>
             </trans-unit>
 
             <trans-unit id="title.homepage">
@@ -82,7 +82,7 @@
             </trans-unit>
             <trans-unit id="title.edit_post">
                 <source>title.edit_post</source>
-                <target>Modifier l'article #%id%</target>
+                <target>Modifier l'article #{id, number}</target>
             </trans-unit>
             <trans-unit id="title.add_comment">
                 <source>title.add_comment</source>
@@ -352,7 +352,7 @@
             </trans-unit>
             <trans-unit id="notification.comment_created.description">
                 <source>notification.comment_created.description</source>
-                <target><![CDATA[Votre article "%title%" a reçu un nouveau commentaire. Vous pouvez lire le commentaire en suivant <a href="%link%">ce lien</a>]]></target>
+                <target><![CDATA[Votre article "{title}" a reçu un nouveau commentaire. Vous pouvez lire le commentaire en suivant <a href="{link}">ce lien</a>]]></target>
             </trans-unit>
 
             <trans-unit id="help.app_description">
