@@ -21,15 +21,15 @@
 
             <trans-unit id="http_error.name">
                 <source>http_error.name</source>
-                <target>Erro %status_code%</target>
+                <target>Erro {status_code, number}</target>
             </trans-unit>
             <trans-unit id="http_error.description">
                 <source>http_error.description</source>
-                <target>Ocorreu um erro desconhecido (HTTP %status_code%) que impediu a sua requisição de ser completada.</target>
+                <target>Ocorreu um erro desconhecido (HTTP {status_code, number}) que impediu a sua requisição de ser completada.</target>
             </trans-unit>
             <trans-unit id="http_error.suggestion">
                 <source>http_error.suggestion</source>
-                <target><![CDATA[Tente carregar essa página novamente dentro de alguns minutos ou <a href="%url%">volte para a página inicial</a>.]]></target>
+                <target><![CDATA[Tente carregar essa página novamente dentro de alguns minutos ou <a href="{url}">volte para a página inicial</a>.]]></target>
             </trans-unit>
             <trans-unit id="http_error_403.description">
                 <source>http_error_403.description</source>
@@ -45,7 +45,7 @@
             </trans-unit>
             <trans-unit id="http_error_404.suggestion">
                 <source>http_error_404.suggestion</source>
-                <target><![CDATA[Verifique erros de digitação na URL ou <a href="%url%">volte para a página inicial</a>.]]></target>
+                <target><![CDATA[Verifique erros de digitação na URL ou <a href="{url}">volte para a página inicial</a>.]]></target>
             </trans-unit>
             <trans-unit id="http_error_500.description">
                 <source>http_error_500.description</source>
@@ -53,7 +53,7 @@
             </trans-unit>
             <trans-unit id="http_error_500.suggestion">
                 <source>http_error_500.suggestion</source>
-                <target><![CDATA[Tente carregar essa página novamente dentro de alguns minutos ou <a href="%url%">volte para a página inicial</a>.]]></target>
+                <target><![CDATA[Tente carregar essa página novamente dentro de alguns minutos ou <a href="{url}">volte para a página inicial</a>.]]></target>
             </trans-unit>
 
             <trans-unit id="title.homepage">
@@ -82,7 +82,7 @@
             </trans-unit>
             <trans-unit id="title.edit_post">
                 <source>title.edit_post</source>
-                <target>Editar o post #%id%</target>
+                <target>Editar o post #{id, number}</target>
             </trans-unit>
             <trans-unit id="title.add_comment">
                 <source>title.add_comment</source>
@@ -295,7 +295,7 @@
             </trans-unit>
             <trans-unit id="notification.comment_created.description">
                 <source>notification.comment_created.description</source>
-                <target><![CDATA[Seu post "%title%" recebeu um novo comentário. Você pode ler o comentário através <a href="%link%">deste link</a>]]></target>
+                <target><![CDATA[Seu post "{title}" recebeu um novo comentário. Você pode ler o comentário através <a href="{link}">deste link</a>]]></target>
             </trans-unit>
 
             <trans-unit id="help.app_description">

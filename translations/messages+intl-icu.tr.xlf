@@ -21,15 +21,15 @@
 
             <trans-unit id="http_error.name">
                 <source>http_error.name</source>
-                <target>Hata %status_code%</target>
+                <target>Hata {status_code, number}</target>
             </trans-unit>
             <trans-unit id="http_error.description">
                 <source>http_error.description</source>
-                <target>İsteğinizi tamamlamayı engelleyen bilinmeyen bir hata oluştu (HTTP% status_code%).</target>
+                <target>İsteğinizi tamamlamayı engelleyen bilinmeyen bir hata oluştu (HTTP {status_code}).</target>
             </trans-unit>
             <trans-unit id="http_error.suggestion">
                 <source>http_error.suggestion</source>
-                <target><![CDATA[Bu sayfayı birkaç dakika içinde tekrar yüklemeyi veya <a href="%url%">ana sayfaya geri dönmeyi</a> deneyin.]]></target>
+                <target><![CDATA[Bu sayfayı birkaç dakika içinde tekrar yüklemeyi veya <a href="{url}">ana sayfaya geri dönmeyi</a> deneyin.]]></target>
             </trans-unit>
             <trans-unit id="http_error_403.description">
                 <source>http_error_403.description</source>
@@ -45,7 +45,7 @@
             </trans-unit>
             <trans-unit id="http_error_404.suggestion">
                 <source>http_error_404.suggestion</source>
-                <target><![CDATA[URL'de yanlış yazımları kontrol edin veya <a href="%url%">ana sayfaya geri dönün</a>.]]></target>
+                <target><![CDATA[URL'de yanlış yazımları kontrol edin veya <a href="{url}">ana sayfaya geri dönün</a>.]]></target>
             </trans-unit>
             <trans-unit id="http_error_500.description">
                 <source>http_error_500.description</source>
@@ -53,7 +53,7 @@
             </trans-unit>
             <trans-unit id="http_error_500.suggestion">
                 <source>http_error_500.suggestion</source>
-                <target><![CDATA[Bu sayfayı birkaç dakika içinde tekrar yüklemeyi veya <a href="%url%">ana sayfaya geri dönmeyi</a> deneyin.]]></target>
+                <target><![CDATA[Bu sayfayı birkaç dakika içinde tekrar yüklemeyi veya <a href="{url}">ana sayfaya geri dönmeyi</a> deneyin.]]></target>
             </trans-unit>
 
             <trans-unit id="title.homepage">
@@ -82,7 +82,7 @@
             </trans-unit>
             <trans-unit id="title.edit_post">
                 <source>title.edit_post</source>
-                <target>Gönderiyi düzenle #%id%</target>
+                <target>Gönderiyi düzenle #{id, number}</target>
             </trans-unit>
             <trans-unit id="title.add_comment">
                 <source>title.add_comment</source>
@@ -307,7 +307,7 @@
             </trans-unit>
             <trans-unit id="notification.comment_created.description">
                 <source>notification.comment_created.description</source>
-                <target><![CDATA[Gönderiniz "% title%" yeni bir yorum aldı. Yorumu <a href="%link%">bu bağlantıyı</a> takip ederek okuyabilirsiniz.]]></target>
+                <target><![CDATA[Gönderiniz "{title}" yeni bir yorum aldı. Yorumu <a href="{link}">bu bağlantıyı</a> takip ederek okuyabilirsiniz.]]></target>
             </trans-unit>
 
             <trans-unit id="help.app_description">

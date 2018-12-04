@@ -20,15 +20,15 @@
             </trans-unit>
             <trans-unit id="http_error.name">
                 <source>http_error.name</source>
-                <target>Грешка %status_code%</target>
+                <target>Грешка {status_code, number}</target>
             </trans-unit>
             <trans-unit id="http_error.description">
                 <source>http_error.description</source>
-                <target>Има неизвестна грешка (HTTP %status_code%) , която спира изпълнението на заявката.</target>
+                <target>Има неизвестна грешка (HTTP {status_code, number}) , която спира изпълнението на заявката.</target>
             </trans-unit>
             <trans-unit id="http_error.suggestion">
                 <source>http_error.suggestion</source>
-                <target><![CDATA[Опитайте да заредите тази страница няколко минути по-късно или <a href="%url%">се върни в началната страница</a>.]]></target>
+                <target><![CDATA[Опитайте да заредите тази страница няколко минути по-късно или <a href="{url}">се върни в началната страница</a>.]]></target>
             </trans-unit>
             <trans-unit id="http_error_403.description">
                 <source>http_error_403.description</source>
@@ -44,7 +44,7 @@
             </trans-unit>
             <trans-unit id="http_error_404.suggestion">
                 <source>http_error_404.suggestion</source>
-                <target><![CDATA[Проверете за правописни грешки в URL адреса или <a href="%url%">се върнете в началната страница</a>.]]></target>
+                <target><![CDATA[Проверете за правописни грешки в URL адреса или <a href="{url}">се върнете в началната страница</a>.]]></target>
             </trans-unit>
             <trans-unit id="http_error_500.description">
                 <source>http_error_500.description</source>
@@ -52,7 +52,7 @@
             </trans-unit>
             <trans-unit id="http_error_500.suggestion">
                 <source>http_error_500.suggestion</source>
-                <target><![CDATA[Опитайте да заредите тази страница отново след няколко минути или <a href="%url%">се върнете в началната страница</a>.]]></target>
+                <target><![CDATA[Опитайте да заредите тази страница отново след няколко минути или <a href="{url}">се върнете в началната страница</a>.]]></target>
             </trans-unit>
             <trans-unit id="title.homepage">
                 <source>title.homepage</source>
@@ -80,7 +80,7 @@
             </trans-unit>
             <trans-unit id="title.edit_post">
                 <source>title.edit_post</source>
-                <target>Редактиране на публикация #%id%</target>
+                <target>Редактиране на публикация #{id, number}</target>
             </trans-unit>
             <trans-unit id="title.add_comment">
                 <source>title.add_comment</source>
@@ -300,7 +300,7 @@
             </trans-unit>
             <trans-unit id="notification.comment_created.description">
                 <source>notification.comment_created.description</source>
-                <target><![CDATA[Вашата публикация "%title%" получи нов коментар. Можете да прочетете коментара, като последвате <a href="%link%">този линк</a>]]></target>
+                <target><![CDATA[Вашата публикация "{title}" получи нов коментар. Можете да прочетете коментара, като последвате <a href="{link}">този линк</a>]]></target>
             </trans-unit>
             <trans-unit id="help.app_description">
                 <source>help.app_description</source>

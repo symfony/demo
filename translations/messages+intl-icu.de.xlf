@@ -45,7 +45,7 @@
             </trans-unit>
             <trans-unit id="title.edit_post">
                 <source>title.edit_post</source>
-                <target>Bearbeite Beitrag #%id%</target>
+                <target>Bearbeite Beitrag #{id, number}</target>
             </trans-unit>
             <trans-unit id="title.add_comment">
                 <source>title.add_comment</source>
@@ -310,15 +310,15 @@
             </trans-unit>
             <trans-unit id="http_error.name">
                 <source>http_error.name</source>
-                <target>Fehler %status_code%</target>
+                <target>Fehler {status_code, number}</target>
             </trans-unit>
             <trans-unit id="http_error.description">
                 <source>http_error.description</source>
-                <target>Ein unbekannter Fehler (HTTP %status_code%) ist aufgetreten. Deine Anfrage konnte deswegen nicht ausgeführt werden.</target>
+                <target>Ein unbekannter Fehler (HTTP {status_code, number}) ist aufgetreten. Deine Anfrage konnte deswegen nicht ausgeführt werden.</target>
             </trans-unit>
             <trans-unit id="http_error.suggestion">
                 <source>http_error.suggestion</source>
-                <target><![CDATA[Versuche diese Seite in einigen Minuten erneut zu laden oder <a href="%url%">gehe zurück zur Homepage</a>.]]></target>
+                <target><![CDATA[Versuche diese Seite in einigen Minuten erneut zu laden oder <a href="{url}">gehe zurück zur Homepage</a>.]]></target>
             </trans-unit>
             <trans-unit id="http_error_403.description">
                 <source>http_error_403.description</source>
@@ -334,7 +334,7 @@
             </trans-unit>
             <trans-unit id="http_error_404.suggestion">
                 <source>http_error_404.suggestion</source>
-                <target><![CDATA[Überprüfe Rechtschreibfehler in der URL oder <a href="%url%">gehe zurück zur Homepage</a>.]]></target>
+                <target><![CDATA[Überprüfe Rechtschreibfehler in der URL oder <a href="{url}">gehe zurück zur Homepage</a>.]]></target>
             </trans-unit>
             <trans-unit id="http_error_500.description">
                 <source>http_error_500.description</source>
@@ -342,7 +342,7 @@
             </trans-unit>
             <trans-unit id="http_error_500.suggestion">
                 <source>http_error_500.suggestion</source>
-                <target><![CDATA[Versuche diese Seite in einigen Minuten erneut zu laden oder <a href="%url%">gehe zurück zur Homepage</a>.]]></target>
+                <target><![CDATA[Versuche diese Seite in einigen Minuten erneut zu laden oder <a href="{url}">gehe zurück zur Homepage</a>.]]></target>
             </trans-unit>
             <trans-unit id="notification.comment_created">
                 <source>notification.comment_created</source>
@@ -350,7 +350,7 @@
             </trans-unit>
             <trans-unit id="notification.comment_created.description">
                 <source>notification.comment_created.description</source>
-                <target><![CDATA[Dein Beitrag "%title%" hat einen Kommentar erhalten. Du kannst den Kommentar lesen, wenn du <a href="%link%">diesem Link</a> folgst.]]></target>
+                <target><![CDATA[Dein Beitrag "{title}" hat einen Kommentar erhalten. Du kannst den Kommentar lesen, wenn du <a href="{link}">diesem Link</a> folgst.]]></target>
             </trans-unit>
         </body>
     </file>
