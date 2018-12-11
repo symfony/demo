@@ -1,20 +1,11 @@
-/var/*
-!/var/cache
-/var/cache/*
-!var/cache/.gitkeep
-!/var/data
-!/var/log
-/var/log/*
-!var/log/.gitkeep
-!/var/sessions
-/var/sessions/*
-!var/sessions/.gitkeep
 /public/build/fonts/glyphicons-*
 /public/build/images/glyphicons-*
 
 ###> symfony/framework-bundle ###
-/.env
+/.env.local
+/.env.*.local
 /public/bundles/
+/var/
 /vendor/
 ###< symfony/framework-bundle ###
 
