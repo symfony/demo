@@ -14,22 +14,31 @@ Requirements
 Installation
 ------------
 
+Install the [Symfony client][4] binary and run this command:
+
 ```bash
-$ composer create-project symfony/symfony-demo
+$ symfony new --demo my_project
+```
+
+Alternatively, you can use Composer:
+
+```bash
+$ composer create-project symfony/symfony-demo my_project
 ```
 
 Usage
 -----
 
-There's no need to configure anything to run the application. Just execute this
-command to run the built-in web server and access the application in your
-browser at <http://localhost:8000>:
+There's no need to configure anything to run the application. If you have
+installed the [Symfony client][4] binary, run this command to run the built-in
+web server and access the application in your browser at <http://localhost:8000>:
 
 ```bash
-$ cd symfony-demo/
-$ php bin/console server:run
+$ cd my_project/
+$ symfony serve
 ```
 
+If you don't have the Symfony client installed, run `php bin/console server:run`.
 Alternatively, you can [configure a web server][3] like Nginx or Apache to run
 the application.
 
@@ -39,10 +48,11 @@ Tests
 Execute this command to run tests:
 
 ```bash
-$ cd symfony-demo/
+$ cd my_project/
 $ ./bin/phpunit
 ```
 
 [1]: https://symfony.com/doc/current/best_practices/index.html
 [2]: https://symfony.com/doc/current/reference/requirements.html
 [3]: https://symfony.com/doc/current/cookbook/configuration/web_server_configuration.html
+[4]: https://symfony.com/download
