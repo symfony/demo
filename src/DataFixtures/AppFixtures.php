@@ -14,19 +14,18 @@ namespace App\DataFixtures;
 use App\Entity\Comment;
 use App\Entity\Post;
 use App\Entity\Tag;
-use App\Entity\User;
+use App\User\UserFactory;
 use App\Utils\Slugger;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
-    private $passwordEncoder;
+    private $userFactory;
 
-    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    public function __construct(UserFactory $userFactory)
     {
-        $this->passwordEncoder = $passwordEncoder;
+        $this->userFactory = $userFactory;
     }
 
     public function load(ObjectManager $manager)
@@ -39,12 +38,7 @@ class AppFixtures extends Fixture
     private function loadUsers(ObjectManager $manager)
     {
         foreach ($this->getUserData() as [$fullname, $username, $password, $email, $roles]) {
-            $user = new User();
-            $user->setFullName($fullname);
-            $user->setUsername($username);
-            $user->setPassword($this->passwordEncoder->encodePassword($user, $password));
-            $user->setEmail($email);
-            $user->setRoles($roles);
+            $user = $this->userFactory->createUser($username, $email, $fullname, $password, $roles);
 
             $manager->persist($user);
             $this->addReference($username, $user);
