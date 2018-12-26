@@ -340,6 +340,11 @@
                 <source>post.search_no_results</source>
                 <target>Ничего не найдено</target>
             </trans-unit>
+            
+            <trans-unit id="user.updated_successfully">
+                <source>user.updated_successfully</source>
+                <target>Информация о пользователе успешно обновлена!</target>
+            </trans-unit>
 
             <trans-unit id="notification.comment_created">
                 <source>notification.comment_created</source>
@@ -390,7 +395,23 @@
                 <source>help.more_information</source>
                 <target><![CDATA[Для дополнительной информации обратитесь к <a href="https://symfony.com/doc">Symfony документации</a>.]]></target>
             </trans-unit>
-
+            <trans-unit id="help.post_summary">
+                <source>help.post_summary</source>
+                <target>В кратком содержании не допускается использование Markdown разметки и HTML-тегов, только простой текст.</target>
+            </trans-unit>
+            <trans-unit id="help.post_publication">
+                <source>help.post_publication</source>
+                <target>Установите дату в будущем, чтобы запланировать публикацию поста в блоге.</target>
+            </trans-unit>
+            <trans-unit id="help.post_content">
+                <source>help.post_content</source>
+                <target>Используйте Markdown разметку для оформления записи. HTML тоже разрешён.</target>
+            </trans-unit>
+            <trans-unit id="help.comment_content">
+                <source>help.comment_content</source>
+                <target>Комментарии, не соответствующие нашему Кодексу поведения, будут модерироваться.</target>
+            </trans-unit>
+            
             <trans-unit id="info.change_password">
                 <source>info.change_password</source>
                 <target>После изменения пароля Вам потребуется заново авторизоваться в приложении.</target>
