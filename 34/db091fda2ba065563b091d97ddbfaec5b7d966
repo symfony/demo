@@ -1,0 +1,44 @@
+---------------------------------------------------------------------------
+
+by voronkovich at 2019-01-10T23:50:42Z
+
+I agree with @yceruto, we don't need this changes
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2019-01-11T07:02:56Z
+
+@voronkovich I agree that we should not add most of these deprecations ... but what about `symfony/console` and `symfony/intl` which are imported explicitly from our code but never included in `composer.json` ?
+
+---------------------------------------------------------------------------
+
+by voronkovich at 2019-01-11T13:54:07Z
+
+@javiereguiluz, to be honest, I have no strong opinion about the matter. Personally, I never worry about transitive dependencies. BTW, there is a tool that can be helpful to check such dependencies: [ComposerRequireChecker](https://github.com/maglnet/ComposerRequireChecker).
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2019-01-11T15:20:33Z
+
+Let me show the most clear example in my opinion: `symfony/console`. Our app absolutely depends on it because we have several commands created with it. But we don't require it; we're just lucky that these packages require it indirectly:
+
+```bash
+$ composer why symfony/console
+
+doctrine/doctrine-bundle     1.10.1   requires  symfony/console (~2.7|~3.0|~4.0)
+doctrine/migrations          v1.8.1   requires  symfony/console (~3.3|^4.0)
+doctrine/orm                 v2.6.3   requires  symfony/console (~3.0|~4.0)
+friendsofphp/php-cs-fixer    v2.14.0  requires  symfony/console (^3.4.17 || ^4.1.6)
+sensiolabs/security-checker  v5.0.3   requires  symfony/console (~2.7|~3.0|~4.0)
+symfony/web-server-bundle    v4.2.2   requires  symfony/console (~3.4|~4.0)
+```
+
+This one looks "wrong" to me, so I'm in favor of adding symfony/console. We just need to get the list of must-have dependencies according to what we do in our code.
+
+---------------------------------------------------------------------------
+
+by stof at 2019-01-14T10:14:36Z
+
+yeah, that one looks wrong indeed.
+
+OptionsResolver is fine however: we get it because Form depends on it. But we only use it in form types AFAIK. So removing forms would also remove the need for OptionsResolver.
