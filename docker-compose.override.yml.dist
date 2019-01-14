@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+    nginx:
+        ports:
+            - 127.0.0.1:8080:80
+
+# Uncomment it, if you want to use MySQL (see: Dockerfile, docker-compose.yml)
+#    db:
+#        ports:
+#            - 127.0.0.1:3306:3306

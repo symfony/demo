@@ -1,0 +1,52 @@
+version: '3.4'
+
+services:
+    nginx:
+        build:
+            context: docker
+            dockerfile: NginxDockerfile
+        depends_on:
+            - app
+        networks:
+            - frontend
+        volumes:
+            - .:/app
+
+    app:
+        build:
+            context: .
+            target: app-dev
+# Uncomment if you want to use MySQL (see: Dockerfile, docker-compose.override.yml)
+#        depends_on:
+#            - db
+        networks:
+            - frontend
+# Uncomment if you want to use MySQL (see: Dockerfile, docker-compose.override.yml)
+#            - backend
+        volumes:
+            - .:/app
+
+# Uncomment if you want to use MySQL (see: Dockerfile, docker-compose.override.yml)
+#    db:
+#        build:
+#            context: docker
+#            dockerfile: MysqlDockerfile
+#        environment:
+#          - MYSQL_ROOT_PASSWORD=symfony-demo
+#          - MYSQL_USER=symfony-demo
+#          - MYSQL_PASSWORD=symfony-demo
+#          - MYSQL_DATABASE=symfony-demo
+#        volumes:
+#            - db_data:/var/lib/mysql
+#        networks:
+#            - backend
+
+# Uncomment if you want to use MySQL (see: Dockerfile, docker-compose.override.yml)
+#volumes:
+#    db_data:
+#        driver: local
+
+networks:
+    frontend:
+# Uncomment if you want to use MySQL (see: Dockerfile, docker-compose.override.yml)
+#    backend:
