@@ -1,0 +1,19 @@
+---------------------------------------------------------------------------
+
+by yceruto at 2018-12-13T16:38:56Z
+
+@javiereguiluz what do you think about this proposal?
+
+---------------------------------------------------------------------------
+
+by stof at 2018-12-18T15:17:43Z
+
+> What about to [encapsulate collections](https://refactoring.com/catalog/encapsulateCollection.html)?
+
+The big drawback of that is that it breaks laziness of the collection in case the getter turns it into an array, which means it is not free from a performance point of view. So I would not showcase it in the demo.
+
+---------------------------------------------------------------------------
+
+by yceruto at 2018-12-18T15:59:50Z
+
+@stof comments addressed, thanks.
