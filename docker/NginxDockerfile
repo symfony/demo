@@ -1,41 +1,4 @@
 FROM nginx:1.15.8
 
 # set nginx config
-RUN rm /etc/nginx/conf.d/default.conf
-RUN { \
-        echo 'server {'; \
-        echo '    listen 80;'; \
-        echo '    server_name _;'; \
-        echo '    root /app/public;'; \
-        echo ''; \
-        echo '    add_header X-Content-Type-Options nosniff;'; \
-        echo '    add_header X-XSS-Protection "1; mode=block";'; \
-        echo '    add_header X-Frame-Options SAMEORIGIN;'; \
-        echo ''; \
-        echo '    if ($http_user_agent ~* "WordPress") {'; \
-        echo '        return 403;'; \
-        echo '    }'; \
-        echo ''; \
-        echo '    location / {'; \
-        echo '        try_files $uri /index.php$is_args$args;'; \
-        echo '    }'; \
-        echo ''; \
-        echo '    location /protected-files/ {'; \
-        echo '        internal;'; \
-        echo '        alias /app/files/;'; \
-        echo '    }'; \
-        echo ''; \
-        echo '    location ~ ^/index\.php(/|$) {'; \
-        echo '        fastcgi_pass app:9000;'; \
-        echo '        fastcgi_split_path_info ^(.+\.php)(/.*)$;'; \
-        echo '        include fastcgi_params;'; \
-        echo '        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;'; \
-        echo '        fastcgi_param DOCUMENT_ROOT $realpath_root;'; \
-        echo '        internal;'; \
-        echo '    }'; \
-        echo ''; \
-        echo '    location ~ \.php$ {'; \
-        echo '        return 404;'; \
-        echo '    }'; \
-        echo '}'; \
-    } > /etc/nginx/conf.d/default.conf
+ADD nginx-default.conf /etc/nginx/conf.d/default.conf
