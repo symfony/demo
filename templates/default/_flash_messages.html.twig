@@ -14,7 +14,7 @@
    TIP: With FOSHttpCache you can also adapt this to make it cache safe:
    https://foshttpcachebundle.readthedocs.io/en/latest/features/helpers/flash-message.html
 #}
-{% if app.request.method == 'POST' %}
+{% if app.request.hasPreviousSession %}
     <div class="messages">
         {% for type, messages in app.flashes %}
             {% for message in messages %}
