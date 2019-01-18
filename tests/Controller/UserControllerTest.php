@@ -42,9 +42,7 @@ class UserControllerTest extends WebTestCase
 
         $response = $client->getResponse();
         $this->assertSame(Response::HTTP_FOUND, $response->getStatusCode());
-        $this->assertSame(
-            'http://localhost/en/login',
-            $response->getTargetUrl(),
+        $this->assertSame('/en/login', $response->getTargetUrl(),
             sprintf('The %s secure URL redirects to the login form.', $url)
         );
     }
