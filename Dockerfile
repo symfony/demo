@@ -14,14 +14,11 @@ FROM php:${PHP_VERSION}-fpm as app
 ARG ICU_VERSION
 ARG APCU_VERSION
 
-# Used for the ICU compilation
-ENV PHP_CPPFLAGS="${PHP_CPPFLAGS} -std=c++11"
-ENV APP_VERSION=0.0.0
-
 WORKDIR /app
 
 # Install paquet requirements
-RUN set -ex; \
+RUN export PHP_CPPFLAGS="${PHP_CPPFLAGS} -std=c++11" \
+    set -ex; \
     # Install required system packages
     apt-get update; \
     apt-get install -qy --no-install-recommends \
@@ -78,7 +75,7 @@ RUN { \
 RUN { \
         echo 'date.timezone = Europe/Paris'; \
         echo 'short_open_tag = off'; \
-        echo 'memory_limit = 8192M'; \
+        echo 'memory_limit = -1'; \
     } > /usr/local/etc/php/php-cli.ini
 
 CMD ["php-fpm"]
