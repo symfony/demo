@@ -38,7 +38,6 @@ RUN export PHP_CPPFLAGS="${PHP_CPPFLAGS} -std=c++11" \
     docker-php-ext-install -j "$(nproc)" \
             intl \
             pdo \
-            # pdo_mysql \ Uncomment it to use MySQL, and remove the pdo_sqlite (see: docker-compose.yml, docker-compose.override.yml.dist)
             zip \
             bcmath \
     ; \

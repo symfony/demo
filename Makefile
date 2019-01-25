@@ -5,9 +5,9 @@ PHPCSFIXER?=$(EXEC) php -d memory_limit=1024m vendor/bin/php-cs-fixer
 
 .DEFAULT_GOAL := help
 .PHONY: help start stop restart install uninstall reset clear-cache tty clear clean
-.PHONY: db-diff db-migrate db-rollback db-reset db-validate wait-for-db
+.PHONY: db-diff db-migrate db-rollback db-fixtures db-validate
 .PHONY: watch assets assets-build
-.PHONY: tests lint lint-symfony lint-yaml lint-twig lint-twig php-cs php-cs-fix security-check test-schema test-all
+.PHONY: tests lint lint-symfony lint-yaml lint-twig lint-xliff php-cs php-cs-fix security-check test-schema test-all
 .PHONY: build up perm
 .PHONY: docker-compose.override.yml
 
@@ -55,27 +55,19 @@ clean: clear                                                                    
 ## Database
 ##---------------------------------------------------------------------------
 
-wait-for-db:
-	$(EXEC) php -r "set_time_limit(60);for(;;){if(@fsockopen('db',3306)){break;}echo \"Waiting for MySQL\n\";sleep(1);}"
-
-db-diff: vendor wait-for-db                                                                            ## Generate a migration by comparing your current database to your mapping information
+db-diff: vendor                                                                                        ## Generate a migration by comparing your current database to your mapping information
 	$(EXEC) $(CONSOLE) doctrine:migration:diff
 
-db-migrate: vendor wait-for-db                                                                         ## Migrate database schema to the latest available version
+db-migrate: vendor                                                                                     ## Migrate database schema to the latest available version
 	$(EXEC) $(CONSOLE) doctrine:migration:migrate -n
 
-db-rollback: vendor wait-for-db                                                                        ## Rollback the latest executed migration
+db-rollback: vendor                                                                                    ## Rollback the latest executed migration
 	$(EXEC) $(CONSOLE) doctrine:migration:migrate prev -n
 
-db-reset: vendor wait-for-db                                                                           ## Reset the database
-	$(EXEC) $(CONSOLE) doctrine:database:drop --force --if-exists
-	$(EXEC) $(CONSOLE) doctrine:database:create --if-not-exists
-	$(EXEC) $(CONSOLE) doctrine:migrations:migrate -n
-
-db-fixtures: vendor wait-for-db                                                                        ## Apply doctrine fixtures
+db-fixtures: vendor                                                                                    ## Apply doctrine fixtures
 	$(EXEC) $(CONSOLE) doctrine:fixtures:load -n
 
-db-validate: vendor wait-for-db                                                                        ## Check the ORM mapping
+db-validate: vendor                                                                                    ## Check the ORM mapping
 	$(EXEC) $(CONSOLE) doctrine:schema:validate
 
 

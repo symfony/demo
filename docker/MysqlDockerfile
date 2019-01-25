@@ -1,8 +1,0 @@
-FROM mysql:8.0.13
-
-# set MySQL config
-RUN rm /etc/mysql/conf.d/mysql.cnf
-RUN { \
-        echo '[mysqld]'; \
-        echo 'default_authentication_plugin= mysql_native_password'; \
-    } > /etc/mysql/conf.d/mysql.cnf
