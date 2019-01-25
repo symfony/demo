@@ -20,7 +20,3 @@ services:
             - frontend
         volumes:
             - .:/app
-
-
-networks:
-    frontend:
