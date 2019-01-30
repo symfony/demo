@@ -38,7 +38,7 @@ clear-cache: perm
 	$(EXEC) $(CONSOLE) cache:clear --no-warmup
 	$(EXEC) $(CONSOLE) cache:warmup
 
-tty:                                                                                                   ## Run app container in interactive mode
+shell:                                                                                                 ## Run app container in interactive mode
 	$(EXEC) /bin/bash
 
 clear: perm                                                                                            ## Remove all the cache, the logs, the sessions and the built assets
