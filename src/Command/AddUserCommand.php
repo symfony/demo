@@ -73,7 +73,7 @@ class AddUserCommand extends Command
     /**
      * {@inheritdoc}
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setDescription('Creates users and stores them in the database')
@@ -92,7 +92,7 @@ class AddUserCommand extends Command
      * This optional method is the first one executed for a command after configure()
      * and is useful to initialize properties based on the input arguments and options.
      */
-    protected function initialize(InputInterface $input, OutputInterface $output)
+    protected function initialize(InputInterface $input, OutputInterface $output): void
     {
         // SymfonyStyle is an optional feature that Symfony provides so you can
         // apply a consistent look to the commands of your application.
@@ -167,7 +167,7 @@ class AddUserCommand extends Command
      * This method is executed after interact() and initialize(). It usually
      * contains the logic to execute to complete this command task.
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): void
     {
         $stopwatch = new Stopwatch();
         $stopwatch->start('add-user-command');
@@ -203,7 +203,7 @@ class AddUserCommand extends Command
         }
     }
 
-    private function validateUserData($username, $plainPassword, $email, $fullName)
+    private function validateUserData($username, $plainPassword, $email, $fullName): void
     {
         // first check if a user with the same username already exists.
         $existingUser = $this->users->findOneBy(['username' => $username]);

@@ -55,7 +55,7 @@ class ListUsersCommand extends Command
     /**
      * {@inheritdoc}
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setDescription('Lists all the existing users')
