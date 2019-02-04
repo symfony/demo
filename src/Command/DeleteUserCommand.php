@@ -61,7 +61,7 @@ class DeleteUserCommand extends Command
     /**
      * {@inheritdoc}
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setDescription('Deletes users from the database')
@@ -79,7 +79,7 @@ HELP
             );
     }
 
-    protected function initialize(InputInterface $input, OutputInterface $output)
+    protected function initialize(InputInterface $input, OutputInterface $output): void
     {
         // SymfonyStyle is an optional feature that Symfony provides so you can
         // apply a consistent look to the commands of your application.
@@ -108,7 +108,7 @@ HELP
         $input->setArgument('username', $username);
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): void
     {
         $username = $this->validator->validateUsername($input->getArgument('username'));
 
