@@ -17,12 +17,12 @@ ARG APCU_VERSION
 WORKDIR /app
 
 # Install paquet requirements
-RUN export PHP_CPPFLAGS="${PHP_CPPFLAGS} -std=c++11" \
+RUN export PHP_CPPFLAGS="${PHP_CPPFLAGS} -std=c++11"; \
     set -ex; \
     # Install required system packages
     apt-get update; \
     apt-get install -qy --no-install-recommends \
-            zlib1g-dev \
+            libzip-dev \
             git \
     ; \
     # Compile ICU (required by intl php extension)
