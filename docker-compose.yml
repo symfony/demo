@@ -7,8 +7,6 @@ services:
             dockerfile: NginxDockerfile
         depends_on:
             - app
-        networks:
-            - frontend
         volumes:
             - .:/app
 
@@ -16,7 +14,5 @@ services:
         build:
             context: .
             target: app-dev
-        networks:
-            - frontend
         volumes:
             - .:/app

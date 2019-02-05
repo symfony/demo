@@ -4,7 +4,7 @@ CONSOLE=bin/console
 PHPCSFIXER?=$(EXEC) php -d memory_limit=1024m vendor/bin/php-cs-fixer
 
 .DEFAULT_GOAL := help
-.PHONY: help start stop restart install uninstall reset clear-cache tty clear clean
+.PHONY: help start stop restart install uninstall reset clear-cache shell clear clean
 .PHONY: db-diff db-migrate db-rollback db-fixtures db-validate
 .PHONY: watch assets assets-build
 .PHONY: tests lint lint-symfony lint-yaml lint-twig lint-xliff php-cs php-cs-fix security-check test-schema test-all
@@ -48,7 +48,7 @@ clear: perm                                                                     
 	rm -f var/.php_cs.cache
 
 clean: clear                                                                                           ## Clear and remove dependencies
-	rm -rf vendor node_modules
+	rm -rf vendor
 
 
 ##
@@ -131,8 +131,8 @@ up:
 	$(DOCKER_COMPOSE) up -d --remove-orphans
 
 perm:
-	$(EXEC) chmod -R 777 node_modules vendor
-	$(EXEC) chown -R www-data:root node_modules vendor
+	$(EXEC) chmod -R 777 vendor
+	$(EXEC) chown -R www-data:root vendor
 
 docker-compose.override.yml:
 ifneq ($(wildcard docker-compose.override.yml),docker-compose.override.yml)
