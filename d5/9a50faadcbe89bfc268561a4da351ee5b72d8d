@@ -1,0 +1,10 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2019-02-06T14:59:31Z
+
+Thanks Titouan for this proposal. The new library looks indeed better!
+
+I made two quick profiles before/after making this change and performance improvements are nice too:
+
+* Blog index (`/en/blog`): 19% improvement (https://blackfire.io/profiles/compare/731fce4c-3aa5-41cb-988c-420d5e01c4e4/graph)
+* Blog post (`/en/blog/posts/lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit`): 27% improvement (https://blackfire.io/profiles/compare/d12e27d9-a911-498c-a611-50e76dcd891d/graph)
