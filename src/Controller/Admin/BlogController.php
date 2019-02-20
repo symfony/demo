@@ -161,7 +161,7 @@ class BlogController extends AbstractController
      */
     public function delete(Request $request, Post $post): Response
     {
-        if (!$this->isCsrfTokenValid(PostVoter::DELETE, $request->request->get('token'))) {
+        if (!$this->isCsrfTokenValid('delete', $request->request->get('token'))) {
             return $this->redirectToRoute('admin_post_index');
         }
 
