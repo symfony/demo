@@ -7,6 +7,17 @@
     {{ encore_entry_script_tags('js/login') }}
 {% endblock %}
 
+{#
+   don't allow to change the locale in the login page. If user does that, they
+   are redirected to a page with the previous locale. This is because the
+   target_path parameter is set in the ExceptionListener class executed when
+   trying to access the backend as an anonymous user. The login form is displayed
+   and the target_path is set to the current locale. If you change the locale in
+   the login page, ExceptionListener is not executed again, so the target_path
+   is not updated and it contains a URL with the previous locale
+#}
+{% block header_language_selector '' %}
+
 {% block main %}
     {% if error %}
         <div class="alert alert-danger">
