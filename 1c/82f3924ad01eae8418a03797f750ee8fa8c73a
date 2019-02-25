@@ -1,0 +1,33 @@
+---------------------------------------------------------------------------
+
+by yceruto at 2019-02-21T15:03:03Z
+
+Removing the possibility to change the locale in login page feel bad to me :( I think this should be solved in other way around.
+
+What do you think about regenerate the target path (if any) in `login` method?
+```php
+/**
+ * @Route("/login", name="security_login")
+ */
+public function login(AuthenticationUtils $helper, Session $session): Response
+{
+    if ($session->has('_security.main.target_path')) {
+        $session->set('_security.main.target_path', $this->generateUrl('admin_index'));
+    }
+
+    // ...
+}
+```
+Thus, we are updating the uri with the correct locale if it was changed in the login page.
+
+---------------------------------------------------------------------------
+
+by yceruto at 2019-02-21T15:05:10Z
+
+Note that `admin_index` is the only secure zone in this app, so we can hardcoded it safely.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2019-02-22T17:08:44Z
+
+@yceruto I agree that your solution is much better. We could use the TargetPathTrait to simplify the code a bit. Thanks.
