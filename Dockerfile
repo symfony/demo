@@ -54,7 +54,7 @@ RUN export PHP_CPPFLAGS="${PHP_CPPFLAGS} -std=c++11"; \
 
 ## set recommended PHP.ini settings
 RUN { \
-        echo 'date.timezone = Europe/Paris'; \
+        echo 'date.timezone = UTC'; \
         echo 'short_open_tag = off'; \
         echo 'expose_php = off'; \
         echo 'error_log = /proc/self/fd/2'; \
@@ -72,7 +72,7 @@ RUN { \
     } > /usr/local/etc/php/php.ini
 
 RUN { \
-        echo 'date.timezone = Europe/Paris'; \
+        echo 'date.timezone = UTC'; \
         echo 'short_open_tag = off'; \
         echo 'memory_limit = -1'; \
     } > /usr/local/etc/php/php-cli.ini
