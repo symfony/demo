@@ -37,7 +37,7 @@ class SecurityController extends AbstractController
     {
         // Block login page for logged in users
         if ($this->container->get('security.authorization_checker')->isGranted('ROLE_USER')) {
-            return new RedirectResponse('/');
+            return $this->redirectToRoute('blog_index');
         }
 
         // this statement solves an edge-case: if you change the locale in the login
