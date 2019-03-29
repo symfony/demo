@@ -1,429 +1,429 @@
 <?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="ru" datatype="plaintext" original="file.ext">
+    <file source-language="en" target-language="lt" datatype="plaintext" original="file.ext">
         <body>
             <trans-unit id="note">
                 <source>note</source>
-                <target>ПРИМЕЧАНИЕ</target>
+                <target>PASTABA</target>
             </trans-unit>
             <trans-unit id="tip">
                 <source>tip</source>
-                <target>СОВЕТ</target>
+                <target>PATARIMAS</target>
             </trans-unit>
             <trans-unit id="not_available">
                 <source>not_available</source>
-                <target>Недоступно</target>
+                <target>Nepasiekiama</target>
             </trans-unit>
             <trans-unit id="mit_license">
                 <source>mit_license</source>
-                <target>MIT Лицензия</target>
+                <target>MIT Licencija</target>
             </trans-unit>
 
             <trans-unit id="http_error.name">
                 <source>http_error.name</source>
-                <target>Ошибка {status_code, number}</target>
+                <target>Klaida {status_code, number}</target>
             </trans-unit>
             <trans-unit id="http_error.description">
                 <source>http_error.description</source>
-                <target>Произошла неизвестная ошибка (HTTP {status_code, number}), которая помешала выполнить ваш запрос.</target>
+                <target>Įvyko nežinoma klaida (HTTP {status_code, number}), kuri neleido užbaigti užklausos.</target>
             </trans-unit>
             <trans-unit id="http_error.suggestion">
                 <source>http_error.suggestion</source>
-                <target><![CDATA[Попробуйте загрузить эту страницу снова через несколько минут или <a href="{url}">вернитесь на главную страницу</a>.]]></target>
+                <target><![CDATA[Pabandyke užkrauti puslapį veliau arba <a href="{url}">grįžti į pagrindinį puslapį</a>.]]></target>
             </trans-unit>
             <trans-unit id="http_error_403.description">
                 <source>http_error_403.description</source>
-                <target>У вас нет разрешения на доступ к этому ресурсу.</target>
+                <target>Neturite teisės peržiūrėti šito turinio.</target>
             </trans-unit>
             <trans-unit id="http_error_403.suggestion">
                 <source>http_error_403.suggestion</source>
-                <target>Запросите доступ к этому ресурсу у вашего менеджера или системного администратора.</target>
+                <target>Parašykite sistemos administratoriaus, kad suteiktu prieigą prie šio turinio.</target>
             </trans-unit>
             <trans-unit id="http_error_404.description">
                 <source>http_error_404.description</source>
-                <target>Мы не смогли найти запрашиваемую вами страницу.</target>
+                <target>Puslapis nerastas.</target>
             </trans-unit>
             <trans-unit id="http_error_404.suggestion">
                 <source>http_error_404.suggestion</source>
-                <target><![CDATA[Проверьте корректность введенного URL или <a href="{url}">вернитесь на главную страницу</a>.]]></target>
+                <target><![CDATA[Patikrinkite ar geai suvestas adresas arba <a href="{url}">grįžti į pagrindinį puslapį</a>.]]></target>
             </trans-unit>
             <trans-unit id="http_error_500.description">
                 <source>http_error_500.description</source>
-                <target>Произошла внутренняя ошибка сервера.</target>
+                <target>Įvyko vidinė serverio klaida.</target>
             </trans-unit>
             <trans-unit id="http_error_500.suggestion">
                 <source>http_error_500.suggestion</source>
-                <target><![CDATA[Попробуйте загрузить эту страницу снова через несколько минут или <a href="{url}">вернитесь на главную страницу</a>.]]></target>
+                <target><![CDATA[Pabandyke užkrauti puslapį veliau arba <a href="{url}">grįžti į pagrindinį puslapį</a>.]]></target>
             </trans-unit>
 
             <trans-unit id="title.homepage">
                 <source>title.homepage</source>
-                <target><![CDATA[Добро пожаловать в <strong>Symfony Demo</strong> приложение]]></target>
+                <target><![CDATA[Sveiki atvyke į <strong>Symfony Demo</strong> puslapį]]></target>
             </trans-unit>
             <trans-unit id="title.source_code">
                 <source>title.source_code</source>
-                <target>Исходный код, который использовался для отображения этой страницы</target>
+                <target>Pirminis kodas</target>
             </trans-unit>
             <trans-unit id="title.controller_code">
                 <source>title.controller_code</source>
-                <target>Код контроллера</target>
+                <target>Controller kodas</target>
             </trans-unit>
             <trans-unit id="title.twig_template_code">
                 <source>title.twig_template_code</source>
-                <target>Код шаблона Twig</target>
+                <target>Twig šablono kodas</target>
             </trans-unit>
             <trans-unit id="title.login">
                 <source>title.login</source>
-                <target>Авторизация</target>
+                <target>Prisijungimas</target>
             </trans-unit>
             <trans-unit id="title.post_list">
                 <source>title.post_list</source>
-                <target>Список записей</target>
+                <target>Įrašų sąrašas</target>
             </trans-unit>
             <trans-unit id="title.edit_post">
                 <source>title.edit_post</source>
-                <target>Изменение записи #{id, number}</target>
+                <target>Redaguoti įrašą #{id, number}</target>
             </trans-unit>
             <trans-unit id="title.add_comment">
                 <source>title.add_comment</source>
-                <target>Добавить комментарий</target>
+                <target>Pridėti komentarą</target>
             </trans-unit>
             <trans-unit id="title.comment_error">
                 <source>title.comment_error</source>
-                <target>Произошла ошибка во время публикации вашего комментария</target>
+                <target>Įvyko klaida skelbiant komentarą</target>
             </trans-unit>
             <trans-unit id="title.edit_user">
                 <source>title.edit_user</source>
-                <target>Изменить пользователя</target>
+                <target>Redaguoti vartotoją</target>
             </trans-unit>
             <trans-unit id="title.change_password">
                 <source>title.change_password</source>
-                <target>Изменить пароль</target>
+                <target>Pakeisti slaptažodį</target>
             </trans-unit>
 
             <trans-unit id="action.show">
                 <source>action.show</source>
-                <target>Показать</target>
+                <target>Rodyti</target>
             </trans-unit>
             <trans-unit id="action.show_post">
                 <source>action.show_post</source>
-                <target>Показать запись</target>
+                <target>Rodyti įrašą</target>
             </trans-unit>
             <trans-unit id="action.show_code">
                 <source>action.show_code</source>
-                <target>Показать код</target>
+                <target>Rodyti kodą</target>
             </trans-unit>
             <trans-unit id="action.edit">
                 <source>action.edit</source>
-                <target>Изменить</target>
+                <target>Redaguoti</target>
             </trans-unit>
             <trans-unit id="action.edit_post">
                 <source>action.edit_post</source>
-                <target>Изменить запись</target>
+                <target>Redaguoti įrašą</target>
             </trans-unit>
             <trans-unit id="action.save">
                 <source>action.save</source>
-                <target>Сохранить изменения</target>
+                <target>Išsaugoti</target>
             </trans-unit>
             <trans-unit id="action.delete_post">
                 <source>action.delete_post</source>
-                <target>Удалить запись</target>
+                <target>Ištrinti įrašą</target>
             </trans-unit>
             <trans-unit id="delete_post_modal.title">
                 <source>delete_post_modal.title</source>
-                <target>Вы уверены, что хотите удалить эту запись?</target>
+                <target>Ar tirkai norite ištrinti įrašą?</target>
             </trans-unit>
             <trans-unit id="delete_post_modal.body">
                 <source>delete_post_modal.body</source>
-                <target>Это действие не может быть отменено.</target>
+                <target>Šio veiksmo negalima atšaukti.</target>
             </trans-unit>
             <trans-unit id="label.delete_post">
                 <source>label.delete_post</source>
-                <target>Удалить запись</target>
+                <target>Ištrinti įrašą</target>
             </trans-unit>
             <trans-unit id="label.cancel">
                 <source>label.cancel</source>
-                <target>Отменить</target>
+                <target>Atšaukti</target>
             </trans-unit>
             <trans-unit id="action.create_post">
                 <source>action.create_post</source>
-                <target>Создать новую запись</target>
+                <target>Sukurti naują įrašą</target>
             </trans-unit>
             <trans-unit id="label.create_post">
                 <source>label.create_post</source>
-                <target>Создать запись</target>
+                <target>Sukurti įrašą</target>
             </trans-unit>
             <trans-unit id="label.save_and_create_new">
                 <source>label.save_and_create_new</source>
-                <target>Сохранить и создать новую</target>
+                <target>Išsaugoti ir sukurti naują</target>
             </trans-unit>
             <trans-unit id="action.back_to_list">
                 <source>action.back_to_list</source>
-                <target>Назад к списку записей</target>
+                <target>Grįžti atgal į įrašų sąrašą</target>
             </trans-unit>
             <trans-unit id="action.publish_comment">
                 <source>action.publish_comment</source>
-                <target>Опубликовать комментарий</target>
+                <target>Paskelbti komentarą</target>
             </trans-unit>
             <trans-unit id="action.sign_in">
                 <source>action.sign_in</source>
-                <target>Войти</target>
+                <target>Prisijungti</target>
             </trans-unit>
             <trans-unit id="action.browse_app">
                 <source>action.browse_app</source>
-                <target>Перейти в публичный раздел</target>
+                <target>Naršyti</target>
             </trans-unit>
             <trans-unit id="action.browse_admin">
                 <source>action.browse_admin</source>
-                <target>Перейти в панель управления</target>
+                <target>Naršyti admin dalį</target>
             </trans-unit>
             <trans-unit id="action.edit_user">
                 <source>action.edit_user</source>
-                <target>Изменить пользователя</target>
+                <target>Redaguoti vartotoją</target>
             </trans-unit>
             <trans-unit id="action.change_password">
                 <source>action.change_password</source>
-                <target>Изменить пароль</target>
+                <target>Pakeisti slaptažodį</target>
             </trans-unit>
 
             <trans-unit id="label.title">
                 <source>label.title</source>
-                <target>Название</target>
+                <target>Pavadinimas</target>
             </trans-unit>
             <trans-unit id="label.author">
                 <source>label.author</source>
-                <target>Автор</target>
+                <target>Autorius</target>
             </trans-unit>
             <trans-unit id="label.author_email">
                 <source>label.author_email</source>
-                <target>Email автора</target>
+                <target>Autoriaus el. paštas</target>
             </trans-unit>
             <trans-unit id="label.username">
                 <source>label.username</source>
-                <target>Логин</target>
+                <target>Vartotojas vardas</target>
             </trans-unit>
             <trans-unit id="label.fullname">
                 <source>label.fullname</source>
-                <target>Полное имя</target>
+                <target>Pilnas vardas</target>
             </trans-unit>
             <trans-unit id="label.email">
                 <source>label.email</source>
-                <target>Email</target>
+                <target>El. paštas</target>
             </trans-unit>
             <trans-unit id="label.password">
                 <source>label.password</source>
-                <target>Пароль</target>
+                <target>Slaptažodis</target>
             </trans-unit>
             <trans-unit id="label.current_password">
                 <source>label.current_password</source>
-                <target>Текущий пароль</target>
+                <target>Dabartinis slaptažodis</target>
             </trans-unit>
             <trans-unit id="label.new_password">
                 <source>label.new_password</source>
-                <target>Новый пароль</target>
+                <target>Naujas slaptažodis</target>
             </trans-unit>
             <trans-unit id="label.new_password_confirm">
                 <source>label.new_password_confirm</source>
-                <target>Подтвердите пароль</target>
+                <target>Patvirtinti slaptažodį</target>
             </trans-unit>
             <trans-unit id="label.role">
                 <source>label.role</source>
-                <target>Роль</target>
+                <target>Rolė</target>
             </trans-unit>
             <trans-unit id="label.content">
                 <source>label.content</source>
-                <target>Содержание</target>
+                <target>Turinys</target>
             </trans-unit>
             <trans-unit id="label.summary">
                 <source>label.summary</source>
-                <target>Краткое содержание</target>
+                <target>Santrauka</target>
             </trans-unit>
             <trans-unit id="label.published_at">
                 <source>label.published_at</source>
-                <target>Опубликовано</target>
+                <target>Publikuota</target>
             </trans-unit>
             <trans-unit id="label.tags">
                 <source>label.tags</source>
-                <target>Теги</target>
+                <target>Žymos</target>
             </trans-unit>
             <trans-unit id="label.actions">
                 <source>label.actions</source>
-                <target>Действия</target>
+                <target>Veiksmai</target>
             </trans-unit>
             <trans-unit id="title.post_new">
                 <source>title.post_new</source>
-                <target>Создание записи</target>
+                <target>Įrašo sukūrimas</target>
             </trans-unit>
             <trans-unit id="action.edit_contents">
                 <source>action.edit_contents</source>
-                <target>Изменить содержание</target>
+                <target>Redaguoti turinį</target>
             </trans-unit>
 
             <trans-unit id="menu.toggle_nav">
                 <source>menu.toggle_nav</source>
-                <target>Переключить навигацию</target>
+                <target>Perjungti navigaciją</target>
             </trans-unit>
             <trans-unit id="menu.choose_language">
                 <source>menu.choose_language</source>
-                <target>Выбрать язык</target>
+                <target>Pasirinkti kalbą</target>
             </trans-unit>
             <trans-unit id="menu.post_list">
                 <source>menu.post_list</source>
-                <target>Список записей</target>
+                <target>Įrašų sąrašas</target>
             </trans-unit>
             <trans-unit id="menu.back_to_blog">
                 <source>menu.back_to_blog</source>
-                <target>Назад к блогу</target>
+                <target>Atgal į blogą</target>
             </trans-unit>
             <trans-unit id="menu.homepage">
                 <source>menu.homepage</source>
-                <target>Главная страница</target>
+                <target>Pagrindinis puslapis</target>
             </trans-unit>
             <trans-unit id="menu.admin">
                 <source>menu.admin</source>
-                <target>Панель управления</target>
+                <target>Backend</target>
             </trans-unit>
             <trans-unit id="menu.user">
                 <source>menu.user</source>
-                <target>Аккаунт</target>
+                <target>Paskyra</target>
             </trans-unit>
             <trans-unit id="menu.logout">
                 <source>menu.logout</source>
-                <target>Выйти</target>
+                <target>Atsijungti</target>
             </trans-unit>
             <trans-unit id="menu.rss">
                 <source>menu.rss</source>
-                <target>RSS Записей Блога</target>
+                <target>Blogo Įrašai RSS</target>
             </trans-unit>
             <trans-unit id="menu.search">
                 <source>menu.search</source>
-                <target>Поиск</target>
+                <target>Paieška</target>
             </trans-unit>
 
             <trans-unit id="post.to_publish_a_comment">
                 <source>post.to_publish_a_comment</source>
-                <target>опубликовать комментарий</target>
+                <target>kad paskelbti komentarą</target>
             </trans-unit>
             <trans-unit id="post.num_comments">
                 <source>post.num_comments</source>
-                <target>{count, plural, one {# комментарий} few {# комментария} other {# комментариев}}</target>
+                <target>{count, plural, one {# komentaras} other {# komentarai}}</target>
             </trans-unit>
             <trans-unit id="post.commented_on">
                 <source>post.commented_on</source>
-                <target>прокомментировано</target>
+                <target>kada komentuota</target>
             </trans-unit>
             <trans-unit id="post.no_comments">
                 <source>post.no_comments</source>
-                <target>Будьте первыми кто прокомментирует эту запись.</target>
+                <target>Būkite pirmas, pakomentavęs šį įrašą.</target>
             </trans-unit>
             <trans-unit id="post.no_posts_found">
                 <source>post.no_posts_found</source>
-                <target>Ни одной записи не найдено.</target>
+                <target>Nerasta įrašų.</target>
             </trans-unit>
             <trans-unit id="post.created_successfully">
                 <source>post.created_successfully</source>
-                <target>Запись успешно создана!</target>
+                <target>Įrašas sukurtas sėkmingai!</target>
             </trans-unit>
             <trans-unit id="post.updated_successfully">
                 <source>post.updated_successfully</source>
-                <target>Запись успешно обновлена!</target>
+                <target>Įrašas atnaujintas sėkmingai!</target>
             </trans-unit>
             <trans-unit id="post.deleted_successfully">
                 <source>post.deleted_successfully</source>
-                <target>Запись успешно удалена!</target>
+                <target>Įrašas ištrintas sėkmingai!</target>
             </trans-unit>
             <trans-unit id="post.search_for">
                 <source>post.search_for</source>
-                <target>Искать запись...</target>
+                <target>Ieškoti...</target>
             </trans-unit>
             <trans-unit id="post.search_no_results">
                 <source>post.search_no_results</source>
-                <target>Ничего не найдено</target>
+                <target>Nieko nerasta</target>
             </trans-unit>
-            
+
             <trans-unit id="user.updated_successfully">
                 <source>user.updated_successfully</source>
-                <target>Информация о пользователе успешно обновлена!</target>
+                <target>Vartotojas atnaujintas sėkmingai!</target>
             </trans-unit>
 
             <trans-unit id="notification.comment_created">
                 <source>notification.comment_created</source>
-                <target>Ваша запись получила комментарий!</target>
+                <target>Jūsų įrašas gavo komentarą!</target>
             </trans-unit>
             <trans-unit id="notification.comment_created.description">
                 <source>notification.comment_created.description</source>
-                <target><![CDATA[Ваша запись "{title}" получила новый комментарий. Вы можете прочесть этот коментарий, перейдя по <a href="{link}">этой ссылке</a>]]></target>
+                <target><![CDATA[Jūsų įrašas "{title}" gavo naują komentarą. Kad peržiūrėti komentarą, galite paspausti šia <a href="{link}">nuorodą</a>]]></target>
             </trans-unit>
 
             <trans-unit id="help.app_description">
                 <source>help.app_description</source>
-                <target><![CDATA[Это <strong>демо приложение</strong> создано на основе Symfony фреймворка для того, чтобы показать рекомендованный способ разработки Symfony приложений.]]></target>
+                <target><![CDATA[Tai yra <strong>demo puslapis</strong> sukurtas su Symfony Framework parodydant tinkamą Symfony panaudojimą.]]></target>
             </trans-unit>
             <trans-unit id="help.show_code">
                 <source>help.show_code</source>
-                <target><![CDATA[Нажмите на эту кнопку для просмотра исходного кода <strong>Контроллера</strong> и <strong>шаблона</strong>, которые использовались для отображения этой страницы.]]></target>
+                <target><![CDATA[Paspauskite mygtuką, kad peržiūrėti <strong>Controller</strong> ir <strong>šabloną</strong> panaudoti atvaizduojant šį puslapį.]]></target>
             </trans-unit>
             <trans-unit id="help.browse_app">
                 <source>help.browse_app</source>
-                <target><![CDATA[Перейти в <strong>публичный раздел</strong> демо приложения.]]></target>
+                <target><![CDATA[Naršyti <strong>public dalį</strong> demo puslapio.]]></target>
             </trans-unit>
             <trans-unit id="help.browse_admin">
                 <source>help.browse_admin</source>
-                <target><![CDATA[Перейти в <strong>панель управления</strong> демо приложения.]]></target>
+                <target><![CDATA[Naršyti <strong>admin dalį</strong> demo puslapio.]]></target>
             </trans-unit>
             <trans-unit id="help.login_users">
                 <source>help.login_users</source>
-                <target>Используйте любого из следующих пользователей</target>
+                <target>išbandykite vieną iš šių vartotojų</target>
             </trans-unit>
             <trans-unit id="help.role_user">
                 <source>help.role_user</source>
-                <target>обычный пользователь</target>
+                <target>nuolatinis vartotojas</target>
             </trans-unit>
             <trans-unit id="help.role_admin">
                 <source>help.role_admin</source>
-                <target>администратор</target>
+                <target>administratorius</target>
             </trans-unit>
             <trans-unit id="help.reload_fixtures">
                 <source>help.reload_fixtures</source>
-                <target>Если эти пользователи не работают, перезагрузите фикстуры приложения, выполнив в консоли следующую команду:</target>
+                <target>Jei vartotojai neveikia, perleiskite šia komandą:</target>
             </trans-unit>
             <trans-unit id="help.add_user">
                 <source>help.add_user</source>
-                <target>Если вы хотите создать новых пользователей, воспользуйтесь следующей командой:</target>
+                <target>Jei norite sukurti naują vartotoją paleiskite šia komandą:</target>
             </trans-unit>
             <trans-unit id="help.more_information">
                 <source>help.more_information</source>
-                <target><![CDATA[Для дополнительной информации обратитесь к <a href="https://symfony.com/doc">Symfony документации</a>.]]></target>
+                <target><![CDATA[Norėdami gauti daugiau informacijos, peržiūrėkite <a href="https://symfony.com/doc">Symfony dokumentciją</a>.]]></target>
             </trans-unit>
             <trans-unit id="help.post_summary">
                 <source>help.post_summary</source>
-                <target>В кратком содержании не допускается использование Markdown разметки и HTML-тегов, только простой текст.</target>
+                <target>Santrauka negali būti su Markdown ar HTML žymom, tiktai paprastas tekstas</target>
             </trans-unit>
             <trans-unit id="help.post_publication">
                 <source>help.post_publication</source>
-                <target>Установите дату в будущем, чтобы запланировать публикацию поста в блоге.</target>
+                <target>Nustatykite datą ateityje, kad planuotumėte blogo įrašo paskelbimą.</target>
             </trans-unit>
             <trans-unit id="help.post_content">
                 <source>help.post_content</source>
-                <target>Используйте Markdown разметку для оформления записи. HTML тоже разрешён.</target>
+                <target>Turinį galima formatuoti su Markdown ir HTML žymom.</target>
             </trans-unit>
             <trans-unit id="help.comment_content">
                 <source>help.comment_content</source>
-                <target>Комментарии, не соответствующие нашему Кодексу поведения, будут модерироваться.</target>
+                <target>Komentarai, kurie neatitinka Elgesio kodekso, bus moderuojami.</target>
             </trans-unit>
-            
+
             <trans-unit id="info.change_password">
                 <source>info.change_password</source>
-                <target>После изменения пароля Вам потребуется заново авторизоваться в приложении.</target>
+                <target>Pakeitus slaptažodį, būsite atjungti nuo puslapio.</target>
             </trans-unit>
 
             <trans-unit id="rss.title">
                 <source>rss.title</source>
-                <target>Symfony Demo блог</target>
+                <target>Symfony Demo blogas</target>
             </trans-unit>
             <trans-unit id="rss.description">
                 <source>rss.description</source>
-                <target>Самые последние записи, опубликованные в Symfony Demo блоге</target>
+                <target>Naujausi įrašai paskelbti Symfony Demo bloge</target>
             </trans-unit>
         </body>
     </file>

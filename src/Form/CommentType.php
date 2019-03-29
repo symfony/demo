@@ -32,7 +32,7 @@ class CommentType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         // By default, form fields include the 'required' attribute, which enables
         // the client-side form validation. This means that you can't test the
@@ -50,7 +50,7 @@ class CommentType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Comment::class,

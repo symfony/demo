@@ -11,6 +11,8 @@
 
 namespace App\Utils;
 
+use HtmlSanitizer\SanitizerInterface;
+
 /**
  * This class is a light interface between an external Markdown parser library
  * and the application. It's generally recommended to create these light interfaces
@@ -22,22 +24,18 @@ namespace App\Utils;
 class Markdown
 {
     private $parser;
-    private $purifier;
+    private $sanitizer;
 
-    public function __construct()
+    public function __construct(SanitizerInterface $sanitizer)
     {
         $this->parser = new \Parsedown();
-
-        $purifierConfig = \HTMLPurifier_Config::create([
-            'Cache.DefinitionImpl' => null, // Disable caching
-        ]);
-        $this->purifier = new \HTMLPurifier($purifierConfig);
+        $this->sanitizer = $sanitizer;
     }
 
     public function toHtml(string $text): string
     {
         $html = $this->parser->text($text);
-        $safeHtml = $this->purifier->purify($html);
+        $safeHtml = $this->sanitizer->sanitize($html);
 
         return $safeHtml;
     }

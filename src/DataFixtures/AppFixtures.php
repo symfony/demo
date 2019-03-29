@@ -29,14 +29,14 @@ class AppFixtures extends Fixture
         $this->passwordEncoder = $passwordEncoder;
     }
 
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $this->loadUsers($manager);
         $this->loadTags($manager);
         $this->loadPosts($manager);
     }
 
-    private function loadUsers(ObjectManager $manager)
+    private function loadUsers(ObjectManager $manager): void
     {
         foreach ($this->getUserData() as [$fullname, $username, $password, $email, $roles]) {
             $user = new User();
@@ -53,7 +53,7 @@ class AppFixtures extends Fixture
         $manager->flush();
     }
 
-    private function loadTags(ObjectManager $manager)
+    private function loadTags(ObjectManager $manager): void
     {
         foreach ($this->getTagData() as $index => $name) {
             $tag = new Tag();
@@ -66,7 +66,7 @@ class AppFixtures extends Fixture
         $manager->flush();
     }
 
-    private function loadPosts(ObjectManager $manager)
+    private function loadPosts(ObjectManager $manager): void
     {
         foreach ($this->getPostData() as [$title, $slug, $summary, $content, $publishedAt, $author, $tags]) {
             $post = new Post();
