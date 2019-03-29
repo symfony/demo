@@ -1,6 +1,6 @@
 DOCKER_COMPOSE?=docker-compose
 EXEC?=$(DOCKER_COMPOSE) exec app
-CONSOLE=bin/console
+CONSOLE=php bin/console
 PHPCSFIXER?=$(EXEC) php -d memory_limit=1024m vendor/bin/php-cs-fixer
 
 .DEFAULT_GOAL := help
@@ -8,11 +8,12 @@ PHPCSFIXER?=$(EXEC) php -d memory_limit=1024m vendor/bin/php-cs-fixer
 .PHONY: db-diff db-migrate db-rollback db-fixtures db-validate
 .PHONY: watch assets assets-build
 .PHONY: tests lint lint-symfony lint-yaml lint-twig lint-xliff php-cs php-cs-fix security-check test-schema test-all
-.PHONY: build up perm
-.PHONY: docker-compose.override.yml
+.PHONY: deps
+.PHONY: build up perm docker-compose.override.yml
 
 help:
 	@grep -E '(^[a-zA-Z_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
+
 
 ##
 ## Project setup
@@ -27,7 +28,7 @@ stop:                                                                           
 restart:                                                                                               ## Restart docker containers
 	$(DOCKER_COMPOSE) restart
 
-install: docker-compose.override.yml build up vendor perm                                                ## Create and start docker containers
+install: docker-compose.override.yml build up deps perm                                                ## Create and start docker containers
 
 uninstall: stop                                                                                        ## Remove docker containers
 	$(DOCKER_COMPOSE) rm -vf
@@ -48,7 +49,7 @@ clear: perm                                                                     
 	rm -f var/.php_cs.cache
 
 clean: clear                                                                                           ## Clear and remove dependencies
-	rm -rf vendor
+	rm -rf vendor node_modules
 
 
 ##
@@ -81,8 +82,9 @@ watch: node_modules                                                             
 assets: node_modules                                                                                   ## Build the development version of the assets
 	$(EXEC) yarn dev
 
-assets-build: node_modules                                                                              ## Build the production version of the assets
+assets-build: node_modules                                                                             ## Build the production version of the assets
 	$(EXEC) yarn build
+
 
 ##
 ## Tests
@@ -91,7 +93,7 @@ assets-build: node_modules                                                      
 tests:                                                                                                 ## Run all the PHP tests
 	$(EXEC) bin/phpunit
 
-lint: lint-symfony php-cs                                                                              ## Run lint on Twig, YAML, PHP and Javascript files
+lint: lint-symfony php-cs                                                                              ## Run lint on Twig, YAML, XLIFF, and PHP files
 
 lint-symfony: lint-yaml lint-twig lint-xliff                                                           ## Lint Symfony (Twig and YAML) files
 
@@ -101,13 +103,13 @@ lint-yaml:                                                                      
 lint-twig:                                                                                             ## Lint Twig files
 	$(EXEC) $(CONSOLE) lint:twig templates
 
-lint-xliff:                                                                                             ## Lint Translation files
+lint-xliff:                                                                                            ## Lint Translation files
 	$(EXEC) $(CONSOLE) lint:xliff translations
 
 php-cs: vendor                                                                                         ## Lint PHP code
 	$(PHPCSFIXER) fix --diff --dry-run --no-interaction -v
 
-php-cs-fix: vendor                                                                                     ## Lint and fix PHP code to follow the convention
+php-cs-fix: vendor                                                                                     ## Fix PHP code to follow the convention
 	$(PHPCSFIXER) fix
 
 security-check: vendor                                                                                 ## Check for vulnerable dependencies
@@ -116,7 +118,15 @@ security-check: vendor                                                          
 test-schema: vendor                                                                                    ## Test the doctrine Schema
 	$(EXEC) $(CONSOLE) doctrine:schema:validate --skip-sync -vvv --no-interaction
 
-test-all: lint test-schema security-check tests                                                        ## Lint all, check vulnerable dependencies, run PHP tests
+test-all: lint test-schema security-check tests                                                        ## Lint all, run schema and security check, then unit and functionnal tests
+
+
+##
+## Dependencies
+##---------------------------------------------------------------------------
+
+deps: vendor assets                                                                                    ## Install the project dependencies
+
 
 ##
 
@@ -131,8 +141,8 @@ up:
 	$(DOCKER_COMPOSE) up -d --remove-orphans
 
 perm:
-	$(EXEC) chmod -R 777 vendor
-	$(EXEC) chown -R www-data:root vendor
+	$(EXEC) chmod -R 777 var public/build node_modules vendor
+	$(EXEC) chown -R www-data:root var public/build node_modules vendor
 
 docker-compose.override.yml:
 ifneq ($(wildcard docker-compose.override.yml),docker-compose.override.yml)
@@ -147,7 +157,7 @@ vendor: composer.lock
 	$(EXEC) composer install -n
 
 composer.lock: composer.json
-	@echo compose.lock is not up to date.
+	@echo composer.lock is not up to date.
 
 node_modules: yarn.lock
 	$(EXEC) yarn install
