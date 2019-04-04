@@ -1,3 +1,4 @@
+import '../scss/admin.scss';
 import 'eonasdan-bootstrap-datetimepicker';
 import 'typeahead.js';
 import Bloodhound from "bloodhound-js";

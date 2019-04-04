@@ -11,7 +11,7 @@
         <title>{% block title %}Symfony Demo application{% endblock %}</title>
         <link rel="alternate" type="application/rss+xml" title="{{ 'rss.title'|trans }}" href="{{ path('blog_rss') }}">
         {% block stylesheets %}
-            {{ encore_entry_link_tags('css/app') }}
+            {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -151,7 +151,7 @@
         {% endblock %}
 
         {% block javascripts %}
-            {{ encore_entry_script_tags('js/app') }}
+            {{ encore_entry_script_tags('app') }}
         {% endblock %}
 
         {# it's not mandatory to set the timezone in localizeddate(). This is done to
