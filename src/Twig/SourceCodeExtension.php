@@ -13,6 +13,7 @@ namespace App\Twig;
 
 use Twig\Environment;
 use Twig\Extension\AbstractExtension;
+use Twig\Template;
 use Twig\TemplateWrapper;
 use Twig\TwigFunction;
 
@@ -92,8 +93,17 @@ class SourceCodeExtension extends AbstractExtension
         return new \ReflectionFunction($callable);
     }
 
-    private function getTemplateSource(TemplateWrapper $template): array
+    private function getTemplateSource($template): array
     {
+        if (!$template instanceof TemplateWrapper && !$template instanceof Template) {
+            throw new \Exception(sprintf(
+                'The given template should be instance of %s or %s, but %s given',
+                TemplateWrapper::class,
+                Template::class,
+                get_class($template)
+            ));
+        }
+
         $templateSource = $template->getSourceContext();
 
         return [
