@@ -100,7 +100,7 @@ class SourceCodeExtension extends AbstractExtension
                 'The given template should be instance of %s or %s, but %s given',
                 TemplateWrapper::class,
                 Template::class,
-                get_class($template)
+                \get_class($template)
             ));
         }
 
