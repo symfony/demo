@@ -1,0 +1,17 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2019-04-26T15:21:58Z
+
+Thinking about this ... what if we make it a real dependency, instead of a "dev" dependency? MakerBundle is great and having installed in Symfony Demo would be a great way to showcase it.
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2019-04-26T17:20:49Z
+
+Hm, but what's the point of using it in prod? I just don't want to make devs think that it's a good idea to use MakerBundle in prod environment
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2019-04-28T09:35:21Z
+
+Yes, you are right! It wasn't a very smart suggestion 😅
