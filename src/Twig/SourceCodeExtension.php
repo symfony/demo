@@ -93,17 +93,11 @@ class SourceCodeExtension extends AbstractExtension
         return new \ReflectionFunction($callable);
     }
 
+    /**
+     * @param TemplateWrapper|Template $template
+     */
     private function getTemplateSource($template): array
     {
-        if (!$template instanceof TemplateWrapper && !$template instanceof Template) {
-            throw new \Exception(sprintf(
-                'The given template should be instance of %s or %s, but %s given',
-                TemplateWrapper::class,
-                Template::class,
-                \get_class($template)
-            ));
-        }
-
         $templateSource = $template->getSourceContext();
 
         return [
