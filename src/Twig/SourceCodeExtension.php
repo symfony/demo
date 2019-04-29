@@ -13,6 +13,7 @@ namespace App\Twig;
 
 use Twig\Environment;
 use Twig\Extension\AbstractExtension;
+use Twig\Template;
 use Twig\TemplateWrapper;
 use Twig\TwigFunction;
 
@@ -92,7 +93,10 @@ class SourceCodeExtension extends AbstractExtension
         return new \ReflectionFunction($callable);
     }
 
-    private function getTemplateSource(TemplateWrapper $template): array
+    /**
+     * @param TemplateWrapper|Template $template
+     */
+    private function getTemplateSource($template): array
     {
         $templateSource = $template->getSourceContext();
 
