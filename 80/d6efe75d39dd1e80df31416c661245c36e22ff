@@ -1,0 +1,17 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2019-03-05T11:27:09Z
+
+@Carrancio thanks for this contribution.
+
+As you know, this app is "the reference Symfony app" and lots of people (not only newcomers) look into it to check how things are done. So it's very important that we only do what Symfony really promotes as a best practice.
+
+Although your proposal is technical correct ... I wonder if this is something we should do and promote. I've never seen this in a Symfony app ... and we don't recommend this in Symfony Docs. But that doesn't mean that your proposal is wrong. I just want to wait and read more opinions about this. Thanks.
+
+---------------------------------------------------------------------------
+
+by mbabker at 2019-03-13T14:13:13Z
+
+I'd say this is a good practice to follow, even if not promoted in documentation.  As an authenticated user, if I visit the login page and see a login form I would be mildly confused as to why I'm seeing it.  So this is a check I implement in my apps.
+
+FWIW Laravel ships [a middleware](https://github.com/laravel/laravel/blob/4997f08105d6fb941b1ed2c749ebd2f55fba5a74/app/Http/Middleware/RedirectIfAuthenticated.php) in their skeleton application, enabled by default, that allows you to define routes and/or controllers that should be accessed by guests only (and this is applied to the default [`LoginController`](https://github.com/laravel/laravel/blob/4997f08105d6fb941b1ed2c749ebd2f55fba5a74/app/Http/Controllers/Auth/LoginController.php)).  Another practical example would be trying to reach https://github.com/login while logged in here on GitHub.
