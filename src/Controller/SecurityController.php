@@ -12,6 +12,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -34,6 +35,11 @@ class SecurityController extends AbstractController
      */
     public function login(Request $request, AuthenticationUtils $helper): Response
     {
+        // Block login page for logged in users
+        if ($this->container->get('security.authorization_checker')->isGranted('ROLE_USER')) {
+            return $this->redirectToRoute('blog_index');
+        }
+
         // this statement solves an edge-case: if you change the locale in the login
         // page, after a successful login you are redirected to a page in the previous
         // locale. This code regenerates the referrer URL whenever the login page is
