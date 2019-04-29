@@ -10,7 +10,8 @@ $lato-font-path: '~lato-font/fonts';
 @import "~bootswatch/flatly/variables";
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 @import "~bootswatch/flatly/bootswatch";
-@import "~font-awesome/scss/font-awesome.scss";
+@import "~@fortawesome/fontawesome-free/css/all.css";
+@import "~@fortawesome/fontawesome-free/css/v4-shims.css";
 @import "~highlight.js/styles/solarized-light.css";
 
 // pick the Lato fonts individually to avoid importing the entire font family
