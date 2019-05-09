@@ -146,9 +146,6 @@
     "psr/log": {
         "version": "1.0.x-dev"
     },
-    "psr/simple-cache": {
-        "version": "1.0.x-dev"
-    },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
         "recipe": {
@@ -178,6 +175,9 @@
     },
     "symfony/cache": {
         "version": "4.2-dev"
+    },
+    "symfony/cache-contracts": {
+        "version": "v1.1.1"
     },
     "symfony/config": {
         "version": "4.2-dev"
@@ -223,6 +223,9 @@
     },
     "symfony/event-dispatcher": {
         "version": "4.2-dev"
+    },
+    "symfony/event-dispatcher-contracts": {
+        "version": "v1.1.1"
     },
     "symfony/expression-language": {
         "version": "4.2-dev"
@@ -275,6 +278,9 @@
             "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
         }
     },
+    "symfony/mime": {
+        "version": "v4.3.0-beta1"
+    },
     "symfony/monolog-bridge": {
         "version": "4.2-dev"
     },
@@ -320,6 +326,9 @@
     "symfony/polyfill-php72": {
         "version": "1.9-dev"
     },
+    "symfony/polyfill-php73": {
+        "version": "1.11-dev"
+    },
     "symfony/process": {
         "version": "4.2-dev"
     },
@@ -356,6 +365,9 @@
     "symfony/security-http": {
         "version": "4.2-dev"
     },
+    "symfony/service-contracts": {
+        "version": "v1.1.2"
+    },
     "symfony/stopwatch": {
         "version": "4.2-dev"
     },
@@ -376,6 +388,9 @@
             "version": "3.3",
             "ref": "1fb02a6e1c8f3d4232cce485c9afa868d63b115a"
         }
+    },
+    "symfony/translation-contracts": {
+        "version": "v1.1.2"
     },
     "symfony/twig-bridge": {
         "version": "4.2-dev"
@@ -463,8 +478,5 @@
     },
     "zendframework/zend-code": {
         "version": "3.3-dev"
-    },
-    "zendframework/zend-eventmanager": {
-        "version": "3.2.1"
     }
 }
