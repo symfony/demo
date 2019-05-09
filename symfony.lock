@@ -146,9 +146,6 @@
     "psr/log": {
         "version": "1.0.x-dev"
     },
-    "psr/simple-cache": {
-        "version": "1.0.x-dev"
-    },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
         "recipe": {
@@ -275,6 +272,9 @@
             "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
         }
     },
+    "symfony/mime": {
+        "version": "v4.3.0-beta1"
+    },
     "symfony/monolog-bridge": {
         "version": "4.2-dev"
     },
@@ -319,6 +319,9 @@
     },
     "symfony/polyfill-php72": {
         "version": "1.9-dev"
+    },
+    "symfony/polyfill-php73": {
+        "version": "1.11-dev"
     },
     "symfony/process": {
         "version": "4.2-dev"
@@ -463,8 +466,5 @@
     },
     "zendframework/zend-code": {
         "version": "3.3-dev"
-    },
-    "zendframework/zend-eventmanager": {
-        "version": "3.2.1"
     }
 }
