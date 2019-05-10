@@ -110,7 +110,7 @@ class TagArrayToStringTransformerTest extends TestCase
             ->getMock();
         $tagRepository->expects($this->any())
             ->method('findBy')
-            ->will($this->returnValue($findByReturnValues));
+            ->willReturn($findByReturnValues);
 
         return new TagArrayToStringTransformer($tagRepository);
     }
