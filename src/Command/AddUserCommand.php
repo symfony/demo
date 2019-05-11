@@ -37,7 +37,7 @@ use Symfony\Component\Stopwatch\Stopwatch;
  *
  *     $ php bin/console app:add-user -vv
  *
- * See https://symfony.com/doc/current/cookbook/console/console_command.html
+ * See https://symfony.com/doc/current/console.html
  * For more advanced uses, commands can be defined as services too. See
  * https://symfony.com/doc/current/console/commands_as_services.html
  *
