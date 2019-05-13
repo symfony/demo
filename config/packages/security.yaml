@@ -1,7 +1,7 @@
 security:
     encoders:
         # Our user class and the algorithm we'll use to encode passwords
-        # 'auto' means to let PHP choose the best possible password hasher (Argon2 or Bcrypt)
+        # 'auto' means to let Symfony choose the best possible password hasher (Argon2 or Bcrypt)
         # https://symfony.com/doc/current/security.html#c-encoding-the-user-s-password
         App\Entity\User: 'auto'
 
