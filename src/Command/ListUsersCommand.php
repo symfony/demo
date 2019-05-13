@@ -28,7 +28,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  *
  *     $ php bin/console app:list-users
  *
- * See https://symfony.com/doc/current/cookbook/console/console_command.html
+ * See https://symfony.com/doc/current/console.html
  * For more advanced uses, commands can be defined as services too. See
  * https://symfony.com/doc/current/console/commands_as_services.html
  *
@@ -130,7 +130,7 @@ HELP
      */
     private function sendReport(string $contents, string $recipient): void
     {
-        // See https://symfony.com/doc/current/cookbook/email/email.html
+        // See https://symfony.com/doc/current/email.html
         $message = $this->mailer->createMessage()
             ->setSubject(sprintf('app:list-users report (%s)', date('Y-m-d H:i:s')))
             ->setFrom($this->emailSender)
