@@ -40,7 +40,7 @@ class CommentNotificationSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            CommentCreatedEvent::NAME => 'onCommentCreated',
+            CommentCreatedEvent::class => 'onCommentCreated',
         ];
     }
 
