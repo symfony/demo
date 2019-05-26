@@ -20,8 +20,6 @@ use Symfony\Contracts\EventDispatcher\Event;
  */
 class CommentCreatedEvent extends Event
 {
-    public const NAME = 'comment.created';
-
     protected $comment;
 
     public function __construct(Comment $comment)
