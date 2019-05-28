@@ -72,8 +72,29 @@ header ul.nav li {
   margin-bottom: 0
 }
 
+header .locales {
+  min-width: 190px;
+}
 header .locales a {
-  padding-right: 10px
+  color: #212529;
+  padding: 3px 15px;
+}
+header .locales a small {
+  border-radius: 4px;
+  border: 2px solid #dee2e6;
+  color: #7b8a8b;
+  float: left;
+  font-size: 12px;
+  line-height: 1.1;
+  margin: 2px 10px 0 0;
+  min-width: 26px;
+  padding: 0px 3px;
+  text-align: center;
+  text-transform: uppercase;
+}
+header .locales .active small,
+header .locales a:hover small {
+  color: inherit;
 }
 
 .body-container {
