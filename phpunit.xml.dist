@@ -9,9 +9,10 @@
 >
     <php>
         <ini name="error_reporting" value="-1" />
+        <env name="APP_ENV" value="test" force="true"/>
         <env name="KERNEL_CLASS" value="App\Kernel" />
+        <server name="SYMFONY_PHPUNIT_REMOVE" value=""/>
         <env name="SYMFONY_PHPUNIT_VERSION" value="7.1"/>
-        <env name="APP_ENV" value="test"/>
     </php>
 
     <testsuites>
@@ -21,6 +22,8 @@
     </testsuites>
 
     <listeners>
+        <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener" />
+
         <!-- it begins a database transaction before every testcase and rolls it back after
              the test finished, so tests can manipulate the database without affecting other tests -->
         <listener class="\DAMA\DoctrineTestBundle\PHPUnit\PHPUnitListener" />
