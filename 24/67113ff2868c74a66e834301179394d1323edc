@@ -1,0 +1,51 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2019-05-25T14:34:37Z
+
+After updating to Symfony 4.3 beta2, I see this deprecation:
+
+![image](https://user-images.githubusercontent.com/73419/58370792-e6cb6280-7f0a-11e9-9994-bb5061d1a193.png)
+
+I can't find any occurrence of `for ... if` in our templates and the deprecation message doesn't tell us which template contains the error. Any clue? Thanks.
+
+---------------------------------------------------------------------------
+
+by yceruto at 2019-05-27T12:31:47Z
+
+I guess it comes from the `vendor/symfony/swiftmailer-bundle/Resources/views/Collector/swiftmailer.html.twig` template.
+
+---------------------------------------------------------------------------
+
+by yceruto at 2019-05-27T12:33:09Z
+
+I also see another deprecation in tests:
+```
+  1x: The "DAMA\DoctrineTestBundle\PHPUnit\PHPUnitListener" class extends "PHPUnit\Framework\BaseTestListener" that is deprecated Use TestListenerDefaultImplementation trait instead.
+    1x in DebugClassLoader::loadClass from Symfony\Component\Debug
+```
+
+---------------------------------------------------------------------------
+
+by yceruto at 2019-05-27T13:30:41Z
+
+> I can't find any occurrence of for ... if in our templates and the deprecation message doesn't tell us which template contains the error. Any clue? Thanks.
+
+@javiereguiluz I sent a PR to improve it https://github.com/twigphp/Twig/pull/3031
+
+---------------------------------------------------------------------------
+
+by fabpot at 2019-05-28T12:55:52Z
+
+Updating SwiftmailerBundle will remove some deprecations.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2019-05-28T13:40:27Z
+
+I no longer see deprecations after updating Symfony to 4.3 RC1 and the other dependencies too. @yceruto do you still see deprecations in tests? I can't see anything. Thanks.
+
+---------------------------------------------------------------------------
+
+by yceruto at 2019-05-28T14:01:09Z
+
+I still see this one https://github.com/symfony/demo/pull/974#issuecomment-496197569 https://travis-ci.org/symfony/demo/jobs/538240998#L616
