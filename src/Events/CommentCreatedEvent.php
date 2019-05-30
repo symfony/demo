@@ -14,10 +14,6 @@ namespace App\Events;
 use App\Entity\Comment;
 use Symfony\Contracts\EventDispatcher\Event;
 
-/**
- * The comment.created event is dispatched each time a comment is created
- * in the system.
- */
 class CommentCreatedEvent extends Event
 {
     protected $comment;
@@ -27,7 +23,7 @@ class CommentCreatedEvent extends Event
         $this->comment = $comment;
     }
 
-    public function getComment()
+    public function getComment(): Comment
     {
         return $this->comment;
     }

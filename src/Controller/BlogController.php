@@ -103,22 +103,12 @@ class BlogController extends AbstractController
             $em->persist($comment);
             $em->flush();
 
-            // When triggering an event, you can optionally pass some information.
-            // For simple applications, use the GenericEvent object provided by Symfony
-            // to pass some PHP variables. For more complex applications, define your
-            // own event object classes.
-            // See https://symfony.com/doc/current/components/event_dispatcher/generic_event.html
-
-            // Since Symfony 4.3, it is better to use event object to make the calls to dispatch lighter
-            // https://symfony.com/blog/new-in-symfony-4-3-simpler-event-dispatching
-            $event = new CommentCreatedEvent($comment);
-
             // When an event is dispatched, Symfony notifies it to all the listeners
             // and subscribers registered to it. Listeners can modify the information
             // passed in the event and they can even modify the execution flow, so
             // there's no guarantee that the rest of this controller will be executed.
             // See https://symfony.com/doc/current/components/event_dispatcher.html
-            $eventDispatcher->dispatch($event);
+            $eventDispatcher->dispatch(new CommentCreatedEvent($comment));
 
             return $this->redirectToRoute('blog_post', ['slug' => $post->getSlug()]);
         }
