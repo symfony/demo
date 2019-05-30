@@ -13,7 +13,7 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\Post;
-use App\Events;
+use App\Events\CommentCreatedEvent;
 use App\Form\CommentType;
 use App\Repository\PostRepository;
 use App\Repository\TagRepository;
@@ -22,7 +22,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -109,14 +108,17 @@ class BlogController extends AbstractController
             // to pass some PHP variables. For more complex applications, define your
             // own event object classes.
             // See https://symfony.com/doc/current/components/event_dispatcher/generic_event.html
-            $event = new GenericEvent($comment);
+
+            // Since Symfony 4.3, it is better to use event object to make the calls to dispatch lighter
+            // https://symfony.com/blog/new-in-symfony-4-3-simpler-event-dispatching
+            $event = new CommentCreatedEvent($comment);
 
             // When an event is dispatched, Symfony notifies it to all the listeners
             // and subscribers registered to it. Listeners can modify the information
             // passed in the event and they can even modify the execution flow, so
             // there's no guarantee that the rest of this controller will be executed.
             // See https://symfony.com/doc/current/components/event_dispatcher.html
-            $eventDispatcher->dispatch($event, Events::COMMENT_CREATED);
+            $eventDispatcher->dispatch($event);
 
             return $this->redirectToRoute('blog_post', ['slug' => $post->getSlug()]);
         }
