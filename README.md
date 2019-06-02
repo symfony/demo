@@ -42,6 +42,22 @@ If you don't have the Symfony client installed, run `php bin/console server:run`
 Alternatively, you can [configure a web server][3] like Nginx or Apache to run
 the application.
 
+Development
+-----------
+
+This project uses Yarn package manager for managing JavaScript dependencies along
+with [Webpack Encore][5] library that helps working with CSS and JavaScript files
+that are stored in `assets/` directory . Every time you make any change in those
+files - you will need to rebuild assets. For this, just execute:
+
+```bash
+$ yarn install
+$ yarn build
+```
+
+During the development, instead of `yarn build` you may want to run `yarn watch` which
+will watch for any changes in `assets/` and rebuild assets for you automatically.
+
 Tests
 -----
 
@@ -56,3 +72,4 @@ $ ./bin/phpunit
 [2]: https://symfony.com/doc/current/reference/requirements.html
 [3]: https://symfony.com/doc/current/cookbook/configuration/web_server_configuration.html
 [4]: https://symfony.com/download
+[5]: https://github.com/symfony/webpack-encore
