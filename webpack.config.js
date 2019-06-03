@@ -1,3 +1,9 @@
+// This project uses "Yarn" package manager for managing JavaScript dependencies along
+// with "Webpack Encore" library that helps working with the CSS and JavaScript files
+// that are stored in the "assets/"" directory.
+//
+// Read https://symfony.com/doc/current/frontend.html to learn more about how
+// to manage CSS and JavaScript files in Symfony applications.
 var Encore = require('@symfony/webpack-encore');
 
 Encore
