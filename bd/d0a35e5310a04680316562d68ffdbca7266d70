@@ -1,0 +1,5 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2019-06-03T10:37:46Z
+
+@bocharsky-bw you are right ... but in the line 6 of the composer.json file you can see `"minimum-stability": "stable",`, so the `minimum-stability` key removed here is a duplication error.
