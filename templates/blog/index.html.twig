@@ -3,7 +3,7 @@
 {% block body_id 'blog_index' %}
 
 {% block main %}
-    {% for post in posts %}
+    {% for post in paginator.results %}
         <article class="post">
             <h2>
                 <a href="{{ path('blog_post', {slug: post.slug}) }}">
@@ -24,7 +24,6 @@
         <div class="well">{{ 'post.no_posts_found'|trans }}</div>
     {% endfor %}
 
-    {% set paginator = create_paginator(posts, currentPage) %}
     {% if paginator.haveToPaginate %}
         <div class="navigation text-center">
             <ul class="pagination">

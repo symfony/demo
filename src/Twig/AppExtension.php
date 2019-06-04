@@ -61,7 +61,6 @@ class AppExtension extends AbstractExtension
     {
         return [
             new TwigFunction('locales', [$this, 'getLocales']),
-            new TwigFunction('create_paginator', [$this, 'getPaginator']),
         ];
     }
 
@@ -90,22 +89,5 @@ class AppExtension extends AbstractExtension
         }
 
         return $this->locales;
-    }
-
-    public function getPaginator(Paginator $paginator, int $currentPage, int $pageSize = Post::NUM_ITEMS): array
-    {
-        $hasPreviousPage = $currentPage > 1;
-        $hasNextPage = ($currentPage * $pageSize) < $paginator->count();
-
-        return [
-            'results' => $paginator,
-            'currentPage' => $currentPage,
-            'hasPreviousPage' => $hasPreviousPage,
-            'hasNextPage' => $hasNextPage,
-            'previousPage' => $hasPreviousPage ? $currentPage - 1 : null,
-            'nextPage' => $hasNextPage ? $currentPage + 1 : null,
-            'numPages' => (int) ceil($paginator->count() / $pageSize),
-            'haveToPaginate' => $paginator->count() > $pageSize,
-        ];
     }
 }

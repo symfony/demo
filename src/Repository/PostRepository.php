@@ -35,8 +35,10 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
-    public function findLatest(int $page = 1, Tag $tag = null): Paginator
+    public function findLatest(int $page = 1, Tag $tag = null): array
     {
+        $page = $page < 1 ? 1 : $page;
+
         $qb = $this->createQueryBuilder('p')
             ->addSelect('a', 't')
             ->innerJoin('p.author', 'a')
@@ -52,7 +54,7 @@ class PostRepository extends ServiceEntityRepository
                 ->setParameter('tag', $tag);
         }
 
-        return new Paginator($qb->getQuery());
+        return $this->createPaginator($qb->getQuery(), $page);
     }
 
     /**
@@ -101,5 +103,23 @@ class PostRepository extends ServiceEntityRepository
         return array_filter($terms, function ($term) {
             return 2 <= mb_strlen($term);
         });
+    }
+
+    private function createPaginator(Query $query, int $currentPage, int $pageSize = Post::NUM_ITEMS)
+    {
+        $paginator = new Paginator($query);
+        $hasPreviousPage = $currentPage > 1;
+        $hasNextPage = ($currentPage * $pageSize) < $paginator->count();
+
+        return [
+            'results' => $paginator->getIterator(),
+            'currentPage' => $currentPage,
+            'hasPreviousPage' => $hasPreviousPage,
+            'hasNextPage' => $hasNextPage,
+            'previousPage' => $hasPreviousPage ? $currentPage - 1 : null,
+            'nextPage' => $hasNextPage ? $currentPage + 1 : null,
+            'numPages' => (int) ceil($paginator->count() / $pageSize),
+            'haveToPaginate' => $paginator->count() > $pageSize,
+        ];
     }
 }
