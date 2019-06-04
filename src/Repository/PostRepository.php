@@ -16,8 +16,7 @@ use App\Entity\Tag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\Query;
-use Pagerfanta\Adapter\DoctrineORMAdapter;
-use Pagerfanta\Pagerfanta;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * This custom Doctrine repository contains some methods which are useful when
@@ -36,7 +35,7 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
-    public function findLatest(int $page = 1, Tag $tag = null): Pagerfanta
+    public function findLatest(int $page = 1, Tag $tag = null): Paginator
     {
         $qb = $this->createQueryBuilder('p')
             ->addSelect('a', 't')
@@ -44,23 +43,16 @@ class PostRepository extends ServiceEntityRepository
             ->leftJoin('p.tags', 't')
             ->where('p.publishedAt <= :now')
             ->orderBy('p.publishedAt', 'DESC')
-            ->setParameter('now', new \DateTime());
+            ->setParameter('now', new \DateTime())
+            ->setFirstResult(($page - 1) * Post::NUM_ITEMS)
+            ->setMaxResults(Post::NUM_ITEMS);
 
         if (null !== $tag) {
             $qb->andWhere(':tag MEMBER OF p.tags')
                 ->setParameter('tag', $tag);
         }
 
-        return $this->createPaginator($qb->getQuery(), $page);
-    }
-
-    private function createPaginator(Query $query, int $page): Pagerfanta
-    {
-        $paginator = new Pagerfanta(new DoctrineORMAdapter($query));
-        $paginator->setMaxPerPage(Post::NUM_ITEMS);
-        $paginator->setCurrentPage($page);
-
-        return $paginator;
+        return new Paginator($qb->getQuery());
     }
 
     /**

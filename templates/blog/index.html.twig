@@ -24,9 +24,30 @@
         <div class="well">{{ 'post.no_posts_found'|trans }}</div>
     {% endfor %}
 
-    {% if posts.haveToPaginate %}
+    {% set paginator = create_paginator(posts, currentPage) %}
+    {% if paginator.haveToPaginate %}
         <div class="navigation text-center">
-            {{ pagerfanta(posts, 'twitter_bootstrap3_translated', {routeName: 'blog_index_paginated', routeParams: app.request.query.all}) }}
+            <ul class="pagination">
+                {% if paginator.hasPreviousPage %}
+                    <li class="prev"><a href="{{ path('blog_index_paginated', {page: paginator.previousPage}) }}" rel="previous">← Previous</a></li>
+                {% else %}
+                    <li class="prev disabled"><span>← Previous</span></li>
+                {% endif %}
+
+                {% for i in 1..paginator.numPages %}
+                    {% if i == paginator.currentPage %}
+                        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                    {% else %}
+                        <li><a href="{{ path('blog_index_paginated', {page: i}) }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if paginator.hasNextPage %}
+                    <li class="prev"><a href="{{ path('blog_index_paginated', {page: paginator.nextPage}) }}" rel="next">Next →</a></li>
+                {% else %}
+                    <li class="next disabled"><span>Next →</span></li>
+                {% endif %}
+            </ul>
         </div>
     {% endif %}
 {% endblock %}
