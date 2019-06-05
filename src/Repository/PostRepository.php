@@ -15,7 +15,7 @@ use App\Entity\Post;
 use App\Entity\Tag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
@@ -37,8 +37,6 @@ class PostRepository extends ServiceEntityRepository
 
     public function findLatest(int $page = 1, Tag $tag = null): array
     {
-        $page = $page < 1 ? 1 : $page;
-
         $qb = $this->createQueryBuilder('p')
             ->addSelect('a', 't')
             ->innerJoin('p.author', 'a')
@@ -46,15 +44,14 @@ class PostRepository extends ServiceEntityRepository
             ->where('p.publishedAt <= :now')
             ->orderBy('p.publishedAt', 'DESC')
             ->setParameter('now', new \DateTime())
-            ->setFirstResult(($page - 1) * Post::NUM_ITEMS)
-            ->setMaxResults(Post::NUM_ITEMS);
+        ;
 
         if (null !== $tag) {
             $qb->andWhere(':tag MEMBER OF p.tags')
                 ->setParameter('tag', $tag);
         }
 
-        return $this->createPaginator($qb->getQuery(), $page);
+        return $this->createPaginator($qb, $page);
     }
 
     /**
@@ -105,11 +102,20 @@ class PostRepository extends ServiceEntityRepository
         });
     }
 
-    private function createPaginator(Query $query, int $currentPage, int $pageSize = Post::NUM_ITEMS)
+    private function createPaginator(QueryBuilder $queryBuilder, int $currentPage, int $pageSize = Post::NUM_ITEMS)
     {
+        $currentPage = $currentPage < 1 ? 1 : $currentPage;
+        $firstResult = ($currentPage - 1) * $pageSize;
+
+        $query = $queryBuilder
+            ->setFirstResult($firstResult)
+            ->setMaxResults($pageSize)
+            ->getQuery();
+
         $paginator = new Paginator($query);
+        $numResults = $paginator->count();
         $hasPreviousPage = $currentPage > 1;
-        $hasNextPage = ($currentPage * $pageSize) < $paginator->count();
+        $hasNextPage = ($currentPage * $pageSize) < $numResults;
 
         return [
             'results' => $paginator->getIterator(),
@@ -118,8 +124,8 @@ class PostRepository extends ServiceEntityRepository
             'hasNextPage' => $hasNextPage,
             'previousPage' => $hasPreviousPage ? $currentPage - 1 : null,
             'nextPage' => $hasNextPage ? $currentPage + 1 : null,
-            'numPages' => (int) ceil($paginator->count() / $pageSize),
-            'haveToPaginate' => $paginator->count() > $pageSize,
+            'numPages' => (int) ceil($numResults / $pageSize),
+            'haveToPaginate' => $numResults > $pageSize,
         ];
     }
 }

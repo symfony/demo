@@ -11,9 +11,7 @@
 
 namespace App\Twig;
 
-use App\Entity\Post;
 use App\Utils\Markdown;
-use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Component\Intl\Locales;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
