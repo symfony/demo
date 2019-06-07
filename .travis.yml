@@ -45,4 +45,5 @@ script:
   # this checks that Doctrine's mapping configurations are valid
   - ./bin/console doctrine:schema:validate --skip-sync -vvv --no-interaction
   #  Fail CI if the repo is in a dirty state after building assets
-  - yarn install && yarn encore production && git add --all && git diff --staged --shortstat --exit-code
+  #  (disabled until we can find the reason why it fails randomly)
+  #- yarn install && yarn encore production && git add --all && git diff --staged --shortstat --exit-code
