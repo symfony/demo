@@ -15,9 +15,8 @@ use App\Entity\Post;
 use App\Entity\Tag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\ORM\Query;
-use Pagerfanta\Adapter\DoctrineORMAdapter;
-use Pagerfanta\Pagerfanta;
+use Doctrine\ORM\QueryBuilder;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * This custom Doctrine repository contains some methods which are useful when
@@ -36,7 +35,7 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
-    public function findLatest(int $page = 1, Tag $tag = null): Pagerfanta
+    public function findLatest(int $page = 1, Tag $tag = null): array
     {
         $qb = $this->createQueryBuilder('p')
             ->addSelect('a', 't')
@@ -44,23 +43,15 @@ class PostRepository extends ServiceEntityRepository
             ->leftJoin('p.tags', 't')
             ->where('p.publishedAt <= :now')
             ->orderBy('p.publishedAt', 'DESC')
-            ->setParameter('now', new \DateTime());
+            ->setParameter('now', new \DateTime())
+        ;
 
         if (null !== $tag) {
             $qb->andWhere(':tag MEMBER OF p.tags')
                 ->setParameter('tag', $tag);
         }
 
-        return $this->createPaginator($qb->getQuery(), $page);
-    }
-
-    private function createPaginator(Query $query, int $page): Pagerfanta
-    {
-        $paginator = new Pagerfanta(new DoctrineORMAdapter($query));
-        $paginator->setMaxPerPage(Post::NUM_ITEMS);
-        $paginator->setCurrentPage($page);
-
-        return $paginator;
+        return $this->createPaginator($qb, $page);
     }
 
     /**
@@ -109,5 +100,32 @@ class PostRepository extends ServiceEntityRepository
         return array_filter($terms, function ($term) {
             return 2 <= mb_strlen($term);
         });
+    }
+
+    private function createPaginator(QueryBuilder $queryBuilder, int $currentPage, int $pageSize = Post::NUM_ITEMS)
+    {
+        $currentPage = $currentPage < 1 ? 1 : $currentPage;
+        $firstResult = ($currentPage - 1) * $pageSize;
+
+        $query = $queryBuilder
+            ->setFirstResult($firstResult)
+            ->setMaxResults($pageSize)
+            ->getQuery();
+
+        $paginator = new Paginator($query);
+        $numResults = $paginator->count();
+        $hasPreviousPage = $currentPage > 1;
+        $hasNextPage = ($currentPage * $pageSize) < $numResults;
+
+        return [
+            'results' => $paginator->getIterator(),
+            'currentPage' => $currentPage,
+            'hasPreviousPage' => $hasPreviousPage,
+            'hasNextPage' => $hasNextPage,
+            'previousPage' => $hasPreviousPage ? $currentPage - 1 : null,
+            'nextPage' => $hasNextPage ? $currentPage + 1 : null,
+            'numPages' => (int) ceil($numResults / $pageSize),
+            'haveToPaginate' => $numResults > $pageSize,
+        ];
     }
 }
