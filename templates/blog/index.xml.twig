@@ -4,11 +4,11 @@
         <title>{{ 'rss.title'|trans }}</title>
         <description>{{ 'rss.description'|trans }}</description>
         <pubDate>{{ 'now'|date('r', timezone='GMT') }}</pubDate>
-        <lastBuildDate>{{ (posts|last).publishedAt|default('now')|date('r', timezone='GMT') }}</lastBuildDate>
+        <lastBuildDate>{{ (paginator.results|last).publishedAt|default('now')|date('r', timezone='GMT') }}</lastBuildDate>
         <link>{{ url('blog_index') }}</link>
         <language>{{ app.request.locale }}</language>
 
-        {% for post in posts %}
+        {% for post in paginator.results %}
             <item>
                 <title>{{ post.title }}</title>
                 <description>{{ post.summary }}</description>
