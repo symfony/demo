@@ -18,12 +18,13 @@ matrix:
     - php: 7.1.18
     - php: 7.2
     - php: 7.3
-    - php: nightly
+    # 'php: nightly' is PHP 8.0
+    - php: 7.4snapshot
   allow_failures:
-    - php: nightly
+    - php: 7.4snapshot
 
 before_install:
-  - '[[ "$TRAVIS_PHP_VERSION" == "nightly" ]] || phpenv config-rm xdebug.ini'
+  - '[[ "$TRAVIS_PHP_VERSION" == "7.4snapshot" ]] || phpenv config-rm xdebug.ini'
   - composer self-update
 
 install:
