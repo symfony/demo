@@ -17,7 +17,7 @@ use Symfony\Component\Console\ConsoleEvents;
 use Symfony\Component\Console\Event\ConsoleErrorEvent;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
+use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
@@ -73,7 +73,7 @@ class CheckRequirementsSubscriber implements EventSubscriberInterface
      * This method checks if the triggered exception is related to the database
      * and then, it checks if the required 'sqlite3' PHP extension is enabled.
      */
-    public function handleKernelException(GetResponseForExceptionEvent $event): void
+    public function handleKernelException(ExceptionEvent $event): void
     {
         $exception = $event->getException();
         // Since any exception thrown during a Twig template rendering is wrapped
