@@ -69,7 +69,11 @@
             "branch": "master",
             "version": "1.2",
             "ref": "c1431086fec31f17fbcfe6d6d7e92059458facc1"
-        }
+        },
+        "files": [
+            "config/packages/doctrine_migrations.yaml",
+            "src/Migrations/.gitignore"
+        ]
     },
     "doctrine/event-manager": {
         "version": "1.0.x-dev"
@@ -84,7 +88,7 @@
         "version": "1.0.x-dev"
     },
     "doctrine/migrations": {
-        "version": "1.8.x-dev"
+        "version": "v1.8.1"
     },
     "doctrine/orm": {
         "version": "2.7.x-dev"
@@ -125,8 +129,11 @@
     "nikic/php-parser": {
         "version": "v4.2.1"
     },
+    "ocramius/package-versions": {
+        "version": "1.4.0"
+    },
     "ocramius/proxy-manager": {
-        "version": "2.1.x-dev"
+        "version": "2.1.1"
     },
     "paragonie/random_compat": {
         "version": "v9.99.99.x-dev"
@@ -471,6 +478,9 @@
         "version": "2.x-dev"
     },
     "zendframework/zend-code": {
-        "version": "3.3-dev"
+        "version": "3.3.1"
+    },
+    "zendframework/zend-eventmanager": {
+        "version": "3.2.1"
     }
 }
