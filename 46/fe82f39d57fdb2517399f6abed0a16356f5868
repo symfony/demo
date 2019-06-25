@@ -1,0 +1,29 @@
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2019-06-15T09:41:01Z
+
+Hm, still does not work, probably the problem is in something else, depends on how that "hash" is generated, because when I manually change the full path to the repo locally - it still works for me. Closing it
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2019-06-15T11:00:30Z
+
+@bocharsky-bw would this be fixed (or would it simplify the solution) if we disable versioning? I think we can do that for this demo app.
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2019-06-15T19:49:30Z
+
+Hm, if we could consider disabling versioning on this app - I think it might help then. Let's figure it out
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2019-06-15T20:40:34Z
+
+OK, this looks like a working example based on TravisCI
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2019-06-24T10:13:36Z
+
+I think this one is ready
