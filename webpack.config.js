@@ -16,8 +16,9 @@ Encore
         "jQuery.tagsinput": "bootstrap-tagsinput"
     })
     .enableSassLoader()
-    // Disable versioning to be able to check if assets are fresh on CI.
-    // Use Encore.isProduction() to enable it only for production.
+    // when versioning is enabled, each filename will include a hash that changes
+    // whenever the contents of that file change. This allows you to use aggressive
+    // caching strategies. Use Encore.isProduction() to enable it only for production.
     .enableVersioning(false)
     .addEntry('app', './assets/js/app.js')
     .addEntry('login', './assets/js/login.js')
