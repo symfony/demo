@@ -24,7 +24,7 @@
         <div class="well">{{ 'post.no_posts_found'|trans }}</div>
     {% endfor %}
 
-    {% if paginator.haveToPaginate %}
+    {% if paginator.hasToPaginate %}
         <div class="navigation text-center">
             <ul class="pagination">
                 {% if paginator.hasPreviousPage %}
@@ -33,7 +33,7 @@
                     <li class="prev disabled"><span><i class="fa fw fa-arrow-left"></i> Previous</span></li>
                 {% endif %}
 
-                {% for i in 1..paginator.numPages %}
+                {% for i in 1..paginator.lastPage %}
                     {% if i == paginator.currentPage %}
                         <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
                     {% else %}
