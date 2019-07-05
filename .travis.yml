@@ -36,9 +36,9 @@ script:
   # this checks that the source code follows the Symfony Code Syntax rules
   - '[[ "$TRAVIS_PHP_VERSION" == "7.4snapshot" ]] || ./vendor/bin/php-cs-fixer fix --diff --dry-run -v'
   # this checks that the YAML config files contain no syntax errors
-  - ./bin/console lint:yaml config
+  - ./bin/console lint:yaml config --parse-tags
   # this checks that the Twig template files contain no syntax errors
-  - ./bin/console lint:twig templates
+  - ./bin/console lint:twig templates --env=prod
   # this checks that the XLIFF translations contain no syntax errors
   - ./bin/console lint:xliff translations
   # this checks that the application doesn't use dependencies with known security vulnerabilities
