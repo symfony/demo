@@ -11,6 +11,7 @@ env:
   global:
     - SYMFONY_PHPUNIT_DIR=./bin/.phpunit
     - SYMFONY_DEPRECATIONS_HELPER=29
+    - ACTION="install"
 
 matrix:
   fast_finish: true
@@ -20,15 +21,37 @@ matrix:
     - php: 7.3
     # 'php: nightly' is PHP 8.0
     - php: 7.4snapshot
+    - php: 7.3
+      env: SYMFONY="4.4.*"
+           ACTION="update"
+    - php: 7.3
+      env: SYMFONY="5.0.*"
+           ACTION="update"
   allow_failures:
     - php: 7.4snapshot
+    - php: 7.3
+      env: SYMFONY="4.4.*"
+           ACTION="update"
+    - php: 7.3
+      env: SYMFONY="5.0.*"
+           ACTION="update"
 
 before_install:
   - '[[ "$TRAVIS_PHP_VERSION" == "7.4snapshot" ]] || phpenv config-rm xdebug.ini'
   - composer self-update
+  # Set memory to max (memory fail)
+  - '[[ "$ACTION" == "install" ]] || echo "memory_limit=-1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini'
+  # Install before update because of memory usage
+  - '[[ "$ACTION" == "install" ]] || composer install'
+  # Set stability to dev to allow 4.4dev and 5.0dev
+  - '[[ "$ACTION" == "install" ]] || composer config minimum-stability dev'
+  # Change version of symfony when need
+  - '[[ "$ACTION" == "install" ]] || composer config extra.symfony.require $SYMFONY'
 
 install:
-  - composer install
+  - php -r "echo ini_get('memory_limit').PHP_EOL;"
+  # install or update
+  - composer $ACTION
   - ./bin/phpunit install
 
 script:
@@ -45,5 +68,5 @@ script:
   - ./bin/console security:check
   # this checks that Doctrine's mapping configurations are valid
   - ./bin/console doctrine:schema:validate --skip-sync -vvv --no-interaction
-  #  Fail CI if the repo is in a dirty state after building assets
-  - yarn install && yarn encore production && git add --all && git diff --staged --exit-code
+  #  Fail CI if the repo is in a dirty state after building assets (only for current release ie install)
+  -  if [[ "$ACTION" == "install" ]]; then yarn install && yarn encore production && git add --all && git diff --staged --exit-code; fi
