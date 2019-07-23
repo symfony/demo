@@ -42,7 +42,7 @@
                 {% endfor %}
 
                 {% if paginator.hasNextPage %}
-                    <li class="prev"><a href="{{ path('blog_index_paginated', {page: paginator.nextPage}) }}" rel="next">Next <i class="fa fw fa-arrow-right"></i></a></li>
+                    <li class="next"><a href="{{ path('blog_index_paginated', {page: paginator.nextPage}) }}" rel="next">Next <i class="fa fw fa-arrow-right"></i></a></li>
                 {% else %}
                     <li class="next disabled"><span>Next <i class="fa fw fa-arrow-right"></i></span></li>
                 {% endif %}
