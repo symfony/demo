@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="lt" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="post.blank_summary">
+                <source>post.blank_summary</source>
+                <target>Įrašo santrauka negali būti tuščia</target>
+            </trans-unit>
+            <trans-unit id="post.blank_content">
+                <source>post.blank_content</source>
+                <target>Įrašo turinys negali būti tuščias</target>
+            </trans-unit>
+            <trans-unit id="post.too_short_content">
+                <source>post.too_short_content</source>
+                <target>Per trumpas įrašo turinys (nesiekia { limit } simbolių)</target>
+            </trans-unit>
+            <trans-unit id="post.too_many_tags">
+                <source>post.too_many_tags</source>
+                <target>Per daug žymų (viršyja { limit })</target>
+            </trans-unit>
+            <trans-unit id="comment.blank">
+                <source>comment.blank</source>
+                <target>Komentaras negali būti tuščias</target>
+            </trans-unit>
+            <trans-unit id="comment.too_short">
+                <source>comment.too_short</source>
+                <target>Per trumpas komentaras (nesiekia { limit } simbolių)</target>
+            </trans-unit>
+            <trans-unit id="comment.too_long">
+                <source>comment.too_long</source>
+                <target>Per ilgas komentaras (viršyja { limit } simbolių)</target>
+            </trans-unit>
+            <trans-unit id="comment.is_spam">
+                <source>comment.is_spam</source>
+                <target>Komentaras traktuojamas kaip brukalas.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
