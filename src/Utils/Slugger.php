@@ -19,6 +19,9 @@ class Slugger
 {
     public static function slugify(string $string): string
     {
-        return preg_replace('/\s+/', '-', mb_strtolower(trim(strip_tags($string)), 'UTF-8'));
+        $slug = preg_replace('/\s+/', '-', mb_strtolower(trim($string), 'UTF-8'));
+        $slug = preg_replace('/[^a-z0-9-]/', '', $slug);
+
+        return $slug;
     }
 }
