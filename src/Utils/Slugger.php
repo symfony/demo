@@ -15,14 +15,14 @@ namespace App\Utils;
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  * @author Douglas Silva <doug.hs@protonmail.ch>
+ * @author Josef Kufner <???>
  */
 class Slugger
 {
     public static function slugify(string $string): string
     {
-        $slug = preg_replace('/\s+/', '-', mb_strtolower(trim($string), 'UTF-8'));
-        $slug = preg_replace('/[^a-z0-9-]/', '', $slug);
+        $slug = preg_replace('/[^a-z0-9-]+/', '-', mb_strtolower($string, 'UTF-8'));
 
-        return $slug;
+        return trim($slug, '-');
     }
 }
