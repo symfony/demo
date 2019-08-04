@@ -15,7 +15,7 @@ namespace App\Utils;
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  * @author Douglas Silva <doug.hs@protonmail.ch>
- * @author Josef Kufner <???>
+ * @author Josef Kufner <josef@kufner.cz>
  */
 class Slugger
 {
