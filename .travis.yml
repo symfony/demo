@@ -41,8 +41,6 @@ before_install:
   - composer self-update
   # Set memory to max (memory fail)
   - '[[ "$ACTION" == "install" ]] || echo "memory_limit=-1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini'
-  # Install before update because of memory usage
-  - '[[ "$ACTION" == "install" ]] || composer install'
   # Set stability to dev to allow 4.4dev and 5.0dev
   - '[[ "$ACTION" == "install" ]] || composer config minimum-stability dev'
   # Change version of symfony when need
