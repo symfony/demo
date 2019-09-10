@@ -56,9 +56,9 @@ class PostRepository extends ServiceEntityRepository
     /**
      * @return Post[]
      */
-    public function findBySearchQuery(string $rawQuery, int $limit = Post::NUM_ITEMS): array
+    public function findBySearchQuery(string $query, int $limit = Post::NUM_ITEMS): array
     {
-        $searchTerms = $this->extractSearchTerms($rawQuery);
+        $searchTerms = $this->extractSearchTerms($query);
 
         if (0 === \count($searchTerms)) {
             return [];
@@ -88,9 +88,7 @@ class PostRepository extends ServiceEntityRepository
         $searchQuery = trim(preg_replace('/[[:space:]]+/', ' ', $searchQuery));
         $terms = array_unique(explode(' ', $searchQuery));
 
-        /*
-         * Search terms with a very small length are left out.
-         */
+        // ignore the search terms that are too short
         return array_filter($terms, function ($term) {
             return 2 <= mb_strlen($term);
         });
