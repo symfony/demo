@@ -3,30 +3,26 @@
     "app": {
       "js": [
         "/build/runtime.js",
-        "/build/vendors~admin~app~login~search.js",
-        "/build/vendors~admin~app~search.js",
-        "/build/vendors~app~search.js",
-        "/build/vendors~app.js",
+        "/build/0.js",
+        "/build/1.js",
         "/build/app.js"
       ],
       "css": [
-        "/build/vendors~app.css",
         "/build/app.css"
       ]
     },
     "login": {
       "js": [
         "/build/runtime.js",
-        "/build/vendors~admin~app~login~search.js",
+        "/build/0.js",
         "/build/login.js"
       ]
     },
     "admin": {
       "js": [
         "/build/runtime.js",
-        "/build/vendors~admin~app~login~search.js",
-        "/build/vendors~admin~app~search.js",
-        "/build/vendors~admin.js",
+        "/build/0.js",
+        "/build/2.js",
         "/build/admin.js"
       ],
       "css": [
@@ -36,12 +32,22 @@
     "search": {
       "js": [
         "/build/runtime.js",
-        "/build/vendors~admin~app~login~search.js",
-        "/build/vendors~admin~app~search.js",
-        "/build/vendors~app~search.js",
-        "/build/vendors~search.js",
+        "/build/0.js",
+        "/build/1.js",
         "/build/search.js"
       ]
     }
+  },
+  "integrity": {
+    "/build/runtime.js": "sha384-/Zh0hTCgqMfXwZfeMIiueZzsKiHkvtqEOzKpZAuznIbgqg1DQpUQAwwNlO/9ToVH",
+    "/build/0.js": "sha384-Dt6rncfcL40e91sPDLy/fZ8XgfH6ZZmLY1+ajXaPmGFGTb5XNtWS5jmf84NoZT/f",
+    "/build/1.js": "sha384-bmKW9QGT6CjdvJr6hoYLCByhKzyjU+g+gUJ5SGOSxqUm4jzLuBhDpl0hImY/1R3M",
+    "/build/app.js": "sha384-IbSMr0A1SgsOkSrDv7nQHjMIxqO1BsP3Dz+TaXZEwDv+HDyQkKxrx6izrF5tkQ2v",
+    "/build/app.css": "sha384-zLFyZlw3jX8ddyClti8e40Ijv9Yc5YdlmEMpbq3msye8lOgk04BfCHCb4yZ1uKD8",
+    "/build/login.js": "sha384-tCP53hf/3uu7W5h5syxKODJjjos7AyGM/lENitUwFKSXMxQsWP+50V0mN6bcImAo",
+    "/build/2.js": "sha384-YwPOakbSR1RJpiSi89xXUIqPeU8wzfYI8UQwcmeSESx93FXEycwozpNfU6yM9HOM",
+    "/build/admin.js": "sha384-rmH4Z/gCRxsY1DgieUuTFJ8bMyWu8Tr74ifeD2T9lrLbKgwlfNGRQxNJdW2+PF9x",
+    "/build/admin.css": "sha384-ouJGJIyX9JD4fZecHxA8ej9HjSkG7zOgVN3KWgqHtEhIrpHAR3CkPD2VdUTFOvoD",
+    "/build/search.js": "sha384-R/BW5h0YHjTYt/CVNZNOPDSuk0IQsvSSQZeP9hPpBtEkI4pBWMkBX4CAQnQQkFvt"
   }
 }

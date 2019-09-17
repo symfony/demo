@@ -21,84 +21,74 @@
 
         {% block header %}
             <header>
-                <div class="navbar navbar-default navbar-static-top" role="navigation">
-                    <div class="container">
-                        <div class="navbar-header col-md-3 col-lg-2">
-                            <a class="navbar-brand" href="{{ path('homepage') }}">
-                                Symfony Demo
-                            </a>
+                <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                    <a class="navbar-brand" href="{{ path('homepage') }}">
+                        Symfony Demo
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-                            <button type="button" class="navbar-toggle"
-                                    data-toggle="collapse"
-                                    data-target=".navbar-collapse">
-                                <span class="sr-only">{{ 'menu.toggle_nav'|trans }}</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </div>
-                        <div class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav navbar-right">
-
-                                {% block header_navigation_links %}
-                                    <li>
-                                        <a href="{{ path('blog_index') }}">
-                                            <i class="fa fa-home" aria-hidden="true"></i> {{ 'menu.homepage'|trans }}
-                                        </a>
-                                    </li>
-
-                                    {% if is_granted('ROLE_ADMIN') %}
-                                        <li>
-                                            <a href="{{ path('admin_post_index') }}">
-                                                <i class="fa fa-lock" aria-hidden="true"></i> {{ 'menu.admin'|trans }}
-                                            </a>
-                                        </li>
-                                    {% endif %}
-                                {% endblock %}
-
+                    <div class="collapse navbar-collapse" id="navbarColor01">
+                        <ul class="navbar-nav mr-auto">
+                            {% block header_navigation_links %}
                                 <li>
-                                    <a href="{{ path('blog_search') }}"> <i class="fa fa-search"></i> {{ 'menu.search'|trans }}</a>
+                                    <a href="{{ path('blog_index') }}">
+                                        <i class="fa fa-home" aria-hidden="true"></i> {{ 'menu.homepage'|trans }}
+                                    </a>
                                 </li>
 
-                                {% if app.user %}
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="user">
-                                            <i class="fa fa-user" aria-hidden="true"></i>
-                                            <span class="caret"></span>
-                                            <span class="sr-only">{{ app.user.fullname }}</span>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <li>
+                                        <a href="{{ path('admin_post_index') }}">
+                                            <i class="fa fa-lock" aria-hidden="true"></i> {{ 'menu.admin'|trans }}
                                         </a>
-                                        <ul class="dropdown-menu user" role="menu" aria-labelledby="user">
-                                            <li>
-                                                <a href="{{ path('user_edit') }}">
-                                                    <i class="fa fa-edit" aria-hidden="true"></i> {{ 'menu.user'|trans }}
-                                                </a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                <a href="{{ path('security_logout') }}">
-                                                    <i class="fa fa-sign-out" aria-hidden="true"></i> {{ 'menu.logout'|trans }}
-                                                </a>
-                                            </li>
-                                        </ul>
                                     </li>
                                 {% endif %}
+                            {% endblock %}
 
+                            <li>
+                                <a href="{{ path('blog_search') }}"> <i class="fa fa-search"></i> {{ 'menu.search'|trans }}</a>
+                            </li>
+
+                            {% if app.user %}
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="locales">
-                                        <i class="fa fa-globe" aria-hidden="true"></i>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="user">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
                                         <span class="caret"></span>
-                                        <span class="sr-only">{{ 'menu.choose_language'|trans }}</span>
+                                        <span class="sr-only">{{ app.user.fullname }}</span>
                                     </a>
-                                    <ul class="dropdown-menu locales" role="menu" aria-labelledby="locales">
-                                        {% for locale in locales() %}
-                                            <li {% if app.request.locale == locale.code %}aria-checked="true" class="active"{% else %}aria-checked="false"{% endif %} role="menuitem"><a href="{{ path(app.request.get('_route', 'blog_index'), app.request.get('_route_params', [])|merge({_locale: locale.code})) }}">{{ locale.name|capitalize }} <small>{{ locale.code[0:2] }}</small></a></li>
-                                        {% endfor %}
+                                    <ul class="dropdown-menu user" role="menu" aria-labelledby="user">
+                                        <li>
+                                            <a href="{{ path('user_edit') }}">
+                                                <i class="fa fa-edit" aria-hidden="true"></i> {{ 'menu.user'|trans }}
+                                            </a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="{{ path('security_logout') }}">
+                                                <i class="fa fa-sign-out" aria-hidden="true"></i> {{ 'menu.logout'|trans }}
+                                            </a>
+                                        </li>
                                     </ul>
                                 </li>
-                            </ul>
-                        </div>
+                            {% endif %}
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="locales">
+                                    <i class="fa fa-globe" aria-hidden="true"></i>
+                                    <span class="caret"></span>
+                                    <span class="sr-only">{{ 'menu.choose_language'|trans }}</span>
+                                </a>
+                                <ul class="dropdown-menu locales" role="menu" aria-labelledby="locales">
+                                    {% for locale in locales() %}
+                                        <li {% if app.request.locale == locale.code %}aria-checked="true" class="active"{% else %}aria-checked="false"{% endif %} role="menuitem"><a href="{{ path(app.request.get('_route', 'blog_index'), app.request.get('_route_params', [])|merge({_locale: locale.code})) }}">{{ locale.name|capitalize }} <small>{{ locale.code[0:2] }}</small></a></li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
-                </div>
+                </nav>
             </header>
         {% endblock %}
 

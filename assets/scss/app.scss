@@ -69,11 +69,23 @@ header {
 }
 
 header ul.nav li {
-  margin-bottom: 0
+  margin-bottom: 0;
 }
-
+header li {
+  margin: 2px 5px;
+}
+header nav a {
+  color: white;
+}
+header nav a:hover {
+  color: #18BC9C;
+  text-decoration: none;
+}
+header .dropdown-menu a {
+  color: #212529 !important;
+}
 header .locales {
-  min-width: 190px;
+  min-width: 195px;
 }
 header .locales a {
   color: #212529;
@@ -142,9 +154,17 @@ footer #footer-resources i {
   margin-left: 0.5em
 }
 
+#sourceCodeModal .modal-header {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+}
+
 #sourceCodeModal h3 {
   font-size: 19px;
-  margin-top: 0
+  margin-top: 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 #sourceCodeModal h3 small {
