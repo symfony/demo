@@ -1,12 +1,12 @@
 import '../scss/admin.scss';
-import 'eonasdan-bootstrap-datetimepicker';
+import 'tempusdominus-bootstrap-4';
 import 'typeahead.js';
 import Bloodhound from "bloodhound-js";
 import 'bootstrap-tagsinput';
 
 $(function() {
     // Datetime picker initialization.
-    // See http://eonasdan.github.io/bootstrap-datetimepicker/
+    // See https://tempusdominus.github.io/bootstrap-4/
     $('[data-toggle="datetimepicker"]').datetimepicker({
         icons: {
             time: 'fa fa-clock-o',

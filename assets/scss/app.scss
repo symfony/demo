@@ -4,11 +4,11 @@
 $web-font-path: 'data:text/css;base64,';
 
 // Make sure the bootstrap-sass and lato fonts are resolved correctly
-$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 $lato-font-path: '~lato-font/fonts';
 
 @import "~bootswatch/dist/flatly/variables";
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/transitions";
 @import "~bootswatch/dist/flatly/bootswatch";
 @import "~@fortawesome/fontawesome-free/css/all.css";
 @import "~@fortawesome/fontawesome-free/css/v4-shims.css";
