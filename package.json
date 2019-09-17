@@ -5,7 +5,7 @@
     "bloodhound-js": "^1.2.3",
     "bootstrap-sass": "^3.3.7",
     "bootstrap-tagsinput": "^0.7.1",
-    "bootswatch": "^3.3.7",
+    "bootswatch": "^4.3.1",
     "core-js": "^3.0.0",
     "eonasdan-bootstrap-datetimepicker": "^4.17.47",
     "highlight.js": "^9.12.0",
@@ -23,5 +23,8 @@
     "dev": "encore dev",
     "watch": "encore dev --watch",
     "build": "encore production --progress"
+  },
+  "dependencies": {
+    "bootstrap": "^4.3.1"
   }
 }
