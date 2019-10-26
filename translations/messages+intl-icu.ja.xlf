@@ -277,6 +277,15 @@
                 <source>help.more_information</source>
                 <target><![CDATA[さらに詳しく知りたい場合は, <a href="https://symfony.com/doc">Symfony doc</a>を参照してください。]]></target>
             </trans-unit>
+
+            <trans-unit id="paginator.previous">
+                <source>paginator.previous</source>
+                <target>前へ</target>
+            </trans-unit>
+            <trans-unit id="paginator.next">
+                <source>paginator.next</source>
+                <target>次へ</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
