@@ -10,31 +10,20 @@ cache:
 env:
   global:
     - SYMFONY_PHPUNIT_DIR=./bin/.phpunit
-    - SYMFONY_DEPRECATIONS_HELPER=29
+    - SYMFONY_DEPRECATIONS_HELPER=0
     - ACTION="install"
 
 matrix:
   fast_finish: true
   include:
-    - php: 7.1.18
     - php: 7.2
     - php: 7.3
+      env: SYMFONY="5.0.*"
+           ACTION="update"
     # 'php: nightly' is PHP 8.0
     - php: 7.4snapshot
-    - php: 7.3
-      env: SYMFONY="4.4.*"
-           ACTION="update"
-    - php: 7.3
-      env: SYMFONY="5.0.*"
-           ACTION="update"
   allow_failures:
     - php: 7.4snapshot
-    - php: 7.3
-      env: SYMFONY="4.4.*"
-           ACTION="update"
-    - php: 7.3
-      env: SYMFONY="5.0.*"
-           ACTION="update"
 
 before_install:
   - '[[ "$TRAVIS_PHP_VERSION" == "7.4snapshot" ]] || phpenv config-rm xdebug.ini'
@@ -62,9 +51,12 @@ script:
   - ./bin/console lint:twig templates --env=prod
   # this checks that the XLIFF translations contain no syntax errors
   - ./bin/console lint:xliff translations
+  # this checks that arguments injected into services match type declarations
+  - ./bin/console lint:container
+  # TODO: replace the old security checker by the new checker provided by the 'symfony' binary
   # this checks that the application doesn't use dependencies with known security vulnerabilities
-  - ./bin/console security:check
+  #- ./bin/console security:check
   # this checks that Doctrine's mapping configurations are valid
   - ./bin/console doctrine:schema:validate --skip-sync -vvv --no-interaction
   #  Fail CI if the repo is in a dirty state after building assets (only for current release ie install)
-  -  if [[ "$ACTION" == "install" ]]; then yarn install && yarn encore production && git add --all && git diff --staged --exit-code; fi
+  #-  if [[ "$ACTION" == "install" ]]; then yarn install && yarn encore production && git add --all && git diff --staged --exit-code; fi

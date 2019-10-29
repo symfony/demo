@@ -75,7 +75,7 @@ class CheckRequirementsSubscriber implements EventSubscriberInterface
      */
     public function handleKernelException(ExceptionEvent $event): void
     {
-        $exception = $event->getException();
+        $exception = $event->getThrowable();
         // Since any exception thrown during a Twig template rendering is wrapped
         // in a Twig_Error_Runtime, we must get the original exception.
         $previousException = $exception->getPrevious();

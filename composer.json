@@ -5,52 +5,50 @@
     "description": "Symfony Demo Application",
     "minimum-stability": "stable",
     "require": {
-        "php": "^7.1.3",
+        "php": "^7.2.9",
         "ext-pdo_sqlite": "*",
-        "doctrine/doctrine-bundle": "^1.6.10",
-        "doctrine/doctrine-migrations-bundle": "^1.3",
+        "doctrine/doctrine-bundle": "^1.12|^2.0",
+        "doctrine/doctrine-migrations-bundle": "^1.3|^2.0",
         "doctrine/orm": "^2.5.11",
         "erusev/parsedown": "^1.6",
         "sensio/framework-extra-bundle": "^5.1",
-        "sensiolabs/security-checker": "^5.0",
-        "symfony/asset": "*",
-        "symfony/console": "*",
-        "symfony/dotenv": "*",
+        "symfony/asset": "5.0.*",
+        "symfony/console": "5.0.*",
+        "symfony/dotenv": "5.0.*",
         "symfony/expression-language": "*",
         "symfony/flex": "^1.1",
-        "symfony/form": "*",
+        "symfony/form": "5.0.*",
         "symfony/framework-bundle": "*",
-        "symfony/intl": "*",
+        "symfony/intl": "5.0.*",
         "symfony/monolog-bundle": "^3.1",
         "symfony/polyfill-intl-messageformatter": "^1.12",
         "symfony/polyfill-php72": "^1.8",
-        "symfony/security-bundle": "*",
+        "symfony/security-bundle": "5.0.*",
         "symfony/swiftmailer-bundle": "^3.1",
-        "symfony/translation": "*",
-        "symfony/twig-bundle": "*",
-        "symfony/validator": "*",
+        "symfony/translation": "5.0.*",
+        "symfony/twig-bundle": "5.0.*",
+        "symfony/validator": "5.0.*",
         "symfony/webpack-encore-bundle": "^1.4",
-        "symfony/yaml": "*",
+        "symfony/yaml": "5.0.*",
         "tgalopin/html-sanitizer-bundle": "^1.1",
         "twig/extensions": "^1.5",
         "twig/twig": "^2.6"
     },
     "require-dev": {
-        "dama/doctrine-test-bundle": "^5.0",
+        "dama/doctrine-test-bundle": "^6.2",
         "doctrine/doctrine-fixtures-bundle": "^3.0",
-        "friendsofphp/php-cs-fixer": "^2.12",
-        "symfony/browser-kit": "*",
-        "symfony/css-selector": "*",
-        "symfony/debug-bundle": "*",
+        "friendsofphp/php-cs-fixer": "3.0.x-dev",
+        "symfony/browser-kit": "5.0.*",
+        "symfony/css-selector": "5.0.*",
+        "symfony/debug-bundle": "5.0.*",
         "symfony/maker-bundle": "^1.11",
-        "symfony/phpunit-bridge": "*",
-        "symfony/stopwatch": "*",
-        "symfony/web-profiler-bundle": "*",
-        "symfony/web-server-bundle": "*"
+        "symfony/phpunit-bridge": "5.0.*",
+        "symfony/stopwatch": "5.0.*",
+        "symfony/web-profiler-bundle": "5.0.*"
     },
     "config": {
         "platform": {
-            "php": "7.1.3"
+            "php": "7.2.9"
         },
         "preferred-install": {
             "*": "dist"
@@ -70,8 +68,7 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd",
-            "security-checker security:check": "script"
+            "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"
@@ -86,7 +83,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": true,
-            "require": "4.3.*"
+            "require": "5.0.*"
         }
     }
 }
