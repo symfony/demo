@@ -92,6 +92,14 @@
                 <source>title.comment_error</source>
                 <target>Houve um erro ao publicar o seu comentário</target>
             </trans-unit>
+            <trans-unit id="title.edit_user">
+                <source>title.edit_user</source>
+                <target>Editar usuário</target>
+            </trans-unit>
+            <trans-unit id="title.change_password">
+                <source>title.change_password</source>
+                <target>Alterar senha</target>
+            </trans-unit>
 
             <trans-unit id="action.show">
                 <source>action.show</source>
@@ -169,6 +177,14 @@
                 <source>action.browse_admin</source>
                 <target>Navegar na área administrativa</target>
             </trans-unit>
+            <trans-unit id="action.edit_user">
+                <source>action.edit_user</source>
+                <target>Editar usuário</target>
+            </trans-unit>
+            <trans-unit id="action.change_password">
+                <source>action.change_password</source>
+                <target>Alterar senha</target>
+            </trans-unit>
 
             <trans-unit id="label.title">
                 <source>label.title</source>
@@ -186,9 +202,29 @@
                 <source>label.username</source>
                 <target>Usuário</target>
             </trans-unit>
+            <trans-unit id="label.fullname">
+                <source>label.fullname</source>
+                <target>Nome completo</target>
+            </trans-unit>
+            <trans-unit id="label.email">
+                <source>label.email</source>
+                <target>Email</target>
+            </trans-unit>
             <trans-unit id="label.password">
                 <source>label.password</source>
                 <target>Senha</target>
+            </trans-unit>
+            <trans-unit id="label.current_password">
+                <source>label.current_password</source>
+                <target>Senha atual</target>
+            </trans-unit>
+            <trans-unit id="label.new_password">
+                <source>label.new_password</source>
+                <target>Nova senha</target>
+            </trans-unit>
+            <trans-unit id="label.new_password_confirm">
+                <source>label.new_password_confirm</source>
+                <target>Confirmar senha</target>
             </trans-unit>
             <trans-unit id="label.role">
                 <source>label.role</source>
@@ -247,6 +283,10 @@
                 <source>menu.admin</source>
                 <target>Área Administrativa</target>
             </trans-unit>
+            <trans-unit id="menu.user">
+                <source>menu.user</source>
+                <target>Conta</target>
+            </trans-unit>
             <trans-unit id="menu.logout">
                 <source>menu.logout</source>
                 <target>Sair</target>
@@ -254,6 +294,10 @@
             <trans-unit id="menu.rss">
                 <source>menu.rss</source>
                 <target>RSS do Blog</target>
+            </trans-unit>
+            <trans-unit id="menu.search">
+                <source>menu.search</source>
+                <target>Pesquisar</target>
             </trans-unit>
 
             <trans-unit id="post.to_publish_a_comment">
@@ -287,6 +331,19 @@
             <trans-unit id="post.deleted_successfully">
                 <source>post.deleted_successfully</source>
                 <target>Post excluído com sucesso!</target>
+            </trans-unit>
+            <trans-unit id="post.search_for">
+                <source>post.search_for</source>
+                <target>Pesquisar por...</target>
+            </trans-unit>
+            <trans-unit id="post.search_no_results">
+                <source>post.search_no_results</source>
+                <target>Nenhum resultado encontrado</target>
+            </trans-unit>
+
+            <trans-unit id="user.updated_successfully">
+                <source>user.updated_successfully</source>
+                <target>Usuário atualizado com sucesso!</target>
             </trans-unit>
 
             <trans-unit id="notification.comment_created">
@@ -337,6 +394,28 @@
             <trans-unit id="help.more_information">
                 <source>help.more_information</source>
                 <target><![CDATA[Para mais informações, visite a <a href="https://symfony.com/doc">documentação do Symfony</a>.]]></target>
+            </trans-unit>
+
+            <trans-unit id="help.post_summary">
+                <source>help.post_summary</source>
+                <target>Sumários não podem conter Markdown ou HTML; apenas texto simples.</target>
+            </trans-unit>
+            <trans-unit id="help.post_publication">
+                <source>help.post_publication</source>
+                <target>Para agendar a publicação do post, informe uma data no futuro.</target>
+            </trans-unit>
+            <trans-unit id="help.post_content">
+                <source>help.post_content</source>
+                <target>Utilize Markdown para formatar o conteúdo do post. HTML também é permitido.</target>
+            </trans-unit>
+            <trans-unit id="help.comment_content">
+                <source>help.comment_content</source>
+                <target>Comentários que não estiverem de acordo com o nosso Código de Conduta serão moderados.</target>
+            </trans-unit>
+
+            <trans-unit id="info.change_password">
+                <source>info.change_password</source>
+                <target>Após alterar a sua senha, você será deslogado da aplicação.</target>
             </trans-unit>
 
             <trans-unit id="rss.title">
