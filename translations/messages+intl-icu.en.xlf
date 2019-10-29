@@ -425,6 +425,19 @@
                 <source>rss.description</source>
                 <target>Most recent posts published on the Symfony Demo blog</target>
             </trans-unit>
+
+            <trans-unit id="paginator.previous">
+                <source>paginator.previous</source>
+                <target>Previous</target>
+            </trans-unit>
+            <trans-unit id="paginator.next">
+                <source>paginator.next</source>
+                <target>Next</target>
+            </trans-unit>
+            <trans-unit id="paginator.current">
+                <source>paginator.current</source>
+                <target>(current)</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
