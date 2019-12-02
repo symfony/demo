@@ -1,0 +1,75 @@
+---------------------------------------------------------------------------
+
+by mazarini at 2019-10-30T12:24:21Z
+
+With some projects I have problem with symfony-demo/config/routes/dev/twig.yaml.
+I believe it's because error move from '@TwigBundle/Resources/config/routing/errors.xml' to 'framework-bundle/Resources/config/routing/errors.xml' (and replace twig.yaml by framework.yaml).
+
+---------------------------------------------------------------------------
+
+by yceruto at 2019-10-30T12:47:22Z
+
+@mazarini in which version did you face the problem? 4.4 or 5.0, could you please elaborate? it might be that we need to fix something before the final release, thanks!
+
+---------------------------------------------------------------------------
+
+by mazarini at 2019-10-30T15:24:33Z
+
+@yceruto Oups, it was 5.0 (and then 4.3 after change). Probably a change to make later, only  depreciate in 4.4.
+
+---------------------------------------------------------------------------
+
+by mazarini at 2019-10-31T21:01:59Z
+
+Not sure it's useful, but you can suppress some packages from composer.json (first column) :
+```
++--------------------------+-------------+----------------------------------------+-------------+
+| doctrine/doctrine-bundle | require     | doctrine/doctrine-migrations-bundle    | require     |
+| symfony/asset            | require     | symfony/webpack-encore-bundle          | require     |
+| symfony/console          | require     | doctrine/doctrine-bundle               | require     |
+| symfony/console          | require     | doctrine/doctrine-migrations-bundle    | require     |
+| symfony/console          | require     | doctrine/orm                           | require     |
+| symfony/framework-bundle | require     | doctrine/doctrine-bundle               | require     |
+| symfony/framework-bundle | require     | doctrine/doctrine-migrations-bundle    | require     |
+| symfony/framework-bundle | require     | sensio/framework-extra-bundle          | require     |
+| symfony/framework-bundle | require     | tgalopin/html-sanitizer-bundle         | require     |
+| symfony/intl             | require     | symfony/form                           | require     |
+| symfony/stopwatch        | require-dev | friendsofphp/php-cs-fixer              | require-dev |
+| twig/twig                | require     | symfony/twig-bundle                    | require     |
+| twig/twig                | require     | twig/extensions                        | require     |
++--------------------------+-------------+----------------------------------------+-------------+
+```
+Some versions you can up :
+```
++----------------------------------------+---------+-----+------------+-------------+----------+
+| package                                | commit  | dev | version    | require     | version  |
++----------------------------------------+---------+-----+----------------+-------------+----------+
+| doctrine/doctrine-bundle               | 0d09103 |     | 1.11.2     | require     | ^1.6.10  |
+| doctrine/doctrine-fixtures-bundle      | 043f16c | dev | 3.2.2      | require-dev | ^3.0     |
+| doctrine/orm                           | 36c5f43 |     | v2.6.4     | require     | ^2.5.11  |
+| erusev/parsedown                       | 0b7bcd7 |     | 1.7.3      | require     | ^1.6     |
+| friendsofphp/php-cs-fixer              | 22ee34c | dev | v2.15.3    | require-dev | ^2.12    |
+| sensio/framework-extra-bundle          | 71636f7 |     | v5.5.1     | require     | ^5.1     |
+| symfony/flex                           | d17c696 |     | v1.4.6     | require     | ^1.1     |
+| symfony/maker-bundle                   | 0cb0c1b | dev | v1.14.0    | require-dev | ^1.11    |
+| symfony/monolog-bundle                 | ae8809d |     | v3.4.0     | require     | ^3.1     |
+| symfony/polyfill-php72                 | 560199e |     | v1.12.0    | require     | ^1.8     |
+| symfony/swiftmailer-bundle             | 52516aa |     | v3.3.0     | require     | ^3.1     |
+| symfony/webpack-encore-bundle          | d9b731c |     | v1.7.0     | require     | ^1.4     |
+| twig/twig                              | 45b9ee5 |     | v2.12.1    | require     | ^2.6     |
++----------------------------------------+---------+-----+----------------+-------------+----------+
+```
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2019-11-25T12:10:18Z
+
+This is now ready for the final review. Note: don't look much at the `config/*` files because they have been updated according to the Symfony recipes. If there's an "error" on them, please change the related recipe at https://github.com/symfony/recipes Thanks!
+
+---------------------------------------------------------------------------
+
+by mazarini at 2019-11-27T09:50:50Z
+
+Hi @javiereguiluz,
+There is some small change possible. I can wait that you merge this version to propose a PR or make a PR to your fork to tell change available (so you can take what is really need).
+Example are stable 4.4 working, phpunit 8.3. Only simple change like add ": void" to a function.
