@@ -157,6 +157,6 @@
         {# it's not mandatory to set the timezone in localizeddate(). This is done to
            avoid errors when the 'intl' PHP extension is not available and the application
            is forced to use the limited "intl polyfill", which only supports UTC and GMT #}
-        <!-- Page rendered on {{ 'now'|localizeddate('long', 'long', null, 'UTC') }} -->
+        <!-- Page rendered on {{ 'now'|format_datetime('long', 'long', '', 'UTC') }} -->
     </body>
 </html>
