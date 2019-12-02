@@ -4,7 +4,8 @@ services:
         autowire: true
         autoconfigure: true
 
-    #Twig\Extensions\ArrayExtension: ~
-    #Twig\Extensions\DateExtension: ~
-    Twig\Extensions\IntlExtension: ~   # needed for the 'localizeddate' filter
-    #Twig\Extensions\TextExtension: ~
+    # Uncomment any lines below to activate that Twig extension
+    #Twig\Extensions\ArrayExtension: null
+    #Twig\Extensions\DateExtension: null
+    Twig\Extensions\IntlExtension: null   # needed for the 'localizeddate' filter
+    #Twig\Extensions\TextExtension: null
