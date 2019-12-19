@@ -16,6 +16,7 @@ use App\Entity\Tag;
 use App\Pagination\Paginator;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use function Symfony\Component\String\u;
 
 /**
  * This custom Doctrine repository contains some methods which are useful when
@@ -85,12 +86,12 @@ class PostRepository extends ServiceEntityRepository
      */
     private function extractSearchTerms(string $searchQuery): array
     {
-        $searchQuery = trim(preg_replace('/[[:space:]]+/', ' ', $searchQuery));
-        $terms = array_unique(explode(' ', $searchQuery));
+        $searchQuery = u($searchQuery)->replaceMatches('/[[:space:]]+/', ' ')->trim();
+        $terms = array_unique(u($searchQuery)->split(' '));
 
         // ignore the search terms that are too short
         return array_filter($terms, function ($term) {
-            return 2 <= mb_strlen($term);
+            return 2 <= u($term)->length();
         });
     }
 }

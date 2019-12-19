@@ -10,7 +10,7 @@ cache:
 env:
   global:
     - SYMFONY_PHPUNIT_DIR=./bin/.phpunit
-    - SYMFONY_DEPRECATIONS_HELPER=0
+    - SYMFONY_DEPRECATIONS_HELPER=9
     - ACTION="install"
 
 matrix:
@@ -20,10 +20,7 @@ matrix:
     - php: 7.3
       env: SYMFONY="5.0.*"
            ACTION="update"
-    # 'php: nightly' is PHP 8.0
-    - php: 7.4snapshot
-  allow_failures:
-    - php: 7.4snapshot
+    - php: 7.4
 
 before_install:
   - '[[ "$TRAVIS_PHP_VERSION" == "7.4snapshot" ]] || phpenv config-rm xdebug.ini'
@@ -44,7 +41,7 @@ install:
 script:
   - ./bin/phpunit
   # this checks that the source code follows the Symfony Code Syntax rules
-  - '[[ "$TRAVIS_PHP_VERSION" == "7.4snapshot" ]] || ./vendor/bin/php-cs-fixer fix --diff --dry-run -v'
+  - '[[ "$TRAVIS_PHP_VERSION" == "7.4" ]] || ./vendor/bin/php-cs-fixer fix --diff --dry-run -v'
   # this checks that the YAML config files contain no syntax errors
   - ./bin/console lint:yaml config --parse-tags
   # this checks that the Twig template files contain no syntax errors
