@@ -12,6 +12,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use function Symfony\Component\String\u;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -85,7 +86,7 @@ class Comment
      */
     public function isLegitComment(): bool
     {
-        $containsInvalidCharacters = false !== mb_strpos($this->content, '@');
+        $containsInvalidCharacters = null !== u($this->content)->indexOf('@');
 
         return !$containsInvalidCharacters;
     }

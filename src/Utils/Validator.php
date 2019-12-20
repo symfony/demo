@@ -12,6 +12,7 @@
 namespace App\Utils;
 
 use Symfony\Component\Console\Exception\InvalidArgumentException;
+use function Symfony\Component\String\u;
 
 /**
  * This class is used to provide an example of integrating simple classes as
@@ -40,7 +41,7 @@ class Validator
             throw new InvalidArgumentException('The password can not be empty.');
         }
 
-        if (mb_strlen(trim($plainPassword)) < 6) {
+        if (u($plainPassword)->trim()->length() < 6) {
             throw new InvalidArgumentException('The password must be at least 6 characters long.');
         }
 
@@ -53,7 +54,7 @@ class Validator
             throw new InvalidArgumentException('The email can not be empty.');
         }
 
-        if (false === mb_strpos($email, '@')) {
+        if (null === u($email)->indexOf('@')) {
             throw new InvalidArgumentException('The email should look like a real email.');
         }
 

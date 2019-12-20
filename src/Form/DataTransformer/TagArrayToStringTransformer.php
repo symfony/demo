@@ -14,6 +14,7 @@ namespace App\Form\DataTransformer;
 use App\Entity\Tag;
 use App\Repository\TagRepository;
 use Symfony\Component\Form\DataTransformerInterface;
+use function Symfony\Component\String\u;
 
 /**
  * This data transformer is used to translate the array of tags into a comma separated format
@@ -51,11 +52,11 @@ class TagArrayToStringTransformer implements DataTransformerInterface
      */
     public function reverseTransform($string): array
     {
-        if ('' === $string || null === $string) {
+        if (null === $string || u($string)->isEmpty()) {
             return [];
         }
 
-        $names = array_filter(array_unique(array_map('trim', explode(',', $string))));
+        $names = array_filter(array_unique(array_map('trim', u($string)->split(','))));
 
         // Get the current tags and find the new ones that should be created.
         $tags = $this->tags->findBy([
