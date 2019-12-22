@@ -26,7 +26,7 @@ class AddUserCommandTest extends KernelTestCase
         'full-name' => 'Chuck Norris',
     ];
 
-    protected function setUp()
+    protected function setUp(): void
     {
         exec('stty 2>&1', $output, $exitcode);
         $isSttySupported = 0 === $exitcode;
