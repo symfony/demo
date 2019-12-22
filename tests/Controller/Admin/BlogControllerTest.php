@@ -43,7 +43,8 @@ class BlogControllerTest extends WebTestCase
         ]);
 
         $client->request($httpMethod, $url);
-        $this->assertSame(Response::HTTP_FORBIDDEN, $client->getResponse()->getStatusCode());
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_FORBIDDEN);
     }
 
     public function getUrlsForRegularUsers()
@@ -62,11 +63,10 @@ class BlogControllerTest extends WebTestCase
         ]);
 
         $crawler = $client->request('GET', '/en/admin/post/');
-        $this->assertSame(Response::HTTP_OK, $client->getResponse()->getStatusCode());
 
-        $this->assertGreaterThanOrEqual(
-            1,
-            $crawler->filter('body#admin_post_index #main tbody tr')->count(),
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorExists(
+            'body#admin_post_index #main tbody tr',
             'The backend homepage displays all the available posts.'
         );
     }
@@ -95,7 +95,7 @@ class BlogControllerTest extends WebTestCase
         ]);
         $client->submit($form);
 
-        $this->assertSame(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
+        $this->assertResponseRedirects('/en/admin/post/', Response::HTTP_FOUND);
 
         $post = $client->getContainer()->get('doctrine')->getRepository(Post::class)->findOneBy([
             'title' => $postTitle,
@@ -113,7 +113,7 @@ class BlogControllerTest extends WebTestCase
         ]);
         $client->request('GET', '/en/admin/post/1');
 
-        $this->assertSame(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+        $this->assertResponseIsSuccessful();
     }
 
     /**
@@ -136,7 +136,7 @@ class BlogControllerTest extends WebTestCase
         ]);
         $client->submit($form);
 
-        $this->assertSame(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
+        $this->assertResponseRedirects('/en/admin/post/1/edit', Response::HTTP_FOUND);
 
         /** @var Post $post */
         $post = $client->getContainer()->get('doctrine')->getRepository(Post::class)->find(1);
@@ -158,7 +158,7 @@ class BlogControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/en/admin/post/1');
         $client->submit($crawler->filter('#delete-form')->form());
 
-        $this->assertSame(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
+        $this->assertResponseRedirects('/en/admin/post/', Response::HTTP_FOUND);
 
         $post = $client->getContainer()->get('doctrine')->getRepository(Post::class)->find(1);
         $this->assertNull($post);
