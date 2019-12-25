@@ -23,7 +23,7 @@ use function Symfony\Component\String\u;
  * Defines the custom form field type used to manipulate datetime values across
  * Bootstrap Date\Time Picker javascript plugin.
  *
- * See https://symfony.com/doc/current/cookbook/form/create_custom_field_type.html
+ * See https://symfony.com/doc/current/form/create_custom_field_type.html
  *
  * @author Yonel Ceruto <yonelceruto@gmail.com>
  */

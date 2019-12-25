@@ -22,7 +22,7 @@ use function Symfony\Component\String\u;
  * This custom Doctrine repository contains some methods which are useful when
  * querying for blog post information.
  *
- * See https://symfony.com/doc/current/doctrine/repository.html
+ * See https://symfony.com/doc/current/doctrine.html#querying-for-objects-the-repository
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>

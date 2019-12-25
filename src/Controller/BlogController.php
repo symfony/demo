@@ -44,7 +44,7 @@ class BlogController extends AbstractController
      *
      * NOTE: For standard formats, Symfony will also automatically choose the best
      * Content-Type header for the response.
-     * See https://symfony.com/doc/current/quick_tour/the_controller.html#using-formats
+     * See https://symfony.com/doc/current/routing.html#special-parameters
      */
     public function index(Request $request, int $page, string $_format, PostRepository $posts, TagRepository $tags): Response
     {
@@ -56,7 +56,7 @@ class BlogController extends AbstractController
 
         // Every template name also has two extensions that specify the format and
         // engine for that template.
-        // See https://symfony.com/doc/current/templating.html#template-suffix
+        // See https://symfony.com/doc/current/templates.html#template-naming
         return $this->render('blog/index.'.$_format.'.twig', [
             'paginator' => $latestPosts,
         ]);

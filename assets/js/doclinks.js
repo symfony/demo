@@ -20,10 +20,10 @@ $(function() {
     // Wraps Symfony's annotations
     var annotations = {
         '@Cache': 'https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/cache.html',
-        '@Method': 'https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/routing.html#route-method',
+        '@IsGranted': 'https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/security.html#isgranted',
         '@ParamConverter': 'https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html',
-        '@Route': 'https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/routing.html#usage',
-        '@Security': 'https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/security.html'
+        '@Route': 'https://symfony.com/doc/current/routing.html#creating-routes-as-annotations',
+        '@Security': 'https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/security.html#security'
     };
 
     $controllerCode.find('.hljs-doctag').each(function() {
@@ -42,7 +42,7 @@ $(function() {
             return;
         }
 
-        var url = 'https://twig.symfony.com/doc/2.x/tags/' + tag + '.html#' + tag;
+        var url = 'https://twig.symfony.com/doc/3.x/tags/' + tag + '.html#' + tag;
 
         $(this).html(anchor(url, tag));
     });
@@ -51,7 +51,7 @@ $(function() {
     $templateCode.find('.hljs-template-variable > .hljs-name').each(function() {
         var func = $(this).text();
 
-        var url = 'https://twig.symfony.com/doc/2.x/functions/' + func + '.html#' + func;
+        var url = 'https://twig.symfony.com/doc/3.x/functions/' + func + '.html#' + func;
 
         $(this).html(anchor(url, func));
     });

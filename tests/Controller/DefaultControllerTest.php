@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Functional test that implements a "smoke test" of all the public and secure
  * URLs of the application.
- * See https://symfony.com/doc/current/best_practices/tests.html#functional-tests.
+ * See https://symfony.com/doc/current/best_practices.html#smoke-test-your-urls.
  *
  * Execute the application tests using this command (requires PHPUnit to be installed):
  *
@@ -30,7 +30,7 @@ class DefaultControllerTest extends WebTestCase
     /**
      * PHPUnit's data providers allow to execute the same tests repeated times
      * using a different set of data each time.
-     * See https://symfony.com/doc/current/cookbook/form/unit_testing.html#testing-against-different-sets-of-data.
+     * See https://symfony.com/doc/current/testing.html#testing-against-different-sets-of-data.
      *
      * @dataProvider getPublicUrls
      */

@@ -22,7 +22,7 @@ use function Symfony\Component\String\u;
  * When visiting the homepage, this listener redirects the user to the most
  * appropriate localized version according to the browser settings.
  *
- * See https://symfony.com/doc/current/components/http_kernel/introduction.html#the-kernel-request-event
+ * See https://symfony.com/doc/current/components/http_kernel.html#the-kernel-request-event
  *
  * @author Oleg Voronkovich <oleg-voronkovich@yandex.ru>
  */

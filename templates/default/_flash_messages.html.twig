@@ -1,6 +1,6 @@
 {#
    This is a template fragment designed to be included in other templates
-   See https://symfony.com/doc/current/book/templating.html#including-other-templates
+   See https://symfony.com/doc/current/templates.html#including-templates
 
    A common practice to better distinguish between templates and fragments is to
    prefix fragments with an underscore. That's why this template is called
@@ -8,8 +8,8 @@
 #}
 
 {#
-   The request method check is needed to prevent starting the session when looking for "flash messages":
-   https://symfony.com/doc/current/session/avoid_session_start.html
+   The check is needed to prevent starting the session when looking for "flash messages":
+   https://symfony.com/doc/current/session.html#avoid-starting-sessions-for-anonymous-users
 
    TIP: With FOSHttpCache you can also adapt this to make it cache safe:
    https://foshttpcachebundle.readthedocs.io/en/latest/features/helpers/flash-message.html
@@ -18,7 +18,7 @@
     <div class="messages">
         {% for type, messages in app.flashes %}
             {% for message in messages %}
-                {# Bootstrap alert, see http://getbootstrap.com/components/#alerts #}
+                {# Bootstrap alert, see https://getbootstrap.com/docs/3.4/components/#alerts #}
                 <div class="alert alert-dismissible alert-{{ type }} fade in" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
