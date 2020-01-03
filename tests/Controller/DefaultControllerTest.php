@@ -39,11 +39,7 @@ class DefaultControllerTest extends WebTestCase
         $client = static::createClient();
         $client->request('GET', $url);
 
-        $this->assertSame(
-            Response::HTTP_OK,
-            $client->getResponse()->getStatusCode(),
-            sprintf('The %s public URL loads correctly.', $url)
-        );
+        $this->assertResponseIsSuccessful(sprintf('The %s public URL loads correctly.', $url));
     }
 
     /**
@@ -60,7 +56,7 @@ class DefaultControllerTest extends WebTestCase
         $blogPost = $client->getContainer()->get('doctrine')->getRepository(Post::class)->find(1);
         $client->request('GET', sprintf('/en/blog/posts/%s', $blogPost->getSlug()));
 
-        $this->assertSame(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+        $this->assertResponseIsSuccessful();
     }
 
     /**
@@ -76,10 +72,10 @@ class DefaultControllerTest extends WebTestCase
         $client->request('GET', $url);
 
         $response = $client->getResponse();
-        $this->assertSame(Response::HTTP_FOUND, $response->getStatusCode());
-        $this->assertSame(
+
+        $this->assertResponseRedirects(
             'http://localhost/en/login',
-            $response->getTargetUrl(),
+            Response::HTTP_FOUND,
             sprintf('The %s secure URL redirects to the login form.', $url)
         );
     }

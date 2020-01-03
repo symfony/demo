@@ -43,10 +43,7 @@ class BlogControllerTest extends WebTestCase
         $client = static::createClient();
         $crawler = $client->request('GET', '/en/blog/rss.xml');
 
-        $this->assertSame(
-            'text/xml; charset=UTF-8',
-            $client->getResponse()->headers->get('Content-Type')
-        );
+        $this->assertResponseHeaderSame('Content-Type', 'text/xml; charset=UTF-8');
 
         $this->assertCount(
             Post::NUM_ITEMS,
@@ -92,7 +89,7 @@ class BlogControllerTest extends WebTestCase
 
         $results = json_decode($client->getResponse()->getContent(), true);
 
-        $this->assertSame('application/json', $client->getResponse()->headers->get('Content-Type'));
+        $this->assertResponseHeaderSame('Content-Type', 'application/json');
         $this->assertCount(1, $results);
         $this->assertSame('Lorem ipsum dolor sit amet consectetur adipiscing elit', $results[0]['title']);
         $this->assertSame('Jane Doe', $results[0]['author']);

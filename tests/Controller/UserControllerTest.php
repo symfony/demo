@@ -41,10 +41,10 @@ class UserControllerTest extends WebTestCase
         $client->request($httpMethod, $url);
 
         $response = $client->getResponse();
-        $this->assertSame(Response::HTTP_FOUND, $response->getStatusCode());
-        $this->assertSame(
+
+        $this->assertResponseRedirects(
             'http://localhost/en/login',
-            $response->getTargetUrl(),
+            Response::HTTP_FOUND,
             sprintf('The %s secure URL redirects to the login form.', $url)
         );
     }
@@ -69,7 +69,7 @@ class UserControllerTest extends WebTestCase
         ]);
         $client->submit($form);
 
-        $this->assertSame(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
+        $this->assertResponseRedirects('/en/profile/edit', Response::HTTP_FOUND);
 
         /** @var User $user */
         $user = $client->getContainer()->get('doctrine')->getRepository(User::class)->findOneBy([
@@ -96,10 +96,10 @@ class UserControllerTest extends WebTestCase
         $client->submit($form);
 
         $response = $client->getResponse();
-        $this->assertSame(Response::HTTP_FOUND, $response->getStatusCode());
-        $this->assertSame(
+
+        $this->assertResponseRedirects(
             '/en/logout',
-            $response->getTargetUrl(),
+            Response::HTTP_FOUND,
             'Changing password logout the user.'
         );
     }
