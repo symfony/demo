@@ -1,0 +1,79 @@
+---------------------------------------------------------------------------
+
+by noniagriconomie at 2020-01-03T09:11:20Z
+
+@voronkovich nice one 👍
+
+just an idea, can it be usefull to "automate" this? on this repo and all sf repo (I saw https://github.com/symfony/recipes/pull/715, and i am sure on /symfony and /symfony-docs as well)
+
+a small `sh` or `php` script, launched once a week or manually for example
+it founds the http(s) endpoints and requests them, then checks if != 200 (also no redirection) => stderr
+so that a human can fix/improve those links :)
+
+------------------
+
+EDIT: from the command above, and testing httpclient :)
+
+improvement:
+
+- exludes some known uri (schema xml, DIC, etc)
+- send notification to doc core team?
+
+```php
+<?php
+
+require_once __DIR__.'/vendor/autoload.php';
+
+use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
+
+$folders = ['vendor/symfony/symfony'];
+$shellCommandline = \sprintf('grep -ERhoe "https?://[^[:space:]]*\w" %s', \implode(' ', $folders));
+
+$process = Process::fromShellCommandline($shellCommandline);
+$process->run();
+
+if (!$process->isSuccessful()) {
+    throw new ProcessFailedException($process);
+}
+
+$output = $process->getOutput();
+$links = \explode(PHP_EOL, $output);
+
+$httpClient = HttpClient::create();
+$cacheLinks = [];
+$brokenlinks = [];
+
+foreach ($links as $link) {
+	if (!isset($cacheLinks[$link])) {
+		$cacheLinks[] = $link;
+		try {
+			$response = $httpClient->request('GET', $link, ['max_redirects' => 0,]);
+			$statusCode = $response->getStatusCode();
+			if (200 !== $statusCode) {
+				$brokenlinks[$statusCode][] = $link;
+			}
+		} catch (\Throwable $e) {
+		}
+	}
+}
+
+var_dump($brokenlinks);
+
+exit(0);
+```
+
+composer require
+```
+    "require": {
+        "symfony/process": "^5.1@dev",
+        "symfony/http-client": "^5.1@dev"
+    },
+```
+
+---------------------------------------------------------------------------
+
+by jkufner at 2020-01-03T09:39:06Z
+
+It is a good idea to incorporate these checks into CI pipeline. I've done that for my static websites and it turned up very useful.
