@@ -6,7 +6,7 @@ import 'bootstrap-tagsinput';
 
 $(function() {
     // Datetime picker initialization.
-    // See http://eonasdan.github.io/bootstrap-datetimepicker/
+    // See https://eonasdan.github.io/bootstrap-datetimepicker/
     $('[data-toggle="datetimepicker"]').datetimepicker({
         icons: {
             time: 'fa fa-clock-o',
@@ -22,7 +22,7 @@ $(function() {
     });
 
     // Bootstrap-tagsinput initialization
-    // http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/examples/
+    // https://bootstrap-tagsinput.github.io/bootstrap-tagsinput/examples/
     var $input = $('input[data-toggle="tagsinput"]');
     if ($input.length) {
         var source = new Bloodhound({

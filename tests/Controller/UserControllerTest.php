@@ -19,11 +19,11 @@ use Symfony\Component\HttpFoundation\Response;
  * Functional test for the controllers defined inside the UserController used
  * for managing the current logged user.
  *
- * See https://symfony.com/doc/current/book/testing.html#functional-tests
+ * See https://symfony.com/doc/current/testing.html#functional-tests
  *
  * Whenever you test resources protected by a firewall, consider using the
  * technique explained in:
- * https://symfony.com/doc/current/cookbook/testing/http_authentication.html
+ * https://symfony.com/doc/current/testing/http_authentication.html
  *
  * Execute the application tests using this command (requires PHPUnit to be installed):
  *

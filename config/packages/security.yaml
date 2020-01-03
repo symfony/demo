@@ -2,18 +2,18 @@ security:
     encoders:
         # Our user class and the algorithm we'll use to encode passwords
         # 'auto' means to let Symfony choose the best possible password hasher (Argon2 or Bcrypt)
-        # https://symfony.com/doc/current/security.html#c-encoding-the-user-s-password
+        # https://symfony.com/doc/current/security.html#c-encoding-passwords
         App\Entity\User: 'auto'
 
     providers:
-        # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+        # https://symfony.com/doc/current/security/user_provider.html
         # In this example, users are stored via Doctrine in the database
         # To see the users at src/App/DataFixtures/ORM/LoadFixtures.php
-        # To load users from somewhere else: https://symfony.com/doc/current/security/custom_provider.html
+        # To load users from somewhere else: https://symfony.com/doc/current/security/user_provider.html#creating-a-custom-user-provider
         database_users:
             entity: { class: App\Entity\User, property: username }
 
-    # https://symfony.com/doc/current/security.html#initial-security-yml-setup-authentication
+    # https://symfony.com/doc/current/security.html#a-authentication-firewalls
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -36,7 +36,7 @@ security:
                 # When the user tries to access a protected page, they are redirected here
                 login_path: security_login
                 # Secure the login form against CSRF
-                # Reference: https://symfony.com/doc/current/security/csrf_in_login_form.html
+                # Reference: https://symfony.com/doc/current/security/csrf.html#csrf-protection-in-login-forms
                 csrf_token_generator: security.csrf.token_manager
                 # The page users are redirect to when there is no previous page stored in the
                 # session (for example when the users access directly to the login page).

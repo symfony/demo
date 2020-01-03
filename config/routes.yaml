@@ -1,7 +1,7 @@
 # These lines define a route using YAML configuration. The controller used by
 # the route (FrameworkBundle:Template:template) is a convenient shortcut when
 # the template can be rendered without executing any logic in your own controller.
-# See https://symfony.com/doc/current/cookbook/templating/render_without_controller.html
+# See https://symfony.com/doc/current/templates.html#rendering-a-template-directly-from-a-route
 homepage:
     path: /{_locale}
     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction

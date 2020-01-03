@@ -39,8 +39,9 @@ use function Symfony\Component\String\u;
  *     $ php bin/console app:add-user -vv
  *
  * See https://symfony.com/doc/current/console.html
- * For more advanced uses, commands can be defined as services too. See
- * https://symfony.com/doc/current/console/commands_as_services.html
+ *
+ * We use the default services.yaml configuration, so command classes are registered as services.
+ * See https://symfony.com/doc/current/console/commands_as_services.html
  *
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  * @author Yonel Ceruto <yonelceruto@gmail.com>
@@ -189,7 +190,7 @@ class AddUserCommand extends Command
         $user->setEmail($email);
         $user->setRoles([$isAdmin ? 'ROLE_ADMIN' : 'ROLE_USER']);
 
-        // See https://symfony.com/doc/current/book/security.html#security-encoding-password
+        // See https://symfony.com/doc/current/security.html#c-encoding-passwords
         $encodedPassword = $this->passwordEncoder->encodePassword($user, $plainPassword);
         $user->setPassword($encodedPassword);
 
