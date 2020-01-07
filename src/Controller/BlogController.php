@@ -37,9 +37,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class BlogController extends AbstractController
 {
     /**
-     * @Route("/", defaults={"page": "1", "_format"="html"}, methods={"GET"}, name="blog_index")
-     * @Route("/rss.xml", defaults={"page": "1", "_format"="xml"}, methods={"GET"}, name="blog_rss")
-     * @Route("/page/{page<[1-9]\d*>}", defaults={"_format"="html"}, methods={"GET"}, name="blog_index_paginated")
+     * @Route("/", defaults={"page": "1", "_format"="html"}, methods="GET", name="blog_index")
+     * @Route("/rss.xml", defaults={"page": "1", "_format"="xml"}, methods="GET", name="blog_rss")
+     * @Route("/page/{page<[1-9]\d*>}", defaults={"_format"="html"}, methods="GET", name="blog_index_paginated")
      * @Cache(smaxage="10")
      *
      * NOTE: For standard formats, Symfony will also automatically choose the best
@@ -63,7 +63,7 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("/posts/{slug}", methods={"GET"}, name="blog_post")
+     * @Route("/posts/{slug}", methods="GET", name="blog_post")
      *
      * NOTE: The $post controller argument is automatically injected by Symfony
      * after performing a database query looking for a Post with the 'slug'
@@ -83,7 +83,7 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("/comment/{postSlug}/new", methods={"POST"}, name="comment_new")
+     * @Route("/comment/{postSlug}/new", methods="POST", name="comment_new")
      * @IsGranted("IS_AUTHENTICATED_FULLY")
      * @ParamConverter("post", options={"mapping": {"postSlug": "slug"}})
      *
@@ -140,7 +140,7 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("/search", methods={"GET"}, name="blog_search")
+     * @Route("/search", methods="GET", name="blog_search")
      */
     public function search(Request $request, PostRepository $posts): Response
     {

@@ -31,7 +31,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/edit", methods={"GET", "POST"}, name="user_edit")
+     * @Route("/edit", methods="GET|POST", name="user_edit")
      */
     public function edit(Request $request): Response
     {
@@ -55,7 +55,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/change-password", methods={"GET", "POST"}, name="user_change_password")
+     * @Route("/change-password", methods="GET|POST", name="user_change_password")
      */
     public function changePassword(Request $request, UserPasswordEncoderInterface $encoder): Response
     {
