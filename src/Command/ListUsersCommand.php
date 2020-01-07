@@ -19,6 +19,8 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 /**
  * A console command that lists all the existing users.
@@ -44,7 +46,7 @@ class ListUsersCommand extends Command
     private $emailSender;
     private $users;
 
-    public function __construct(\Swift_Mailer $mailer, $emailSender, UserRepository $users)
+    public function __construct(MailerInterface $mailer, $emailSender, UserRepository $users)
     {
         parent::__construct();
 
@@ -133,14 +135,12 @@ HELP
      */
     private function sendReport(string $contents, string $recipient): void
     {
-        // See https://symfony.com/doc/current/email.html
-        $message = $this->mailer->createMessage()
-            ->setSubject(sprintf('app:list-users report (%s)', date('Y-m-d H:i:s')))
-            ->setFrom($this->emailSender)
-            ->setTo($recipient)
-            ->setBody($contents, 'text/plain')
-        ;
+        $email = (new Email())
+            ->from($this->emailSender)
+            ->to($recipient)
+            ->subject(sprintf('app:list-users report (%s)', date('Y-m-d H:i:s')))
+            ->text($contents);
 
-        $this->mailer->send($message);
+        $this->mailer->send($email);
     }
 }
