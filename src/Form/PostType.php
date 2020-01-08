@@ -17,7 +17,10 @@ use App\Form\Type\TagsInputType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
  * Defines the form used to create and manipulate blog posts.
@@ -28,6 +31,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class PostType extends AbstractType
 {
+    private $slugger;
+
+    // Form types are services, so you can inject other services in them if needed
+    public function __construct(SluggerInterface $slugger)
+    {
+        $this->slugger = $slugger;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -64,6 +75,16 @@ class PostType extends AbstractType
                 'label' => 'label.tags',
                 'required' => false,
             ])
+            // form events let you modify information or fields at different steps
+            // of the form handling process.
+            // See https://symfony.com/doc/current/form/events.html
+            ->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
+                /** @var Post */
+                $post = $event->getData();
+                if (null !== $postTitle = $post->getTitle()) {
+                    $post->setSlug($this->slugger->slug($postTitle)->lower());
+                }
+            })
         ;
     }
 
