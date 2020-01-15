@@ -14,6 +14,8 @@ namespace App\EventSubscriber;
 use App\Entity\Comment;
 use App\Events\CommentCreatedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -29,7 +31,7 @@ class CommentNotificationSubscriber implements EventSubscriberInterface
     private $urlGenerator;
     private $sender;
 
-    public function __construct(\Swift_Mailer $mailer, UrlGeneratorInterface $urlGenerator, TranslatorInterface $translator, $sender)
+    public function __construct(MailerInterface $mailer, UrlGeneratorInterface $urlGenerator, TranslatorInterface $translator, $sender)
     {
         $this->mailer = $mailer;
         $this->urlGenerator = $urlGenerator;
@@ -61,20 +63,17 @@ class CommentNotificationSubscriber implements EventSubscriberInterface
             '%link%' => $linkToPost,
         ]);
 
-        // Symfony uses a library called SwiftMailer to send emails. That's why
-        // email messages are created instantiating a Swift_Message class.
-        // See https://symfony.com/doc/current/email.html#sending-emails
-        $message = (new \Swift_Message())
-            ->setSubject($subject)
-            ->setTo($post->getAuthor()->getEmail())
-            ->setFrom($this->sender)
-            ->setBody($body, 'text/html')
+        // See https://symfony.com/doc/current/mailer.html
+        $email = (new Email())
+            ->from($this->sender)
+            ->to($post->getAuthor()->getEmail())
+            ->subject($subject)
+            ->html($body)
         ;
 
-        // In config/packages/dev/swiftmailer.yaml the 'disable_delivery' option is set to 'true'.
+        // In config/packages/dev/mailer.yaml the delivery of messages is disabled.
         // That's why in the development environment you won't actually receive any email.
         // However, you can inspect the contents of those unsent emails using the debug toolbar.
-        // See https://symfony.com/doc/current/email.html#viewing-from-the-web-debug-toolbar
-        $this->mailer->send($message);
+        $this->mailer->send($email);
     }
 }
