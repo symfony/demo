@@ -4,6 +4,10 @@
     "type": "project",
     "description": "Symfony Demo Application",
     "minimum-stability": "stable",
+    "replace": {
+        "symfony/polyfill-php70": "*",
+        "symfony/polyfill-php72": "*"
+    },
     "require": {
         "php": "^7.2.9",
         "ext-pdo_sqlite": "*",
@@ -23,7 +27,6 @@
         "symfony/mailer": "5.0.*",
         "symfony/monolog-bundle": "^3.1",
         "symfony/polyfill-intl-messageformatter": "^1.12",
-        "symfony/polyfill-php72": "^1.8",
         "symfony/security-bundle": "5.0.*",
         "symfony/string": "5.0.*",
         "symfony/translation": "5.0.*",
