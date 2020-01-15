@@ -14,11 +14,13 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
  * @ORM\Table(name="symfony_demo_post")
+ * @UniqueEntity(fields={"slug"}, errorPath="title", message="This title was already used in another blog post, but they must be unique.")
  *
  * Defines the properties of the Post entity to represent the blog posts.
  *

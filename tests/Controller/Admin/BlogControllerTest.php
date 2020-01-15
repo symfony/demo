@@ -105,6 +105,31 @@ class BlogControllerTest extends WebTestCase
         $this->assertSame($postContent, $post->getContent());
     }
 
+    public function testAdminNewDuplicatedPost()
+    {
+        $postTitle = 'Blog Post Title '.mt_rand();
+        $postSummary = $this->generateRandomString(255);
+        $postContent = $this->generateRandomString(1024);
+
+        $client = static::createClient([], [
+            'PHP_AUTH_USER' => 'jane_admin',
+            'PHP_AUTH_PW' => 'kitten',
+        ]);
+        $crawler = $client->request('GET', '/en/admin/post/new');
+        $form = $crawler->selectButton('Create post')->form([
+            'post[title]' => $postTitle,
+            'post[summary]' => $postSummary,
+            'post[content]' => $postContent,
+        ]);
+        $client->submit($form);
+
+        // post titles must be unique, so trying to create the same post twice should result in an error
+        $client->submit($form);
+
+        $this->assertSelectorTextSame('form .form-group.has-error label', 'Title');
+        $this->assertSelectorTextContains('form .form-group.has-error .help-block', 'This title was already used in another blog post, but they must be unique.');
+    }
+
     public function testAdminShowPost()
     {
         $client = static::createClient([], [
