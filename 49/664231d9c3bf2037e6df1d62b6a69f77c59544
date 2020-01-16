@@ -1,0 +1,48 @@
+---------------------------------------------------------------------------
+
+by voronkovich at 2020-01-13T16:25:08Z
+
+@rosier, You should commit the `composer.lock` too. If you changed the `composer.json` manually, use `composer update --lock` command to update lock-file (See https://getcomposer.org/doc/03-cli.md#update-u).
+
+BTW, it's better to remove packages using `composer remove` command:
+```sh
+$ composer remove symfony/polyfill-php72
+```
+
+---------------------------------------------------------------------------
+
+by stof at 2020-01-13T17:39:33Z
+
+if you really want to ensure it is not there, you might need to add it in the `replace` section as well, as some other packages might depend on it.
+
+---------------------------------------------------------------------------
+
+by rosier at 2020-01-14T12:53:02Z
+
+@voronkovich I used the web interface of GitHub and forgot the composer.lock. I have amended the commit.
+
+@stof I will make a new PR for the replace section later to include the other unneeded polyfills too
+
+---------------------------------------------------------------------------
+
+by rosier at 2020-01-14T13:01:02Z
+
+Tests fail on php-cs-fixer, but I think that is already addressed in https://github.com/symfony/demo/pull/1063
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2020-01-15T11:43:37Z
+
+@rosier thanks for this contribution! However, I'm afraid that after merging other PRs, this PR now has some conflicts. Could you please fix it again so we can merge it? Thanks.
+
+---------------------------------------------------------------------------
+
+by rosier at 2020-01-15T16:53:18Z
+
+I resolved the conflicts. The tests fail on a segmentation fault of ./bin/phpunit
+
+---------------------------------------------------------------------------
+
+by rosier at 2020-01-15T19:55:13Z
+
+@stof  I have now add a `replace` section as well
