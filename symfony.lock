@@ -171,6 +171,18 @@
             "ref": "fb7e19da7f013d0d422fa9bce16f5c510e27609b"
         }
     },
+    "symfony/apache-pack": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "410b9325a37ef86f1e47262c61738f6202202bca"
+        },
+        "files": [
+            "public/.htaccess"
+        ]
+    },
     "symfony/asset": {
         "version": "v4.3.3"
     },
