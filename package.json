@@ -23,5 +23,8 @@
     "dev": "encore dev",
     "watch": "encore dev --watch",
     "build": "encore production --progress"
+  },
+  "dependencies": {
+    "serialize-javascript": "^2.1.2"
   }
 }
