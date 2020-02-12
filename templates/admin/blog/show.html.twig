@@ -14,7 +14,7 @@
         <p class="m-b-0"><strong>{{ 'label.summary'|trans }}</strong>: {{ post.summary }}</p>
     </div>
 
-    {{ post.content|md2html }}
+    {{ post.content|markdown_to_html|sanitize_html }}
 
     {{ include('blog/_post_tags.html.twig') }}
 {% endblock %}

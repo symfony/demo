@@ -10,7 +10,7 @@
         <span class="metadata"><i class="fa fa-user"></i> {{ post.author.fullName }}</span>
     </p>
 
-    {{ post.content|md2html }}
+    {{ post.content|markdown_to_html|sanitize_html }}
 
     {{ include('blog/_post_tags.html.twig') }}
 
@@ -48,7 +48,7 @@
                 <strong>{{ comment.publishedAt|format_datetime('medium', 'short', '', 'UTC') }}</strong>
             </h4>
             <div class="col-sm-9">
-                {{ comment.content|md2html }}
+                {{ comment.content|markdown_to_html|sanitize_html }}
             </div>
         </div>
     {% else %}

@@ -32,6 +32,3 @@ services:
     # 'arguments' key and define the arguments just below the service class
     App\EventSubscriber\CommentNotificationSubscriber:
         $sender: '%app.notifications.email_sender%'
-
-    # needed to activate the filters provided by Twig Intl Extension
-    Twig\Extra\Intl\IntlExtension: null
