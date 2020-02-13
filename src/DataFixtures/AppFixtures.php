@@ -11,14 +11,10 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Comment;
-use App\Entity\Post;
-use App\Entity\Tag;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
-use function Symfony\Component\String\u;
 
 class AppFixtures extends Fixture
 {
@@ -33,34 +29,7 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        $this->loadPosts($manager);
-    }
 
-    private function loadPosts(ObjectManager $manager): void
-    {
-        foreach ($this->getPostData() as [$title, $slug, $summary, $content, $publishedAt, $author, $tags]) {
-            $post = new Post();
-            $post->setTitle($title);
-            $post->setSlug($slug);
-            $post->setSummary($summary);
-            $post->setContent($content);
-            $post->setPublishedAt($publishedAt);
-            $post->setAuthor($author);
-            $post->addTag(...$tags);
-
-            foreach (range(1, 5) as $i) {
-                $comment = new Comment();
-                $comment->setAuthor($this->getReference('john_user'));
-                $comment->setContent($this->getRandomText(random_int(255, 512)));
-                $comment->setPublishedAt(new \DateTime('now + '.$i.'seconds'));
-
-                $post->addComment($comment);
-            }
-
-            $manager->persist($post);
-        }
-
-        $manager->flush();
     }
 
     protected function getUserData(): array
@@ -88,27 +57,7 @@ class AppFixtures extends Fixture
         ];
     }
 
-    private function getPostData()
-    {
-        $posts = [];
-        foreach ($this->getPhrases() as $i => $title) {
-            // $postData = [$title, $slug, $summary, $content, $publishedAt, $author, $tags, $comments];
-            $posts[] = [
-                $title,
-                $this->slugger->slug($title)->lower(),
-                $this->getRandomText(),
-                $this->getPostContent(),
-                new \DateTime('now - '.$i.'days'),
-                // Ensure that the first post is written by Jane Doe to simplify tests
-                $this->getReference(['jane_admin', 'tom_admin'][0 === $i ? 0 : random_int(0, 1)]),
-                $this->getRandomTags(),
-            ];
-        }
-
-        return $posts;
-    }
-
-    private function getPhrases(): array
+    protected function getPhrases(): array
     {
         return [
             'Lorem ipsum dolor sit amet consectetur adipiscing elit',
@@ -144,20 +93,7 @@ class AppFixtures extends Fixture
         ];
     }
 
-    private function getRandomText(int $maxLength = 255): string
-    {
-        $phrases = $this->getPhrases();
-        shuffle($phrases);
-
-        do {
-            $text = u('. ')->join($phrases)->append('.');
-            array_pop($phrases);
-        } while ($text->length() > $maxLength);
-
-        return $text;
-    }
-
-    private function getPostContent(): string
+    protected function getPostContent(): string
     {
         return <<<'MARKDOWN'
 Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod tempor
@@ -197,7 +133,7 @@ tincidunt, faucibus nisl in, aliquet libero.
 MARKDOWN;
     }
 
-    private function getRandomTags(): array
+    protected function getRandomTags(): array
     {
         $tagNames = $this->getTagData();
         shuffle($tagNames);
