@@ -14,7 +14,6 @@ namespace App\DataFixtures;
 use App\Entity\Comment;
 use App\Entity\Post;
 use App\Entity\Tag;
-use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -23,8 +22,8 @@ use function Symfony\Component\String\u;
 
 class AppFixtures extends Fixture
 {
-    private $passwordEncoder;
-    private $slugger;
+    protected $passwordEncoder;
+    protected $slugger;
 
     public function __construct(UserPasswordEncoderInterface $passwordEncoder, SluggerInterface $slugger)
     {
@@ -34,26 +33,8 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        $this->loadUsers($manager);
         $this->loadTags($manager);
         $this->loadPosts($manager);
-    }
-
-    private function loadUsers(ObjectManager $manager): void
-    {
-        foreach ($this->getUserData() as [$fullname, $username, $password, $email, $roles]) {
-            $user = new User();
-            $user->setFullName($fullname);
-            $user->setUsername($username);
-            $user->setPassword($this->passwordEncoder->encodePassword($user, $password));
-            $user->setEmail($email);
-            $user->setRoles($roles);
-
-            $manager->persist($user);
-            $this->addReference($username, $user);
-        }
-
-        $manager->flush();
     }
 
     private function loadTags(ObjectManager $manager): void
@@ -96,7 +77,7 @@ class AppFixtures extends Fixture
         $manager->flush();
     }
 
-    private function getUserData(): array
+    protected function getUserData(): array
     {
         return [
             // $userData = [$fullname, $username, $password, $email, $roles];
