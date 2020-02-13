@@ -12,11 +12,10 @@
 namespace App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-class AppFixtures extends Fixture
+abstract class AppFixtures extends Fixture
 {
     protected $passwordEncoder;
     protected $slugger;
@@ -25,11 +24,6 @@ class AppFixtures extends Fixture
     {
         $this->passwordEncoder = $passwordEncoder;
         $this->slugger = $slugger;
-    }
-
-    public function load(ObjectManager $manager): void
-    {
-
     }
 
     protected function getUserData(): array
