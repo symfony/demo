@@ -33,21 +33,7 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        $this->loadTags($manager);
         $this->loadPosts($manager);
-    }
-
-    private function loadTags(ObjectManager $manager): void
-    {
-        foreach ($this->getTagData() as $index => $name) {
-            $tag = new Tag();
-            $tag->setName($name);
-
-            $manager->persist($tag);
-            $this->addReference('tag-'.$name, $tag);
-        }
-
-        $manager->flush();
     }
 
     private function loadPosts(ObjectManager $manager): void
@@ -87,7 +73,7 @@ class AppFixtures extends Fixture
         ];
     }
 
-    private function getTagData(): array
+    protected function getTagData(): array
     {
         return [
             'lorem',
