@@ -31,12 +31,13 @@ class BlogControllerTest extends WebTestCase
         $client = static::createClient();
         $crawler = $client->request('GET', '/en/blog/');
 
+        $this->assertResponseIsSuccessful();
+
         $this->assertCount(
             Post::NUM_ITEMS,
             $crawler->filter('article.post'),
             'The homepage displays the right number of posts.'
         );
-        $this->assertResponseIsSuccessful();
     }
 
     public function testRss()
