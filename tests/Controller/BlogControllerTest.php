@@ -36,6 +36,7 @@ class BlogControllerTest extends WebTestCase
             $crawler->filter('article.post'),
             'The homepage displays the right number of posts.'
         );
+        $this->assertResponseIsSuccessful();
     }
 
     public function testRss()
