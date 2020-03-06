@@ -1,0 +1,33 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2020-02-12T10:03:07Z
+
+I like this! Thanks @abdounikarim.
+
+However, we need to revert the changes related to `tgalopin/html-sanitizer-bundle` because we want to keep that bundle and its features. Thanks!
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2020-02-12T10:05:32Z
+
+I see now why you removed the HTML sanitizer bundle ... but instead of that ... we may add a new Twig filter to do this -> `... | sanitize_html`   I don't know which could be the best option here ... maybe @tgalopin can suggest us something. Thanks!
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2020-02-12T10:41:32Z
+
+After talking with Titouan, he told me that the Sanitizer bundle already provides a `sanitize_html` Twig filter ... so we may try to do the following:
+
+* Reinstall and reenable the HtmlSanitizer bundle as before
+* Tweak the needed Twig templates to add the `|sanitize_html` filter after the Markdown filter
+
+---------------------------------------------------------------------------
+
+by abdounikarim at 2020-02-12T10:50:50Z
+
+> After talking with Titouan, he told me that the Sanitizer bundle already provides a `sanitize_html` Twig filter ... so we may try to do the following:
+>
+> * Reinstall and reenable the HtmlSanitizer bundle as before
+> * Tweak the needed Twig templates to add the `|sanitize_html` filter after the Markdown filter
+
+@javiereguiluz done
