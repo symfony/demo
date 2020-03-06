@@ -473,6 +473,9 @@
             "templates/base.html.twig"
         ]
     },
+    "symfony/twig-pack": {
+        "version": "v1.0.0"
+    },
     "symfony/validator": {
         "version": "4.3",
         "recipe": {
@@ -524,7 +527,7 @@
         "version": "v4.3.3"
     },
     "tgalopin/html-sanitizer": {
-        "version": "1.3.0"
+        "version": "1.4.0"
     },
     "tgalopin/html-sanitizer-bundle": {
         "version": "1.0",
@@ -533,10 +536,19 @@
             "branch": "master",
             "version": "1.0",
             "ref": "26a72f38eede2c53b5d3ccbed5c150e10a93268d"
-        }
+        },
+        "files": [
+            "config/packages/html_sanitizer.yaml"
+        ]
+    },
+    "twig/extra-bundle": {
+        "version": "v3.0.3"
     },
     "twig/intl-extra": {
         "version": "v3.0.0"
+    },
+    "twig/markdown-extra": {
+        "version": "v3.0.3"
     },
     "twig/twig": {
         "version": "v2.12.2"
