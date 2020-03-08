@@ -13,11 +13,10 @@ namespace App\Twig;
 
 use Symfony\Component\Intl\Locales;
 use Twig\Extension\AbstractExtension;
-use Twig\TwigFilter;
 use Twig\TwigFunction;
 
 /**
- * See https://symfony.com/doc/current/templating/twig_extension.html
+ * See https://symfony.com/doc/current/templating/twig_extension.html.
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
