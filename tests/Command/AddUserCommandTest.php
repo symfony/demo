@@ -12,7 +12,7 @@
 namespace App\Tests\Command;
 
 use App\Command\AddUserCommand;
-use App\Entity\User;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
@@ -42,7 +42,7 @@ class AddUserCommandTest extends KernelTestCase
      * This test provides all the arguments required by the command, so the
      * command runs non-interactively and it won't ask for any argument.
      */
-    public function testCreateUserNonInteractive(bool $isAdmin)
+    public function testCreateUserNonInteractive(bool $isAdmin): void
     {
         $input = $this->userData;
         if ($isAdmin) {
@@ -61,7 +61,7 @@ class AddUserCommandTest extends KernelTestCase
      * arguments.
      * See https://symfony.com/doc/current/components/console/helpers/questionhelper.html#testing-a-command-that-expects-input
      */
-    public function testCreateUserInteractive(bool $isAdmin)
+    public function testCreateUserInteractive(bool $isAdmin): void
     {
         $this->executeCommand(
         // these are the arguments (only 1 is passed, the rest are missing)
@@ -78,7 +78,7 @@ class AddUserCommandTest extends KernelTestCase
      * This is used to execute the same test twice: first for normal users
      * (isAdmin = false) and then for admin users (isAdmin = true).
      */
-    public function isAdminDataProvider()
+    public function isAdminDataProvider(): ?\Generator
     {
         yield [false];
         yield [true];
@@ -88,12 +88,12 @@ class AddUserCommandTest extends KernelTestCase
      * This helper method checks that the user was correctly created and saved
      * in the database.
      */
-    private function assertUserCreated(bool $isAdmin)
+    private function assertUserCreated(bool $isAdmin): void
     {
-        $container = self::$kernel->getContainer();
+        $container = self::$container;
 
-        /** @var User $user */
-        $user = $container->get('doctrine')->getRepository(User::class)->findOneByEmail($this->userData['email']);
+        /** @var \App\Entity\User $user */
+        $user = $container->get(UserRepository::class)->findOneByEmail($this->userData['email']);
         $this->assertNotNull($user);
 
         $this->assertSame($this->userData['full-name'], $user->getFullName());
@@ -109,7 +109,7 @@ class AddUserCommandTest extends KernelTestCase
      * @param array $arguments All the arguments passed when executing the command
      * @param array $inputs    The (optional) answers given to the command when it asks for the value of the missing arguments
      */
-    private function executeCommand(array $arguments, array $inputs = [])
+    private function executeCommand(array $arguments, array $inputs = []): void
     {
         self::bootKernel();
 

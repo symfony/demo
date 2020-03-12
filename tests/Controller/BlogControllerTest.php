@@ -26,7 +26,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 class BlogControllerTest extends WebTestCase
 {
-    public function testIndex()
+    public function testIndex(): void
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/en/blog/');
@@ -40,7 +40,7 @@ class BlogControllerTest extends WebTestCase
         );
     }
 
-    public function testRss()
+    public function testRss(): void
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/en/blog/rss.xml');
@@ -60,7 +60,7 @@ class BlogControllerTest extends WebTestCase
      * to the database are rolled back when this test completes. This means that
      * all the application tests begin with the same database contents.
      */
-    public function testNewComment()
+    public function testNewComment(): void
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => 'john_user',
@@ -72,19 +72,17 @@ class BlogControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/en/blog/');
         $postLink = $crawler->filter('article.post > h2 a')->link();
 
-        $crawler = $client->click($postLink);
-
-        $form = $crawler->selectButton('Publish comment')->form([
+        $client->click($postLink);
+        $crawler = $client->submitForm('Publish comment', [
             'comment[content]' => 'Hi, Symfony!',
         ]);
-        $crawler = $client->submit($form);
 
         $newComment = $crawler->filter('.post-comment')->first()->filter('div > p')->text();
 
         $this->assertSame('Hi, Symfony!', $newComment);
     }
 
-    public function testAjaxSearch()
+    public function testAjaxSearch(): void
     {
         $client = static::createClient();
         $client->xmlHttpRequest('GET', '/en/blog/search', ['q' => 'lorem']);

@@ -34,7 +34,7 @@ class DefaultControllerTest extends WebTestCase
      *
      * @dataProvider getPublicUrls
      */
-    public function testPublicUrls(string $url)
+    public function testPublicUrls(string $url): void
     {
         $client = static::createClient();
         $client->request('GET', $url);
@@ -49,7 +49,7 @@ class DefaultControllerTest extends WebTestCase
      * blog post fixtures are randomly generated and there's no guarantee that
      * a given blog post slug will be available.
      */
-    public function testPublicBlogPost()
+    public function testPublicBlogPost(): void
     {
         $client = static::createClient();
         // the service container is always available via the test client
@@ -66,12 +66,10 @@ class DefaultControllerTest extends WebTestCase
      *
      * @dataProvider getSecureUrls
      */
-    public function testSecureUrls(string $url)
+    public function testSecureUrls(string $url): void
     {
         $client = static::createClient();
         $client->request('GET', $url);
-
-        $response = $client->getResponse();
 
         $this->assertResponseRedirects(
             'http://localhost/en/login',
@@ -80,14 +78,14 @@ class DefaultControllerTest extends WebTestCase
         );
     }
 
-    public function getPublicUrls()
+    public function getPublicUrls(): ?\Generator
     {
         yield ['/'];
         yield ['/en/blog/'];
         yield ['/en/login'];
     }
 
-    public function getSecureUrls()
+    public function getSecureUrls(): ?\Generator
     {
         yield ['/en/admin/post/'];
         yield ['/en/admin/post/new'];

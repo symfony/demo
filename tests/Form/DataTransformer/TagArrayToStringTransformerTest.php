@@ -26,7 +26,7 @@ class TagArrayToStringTransformerTest extends TestCase
     /**
      * Ensures that tags are created correctly.
      */
-    public function testCreateTheRightAmountOfTags()
+    public function testCreateTheRightAmountOfTags(): void
     {
         $tags = $this->getMockedTransformer()->reverseTransform('Hello, Demo, How');
 
@@ -38,7 +38,7 @@ class TagArrayToStringTransformerTest extends TestCase
      * Ensures that empty tags and errors in the number of commas are
      * dealt correctly.
      */
-    public function testCreateTheRightAmountOfTagsWithTooManyCommas()
+    public function testCreateTheRightAmountOfTagsWithTooManyCommas(): void
     {
         $transformer = $this->getMockedTransformer();
 
@@ -49,7 +49,7 @@ class TagArrayToStringTransformerTest extends TestCase
     /**
      * Ensures that leading/trailing spaces are ignored for tag names.
      */
-    public function testTrimNames()
+    public function testTrimNames(): void
     {
         $tags = $this->getMockedTransformer()->reverseTransform('   Hello   ');
 
@@ -59,7 +59,7 @@ class TagArrayToStringTransformerTest extends TestCase
     /**
      * Ensures that duplicated tag names are ignored.
      */
-    public function testDuplicateNames()
+    public function testDuplicateNames(): void
     {
         $tags = $this->getMockedTransformer()->reverseTransform('Hello, Hello, Hello');
 
@@ -69,7 +69,7 @@ class TagArrayToStringTransformerTest extends TestCase
     /**
      * Ensures that the transformer uses tags already persisted in the database.
      */
-    public function testUsesAlreadyDefinedTags()
+    public function testUsesAlreadyDefinedTags(): void
     {
         $persistedTags = [
             $this->createTag('Hello'),
@@ -86,7 +86,7 @@ class TagArrayToStringTransformerTest extends TestCase
      * Ensures that the transformation from Tag instances to a simple string
      * works as expected.
      */
-    public function testTransform()
+    public function testTransform(): void
     {
         $persistedTags = [
             $this->createTag('Hello'),
