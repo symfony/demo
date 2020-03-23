@@ -32,6 +32,8 @@ class UserController extends AbstractController
 {
     /**
      * @Route("/edit", methods="GET|POST", name="user_edit")
+     * @param Request $request
+     * @return Response
      */
     public function edit(Request $request): Response
     {
@@ -56,6 +58,9 @@ class UserController extends AbstractController
 
     /**
      * @Route("/change-password", methods="GET|POST", name="user_change_password")
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $encoder
+     * @return Response
      */
     public function changePassword(Request $request, UserPasswordEncoderInterface $encoder): Response
     {

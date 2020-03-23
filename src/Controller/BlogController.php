@@ -45,6 +45,12 @@ class BlogController extends AbstractController
      * NOTE: For standard formats, Symfony will also automatically choose the best
      * Content-Type header for the response.
      * See https://symfony.com/doc/current/routing.html#special-parameters
+     * @param Request $request
+     * @param int $page
+     * @param string $_format
+     * @param PostRepository $posts
+     * @param TagRepository $tags
+     * @return Response
      */
     public function index(Request $request, int $page, string $_format, PostRepository $posts, TagRepository $tags): Response
     {
@@ -69,6 +75,8 @@ class BlogController extends AbstractController
      * after performing a database query looking for a Post with the 'slug'
      * value given in the route.
      * See https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html
+     * @param Post $post
+     * @return Response
      */
     public function postShow(Post $post): Response
     {
@@ -90,6 +98,10 @@ class BlogController extends AbstractController
      * NOTE: The ParamConverter mapping is required because the route parameter
      * (postSlug) doesn't match any of the Doctrine entity properties (slug).
      * See https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html#doctrine-converter
+     * @param Request $request
+     * @param Post $post
+     * @param EventDispatcherInterface $eventDispatcher
+     * @return Response
      */
     public function commentNew(Request $request, Post $post, EventDispatcherInterface $eventDispatcher): Response
     {
@@ -128,6 +140,8 @@ class BlogController extends AbstractController
      *
      * The "id" of the Post is passed in and then turned into a Post object
      * automatically by the ParamConverter.
+     * @param Post $post
+     * @return Response
      */
     public function commentForm(Post $post): Response
     {
@@ -141,6 +155,9 @@ class BlogController extends AbstractController
 
     /**
      * @Route("/search", methods="GET", name="blog_search")
+     * @param Request $request
+     * @param PostRepository $posts
+     * @return Response
      */
     public function search(Request $request, PostRepository $posts): Response
     {

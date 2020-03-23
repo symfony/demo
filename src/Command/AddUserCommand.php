@@ -111,6 +111,8 @@ class AddUserCommand extends Command
      * command, you probably should not implement this method because it requires
      * quite a lot of work. However, if the command is meant to be used by external
      * users, this method is a nice way to fall back and prevent errors.
+     * @param InputInterface $input
+     * @param OutputInterface $output
      */
     protected function interact(InputInterface $input, OutputInterface $output)
     {
@@ -168,6 +170,9 @@ class AddUserCommand extends Command
     /**
      * This method is executed after interact() and initialize(). It usually
      * contains the logic to execute to complete this command task.
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {

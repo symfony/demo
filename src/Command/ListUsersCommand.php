@@ -19,6 +19,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 
@@ -89,6 +90,10 @@ HELP
     /**
      * This method is executed after initialize(). It usually contains the logic
      * to execute to complete this command task.
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int
+     * @throws TransportExceptionInterface
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
@@ -132,6 +137,9 @@ HELP
 
     /**
      * Sends the given $contents to the $recipient email address.
+     * @param string $contents
+     * @param string $recipient
+     * @throws TransportExceptionInterface
      */
     private function sendReport(string $contents, string $recipient): void
     {
