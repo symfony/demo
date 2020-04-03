@@ -53,7 +53,31 @@ $ cd my_project/
 $ ./bin/phpunit
 ```
 
+Docker
+------
+
+To run the "Symfony Demo Application" with Docker, [Download Docker][5] and [Docker Compose][6] and install them.
+
+At the root of the project, create an `.env.local` file and add the following line:
+
+```yaml
+DATABASE_URL=postgresql://127.0.0.1:5432/db?serverVersion=11&charset=utf8
+```
+
+Finally, run those commands:
+
+```bash
+$ cd my_project/
+$ docker-compose up -d
+$ symfony console doctrine:database:create
+$ symfony console doctrine:migrations:migrate
+$ symfony console doctrine:fixtures:load
+$ symfony serve
+```
+
 [1]: https://symfony.com/doc/current/best_practices.html
 [2]: https://symfony.com/doc/current/reference/requirements.html
 [3]: https://symfony.com/doc/current/cookbook/configuration/web_server_configuration.html
 [4]: https://symfony.com/download
+[5]: https://www.docker.com/get-started
+[6]: https://docs.docker.com/compose/install/

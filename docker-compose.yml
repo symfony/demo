@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  database:
+    image: postgres:11-alpine
+    environment:
+      POSTGRES_USER: demo
+      POSTGRES_PASSWORD: demo
+      POSTGRES_DB: demo
+    ports:
+      - 5432
