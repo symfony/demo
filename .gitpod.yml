@@ -1,0 +1,9 @@
+ports:
+  - port: 8000
+    onOpen: open-preview
+tasks:
+  - init: >
+      composer update
+    command: >
+      php bin/console server:run 0.0.0.0:8000
+image: gitpod/workspace-full
