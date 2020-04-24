@@ -526,6 +526,18 @@
     "symfony/yaml": {
         "version": "v4.3.3"
     },
+    "symfonycasts/reset-password-bundle": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "97c1627c0384534997ae1047b93be517ca16de43"
+        },
+        "files": [
+            "config/packages/reset_password.yaml"
+        ]
+    },
     "tgalopin/html-sanitizer": {
         "version": "1.4.0"
     },
