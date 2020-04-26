@@ -2,18 +2,30 @@
 
 {% block title %}Password Reset Email Sent{% endblock %}
 
-{% block body %}
-    <p>An email has been sent that contains a link that you can click to reset your password. This link will expire in {{ tokenLifetime|date('g') }} hour(s).</p>
-    <p>If you don't receive an email please check your spam folder or <a href="{{ path('app_forgot_password_request') }}">try again</a>.</p>
-    <div>
-        {% if resetToken.token is defined %}
+{% block body_id 'reset_password_check_email' %}
 
-            <p>In a real application, the email below would be sent and the user would be redirected to the app_check_email route.</p>
-            <div>
+{% block main %}
+    <div class="row">
+        <p>An email has been sent that contains a link that you can click to reset your password. This link will expire in {{ tokenLifetime|date('g') }} hour(s).</p>
+        <p>If you don't receive an email please check your spam folder or <a href="{{ path('app_forgot_password_request') }}">try again</a>.</p>
+    </div>
+    {% if email is defined %}
+        <div class="row">
+            <h3>Sent Email -</h3>
+            <div class="well well-lg">
                 {{ email|raw }}
             </div>
-        {% else %}
-            <p>Because the email address you entered does not exist we display this template, instead of revealing the user doesn't exist.</p>
-        {% endif %}
+        </div>
+    {% endif %}
+{% endblock %}
+{% block sidebar %}
+    <div class="section about">
+        <div class="well well-lg">
+            {% if email is defined %}
+                <p>In a real application, the email below would be sent and the user would be redirected to the app_check_email route.</p>
+            {% else %}
+                <p>Because the email address you entered does not exist we display this template, instead of revealing the user doesn't exist.</p>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}

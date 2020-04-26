@@ -180,7 +180,9 @@ class ResetPasswordController extends AbstractController
             'email' => $this->renderView('reset_password/email.html.twig', [
                 'resetToken' => $resetToken,
                 'tokenLifetime' => $this->resetPasswordHelper->getTokenLifetime(),
-            ])
+            ]),
+            'resetToken' => $resetToken,
+            'tokenLifetime' => $this->resetPasswordHelper->getTokenLifetime(),
         ]);
     }
 }
