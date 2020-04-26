@@ -83,6 +83,7 @@ class DefaultControllerTest extends WebTestCase
         yield ['/'];
         yield ['/en/blog/'];
         yield ['/en/login'];
+        yield ['/en/reset-password'];
     }
 
     public function getSecureUrls(): ?\Generator
