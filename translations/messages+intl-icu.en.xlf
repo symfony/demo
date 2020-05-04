@@ -438,6 +438,59 @@
                 <source>paginator.current</source>
                 <target>(current)</target>
             </trans-unit>
+
+            <trans-unit id="reset_password.button">
+                <source>reset_password.button</source>
+                <target>Reset password</target>
+            </trans-unit>
+            <trans-unit id="reset_password.request">
+                <source>reset_password.request</source>
+                <target>Enter your email address and we we will send you a link to reset your password.</target>
+            </trans-unit>
+            <trans-unit id="title.request_reset_password">
+                <source>title.request_reset_password</source>
+                <target>Reset your password</target>
+            </trans-unit>
+            <trans-unit id="title.check_email">
+                <source>title.request_reset_password</source>
+                <target>Password Reset Email Sent</target>
+            </trans-unit>
+            <trans-unit id="action.forgot_password">
+                <source>action.forgot_password</source>
+                <target>Forgot Password</target>
+            </trans-unit>
+            <trans-unit id="action.request_reset">
+                <source>action.request_reset</source>
+                <target>Send password reset email</target>
+            </trans-unit>
+            <trans-unit id="reset_password.check_email_p1">
+                <source>reset_password.check_email_p1</source>
+                <target>An email has been sent that contains a link that you can click to reset your password. This link will expire in {token} hour(s).</target>
+            </trans-unit>
+            <trans-unit id="reset_password.check_email_p2">
+                <source>reset_password.check_email_p2</source>
+                <target><![CDATA[If you don't receive an email please check your spam folder or <a href="{reset_password_link}">try again</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="reset_password.check_email_info_1">
+                <source>reset_password.check_email_info_1</source>
+                <target>In a real application, the email below would be sent and the user would be redirected to the app_check_email route.</target>
+            </trans-unit>
+            <trans-unit id="reset_password.check_email_info_2">
+                <source>reset_password.check_email_info_2</source>
+                <target>Because the email address you entered does not exist we display this template, instead of revealing the user doesn't exist.</target>
+            </trans-unit>
+            <trans-unit id="reset_password.email_title">
+                <source>reset_password.email_title</source>
+                <target>Hi!</target>
+            </trans-unit>
+            <trans-unit id="reset_password.email_body">
+                <source>reset_password.email_body</source>
+                <target><![CDATA[To reset your password, please visit <a href="{email_link}">here</a> This link will expire in {expires} hour(s)..]]></target>
+            </trans-unit>
+            <trans-unit id="reset_password.email_closing">
+                <source>reset_password.email_closing</source>
+                <target>Cheers!</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
