@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Password Reset Email Sent{% endblock %}
+{% block title %}{{ 'reset_password.check_email.title'|trans }}{% endblock %}
 
 {% block body_id 'reset_password_check_email' %}
 
 {% block main %}
     <div class="row">
-        <p>{{ 'reset_password.check_email_p1'|trans({'%token%': tokenLifetime|date('g')}) }}</p>
-        <p>{{ 'reset_password.check_email_p2'|trans({'%reset_password_link%': path('app_forgot_password_request')})|raw }}</p>
+        <p>{{ 'reset_password.check_email.p1'|trans({'%token%': tokenLifetime|date('g')}) }}</p>
+        <p>{{ 'reset_password.check_email.p2'|trans({'%reset_password_link%': path('app_forgot_password_request')})|raw }}</p>
     </div>
     {% if email is defined %}
         <div class="row">
@@ -22,9 +22,9 @@
     <div class="section about">
         <div class="well well-lg">
             {% if email is defined %}
-                <p>{{ 'reset_password.check_email_info_1'|trans }}</p>
+                <p>{{ 'reset_password.check_email.help_user_exists'|trans }}</p>
             {% else %}
-                <p>{{ 'reset_password.check_email_info_2'|trans }}</p>
+                <p>{{ 'reset_password.check_email.help_user_not_found'|trans }}</p>
             {% endif %}
         </div>
     </div>

@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Reset your password{% endblock %}
+{% block title %}{{ 'reset_password.title'|trans }}{% endblock %}
+
+{% block body_id 'reset_password_request' %}
 
 {% block body %}
     {% for flashError in app.flashes('reset_password_error') %}
@@ -9,15 +11,15 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="well">
-                <h1>{{ 'title.request_reset_password'|trans }}</h1>
+                <h1>{{ 'reset_password.title'|trans }}</h1>
 
                 {{ form_start(requestForm) }}
                     {{ form_row(requestForm.email) }}
                     <div>
-                        <small>{{ 'reset_password.request'|trans }}</small>
+                        <small>{{ 'reset_password.request.form_help'|trans }}</small>
                     </div>
 
-                    <button class="btn btn-primary">{{ 'action.request_reset'|trans }}</button>
+                    <button class="btn btn-primary">{{ 'reset_password.request.request_btn'|trans }}</button>
                 {{ form_end(requestForm) }}
             </div>
         </div>

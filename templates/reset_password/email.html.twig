@@ -1,10 +1,10 @@
-<h1>{{ 'reset_password.email_title'|trans }}</h1>
+<h1>{{ 'reset_password.email.title'|trans }}</h1>
 
 <p>
-    {{ 'reset_password.email_body'|trans({
+    {{ 'reset_password.email.body'|trans({
         '%email_link%': url('app_reset_password', {token: resetToken.token}),
         '%expires%': tokenLifetime|date('g')
     })|raw }}
 </p>
 
-<p>{{ 'reset_password.email_closing'|trans }}</p>
+<p>{{ 'reset_password.email.closing'|trans }}</p>
