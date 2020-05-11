@@ -38,6 +38,24 @@
                 <source>comment.is_spam</source>
                 <target>Содержание этого комментария было расценено как спам.</target>
             </trans-unit>
+
+            <trans-unit id="reset_password.request_type.email_field">
+                <source>reset_password.request_type.email_field</source>
+                <target>Пожалуйста, введите свой адрес электронной почты</target>
+            </trans-unit>
+
+            <trans-unit id="reset_password.change_password_type.invalid_message">
+                <source>reset_password.change_password_type.invalid_message</source>
+                <target>Поля пароля должны совпадать.</target>
+            </trans-unit>
+            <trans-unit id="reset_password.change_password_type.password_blank">
+                <source>reset_password.change_password_type.password_blank</source>
+                <target>Пожалуйста, введите пароль</target>
+            </trans-unit>
+            <trans-unit id="reset_password.change_password_type.password_length">
+                <source>reset_password.change_password_type.password_length</source>
+                <target>Ваш пароль должен быть не менее {limit} символов</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

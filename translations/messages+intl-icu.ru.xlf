@@ -438,6 +438,63 @@
                 <source>paginator.current</source>
                 <target>(текущая)</target>
             </trans-unit>
+
+            <trans-unit id="action.forgot_password">
+                <source>action.forgot_password</source>
+                <target>Забыли пароль</target>
+            </trans-unit>
+            <trans-unit id="reset_password.title">
+                <source>reset_password.title</source>
+                <target>Сброс пароля</target>
+            </trans-unit>
+
+            <trans-unit id="reset_password.check_email.p1">
+                <source>reset_password.check_email.p1</source>
+                <target>Отправлено электронное письмо, содержащее ссылку, которую можно щелкнуть, чтобы сбросить пароль. Срок действия этой ссылки истекает через {token} час (ы).</target>
+            </trans-unit>
+            <trans-unit id="reset_password.check_email.p2">
+                <source>reset_password.check_email.p2</source>
+                <target><![CDATA[Если вы не получили электронное письмо, проверьте папку «Спам» или <a href="{reset_password_link}">повторите попытку</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="reset_password.check_email.help_user_exists">
+                <source>reset_password.check_email.help_user_exists</source>
+                <target>В реальном приложении письмо ниже будет отправлено, и пользователь будет перенаправлен на маршрут app_check_email.</target>
+            </trans-unit>
+            <trans-unit id="reset_password.check_email.help_user_not_found">
+                <source>reset_password.check_email.help_user_not_found</source>
+                <target>Поскольку введенный вами адрес электронной почты не существует, мы показываем этот шаблон, вместо того, чтобы раскрывать пользователя не существует.</target>
+            </trans-unit>
+            <trans-unit id="reset_password.check_email.title">
+                <source>reset_password.check_email.title</source>
+                <target>Сброс пароля Email отправлено</target>
+            </trans-unit>
+
+            <trans-unit id="reset_password.email.title">
+                <source>reset_password.email.title</source>
+                <target>Привет!</target>
+            </trans-unit>
+            <trans-unit id="reset_password.email.body">
+                <source>reset_password.email.body</source>
+                <target><![CDATA[Чтобы сбросить пароль, посетите эту <a href="{email_link}">ссылку</a> истекает через {expires} час (s)..]]></target>
+            </trans-unit>
+            <trans-unit id="reset_password.email.closing">
+                <source>reset_password.email.closing</source>
+                <target>Ура!</target>
+            </trans-unit>
+
+            <trans-unit id="reset_password.request.form_help">
+                <source>reset_password.request.form_help</source>
+                <target>Введите свой адрес электронной почты, и мы вышлем вам ссылку для сброса пароля.</target>
+            </trans-unit>
+            <trans-unit id="reset_password.request.request_btn">
+                <source>reset_password.request.request_btn</source>
+                <target>Отправка электронной почты для сброса пароля</target>
+            </trans-unit>
+
+            <trans-unit id="reset_password.reset.btn">
+                <source>reset_password.reset.btn</source>
+                <target>Сброс пароля</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
