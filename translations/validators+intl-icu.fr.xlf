@@ -30,6 +30,24 @@
                 <source>comment.is_spam</source>
                 <target>Le contenu de votre commentaire est considéré comme du spam.</target>
             </trans-unit>
+
+            <trans-unit id="reset_password.request_type.email_field">
+                <source>reset_password.request_type.email_field</source>
+                <target>S'il vous plaît entrer votre email</target>
+            </trans-unit>
+
+            <trans-unit id="reset_password.change_password_type.invalid_message">
+                <source>reset_password.change_password_type.invalid_message</source>
+                <target>Les champs de mot de passe doivent correspondre.</target>
+            </trans-unit>
+            <trans-unit id="reset_password.change_password_type.password_blank">
+                <source>reset_password.change_password_type.password_blank</source>
+                <target>Veuillez saisir un mot de passe</target>
+            </trans-unit>
+            <trans-unit id="reset_password.change_password_type.password_length">
+                <source>reset_password.change_password_type.password_length</source>
+                <target>Votre mot de passe doit comporter au moins {limit} caractères</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
