@@ -34,6 +34,24 @@
                 <source>comment.is_spam</source>
                 <target>El contenido del comentario se considera spam.</target>
             </trans-unit>
+
+            <trans-unit id="reset_password.request_type.email_field">
+                <source>reset_password.request_type.email_field</source>
+                <target>Por favor, introduzca su correo electrónico</target>
+            </trans-unit>
+
+            <trans-unit id="reset_password.change_password_type.invalid_message">
+                <source>reset_password.change_password_type.invalid_message</source>
+                <target>Los campos de contraseña deben coincidir.</target>
+            </trans-unit>
+            <trans-unit id="reset_password.change_password_type.password_blank">
+                <source>reset_password.change_password_type.password_blank</source>
+                <target>Introduzca una contraseña</target>
+            </trans-unit>
+            <trans-unit id="reset_password.change_password_type.password_length">
+                <source>reset_password.change_password_type.password_length</source>
+                <target>Tu contraseña debe tener al menos {limit} caracteres</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

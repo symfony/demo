@@ -366,6 +366,63 @@
                 <source>paginator.next</source>
                 <target>Siguiente</target>
             </trans-unit>
+
+            <trans-unit id="action.forgot_password">
+                <source>action.forgot_password</source>
+                <target>Contraseña olvidada</target>
+            </trans-unit>
+            <trans-unit id="reset_password.title">
+                <source>reset_password.title</source>
+                <target>Restablecer su contraseña</target>
+            </trans-unit>
+
+            <trans-unit id="reset_password.check_email.p1">
+                <source>reset_password.check_email.p1</source>
+                <target>Se ha enviado un correo electrónico que contiene un enlace en el que puede hacer clic para restablecer su contraseña. Este enlace caducará en {token} hora (s).</target>
+            </trans-unit>
+            <trans-unit id="reset_password.check_email.p2">
+                <source>reset_password.check_email.p2</source>
+                <target><![CDATA[Si no recibes un correo electrónico, comprueba tu carpeta de spam o <a href="{reset_password_link}">inténtalo de nuevo</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="reset_password.check_email.help_user_exists">
+                <source>reset_password.check_email.help_user_exists</source>
+                <target>En una aplicación real, el siguiente correo electrónico sería enviado y el usuario sería redirigido a la ruta app_check_email.</target>
+            </trans-unit>
+            <trans-unit id="reset_password.check_email.help_user_not_found">
+                <source>reset_password.check_email.help_user_not_found</source>
+                <target>Debido a que la dirección de correo electrónico introducida no existe, mostramos esta plantilla, en lugar de revelar que el usuario no existe.</target>
+            </trans-unit>
+            <trans-unit id="reset_password.check_email.title">
+                <source>reset_password.check_email.title</source>
+                <target>Correo electrónico de restablecimiento de contraseña enviado</target>
+            </trans-unit>
+
+            <trans-unit id="reset_password.email.title">
+                <source>reset_password.email.title</source>
+                <target>¡Hola! ¡Hola!</target>
+            </trans-unit>
+            <trans-unit id="reset_password.email.body">
+                <source>reset_password.email.body</source>
+                <target><![CDATA[Para restablecer tu contraseña, visita <a href="{email_link}">aquí</a> Este enlace caducará en {expires} hora (s).]]></target>
+            </trans-unit>
+            <trans-unit id="reset_password.email.closing">
+                <source>reset_password.email.closing</source>
+                <target>¡Salud!</target>
+            </trans-unit>
+
+            <trans-unit id="reset_password.request.form_help">
+                <source>reset_password.request.form_help</source>
+                <target>Introduzca su dirección de correo electrónico y le enviaremos un enlace para restablecer su contraseña.</target>
+            </trans-unit>
+            <trans-unit id="reset_password.request.request_btn">
+                <source>reset_password.request.request_btn</source>
+                <target>Enviar correo electrónico de restablecimiento de contraseña</target>
+            </trans-unit>
+
+            <trans-unit id="reset_password.reset.btn">
+                <source>reset_password.reset.btn</source>
+                <target>Restablecer contraseña</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
