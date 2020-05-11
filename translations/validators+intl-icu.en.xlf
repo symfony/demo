@@ -38,6 +38,23 @@
                 <source>comment.is_spam</source>
                 <target>The content of this comment is considered spam.</target>
             </trans-unit>
+
+            <trans-unit id="reset_password.request_type.email_field">
+                <source>reset_password.request_type.email_field</source>
+                <target>Please enter your email</target>
+            </trans-unit>
+            <trans-unit id="reset_password.change_password_type.invalid_message">
+                <source>reset_password.change_password_type.invalid_message</source>
+                <target>The password fields must match.</target>
+            </trans-unit>
+            <trans-unit id="reset_password.change_password_type.password_blank">
+                <source>reset_password.change_password_type.password_blank</source>
+                <target>Please enter a password</target>
+            </trans-unit>
+            <trans-unit id="reset_password.change_password_type.password_length">
+                <source>reset_password.change_password_type.password_length</source>
+                <target>Your password should be at least {limit} characters</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
