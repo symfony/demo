@@ -39,9 +39,8 @@ install:
   - ./bin/phpunit install
 
 script:
-  # we do not need to run the demo app's fixtures before running our tests because the test
-  # database is tracked with git in data/database_test.sqlite and already contains all fixtures 
-  # needed to run the tests 
+  # there's no need to load data fixtures before running tests because the project
+  # repository already includes a test database with all the fixtures needed to run the tests
   - ./bin/phpunit
   # this checks that the source code follows the Symfony Code Syntax rules
   - '[[ "$TRAVIS_PHP_VERSION" == "7.4" ]] || ./vendor/bin/php-cs-fixer fix --diff --dry-run -v'
