@@ -11,33 +11,31 @@
 
 namespace App\Controller;
 
-use App\Form\Type\ChangePasswordType;
-use App\Form\UserType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use App\Form;
+use Sensio\Bundle\FrameworkExtraBundle;
+use Symfony\Bundle\FrameworkBundle;
+use Symfony\Component\HttpFoundation;
+use Symfony\Component\Routing;
+use Symfony\Component\Security;
 
 /**
  * Controller used to manage current user.
  *
- * @Route("/profile")
- * @IsGranted("ROLE_USER")
+ * @Routing\Annotation\Route("/profile")
+ * @FrameworkExtraBundle\Configuration\IsGranted("ROLE_USER")
  *
  * @author Romain Monteil <monteil.romain@gmail.com>
  */
-class UserController extends AbstractController
+class UserController extends FrameworkBundle\Controller\AbstractController
 {
     /**
-     * @Route("/edit", methods="GET|POST", name="user_edit")
+     * @Routing\Annotation\Route("/edit", methods="GET|POST", name="user_edit")
      */
-    public function edit(Request $request): Response
+    public function edit(HttpFoundation\Request $request): HttpFoundation\Response
     {
         $user = $this->getUser();
 
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(Form\UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -55,13 +53,15 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/change-password", methods="GET|POST", name="user_change_password")
+     * @Routing\Annotation\Route("/change-password", methods="GET|POST", name="user_change_password")
      */
-    public function changePassword(Request $request, UserPasswordEncoderInterface $encoder): Response
-    {
+    public function changePassword(
+        HttpFoundation\Request $request,
+        Security\Core\Encoder\UserPasswordEncoderInterface $encoder
+    ): HttpFoundation\Response {
         $user = $this->getUser();
 
-        $form = $this->createForm(ChangePasswordType::class);
+        $form = $this->createForm(Form\Type\ChangePasswordType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
