@@ -85,7 +85,7 @@ class CheckRequirementsSubscriber implements EventSubscriberInterface
 
         // Check if SQLite is enabled
         if ($isDriverException && $this->isSQLitePlatform() && !\extension_loaded('sqlite3')) {
-            $event->setException(new \Exception('PHP extension "sqlite3" must be enabled because, by default, the Symfony Demo application uses SQLite to store its information.'));
+            $event->setThrowable(new \Exception('PHP extension "sqlite3" must be enabled because, by default, the Symfony Demo application uses SQLite to store its information.'));
         }
     }
 
