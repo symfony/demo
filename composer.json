@@ -3,7 +3,8 @@
     "license": "MIT",
     "type": "project",
     "description": "Symfony Demo Application",
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "replace": {
         "symfony/polyfill-php70": "*",
         "symfony/polyfill-php72": "*"
@@ -17,24 +18,24 @@
         "erusev/parsedown": "^1.6",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/apache-pack": "^1.0",
-        "symfony/asset": "5.0.*",
-        "symfony/console": "5.0.*",
-        "symfony/dotenv": "5.0.*",
-        "symfony/expression-language": "5.0.*",
+        "symfony/asset": "5.1.*",
+        "symfony/console": "5.1.*",
+        "symfony/dotenv": "5.1.*",
+        "symfony/expression-language": "5.1.*",
         "symfony/flex": "^1.1",
-        "symfony/form": "5.0.*",
-        "symfony/framework-bundle": "5.0.*",
-        "symfony/intl": "5.0.*",
-        "symfony/mailer": "5.0.*",
+        "symfony/form": "5.1.*",
+        "symfony/framework-bundle": "5.1.*",
+        "symfony/intl": "5.1.*",
+        "symfony/mailer": "5.1.*",
         "symfony/monolog-bundle": "^3.1",
         "symfony/polyfill-intl-messageformatter": "^1.12",
-        "symfony/security-bundle": "5.0.*",
-        "symfony/string": "5.0.*",
-        "symfony/translation": "5.0.*",
+        "symfony/security-bundle": "5.1.*",
+        "symfony/string": "5.1.*",
+        "symfony/translation": "5.1.*",
         "symfony/twig-pack": "^1.0",
-        "symfony/validator": "5.0.*",
+        "symfony/validator": "5.1.*",
         "symfony/webpack-encore-bundle": "^1.4",
-        "symfony/yaml": "5.0.*",
+        "symfony/yaml": "5.1.*",
         "tgalopin/html-sanitizer-bundle": "^1.2",
         "twig/intl-extra": "^3.0",
         "twig/markdown-extra": "^3.0"
@@ -43,13 +44,13 @@
         "dama/doctrine-test-bundle": "^6.2",
         "doctrine/doctrine-fixtures-bundle": "^3.0",
         "friendsofphp/php-cs-fixer": "3.0.x-dev",
-        "symfony/browser-kit": "5.0.*",
-        "symfony/css-selector": "5.0.*",
-        "symfony/debug-bundle": "5.0.*",
+        "symfony/browser-kit": "5.1.*",
+        "symfony/css-selector": "5.1.*",
+        "symfony/debug-bundle": "5.1.*",
         "symfony/maker-bundle": "^1.11",
-        "symfony/phpunit-bridge": "5.0.*",
-        "symfony/stopwatch": "5.0.*",
-        "symfony/web-profiler-bundle": "5.0.*"
+        "symfony/phpunit-bridge": "5.1.*",
+        "symfony/stopwatch": "5.1.*",
+        "symfony/web-profiler-bundle": "5.1.*"
     },
     "config": {
         "platform": {
@@ -88,7 +89,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": true,
-            "require": "5.0.*"
+            "require": "5.1.*"
         }
     }
 }
