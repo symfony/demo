@@ -1,22 +1,10 @@
-parameters:
-    # Adds a fallback DATABASE_URL if the env var is not set. This allows you
-    # to run cache:warmup even if your environment variables are not available
-    # yet. You should not need to change this value.
-    env(DATABASE_URL): ''
-
 doctrine:
     dbal:
         url: '%env(resolve:DATABASE_URL)%'
 
-        # IMPORTANT: when not use SQLite, you MUST configure your db driver and
-        # server version, either here or in the DATABASE_URL env var (see .env file)
-        # driver: 'pdo_sqlite'
-        # server_version: '3.15'
-
-        # Only needed for MySQL (ignored otherwise)
-        # charset: utf8mb4
-        # default_table_options:
-        #     collate: utf8mb4_unicode_ci
+        # IMPORTANT: You MUST configure your server version,
+        # either here or in the DATABASE_URL env var (see .env file)
+        #server_version: '5.7'
     orm:
         auto_generate_proxy_classes: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
