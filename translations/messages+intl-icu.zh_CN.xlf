@@ -92,6 +92,10 @@
                 <source>title.comment_error</source>
                 <target>发表评论出错</target>
             </trans-unit>
+            <trans-unit id="title.edit_user">
+                <source>title.edit_user</source>
+                <target>编辑用户</target>
+            </trans-unit>
 
             <trans-unit id="action.show">
                 <source>action.show</source>
@@ -149,6 +153,27 @@
                 <source>label.save_and_create_new</source>
                 <target>保存并添加新文章</target>
             </trans-unit>
+            <trans-unit id="label.fullname">
+                <source>label.fullname</source>
+                <target>全名</target>
+            </trans-unit>
+            <trans-unit id="label.email">
+                <source>label.email</source>
+                <target>邮箱</target>
+            </trans-unit>
+            <trans-unit id="label.current_password">
+                <source>label.current_password</source>
+                <target>当前密码</target>
+            </trans-unit>
+            <trans-unit id="label.new_password">
+                <source>label.new_password</source>
+                <target>新密码</target>
+            </trans-unit>
+            <trans-unit id="label.new_password_confirm">
+                <source>label.new_password_confirm</source>
+                <target>确认密码</target>
+            </trans-unit>
+
             <trans-unit id="action.back_to_list">
                 <source>action.back_to_list</source>
                 <target>返回文章列表</target>
@@ -168,6 +193,10 @@
             <trans-unit id="action.browse_admin">
                 <source>action.browse_admin</source>
                 <target>浏览管理后台</target>
+            </trans-unit>
+            <trans-unit id="action.change_password">
+                <source>action.change_password</source>
+                <target>修改密码</target>
             </trans-unit>
 
             <trans-unit id="label.title">
@@ -218,9 +247,17 @@
                 <source>title.post_new</source>
                 <target>文章创建者</target>
             </trans-unit>
+            <trans-unit id="title.change_password">
+                <source>title.change_password</source>
+                <target>修改密码</target>
+            </trans-unit>
             <trans-unit id="action.edit_contents">
                 <source>action.edit_contents</source>
                 <target>编辑内容</target>
+            </trans-unit>
+            <trans-unit id="action.edit_user">
+                <source>action.edit_user</source>
+                <target>编辑用户</target>
             </trans-unit>
 
             <trans-unit id="menu.toggle_nav">
@@ -255,6 +292,14 @@
                 <source>menu.rss</source>
                 <target>博客文章 RSS</target>
             </trans-unit>
+            <trans-unit id="menu.search">
+                <source>menu.search</source>
+                <target>搜索</target>
+            </trans-unit>
+            <trans-unit id="menu.user">
+                <source>menu.user</source>
+                <target>帐户</target>
+            </trans-unit>
 
             <trans-unit id="post.to_publish_a_comment">
                 <source>post.to_publish_a_comment</source>
@@ -287,6 +332,14 @@
             <trans-unit id="post.deleted_successfully">
                 <source>post.deleted_successfully</source>
                 <target>评论删除成功!</target>
+            </trans-unit>
+            <trans-unit id="post.search_for">
+                <source>post.search_for</source>
+                <target>输入关键字...</target>
+            </trans-unit>
+            <trans-unit id="post.search_no_results">
+                <source>post.search_no_results</source>
+                <target>没有匹配到结果!</target>
             </trans-unit>
 
             <trans-unit id="notification.comment_created">
@@ -338,6 +391,22 @@
                 <source>help.more_information</source>
                 <target><![CDATA[了解更多信息, 请查看 <a href="https://symfony.com/doc">Symfony 文档 </a>.]]></target>
             </trans-unit>
+            <trans-unit id="help.comment_content">
+                <source>help.comment_content</source>
+                <target>不符合我们行为准则的评论将被审核。</target>
+            </trans-unit>
+            <trans-unit id="help.post_summary">
+                <source>help.post_summary</source>
+                <target>摘要不能包含 Markdown 或 HTML 内容，仅纯文本。</target>
+            </trans-unit>
+            <trans-unit id="help.post_content">
+                <source>help.post_content</source>
+                <target>使用 Markdown 格式化博客文章内容，也允许 HTML。</target>
+            </trans-unit>
+            <trans-unit id="help.post_publication">
+                <source>help.post_publication</source>
+                <target>设置博客文章的发布日期。</target>
+            </trans-unit>
 
             <trans-unit id="rss.title">
                 <source>rss.title</source>
@@ -346,6 +415,24 @@
             <trans-unit id="rss.description">
                 <source>rss.description</source>
                 <target>Symfony 示例博客上发布的最新文章</target>
+            </trans-unit>
+
+            <trans-unit id="paginator.previous">
+                <source>paginator.previous</source>
+                <target>上一页</target>
+            </trans-unit>
+            <trans-unit id="paginator.current">
+                <source>paginator.current</source>
+                <target>当前页</target>
+            </trans-unit>
+            <trans-unit id="paginator.next">
+                <source>paginator.next</source>
+                <target>下一页</target>
+            </trans-unit>
+
+            <trans-unit id="info.change_password">
+                <source>info.change_password</source>
+                <target>更改密码后，您将退出应用程序。</target>
             </trans-unit>
         </body>
     </file>
