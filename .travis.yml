@@ -26,34 +26,39 @@ env:
     - PATH="$HOME/.symfony/bin:$PATH"
 
 # Defines all jobs which Travis will run in parallel. For each PHP version we support we will run one job.
-matrix:
+jobs:
   # With fast finishing enabled, Travis CI will mark your build as finished as soon as one of two
   # conditions are met: The only remaining jobs are allowed to fail, or a job has already failed. In
   # these cases, the status of the build can already be determined, so there’s no need to wait around
   # until the other jobs finish.
   fast_finish: true
   include:
+    # Run tests with the dependencies from composer.lock
     - php: 7.2
     - php: 7.3
-      env: SYMFONY="5.0.*"
-           ACTION="update"
     - php: 7.4
 
+    # Run tests against dev (currently 5.1.x-dev)
+    - php: 7.3
+      env: STABILITY=dev ACTION=update
+
+    # Run tests against dev-master (currently 5.2.x-dev)
+    - php: 7.3
+      env: STABILITY=dev SYMFONY=5.* ACTION=update
+
 before_install:
-  - '[[ "$TRAVIS_PHP_VERSION" == "7.4snapshot" ]] || phpenv config-rm xdebug.ini'
-  # Set memory to max (memory fail).
-  - '[[ "$ACTION" == "install" ]] || echo "memory_limit=-1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini'
-  # Set stability to dev to allow 4.4dev and 5.0dev.
-  - '[[ "$ACTION" == "install" ]] || composer config minimum-stability dev'
-  # Change version of symfony when need.
-  - '[[ "$ACTION" == "install" ]] || composer config extra.symfony.require $SYMFONY'
+  - phpenv config-rm xdebug.ini || true
+  # Change minimum-stability to allow upcoming versions (dev | alpha | beta | RC)
+  - '[[ -z $STABILITY ]] || composer config minimum-stability "$STABILITY"'
+  # Change extra.symfony.require used by symfony flex
+  - '[[ -z $SYMFONY ]] || composer config extra.symfony.require "$SYMFONY"'
   # If it is available update the Symfony binary, if not install it.
   - if symfony self:version; then symfony self:update ; else wget https://get.symfony.com/cli/installer -O - | bash ; fi
 
 install:
   - php -r "echo ini_get('memory_limit').PHP_EOL;"
   # Install or update Composer packages including dev dependencies listed in require-dev.
-  - composer $ACTION
+  - COMPOSER_MEMORY_LIMIT=-1 composer $ACTION
   - ./bin/phpunit install
 
 script:
@@ -61,7 +66,7 @@ script:
   # repository already includes a test database with all the fixtures needed to run the tests.
   - ./bin/phpunit
   # This checks that the source code follows the Symfony Code Syntax rules.
-  - '[[ "$TRAVIS_PHP_VERSION" == "7.4" ]] || ./vendor/bin/php-cs-fixer fix --diff --dry-run -v'
+  - '[[ $TRAVIS_PHP_VERSION != "7.4" ]] || ./vendor/bin/php-cs-fixer fix --diff --dry-run -v'
   # This checks that the YAML config files contain no syntax errors.
   - ./bin/console lint:yaml config --parse-tags
   # This checks that the Twig template files contain no syntax errors.
