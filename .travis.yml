@@ -53,7 +53,7 @@ before_install:
   # Change extra.symfony.require used by symfony flex
   - '[[ -z $SYMFONY ]] || composer config extra.symfony.require "$SYMFONY"'
   # If it is available update the Symfony binary, if not install it.
-  - if symfony self:version; then symfony self:update ; else wget https://get.symfony.com/cli/installer -O - | bash ; fi
+  - if symfony self:version; then symfony self:update --yes ; else wget https://get.symfony.com/cli/installer -O - | bash ; fi
 
 install:
   - php -r "echo ini_get('memory_limit').PHP_EOL;"
