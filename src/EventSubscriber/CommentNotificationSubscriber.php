@@ -12,7 +12,7 @@
 namespace App\EventSubscriber;
 
 use App\Entity\Comment;
-use App\Events\CommentCreatedEvent;
+use App\Event\CommentCreatedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
