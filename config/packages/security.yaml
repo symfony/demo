@@ -28,6 +28,9 @@ security:
             anonymous: true
             lazy: true
 
+            # The user provider to use.
+            provider: database_users
+
             # This allows the user to login by submitting a username and password
             # Reference: https://symfony.com/doc/current/security/form_login_setup.html
             form_login:
