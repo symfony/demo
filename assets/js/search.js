@@ -1,7 +1,9 @@
 import './jquery.instantSearch.js';
 
 $(function() {
-    $('.search-field').instantSearch({
-        delay: 100,
-    });
+	$('.search-field')
+		.instantSearch({
+			delay: 100,
+		})
+		.keyup();
 });
