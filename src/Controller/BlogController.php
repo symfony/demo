@@ -59,6 +59,7 @@ class BlogController extends AbstractController
         // See https://symfony.com/doc/current/templates.html#template-naming
         return $this->render('blog/index.'.$_format.'.twig', [
             'paginator' => $latestPosts,
+            'tagName' => $tag ? $tag->getName() : null,
         ]);
     }
 
