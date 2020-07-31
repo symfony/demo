@@ -87,11 +87,11 @@ class PostRepository extends ServiceEntityRepository
     private function extractSearchTerms(string $searchQuery): array
     {
         $searchQuery = u($searchQuery)->replaceMatches('/[[:space:]]+/', ' ')->trim();
-        $terms = array_unique(u($searchQuery)->split(' '));
+        $terms = array_unique($searchQuery->split(' '));
 
         // ignore the search terms that are too short
         return array_filter($terms, function ($term) {
-            return 2 <= u($term)->length();
+            return 2 <= $term->length();
         });
     }
 }
