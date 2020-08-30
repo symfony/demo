@@ -22,7 +22,7 @@
         {{ form_errors(form) }}
 
         <div class="form-group {% if not form.content.vars.valid %}has-error{% endif %}">
-            {{ form_label(form.content, 'label.content', {label_attr: {class: 'hidden'}}) }}
+            {{ form_label(form.content, 'label.content', {label_attr: {class: 'sr-only'}}) }}
 
             {# Render any errors for the "content" field (e.g. when a class property constraint failed) #}
             {{ form_errors(form.content) }}
