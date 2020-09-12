@@ -1,0 +1,38 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2020-09-10T18:17:58Z
+
+I need help to debug the following issue in Travis. Thanks!
+
+```
+$ [[ $TRAVIS_PHP_VERSION != "7.4" ]] || ./vendor/bin/php-cs-fixer fix --diff --dry-run -v
+PHP Fatal error:  Uncaught Error: Call to undefined method PhpCsFixer\Config::create() in /home/travis/build/symfony/demo/.php_cs.dist:23
+Stack trace:
+#0 /home/travis/build/symfony/demo/vendor/friendsofphp/php-cs-fixer/src/Console/ConfigurationResolver.php(931): include()
+#1 /home/travis/build/symfony/demo/vendor/friendsofphp/php-cs-fixer/src/Console/ConfigurationResolver.php(227): PhpCsFixer\Console\ConfigurationResolver::separatedContextLessInclude('/home/travis/bu...')
+#2 /home/travis/build/symfony/demo/vendor/friendsofphp/php-cs-fixer/src/Console/ConfigurationResolver.php(623): PhpCsFixer\Console\ConfigurationResolver->getConfig()
+#3 /home/travis/build/symfony/demo/vendor/friendsofphp/php-cs-fixer/src/Console/ConfigurationResolver.php(456): PhpCsFixer\Console\ConfigurationResolver->getFormat()
+#4 /home/travis/build/symfony/demo/vendor/friendsofphp/php-cs-fixer/src/Console/Command/FixCommand.php(154): PhpCsFixer\Console\ConfigurationResolver->getReporter()
+#5 /home/travis/build/symfony/demo/vendor/symfony/console/Command/Co in /home/travis/build/symfony/demo/.php_cs.dist on line 23
+Fatal error: Uncaught Error: Call to undefined method PhpCsFixer\Config::create() in /home/travis/build/symfony/demo/.php_cs.dist:23
+Stack trace:
+#0 /home/travis/build/symfony/demo/vendor/friendsofphp/php-cs-fixer/src/Console/ConfigurationResolver.php(931): include()
+#1 /home/travis/build/symfony/demo/vendor/friendsofphp/php-cs-fixer/src/Console/ConfigurationResolver.php(227): PhpCsFixer\Console\ConfigurationResolver::separatedContextLessInclude('/home/travis/bu...')
+#2 /home/travis/build/symfony/demo/vendor/friendsofphp/php-cs-fixer/src/Console/ConfigurationResolver.php(623): PhpCsFixer\Console\ConfigurationResolver->getConfig()
+#3 /home/travis/build/symfony/demo/vendor/friendsofphp/php-cs-fixer/src/Console/ConfigurationResolver.php(456): PhpCsFixer\Console\ConfigurationResolver->getFormat()
+#4 /home/travis/build/symfony/demo/vendor/friendsofphp/php-cs-fixer/src/Console/Command/FixCommand.php(154): PhpCsFixer\Console\ConfigurationResolver->getReporter()
+```
+
+---------------------------------------------------------------------------
+
+by rosier at 2020-09-12T13:03:29Z
+
+I think changing the line https://github.com/symfony/demo/blob/978b34f221ba6973ca8d97f98ee10fb3093d282e/.php_cs.dist#L23 to `return (new PhpCsFixer\Config())` should fix the problem.
+
+For more info see https://github.com/FriendsOfPHP/PHP-CS-Fixer/pull/4828
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2020-09-12T13:30:55Z
+
+@rosier yes!! Thanks a lot for your help. Tests are green again!
