@@ -20,7 +20,7 @@ env:
     # the same directory as the simple-phpunit if it is not provided. It's also possible to set
     # this env var in the phpunit.xml.dist file.
     - SYMFONY_PHPUNIT_DIR=./bin/.phpunit
-    - SYMFONY_DEPRECATIONS_HELPER=9
+    - SYMFONY_DEPRECATIONS_HELPER=6
     - ACTION="install"
     # Add the Symfony binary's path to PATH.
     - PATH="$HOME/.symfony/bin:$PATH"
@@ -35,16 +35,13 @@ jobs:
   include:
     # Run tests with the dependencies from composer.lock
     - php: 7.2
-    - php: 7.3
     - php: 7.4
-
-    # Run tests against dev (currently 5.1.x-dev)
-    - php: 7.3
-      env: STABILITY=dev ACTION=update
-
+    - php: nightly
     # Run tests against dev-master (currently 5.2.x-dev)
-    - php: 7.3
+    - php: 7.4
       env: STABILITY=dev SYMFONY=5.* ACTION=update
+  allow_failures:
+     - php: nightly
 
 before_install:
   - phpenv config-rm xdebug.ini || true
