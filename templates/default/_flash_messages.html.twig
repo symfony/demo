@@ -20,7 +20,7 @@
             {% for message in messages %}
                 {# Bootstrap alert, see https://getbootstrap.com/docs/3.4/components/#alerts #}
                 <div class="alert alert-dismissible alert-{{ type }} fade in" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="{{ 'action.close'|trans }}">
                         <span aria-hidden="true">&times;</span>
                     </button>
 
