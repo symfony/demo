@@ -11,7 +11,6 @@
 
 namespace App\Pagination;
 
-use App\Entity\Post;
 use Doctrine\ORM\QueryBuilder as DoctrineQueryBuilder;
 use Doctrine\ORM\Tools\Pagination\CountWalker;
 use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePaginator;
@@ -21,13 +20,21 @@ use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePaginator;
  */
 class Paginator
 {
+    /**
+     * Use constants to define configuration options that rarely change instead
+     * of specifying them under parameters section in config/services.yaml file.
+     *
+     * See https://symfony.com/doc/current/best_practices.html#use-constants-to-define-options-that-rarely-change
+     */
+    public const PAGE_SIZE = 10;
+
     private $queryBuilder;
     private $currentPage;
     private $pageSize;
     private $results;
     private $numResults;
 
-    public function __construct(DoctrineQueryBuilder $queryBuilder, int $pageSize = Post::NUM_ITEMS)
+    public function __construct(DoctrineQueryBuilder $queryBuilder, int $pageSize = self::PAGE_SIZE)
     {
         $this->queryBuilder = $queryBuilder;
         $this->pageSize = $pageSize;
