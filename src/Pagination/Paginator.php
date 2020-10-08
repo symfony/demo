@@ -11,6 +11,7 @@
 
 namespace App\Pagination;
 
+use App\Entity\Post;
 use Doctrine\ORM\QueryBuilder as DoctrineQueryBuilder;
 use Doctrine\ORM\Tools\Pagination\CountWalker;
 use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePaginator;
@@ -20,14 +21,13 @@ use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePaginator;
  */
 class Paginator
 {
-    private const PAGE_SIZE = 10;
     private $queryBuilder;
     private $currentPage;
     private $pageSize;
     private $results;
     private $numResults;
 
-    public function __construct(DoctrineQueryBuilder $queryBuilder, int $pageSize = self::PAGE_SIZE)
+    public function __construct(DoctrineQueryBuilder $queryBuilder, int $pageSize = Post::NUM_ITEMS)
     {
         $this->queryBuilder = $queryBuilder;
         $this->pageSize = $pageSize;
