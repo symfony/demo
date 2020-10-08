@@ -57,7 +57,7 @@ class PostRepository extends ServiceEntityRepository
     /**
      * @return Post[]
      */
-    public function findBySearchQuery(string $query, int $limit = Post::NUM_ITEMS): array
+    public function findBySearchQuery(string $query, int $limit = Paginator::PAGE_SIZE): array
     {
         $searchTerms = $this->extractSearchTerms($query);
 
