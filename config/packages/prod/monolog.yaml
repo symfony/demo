@@ -14,13 +14,3 @@ monolog:
             type: console
             process_psr_3_messages: false
             channels: ["!event", "!doctrine"]
-
-        # Uncomment to log deprecations
-        #deprecation:
-        #    type: stream
-        #    path: "%kernel.logs_dir%/%kernel.environment%.deprecations.log"
-        #deprecation_filter:
-        #    type: filter
-        #    handler: deprecation
-        #    max_level: info
-        #    channels: ["php"]

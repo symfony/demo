@@ -52,7 +52,7 @@ security:
                 # The name of the route to redirect to after logging out
                 target: homepage
 
-    # Used to restrict access for large sections of your site
+    # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
         # this is a catch-all for the admin area
