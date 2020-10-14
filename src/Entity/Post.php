@@ -115,6 +115,11 @@ class Post
      */
     private $tags;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $views = 0;
+
     public function __construct()
     {
         $this->publishedAt = new \DateTime();
@@ -222,5 +227,15 @@ class Post
     public function getTags(): Collection
     {
         return $this->tags;
+    }
+
+    public function getViews(): ?int
+    {
+        return $this->views;
+    }
+
+    public function setViews(int $views)
+    {
+        $this->views = $views;
     }
 }

@@ -8,6 +8,9 @@
     <p class="post-metadata">
         <span class="metadata"><i class="fa fa-calendar"></i> {{ post.publishedAt|format_datetime('long', 'medium', '', 'UTC') }}</span>
         <span class="metadata"><i class="fa fa-user"></i> {{ post.author.fullName }}</span>
+        {% if post.views > 0 %}
+            <span class="metadata"><i class="fa fa-eye"></i> {{ post.views }}</span>
+        {% endif %}
     </p>
 
     {{ post.content|markdown_to_html|sanitize_html }}
