@@ -14,6 +14,7 @@ namespace App\Controller;
 use App\Entity\Comment;
 use App\Entity\Post;
 use App\Event\CommentCreatedEvent;
+use App\Event\PostVisitedEvent;
 use App\Form\CommentType;
 use App\Repository\PostRepository;
 use App\Repository\TagRepository;
@@ -71,7 +72,7 @@ class BlogController extends AbstractController
      * value given in the route.
      * See https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html
      */
-    public function postShow(Post $post): Response
+    public function postShow(Post $post, EventDispatcherInterface $eventDispatcher): Response
     {
         // Symfony's 'dump()' function is an improved version of PHP's 'var_dump()' but
         // it's not available in the 'prod' environment to prevent leaking sensitive information.
@@ -79,7 +80,7 @@ class BlogController extends AbstractController
         // have enabled the DebugBundle. Uncomment the following line to see it in action:
         //
         // dump($post, $this->getUser(), new \DateTime());
-
+        $eventDispatcher->dispatch(new PostVisitedEvent($post), PostVisitedEvent::NAME);
         return $this->render('blog/post_show.html.twig', ['post' => $post]);
     }
 
