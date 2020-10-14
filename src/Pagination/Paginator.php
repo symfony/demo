@@ -26,13 +26,14 @@ class Paginator
      *
      * See https://symfony.com/doc/current/best_practices.html#use-constants-to-define-options-that-rarely-change
      */
-    public const PAGE_SIZE = 10;
+    public const PAGE_SIZE = 3;
 
     private $queryBuilder;
     private $currentPage;
     private $pageSize;
     private $results;
     private $numResults;
+
 
     public function __construct(DoctrineQueryBuilder $queryBuilder, int $pageSize = self::PAGE_SIZE)
     {
@@ -65,6 +66,65 @@ class Paginator
         return $this;
     }
 
+    public function getPages(): array
+    {
+        $pages = [];
+        $i = 1;
+        while ($i<=$this->getLastPage()) {
+            foreach ($this->getRequiredPages() as $page) {
+                if ($i == $page && !in_array($page, $pages)) {
+                    array_push($pages, $i);
+                }
+            }
+            $i++;
+        }
+        return $pages;
+    }
+
+    public function getRequiredPages(): array
+    {
+        return [
+            $this->getFirstPage(),
+            $this->getSecondPage(),
+            $this->getSecondLastPage(),
+            $this->getLastPage(),
+            $this->getMiddlePage(),
+            $this->getLeftPage(),
+            $this->getRightPage(),
+            $this->getCurrentPage(),
+        ];
+    }
+
+    public function getFirstPage(): int
+    {
+        return 1;
+    }
+
+    public function getSecondPage(): int
+    {
+        return 2;
+    }
+
+    public function getSecondLastPage(): int
+    {
+        return $this->getLastPage() - 1;
+    }
+
+    public function getMiddlePage(): int
+    {
+        return (int) ceil(($this->numResults / $this->pageSize) / 2);
+    }
+
+    public function getLeftPage(): int
+    {
+        return $this->currentPage - 1;
+    }
+
+    public function getRightPage(): int
+    {
+        return $this->currentPage + 1;
+    }
+
     public function getCurrentPage(): int
     {
         return $this->currentPage;
@@ -72,7 +132,7 @@ class Paginator
 
     public function getLastPage(): int
     {
-        return (int) ceil($this->numResults / $this->pageSize);
+        return (int)ceil($this->numResults / $this->pageSize);
     }
 
     public function getPageSize(): int
@@ -114,4 +174,5 @@ class Paginator
     {
         return $this->results;
     }
+
 }
