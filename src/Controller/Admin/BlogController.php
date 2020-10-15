@@ -32,12 +32,10 @@ use Symfony\Component\Routing\Annotation\Route;
  *
  * See http://knpbundles.com/keyword/admin
  *
- * @Route("/admin/post")
- * @IsGranted("ROLE_ADMIN")
- *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
+#[Route('/admin/post'), IsGranted('ROLE_ADMIN')]
 class BlogController extends AbstractController
 {
     /**
@@ -50,10 +48,11 @@ class BlogController extends AbstractController
      *     to create simpler links in the templates. Moreover, in the future we
      *     could move this annotation to any other controller while maintaining
      *     the route name and therefore, without breaking any existing link.
-     *
-     * @Route("/", methods="GET", name="admin_index")
-     * @Route("/", methods="GET", name="admin_post_index")
      */
+    #[
+        Route('/', methods: ['GET'], name: 'admin_index'),
+        Route('/', methods: ['GET'], name: 'admin_post_index'),
+    ]
     public function index(PostRepository $posts): Response
     {
         $authorPosts = $posts->findBy(['author' => $this->getUser()], ['publishedAt' => 'DESC']);
@@ -64,13 +63,16 @@ class BlogController extends AbstractController
     /**
      * Creates a new Post entity.
      *
-     * @Route("/new", methods="GET|POST", name="admin_post_new")
-     *
      * NOTE: the Method annotation is optional, but it's a recommended practice
      * to constraint the HTTP methods each controller responds to (by default
      * it responds to all methods).
      */
+<<<<<<< HEAD
     public function new(Request $request, EntityManagerInterface $entityManager): Response
+=======
+    #[Route('/new', methods: ['GET', 'POST'], name: 'admin_post_new')]
+    public function new(Request $request): Response
+>>>>>>> 44c4fc1 (PHP 8 Prototype)
     {
         $post = new Post();
         $post->setAuthor($this->getUser());
@@ -110,9 +112,8 @@ class BlogController extends AbstractController
 
     /**
      * Finds and displays a Post entity.
-     *
-     * @Route("/{id<\d+>}", methods="GET", name="admin_post_show")
      */
+    #[Route('/{id<\d+>}', methods: ['GET'], name: 'admin_post_show')]
     public function show(Post $post): Response
     {
         // This security check can also be performed
@@ -126,11 +127,14 @@ class BlogController extends AbstractController
 
     /**
      * Displays a form to edit an existing Post entity.
-     *
-     * @Route("/{id<\d+>}/edit", methods="GET|POST", name="admin_post_edit")
-     * @IsGranted("edit", subject="post", message="Posts can only be edited by their authors.")
      */
+<<<<<<< HEAD
     public function edit(Request $request, Post $post, EntityManagerInterface $entityManager): Response
+=======
+    #[Route('/{id<\d+>}/edit', methods: ['GET', 'POST'], name: 'admin_post_edit')]
+    #[IsGranted('edit', subject: 'post', message: 'Posts can only be edited by their authors.')]
+    public function edit(Request $request, Post $post): Response
+>>>>>>> 44c4fc1 (PHP 8 Prototype)
     {
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
@@ -150,11 +154,14 @@ class BlogController extends AbstractController
 
     /**
      * Deletes a Post entity.
-     *
-     * @Route("/{id}/delete", methods="POST", name="admin_post_delete")
-     * @IsGranted("delete", subject="post")
      */
+<<<<<<< HEAD
     public function delete(Request $request, Post $post, EntityManagerInterface $entityManager): Response
+=======
+    #[Route('/{id}/delete', methods: ['POST'], name: 'admin_post_delete')]
+    #[IsGranted('delete', subject: 'post')]
+    public function delete(Request $request, Post $post): Response
+>>>>>>> 44c4fc1 (PHP 8 Prototype)
     {
         if (!$this->isCsrfTokenValid('delete', $request->request->get('token'))) {
             return $this->redirectToRoute('admin_post_index');

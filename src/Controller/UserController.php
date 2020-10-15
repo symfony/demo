@@ -24,16 +24,12 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Controller used to manage current user.
  *
- * @Route("/profile")
- * @IsGranted("ROLE_USER")
- *
  * @author Romain Monteil <monteil.romain@gmail.com>
  */
+#[Route('/profile'), IsGranted('ROLE_USER')]
 class UserController extends AbstractController
 {
-    /**
-     * @Route("/edit", methods="GET|POST", name="user_edit")
-     */
+    #[Route('/edit', methods: ['GET', 'POST'], name: 'user_edit')]
     public function edit(Request $request, EntityManagerInterface $entityManager): Response
     {
         $user = $this->getUser();
@@ -55,10 +51,8 @@ class UserController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/change-password", methods="GET|POST", name="user_change_password")
-     */
-    public function changePassword(Request $request, UserPasswordHasherInterface $hasher, EntityManagerInterface $entityManager): Response
+    #[Route('/change-password', methods: ['GET', 'POST'], name: 'user_change_password')]
+    public function changePassword(Request $request, UserPasswordEncoderInterface $encoder, EntityManagerInterface $entityManager): Response
     {
         $user = $this->getUser();
 

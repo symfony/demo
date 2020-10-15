@@ -36,61 +36,53 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Post
 {
     /**
-     * @var int
-     *
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private ?int $id = null;
 
     /**
-     * @var string
-     *
      * @ORM\Column(type="string")
-     * @Assert\NotBlank
      */
-    private $title;
+    #[Assert\NotBlank]
+    private ?string $title = null;
 
     /**
-     * @var string
-     *
      * @ORM\Column(type="string")
      */
-    private $slug;
+    private ?string $slug = null;
 
     /**
-     * @var string
-     *
      * @ORM\Column(type="string")
-     * @Assert\NotBlank(message="post.blank_summary")
-     * @Assert\Length(max=255)
      */
-    private $summary;
+    #[
+        Assert\NotBlank(message: 'post.blank_summary'),
+        Assert\Length(max: 255)
+    ]
+    private ?string $summary = null;
 
     /**
      * @var string
      *
      * @ORM\Column(type="text")
-     * @Assert\NotBlank(message="post.blank_content")
-     * @Assert\Length(min=10, minMessage="post.too_short_content")
      */
-    private $content;
+    #[
+        Assert\NotBlank(message: 'post.blank_content'),
+        Assert\Length(min: 10, minMessage: 'post.too_short_content')
+    ]
+    private ?string $content = null;
 
     /**
-     * @var \DateTime
-     *
      * @ORM\Column(type="datetime")
      */
-    private $publishedAt;
+    private \DateTime $publishedAt;
 
     /**
-     * @var User
-     *
      * @ORM\ManyToOne(targetEntity="App\Entity\User")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $author;
+    private ?User $author = null;
 
     /**
      * @var Comment[]|Collection
@@ -103,7 +95,7 @@ class Post
      * )
      * @ORM\OrderBy({"publishedAt": "DESC"})
      */
-    private $comments;
+    private Collection $comments;
 
     /**
      * @var Tag[]|Collection
@@ -111,9 +103,9 @@ class Post
      * @ORM\ManyToMany(targetEntity="App\Entity\Tag", cascade={"persist"})
      * @ORM\JoinTable(name="symfony_demo_post_tag")
      * @ORM\OrderBy({"name": "ASC"})
-     * @Assert\Count(max="4", maxMessage="post.too_many_tags")
      */
-    private $tags;
+    #[Assert\Count(max: 4, maxMessage: 'post.too_many_tags')]
+    private Collection $tags;
 
     public function __construct()
     {
