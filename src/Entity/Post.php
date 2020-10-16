@@ -93,7 +93,7 @@ class Post
     private $author;
 
     /**
-     * @var Comment[]|ArrayCollection
+     * @var Comment[]|Collection
      *
      * @ORM\OneToMany(
      *      targetEntity="Comment",
@@ -106,7 +106,7 @@ class Post
     private $comments;
 
     /**
-     * @var Tag[]|ArrayCollection
+     * @var Tag[]|Collection
      *
      * @ORM\ManyToMany(targetEntity="App\Entity\Tag", cascade={"persist"})
      * @ORM\JoinTable(name="symfony_demo_post_tag")
