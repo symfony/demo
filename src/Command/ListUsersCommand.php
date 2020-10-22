@@ -46,7 +46,7 @@ class ListUsersCommand extends Command
     private $emailSender;
     private $users;
 
-    public function __construct(MailerInterface $mailer, $emailSender, UserRepository $users)
+    public function __construct(MailerInterface $mailer, string $emailSender, UserRepository $users)
     {
         parent::__construct();
 
