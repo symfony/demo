@@ -1,0 +1,88 @@
+name: "Lint"
+
+on: [push, pull_request]
+
+env:
+    fail-fast: true
+
+jobs:
+    php-cs-fixer:
+        name: PHP-CS-Fixer
+        runs-on: ubuntu-latest
+        steps:
+            - name: "Checkout code"
+              uses: actions/checkout@v2
+
+            - name: PHP-CS-Fixer
+              uses: docker://oskarstark/php-cs-fixer-ga
+              with:
+                  args: --diff --dry-run
+
+    linters:
+        name: Linters
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                php-version: ['7.4']
+
+        steps:
+            - name: "Checkout code"
+              uses: actions/checkout@v2.3.3
+
+            - name: "Install PHP with extensions"
+              uses: shivammathur/setup-php@2.7.0
+              with:
+                  coverage: "none"
+                  extensions: intl
+                  php-version: ${{ matrix.php-version }}
+                  tools: composer:v2
+
+            - name: "Set composer cache directory"
+              id: composer-cache
+              run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+            - name: "Cache composer"
+              uses: actions/cache@v2.1.2
+              with:
+                  path: ${{ steps.composer-cache.outputs.dir }}
+                  key: ${{ runner.os }}-${{ matrix.php-version }}-composer-${{ hashFiles('composer.json') }}
+                  restore-keys: ${{ runner.os }}-${{ matrix.php-version }}-composer-
+
+            - name: "Require symfony/flex"
+              run: composer global require --no-progress --no-scripts --no-plugins symfony/flex dev-main
+
+            - name: "Composer update"
+              id: install
+              run: composer update --no-scripts
+
+            - name: Lint YAML files
+              if: always() && steps.install.outcome == 'success'
+              run: ./bin/console lint:yaml config --parse-tags
+
+            - name: Lint Twig templates
+              if: always() && steps.install.outcome == 'success'
+              run: ./bin/console lint:twig templates --env=prod
+
+            - name: Lint XLIFF translations
+              if: always() && steps.install.outcome == 'success'
+              run: ./bin/console lint:xliff translations
+
+            - name: Lint Parameters and Services
+              if: always() && steps.install.outcome == 'success'
+              run: ./bin/console lint:container
+
+            - name: Lint Doctrine entities
+              if: always() && steps.install.outcome == 'success'
+              run: ./bin/console doctrine:schema:validate --skip-sync -vvv --no-interaction
+
+            - name: Lint Composer config
+              if: always() && steps.install.outcome == 'success'
+              run: composer validate --strict
+
+            - name: Download Symfony CLI
+              if: always() && steps.install.outcome == 'success'
+              run: wget https://get.symfony.com/cli/installer -O - | bash
+
+            - name: Check if any dependencies are compromised
+              if: always() && steps.install.outcome == 'success'
+              run: /home/runner/.symfony/bin/symfony check:security
