@@ -1,0 +1,31 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2020-11-05T10:03:18Z
+
+Here's a question about GitHub Actions: I guess we don't see the checks added to this PR because it's the PR where we adding them, so I only see the checks in my personal fork: https://github.com/javiereguiluz/demo/actions
+
+That's OK ... but why GitHub only runs the `lint.yaml` workflow and ignores the `ci.yaml` workflow? Thanks!
+
+---------------------------------------------------------------------------
+
+by ogizanagi at 2020-11-05T10:07:55Z
+
+> That's OK ... but why GitHub only runs the `lint.yaml` workflow and ignores the `ci.yaml` workflow? Thanks!
+
+Because the ci workflow does only run on pushing new commits to master:
+
+https://github.com/javiereguiluz/demo/blob/58bd1eb7456e12ee2a5fe8e915c80b0ba0f1ecee/.github/workflows/ci.yaml#L5-L7
+
+while the lint one allows to run on any branch
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2020-11-05T11:19:01Z
+
+@ogizanagi Sorry I missed that! Thanks!
+
+---------------------------------------------------------------------------
+
+by stof at 2020-11-05T11:56:50Z
+
+And for a workflow to run on a PR, the workflow file must exist in the repository. *new* workflows are not running for PRs sent from a fork.
