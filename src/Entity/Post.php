@@ -132,7 +132,7 @@ class Post
         return $this->title;
     }
 
-    public function setTitle(string $title): void
+    public function setTitle(?string $title): void
     {
         $this->title = $title;
     }
@@ -152,7 +152,7 @@ class Post
         return $this->content;
     }
 
-    public function setContent(string $content): void
+    public function setContent(?string $content): void
     {
         $this->content = $content;
     }
@@ -200,7 +200,7 @@ class Post
         return $this->summary;
     }
 
-    public function setSummary(string $summary): void
+    public function setSummary(?string $summary): void
     {
         $this->summary = $summary;
     }
