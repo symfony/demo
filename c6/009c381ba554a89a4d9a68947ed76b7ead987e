@@ -1,0 +1,52 @@
+---------------------------------------------------------------------------
+
+by stof at 2020-10-08T13:41:53Z
+
+have you checked where the new deprecation comes from ?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2020-10-08T13:59:39Z
+
+@stof yes ... it's from Symfony's Twig Loader pass ... but I was going to fix it and couldn't, because apparently it's been fixed since the beta release:
+
+![image](https://user-images.githubusercontent.com/73419/95468899-4353e400-097f-11eb-93c1-645e4f00f0f2.png)
+
+---------------------------------------------------------------------------
+
+by stof at 2020-10-08T14:46:19Z
+
+this might indicate missing tests in Symfony, as the testsuite should forbid deprecations...
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2020-10-29T09:13:47Z
+
+@stof @nicolas-grekas after upgrading to Symfony 5.2 beta3 I can still see that deprecation. Is this something to be fixed upstream in Symfony? Thanks! Details:
+
+![image](https://user-images.githubusercontent.com/73419/97548430-69ddcb80-19cf-11eb-8ef4-516439a63162.png)
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2020-11-10T16:44:26Z
+
+I've just updated to 5.2 RC1. I don't see any issues or deprecations ... and the application feels super lightweight and responsive.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2020-11-27T08:18:16Z
+
+I've updated to 5.2 RC2. These are the reported deprecations:
+
+```
+Remaining indirect deprecation notices (7)
+
+  6x: The "Doctrine\Common\Inflector\Inflector::classify" method is deprecated and will be dropped in doctrine/inflector 2.0. Please update to the new Inflector API.
+    2x in AddUserCommandTest::testCreateUserNonInteractive from App\Tests\Command
+    2x in AddUserCommandTest::testCreateUserInteractive from App\Tests\Command
+    1x in BlogControllerTest::testAdminNewPost from App\Tests\Controller\Admin
+    1x in UserControllerTest::testEditUser from App\Tests\Controller
+
+  1x: Since symfony/dependency-injection 5.2: The "Symfony\Component\DependencyInjection\Alias::setPrivate()" method is deprecated, use "setPublic()" instead.
+    1x in AddUserCommandTest::testCreateUserNonInteractive from App\Tests\Command
+```
