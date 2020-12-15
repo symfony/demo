@@ -127,7 +127,7 @@ HELP
             $this->sendReport($usersAsATable, $email);
         }
 
-        return 0;
+        return Command::SUCCESS;
     }
 
     /**
