@@ -1,5 +1,5 @@
-@import "~bootswatch/flatly/variables";
-@import "~eonasdan-bootstrap-datetimepicker/src/sass/bootstrap-datetimepicker-build.scss";
+@import "variables";
+// @import "~eonasdan-bootstrap-datetimepicker/src/sass/bootstrap-datetimepicker-build.scss";
 @import "bootstrap-tagsinput.scss";
 
 /* Page: 'Backend post index'
@@ -23,4 +23,13 @@ body#admin_post_show .post-tags .label-default {
 }
 body#admin_post_show .post-tags .label-default i {
   color: #95A6A7;
+}
+
+.form-control {
+  border-width: .125rem;
+
+  &:focus {
+    color: $blue;
+    box-shadow: none;
+  }
 }

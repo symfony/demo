@@ -3,7 +3,7 @@
         {{ 'help.show_code'|trans|raw }}
     </p>
 
-    <button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#sourceCodeModal">
+    <button type="button" class="btn btn-secondary py-3 btn-lg btn-block" data-toggle="modal" data-target="#sourceCodeModal">
       <i class="fa fa-cogs" aria-hidden="true"></i> {{ 'action.show_code'|trans }}
     </button>
 
@@ -11,22 +11,22 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
+                    <h4 class="modal-title"><i class="fa fa-code" aria-hidden="true"></i> {{ 'title.source_code'|trans }}</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="{{ 'action.close'|trans }}">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title"><i class="fa fa-code" aria-hidden="true"></i> {{ 'title.source_code'|trans }}</h4>
                 </div>
 
                 <div class="modal-body">
                     {% if controller %}
-                        <h3><a href="https://symfony.com/doc/current/controller.html" target="_blank">{{ 'title.controller_code'|trans }}</a><small class="pull-right">{{ controller.file_path|format_file(controller.starting_line) }}</small></h3>
+                        <h3><a href="https://symfony.com/doc/current/controller.html" target="_blank">{{ 'title.controller_code'|trans }}</a><small class="float-right">{{ controller.file_path|format_file(controller.starting_line) }}</small></h3>
                         <pre><code class="php">{{ controller.source_code }}</code></pre>
                     {% else %}
                         <h3><a href="https://symfony.com/doc/current/controller.html">{{ 'title.controller_code'|trans }}</a></h3>
                         <pre><code>{{ 'not_available'|trans }}</code></pre>
                     {% endif %}
 
-                    <h3><a href="https://symfony.com/doc/current/templates.html" target="_blank">{{ 'title.twig_template_code'|trans }}</a><small class="pull-right">{{ template.file_path|format_file(template.starting_line) }}</small></h3>
+                    <h3><a href="https://symfony.com/doc/current/templates.html" target="_blank">{{ 'title.twig_template_code'|trans }}</a><small class="float-right">{{ template.file_path|format_file(template.starting_line) }}</small></h3>
                     <pre><code class="twig">{{ template.source_code }}</code></pre>
                 </div>
             </div>
