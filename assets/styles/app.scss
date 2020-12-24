@@ -255,7 +255,14 @@ footer #footer-resources i {
 
 #sourceCodeModal pre {
   margin-bottom: 2em;
-  padding: 0
+  padding: 0;
+  display: block;
+  word-break: break-all;
+  word-wrap: break-word;
+
+  code {
+    white-space: pre-wrap;
+  }
 }
 
 #confirmationModal .modal-dialog {
