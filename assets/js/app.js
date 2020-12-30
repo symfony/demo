@@ -1,8 +1,6 @@
 import '../scss/app.scss';
 
 // loads the Bootstrap jQuery plugins
-// import 'bootstrap-sass/assets/javascripts/bootstrap/transition.js';
-import 'bootstrap/js/dist/alert';
 import 'bootstrap/js/dist/alert';
 import 'bootstrap/js/dist/collapse';
 import 'bootstrap/js/dist/dropdown';
