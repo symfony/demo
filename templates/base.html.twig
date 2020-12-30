@@ -4,7 +4,7 @@
    See https://symfony.com/doc/current/templates.html#template-inheritance-and-layouts
 #}
 
-{% set route = app.request.get('_route') %}
+{% set _route = app.request.get('_route') %}
 
 <!DOCTYPE html>
 <html lang="{{ app.request.locale }}">
@@ -44,7 +44,7 @@
                         <div class="navbar-collapse collapse" id="appNavbar">
                             <ul class="navbar-nav ml-auto">
                                 {% block header_navigation_links %}
-                                    <li class="nav-item{{ route == 'blog_index' ? ' active' : '' }}">
+                                    <li class="nav-item{{ _route == 'blog_index' ? ' active' : '' }}">
                                         <a class="nav-link" href="{{ path('blog_index') }}">
                                             <i class="fa fa-home" aria-hidden="true"></i> {{ 'menu.homepage'|trans }}
                                         </a>
@@ -58,7 +58,7 @@
                                     {% endif %}
                                 {% endblock %}
 
-                                <li class="nav-item{{ route == 'blog_search' ? ' active' : '' }}">
+                                <li class="nav-item{{ _route == 'blog_search' ? ' active' : '' }}">
                                     <a class="nav-link" href="{{ path('blog_search') }}"> <i class="fa fa-search"></i> {{ 'menu.search'|trans }}</a>
                                 </li>
 
