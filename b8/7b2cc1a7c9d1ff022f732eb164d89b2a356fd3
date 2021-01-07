@@ -1,0 +1,105 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2020-11-05T15:18:56Z
+
+@OskarStark do you know why tests are failing in PHP 8 with the following message?
+
+```
+1) App\Tests\Form\DataTransformer\TagArrayToStringTransformerTest::testCreateTheRightAmountOfTags
+ParseError: syntax error, unexpected token "match"
+
+/home/runner/work/demo/demo/vendor/symfony/error-handler/DebugClassLoader.php:345
+/home/runner/work/demo/demo/vendor/symfony/error-handler/DebugClassLoader.php:345
+/home/runner/work/demo/demo/tests/Form/DataTransformer/TagArrayToStringTransformerTest.php:111
+/home/runner/work/demo/demo/tests/Form/DataTransformer/TagArrayToStringTransformerTest.php:31
+```
+
+In https://github.com/symfony/demo/pull/1174/commits/34cadff98afcf7ce03db004ca9a9f3b40c0e80bb I've tried to use the most modern PHPUnit 9 version when running tests in PHP 8, but it's not working 😐
+
+---------------------------------------------------------------------------
+
+by mbabker at 2020-11-19T16:00:09Z
+
+Is there a particular reason for this?  It's basically saying that you expect CS fixes to only be handled through a CI workflow, devs wouldn't be able to (easily) run the fixer locally and make corrections themselves.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2020-11-19T16:08:25Z
+
+@mbabker the reasoning is that php-cs-fixer is one of those few tools that are usually installed globally on your system, so most developers can run `php-cs-fixer fix` on any PHP project to quickly find issues.
+
+But please, don't think that I'm telling developers how should they use this or any other tool. Whatever they do, it's fine. Don't allow anybody tell you how you should use your tools. Thanks!
+
+---------------------------------------------------------------------------
+
+by mbabker at 2020-11-19T16:32:39Z
+
+I'm mostly curious, that's all.  Personally, I've never heard of it being installed as a global tool, and my workflows (both in OSS and paid work) has it as a per-project tool.
+
+I think the "weird" part for me (for lack of better terms) is that it feels like the preferred workflow is make changes locally, push to the repo, and wait for CI to tell you what to fix in your code versus just running `php-cs-fixer fix`.  But, that's mostly a matter of different approaches to code, not one way being right or another way being wrong.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2020-12-22T09:32:04Z
+
+GitHub Actions show the following error. Anybody knows how to solve it? Thanks!
+
+```
+Install PHPUnit for PHP 8
+
+Run SYMFONY_PHPUNIT_VERSION=9.4 vendor/bin/simple-phpunit install
+SYMFONY_PHPUNIT_VERSION=9.4: D:\a\_temp\3bd814cf-a474-4cb0-a2b3-9c35503dcd74.ps1:2
+Line |
+   2 |  SYMFONY_PHPUNIT_VERSION=9.4 vendor/bin/simple-phpunit install
+     |  ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | The term 'SYMFONY_PHPUNIT_VERSION=9.4' is not recognized as a name of a cmdlet, function, script file,
+     | or executable program. Check the spelling of the name, or if a path was included, verify that the path
+     | is correct and try again.
+
+Error: Process completed with exit code 1.
+```
+
+---------------------------------------------------------------------------
+
+by ajardin at 2020-12-23T10:00:12Z
+
+> I'm mostly curious, that's all. Personally, I've never heard of it being installed as a global tool, and my workflows (both in OSS and paid work) has it as a per-project tool.
+>
+> I think the "weird" part for me (for lack of better terms) is that it feels like the preferred workflow is make changes locally, push to the repo, and wait for CI to tell you what to fix in your code versus just running `php-cs-fixer fix`. But, that's mostly a matter of different approaches to code, not one way being right or another way being wrong.
+
+For my part, I have tested different approaches, and they always have advantages and disadvantages. What a surprise... :smile:
+
+### CI tools installed in the project
+It allows developers to use the tools without having to install anything other than the project. On the other hand, you add dependencies to your project that could potentially conflict.
+
+### CI tools installed globally
+It allows developers to install tools without conflicting with project dependencies. On the other hand, these tools can still conflict with each other, and it's impossible to control each developer configuration within a team.
+
+### CI tools with Docker images
+It allows developers to use different versions of different tools without any risk of conflicts. It will also enable tests to be run under predefined conditions, regardless of the local configuration. On the other hand, you may discover new errors in your pipelines even though you have not modified your source code if you use a dynamic image (e.g. `xyz:latest`). Last but not least, it will impact the execution times for developers who don't use Linux.
+
+### TL;DR
+Choose wisely according to your own constraints, as always. Furthermore and regardless of the solution used, it must be properly documented to prevent people from exclusively using the pipelines to perform tests.
+
+---------------------------------------------------------------------------
+
+by ajardin at 2020-12-23T10:04:28Z
+
+> GitHub Actions show the following error. Anybody knows how to solve it? Thanks!
+>
+> ```
+> Install PHPUnit for PHP 8
+>
+> Run SYMFONY_PHPUNIT_VERSION=9.4 vendor/bin/simple-phpunit install
+> SYMFONY_PHPUNIT_VERSION=9.4: D:\a\_temp\3bd814cf-a474-4cb0-a2b3-9c35503dcd74.ps1:2
+> Line |
+>    2 |  SYMFONY_PHPUNIT_VERSION=9.4 vendor/bin/simple-phpunit install
+>      |  ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>      | The term 'SYMFONY_PHPUNIT_VERSION=9.4' is not recognized as a name of a cmdlet, function, script file,
+>      | or executable program. Check the spelling of the name, or if a path was included, verify that the path
+>      | is correct and try again.
+>
+> Error: Process completed with exit code 1.
+> ```
+
+Have you tried to declare an environment variable using [this syntax](https://docs.github.com/en/free-pro-team@latest/actions/reference/environment-variables)?
