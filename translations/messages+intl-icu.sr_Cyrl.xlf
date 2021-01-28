@@ -1,0 +1,446 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="sr-Cyrl" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="note">
+                <source>note</source>
+                <target>НАПОМЕНА</target>
+            </trans-unit>
+            <trans-unit id="tip">
+                <source>tip</source>
+                <target>САВЕТ</target>
+            </trans-unit>
+            <trans-unit id="not_available">
+                <source>not_available</source>
+                <target>Није доступно</target>
+            </trans-unit>
+            <trans-unit id="mit_license">
+                <source>mit_license</source>
+                <target>MIT лиценца</target>
+            </trans-unit>
+
+            <trans-unit id="http_error.name">
+                <source>http_error.name</source>
+                <target>Грешка {status_code, number}</target>
+            </trans-unit>
+            <trans-unit id="http_error.description">
+                <source>http_error.description</source>
+                <target>Десила се непозната грешка (HTTP {status_code, number}) која је спречила извршавање Вашег захтева.</target>
+            </trans-unit>
+            <trans-unit id="http_error.suggestion">
+                <source>http_error.suggestion</source>
+                <target><![CDATA[Покушајте да поново учитате ову страницу за неколико минута или се <a href="{url}">вратите на почетну страницу</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="http_error_403.description">
+                <source>http_error_403.description</source>
+                <target>Немате дозволу за приступ овом ресурсу.</target>
+            </trans-unit>
+            <trans-unit id="http_error_403.suggestion">
+                <source>http_error_403.suggestion</source>
+                <target>Тражите од администратора система да Вам одобри приступ овом ресурсу.</target>
+            </trans-unit>
+            <trans-unit id="http_error_404.description">
+                <source>http_error_404.description</source>
+                <target>Нисмо могли да пронађемо страницу коју сте тражили.</target>
+            </trans-unit>
+            <trans-unit id="http_error_404.suggestion">
+                <source>http_error_404.suggestion</source>
+                <target><![CDATA[Проверите да ли сте уписали исправну URL адресу или се <a href="{url}">вратите на почетну страницу.</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="http_error_500.description">
+                <source>http_error_500.description</source>
+                <target>Дошло је до интерне серверске грешке (500).</target>
+            </trans-unit>
+            <trans-unit id="http_error_500.suggestion">
+                <source>http_error_500.suggestion</source>
+                <target><![CDATA[Покушајте да поново учитате ову страницу за неколико минута или се <a href="{url}">вратите на почетну страницу</a>.]]></target>
+            </trans-unit>
+
+            <trans-unit id="title.homepage">
+                <source>title.homepage</source>
+                <target><![CDATA[Добродошли на <strong>Symfony Demo</strong> апликацију]]></target>
+            </trans-unit>
+            <trans-unit id="title.source_code">
+                <source>title.source_code</source>
+                <target>Изворни код коришћен за приказ ове странице</target>
+            </trans-unit>
+            <trans-unit id="title.controller_code">
+                <source>title.controller_code</source>
+                <target>Код за контролер</target>
+            </trans-unit>
+            <trans-unit id="title.twig_template_code">
+                <source>title.twig_template_code</source>
+                <target>Код за Twig шаблон</target>
+            </trans-unit>
+            <trans-unit id="title.login">
+                <source>title.login</source>
+                <target>Безбедно пријављивање</target>
+            </trans-unit>
+            <trans-unit id="title.post_list">
+                <source>title.post_list</source>
+                <target>Листа чланака</target>
+            </trans-unit>
+            <trans-unit id="title.edit_post">
+                <source>title.edit_post</source>
+                <target>Измена чланка #{id, number}</target>
+            </trans-unit>
+            <trans-unit id="title.add_comment">
+                <source>title.add_comment</source>
+                <target>Остави коментар</target>
+            </trans-unit>
+            <trans-unit id="title.comment_error">
+                <source>title.comment_error</source>
+                <target>Дошло је до грешке при објављивању Вашег коментара</target>
+            </trans-unit>
+            <trans-unit id="title.edit_user">
+                <source>title.edit_user</source>
+                <target>Промена података о кориснику/ици</target>
+            </trans-unit>
+            <trans-unit id="title.change_password">
+                <source>title.change_password</source>
+                <target>Промена лозинке</target>
+            </trans-unit>
+
+            <trans-unit id="action.show">
+                <source>action.show</source>
+                <target>Прикажи</target>
+            </trans-unit>
+            <trans-unit id="action.show_post">
+                <source>action.show_post</source>
+                <target>Прикажи чланак</target>
+            </trans-unit>
+            <trans-unit id="action.show_code">
+                <source>action.show_code</source>
+                <target>Прикажи код</target>
+            </trans-unit>
+            <trans-unit id="action.edit">
+                <source>action.edit</source>
+                <target>Измени</target>
+            </trans-unit>
+            <trans-unit id="action.edit_post">
+                <source>action.edit_post</source>
+                <target>Измени чланак</target>
+            </trans-unit>
+            <trans-unit id="action.save">
+                <source>action.save</source>
+                <target>Сачувај измене</target>
+            </trans-unit>
+            <trans-unit id="action.delete_post">
+                <source>action.delete_post</source>
+                <target>Обриши чланак</target>
+            </trans-unit>
+            <trans-unit id="delete_post_modal.title">
+                <source>delete_post_modal.title</source>
+                <target>Да ли сигурно желите да обришете овај чланак?</target>
+            </trans-unit>
+            <trans-unit id="delete_post_modal.body">
+                <source>delete_post_modal.body</source>
+                <target>Ова акција се не може поништити.</target>
+            </trans-unit>
+            <trans-unit id="label.delete_post">
+                <source>label.delete_post</source>
+                <target>Обриши чланак</target>
+            </trans-unit>
+            <trans-unit id="label.cancel">
+                <source>label.cancel</source>
+                <target>Откажи</target>
+            </trans-unit>
+            <trans-unit id="action.create_post">
+                <source>action.create_post</source>
+                <target>Напиши нови чланак</target>
+            </trans-unit>
+            <trans-unit id="label.create_post">
+                <source>label.create_post</source>
+                <target>Сачувај чланак</target>
+            </trans-unit>
+            <trans-unit id="label.save_and_create_new">
+                <source>label.save_and_create_new</source>
+                <target>Сачувај и напиши нови чланак</target>
+            </trans-unit>
+            <trans-unit id="action.back_to_list">
+                <source>action.back_to_list</source>
+                <target>Назад на листу чланака</target>
+            </trans-unit>
+            <trans-unit id="action.publish_comment">
+                <source>action.publish_comment</source>
+                <target>Објави коментар</target>
+            </trans-unit>
+            <trans-unit id="action.sign_in">
+                <source>action.sign_in</source>
+                <target>Пријави ме</target>
+            </trans-unit>
+            <trans-unit id="action.browse_app">
+                <source>action.browse_app</source>
+                <target>Истражи аплликацију</target>
+            </trans-unit>
+            <trans-unit id="action.browse_admin">
+                <source>action.browse_admin</source>
+                <target>Истражи администраторски део</target>
+            </trans-unit>
+            <trans-unit id="action.edit_user">
+                <source>action.edit_user</source>
+                <target>Уреди корисника/цу</target>
+            </trans-unit>
+            <trans-unit id="action.change_password">
+                <source>action.change_password</source>
+                <target>Промени лозинку</target>
+            </trans-unit>
+            <trans-unit id="action.close">
+                <source>action.close</source>
+                <target>Затвори</target>
+            </trans-unit>
+
+            <trans-unit id="label.title">
+                <source>label.title</source>
+                <target>Наслов</target>
+            </trans-unit>
+            <trans-unit id="label.author">
+                <source>label.author</source>
+                <target>Аутор/ка</target>
+            </trans-unit>
+            <trans-unit id="label.author_email">
+                <source>label.author_email</source>
+                <target>Е-пошта аутора/ке</target>
+            </trans-unit>
+            <trans-unit id="label.username">
+                <source>label.username</source>
+                <target>Корисничко име</target>
+            </trans-unit>
+            <trans-unit id="label.fullname">
+                <source>label.fullname</source>
+                <target>Пуно име</target>
+            </trans-unit>
+            <trans-unit id="label.email">
+                <source>label.email</source>
+                <target>Е-пошта</target>
+            </trans-unit>
+            <trans-unit id="label.password">
+                <source>label.password</source>
+                <target>Лозинка</target>
+            </trans-unit>
+            <trans-unit id="label.current_password">
+                <source>label.current_password</source>
+                <target>Тренутна лозинка</target>
+            </trans-unit>
+            <trans-unit id="label.new_password">
+                <source>label.new_password</source>
+                <target>Нова лозинка</target>
+            </trans-unit>
+            <trans-unit id="label.new_password_confirm">
+                <source>label.new_password_confirm</source>
+                <target>Потврдите лозинку</target>
+            </trans-unit>
+            <trans-unit id="label.role">
+                <source>label.role</source>
+                <target>Улога</target>
+            </trans-unit>
+            <trans-unit id="label.content">
+                <source>label.content</source>
+                <target>Садржај</target>
+            </trans-unit>
+            <trans-unit id="label.summary">
+                <source>label.summary</source>
+                <target>Сажетак</target>
+            </trans-unit>
+            <trans-unit id="label.published_at">
+                <source>label.published_at</source>
+                <target>Објављено</target>
+            </trans-unit>
+            <trans-unit id="label.tags">
+                <source>label.tags</source>
+                <target>Ознаке</target>
+            </trans-unit>
+            <trans-unit id="label.actions">
+                <source>label.actions</source>
+                <target>Акције</target>
+            </trans-unit>
+            <trans-unit id="title.post_new">
+                <source>title.post_new</source>
+                <target>Нови чланак</target>
+            </trans-unit>
+            <trans-unit id="action.edit_contents">
+                <source>action.edit_contents</source>
+                <target>Измени садржај</target>
+            </trans-unit>
+
+            <trans-unit id="menu.toggle_nav">
+                <source>menu.toggle_nav</source>
+                <target>Укључи/искључи навигацију</target>
+            </trans-unit>
+            <trans-unit id="menu.choose_language">
+                <source>menu.choose_language</source>
+                <target>Изаберите језик</target>
+            </trans-unit>
+            <trans-unit id="menu.post_list">
+                <source>menu.post_list</source>
+                <target>Листа чланака</target>
+            </trans-unit>
+            <trans-unit id="menu.back_to_blog">
+                <source>menu.back_to_blog</source>
+                <target>Назад на блог</target>
+            </trans-unit>
+            <trans-unit id="menu.homepage">
+                <source>menu.homepage</source>
+                <target>Почетна страница</target>
+            </trans-unit>
+            <trans-unit id="menu.admin">
+                <source>menu.admin</source>
+                <target>Администрација</target>
+            </trans-unit>
+            <trans-unit id="menu.user">
+                <source>menu.user</source>
+                <target>Налог</target>
+            </trans-unit>
+            <trans-unit id="menu.logout">
+                <source>menu.logout</source>
+                <target>Одјави ме</target>
+            </trans-unit>
+            <trans-unit id="menu.rss">
+                <source>menu.rss</source>
+                <target>RSS чланака на блогу</target>
+            </trans-unit>
+            <trans-unit id="menu.search">
+                <source>menu.search</source>
+                <target>Тражи</target>
+            </trans-unit>
+            <trans-unit id="post.to_publish_a_comment">
+                <source>post.to_publish_a_comment</source>
+                <target>да објавиш коментар</target>
+            </trans-unit>
+            <trans-unit id="post.num_comments">
+                <source>post.num_comments</source>
+                <target>{count, plural, one {# коментар} other {# коментара}}</target>
+            </trans-unit>
+            <trans-unit id="post.commented_on">
+                <source>post.commented_on</source>
+                <target>коментар објављен</target>
+            </trans-unit>
+            <trans-unit id="post.no_comments">
+                <source>post.no_comments</source>
+                <target>Напиши први коментар на овај чланак.</target>
+            </trans-unit>
+            <trans-unit id="post.no_posts_found">
+                <source>post.no_posts_found</source>
+                <target>Није пронађен ниједан чланак.</target>
+            </trans-unit>
+            <trans-unit id="post.created_successfully">
+                <source>post.created_successfully</source>
+                <target>Чланак је успешно сачуван!</target>
+            </trans-unit>
+              <trans-unit id="post.updated_successfully">
+                <source>post.updated_successfully</source>
+                <target>Чланак је успешно ажуриран!</target>
+            </trans-unit>
+            <trans-unit id="post.deleted_successfully">
+                <source>post.deleted_successfully</source>
+                <target>Чланак је успешно обрисан!</target>
+            </trans-unit>
+            <trans-unit id="post.search_for">
+                <source>post.search_for</source>
+                <target>Тражим...</target>
+            </trans-unit>
+            <trans-unit id="post.search_no_results">
+                <source>post.search_no_results</source>
+                <target>Ништа није пронађено</target>
+            </trans-unit>
+
+            <trans-unit id="user.updated_successfully">
+                <source>user.updated_successfully</source>
+                <target>Подаци о кориснику/ци су успешно ажурирани!!</target>
+            </trans-unit>
+
+            <trans-unit id="notification.comment_created">
+                <source>notification.comment_created</source>
+                <target>Написан је коментар на Ваш чланак!</target>
+            </trans-unit>
+            <trans-unit id="notification.comment_created.description">
+                <source>notification.comment_created.description</source>
+                <target><![CDATA[Објављен је нови коментар на Ваш чланак "{title}". Коментар можете прочитати на <a href="{link}">овом линку</a>]]></target>
+            </trans-unit>
+
+            <trans-unit id="help.app_description">
+                <source>help.app_description</source>
+                <target><![CDATA[Ова <strong>демо апликација</strong> је направљена у радном оквиру Symfony као илустрација препорученог начина развоја Symfony aпликација.]]></target>
+            </trans-unit>
+            <trans-unit id="help.show_code">
+                <source>help.show_code</source>
+                <target><![CDATA[Кликните на дугме испод да бисте видели изворни код <strong>контролера</strong> и <strong>шаблона</strong> коришћених за приказ ове странице.]]></target>
+            </trans-unit>
+            <trans-unit id="help.browse_app">
+                <source>help.browse_app</source>
+                <target><![CDATA[Истражите <strong>јавни део</strong> ове демо апликације.]]></target>
+            </trans-unit>
+            <trans-unit id="help.browse_admin">
+                <source>help.browse_admin</source>
+                <target><![CDATA[Истражите <strong>администраторски део</strong> ове демо апликације.]]></target>
+            </trans-unit>
+            <trans-unit id="help.login_users">
+                <source>help.login_users</source>
+                <target>Тестирајте апликацију употребом неког од следећих корисничких налога</target>
+            </trans-unit>
+            <trans-unit id="help.role_user">
+                <source>help.role_user</source>
+                <target>обични/а корисник/ца</target>
+            </trans-unit>
+            <trans-unit id="help.role_admin">
+                <source>help.role_admin</source>
+                <target>администратор/ка</target>
+            </trans-unit>
+            <trans-unit id="help.reload_fixtures">
+                <source>help.reload_fixtures</source>
+                <target>Уколико пријављивање неким од наведених корисничких налога не ради, поново учитајте демо податке покретањем ове наредбе у терминалу:</target>
+            </trans-unit>
+            <trans-unit id="help.add_user">
+                <source>help.add_user</source>
+                <target>Уколико желите да креирате нове кориснике покрените ову команду:</target>
+            </trans-unit>
+            <trans-unit id="help.more_information">
+                <source>help.more_information</source>
+                <target><![CDATA[За више информација погледајте <a href="https://symfony.com/doc">Symfony документацију</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="help.post_summary">
+                <source>help.post_summary</source>
+                <target>Сажетак не може садржати Markdown или HTML код већ само обичан текст.</target>
+            </trans-unit>
+            <trans-unit id="help.post_publication">
+                <source>help.post_publication</source>
+                <target>Уколико желите да закажете објављивање овог чланка изаберите неки будући датум.</target>
+            </trans-unit>
+            <trans-unit id="help.post_content">
+                <source>help.post_content</source>
+                <target>За форматирање садржаја чланка користите Markdown. HTML је такође дозвољен.</target>
+            </trans-unit>
+            <trans-unit id="help.comment_content">
+                <source>help.comment_content</source>
+                <target>Коментари који нису у складу са нашим Кодексом понашања биће модерирани.</target>
+            </trans-unit>
+
+            <trans-unit id="info.change_password">
+                <source>info.change_password</source>
+                <target>Након промене ложинке бићете одјављени из апликације.</target>
+            </trans-unit>
+
+            <trans-unit id="rss.title">
+                <source>rss.title</source>
+                <target>Блог Symfony Demo</target>
+            </trans-unit>
+            <trans-unit id="rss.description">
+                <source>rss.description</source>
+                <target>Најновији чланци објављени на Symfony Demo блогу</target>
+            </trans-unit>
+
+            <trans-unit id="paginator.previous">
+                <source>paginator.previous</source>
+                <target>Претходна</target>
+            </trans-unit>
+            <trans-unit id="paginator.next">
+                <source>paginator.next</source>
+                <target>Следећа</target>
+            </trans-unit>
+            <trans-unit id="paginator.current">
+                <source>paginator.current</source>
+                <target>(тренутна)</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
