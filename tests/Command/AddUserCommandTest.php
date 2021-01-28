@@ -31,7 +31,7 @@ class AddUserCommandTest extends KernelTestCase
         exec('stty 2>&1', $output, $exitcode);
         $isSttySupported = 0 === $exitcode;
 
-        if ('Windows' === PHP_OS_FAMILY || !$isSttySupported) {
+        if ('Windows' === \PHP_OS_FAMILY || !$isSttySupported) {
             $this->markTestSkipped('`stty` is required to test this command.');
         }
     }
