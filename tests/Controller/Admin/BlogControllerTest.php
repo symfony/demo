@@ -135,8 +135,8 @@ class BlogControllerTest extends WebTestCase
         // post titles must be unique, so trying to create the same post twice should result in an error
         $this->client->submit($form);
 
-        $this->assertSelectorTextSame('form .form-group.has-error label', 'Title');
-        $this->assertSelectorTextContains('form .form-group.has-error .help-block', 'This title was already used in another blog post, but they must be unique.');
+        $this->assertSelectorTextContains('form .invalid-feedback .form-error-message', 'This title was already used in another blog post, but they must be unique.');
+        $this->assertSelectorExists('form #post_title.is-invalid');
     }
 
     public function testAdminShowPost(): void

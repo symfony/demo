@@ -3,9 +3,6 @@
    common elements and decorates all the other templates.
    See https://symfony.com/doc/current/templates.html#template-inheritance-and-layouts
 #}
-
-{% set _route = app.request.get('_route') %}
-
 <!DOCTYPE html>
 <html lang="{{ app.request.locale }}">
     <head>
@@ -31,6 +28,7 @@
     <body id="{% block body_id %}{% endblock %}">
 
         {% block header %}
+            {% set _route = app.request.get('_route') %}
             <header>
                 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
                     <div class="container">
