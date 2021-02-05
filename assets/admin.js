@@ -28,6 +28,10 @@ $(function() {
         });
     }
 
+    const locale = $('#post_publishedAt').data('date-locale');
+    const Locale = require(`flatpickr/dist/l10n/${locale}.js`).default[locale];
+    flatpickr.localize(Locale);
+
     $('[data-toggle="datetimepicker"]').flatpickr({
         enableTime: true,
         dateFormat: $('#post_publishedAt').data('date-format'),
