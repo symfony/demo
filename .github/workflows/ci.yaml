@@ -57,21 +57,10 @@ jobs:
             - name: "Require symfony/flex"
               run: composer global require --no-progress --no-scripts --no-plugins symfony/flex dev-main
 
-            - if: matrix.php-version != '8.0'
-              run: composer update
+            - run: composer update
 
-            - if: matrix.php-version == '8.0'
-              run: composer update --ignore-platform-req=php
-
-            - if: matrix.php-version != '8.0' 
-              name: "Install PHPUnit"
+            - name: "Install PHPUnit"
               run: vendor/bin/simple-phpunit install
-
-            - if: matrix.php-version == '8.0'
-              name: "Install PHPUnit for PHP 8"
-              run: |
-                echo 'SYMFONY_PHPUNIT_VERSION=9.4' >> $GITHUB_ENV
-                vendor/bin/simple-phpunit install
 
             - name: "PHPUnit version"
               run: vendor/bin/simple-phpunit --version
