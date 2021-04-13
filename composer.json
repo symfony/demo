@@ -6,16 +6,16 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "replace": {
-        "symfony/polyfill-php70": "*",
-        "symfony/polyfill-php72": "*"
+        "symfony/polyfill-php72": "*",
+        "symfony/polyfill-php73": "*"
     },
     "require": {
-        "php": "^7.3",
+        "php": "^7.3 || ^8.0",
         "ext-pdo_sqlite": "*",
         "composer/package-versions-deprecated": "^1.8",
         "doctrine/doctrine-bundle": "^2.0",
         "doctrine/doctrine-migrations-bundle": "^3.0",
-        "doctrine/orm": "^2.5",
+        "doctrine/orm": "^2.6",
         "erusev/parsedown": "^1.6",
         "sensio/framework-extra-bundle": "^6.1",
         "symfony/apache-pack": "^1.0",
