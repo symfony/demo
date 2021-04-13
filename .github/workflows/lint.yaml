@@ -45,15 +45,12 @@ jobs:
               uses: actions/cache@v2.1.2
               with:
                   path: ${{ steps.composer-cache.outputs.dir }}
-                  key: ${{ runner.os }}-${{ matrix.php-version }}-composer-${{ hashFiles('composer.json') }}
+                  key: ${{ runner.os }}-${{ matrix.php-version }}-composer-${{ hashFiles('composer.lock') }}
                   restore-keys: ${{ runner.os }}-${{ matrix.php-version }}-composer-
 
-            - name: "Require symfony/flex"
-              run: composer global require --no-progress --no-scripts --no-plugins symfony/flex dev-main
-
-            - name: "Composer update"
+            - name: "Composer install"
               id: install
-              run: composer update --no-scripts
+              run: composer install --no-interaction --no-progress --no-scripts
 
             - name: Lint YAML files
               if: always() && steps.install.outcome == 'success'
