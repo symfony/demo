@@ -1,0 +1,59 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2021-01-28T16:13:48Z
+
+@weaverryan do the contents of manifest.json (https://github.com/symfony/demo/pull/1186/files#diff-5b25b49754eae753751b405108bfa940b5643f068e4ea9576651106d44f7cc86) look OK to you?
+
+To me is strange to have this "font" called "app":
+
+```
+"build/app.eot": "/build/fonts/glyphicons-halflings-regular.5be1347c.eot",
+  "build/app.svg": "/build/images/glyphicons-halflings-regular.060b2710.svg",
+  "build/app.ttf": "/build/fonts/glyphicons-halflings-regular.4692b9ec.ttf",
+  "build/app.woff": "/build/fonts/lato-normal.1d2ca94d.woff",
+  "build/app.woff2": "/build/fonts/lato-normal.75614cfc.woff2",
+```
+
+And, is it OK to link to node_modules directly in the other fonts?
+
+```
+"build/node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.svg": "/build/images/fa-solid-900.0454203f.svg",
+  "build/node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.svg": "/build/images/fa-brands-400.991c1c76.svg",
+  ...
+```
+
+Thanks
+
+---------------------------------------------------------------------------
+
+by stof at 2021-01-28T16:20:24Z
+
+@javiereguiluz these are entries managed by webpack to reference them in CSS files, not entries that you will reference yourselves. So their name does not really matter.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2021-01-29T09:34:15Z
+
+OK, thanks ... but this looks wrong:
+
+```
+  "build/app.eot": "/build/fonts/glyphicons-halflings-regular.5be1347c.eot",
+  "build/app.svg": "/build/images/glyphicons-halflings-regular.060b2710.svg",
+  "build/app.ttf": "/build/fonts/glyphicons-halflings-regular.4692b9ec.ttf",
+  "build/app.woff": "/build/fonts/lato-normal.1d2ca94d.woff",
+  "build/app.woff2": "/build/fonts/lato-normal.75614cfc.woff2",
+```
+
+These fonts should be exported as a font called "app". It's probably a misconfiguration on our side.
+
+---------------------------------------------------------------------------
+
+by stof at 2021-01-29T09:45:36Z
+
+Well, for these fonts, we actually don't care about them being in the manifest: they are not configured entries in the Encore config but they are referenced in CSS. That's probably why they have weird names: their name is never configured anywhere.
+
+---------------------------------------------------------------------------
+
+by weaverryan at 2021-02-07T13:17:30Z
+
+We have few issues open right now related to some of the paths of images/fonts in `manifest.json`. So while this won't affect symfony-demo, I think there is some outstanding problem.
