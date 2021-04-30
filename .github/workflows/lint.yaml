@@ -66,7 +66,7 @@ jobs:
 
             - name: Lint Parameters and Services
               if: always() && steps.install.outcome == 'success'
-              run: ./bin/console lint:container
+              run: ./bin/console lint:container --no-debug
 
             - name: Lint Doctrine entities
               if: always() && steps.install.outcome == 'success'
