@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+    nginx:
+        build:
+            context: docker
+            dockerfile: NginxDockerfile
+        depends_on:
+            - app
+        volumes:
+            - .:/app
+
+    app:
+        build:
+            context: .
+            target: app-dev
+        volumes:
+            - .:/app

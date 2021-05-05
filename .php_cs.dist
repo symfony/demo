@@ -12,6 +12,7 @@ COMMENT;
 $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__)
     ->exclude('config')
+    ->exclude('src/Migrations')
     ->exclude('var')
     ->exclude('public/bundles')
     ->exclude('public/build')

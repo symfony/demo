@@ -1,0 +1,6 @@
+version: '3.4'
+
+services:
+    nginx:
+        ports:
+            - 127.0.0.1:8080:80
