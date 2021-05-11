@@ -1,0 +1,27 @@
+server:
+  command: "php public/roadrunner.php"
+  env:
+    - APP_RUNTIME: Runtime\RoadRunnerSymfonyNyholm\Runtime
+
+logs:
+  mode: development
+  level: debug
+
+  channels:
+    http:
+      level: debug
+    server:
+      level: debug
+    rpc:
+      level: debug
+
+http:
+  address: 127.0.0.1:8087
+  middleware: ["static", "gzip"]
+  uploads:
+    forbid: [".php", ".exe", ".bat", ".sh"]
+  static:
+    dir: "public"
+    forbid: [".htaccess"]
+  pool:
+    num_workers: 2

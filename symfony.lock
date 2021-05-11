@@ -2,6 +2,9 @@
     "composer/package-versions-deprecated": {
         "version": "1.8.0"
     },
+    "composer/semver": {
+        "version": "3.2.4"
+    },
     "dama/doctrine-test-bundle": {
         "version": "4.0",
         "recipe": {
@@ -138,8 +141,23 @@
     "nikic/php-parser": {
         "version": "v4.4.0"
     },
+    "nyholm/psr7": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "0cd4d2d0e7f646fda75f9944f747a56e6ed13d4c"
+        },
+        "files": [
+            "config/packages/nyholm_psr7.yaml"
+        ]
+    },
     "php": {
         "version": "7.2.9"
+    },
+    "php-http/message-factory": {
+        "version": "v1.0.2"
     },
     "phpdocumentor/reflection-common": {
         "version": "2.2.0"
@@ -159,8 +177,17 @@
     "psr/event-dispatcher": {
         "version": "1.0.0"
     },
+    "psr/http-factory": {
+        "version": "1.0.1"
+    },
+    "psr/http-message": {
+        "version": "1.0.1"
+    },
     "psr/log": {
         "version": "1.1.3"
+    },
+    "runtime/roadrunner-symfony-nyholm": {
+        "version": "dev-main"
     },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
@@ -173,6 +200,21 @@
         "files": [
             "config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "spiral/goridge": {
+        "version": "v3.0.1"
+    },
+    "spiral/roadrunner": {
+        "version": "v2.1.1"
+    },
+    "spiral/roadrunner-cli": {
+        "version": "v2.0.3"
+    },
+    "spiral/roadrunner-http": {
+        "version": "v2.0.0"
+    },
+    "spiral/roadrunner-worker": {
+        "version": "v2.0.3"
     },
     "symfony/apache-pack": {
         "version": "1.0",
@@ -296,6 +338,9 @@
             "src/Kernel.php"
         ]
     },
+    "symfony/http-client": {
+        "version": "v5.2.7"
+    },
     "symfony/http-client-contracts": {
         "version": "v2.2.0"
     },
@@ -398,6 +443,9 @@
     "symfony/property-info": {
         "version": "v5.1.0-rc1"
     },
+    "symfony/psr-http-message-bridge": {
+        "version": "v2.1.0"
+    },
     "symfony/routing": {
         "version": "5.1",
         "recipe": {
@@ -411,6 +459,9 @@
             "config/packages/routing.yaml",
             "config/routes.yaml"
         ]
+    },
+    "symfony/runtime": {
+        "version": "5.x-dev"
     },
     "symfony/security-bundle": {
         "version": "5.1",

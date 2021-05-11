@@ -7,9 +7,11 @@ framework:
     # Enables session support. Note that the session will ONLY be started if you read or write from it.
     # Remove or comment this section to explicitly disable session support.
     session:
-        handler_id: null
+        # handler_id: null
         cookie_secure: auto
         cookie_samesite: lax
+
+        handler_id: session.handler.redis
 
     # When using the HTTP Cache, ESI allows to render page fragments separately
     # and with different cache configurations for each fragment
@@ -25,3 +27,16 @@ framework:
     # When 'ide' is set to null the file is opened in your web browser.
     # See https://symfony.com/doc/current/reference/configuration/framework.html#ide
     ide: null
+
+services:
+    app.cache.provider.redis:
+        # you can also use \RedisArray, \RedisCluster or \Predis\Client classes
+        class: Redis
+        calls:
+            - connect:
+                  - '%env(REDIS_HOST)%'
+                  - '%env(int:REDIS_PORT)%'
+
+    session.handler.redis:
+        class:     Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler
+        arguments: ['@app.cache.provider.redis', { prefix: 'app_namespace' }]

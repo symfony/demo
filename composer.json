@@ -17,6 +17,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.6",
         "erusev/parsedown": "^1.6",
+        "runtime/roadrunner-symfony-nyholm": "dev-main",
         "sensio/framework-extra-bundle": "^6.1",
         "symfony/apache-pack": "^1.0",
         "symfony/asset": "^5.2",
@@ -30,6 +31,7 @@
         "symfony/mailer": "^5.2",
         "symfony/monolog-bundle": "^3.1",
         "symfony/polyfill-intl-messageformatter": "^1.12",
+        "symfony/runtime": "5.x-dev",
         "symfony/security-bundle": "^5.2",
         "symfony/string": "^5.2",
         "symfony/translation": "^5.2",
@@ -54,7 +56,7 @@
     },
     "config": {
         "platform": {
-            "php": "7.3"
+            "php": "7.4.18"
         },
         "preferred-install": {
             "*": "dist"
