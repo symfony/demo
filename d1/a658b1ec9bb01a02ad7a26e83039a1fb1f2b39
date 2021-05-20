@@ -1,0 +1,7 @@
+---------------------------------------------------------------------------
+
+by rosier at 2021-05-17T15:51:22Z
+
+Tests are broken because the setup of PHP fails on the Mac OS X job with the following error:
+
+dyld: Library not loaded: /usr/local/opt/openldap/lib/libldap-2.5.0.dylib
