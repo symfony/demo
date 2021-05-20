@@ -1,4 +1,4 @@
-name: "CI"
+name: "Tests"
 
 on:
     pull_request:
@@ -27,6 +27,15 @@ jobs:
             matrix:
                 operating-system: ['ubuntu-latest', 'windows-latest', 'macos-latest']
                 php-version: ['7.3', '7.4', '8.0']
+                exclude:
+                    - operating-system: 'macos-latest'
+                      php-version: '7.3'
+                    - operating-system: 'macos-latest'
+                      php-version: '7.4'
+                    - operating-system: 'windows-latest'
+                      php-version: '7.3'
+                    - operating-system: 'windows-latest'
+                      php-version: '7.4'
 
         steps:
             - name: "Checkout code"
