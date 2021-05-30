@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="pl" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="post.blank_summary">
+                <source>post.blank_summary</source>
+                <target>Dodaj podsumowanie Twojego artykułu!</target>
+            </trans-unit>
+            <trans-unit id="post.blank_content">
+                <source>post.blank_content</source>
+                <target>Treść artykułu nie może być pusta!</target>
+            </trans-unit>
+            <trans-unit id="post.too_short_content">
+                <source>post.too_short_content</source>
+                <target>Treść artykułu jest za krótka (minimum: { limit } znak)|Treść artykułu jest za krótka (minimum: { limit } znaki)|Treść artykułu jest za krótka (minimum: { limit } znaków)</target>
+            </trans-unit>
+            <trans-unit id="comment.blank">
+                <source>comment.blank</source>
+                <target>Pole komentarza nie może być puste!</target>
+            </trans-unit>
+            <trans-unit id="comment.too_short">
+                <source>comment.too_short</source>
+                <target>Twój komentarz jest za krótki (minimum: { limit } znak)|Twój komentarz jest za krótki (minimum: { limit } znaki)|Twój komentarz jest za krótki (minimum: { limit } znaków)</target>
+            </trans-unit>
+            <trans-unit id="comment.too_long">
+                <source>comment.too_long</source>
+                <target>Twój komentarz jest za długi (maksimum: { limit } znak)|Twój komentarz jest za długi (maksimum: { limit } znaki)|Twój komentarz jest za długi (maksimum: { limit } znaków)</target>
+            </trans-unit>
+            <trans-unit id="comment.is_spam">
+                <source>comment.is_spam</source>
+                <target>Twój komentarz został uznany za spam.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

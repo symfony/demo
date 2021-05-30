@@ -1,0 +1,12 @@
+{% if not post.tags.empty %}
+    <p class="post-tags">
+        {% for tag in post.tags %}
+            <a href="{{ path('blog_index', {'tag': tag.name == app.request.query.get('tag') ? null : tag.name}) }}"
+               class="label label-{{ tag.name == app.request.query.get('tag') ? 'success' : 'default' }}"
+            >
+                <i class="fa fa-tag"></i> {{ tag.name }}
+            </a>
+        {% endfor %}
+    </p>
+{% endif %}
+

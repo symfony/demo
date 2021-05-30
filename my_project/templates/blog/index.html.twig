@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'blog_index' %}
+
+{% block main %}
+    {% for post in paginator.results %}
+        <article class="post">
+            <h2>
+                <a href="{{ path('blog_post', {slug: post.slug}) }}">
+                    {{ post.title }}
+                </a>
+            </h2>
+
+            <p class="post-metadata">
+                <span class="metadata"><i class="fa fa-calendar"></i> {{ post.publishedAt|format_datetime('long', 'medium', '', 'UTC') }}</span>
+                <span class="metadata"><i class="fa fa-user"></i> {{ post.author.fullName }}</span>
+            </p>
+
+            <p>{{ post.summary }}</p>
+
+            {{ include('blog/_post_tags.html.twig') }}
+        </article>
+    {% else %}
+        <div class="well">{{ 'post.no_posts_found'|trans }}</div>
+    {% endfor %}
+
+    {% if paginator.hasToPaginate %}
+        <div class="navigation text-center">
+            <ul class="pagination">
+                {% if paginator.hasPreviousPage %}
+                    <li class="prev"><a href="{{ path('blog_index_paginated', {page: paginator.previousPage, tag: tagName}) }}" rel="previous"><i class="fa fw fa-long-arrow-left"></i> {{ 'paginator.previous'|trans }}</a></li>
+                {% else %}
+                    <li class="prev disabled"><span><i class="fa fw fa-arrow-left"></i> {{ 'paginator.previous'|trans }}</span></li>
+                {% endif %}
+
+                {% for i in 1..paginator.lastPage %}
+                    {% if i == paginator.currentPage %}
+                        <li class="active"><span>{{ i }} <span class="sr-only">{{ 'paginator.current'|trans }}</span></span></li>
+                    {% else %}
+                        <li><a href="{{ path('blog_index_paginated', {page: i, tag: tagName}) }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if paginator.hasNextPage %}
+                    <li class="next"><a href="{{ path('blog_index_paginated', {page: paginator.nextPage, tag: tagName}) }}" rel="next">{{ 'paginator.next'|trans }} <i class="fa fw fa-arrow-right"></i></a></li>
+                {% else %}
+                    <li class="next disabled"><span>{{ 'paginator.next'|trans }} <i class="fa fw fa-arrow-right"></i></span></li>
+                {% endif %}
+            </ul>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+
+    {{ show_source_code(_self) }}
+    {{ include('blog/_rss.html.twig') }}
+{% endblock %}

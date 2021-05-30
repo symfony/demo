@@ -1,0 +1,194 @@
+/* ------------------------------------------------------------------------------
+ *
+ *  # Twiter Typeahead
+ *
+ *  Styles for tagsinput.js - input suggestion engine
+ *
+ * ---------------------------------------------------------------------------- */
+.twitter-typeahead {
+  width: 100%;
+}
+.typeahead,
+.tt-query,
+.tt-hint {
+  outline: 0;
+}
+.tt-hint {
+  color: #999;
+}
+.tt-menu{
+  width: 100%;
+  margin-top: 1px;
+  min-width: 180px;
+  padding: 7px 0;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+  max-height: 300px;
+  overflow-y: auto;
+  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+.typeahead-scrollable .tt-menu{
+  max-height: 250px;
+}
+.typeahead-rtl .tt-menu{
+  text-align: right;
+}
+.tt-suggestion {
+  padding: 8px 15px;
+  cursor: pointer;
+}
+.tt-suggestion.tt-cursor {
+  background-color: #f5f5f5;
+}
+.tt-suggestion p {
+  margin: 0;
+}
+.tt-suggestion.tt-selectable:before {
+  content: '\f02b';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  display: inline-block;
+  font-size: 15px;
+  margin-right: 0.5em;
+  color: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.tt-dataset-group .tt-suggestion {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+.tt-heading {
+  font-size: 11px;
+  line-height: 1.82;
+  padding: 8px 15px;
+  text-transform: uppercase;
+  display: block;
+  font-weight: 700;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+.tt-suggestion:hover,
+.tt-suggestion:focus {
+  color: #ffffff;
+  text-decoration: none;
+  outline: 0;
+  background-color: #18bc9c;
+}
+/* ------------------------------------------------------------------------------
+*
+*  # Bootstrap tags input
+*
+*  Styles for tagsinput.js - tags input for Bootstrap
+*
+* ---------------------------------------------------------------------------- */
+.bootstrap-tagsinput {
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
+  height: 45px;
+  padding: 0;
+  font-size: 15px;
+  line-height: 1.42857143;
+  color: #2c3e50;
+  background-color: #ffffff;
+  background-image: none;
+  border: 2px solid #dce4ec;
+  border-radius: 4px;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.has-error .bootstrap-tagsinput {
+  border-color: #e74c3c !important;
+}
+.bootstrap-tagsinput.focus {
+  border-color: #2c3e50;
+  outline: 0;
+  box-shadow: none;
+}
+.bootstrap-tagsinput input {
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  padding: 5px 11px;
+  margin-top: 2px;
+  margin-left: 2px;
+  width: auto !important;
+  min-width: 100px;
+  font-size: 15px;
+  line-height: 1.6666667;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.bootstrap-tagsinput input:focus {
+  border: none;
+  box-shadow: none;
+}
+.bootstrap-tagsinput .twitter-typeahead {
+  width: auto;
+}
+.bootstrap-tagsinput .tt-menu {
+  margin-top: 5px;
+  min-width: 200px;
+}
+.bootstrap-tagsinput .tag {
+  margin: 1px 0 0 3px;
+  border: 0;
+  border-radius: .25em;
+  padding: 5px 11px;
+  padding-right: 30px;
+  float: left;
+  font-size: 15px;
+  line-height: 1.6666667;
+  font-weight: 400;
+  text-transform: none;
+  position: relative;
+  background-color: #18bc9c;
+  color: #fff;
+}
+.has-error .bootstrap-tagsinput .tag {
+  background-color: #e74c3c !important;
+}
+.bootstrap-tagsinput .tag [data-role="remove"] {
+  cursor: pointer;
+  color: inherit;
+  position: absolute;
+  top: 50%;
+  right: 11px;
+  line-height: 1;
+  margin-top: -5.5px;
+  opacity: 0.7;
+  filter: alpha(opacity=70);
+}
+.bootstrap-tagsinput .tag [data-role="remove"]:hover {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+.bootstrap-tagsinput .tag:before {
+  content: '\f02b';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  display: inline-block;
+  font-size: 15px;
+  margin-right: 0.5em;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.bootstrap-tagsinput .tag [data-role="remove"]:after {
+  content: '\f00d';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  display: block;
+  font-size: 13px;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

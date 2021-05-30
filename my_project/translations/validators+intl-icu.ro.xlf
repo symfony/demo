@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="ro" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="post.blank_summary">
+                <source>post.blank_summary</source>
+                <target>Dă articolului tău un rezumat!</target>
+            </trans-unit>
+            <trans-unit id="post.blank_content">
+                <source>post.blank_content</source>
+                <target>Articolul ar trebui să aibe conținut!</target>
+            </trans-unit>
+            <trans-unit id="post.too_short_content">
+                <source>post.too_short_content</source>
+                <target>Conţinutul articolului este prea scurt (minimum { limit } caractere)</target>
+            </trans-unit>
+            <trans-unit id="comment.blank">
+                <source>comment.blank</source>
+                <target>Te rugăm nu lăsa comentariul tău necompletat!</target>
+            </trans-unit>
+            <trans-unit id="comment.too_short">
+                <source>comment.too_short</source>
+                <target>Comentariul este prea scurt (minimum { limit } caractere)</target>
+            </trans-unit>
+            <trans-unit id="comment.too_long">
+                <source>comment.too_long</source>
+                <target>Comentariul este prea lung (maximum { limit } caractere)</target>
+            </trans-unit>
+            <trans-unit id="comment.is_spam">
+                <source>comment.is_spam</source>
+                <target>Conţinutul acestui comentariu este considerat spam.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

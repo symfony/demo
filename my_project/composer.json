@@ -1,0 +1,92 @@
+{
+    "license": "proprietary",
+    "type": "project",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "replace": {
+        "symfony/polyfill-php70": "*",
+        "symfony/polyfill-php72": "*"
+    },
+    "require": {
+        "php": "^7.2.9",
+        "ext-pdo_sqlite": "*",
+        "composer/package-versions-deprecated": "^1.8",
+        "doctrine/doctrine-bundle": "^1.12|^2.0",
+        "doctrine/doctrine-migrations-bundle": "^3.0",
+        "doctrine/orm": "^2.5.11",
+        "erusev/parsedown": "^1.6",
+        "sensio/framework-extra-bundle": "^5.6",
+        "symfony/apache-pack": "^1.0",
+        "symfony/asset": "^5.2",
+        "symfony/console": "^5.2",
+        "symfony/dotenv": "^5.2",
+        "symfony/expression-language": "^5.2",
+        "symfony/flex": "^1.1",
+        "symfony/form": "^5.2",
+        "symfony/framework-bundle": "^5.2",
+        "symfony/intl": "^5.2",
+        "symfony/mailer": "^5.2",
+        "symfony/monolog-bundle": "^3.1",
+        "symfony/polyfill-intl-messageformatter": "^1.12",
+        "symfony/security-bundle": "^5.2",
+        "symfony/string": "^5.2",
+        "symfony/translation": "^5.2",
+        "symfony/twig-pack": "^1.0",
+        "symfony/validator": "^5.2",
+        "symfony/webpack-encore-bundle": "^1.4",
+        "symfony/yaml": "^5.2",
+        "tgalopin/html-sanitizer-bundle": "^1.2",
+        "twig/intl-extra": "^3.0",
+        "twig/markdown-extra": "^3.0"
+    },
+    "require-dev": {
+        "dama/doctrine-test-bundle": "^6.2",
+        "doctrine/doctrine-fixtures-bundle": "^3.0",
+        "symfony/browser-kit": "^5.2",
+        "symfony/css-selector": "^5.2",
+        "symfony/debug-bundle": "^5.2",
+        "symfony/maker-bundle": "^1.11",
+        "symfony/phpunit-bridge": "^5.2",
+        "symfony/stopwatch": "^5.2",
+        "symfony/web-profiler-bundle": "^5.2"
+    },
+    "config": {
+        "platform": {
+            "php": "7.2.9"
+        },
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd"
+        },
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ]
+    },
+    "conflict": {
+        "symfony/symfony": "*"
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": true
+        }
+    }
+}

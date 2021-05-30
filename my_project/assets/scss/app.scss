@@ -1,0 +1,360 @@
+// setting the value of this variable to an empty data URL is the only working solution
+// to load the Bootswatch web fonts locally and avoid loading them from Google servers
+// see https://github.com/thomaspark/bootswatch/issues/55#issuecomment-298093182
+$web-font-path: 'data:text/css;base64,';
+
+// Make sure the bootstrap-sass and lato fonts are resolved correctly
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+$lato-font-path: '~lato-font/fonts';
+
+@import "~bootswatch/flatly/variables";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+@import "~bootswatch/flatly/bootswatch";
+@import "~@fortawesome/fontawesome-free/css/all.css";
+@import "~@fortawesome/fontawesome-free/css/v4-shims.css";
+@import "~highlight.js/styles/solarized-light.css";
+
+// pick the Lato fonts individually to avoid importing the entire font family
+@import '~lato-font/scss/public-api';
+@include lato-include-font('normal');
+@include lato-include-font('bold');
+
+/* Basic styles
+   ------------------------------------------------------------------------- */
+p, ul, ol {
+  font-size: 19px;
+  margin-bottom: 1.5em
+}
+
+li {
+  margin-bottom: 0.5em
+}
+
+code {
+  background: #ecf0f1;
+  color: #2c3e50
+}
+
+.text-danger, .text-danger:hover {
+  color: #e74c3c
+}
+
+i {
+  margin-right: 0.25em
+}
+
+.table.table-middle-aligned th,
+.table.table-middle-aligned td {
+  vertical-align: middle;
+}
+
+.doclink {
+    color: inherit
+}
+
+/* Utilities
+   ------------------------------------------------------------------------- */
+.m-b-0 { margin-bottom: 0 }
+
+/* Page elements
+   ------------------------------------------------------------------------- */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh
+}
+
+header {
+  margin-bottom: 2em
+}
+
+header ul.nav li {
+  margin-bottom: 0
+}
+
+header .locales {
+  min-width: 190px;
+}
+header .locales a {
+  color: #212529;
+  padding: 3px 15px;
+}
+header .locales a small {
+  border-radius: 4px;
+  border: 2px solid #dee2e6;
+  color: #7b8a8b;
+  float: left;
+  font-size: 12px;
+  line-height: 1.1;
+  margin: 2px 10px 0 0;
+  min-width: 26px;
+  padding: 0px 3px;
+  text-align: center;
+  text-transform: uppercase;
+}
+header .locales .active small,
+header .locales a:hover small {
+  color: inherit;
+}
+
+.body-container {
+  flex: 1;
+  /* needed to prevent pages with a very small height and browsers not supporting flex */
+  min-height: 600px
+}
+
+.body-container #main h1, .body-container #main h2 {
+  margin-top: 0
+}
+
+#sidebar .section {
+  margin-bottom: 2em
+}
+
+#sidebar p {
+  font-size: 15px
+}
+
+#sidebar p + p {
+  margin: 1.5em 0 0
+}
+
+footer {
+  background: #ecf0f1;
+  margin-top: 2em;
+  padding-top: 2em;
+  padding-bottom: 2em
+}
+
+footer p {
+  color: #7b8a8b;
+  font-size: 13px;
+  margin-bottom: 0.25em
+}
+
+footer #footer-resources {
+  text-align: right
+}
+
+footer #footer-resources i {
+  color: #7b8a8b;
+  font-size: 28.5px;
+  margin-left: 0.5em
+}
+
+#sourceCodeModal h3 {
+  font-size: 19px;
+  margin-top: 0
+}
+
+#sourceCodeModal h3 small {
+  color: #7b8a8b;
+  font-size: 80%
+}
+
+#sourceCodeModal pre {
+  margin-bottom: 2em;
+  padding: 0
+}
+
+#confirmationModal .modal-dialog {
+  width: 500px
+}
+
+#confirmationModal .modal-footer button {
+  min-width: 75px
+}
+
+/* Misc. elements
+   ------------------------------------------------------------------------- */
+.section.rss a {
+  color: #f39c12;
+  font-size: 21px;
+}
+
+/* Forms
+   ------------------------------------------------------------------------- */
+.form-group.has-error .form-control {
+  border-color: #e74c3c
+}
+
+.form-group.has-error .control-label {
+  color: #e74c3c
+}
+
+.form-group.has-error .help-block {
+  background-color: #e74c3c;
+  color: #fff;
+  font-size: 15px;
+  padding: 1em
+}
+
+.form-group.has-error .help-block ul,
+.form-group.has-error .help-block li {
+  margin-bottom: 0
+}
+.form-group.has-error .help-block li + li {
+  margin-top: 0.5em;
+}
+
+textarea {
+  max-width: 100%
+}
+
+/* Page: 'Technical Requirements Checker'
+   ------------------------------------------------------------------------- */
+body#requirements_checker header h1 {
+  margin-bottom: 0;
+  margin-top: 0
+}
+
+body#requirements_checker header h1 span {
+  font-size: 120%;
+  opacity: 0.7;
+  padding: 0 5px
+}
+
+body#requirements_checker .panel li {
+  margin-bottom: 1em
+}
+
+/* Page: 'Homepage'
+   ------------------------------------------------------------------------- */
+body#homepage {
+  text-align: center
+}
+
+/* Page: 'Login'
+   ------------------------------------------------------------------------- */
+body#login #login-users-help p {
+  font-size: 15px;
+  line-height: 1.42857
+}
+
+body#login #login-users-help p:last-child {
+  margin-bottom: 0
+}
+
+body#login #login-users-help p .label {
+  margin-right: 5px
+}
+
+body#login #login-users-help p .console {
+  display: block;
+  margin: 5px 0;
+  padding: 10px
+}
+
+/* Common Blog page elements
+   ------------------------------------------------------------------------- */
+.post-metadata {
+  color: #b4bcc2;
+  font-size: 19px;
+  margin-bottom: 16px;
+}
+.post-metadata .metadata {
+  margin-right: 1.5em;
+}
+
+.post-tags .label {
+  margin-right: 5px;
+}
+
+/* Page: 'Blog index'
+   ------------------------------------------------------------------------- */
+body#blog_index #main h1,
+body#blog_index #main p {
+  margin-bottom: 0.5em
+}
+
+body#blog_index article.post {
+  margin-bottom: 3em;
+}
+
+body#blog_index .post-metadata {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+body#blog_index .post-tags .label-default {
+  background-color: #e9ecec;
+  color: #6d8283;
+}
+body#blog_index .post-tags .label-default i {
+  color: #a3b2b2;
+}
+
+/* Page: 'Blog post show'
+   ------------------------------------------------------------------------- */
+body#blog_post_show #main h3 {
+  margin-bottom: 0.75em
+}
+
+body#blog_post_show .post-tags .label-default {
+  background-color: #e9ecec;
+  color: #6D8283;
+  font-size: 16px;
+  margin-right: 10px;
+  padding: .4em 1em .5em;
+}
+body#blog_post_show .post-tags .label-default i {
+  color: #95A6A7;
+}
+
+body#blog_post_show #post-add-comment {
+  margin: 2em 0
+}
+
+body#blog_post_show #post-add-comment p {
+  margin-bottom: 0
+}
+
+body#blog_post_show #post-add-comment p a.btn {
+  margin-right: 0.5em
+}
+
+body#blog_post_show .post-comment {
+  margin-bottom: 2em
+}
+
+body#blog_post_show .post-comment h4 {
+  font-size: 13px;
+  line-height: 1.42857;
+  margin-top: 0
+}
+
+body#blog_post_show .post-comment h4 strong {
+  display: block
+}
+
+/* Page: 'Comment form error'
+   ------------------------------------------------------------------------- */
+body#comment_form_error h1.text-danger {
+  margin-bottom: 1em
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  .container {
+    width: 98%;
+  }
+}
+
+/* Page: 'Blog search'
+   ------------------------------------------------------------------------- */
+body#blog_search #main h1,
+body#blog_search #main p {
+  margin-bottom: 0.5em
+}
+
+body#blog_search article.post:first-child {
+  margin-top: 2em;
+}
+
+body#blog_search article.post {
+  margin-bottom: 2em;
+}
+
+body#blog_search .post-metadata {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
