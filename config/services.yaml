@@ -2,7 +2,7 @@
 # Files in the packages/ subdirectory configure your dependencies.
 
 # Put parameters here that don't need to change on each machine where the app is deployed
-# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
     locale: 'en'
     # This parameter defines the codes of the locales (languages) enabled in the application
@@ -29,12 +29,6 @@ services:
             - '../src/Kernel.php'
             - '../src/Tests/'
 
-    # controllers are imported separately to make sure services can be injected
-    # as action arguments even if you don't extend any base controller class
-    App\Controller\:
-        resource: '../src/Controller/'
-        tags: ['controller.service_arguments']
-
     # when the service definition only contains arguments, you can omit the
     # 'arguments' key and define the arguments just below the service class
     App\EventSubscriber\CommentNotificationSubscriber:
@@ -45,4 +39,3 @@ when@test:
         test.user_password_hasher:
             alias: 'security.user_password_hasher'
             public: true
-
