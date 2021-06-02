@@ -90,15 +90,13 @@ class AddUserCommandTest extends KernelTestCase
      */
     private function assertUserCreated(bool $isAdmin): void
     {
-        $container = self::$container;
-
         /** @var \App\Entity\User $user */
-        $user = $container->get(UserRepository::class)->findOneByEmail($this->userData['email']);
+        $user = $this->getContainer()->get(UserRepository::class)->findOneByEmail($this->userData['email']);
         $this->assertNotNull($user);
 
         $this->assertSame($this->userData['full-name'], $user->getFullName());
         $this->assertSame($this->userData['username'], $user->getUsername());
-        $this->assertTrue($container->get('security.password_encoder')->isPasswordValid($user, $this->userData['password']));
+        $this->assertTrue($this->getContainer()->get('test.user_password_hasher')->isPasswordValid($user, $this->userData['password']));
         $this->assertSame($isAdmin ? ['ROLE_ADMIN'] : ['ROLE_USER'], $user->getRoles());
     }
 

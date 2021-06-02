@@ -54,7 +54,7 @@ jobs:
 
             - name: "Composer install"
               id: install
-              run: composer install --no-interaction --no-progress --no-scripts
+              run: composer install --no-interaction --no-progress
 
             - name: Lint YAML files
               if: always() && steps.install.outcome == 'success'
