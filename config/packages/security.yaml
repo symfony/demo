@@ -55,7 +55,7 @@ security:
                 target: homepage
 
             # needed because in tests we redefine the 'main' firewall to use
-            # HTTP Basic instead of he login form, so this firewall has
+            # HTTP Basic instead of the login form, so this firewall has
             # multiple authenticators
             # See https://symfony.com/doc/current/security/experimental_authenticators.html#configuring-the-authentication-entry-point
             entry_point: 'form_login'
