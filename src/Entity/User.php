@@ -94,12 +94,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, \Serial
         return $this->fullName;
     }
 
-    public function getUserIdentifier(): ?string
+    public function getUserIdentifier(): string
     {
         return $this->username;
     }
 
-    public function getUsername(): ?string
+    public function getUsername(): string
     {
         return $this->getUserIdentifier();
     }

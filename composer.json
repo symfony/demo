@@ -3,7 +3,7 @@
     "license": "MIT",
     "type": "project",
     "description": "Symfony Demo Application",
-    "minimum-stability": "rc",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "replace": {
         "symfony/polyfill-php72": "*",
@@ -89,6 +89,7 @@
     },
     "extra": {
         "symfony": {
+            "require": "5.3.*",
             "allow-contrib": true
         }
     }
