@@ -1,0 +1,38 @@
+---------------------------------------------------------------------------
+
+by nicolas-grekas at 2021-06-01T14:45:03Z
+
+I just force-pushed on your fork @javiereguiluz. This is now rebased and has more fixes for 5.3.
+
+I didn't touch the assets, but it would be good to align them with Symfony UX also.
+
+---------------------------------------------------------------------------
+
+by stof at 2021-06-01T15:46:47Z
+
+The ErrorException in the CI output might be a bug in symfony/validator rather than in the demo
+
+---------------------------------------------------------------------------
+
+by nicolas-grekas at 2021-06-02T09:32:01Z
+
+I added a commit to update assets.
+Note that yarn displayed this, dunno if that's an issue or not:
+```
+warning " > eonasdan-bootstrap-datetimepicker@4.17.49" has unmet peer dependency "bootstrap@^3.3".
+warning " > eonasdan-bootstrap-datetimepicker@4.17.49" has unmet peer dependency "moment@^2.10".
+warning " > eonasdan-bootstrap-datetimepicker@4.17.49" has unmet peer dependency "moment-timezone@^0.4.0 || ^0.5.0".
+warning " > sass-loader@9.0.3" has unmet peer dependency "webpack@^4.36.0 || ^5.0.0".
+```
+
+---------------------------------------------------------------------------
+
+by tgalopin at 2021-06-02T09:36:08Z
+
+Yes, unmet peer dependencies are usually fine (either the package is present but in a different version that still works and that's okay, or it's not present but it's optional for the usage of the application). That's how peerDeps are mostly used in JS (not a fan either).
+
+---------------------------------------------------------------------------
+
+by nicolas-grekas at 2021-06-02T10:31:55Z
+
+PR is green, ready for merge!
