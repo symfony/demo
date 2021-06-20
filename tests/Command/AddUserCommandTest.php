@@ -28,11 +28,8 @@ class AddUserCommandTest extends KernelTestCase
 
     protected function setUp(): void
     {
-        exec('stty 2>&1', $output, $exitcode);
-        $isSttySupported = 0 === $exitcode;
-
-        if ('Windows' === \PHP_OS_FAMILY || !$isSttySupported) {
-            $this->markTestSkipped('`stty` is required to test this command.');
+        if ('Windows' === \PHP_OS_FAMILY) {
+            $this->markTestSkipped('Windows OS does not support testing this command.');
         }
     }
 
