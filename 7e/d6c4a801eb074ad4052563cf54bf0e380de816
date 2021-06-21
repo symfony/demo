@@ -1,0 +1,7 @@
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2021-06-21T13:10:53Z
+
+Looks like the stty check wasn't perfect and does not work for GitHub actions. I simplified the condition to actually test those commands on GitHub actions for Ubuntu / Mac OS. If anyone will have problems running tests on their Ubuntu / Mac OS - please, feel free to tweak that part and make sure tests are not skipped on GitHub Actions. But so far tests are green with these changes now :)
+
+Failed "Lint / Linters" was fixed in a separate PR, see #1227
