@@ -174,18 +174,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function __serialize(): array
     {
         // add $this->salt too if you don't use Bcrypt or Argon2i
         return [$this->id, $this->username, $this->password];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function __unserialize(array $data): void
     {
         // add $this->salt too if you don't use Bcrypt or Argon2i
