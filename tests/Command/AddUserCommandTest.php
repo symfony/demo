@@ -23,6 +23,13 @@ class AddUserCommandTest extends AbstractCommandTest
         'full-name' => 'Chuck Norris',
     ];
 
+    protected function setUp(): void
+    {
+        if ('Windows' === \PHP_OS_FAMILY) {
+            $this->markTestSkipped('`stty` is required to test this command.');
+        }
+    }
+
     /**
      * @dataProvider isAdminDataProvider
      *

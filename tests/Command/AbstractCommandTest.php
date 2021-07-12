@@ -17,13 +17,6 @@ use Symfony\Component\Console\Tester\CommandTester;
 
 abstract class AbstractCommandTest extends KernelTestCase
 {
-    protected function setUp(): void
-    {
-        if ('Windows' === \PHP_OS_FAMILY) {
-            $this->markTestSkipped('`stty` is required to test this command.');
-        }
-    }
-
     /**
      * This helper method abstracts the boilerplate code needed to test the
      * execution of a command.
