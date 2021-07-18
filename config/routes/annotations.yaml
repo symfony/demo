@@ -1,8 +1,19 @@
 controllers:
     resource: '../../src/Controller/'
+    exclude: ['../../src/Controller/EasyAdmin/']
     type: annotation
     prefix: /{_locale}
     requirements:
         _locale: '%app_locales%'
     defaults:
         _locale: '%locale%'
+
+# NOTE: in a normal Symfony application you don't need to configure anything
+# special for EasyAdmin routing. You can use the normal Controller routing
+# configuration shown above.
+# However, in this project all routes are configured with some locales as part
+# of the URL and we prefer to remove that for the EasyAdmin Demo. That's why
+# we need to add this custom configuration.
+easyadmin:
+    resource: '../../src/Controller/EasyAdmin'
+    type: annotation
