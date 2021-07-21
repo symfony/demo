@@ -2,43 +2,43 @@
 
 {% block body_id 'homepage' %}
 
-{#
-    the homepage is a special page which displays neither a header nor a footer.
-    this is done with the 'trick' of defining empty Twig blocks without any content
-#}
-{% block header %}{% endblock %}
-{% block footer %}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+
+    <style>
+        body { background: #F8FAFC; }
+        h1 { font-size: 24px; font-weight: 500; text-align: center; }
+        p { font-size: 16px; color: #64748B; margin: 10px 0; text-align: center; }
+        .page-selector { font-size: 16px; text-align: left; margin: 90px auto; max-width: 400px; }
+        .page-selector i { font-size: 18px; margin-right: 15px;}
+        .list-group { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
+        .list-group-item { border-color: #CBD5E1; }
+        a.list-group-item { color: #475569; }
+        a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, button.list-group-item:hover {
+            background: #F1F5F9;
+        }
+    </style>
+{% endblock %}
+
+{% block title 'EasyAdmin Demo' %}
+{% block header '' %}
+{% block footer '' %}
 
 {% block body %}
-    <div class="page-header">
-        <h1>{{ 'title.homepage'|trans|raw }}</h1>
-    </div>
+    <div class="page-selector">
+        <h1>EasyAdmin Demo</h1>
+        <p>A demo project to showcase EasyAdmin features and based on Symfony Demo project.</p>
 
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="jumbotron">
-                <p>
-                    {{ 'help.browse_app'|trans|raw }}
-                </p>
-                <p>
-                    <a class="btn btn-primary btn-lg" href="{{ path('blog_index') }}">
-                        <i class="fa fa-users" aria-hidden="true"></i> {{ 'action.browse_app'|trans }}
-                    </a>
-                </p>
-            </div>
-        </div>
-
-        <div class="col-sm-6">
-            <div class="jumbotron">
-                <p>
-                    {{ 'help.browse_admin'|trans|raw }}
-                </p>
-                <p>
-                    <a class="btn btn-primary btn-lg" href="{{ path('admin_index') }}">
-                        <i class="fa fa-lock" aria-hidden="true"></i> {{ 'action.browse_admin'|trans }}
-                    </a>
-                </p>
-            </div>
+        <div class="list-group">
+            <a href="{{ path('blog_index') }}" class="list-group-item list-group-item-action">
+                <i class="fa fa-users" aria-hidden="true"></i> Browse the <strong>public website</strong>
+            </a>
+            <a href="{{ path('admin_index') }}" class="list-group-item list-group-item-action">
+                <i class="fab fa-symfony" aria-hidden="true"></i> Browse the backend <strong>made with Symfony</strong>
+            </a>
+            <a href="{{ path('easyadmin') }}" class="list-group-item list-group-item-action">
+                <i class="fas fa-magic" aria-hidden="true"></i> Browse the backend <strong>made with EasyAdmin</strong>
+            </a>
         </div>
     </div>
 {% endblock %}

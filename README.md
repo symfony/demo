@@ -1,8 +1,12 @@
-Symfony Demo Application
-========================
+EasyAdmin Demo Application
+==========================
 
-The "Symfony Demo Application" is a reference application created to show how
-to develop applications following the [Symfony Best Practices][1].
+This project is the official [EasyAdmin][1] Demo application that showcases the
+main features of EasyAdmin, a popular admin generator for [Symfony][2] applications.
+
+It's a fork of the [Symfony Demo application][3]. This allows to compare the
+manual backend/admin included in Symfony Demo and the backend/admin created with
+EasyAdmin.
 
 Requirements
 ------------
@@ -14,24 +18,17 @@ Requirements
 Installation
 ------------
 
-[Download Symfony][4] to install the `symfony` binary on your computer and run
-this command:
+Run this command with [Composer][4]:
 
 ```bash
-$ symfony new --demo my_project
-```
-
-Alternatively, you can use Composer:
-
-```bash
-$ composer create-project symfony/symfony-demo my_project
+$ composer create-project easyCorp/easyadmin-demo my_project
 ```
 
 Usage
 -----
 
 There's no need to configure anything to run the application. If you have
-[installed Symfony][4] binary, run this command:
+[installed Symfony CLI][5], run this command:
 
 ```bash
 $ cd my_project/
@@ -41,20 +38,12 @@ $ symfony serve
 Then access the application in your browser at the given URL (<https://localhost:8000> by default).
 
 If you don't have the Symfony binary installed, run `php -S localhost:8000 -t public/`
-to use the built-in PHP web server or [configure a web server][3] like Nginx or
+to use the built-in PHP web server or [configure a web server][6] like Nginx or
 Apache to run the application.
 
-Tests
------
-
-Execute this command to run tests:
-
-```bash
-$ cd my_project/
-$ ./bin/phpunit
-```
-
-[1]: https://symfony.com/doc/current/best_practices.html
-[2]: https://symfony.com/doc/current/reference/requirements.html
-[3]: https://symfony.com/doc/current/cookbook/configuration/web_server_configuration.html
-[4]: https://symfony.com/download
+[1]: https://github.com/EasyCorp/EasyAdminBundle/
+[2]: https://symfony.com
+[3]: https://github.com/symfony/demo
+[4]: https://getcomposer.org/
+[5]: https://symfony.com/download
+[6]: https://symfony.com/doc/current/cookbook/configuration/web_server_configuration.html
