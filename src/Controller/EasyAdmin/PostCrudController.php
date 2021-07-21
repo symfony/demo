@@ -23,7 +23,6 @@ class PostCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->showEntityActionsInlined()
             ->setDefaultSort(['publishedAt' => 'DESC']);
     }
 
