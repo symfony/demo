@@ -1,6 +1,5 @@
 controllers:
     resource: '../../src/Controller/'
-    exclude: ['../../src/Controller/EasyAdmin/']
     type: annotation
     prefix: /{_locale}
     requirements:
