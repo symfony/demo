@@ -13,11 +13,8 @@ namespace App\Tests\Command;
 
 use App\Command\AddUserCommand;
 use App\Repository\UserRepository;
-use Symfony\Bundle\FrameworkBundle\Console\Application;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Symfony\Component\Console\Tester\CommandTester;
 
-class AddUserCommandTest extends KernelTestCase
+class AddUserCommandTest extends AbstractCommandTest
 {
     private $userData = [
         'username' => 'chuck_norris',
@@ -28,10 +25,7 @@ class AddUserCommandTest extends KernelTestCase
 
     protected function setUp(): void
     {
-        exec('stty 2>&1', $output, $exitcode);
-        $isSttySupported = 0 === $exitcode;
-
-        if ('Windows' === PHP_OS_FAMILY || !$isSttySupported) {
+        if ('Windows' === \PHP_OS_FAMILY) {
             $this->markTestSkipped('`stty` is required to test this command.');
         }
     }
@@ -90,35 +84,18 @@ class AddUserCommandTest extends KernelTestCase
      */
     private function assertUserCreated(bool $isAdmin): void
     {
-        $container = self::$container;
-
         /** @var \App\Entity\User $user */
-        $user = $container->get(UserRepository::class)->findOneByEmail($this->userData['email']);
+        $user = $this->getContainer()->get(UserRepository::class)->findOneByEmail($this->userData['email']);
         $this->assertNotNull($user);
 
         $this->assertSame($this->userData['full-name'], $user->getFullName());
         $this->assertSame($this->userData['username'], $user->getUsername());
-        $this->assertTrue($container->get('security.password_encoder')->isPasswordValid($user, $this->userData['password']));
+        $this->assertTrue($this->getContainer()->get('test.user_password_hasher')->isPasswordValid($user, $this->userData['password']));
         $this->assertSame($isAdmin ? ['ROLE_ADMIN'] : ['ROLE_USER'], $user->getRoles());
     }
 
-    /**
-     * This helper method abstracts the boilerplate code needed to test the
-     * execution of a command.
-     *
-     * @param array $arguments All the arguments passed when executing the command
-     * @param array $inputs    The (optional) answers given to the command when it asks for the value of the missing arguments
-     */
-    private function executeCommand(array $arguments, array $inputs = []): void
+    protected function getCommandFqcn(): string
     {
-        self::bootKernel();
-
-        // this uses a special testing container that allows you to fetch private services
-        $command = self::$container->get(AddUserCommand::class);
-        $command->setApplication(new Application(self::$kernel));
-
-        $commandTester = new CommandTester($command);
-        $commandTester->setInputs($inputs);
-        $commandTester->execute($arguments);
+        return AddUserCommand::class;
     }
 }

@@ -85,7 +85,7 @@ HELP
         $this->io = new SymfonyStyle($input, $output);
     }
 
-    protected function interact(InputInterface $input, OutputInterface $output)
+    protected function interact(InputInterface $input, OutputInterface $output): void
     {
         if (null !== $input->getArgument('username')) {
             return;
@@ -127,6 +127,6 @@ HELP
 
         $this->io->success(sprintf('User "%s" (ID: %d, email: %s) was successfully deleted.', $user->getUsername(), $userId, $user->getEmail()));
 
-        return 0;
+        return Command::SUCCESS;
     }
 }

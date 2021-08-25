@@ -93,7 +93,7 @@ class Post
     private $author;
 
     /**
-     * @var Comment[]|ArrayCollection
+     * @var Comment[]|Collection
      *
      * @ORM\OneToMany(
      *      targetEntity="Comment",
@@ -106,7 +106,7 @@ class Post
     private $comments;
 
     /**
-     * @var Tag[]|ArrayCollection
+     * @var Tag[]|Collection
      *
      * @ORM\ManyToMany(targetEntity="App\Entity\Tag", cascade={"persist"})
      * @ORM\JoinTable(name="symfony_demo_post_tag")
@@ -132,7 +132,7 @@ class Post
         return $this->title;
     }
 
-    public function setTitle(string $title): void
+    public function setTitle(?string $title): void
     {
         $this->title = $title;
     }
@@ -152,7 +152,7 @@ class Post
         return $this->content;
     }
 
-    public function setContent(string $content): void
+    public function setContent(?string $content): void
     {
         $this->content = $content;
     }
@@ -200,7 +200,7 @@ class Post
         return $this->summary;
     }
 
-    public function setSummary(string $summary): void
+    public function setSummary(?string $summary): void
     {
         $this->summary = $summary;
     }

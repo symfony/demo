@@ -22,7 +22,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Stopwatch\Stopwatch;
 use function Symfony\Component\String\u;
 
@@ -58,16 +58,16 @@ class AddUserCommand extends Command
     private $io;
 
     private $entityManager;
-    private $passwordEncoder;
+    private $passwordHasher;
     private $validator;
     private $users;
 
-    public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $encoder, Validator $validator, UserRepository $users)
+    public function __construct(EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher, Validator $validator, UserRepository $users)
     {
         parent::__construct();
 
         $this->entityManager = $em;
-        $this->passwordEncoder = $encoder;
+        $this->passwordHasher = $passwordHasher;
         $this->validator = $validator;
         $this->users = $users;
     }
@@ -112,7 +112,7 @@ class AddUserCommand extends Command
      * quite a lot of work. However, if the command is meant to be used by external
      * users, this method is a nice way to fall back and prevent errors.
      */
-    protected function interact(InputInterface $input, OutputInterface $output)
+    protected function interact(InputInterface $input, OutputInterface $output): void
     {
         if (null !== $input->getArgument('username') && null !== $input->getArgument('password') && null !== $input->getArgument('email') && null !== $input->getArgument('full-name')) {
             return;
@@ -183,7 +183,7 @@ class AddUserCommand extends Command
         // make sure to validate the user data is correct
         $this->validateUserData($username, $plainPassword, $email, $fullName);
 
-        // create the user and encode its password
+        // create the user and hash its password
         $user = new User();
         $user->setFullName($fullName);
         $user->setUsername($username);
@@ -191,8 +191,8 @@ class AddUserCommand extends Command
         $user->setRoles([$isAdmin ? 'ROLE_ADMIN' : 'ROLE_USER']);
 
         // See https://symfony.com/doc/current/security.html#c-encoding-passwords
-        $encodedPassword = $this->passwordEncoder->encodePassword($user, $plainPassword);
-        $user->setPassword($encodedPassword);
+        $hashedPassword = $this->passwordHasher->hashPassword($user, $plainPassword);
+        $user->setPassword($hashedPassword);
 
         $this->entityManager->persist($user);
         $this->entityManager->flush();
@@ -204,7 +204,7 @@ class AddUserCommand extends Command
             $this->io->comment(sprintf('New user database id: %d / Elapsed time: %.2f ms / Consumed memory: %.2f MB', $user->getId(), $event->getDuration(), $event->getMemory() / (1024 ** 2)));
         }
 
-        return 0;
+        return Command::SUCCESS;
     }
 
     private function validateUserData($username, $plainPassword, $email, $fullName): void

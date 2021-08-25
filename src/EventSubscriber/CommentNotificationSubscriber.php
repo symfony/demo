@@ -11,7 +11,6 @@
 
 namespace App\EventSubscriber;
 
-use App\Entity\Comment;
 use App\Event\CommentCreatedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Mailer\MailerInterface;
@@ -31,7 +30,7 @@ class CommentNotificationSubscriber implements EventSubscriberInterface
     private $urlGenerator;
     private $sender;
 
-    public function __construct(MailerInterface $mailer, UrlGeneratorInterface $urlGenerator, TranslatorInterface $translator, $sender)
+    public function __construct(MailerInterface $mailer, UrlGeneratorInterface $urlGenerator, TranslatorInterface $translator, string $sender)
     {
         $this->mailer = $mailer;
         $this->urlGenerator = $urlGenerator;
@@ -48,7 +47,6 @@ class CommentNotificationSubscriber implements EventSubscriberInterface
 
     public function onCommentCreated(CommentCreatedEvent $event): void
     {
-        /** @var Comment $comment */
         $comment = $event->getComment();
         $post = $comment->getPost();
 

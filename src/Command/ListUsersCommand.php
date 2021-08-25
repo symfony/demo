@@ -46,7 +46,7 @@ class ListUsersCommand extends Command
     private $emailSender;
     private $users;
 
-    public function __construct(MailerInterface $mailer, $emailSender, UserRepository $users)
+    public function __construct(MailerInterface $mailer, string $emailSender, UserRepository $users)
     {
         parent::__construct();
 
@@ -97,7 +97,7 @@ HELP
         $allUsers = $this->users->findBy([], ['id' => 'DESC'], $maxResults);
 
         // Doctrine query returns an array of objects and we need an array of plain arrays
-        $usersAsPlainArrays = array_map(function (User $user) {
+        $usersAsPlainArrays = array_map(static function (User $user) {
             return [
                 $user->getId(),
                 $user->getFullName(),
@@ -127,7 +127,7 @@ HELP
             $this->sendReport($usersAsATable, $email);
         }
 
-        return 0;
+        return Command::SUCCESS;
     }
 
     /**
