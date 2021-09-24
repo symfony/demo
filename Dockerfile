@@ -31,6 +31,8 @@ WORKDIR /var/www/symfony
 #Create the project 
 RUN /usr/local/bin/symfony new --demo my_project
 
+#Set the working directory
 WORKDIR  /var/www/symfony/my_project/
 
+#Run the application
 CMD ["/usr/local/bin/symfony","serve"]
