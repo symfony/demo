@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+    postgres:
+        image: postgres
+        ports:
+            - '5433:5432'
+    php:
+        build: php-fpm
+        ports:
+            - '9002:9000'
+        volumes:
+            - ../:/var/www/symfony:cached
+            - ./logs/symfony:/var/www/symfony/var/logs:cached
+        links:
+            - postgres
+    nginx:
+        build: nginx
+        ports:
+            - '8080:80'
+        links:
+            - php
+        volumes_from:
+            - php
+        volumes:
+            - ./logs/nginx/:/var/log/nginx:cached
