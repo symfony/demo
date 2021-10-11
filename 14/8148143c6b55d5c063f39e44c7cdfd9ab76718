@@ -1,0 +1,91 @@
+---------------------------------------------------------------------------
+
+by seb-jean at 2021-10-05T09:24:02Z
+
+Why not use this repository?
+https://github.com/OskarStark/phpstan-ga
+
+As it is done here for PHP CS Fixer:
+https://github.com/symfony/demo/blob/main/.github/workflows/lint.yaml#L21
+
+---------------------------------------------------------------------------
+
+by burned42 at 2021-10-05T10:57:13Z
+
+> Why not use this repository? https://github.com/OskarStark/phpstan-ga
+>
+> As it is done here for PHP CS Fixer: https://github.com/symfony/demo/blob/main/.github/workflows/lint.yaml#L21
+
+@seb-jean sure, we could do that. What I did was searching through the symfony organization to see how it's done in other repos here, and I found e.g. these three which all install phpstan through `shivammathur/setup-php@v2`:
+- https://github.com/symfony/webpack-encore-bundle/blob/eeb893dec94ce5c471592588c945e364fe3ead09/.github/workflows/static.yml#L13
+- https://github.com/symfony/mercure/blob/aac27352a8f17ce867a6b63c4f64906afb787dc4/.github/workflows/static-analysis.yml#L15
+- https://github.com/symfony/panther/blob/ec2ff073e80d3efb986022a2937a9cd94310237d/.github/workflows/ci.yml#L31
+
+So I thought solving it the same way it's already done in other symfony repos is probably a good idea, isn't it?
+
+---------------------------------------------------------------------------
+
+by seb-jean at 2021-10-05T11:05:24Z
+
+> > Why not use this repository? https://github.com/OskarStark/phpstan-ga
+> > As it is done here for PHP CS Fixer: https://github.com/symfony/demo/blob/main/.github/workflows/lint.yaml#L21
+>
+> @seb-jean sure, we could do that. What I did was searching through the symfony organization to see how it's done in other repos here, and I found e.g. these three which all install phpstan through `shivammathur/setup-php@v2`:
+>
+> * https://github.com/symfony/webpack-encore-bundle/blob/eeb893dec94ce5c471592588c945e364fe3ead09/.github/workflows/static.yml#L13
+> * https://github.com/symfony/mercure/blob/aac27352a8f17ce867a6b63c4f64906afb787dc4/.github/workflows/static-analysis.yml#L15
+> * https://github.com/symfony/panther/blob/ec2ff073e80d3efb986022a2937a9cd94310237d/.github/workflows/ci.yml#L31
+>
+> So I thought solving it the same way it's already done in other symfony repos is probably a good idea, isn't it?
+
+I prefer that more experienced people answer because I don't know what is the best solution.
+
+---------------------------------------------------------------------------
+
+by burned42 at 2021-10-07T10:13:16Z
+
+@stof unfortunately the 're-request review' button doesn't seem to work. I can click it but it doesn't do anything. I hope you're getting notified (by my comment) anyway :D
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2021-10-11T13:29:57Z
+
+@burned42 thanks for this contribution. Do you consider that it's "mergeable" or is there anything pending? Thanks!
+
+---------------------------------------------------------------------------
+
+by burned42 at 2021-10-11T13:40:27Z
+
+> @burned42 thanks for this contribution. Do you consider that it's "mergeable" or is there anything pending? Thanks!
+
+@javiereguiluz if you don't expect me to try and fix the reported phpstan errors within this PR, then yes, I consider this mergeable as is :)
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2021-10-11T14:31:46Z
+
+Thanks for the info. I don't use PHPStan regularly so I'll ask you: is it easy to find (and fix) the pending bugs later? The idea would be to reduce the baseline file step by step until it's empty.
+
+---------------------------------------------------------------------------
+
+by stof at 2021-10-11T14:51:28Z
+
+@javiereguiluz yes, you can fix them later and run phpstan with the `--generate-baseline` option to regenerate the baseline without the issues that have been fixed (many will be fixed by improving the phpdoc to document the types where they are missing, according to the existing baseline)
+
+---------------------------------------------------------------------------
+
+by burned42 at 2021-10-11T14:51:44Z
+
+@javiereguiluz yeah, basically you mentioned it yourself already. There's the baseline file which contains all currently reported errors, basically saying "yes, we know those issues exist, but that's ok for now". This makes sure we don't introduce any new issues.
+
+The baseline file contains the error messages and the file where those are reported. So you can either check the message and the file to find the issue, or you can also just remove some entries from the baseline file (or completely empty it) to get them reported by phpstan again which will then also mention the exact line (might be helpful on bigger files/classes).
+
+But I guess that's the same procedure both ways, if we merge as is or if we try to fix the issues beforehand.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2021-10-11T15:10:47Z
+
+Thanks Christophe and Bernd for the explanation!
+
+I'm merging this one so we can start using it right away and to credit Bernd contribution. Then we can fix pending issues in separate PRs. Thanks!
