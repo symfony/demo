@@ -1,0 +1,697 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Binary operation \"\\.\" between ' \\> \\<info\\>Email\\<…' and array\\<string\\>\\|string results in an error\\.$#"
+			count: 1
+			path: src/Command/AddUserCommand.php
+
+		-
+			message: "#^Binary operation \"\\.\" between ' \\> \\<info\\>Full Name\\<…' and array\\<string\\>\\|string results in an error\\.$#"
+			count: 1
+			path: src/Command/AddUserCommand.php
+
+		-
+			message: "#^Binary operation \"\\.\" between ' \\> \\<info\\>Username\\<…' and array\\<string\\>\\|string results in an error\\.$#"
+			count: 1
+			path: src/Command/AddUserCommand.php
+
+		-
+			message: "#^Method App\\\\Command\\\\AddUserCommand\\:\\:validateUserData\\(\\) has parameter \\$email with no typehint specified\\.$#"
+			count: 1
+			path: src/Command/AddUserCommand.php
+
+		-
+			message: "#^Method App\\\\Command\\\\AddUserCommand\\:\\:validateUserData\\(\\) has parameter \\$fullName with no typehint specified\\.$#"
+			count: 1
+			path: src/Command/AddUserCommand.php
+
+		-
+			message: "#^Method App\\\\Command\\\\AddUserCommand\\:\\:validateUserData\\(\\) has parameter \\$plainPassword with no typehint specified\\.$#"
+			count: 1
+			path: src/Command/AddUserCommand.php
+
+		-
+			message: "#^Method App\\\\Command\\\\AddUserCommand\\:\\:validateUserData\\(\\) has parameter \\$username with no typehint specified\\.$#"
+			count: 1
+			path: src/Command/AddUserCommand.php
+
+		-
+			message: "#^Parameter \\#1 \\$email of method App\\\\Entity\\\\User\\:\\:setEmail\\(\\) expects string, array\\<string\\>\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Command/AddUserCommand.php
+
+		-
+			message: "#^Parameter \\#1 \\$fullName of method App\\\\Entity\\\\User\\:\\:setFullName\\(\\) expects string, array\\<string\\>\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Command/AddUserCommand.php
+
+		-
+			message: "#^Parameter \\#1 \\$string of function Symfony\\\\Component\\\\String\\\\u expects string\\|null, array\\<string\\>\\|string given\\.$#"
+			count: 1
+			path: src/Command/AddUserCommand.php
+
+		-
+			message: "#^Parameter \\#1 \\$username of method App\\\\Entity\\\\User\\:\\:setUsername\\(\\) expects string, array\\<string\\>\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Command/AddUserCommand.php
+
+		-
+			message: "#^Property App\\\\Command\\\\AddUserCommand\\:\\:\\$entityManager has no typehint specified\\.$#"
+			count: 1
+			path: src/Command/AddUserCommand.php
+
+		-
+			message: "#^Property App\\\\Command\\\\AddUserCommand\\:\\:\\$passwordHasher has no typehint specified\\.$#"
+			count: 1
+			path: src/Command/AddUserCommand.php
+
+		-
+			message: "#^Property App\\\\Command\\\\AddUserCommand\\:\\:\\$users has no typehint specified\\.$#"
+			count: 1
+			path: src/Command/AddUserCommand.php
+
+		-
+			message: "#^Property App\\\\Command\\\\AddUserCommand\\:\\:\\$validator has no typehint specified\\.$#"
+			count: 1
+			path: src/Command/AddUserCommand.php
+
+		-
+			message: "#^Property App\\\\Command\\\\DeleteUserCommand\\:\\:\\$entityManager has no typehint specified\\.$#"
+			count: 1
+			path: src/Command/DeleteUserCommand.php
+
+		-
+			message: "#^Property App\\\\Command\\\\DeleteUserCommand\\:\\:\\$users has no typehint specified\\.$#"
+			count: 1
+			path: src/Command/DeleteUserCommand.php
+
+		-
+			message: "#^Property App\\\\Command\\\\DeleteUserCommand\\:\\:\\$validator has no typehint specified\\.$#"
+			count: 1
+			path: src/Command/DeleteUserCommand.php
+
+		-
+			message: "#^Parameter \\#2 \\$recipient of method App\\\\Command\\\\ListUsersCommand\\:\\:sendReport\\(\\) expects string, array\\<string\\>\\|bool\\|string given\\.$#"
+			count: 1
+			path: src/Command/ListUsersCommand.php
+
+		-
+			message: "#^Parameter \\#5 \\$default of method Symfony\\\\Component\\\\Console\\\\Command\\\\Command\\:\\:addOption\\(\\) expects array\\<string\\>\\|bool\\|string\\|null, int given\\.$#"
+			count: 1
+			path: src/Command/ListUsersCommand.php
+
+		-
+			message: "#^Property App\\\\Command\\\\ListUsersCommand\\:\\:\\$emailSender has no typehint specified\\.$#"
+			count: 1
+			path: src/Command/ListUsersCommand.php
+
+		-
+			message: "#^Property App\\\\Command\\\\ListUsersCommand\\:\\:\\$mailer has no typehint specified\\.$#"
+			count: 1
+			path: src/Command/ListUsersCommand.php
+
+		-
+			message: "#^Property App\\\\Command\\\\ListUsersCommand\\:\\:\\$users has no typehint specified\\.$#"
+			count: 1
+			path: src/Command/ListUsersCommand.php
+
+		-
+			message: "#^Call to an undefined method Symfony\\\\Component\\\\Form\\\\FormInterface\\:\\:isClicked\\(\\)\\.$#"
+			count: 1
+			path: src/Controller/Admin/BlogController.php
+
+		-
+			message: "#^Parameter \\#1 \\$author of method App\\\\Entity\\\\Post\\:\\:setAuthor\\(\\) expects App\\\\Entity\\\\User, object\\|null given\\.$#"
+			count: 1
+			path: src/Controller/Admin/BlogController.php
+
+		-
+			message: "#^Parameter \\#2 \\$token of method Symfony\\\\Bundle\\\\FrameworkBundle\\\\Controller\\\\AbstractController\\:\\:isCsrfTokenValid\\(\\) expects string\\|null, bool\\|float\\|int\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Controller/Admin/BlogController.php
+
+		-
+			message: "#^Cannot call method getFullName\\(\\) on App\\\\Entity\\\\User\\|null\\.$#"
+			count: 1
+			path: src/Controller/BlogController.php
+
+		-
+			message: "#^Parameter \\#1 \\$author of method App\\\\Entity\\\\Comment\\:\\:setAuthor\\(\\) expects App\\\\Entity\\\\User, object\\|null given\\.$#"
+			count: 1
+			path: src/Controller/BlogController.php
+
+		-
+			message: "#^Parameter \\#1 \\$query of method App\\\\Repository\\\\PostRepository\\:\\:findBySearchQuery\\(\\) expects string, bool\\|float\\|int\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Controller/BlogController.php
+
+		-
+			message: "#^Parameter \\#1 \\$string of function htmlspecialchars expects string, string\\|null given\\.$#"
+			count: 3
+			path: src/Controller/BlogController.php
+
+		-
+			message: "#^Parameter \\#2 \\$limit of method App\\\\Repository\\\\PostRepository\\:\\:findBySearchQuery\\(\\) expects int, bool\\|float\\|int\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Controller/BlogController.php
+
+		-
+			message: "#^Cannot call method setPassword\\(\\) on object\\|null\\.$#"
+			count: 1
+			path: src/Controller/UserController.php
+
+		-
+			message: "#^Parameter \\#1 \\$user of method Symfony\\\\Component\\\\PasswordHasher\\\\Hasher\\\\UserPasswordHasherInterface\\:\\:hashPassword\\(\\) expects Symfony\\\\Component\\\\Security\\\\Core\\\\User\\\\PasswordAuthenticatedUserInterface, object\\|null given\\.$#"
+			count: 1
+			path: src/Controller/UserController.php
+
+		-
+			message: "#^Method App\\\\DataFixtures\\\\AppFixtures\\:\\:getPhrases\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/DataFixtures/AppFixtures.php
+
+		-
+			message: "#^Method App\\\\DataFixtures\\\\AppFixtures\\:\\:getPostData\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/DataFixtures/AppFixtures.php
+
+		-
+			message: "#^Method App\\\\DataFixtures\\\\AppFixtures\\:\\:getRandomTags\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/DataFixtures/AppFixtures.php
+
+		-
+			message: "#^Method App\\\\DataFixtures\\\\AppFixtures\\:\\:getTagData\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/DataFixtures/AppFixtures.php
+
+		-
+			message: "#^Method App\\\\DataFixtures\\\\AppFixtures\\:\\:getUserData\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/DataFixtures/AppFixtures.php
+
+		-
+			message: "#^Parameter \\#1 \\$author of method App\\\\Entity\\\\Comment\\:\\:setAuthor\\(\\) expects App\\\\Entity\\\\User, object given\\.$#"
+			count: 1
+			path: src/DataFixtures/AppFixtures.php
+
+		-
+			message: "#^Property App\\\\DataFixtures\\\\AppFixtures\\:\\:\\$passwordHasher has no typehint specified\\.$#"
+			count: 1
+			path: src/DataFixtures/AppFixtures.php
+
+		-
+			message: "#^Property App\\\\DataFixtures\\\\AppFixtures\\:\\:\\$slugger has no typehint specified\\.$#"
+			count: 1
+			path: src/DataFixtures/AppFixtures.php
+
+		-
+			message: "#^Method App\\\\Entity\\\\Post\\:\\:getComments\\(\\) return type with generic interface Doctrine\\\\Common\\\\Collections\\\\Collection does not specify its types\\: TKey, T$#"
+			count: 1
+			path: src/Entity/Post.php
+
+		-
+			message: "#^Method App\\\\Entity\\\\Post\\:\\:getTags\\(\\) return type with generic interface Doctrine\\\\Common\\\\Collections\\\\Collection does not specify its types\\: TKey, T$#"
+			count: 1
+			path: src/Entity/Post.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\Post\\:\\:\\$comments with generic interface Doctrine\\\\Common\\\\Collections\\\\Collection does not specify its types\\: TKey, T$#"
+			count: 1
+			path: src/Entity/Post.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\Post\\:\\:\\$content \\(string\\) does not accept string\\|null\\.$#"
+			count: 1
+			path: src/Entity/Post.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\Post\\:\\:\\$summary \\(string\\) does not accept string\\|null\\.$#"
+			count: 1
+			path: src/Entity/Post.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\Post\\:\\:\\$tags with generic interface Doctrine\\\\Common\\\\Collections\\\\Collection does not specify its types\\: TKey, T$#"
+			count: 1
+			path: src/Entity/Post.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\Post\\:\\:\\$title \\(string\\) does not accept string\\|null\\.$#"
+			count: 1
+			path: src/Entity/Post.php
+
+		-
+			message: "#^Method App\\\\Entity\\\\User\\:\\:__serialize\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Entity/User.php
+
+		-
+			message: "#^Method App\\\\Entity\\\\User\\:\\:__unserialize\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Entity/User.php
+
+		-
+			message: "#^Method App\\\\Entity\\\\User\\:\\:setRoles\\(\\) has parameter \\$roles with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Entity/User.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\User\\:\\:\\$roles type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Entity/User.php
+
+		-
+			message: "#^Property App\\\\Event\\\\CommentCreatedEvent\\:\\:\\$comment has no typehint specified\\.$#"
+			count: 1
+			path: src/Event/CommentCreatedEvent.php
+
+		-
+			message: "#^Cannot call method getName\\(\\) on Symfony\\\\Component\\\\Console\\\\Command\\\\Command\\|null\\.$#"
+			count: 1
+			path: src/EventSubscriber/CheckRequirementsSubscriber.php
+
+		-
+			message: "#^Method App\\\\EventSubscriber\\\\CheckRequirementsSubscriber\\:\\:getSubscribedEvents\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/EventSubscriber/CheckRequirementsSubscriber.php
+
+		-
+			message: "#^Property App\\\\EventSubscriber\\\\CheckRequirementsSubscriber\\:\\:\\$entityManager has no typehint specified\\.$#"
+			count: 1
+			path: src/EventSubscriber/CheckRequirementsSubscriber.php
+
+		-
+			message: "#^Cannot call method getAuthor\\(\\) on App\\\\Entity\\\\Post\\|null\\.$#"
+			count: 1
+			path: src/EventSubscriber/CommentNotificationSubscriber.php
+
+		-
+			message: "#^Cannot call method getEmail\\(\\) on App\\\\Entity\\\\User\\|null\\.$#"
+			count: 1
+			path: src/EventSubscriber/CommentNotificationSubscriber.php
+
+		-
+			message: "#^Cannot call method getSlug\\(\\) on App\\\\Entity\\\\Post\\|null\\.$#"
+			count: 1
+			path: src/EventSubscriber/CommentNotificationSubscriber.php
+
+		-
+			message: "#^Cannot call method getTitle\\(\\) on App\\\\Entity\\\\Post\\|null\\.$#"
+			count: 1
+			path: src/EventSubscriber/CommentNotificationSubscriber.php
+
+		-
+			message: "#^Method App\\\\EventSubscriber\\\\CommentNotificationSubscriber\\:\\:getSubscribedEvents\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/EventSubscriber/CommentNotificationSubscriber.php
+
+		-
+			message: "#^Parameter \\#1 \\.\\.\\.\\$addresses of method Symfony\\\\Component\\\\Mime\\\\Email\\:\\:to\\(\\) expects string\\|Symfony\\\\Component\\\\Mime\\\\Address, string\\|null given\\.$#"
+			count: 1
+			path: src/EventSubscriber/CommentNotificationSubscriber.php
+
+		-
+			message: "#^Property App\\\\EventSubscriber\\\\CommentNotificationSubscriber\\:\\:\\$mailer has no typehint specified\\.$#"
+			count: 1
+			path: src/EventSubscriber/CommentNotificationSubscriber.php
+
+		-
+			message: "#^Property App\\\\EventSubscriber\\\\CommentNotificationSubscriber\\:\\:\\$sender has no typehint specified\\.$#"
+			count: 1
+			path: src/EventSubscriber/CommentNotificationSubscriber.php
+
+		-
+			message: "#^Property App\\\\EventSubscriber\\\\CommentNotificationSubscriber\\:\\:\\$translator has no typehint specified\\.$#"
+			count: 1
+			path: src/EventSubscriber/CommentNotificationSubscriber.php
+
+		-
+			message: "#^Property App\\\\EventSubscriber\\\\CommentNotificationSubscriber\\:\\:\\$urlGenerator has no typehint specified\\.$#"
+			count: 1
+			path: src/EventSubscriber/CommentNotificationSubscriber.php
+
+		-
+			message: "#^Method App\\\\EventSubscriber\\\\ControllerSubscriber\\:\\:getSubscribedEvents\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/EventSubscriber/ControllerSubscriber.php
+
+		-
+			message: "#^Property App\\\\EventSubscriber\\\\ControllerSubscriber\\:\\:\\$twigExtension has no typehint specified\\.$#"
+			count: 1
+			path: src/EventSubscriber/ControllerSubscriber.php
+
+		-
+			message: "#^Method App\\\\EventSubscriber\\\\RedirectToPreferredLocaleSubscriber\\:\\:getSubscribedEvents\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/EventSubscriber/RedirectToPreferredLocaleSubscriber.php
+
+		-
+			message: "#^Property App\\\\EventSubscriber\\\\RedirectToPreferredLocaleSubscriber\\:\\:\\$defaultLocale has no typehint specified\\.$#"
+			count: 1
+			path: src/EventSubscriber/RedirectToPreferredLocaleSubscriber.php
+
+		-
+			message: "#^Property App\\\\EventSubscriber\\\\RedirectToPreferredLocaleSubscriber\\:\\:\\$locales has no typehint specified\\.$#"
+			count: 1
+			path: src/EventSubscriber/RedirectToPreferredLocaleSubscriber.php
+
+		-
+			message: "#^Property App\\\\EventSubscriber\\\\RedirectToPreferredLocaleSubscriber\\:\\:\\$urlGenerator has no typehint specified\\.$#"
+			count: 1
+			path: src/EventSubscriber/RedirectToPreferredLocaleSubscriber.php
+
+		-
+			message: "#^Method App\\\\Form\\\\CommentType\\:\\:buildForm\\(\\) has parameter \\$builder with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormBuilderInterface\\.$#"
+			count: 1
+			path: src/Form/CommentType.php
+
+		-
+			message: "#^Method App\\\\Form\\\\CommentType\\:\\:buildForm\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Form/CommentType.php
+
+		-
+			message: "#^Method App\\\\Form\\\\DataTransformer\\\\TagArrayToStringTransformer\\:\\:reverseTransform\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Form/DataTransformer/TagArrayToStringTransformer.php
+
+		-
+			message: "#^Property App\\\\Form\\\\DataTransformer\\\\TagArrayToStringTransformer\\:\\:\\$tags has no typehint specified\\.$#"
+			count: 1
+			path: src/Form/DataTransformer/TagArrayToStringTransformer.php
+
+		-
+			message: "#^Method App\\\\Form\\\\PostType\\:\\:buildForm\\(\\) has parameter \\$builder with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormBuilderInterface\\.$#"
+			count: 1
+			path: src/Form/PostType.php
+
+		-
+			message: "#^Method App\\\\Form\\\\PostType\\:\\:buildForm\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Form/PostType.php
+
+		-
+			message: "#^Property App\\\\Form\\\\PostType\\:\\:\\$slugger has no typehint specified\\.$#"
+			count: 1
+			path: src/Form/PostType.php
+
+		-
+			message: "#^Method App\\\\Form\\\\Type\\\\ChangePasswordType\\:\\:buildForm\\(\\) has parameter \\$builder with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormBuilderInterface\\.$#"
+			count: 1
+			path: src/Form/Type/ChangePasswordType.php
+
+		-
+			message: "#^Method App\\\\Form\\\\Type\\\\ChangePasswordType\\:\\:buildForm\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Form/Type/ChangePasswordType.php
+
+		-
+			message: "#^Method App\\\\Form\\\\Type\\\\DateTimePickerType\\:\\:buildView\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/Type/DateTimePickerType.php
+
+		-
+			message: "#^Method App\\\\Form\\\\Type\\\\DateTimePickerType\\:\\:buildView\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Form/Type/DateTimePickerType.php
+
+		-
+			message: "#^Property App\\\\Form\\\\Type\\\\DateTimePickerType\\:\\:\\$formatConverter has no typehint specified\\.$#"
+			count: 1
+			path: src/Form/Type/DateTimePickerType.php
+
+		-
+			message: "#^Method App\\\\Form\\\\Type\\\\TagsInputType\\:\\:buildForm\\(\\) has parameter \\$builder with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormBuilderInterface\\.$#"
+			count: 1
+			path: src/Form/Type/TagsInputType.php
+
+		-
+			message: "#^Method App\\\\Form\\\\Type\\\\TagsInputType\\:\\:buildForm\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Form/Type/TagsInputType.php
+
+		-
+			message: "#^Method App\\\\Form\\\\Type\\\\TagsInputType\\:\\:buildView\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/Type/TagsInputType.php
+
+		-
+			message: "#^Method App\\\\Form\\\\Type\\\\TagsInputType\\:\\:buildView\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Form/Type/TagsInputType.php
+
+		-
+			message: "#^Property App\\\\Form\\\\Type\\\\TagsInputType\\:\\:\\$tags has no typehint specified\\.$#"
+			count: 1
+			path: src/Form/Type/TagsInputType.php
+
+		-
+			message: "#^Method App\\\\Form\\\\UserType\\:\\:buildForm\\(\\) has parameter \\$builder with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormBuilderInterface\\.$#"
+			count: 1
+			path: src/Form/UserType.php
+
+		-
+			message: "#^Method App\\\\Form\\\\UserType\\:\\:buildForm\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Form/UserType.php
+
+		-
+			message: "#^Method App\\\\Pagination\\\\Paginator\\:\\:getResults\\(\\) return type has no value type specified in iterable type Traversable\\.$#"
+			count: 1
+			path: src/Pagination/Paginator.php
+
+		-
+			message: "#^Property App\\\\Pagination\\\\Paginator\\:\\:\\$currentPage has no typehint specified\\.$#"
+			count: 1
+			path: src/Pagination/Paginator.php
+
+		-
+			message: "#^Property App\\\\Pagination\\\\Paginator\\:\\:\\$numResults has no typehint specified\\.$#"
+			count: 1
+			path: src/Pagination/Paginator.php
+
+		-
+			message: "#^Property App\\\\Pagination\\\\Paginator\\:\\:\\$pageSize has no typehint specified\\.$#"
+			count: 1
+			path: src/Pagination/Paginator.php
+
+		-
+			message: "#^Property App\\\\Pagination\\\\Paginator\\:\\:\\$queryBuilder has no typehint specified\\.$#"
+			count: 1
+			path: src/Pagination/Paginator.php
+
+		-
+			message: "#^Property App\\\\Pagination\\\\Paginator\\:\\:\\$results has no typehint specified\\.$#"
+			count: 1
+			path: src/Pagination/Paginator.php
+
+		-
+			message: "#^Class App\\\\Repository\\\\PostRepository extends generic class Doctrine\\\\Bundle\\\\DoctrineBundle\\\\Repository\\\\ServiceEntityRepository but does not specify its types\\: T$#"
+			count: 1
+			path: src/Repository/PostRepository.php
+
+		-
+			message: "#^Method App\\\\Repository\\\\PostRepository\\:\\:extractSearchTerms\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Repository/PostRepository.php
+
+		-
+			message: "#^Class App\\\\Repository\\\\TagRepository extends generic class Doctrine\\\\Bundle\\\\DoctrineBundle\\\\Repository\\\\ServiceEntityRepository but does not specify its types\\: T$#"
+			count: 1
+			path: src/Repository/TagRepository.php
+
+		-
+			message: "#^Class App\\\\Repository\\\\UserRepository extends generic class Doctrine\\\\Bundle\\\\DoctrineBundle\\\\Repository\\\\ServiceEntityRepository but does not specify its types\\: T$#"
+			count: 1
+			path: src/Repository/UserRepository.php
+
+		-
+			message: "#^Method App\\\\Twig\\\\AppExtension\\:\\:getLocales\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Twig/AppExtension.php
+
+		-
+			message: "#^Property App\\\\Twig\\\\AppExtension\\:\\:\\$localeCodes has no typehint specified\\.$#"
+			count: 1
+			path: src/Twig/AppExtension.php
+
+		-
+			message: "#^Property App\\\\Twig\\\\AppExtension\\:\\:\\$locales has no typehint specified\\.$#"
+			count: 1
+			path: src/Twig/AppExtension.php
+
+		-
+			message: "#^Method App\\\\Twig\\\\SourceCodeExtension\\:\\:getController\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Twig/SourceCodeExtension.php
+
+		-
+			message: "#^Method App\\\\Twig\\\\SourceCodeExtension\\:\\:getTemplateSource\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Twig/SourceCodeExtension.php
+
+		-
+			message: "#^Method App\\\\Twig\\\\SourceCodeExtension\\:\\:showSourceCode\\(\\) has parameter \\$template with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Twig/SourceCodeExtension.php
+
+		-
+			message: "#^Parameter \\#1 \\$filename of function file expects string, string\\|false given\\.$#"
+			count: 1
+			path: src/Twig/SourceCodeExtension.php
+
+		-
+			message: "#^Parameter \\#1 \\$function of class ReflectionFunction constructor expects Closure\\|string, callable\\(\\)\\: mixed given\\.$#"
+			count: 1
+			path: src/Twig/SourceCodeExtension.php
+
+		-
+			message: "#^Parameter \\#1 \\$input of function array_slice expects array, array\\<int, string\\>\\|false given\\.$#"
+			count: 1
+			path: src/Twig/SourceCodeExtension.php
+
+		-
+			message: "#^Property App\\\\Twig\\\\SourceCodeExtension\\:\\:\\$controller has no typehint specified\\.$#"
+			count: 1
+			path: src/Twig/SourceCodeExtension.php
+
+		-
+			message: "#^Property App\\\\Utils\\\\MomentFormatConverter\\:\\:\\$formatConvertRules type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Utils/MomentFormatConverter.php
+
+		-
+			message: "#^Cannot call method setApplication\\(\\) on object\\|null\\.$#"
+			count: 1
+			path: tests/Command/AbstractCommandTest.php
+
+		-
+			message: "#^Method App\\\\Tests\\\\Command\\\\AbstractCommandTest\\:\\:executeCommand\\(\\) has parameter \\$arguments with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Command/AbstractCommandTest.php
+
+		-
+			message: "#^Method App\\\\Tests\\\\Command\\\\AbstractCommandTest\\:\\:executeCommand\\(\\) has parameter \\$inputs with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Command/AbstractCommandTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$command of class Symfony\\\\Component\\\\Console\\\\Tester\\\\CommandTester constructor expects Symfony\\\\Component\\\\Console\\\\Command\\\\Command, object\\|null given\\.$#"
+			count: 1
+			path: tests/Command/AbstractCommandTest.php
+
+		-
+			message: "#^Cannot call method findOneByEmail\\(\\) on object\\|null\\.$#"
+			count: 1
+			path: tests/Command/AddUserCommandTest.php
+
+		-
+			message: "#^Cannot call method isPasswordValid\\(\\) on object\\|null\\.$#"
+			count: 1
+			path: tests/Command/AddUserCommandTest.php
+
+		-
+			message: "#^Method App\\\\Tests\\\\Command\\\\AddUserCommandTest\\:\\:isAdminDataProvider\\(\\) return type has no value type specified in iterable type Generator\\.$#"
+			count: 1
+			path: tests/Command/AddUserCommandTest.php
+
+		-
+			message: "#^Property App\\\\Tests\\\\Command\\\\AddUserCommandTest\\:\\:\\$userData has no typehint specified\\.$#"
+			count: 1
+			path: tests/Command/AddUserCommandTest.php
+
+		-
+			message: "#^Yield can be used only with these return types\\: Generator, Iterator, Traversable, iterable\\.$#"
+			count: 2
+			path: tests/Command/AddUserCommandTest.php
+
+		-
+			message: "#^Method App\\\\Tests\\\\Command\\\\ListUsersCommandTest\\:\\:maxResultsProvider\\(\\) return type has no value type specified in iterable type Generator\\.$#"
+			count: 1
+			path: tests/Command/ListUsersCommandTest.php
+
+		-
+			message: "#^Yield can be used only with these return types\\: Generator, Iterator, Traversable, iterable\\.$#"
+			count: 2
+			path: tests/Command/ListUsersCommandTest.php
+
+		-
+			message: "#^Cannot call method find\\(\\) on object\\|null\\.$#"
+			count: 2
+			path: tests/Controller/Admin/BlogControllerTest.php
+
+		-
+			message: "#^Cannot call method findOneByTitle\\(\\) on object\\|null\\.$#"
+			count: 1
+			path: tests/Controller/Admin/BlogControllerTest.php
+
+		-
+			message: "#^Method App\\\\Tests\\\\Controller\\\\Admin\\\\BlogControllerTest\\:\\:getUrlsForRegularUsers\\(\\) return type has no value type specified in iterable type Generator\\.$#"
+			count: 1
+			path: tests/Controller/Admin/BlogControllerTest.php
+
+		-
+			message: "#^Parameter \\#2 \\$multiplier of function str_repeat expects int, float given\\.$#"
+			count: 1
+			path: tests/Controller/Admin/BlogControllerTest.php
+
+		-
+			message: "#^Yield can be used only with these return types\\: Generator, Iterator, Traversable, iterable\\.$#"
+			count: 4
+			path: tests/Controller/Admin/BlogControllerTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|false given\\.$#"
+			count: 1
+			path: tests/Controller/BlogControllerTest.php
+
+		-
+			message: "#^Cannot call method getRepository\\(\\) on object\\|null\\.$#"
+			count: 1
+			path: tests/Controller/DefaultControllerTest.php
+
+		-
+			message: "#^Method App\\\\Tests\\\\Controller\\\\DefaultControllerTest\\:\\:getPublicUrls\\(\\) return type has no value type specified in iterable type Generator\\.$#"
+			count: 1
+			path: tests/Controller/DefaultControllerTest.php
+
+		-
+			message: "#^Method App\\\\Tests\\\\Controller\\\\DefaultControllerTest\\:\\:getSecureUrls\\(\\) return type has no value type specified in iterable type Generator\\.$#"
+			count: 1
+			path: tests/Controller/DefaultControllerTest.php
+
+		-
+			message: "#^Yield can be used only with these return types\\: Generator, Iterator, Traversable, iterable\\.$#"
+			count: 7
+			path: tests/Controller/DefaultControllerTest.php
+
+		-
+			message: "#^Cannot call method findOneByEmail\\(\\) on object\\|null\\.$#"
+			count: 1
+			path: tests/Controller/UserControllerTest.php
+
+		-
+			message: "#^Method App\\\\Tests\\\\Controller\\\\UserControllerTest\\:\\:getUrlsForAnonymousUsers\\(\\) return type has no value type specified in iterable type Generator\\.$#"
+			count: 1
+			path: tests/Controller/UserControllerTest.php
+
+		-
+			message: "#^Yield can be used only with these return types\\: Generator, Iterator, Traversable, iterable\\.$#"
+			count: 2
+			path: tests/Controller/UserControllerTest.php
+
+		-
+			message: "#^Method App\\\\Tests\\\\Form\\\\DataTransformer\\\\TagArrayToStringTransformerTest\\:\\:getMockedTransformer\\(\\) has parameter \\$findByReturnValues with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: tests/Form/DataTransformer/TagArrayToStringTransformerTest.php
+
+		-
+			message: "#^Method App\\\\Tests\\\\Utils\\\\ValidatorTest\\:\\:testValidateFullNameEmpty\\(\\) has no return typehint specified\\.$#"
+			count: 1
+			path: tests/Utils/ValidatorTest.php
+
+		-
+			message: "#^Property App\\\\Tests\\\\Utils\\\\ValidatorTest\\:\\:\\$validator has no typehint specified\\.$#"
+			count: 1
+			path: tests/Utils/ValidatorTest.php
+
