@@ -39,7 +39,7 @@ jobs:
                   coverage: "none"
                   extensions: intl
                   php-version: ${{ matrix.php-version }}
-                  tools: composer:v2
+                  tools: composer:v2, phpstan
 
             - name: "Set composer cache directory"
               id: composer-cache
@@ -53,8 +53,11 @@ jobs:
                   restore-keys: ${{ runner.os }}-${{ matrix.php-version }}-composer-
 
             - name: "Composer install"
-              id: install
               run: composer install --no-interaction --no-progress
+
+            - name: Install PHPUnit
+              id: install
+              run: vendor/bin/simple-phpunit install
 
             - name: Lint YAML files
               if: always() && steps.install.outcome == 'success'
@@ -87,3 +90,7 @@ jobs:
             - name: Check if any dependencies are compromised
               if: always() && steps.install.outcome == 'success'
               run: /home/runner/.symfony/bin/symfony check:security
+
+            - name: Run PHPStan
+              if: always() && steps.install.outcome == 'success'
+              run: phpstan analyze
