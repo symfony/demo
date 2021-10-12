@@ -14,32 +14,23 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity()
- * @ORM\Table(name="symfony_demo_tag")
- *
  * Defines the properties of the Tag entity to represent the post tags.
  *
  * See https://symfony.com/doc/current/doctrine.html#creating-an-entity-class
  *
  * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
+#[ORM\Entity]
+#[ORM\Table(name: 'symfony_demo_tag')]
 class Tag implements \JsonSerializable
 {
-    /**
-     * @var int
-     *
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", unique=true)
-     */
-    private $name;
+    #[ORM\Column(unique: true)]
+    private string $name;
 
     public function getId(): ?int
     {

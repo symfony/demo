@@ -16,12 +16,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Repository\PostRepository;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
- * @ORM\Table(name="symfony_demo_post")
- * @UniqueEntity(fields={"slug"}, errorPath="title", message="post.slug_unique")
- *
  * Defines the properties of the Post entity to represent the blog posts.
  *
  * See https://symfony.com/doc/current/doctrine.html#creating-an-entity-class
@@ -33,87 +30,49 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
+#[ORM\Entity(repositoryClass: PostRepository::class)]
+#[ORM\Table(name: 'symfony_demo_post')]
+#[UniqueEntity(fields: ['slug'], message: 'post.slug_unique', errorPath: 'title')]
 class Post
 {
-    /**
-     * @var int
-     *
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string")
-     * @Assert\NotBlank
-     */
-    private $title;
+    #[ORM\Column]
+    #[Assert\NotBlank]
+    private string $title;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string")
-     */
-    private $slug;
+    #[ORM\Column]
+    private string $slug;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string")
-     * @Assert\NotBlank(message="post.blank_summary")
-     * @Assert\Length(max=255)
-     */
-    private $summary;
+    #[ORM\Column]
+    #[Assert\NotBlank(message: 'post.blank_summary')]
+    #[Assert\Length(max: 255)]
+    private string $summary;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="text")
-     * @Assert\NotBlank(message="post.blank_content")
-     * @Assert\Length(min=10, minMessage="post.too_short_content")
-     */
-    private $content;
+    #[ORM\Column(type: 'text')]
+    #[Assert\NotBlank(message: 'post.blank_content')]
+    #[Assert\Length(min: 10, minMessage: 'post.too_short_content')]
+    private string $content;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(type="datetime")
-     */
-    private $publishedAt;
+    #[ORM\Column(type: 'datetime')]
+    private \DateTimeInterface $publishedAt;
 
-    /**
-     * @var User
-     *
-     * @ORM\ManyToOne(targetEntity="App\Entity\User")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $author;
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private User $author;
 
-    /**
-     * @var Comment[]|Collection
-     *
-     * @ORM\OneToMany(
-     *      targetEntity="Comment",
-     *      mappedBy="post",
-     *      orphanRemoval=true,
-     *      cascade={"persist"}
-     * )
-     * @ORM\OrderBy({"publishedAt": "DESC"})
-     */
-    private $comments;
+    #[ORM\OneToMany(mappedBy: 'post', targetEntity: Comment::class, cascade: ['persist'], orphanRemoval: true)]
+    #[ORM\OrderBy(['publishedAt' => 'DESC'])]
+    private Collection $comments;
 
-    /**
-     * @var Tag[]|Collection
-     *
-     * @ORM\ManyToMany(targetEntity="App\Entity\Tag", cascade={"persist"})
-     * @ORM\JoinTable(name="symfony_demo_post_tag")
-     * @ORM\OrderBy({"name": "ASC"})
-     * @Assert\Count(max="4", maxMessage="post.too_many_tags")
-     */
-    private $tags;
+    #[ORM\ManyToMany(targetEntity: Tag::class, cascade: ['persist'])]
+    #[ORM\JoinTable(name: 'symfony_demo_post_tag')]
+    #[ORM\OrderBy(['name' => 'ASC'])]
+    #[Assert\Count(max: 4, maxMessage: 'post.too_many_tags')]
+    private Collection $tags;
 
     public function __construct()
     {

@@ -16,9 +16,6 @@ use function Symfony\Component\String\u;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="symfony_demo_comment")
- *
  * Defines the properties of the Comment entity to represent the blog comments.
  * See https://symfony.com/doc/current/doctrine.html#creating-an-entity-class
  *
@@ -28,62 +25,37 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
+#[ORM\Entity]
+#[ORM\Table(name: 'symfony_demo_comment')]
 class Comment
 {
-    /**
-     * @var int
-     *
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id;
 
-    /**
-     * @var Post
-     *
-     * @ORM\ManyToOne(targetEntity="Post", inversedBy="comments")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $post;
+    #[ORM\ManyToOne(inversedBy: 'comments')]
+    #[ORM\JoinColumn(nullable: false)]
+    private Post $post;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="text")
-     * @Assert\NotBlank(message="comment.blank")
-     * @Assert\Length(
-     *     min=5,
-     *     minMessage="comment.too_short",
-     *     max=10000,
-     *     maxMessage="comment.too_long"
-     * )
-     */
-    private $content;
+    #[ORM\Column(type: 'text')]
+    #[Assert\NotBlank(message: 'comment.blank')]
+    #[Assert\Length(min: 5, max: 10000, minMessage: 'comment.too_long', maxMessage: 'comment.too_long')]
+    private string $content;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(type="datetime")
-     */
-    private $publishedAt;
+    #[ORM\Column(type: 'datetime')]
+    private \DateTimeInterface $publishedAt;
 
-    /**
-     * @var User
-     *
-     * @ORM\ManyToOne(targetEntity="App\Entity\User")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $author;
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private User $author;
 
     public function __construct()
     {
         $this->publishedAt = new \DateTime();
     }
 
-    /**
-     * @Assert\IsTrue(message="comment.is_spam")
-     */
+    #[Assert\IsTrue(message: 'comment.is_spam')]
     public function isLegitComment(): bool
     {
         $containsInvalidCharacters = null !== u($this->content)->indexOf('@');

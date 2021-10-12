@@ -28,11 +28,10 @@ use Symfony\Component\Routing\Annotation\Route;
  *
  * @author Romain Monteil <monteil.romain@gmail.com>
  */
+#[Route('/profile')]
 class UserController extends AbstractController
 {
-    /**
-     * @Route("/edit", methods="GET|POST", name="user_edit")
-     */
+    #[Route('/edit', name: 'user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request): Response
     {
         $user = $this->getUser();
@@ -54,9 +53,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/change-password", methods="GET|POST", name="user_change_password")
-     */
+    #[Route('/change-password', name: 'user_change_password', methods: ['GET', 'POST'])]
     public function changePassword(Request $request, UserPasswordHasherInterface $hasher): Response
     {
         $user = $this->getUser();
