@@ -11,7 +11,6 @@
 
 namespace App\Tests\Controller;
 
-use App\Entity\Post;
 use App\Pagination\Paginator;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

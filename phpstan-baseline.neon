@@ -546,7 +546,7 @@ parameters:
 			path: src/Twig/SourceCodeExtension.php
 
 		-
-			message: "#^Parameter \\#1 \\$input of function array_slice expects array, array\\<int, string\\>\\|false given\\.$#"
+			message: "#^Parameter \\#1 \\$array of function array_slice expects array, array\\<int, string\\>\\|false given\\.$#"
 			count: 1
 			path: src/Twig/SourceCodeExtension.php
 

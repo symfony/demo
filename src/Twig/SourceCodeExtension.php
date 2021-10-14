@@ -65,13 +65,7 @@ class SourceCodeExtension extends AbstractExtension
 
         $method = $this->getCallableReflector($this->controller);
 
-        /** @var array $classCode */
         $classCode = file($method->getFileName());
-
-        if (false === \is_array($classCode)) {
-            throw new \InvalidArgumentException(sprintf('Unable to resolve file for "%s', $method->getFileName()));
-        }
-
         $methodCode = \array_slice($classCode, $method->getStartLine() - 1, $method->getEndLine() - $method->getStartLine() + 1);
         $controllerCode = '    '.$method->getDocComment()."\n".implode('', $methodCode);
 
