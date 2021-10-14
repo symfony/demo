@@ -65,6 +65,7 @@ class SourceCodeExtension extends AbstractExtension
 
         $method = $this->getCallableReflector($this->controller);
 
+        /** @var array $classCode */
         $classCode = file($method->getFileName());
 
         if (false === \is_array($classCode)) {

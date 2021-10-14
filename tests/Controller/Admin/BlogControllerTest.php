@@ -189,6 +189,7 @@ class BlogControllerTest extends WebTestCase
     {
         $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-        return mb_substr(str_shuffle(str_repeat($chars, (int) ceil($length / mb_strlen($chars)))), 1, $length);
+        $times = (int) ceil($length / mb_strlen($chars));
+        return mb_substr(str_shuffle(str_repeat($chars, $times)), 1, $length);
     }
 }
