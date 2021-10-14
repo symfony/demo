@@ -631,7 +631,7 @@ parameters:
 			path: tests/Controller/Admin/BlogControllerTest.php
 
 		-
-			message: "#^Parameter \\#2 \\$multiplier of function str_repeat expects int, float given\\.$#"
+			message: "#^Parameter \\#2 \\$times of function str_repeat expects int, float given\\.$#"
 			count: 1
 			path: tests/Controller/Admin/BlogControllerTest.php
 
