@@ -7,7 +7,12 @@ webpack_encore:
     # Set attributes that will be rendered on all script and link tags
     script_attributes:
         defer: true
+        # Uncomment (also under link_attributes) if using Turbo Drive
+        # https://turbo.hotwired.dev/handbook/drive#reloading-when-assets-change
+        # 'data-turbo-track': reload
     # link_attributes:
+        # Uncomment if using Turbo Drive
+        # 'data-turbo-track': reload
 
     # If using Encore.enableIntegrityHashes() and need the crossorigin attribute (default: false, or use 'anonymous' or 'use-credentials')
     # crossorigin: 'anonymous'

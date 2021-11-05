@@ -1,14 +1,14 @@
 security:
     # a new authentication system is available since Symfony 5.1 to make
     # Symfony security more extensible and easier to understand
-    # https://symfony.com/doc/current/security/experimental_authenticators.html
+    # https://symfony.com/doc/current/security.html
     enable_authenticator_manager: true
 
     password_hashers:
         # Our user class and the algorithm we'll use to encode passwords
         # 'auto' means to let Symfony choose the best possible password hasher (Argon2 or Bcrypt)
-        # https://symfony.com/doc/current/security.html#c-encoding-passwords
-        App\Entity\User: 'auto'
+        # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
 
     providers:
         # https://symfony.com/doc/current/security/user_provider.html
@@ -25,12 +25,8 @@ security:
             security: false
 
         main:
-            # this firewall applies to all URLs
-            pattern: ^/
-
+            # this firewall does not have a 'pattern' option because it applies to all URLs
             lazy: true
-
-            # The user provider to use.
             provider: database_users
 
             # This allows the user to login by submitting a username and password
