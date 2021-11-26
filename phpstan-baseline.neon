@@ -16,22 +16,22 @@ parameters:
 			path: src/Command/AddUserCommand.php
 
 		-
-			message: "#^Method App\\\\Command\\\\AddUserCommand\\:\\:validateUserData\\(\\) has parameter \\$email with no typehint specified\\.$#"
+			message: "#^Method App\\\\Command\\\\AddUserCommand\\:\\:validateUserData\\(\\) has parameter \\$email with no type specified\\.$#"
 			count: 1
 			path: src/Command/AddUserCommand.php
 
 		-
-			message: "#^Method App\\\\Command\\\\AddUserCommand\\:\\:validateUserData\\(\\) has parameter \\$fullName with no typehint specified\\.$#"
+			message: "#^Method App\\\\Command\\\\AddUserCommand\\:\\:validateUserData\\(\\) has parameter \\$fullName with no type specified\\.$#"
 			count: 1
 			path: src/Command/AddUserCommand.php
 
 		-
-			message: "#^Method App\\\\Command\\\\AddUserCommand\\:\\:validateUserData\\(\\) has parameter \\$plainPassword with no typehint specified\\.$#"
+			message: "#^Method App\\\\Command\\\\AddUserCommand\\:\\:validateUserData\\(\\) has parameter \\$plainPassword with no type specified\\.$#"
 			count: 1
 			path: src/Command/AddUserCommand.php
 
 		-
-			message: "#^Method App\\\\Command\\\\AddUserCommand\\:\\:validateUserData\\(\\) has parameter \\$username with no typehint specified\\.$#"
+			message: "#^Method App\\\\Command\\\\AddUserCommand\\:\\:validateUserData\\(\\) has parameter \\$username with no type specified\\.$#"
 			count: 1
 			path: src/Command/AddUserCommand.php
 
@@ -56,37 +56,47 @@ parameters:
 			path: src/Command/AddUserCommand.php
 
 		-
-			message: "#^Property App\\\\Command\\\\AddUserCommand\\:\\:\\$entityManager has no typehint specified\\.$#"
+			message: "#^Parameter \\#2 \\$value of method Symfony\\\\Component\\\\Console\\\\Input\\\\InputInterface\\:\\:setArgument\\(\\) expects array\\<string\\>\\|string\\|null, mixed given\\.$#"
+			count: 4
+			path: src/Command/AddUserCommand.php
+
+		-
+			message: "#^Property App\\\\Command\\\\AddUserCommand\\:\\:\\$entityManager has no type specified\\.$#"
 			count: 1
 			path: src/Command/AddUserCommand.php
 
 		-
-			message: "#^Property App\\\\Command\\\\AddUserCommand\\:\\:\\$passwordHasher has no typehint specified\\.$#"
+			message: "#^Property App\\\\Command\\\\AddUserCommand\\:\\:\\$passwordHasher has no type specified\\.$#"
 			count: 1
 			path: src/Command/AddUserCommand.php
 
 		-
-			message: "#^Property App\\\\Command\\\\AddUserCommand\\:\\:\\$users has no typehint specified\\.$#"
+			message: "#^Property App\\\\Command\\\\AddUserCommand\\:\\:\\$users has no type specified\\.$#"
 			count: 1
 			path: src/Command/AddUserCommand.php
 
 		-
-			message: "#^Property App\\\\Command\\\\AddUserCommand\\:\\:\\$validator has no typehint specified\\.$#"
+			message: "#^Property App\\\\Command\\\\AddUserCommand\\:\\:\\$validator has no type specified\\.$#"
 			count: 1
 			path: src/Command/AddUserCommand.php
 
 		-
-			message: "#^Property App\\\\Command\\\\DeleteUserCommand\\:\\:\\$entityManager has no typehint specified\\.$#"
+			message: "#^Parameter \\#2 \\$value of method Symfony\\\\Component\\\\Console\\\\Input\\\\InputInterface\\:\\:setArgument\\(\\) expects array\\<string\\>\\|string\\|null, mixed given\\.$#"
 			count: 1
 			path: src/Command/DeleteUserCommand.php
 
 		-
-			message: "#^Property App\\\\Command\\\\DeleteUserCommand\\:\\:\\$users has no typehint specified\\.$#"
+			message: "#^Property App\\\\Command\\\\DeleteUserCommand\\:\\:\\$entityManager has no type specified\\.$#"
 			count: 1
 			path: src/Command/DeleteUserCommand.php
 
 		-
-			message: "#^Property App\\\\Command\\\\DeleteUserCommand\\:\\:\\$validator has no typehint specified\\.$#"
+			message: "#^Property App\\\\Command\\\\DeleteUserCommand\\:\\:\\$users has no type specified\\.$#"
+			count: 1
+			path: src/Command/DeleteUserCommand.php
+
+		-
+			message: "#^Property App\\\\Command\\\\DeleteUserCommand\\:\\:\\$validator has no type specified\\.$#"
 			count: 1
 			path: src/Command/DeleteUserCommand.php
 
@@ -101,17 +111,17 @@ parameters:
 			path: src/Command/ListUsersCommand.php
 
 		-
-			message: "#^Property App\\\\Command\\\\ListUsersCommand\\:\\:\\$emailSender has no typehint specified\\.$#"
+			message: "#^Property App\\\\Command\\\\ListUsersCommand\\:\\:\\$emailSender has no type specified\\.$#"
 			count: 1
 			path: src/Command/ListUsersCommand.php
 
 		-
-			message: "#^Property App\\\\Command\\\\ListUsersCommand\\:\\:\\$mailer has no typehint specified\\.$#"
+			message: "#^Property App\\\\Command\\\\ListUsersCommand\\:\\:\\$mailer has no type specified\\.$#"
 			count: 1
 			path: src/Command/ListUsersCommand.php
 
 		-
-			message: "#^Property App\\\\Command\\\\ListUsersCommand\\:\\:\\$users has no typehint specified\\.$#"
+			message: "#^Property App\\\\Command\\\\ListUsersCommand\\:\\:\\$users has no type specified\\.$#"
 			count: 1
 			path: src/Command/ListUsersCommand.php
 
@@ -166,6 +176,11 @@ parameters:
 			path: src/Controller/UserController.php
 
 		-
+			message: "#^Parameter \\#2 \\$plainPassword of method Symfony\\\\Component\\\\PasswordHasher\\\\Hasher\\\\UserPasswordHasherInterface\\:\\:hashPassword\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: src/Controller/UserController.php
+
+		-
 			message: "#^Method App\\\\DataFixtures\\\\AppFixtures\\:\\:getPhrases\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/DataFixtures/AppFixtures.php
@@ -196,14 +211,19 @@ parameters:
 			path: src/DataFixtures/AppFixtures.php
 
 		-
-			message: "#^Property App\\\\DataFixtures\\\\AppFixtures\\:\\:\\$passwordHasher has no typehint specified\\.$#"
+			message: "#^Property App\\\\DataFixtures\\\\AppFixtures\\:\\:\\$passwordHasher has no type specified\\.$#"
 			count: 1
 			path: src/DataFixtures/AppFixtures.php
 
 		-
-			message: "#^Property App\\\\DataFixtures\\\\AppFixtures\\:\\:\\$slugger has no typehint specified\\.$#"
+			message: "#^Property App\\\\DataFixtures\\\\AppFixtures\\:\\:\\$slugger has no type specified\\.$#"
 			count: 1
 			path: src/DataFixtures/AppFixtures.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\Comment\\:\\:\\$id is never written, only read\\.$#"
+			count: 1
+			path: src/Entity/Comment.php
 
 		-
 			message: "#^Method App\\\\Entity\\\\Post\\:\\:getComments\\(\\) return type with generic interface Doctrine\\\\Common\\\\Collections\\\\Collection does not specify its types\\: TKey, T$#"
@@ -226,6 +246,11 @@ parameters:
 			path: src/Entity/Post.php
 
 		-
+			message: "#^Property App\\\\Entity\\\\Post\\:\\:\\$id is never written, only read\\.$#"
+			count: 1
+			path: src/Entity/Post.php
+
+		-
 			message: "#^Property App\\\\Entity\\\\Post\\:\\:\\$summary \\(string\\) does not accept string\\|null\\.$#"
 			count: 1
 			path: src/Entity/Post.php
@@ -239,6 +264,11 @@ parameters:
 			message: "#^Property App\\\\Entity\\\\Post\\:\\:\\$title \\(string\\) does not accept string\\|null\\.$#"
 			count: 1
 			path: src/Entity/Post.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\Tag\\:\\:\\$id is never written, only read\\.$#"
+			count: 1
+			path: src/Entity/Tag.php
 
 		-
 			message: "#^Method App\\\\Entity\\\\User\\:\\:__serialize\\(\\) return type has no value type specified in iterable type array\\.$#"
@@ -261,14 +291,9 @@ parameters:
 			path: src/Entity/User.php
 
 		-
-			message: "#^Property App\\\\Event\\\\CommentCreatedEvent\\:\\:\\$comment has no typehint specified\\.$#"
+			message: "#^Property App\\\\Event\\\\CommentCreatedEvent\\:\\:\\$comment has no type specified\\.$#"
 			count: 1
 			path: src/Event/CommentCreatedEvent.php
-
-		-
-			message: "#^Cannot call method getName\\(\\) on Symfony\\\\Component\\\\Console\\\\Command\\\\Command\\|null\\.$#"
-			count: 1
-			path: src/EventSubscriber/CheckRequirementsSubscriber.php
 
 		-
 			message: "#^Method App\\\\EventSubscriber\\\\CheckRequirementsSubscriber\\:\\:getSubscribedEvents\\(\\) return type has no value type specified in iterable type array\\.$#"
@@ -276,7 +301,7 @@ parameters:
 			path: src/EventSubscriber/CheckRequirementsSubscriber.php
 
 		-
-			message: "#^Property App\\\\EventSubscriber\\\\CheckRequirementsSubscriber\\:\\:\\$entityManager has no typehint specified\\.$#"
+			message: "#^Property App\\\\EventSubscriber\\\\CheckRequirementsSubscriber\\:\\:\\$entityManager has no type specified\\.$#"
 			count: 1
 			path: src/EventSubscriber/CheckRequirementsSubscriber.php
 
@@ -311,22 +336,22 @@ parameters:
 			path: src/EventSubscriber/CommentNotificationSubscriber.php
 
 		-
-			message: "#^Property App\\\\EventSubscriber\\\\CommentNotificationSubscriber\\:\\:\\$mailer has no typehint specified\\.$#"
+			message: "#^Property App\\\\EventSubscriber\\\\CommentNotificationSubscriber\\:\\:\\$mailer has no type specified\\.$#"
 			count: 1
 			path: src/EventSubscriber/CommentNotificationSubscriber.php
 
 		-
-			message: "#^Property App\\\\EventSubscriber\\\\CommentNotificationSubscriber\\:\\:\\$sender has no typehint specified\\.$#"
+			message: "#^Property App\\\\EventSubscriber\\\\CommentNotificationSubscriber\\:\\:\\$sender has no type specified\\.$#"
 			count: 1
 			path: src/EventSubscriber/CommentNotificationSubscriber.php
 
 		-
-			message: "#^Property App\\\\EventSubscriber\\\\CommentNotificationSubscriber\\:\\:\\$translator has no typehint specified\\.$#"
+			message: "#^Property App\\\\EventSubscriber\\\\CommentNotificationSubscriber\\:\\:\\$translator has no type specified\\.$#"
 			count: 1
 			path: src/EventSubscriber/CommentNotificationSubscriber.php
 
 		-
-			message: "#^Property App\\\\EventSubscriber\\\\CommentNotificationSubscriber\\:\\:\\$urlGenerator has no typehint specified\\.$#"
+			message: "#^Property App\\\\EventSubscriber\\\\CommentNotificationSubscriber\\:\\:\\$urlGenerator has no type specified\\.$#"
 			count: 1
 			path: src/EventSubscriber/CommentNotificationSubscriber.php
 
@@ -336,7 +361,7 @@ parameters:
 			path: src/EventSubscriber/ControllerSubscriber.php
 
 		-
-			message: "#^Property App\\\\EventSubscriber\\\\ControllerSubscriber\\:\\:\\$twigExtension has no typehint specified\\.$#"
+			message: "#^Property App\\\\EventSubscriber\\\\ControllerSubscriber\\:\\:\\$twigExtension has no type specified\\.$#"
 			count: 1
 			path: src/EventSubscriber/ControllerSubscriber.php
 
@@ -346,17 +371,17 @@ parameters:
 			path: src/EventSubscriber/RedirectToPreferredLocaleSubscriber.php
 
 		-
-			message: "#^Property App\\\\EventSubscriber\\\\RedirectToPreferredLocaleSubscriber\\:\\:\\$defaultLocale has no typehint specified\\.$#"
+			message: "#^Property App\\\\EventSubscriber\\\\RedirectToPreferredLocaleSubscriber\\:\\:\\$defaultLocale has no type specified\\.$#"
 			count: 1
 			path: src/EventSubscriber/RedirectToPreferredLocaleSubscriber.php
 
 		-
-			message: "#^Property App\\\\EventSubscriber\\\\RedirectToPreferredLocaleSubscriber\\:\\:\\$locales has no typehint specified\\.$#"
+			message: "#^Property App\\\\EventSubscriber\\\\RedirectToPreferredLocaleSubscriber\\:\\:\\$locales has no type specified\\.$#"
 			count: 1
 			path: src/EventSubscriber/RedirectToPreferredLocaleSubscriber.php
 
 		-
-			message: "#^Property App\\\\EventSubscriber\\\\RedirectToPreferredLocaleSubscriber\\:\\:\\$urlGenerator has no typehint specified\\.$#"
+			message: "#^Property App\\\\EventSubscriber\\\\RedirectToPreferredLocaleSubscriber\\:\\:\\$urlGenerator has no type specified\\.$#"
 			count: 1
 			path: src/EventSubscriber/RedirectToPreferredLocaleSubscriber.php
 
@@ -376,7 +401,27 @@ parameters:
 			path: src/Form/DataTransformer/TagArrayToStringTransformer.php
 
 		-
-			message: "#^Property App\\\\Form\\\\DataTransformer\\\\TagArrayToStringTransformer\\:\\:\\$tags has no typehint specified\\.$#"
+			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(Symfony\\\\Component\\\\String\\\\UnicodeString\\)\\: mixed\\)\\|null, 'trim' given\\.$#"
+			count: 1
+			path: src/Form/DataTransformer/TagArrayToStringTransformer.php
+
+		-
+			message: "#^Parameter \\#1 \\$string of function Symfony\\\\Component\\\\String\\\\u expects string\\|null, mixed given\\.$#"
+			count: 2
+			path: src/Form/DataTransformer/TagArrayToStringTransformer.php
+
+		-
+			message: "#^Parameter \\#2 \\$array of function implode expects array\\<string\\>, mixed given\\.$#"
+			count: 1
+			path: src/Form/DataTransformer/TagArrayToStringTransformer.php
+
+		-
+			message: "#^Parameter \\#2 \\$pieces of function implode expects array, mixed given\\.$#"
+			count: 1
+			path: src/Form/DataTransformer/TagArrayToStringTransformer.php
+
+		-
+			message: "#^Property App\\\\Form\\\\DataTransformer\\\\TagArrayToStringTransformer\\:\\:\\$tags has no type specified\\.$#"
 			count: 1
 			path: src/Form/DataTransformer/TagArrayToStringTransformer.php
 
@@ -391,7 +436,7 @@ parameters:
 			path: src/Form/PostType.php
 
 		-
-			message: "#^Property App\\\\Form\\\\PostType\\:\\:\\$slugger has no typehint specified\\.$#"
+			message: "#^Property App\\\\Form\\\\PostType\\:\\:\\$slugger has no type specified\\.$#"
 			count: 1
 			path: src/Form/PostType.php
 
@@ -416,7 +461,7 @@ parameters:
 			path: src/Form/Type/DateTimePickerType.php
 
 		-
-			message: "#^Property App\\\\Form\\\\Type\\\\DateTimePickerType\\:\\:\\$formatConverter has no typehint specified\\.$#"
+			message: "#^Property App\\\\Form\\\\Type\\\\DateTimePickerType\\:\\:\\$formatConverter has no type specified\\.$#"
 			count: 1
 			path: src/Form/Type/DateTimePickerType.php
 
@@ -441,7 +486,7 @@ parameters:
 			path: src/Form/Type/TagsInputType.php
 
 		-
-			message: "#^Property App\\\\Form\\\\Type\\\\TagsInputType\\:\\:\\$tags has no typehint specified\\.$#"
+			message: "#^Property App\\\\Form\\\\Type\\\\TagsInputType\\:\\:\\$tags has no type specified\\.$#"
 			count: 1
 			path: src/Form/Type/TagsInputType.php
 
@@ -461,27 +506,27 @@ parameters:
 			path: src/Pagination/Paginator.php
 
 		-
-			message: "#^Property App\\\\Pagination\\\\Paginator\\:\\:\\$currentPage has no typehint specified\\.$#"
+			message: "#^Property App\\\\Pagination\\\\Paginator\\:\\:\\$currentPage has no type specified\\.$#"
 			count: 1
 			path: src/Pagination/Paginator.php
 
 		-
-			message: "#^Property App\\\\Pagination\\\\Paginator\\:\\:\\$numResults has no typehint specified\\.$#"
+			message: "#^Property App\\\\Pagination\\\\Paginator\\:\\:\\$numResults has no type specified\\.$#"
 			count: 1
 			path: src/Pagination/Paginator.php
 
 		-
-			message: "#^Property App\\\\Pagination\\\\Paginator\\:\\:\\$pageSize has no typehint specified\\.$#"
+			message: "#^Property App\\\\Pagination\\\\Paginator\\:\\:\\$pageSize has no type specified\\.$#"
 			count: 1
 			path: src/Pagination/Paginator.php
 
 		-
-			message: "#^Property App\\\\Pagination\\\\Paginator\\:\\:\\$queryBuilder has no typehint specified\\.$#"
+			message: "#^Property App\\\\Pagination\\\\Paginator\\:\\:\\$queryBuilder has no type specified\\.$#"
 			count: 1
 			path: src/Pagination/Paginator.php
 
 		-
-			message: "#^Property App\\\\Pagination\\\\Paginator\\:\\:\\$results has no typehint specified\\.$#"
+			message: "#^Property App\\\\Pagination\\\\Paginator\\:\\:\\$results has no type specified\\.$#"
 			count: 1
 			path: src/Pagination/Paginator.php
 
@@ -492,6 +537,11 @@ parameters:
 
 		-
 			message: "#^Method App\\\\Repository\\\\PostRepository\\:\\:extractSearchTerms\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Repository/PostRepository.php
+
+		-
+			message: "#^Method App\\\\Repository\\\\PostRepository\\:\\:findBySearchQuery\\(\\) should return array\\<App\\\\Entity\\\\Post\\> but returns mixed\\.$#"
 			count: 1
 			path: src/Repository/PostRepository.php
 
@@ -511,12 +561,12 @@ parameters:
 			path: src/Twig/AppExtension.php
 
 		-
-			message: "#^Property App\\\\Twig\\\\AppExtension\\:\\:\\$localeCodes has no typehint specified\\.$#"
+			message: "#^Property App\\\\Twig\\\\AppExtension\\:\\:\\$localeCodes has no type specified\\.$#"
 			count: 1
 			path: src/Twig/AppExtension.php
 
 		-
-			message: "#^Property App\\\\Twig\\\\AppExtension\\:\\:\\$locales has no typehint specified\\.$#"
+			message: "#^Property App\\\\Twig\\\\AppExtension\\:\\:\\$locales has no type specified\\.$#"
 			count: 1
 			path: src/Twig/AppExtension.php
 
@@ -551,7 +601,7 @@ parameters:
 			path: src/Twig/SourceCodeExtension.php
 
 		-
-			message: "#^Property App\\\\Twig\\\\SourceCodeExtension\\:\\:\\$controller has no typehint specified\\.$#"
+			message: "#^Property App\\\\Twig\\\\SourceCodeExtension\\:\\:\\$controller has no type specified\\.$#"
 			count: 1
 			path: src/Twig/SourceCodeExtension.php
 
@@ -596,7 +646,7 @@ parameters:
 			path: tests/Command/AddUserCommandTest.php
 
 		-
-			message: "#^Property App\\\\Tests\\\\Command\\\\AddUserCommandTest\\:\\:\\$userData has no typehint specified\\.$#"
+			message: "#^Property App\\\\Tests\\\\Command\\\\AddUserCommandTest\\:\\:\\$userData has no type specified\\.$#"
 			count: 1
 			path: tests/Command/AddUserCommandTest.php
 
@@ -641,7 +691,27 @@ parameters:
 			path: tests/Controller/Admin/BlogControllerTest.php
 
 		-
+			message: "#^Cannot access offset 'author' on mixed\\.$#"
+			count: 1
+			path: tests/Controller/BlogControllerTest.php
+
+		-
+			message: "#^Cannot access offset 'title' on mixed\\.$#"
+			count: 1
+			path: tests/Controller/BlogControllerTest.php
+
+		-
+			message: "#^Cannot access offset 0 on mixed\\.$#"
+			count: 2
+			path: tests/Controller/BlogControllerTest.php
+
+		-
 			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|false given\\.$#"
+			count: 1
+			path: tests/Controller/BlogControllerTest.php
+
+		-
+			message: "#^Parameter \\#2 \\$haystack of method PHPUnit\\\\Framework\\\\Assert\\:\\:assertCount\\(\\) expects Countable\\|iterable, mixed given\\.$#"
 			count: 1
 			path: tests/Controller/BlogControllerTest.php
 
@@ -686,12 +756,12 @@ parameters:
 			path: tests/Form/DataTransformer/TagArrayToStringTransformerTest.php
 
 		-
-			message: "#^Method App\\\\Tests\\\\Utils\\\\ValidatorTest\\:\\:testValidateFullNameEmpty\\(\\) has no return typehint specified\\.$#"
+			message: "#^Method App\\\\Tests\\\\Utils\\\\ValidatorTest\\:\\:testValidateFullNameEmpty\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: tests/Utils/ValidatorTest.php
 
 		-
-			message: "#^Property App\\\\Tests\\\\Utils\\\\ValidatorTest\\:\\:\\$validator has no typehint specified\\.$#"
+			message: "#^Property App\\\\Tests\\\\Utils\\\\ValidatorTest\\:\\:\\$validator has no type specified\\.$#"
 			count: 1
 			path: tests/Utils/ValidatorTest.php
 
