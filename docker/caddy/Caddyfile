@@ -1,0 +1,16 @@
+{
+    # Debug
+    {$DEBUG}
+}
+
+{$SERVER_NAME}
+
+log
+
+handle  {
+    root * /srv/symfony/public
+
+    php_fastcgi unix//var/run/php/php-fpm.sock
+    encode zstd gzip
+    file_server
+}
