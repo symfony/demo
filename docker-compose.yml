@@ -1,0 +1,35 @@
+version: "3.4"
+
+services:
+  php:
+    build:
+      context: ./
+      target: symfony_php
+    depends_on:
+      - db
+    restart: unless-stopped
+    volumes:
+      - php_socket:/var/run/php
+
+  caddy:
+    build:
+      context: ./
+      target: symfony_caddy
+    depends_on:
+      - php
+    environment:
+      SERVER_NAME: ${SERVER_NAME:-localhost}
+    restart: unless-stopped
+    volumes:
+      - php_socket:/var/run/php
+      - caddy_data:/data
+      - caddy_config:/config
+    ports:
+      - "80:80"
+      - "443:443"
+
+volumes:
+  php_socket:
+  caddy_data:
+  caddy_config:
+
