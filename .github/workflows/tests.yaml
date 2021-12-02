@@ -60,7 +60,7 @@ jobs:
                   restore-keys: ${{ runner.os }}-${{ matrix.php-version }}-composer-
 
             - name: "Require symfony/flex"
-              run: composer global require --no-progress --no-scripts --no-plugins symfony/flex dev-main
+              run: composer global require --no-progress --no-scripts --no-plugins symfony/flex
 
             - run: composer update
 
