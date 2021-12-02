@@ -56,7 +56,7 @@ class AddUserCommand extends Command
 
     public function __construct(
         private EntityManagerInterface $entityManager,
-        private UserPasswordEncoderInterface $passwordEncoder,
+        private UserPasswordHasherInterface $passwordHasher,
         private Validator $validator,
         private UserRepository $users
     ) {
@@ -181,7 +181,7 @@ class AddUserCommand extends Command
         $user->setEmail($email);
         $user->setRoles([$isAdmin ? 'ROLE_ADMIN' : 'ROLE_USER']);
 
-        // See https://symfony.com/doc/current/security.html#c-encoding-passwords
+        // See https://symfony.com/doc/5.4/security.html#registering-the-user-hashing-passwords
         $hashedPassword = $this->passwordHasher->hashPassword($user, $plainPassword);
         $user->setPassword($hashedPassword);
 
