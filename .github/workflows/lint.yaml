@@ -39,7 +39,7 @@ jobs:
                   coverage: "none"
                   extensions: intl
                   php-version: ${{ matrix.php-version }}
-                  tools: composer:v2, phpstan
+                  tools: composer:v2
 
             - name: "Set composer cache directory"
               id: composer-cache
@@ -93,4 +93,4 @@ jobs:
 
             - name: Run PHPStan
               if: always() && steps.install.outcome == 'success'
-              run: phpstan analyze
+              run: ./vendor/bin/phpstan analyze

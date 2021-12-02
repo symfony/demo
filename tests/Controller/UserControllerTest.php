@@ -69,7 +69,7 @@ class UserControllerTest extends WebTestCase
         $this->assertResponseRedirects('/en/profile/edit', Response::HTTP_FOUND);
 
         /** @var \App\Entity\User $user */
-        $user = self::$container->get(UserRepository::class)->findOneByEmail($newUserEmail);
+        $user = static::getContainer()->get(UserRepository::class)->findOneByEmail($newUserEmail);
 
         $this->assertNotNull($user);
         $this->assertSame($newUserEmail, $user->getEmail());
