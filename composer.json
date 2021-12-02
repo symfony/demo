@@ -10,7 +10,7 @@
         "symfony/polyfill-php73": "*"
     },
     "require": {
-        "php": "^7.3 || ^8.0",
+        "php": ">=8.0.2",
         "ext-pdo_sqlite": "*",
         "composer/package-versions-deprecated": "^1.8",
         "doctrine/dbal": "^3.1",
@@ -57,7 +57,7 @@
     },
     "config": {
         "platform": {
-            "php": "7.3"
+            "php": "8.0.3"
         },
         "preferred-install": {
             "*": "dist"

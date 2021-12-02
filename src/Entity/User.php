@@ -32,52 +32,42 @@ use Symfony\Component\Validator\Constraints as Assert;
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
-     * @var int
-     *
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private ?int $id = null;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(type="string")
-     * @Assert\NotBlank()
-     */
-    private $fullName;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", unique=true)
-     * @Assert\NotBlank()
-     * @Assert\Length(min=2, max=50)
-     */
-    private $username;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", unique=true)
-     * @Assert\Email()
-     */
-    private $email;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(type="string")
      */
-    private $password;
+    #[Assert\NotBlank]
+    private ?string $fullName = null;
 
     /**
-     * @var array
-     *
+     * @ORM\Column(type="string", unique=true)
+     */
+    #[
+        Assert\NotBlank,
+        Assert\Length(min: 2, max: 50)
+    ]
+    private ?string $username = null;
+
+    /**
+     * @ORM\Column(type="string", unique=true)
+     */
+    #[Assert\Email]
+    private ?string $email = null;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private ?string $password = null;
+
+    /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
+    private array $roles = [];
 
     public function getId(): ?int
     {

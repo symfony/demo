@@ -30,9 +30,7 @@ class SecurityController extends AbstractController
 {
     use TargetPathTrait;
 
-    /**
-     * @Route("/login", name="security_login")
-     */
+    #[Route('/login', name: 'security_login')]
     public function login(Request $request, Security $security, AuthenticationUtils $helper): Response
     {
         // if user is already logged in, don't display the login page again
@@ -59,9 +57,8 @@ class SecurityController extends AbstractController
      *
      * But, this will never be executed. Symfony will intercept this first
      * and handle the logout automatically. See logout in config/packages/security.yaml
-     *
-     * @Route("/logout", name="security_logout")
      */
+    #[Route('/logout', name: 'security_logout')]
     public function logout(): void
     {
         throw new \Exception('This should never be reached!');

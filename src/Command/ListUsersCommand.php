@@ -42,17 +42,12 @@ class ListUsersCommand extends Command
     // a good practice is to use the 'app:' prefix to group all your custom application commands
     protected static $defaultName = 'app:list-users';
 
-    private $mailer;
-    private $emailSender;
-    private $users;
-
-    public function __construct(MailerInterface $mailer, string $emailSender, UserRepository $users)
-    {
+    public function __construct(
+        private MailerInterface $mailer,
+        private string $emailSender,
+        private UserRepository $users
+    ) {
         parent::__construct();
-
-        $this->mailer = $mailer;
-        $this->emailSender = $emailSender;
-        $this->users = $users;
     }
 
     /**

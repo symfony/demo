@@ -24,8 +24,8 @@ use Twig\TwigFunction;
  */
 class AppExtension extends AbstractExtension
 {
-    private $localeCodes;
-    private $locales;
+    private array $localeCodes;
+    private ?array $locales = null;
 
     public function __construct(string $locales)
     {
