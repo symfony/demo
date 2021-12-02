@@ -1,0 +1,60 @@
+---------------------------------------------------------------------------
+
+by stof at 2021-11-05T10:26:59Z
+
+you should regenerate the phpstan baseline as you upgraded it to 1.0 and messages have changed.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2021-11-05T10:35:58Z
+
+@stof thanks for your nice and detailed review! I've done all the requested changes.
+
+I'm only missing the "regenerate the phpstan baseline". I don't use PhpStan so could anyone please tell me the exact command to run for this case? Thanks a lot!
+
+---------------------------------------------------------------------------
+
+by stof at 2021-11-05T11:04:29Z
+
+@javiereguiluz `vendor/bin/phpstan analyse --generate-baseline`
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2021-11-05T14:19:26Z
+
+After properly upgrading dependencies, I'm seeing these indirect deprecations:
+
+```
+Testing
+...................................................               51 / 51 (100%)
+OK (51 tests, 116 assertions)
+
+Remaining indirect deprecation notices (5)
+
+  1x: Since symfony/doctrine-bridge 5.4: The "Symfony\Bridge\Doctrine\SchemaListener\PdoCacheAdapterDoctrineSchemaSubscriber" class is deprecated, use "Symfony\Bridge\Doctrine\SchemaListener\DoctrineDbalCacheAdapterSchemaSubscriber" instead.
+    1x in AddUserCommandTest::testCreateUserNonInteractive from App\Tests\Command
+
+  1x: Method "Symfony\Component\Config\Definition\ConfigurationInterface::getConfigTreeBuilder()" might add "TreeBuilder" as a native return type declaration in the future. Do the same in implementation "Twig\Extra\TwigExtraBundle\DependencyInjection\Configuration" now to avoid errors or add an explicit @return annotation to suppress this message.
+    1x in AddUserCommandTest::testCreateUserNonInteractive from App\Tests\Command
+
+  1x: Method "Symfony\Component\Config\Definition\ConfigurationInterface::getConfigTreeBuilder()" might add "TreeBuilder" as a native return type declaration in the future. Do the same in implementation "HtmlSanitizer\Bundle\DependencyInjection\Configuration" now to avoid errors or add an explicit @return annotation to suppress this message.
+    1x in AddUserCommandTest::testCreateUserNonInteractive from App\Tests\Command
+
+  1x: Method "Symfony\Component\Console\Command\Command::execute()" might add "int" as a native return type declaration in the future. Do the same in child class "Doctrine\DBAL\Tools\Console\Command\RunSqlCommand" now to avoid errors or add an explicit @return annotation to suppress this message.
+    1x in AddUserCommandTest::testCreateUserNonInteractive from App\Tests\Command
+
+  1x: Method "Doctrine\DBAL\Driver\Connection::quote()" might add "mixed" as a native return type declaration in the future. Do the same in implementation "DAMA\DoctrineTestBundle\Doctrine\DBAL\AbstractStaticConnection" now to avoid errors or add an explicit @return annotation to suppress this message.
+    1x in AddUserCommandTest::testCreateUserNonInteractive from App\Tests\Command
+```
+
+---------------------------------------------------------------------------
+
+by GromNaN at 2021-11-24T18:17:23Z
+
+You can upgrade to v5.4-RC1, all deprecation notices have been solved.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2021-11-25T14:28:46Z
+
+We're running deprecation-free. I had to set `tgalopin/html-sanitizer-bundle` to `dev-master`, but we'll have a new stable version soon, so this is temporary.
