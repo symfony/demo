@@ -1,0 +1,11 @@
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2021-12-01T16:17:35Z
+
+Property type declarations are available since 7.4 IIRC, but we say this project should work on 7.3+. If we want property types - we will need to bump min PHP version required
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2021-12-02T15:48:30Z
+
+@bocharsky-bw you are right ... but now that Symfony 6 (which requires PHP 8) has been published, we need to update this project to it (in #1277) because Symfony 6.0 is the stable version and Symfony Demo always uses the current stable version. Cheers!
