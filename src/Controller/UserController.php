@@ -52,7 +52,7 @@ class UserController extends AbstractController
     }
 
     #[Route('/change-password', methods: ['GET', 'POST'], name: 'user_change_password')]
-    public function changePassword(Request $request, UserPasswordEncoderInterface $encoder, EntityManagerInterface $entityManager): Response
+    public function changePassword(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager): Response
     {
         $user = $this->getUser();
 
@@ -60,7 +60,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->setPassword($hasher->hashPassword($user, $form->get('newPassword')->getData()));
+            $user->setPassword($passwordHasher->hashPassword($user, $form->get('newPassword')->getData()));
             $entityManager->flush();
 
             return $this->redirectToRoute('security_logout');
