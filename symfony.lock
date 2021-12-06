@@ -398,6 +398,9 @@
     "symfony/options-resolver": {
         "version": "v5.1.0-rc1"
     },
+    "symfony/password-hasher": {
+        "version": "v5.4.0"
+    },
     "symfony/phpunit-bridge": {
         "version": "4.3",
         "recipe": {
@@ -436,6 +439,9 @@
     },
     "symfony/polyfill-php80": {
         "version": "v1.17.0"
+    },
+    "symfony/polyfill-php81": {
+        "version": "v1.23.0"
     },
     "symfony/property-access": {
         "version": "v5.1.0-rc1"
@@ -531,9 +537,6 @@
             "config/packages/twig.yaml",
             "templates/base.html.twig"
         ]
-    },
-    "symfony/twig-pack": {
-        "version": "v1.0.0"
     },
     "symfony/validator": {
         "version": "4.3",

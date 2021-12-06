@@ -11,7 +11,7 @@ framework:
         cookie_secure: auto
         cookie_samesite: lax
 
-        handler_id: session.handler.redis
+#        handler_id: session.handler.redis
 
     # When using the HTTP Cache, ESI allows to render page fragments separately
     # and with different cache configurations for each fragment
