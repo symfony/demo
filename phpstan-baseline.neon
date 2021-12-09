@@ -1,21 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Binary operation \"\\.\" between ' \\> \\<info\\>Email\\<…' and array\\<string\\>\\|string results in an error\\.$#"
-			count: 1
-			path: src/Command/AddUserCommand.php
-
-		-
-			message: "#^Binary operation \"\\.\" between ' \\> \\<info\\>Full Name\\<…' and array\\<string\\>\\|string results in an error\\.$#"
-			count: 1
-			path: src/Command/AddUserCommand.php
-
-		-
-			message: "#^Binary operation \"\\.\" between ' \\> \\<info\\>Username\\<…' and array\\<string\\>\\|string results in an error\\.$#"
-			count: 1
-			path: src/Command/AddUserCommand.php
-
-		-
 			message: "#^Method App\\\\Command\\\\AddUserCommand\\:\\:validateUserData\\(\\) has parameter \\$email with no type specified\\.$#"
 			count: 1
 			path: src/Command/AddUserCommand.php
@@ -36,92 +21,47 @@ parameters:
 			path: src/Command/AddUserCommand.php
 
 		-
-			message: "#^Parameter \\#1 \\$email of method App\\\\Entity\\\\User\\:\\:setEmail\\(\\) expects string, array\\<string\\>\\|string\\|null given\\.$#"
+			message: "#^Parameter \\#1 \\$email of method App\\\\Entity\\\\User\\:\\:setEmail\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Command/AddUserCommand.php
 
 		-
-			message: "#^Parameter \\#1 \\$fullName of method App\\\\Entity\\\\User\\:\\:setFullName\\(\\) expects string, array\\<string\\>\\|string\\|null given\\.$#"
+			message: "#^Parameter \\#1 \\$fullName of method App\\\\Entity\\\\User\\:\\:setFullName\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Command/AddUserCommand.php
 
 		-
-			message: "#^Parameter \\#1 \\$string of function Symfony\\\\Component\\\\String\\\\u expects string\\|null, array\\<string\\>\\|string given\\.$#"
+			message: "#^Parameter \\#1 \\$string of function Symfony\\\\Component\\\\String\\\\u expects string\\|null, mixed given\\.$#"
 			count: 1
 			path: src/Command/AddUserCommand.php
 
 		-
-			message: "#^Parameter \\#1 \\$username of method App\\\\Entity\\\\User\\:\\:setUsername\\(\\) expects string, array\\<string\\>\\|string\\|null given\\.$#"
+			message: "#^Parameter \\#1 \\$username of method App\\\\Entity\\\\User\\:\\:setUsername\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Command/AddUserCommand.php
 
 		-
-			message: "#^Parameter \\#2 \\$value of method Symfony\\\\Component\\\\Console\\\\Input\\\\InputInterface\\:\\:setArgument\\(\\) expects array\\<string\\>\\|string\\|null, mixed given\\.$#"
-			count: 4
-			path: src/Command/AddUserCommand.php
-
-		-
-			message: "#^Property App\\\\Command\\\\AddUserCommand\\:\\:\\$entityManager has no type specified\\.$#"
+			message: "#^Parameter \\#2 \\$plainPassword of method Symfony\\\\Component\\\\PasswordHasher\\\\Hasher\\\\UserPasswordHasherInterface\\:\\:hashPassword\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Command/AddUserCommand.php
 
 		-
-			message: "#^Property App\\\\Command\\\\AddUserCommand\\:\\:\\$passwordHasher has no type specified\\.$#"
-			count: 1
-			path: src/Command/AddUserCommand.php
-
-		-
-			message: "#^Property App\\\\Command\\\\AddUserCommand\\:\\:\\$users has no type specified\\.$#"
-			count: 1
-			path: src/Command/AddUserCommand.php
-
-		-
-			message: "#^Property App\\\\Command\\\\AddUserCommand\\:\\:\\$validator has no type specified\\.$#"
-			count: 1
-			path: src/Command/AddUserCommand.php
-
-		-
-			message: "#^Parameter \\#2 \\$value of method Symfony\\\\Component\\\\Console\\\\Input\\\\InputInterface\\:\\:setArgument\\(\\) expects array\\<string\\>\\|string\\|null, mixed given\\.$#"
+			message: "#^Call to an undefined method App\\\\Repository\\\\UserRepository\\:\\:findOneByUsername\\(\\)\\.$#"
 			count: 1
 			path: src/Command/DeleteUserCommand.php
 
 		-
-			message: "#^Property App\\\\Command\\\\DeleteUserCommand\\:\\:\\$entityManager has no type specified\\.$#"
+			message: "#^Parameter \\#1 \\$username of method App\\\\Utils\\\\Validator\\:\\:validateUsername\\(\\) expects string\\|null, mixed given\\.$#"
 			count: 1
 			path: src/Command/DeleteUserCommand.php
 
 		-
-			message: "#^Property App\\\\Command\\\\DeleteUserCommand\\:\\:\\$users has no type specified\\.$#"
-			count: 1
-			path: src/Command/DeleteUserCommand.php
-
-		-
-			message: "#^Property App\\\\Command\\\\DeleteUserCommand\\:\\:\\$validator has no type specified\\.$#"
-			count: 1
-			path: src/Command/DeleteUserCommand.php
-
-		-
-			message: "#^Parameter \\#2 \\$recipient of method App\\\\Command\\\\ListUsersCommand\\:\\:sendReport\\(\\) expects string, array\\<string\\>\\|bool\\|string given\\.$#"
+			message: "#^Parameter \\#2 \\$recipient of method App\\\\Command\\\\ListUsersCommand\\:\\:sendReport\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Command/ListUsersCommand.php
 
 		-
-			message: "#^Parameter \\#5 \\$default of method Symfony\\\\Component\\\\Console\\\\Command\\\\Command\\:\\:addOption\\(\\) expects array\\<string\\>\\|bool\\|string\\|null, int given\\.$#"
-			count: 1
-			path: src/Command/ListUsersCommand.php
-
-		-
-			message: "#^Property App\\\\Command\\\\ListUsersCommand\\:\\:\\$emailSender has no type specified\\.$#"
-			count: 1
-			path: src/Command/ListUsersCommand.php
-
-		-
-			message: "#^Property App\\\\Command\\\\ListUsersCommand\\:\\:\\$mailer has no type specified\\.$#"
-			count: 1
-			path: src/Command/ListUsersCommand.php
-
-		-
-			message: "#^Property App\\\\Command\\\\ListUsersCommand\\:\\:\\$users has no type specified\\.$#"
+			message: "#^Parameter \\#3 \\$limit of method Doctrine\\\\ORM\\\\EntityRepository\\<mixed\\>\\:\\:findBy\\(\\) expects int\\|null, mixed given\\.$#"
 			count: 1
 			path: src/Command/ListUsersCommand.php
 
@@ -131,7 +71,7 @@ parameters:
 			path: src/Controller/Admin/BlogController.php
 
 		-
-			message: "#^Parameter \\#1 \\$author of method App\\\\Entity\\\\Post\\:\\:setAuthor\\(\\) expects App\\\\Entity\\\\User, object\\|null given\\.$#"
+			message: "#^Parameter \\#1 \\$author of method App\\\\Entity\\\\Post\\:\\:setAuthor\\(\\) expects App\\\\Entity\\\\User, Symfony\\\\Component\\\\Security\\\\Core\\\\User\\\\UserInterface\\|null given\\.$#"
 			count: 1
 			path: src/Controller/Admin/BlogController.php
 
@@ -146,7 +86,7 @@ parameters:
 			path: src/Controller/BlogController.php
 
 		-
-			message: "#^Parameter \\#1 \\$author of method App\\\\Entity\\\\Comment\\:\\:setAuthor\\(\\) expects App\\\\Entity\\\\User, object\\|null given\\.$#"
+			message: "#^Parameter \\#1 \\$author of method App\\\\Entity\\\\Comment\\:\\:setAuthor\\(\\) expects App\\\\Entity\\\\User, Symfony\\\\Component\\\\Security\\\\Core\\\\User\\\\UserInterface\\|null given\\.$#"
 			count: 1
 			path: src/Controller/BlogController.php
 
@@ -166,12 +106,12 @@ parameters:
 			path: src/Controller/BlogController.php
 
 		-
-			message: "#^Cannot call method setPassword\\(\\) on object\\|null\\.$#"
+			message: "#^Cannot call method setPassword\\(\\) on Symfony\\\\Component\\\\Security\\\\Core\\\\User\\\\UserInterface\\|null\\.$#"
 			count: 1
 			path: src/Controller/UserController.php
 
 		-
-			message: "#^Parameter \\#1 \\$user of method Symfony\\\\Component\\\\PasswordHasher\\\\Hasher\\\\UserPasswordHasherInterface\\:\\:hashPassword\\(\\) expects Symfony\\\\Component\\\\Security\\\\Core\\\\User\\\\PasswordAuthenticatedUserInterface, object\\|null given\\.$#"
+			message: "#^Parameter \\#1 \\$user of method Symfony\\\\Component\\\\PasswordHasher\\\\Hasher\\\\UserPasswordHasherInterface\\:\\:hashPassword\\(\\) expects Symfony\\\\Component\\\\Security\\\\Core\\\\User\\\\PasswordAuthenticatedUserInterface, Symfony\\\\Component\\\\Security\\\\Core\\\\User\\\\UserInterface\\|null given\\.$#"
 			count: 1
 			path: src/Controller/UserController.php
 
@@ -211,21 +151,6 @@ parameters:
 			path: src/DataFixtures/AppFixtures.php
 
 		-
-			message: "#^Property App\\\\DataFixtures\\\\AppFixtures\\:\\:\\$passwordHasher has no type specified\\.$#"
-			count: 1
-			path: src/DataFixtures/AppFixtures.php
-
-		-
-			message: "#^Property App\\\\DataFixtures\\\\AppFixtures\\:\\:\\$slugger has no type specified\\.$#"
-			count: 1
-			path: src/DataFixtures/AppFixtures.php
-
-		-
-			message: "#^Property App\\\\Entity\\\\Comment\\:\\:\\$id is never written, only read\\.$#"
-			count: 1
-			path: src/Entity/Comment.php
-
-		-
 			message: "#^Method App\\\\Entity\\\\Post\\:\\:getComments\\(\\) return type with generic interface Doctrine\\\\Common\\\\Collections\\\\Collection does not specify its types\\: TKey, T$#"
 			count: 1
 			path: src/Entity/Post.php
@@ -241,32 +166,17 @@ parameters:
 			path: src/Entity/Post.php
 
 		-
-			message: "#^Property App\\\\Entity\\\\Post\\:\\:\\$content \\(string\\) does not accept string\\|null\\.$#"
-			count: 1
-			path: src/Entity/Post.php
-
-		-
-			message: "#^Property App\\\\Entity\\\\Post\\:\\:\\$id is never written, only read\\.$#"
-			count: 1
-			path: src/Entity/Post.php
-
-		-
-			message: "#^Property App\\\\Entity\\\\Post\\:\\:\\$summary \\(string\\) does not accept string\\|null\\.$#"
-			count: 1
-			path: src/Entity/Post.php
-
-		-
 			message: "#^Property App\\\\Entity\\\\Post\\:\\:\\$tags with generic interface Doctrine\\\\Common\\\\Collections\\\\Collection does not specify its types\\: TKey, T$#"
 			count: 1
 			path: src/Entity/Post.php
 
 		-
-			message: "#^Property App\\\\Entity\\\\Post\\:\\:\\$title \\(string\\) does not accept string\\|null\\.$#"
+			message: "#^Method App\\\\Entity\\\\Tag\\:\\:__toString\\(\\) should return string but returns string\\|null\\.$#"
 			count: 1
-			path: src/Entity/Post.php
+			path: src/Entity/Tag.php
 
 		-
-			message: "#^Property App\\\\Entity\\\\Tag\\:\\:\\$id is never written, only read\\.$#"
+			message: "#^Method App\\\\Entity\\\\Tag\\:\\:jsonSerialize\\(\\) should return string but returns string\\|null\\.$#"
 			count: 1
 			path: src/Entity/Tag.php
 
@@ -281,6 +191,11 @@ parameters:
 			path: src/Entity/User.php
 
 		-
+			message: "#^Method App\\\\Entity\\\\User\\:\\:getUserIdentifier\\(\\) should return string but returns string\\|null\\.$#"
+			count: 1
+			path: src/Entity/User.php
+
+		-
 			message: "#^Method App\\\\Entity\\\\User\\:\\:setRoles\\(\\) has parameter \\$roles with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Entity/User.php
@@ -291,17 +206,7 @@ parameters:
 			path: src/Entity/User.php
 
 		-
-			message: "#^Property App\\\\Event\\\\CommentCreatedEvent\\:\\:\\$comment has no type specified\\.$#"
-			count: 1
-			path: src/Event/CommentCreatedEvent.php
-
-		-
-			message: "#^Method App\\\\EventSubscriber\\\\CheckRequirementsSubscriber\\:\\:getSubscribedEvents\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/EventSubscriber/CheckRequirementsSubscriber.php
-
-		-
-			message: "#^Property App\\\\EventSubscriber\\\\CheckRequirementsSubscriber\\:\\:\\$entityManager has no type specified\\.$#"
+			message: "#^Ternary operator condition is always true\\.$#"
 			count: 1
 			path: src/EventSubscriber/CheckRequirementsSubscriber.php
 
@@ -326,74 +231,14 @@ parameters:
 			path: src/EventSubscriber/CommentNotificationSubscriber.php
 
 		-
-			message: "#^Method App\\\\EventSubscriber\\\\CommentNotificationSubscriber\\:\\:getSubscribedEvents\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/EventSubscriber/CommentNotificationSubscriber.php
-
-		-
 			message: "#^Parameter \\#1 \\.\\.\\.\\$addresses of method Symfony\\\\Component\\\\Mime\\\\Email\\:\\:to\\(\\) expects string\\|Symfony\\\\Component\\\\Mime\\\\Address, string\\|null given\\.$#"
 			count: 1
 			path: src/EventSubscriber/CommentNotificationSubscriber.php
 
 		-
-			message: "#^Property App\\\\EventSubscriber\\\\CommentNotificationSubscriber\\:\\:\\$mailer has no type specified\\.$#"
-			count: 1
-			path: src/EventSubscriber/CommentNotificationSubscriber.php
-
-		-
-			message: "#^Property App\\\\EventSubscriber\\\\CommentNotificationSubscriber\\:\\:\\$sender has no type specified\\.$#"
-			count: 1
-			path: src/EventSubscriber/CommentNotificationSubscriber.php
-
-		-
-			message: "#^Property App\\\\EventSubscriber\\\\CommentNotificationSubscriber\\:\\:\\$translator has no type specified\\.$#"
-			count: 1
-			path: src/EventSubscriber/CommentNotificationSubscriber.php
-
-		-
-			message: "#^Property App\\\\EventSubscriber\\\\CommentNotificationSubscriber\\:\\:\\$urlGenerator has no type specified\\.$#"
-			count: 1
-			path: src/EventSubscriber/CommentNotificationSubscriber.php
-
-		-
-			message: "#^Method App\\\\EventSubscriber\\\\ControllerSubscriber\\:\\:getSubscribedEvents\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/EventSubscriber/ControllerSubscriber.php
-
-		-
-			message: "#^Property App\\\\EventSubscriber\\\\ControllerSubscriber\\:\\:\\$twigExtension has no type specified\\.$#"
-			count: 1
-			path: src/EventSubscriber/ControllerSubscriber.php
-
-		-
-			message: "#^Method App\\\\EventSubscriber\\\\RedirectToPreferredLocaleSubscriber\\:\\:getSubscribedEvents\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Property App\\\\EventSubscriber\\\\RedirectToPreferredLocaleSubscriber\\:\\:\\$locales type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/EventSubscriber/RedirectToPreferredLocaleSubscriber.php
-
-		-
-			message: "#^Property App\\\\EventSubscriber\\\\RedirectToPreferredLocaleSubscriber\\:\\:\\$defaultLocale has no type specified\\.$#"
-			count: 1
-			path: src/EventSubscriber/RedirectToPreferredLocaleSubscriber.php
-
-		-
-			message: "#^Property App\\\\EventSubscriber\\\\RedirectToPreferredLocaleSubscriber\\:\\:\\$locales has no type specified\\.$#"
-			count: 1
-			path: src/EventSubscriber/RedirectToPreferredLocaleSubscriber.php
-
-		-
-			message: "#^Property App\\\\EventSubscriber\\\\RedirectToPreferredLocaleSubscriber\\:\\:\\$urlGenerator has no type specified\\.$#"
-			count: 1
-			path: src/EventSubscriber/RedirectToPreferredLocaleSubscriber.php
-
-		-
-			message: "#^Method App\\\\Form\\\\CommentType\\:\\:buildForm\\(\\) has parameter \\$builder with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormBuilderInterface\\.$#"
-			count: 1
-			path: src/Form/CommentType.php
-
-		-
-			message: "#^Method App\\\\Form\\\\CommentType\\:\\:buildForm\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Form/CommentType.php
 
 		-
 			message: "#^Method App\\\\Form\\\\DataTransformer\\\\TagArrayToStringTransformer\\:\\:reverseTransform\\(\\) return type has no value type specified in iterable type array\\.$#"
@@ -416,89 +261,14 @@ parameters:
 			path: src/Form/DataTransformer/TagArrayToStringTransformer.php
 
 		-
-			message: "#^Parameter \\#2 \\$pieces of function implode expects array, mixed given\\.$#"
+			message: "#^Parameter \\#2 \\$array of function implode expects array\\|null, mixed given\\.$#"
 			count: 1
 			path: src/Form/DataTransformer/TagArrayToStringTransformer.php
 
 		-
-			message: "#^Property App\\\\Form\\\\DataTransformer\\\\TagArrayToStringTransformer\\:\\:\\$tags has no type specified\\.$#"
-			count: 1
-			path: src/Form/DataTransformer/TagArrayToStringTransformer.php
-
-		-
-			message: "#^Method App\\\\Form\\\\PostType\\:\\:buildForm\\(\\) has parameter \\$builder with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormBuilderInterface\\.$#"
-			count: 1
-			path: src/Form/PostType.php
-
-		-
-			message: "#^Method App\\\\Form\\\\PostType\\:\\:buildForm\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Form/PostType.php
-
-		-
-			message: "#^Property App\\\\Form\\\\PostType\\:\\:\\$slugger has no type specified\\.$#"
-			count: 1
-			path: src/Form/PostType.php
-
-		-
-			message: "#^Method App\\\\Form\\\\Type\\\\ChangePasswordType\\:\\:buildForm\\(\\) has parameter \\$builder with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormBuilderInterface\\.$#"
-			count: 1
-			path: src/Form/Type/ChangePasswordType.php
-
-		-
-			message: "#^Method App\\\\Form\\\\Type\\\\ChangePasswordType\\:\\:buildForm\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Form/Type/ChangePasswordType.php
-
-		-
-			message: "#^Method App\\\\Form\\\\Type\\\\DateTimePickerType\\:\\:buildView\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			message: "#^Parameter \\#1 \\$format of method App\\\\Utils\\\\MomentFormatConverter\\:\\:convert\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Form/Type/DateTimePickerType.php
-
-		-
-			message: "#^Method App\\\\Form\\\\Type\\\\DateTimePickerType\\:\\:buildView\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Form/Type/DateTimePickerType.php
-
-		-
-			message: "#^Property App\\\\Form\\\\Type\\\\DateTimePickerType\\:\\:\\$formatConverter has no type specified\\.$#"
-			count: 1
-			path: src/Form/Type/DateTimePickerType.php
-
-		-
-			message: "#^Method App\\\\Form\\\\Type\\\\TagsInputType\\:\\:buildForm\\(\\) has parameter \\$builder with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormBuilderInterface\\.$#"
-			count: 1
-			path: src/Form/Type/TagsInputType.php
-
-		-
-			message: "#^Method App\\\\Form\\\\Type\\\\TagsInputType\\:\\:buildForm\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Form/Type/TagsInputType.php
-
-		-
-			message: "#^Method App\\\\Form\\\\Type\\\\TagsInputType\\:\\:buildView\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
-			count: 1
-			path: src/Form/Type/TagsInputType.php
-
-		-
-			message: "#^Method App\\\\Form\\\\Type\\\\TagsInputType\\:\\:buildView\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Form/Type/TagsInputType.php
-
-		-
-			message: "#^Property App\\\\Form\\\\Type\\\\TagsInputType\\:\\:\\$tags has no type specified\\.$#"
-			count: 1
-			path: src/Form/Type/TagsInputType.php
-
-		-
-			message: "#^Method App\\\\Form\\\\UserType\\:\\:buildForm\\(\\) has parameter \\$builder with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormBuilderInterface\\.$#"
-			count: 1
-			path: src/Form/UserType.php
-
-		-
-			message: "#^Method App\\\\Form\\\\UserType\\:\\:buildForm\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Form/UserType.php
 
 		-
 			message: "#^Method App\\\\Pagination\\\\Paginator\\:\\:getResults\\(\\) return type has no value type specified in iterable type Traversable\\.$#"
@@ -506,27 +276,12 @@ parameters:
 			path: src/Pagination/Paginator.php
 
 		-
-			message: "#^Property App\\\\Pagination\\\\Paginator\\:\\:\\$currentPage has no type specified\\.$#"
-			count: 1
+			message: "#^Parameter \\#1 \\$value of function count expects array\\|Countable, mixed given\\.$#"
+			count: 2
 			path: src/Pagination/Paginator.php
 
 		-
-			message: "#^Property App\\\\Pagination\\\\Paginator\\:\\:\\$numResults has no type specified\\.$#"
-			count: 1
-			path: src/Pagination/Paginator.php
-
-		-
-			message: "#^Property App\\\\Pagination\\\\Paginator\\:\\:\\$pageSize has no type specified\\.$#"
-			count: 1
-			path: src/Pagination/Paginator.php
-
-		-
-			message: "#^Property App\\\\Pagination\\\\Paginator\\:\\:\\$queryBuilder has no type specified\\.$#"
-			count: 1
-			path: src/Pagination/Paginator.php
-
-		-
-			message: "#^Property App\\\\Pagination\\\\Paginator\\:\\:\\$results has no type specified\\.$#"
+			message: "#^Property App\\\\Pagination\\\\Paginator\\:\\:\\$results type has no value type specified in iterable type Traversable\\.$#"
 			count: 1
 			path: src/Pagination/Paginator.php
 
@@ -556,17 +311,22 @@ parameters:
 			path: src/Repository/UserRepository.php
 
 		-
+			message: "#^Method App\\\\Security\\\\PostVoter\\:\\:supports\\(\\) has parameter \\$subject with no type specified\\.$#"
+			count: 1
+			path: src/Security/PostVoter.php
+
+		-
 			message: "#^Method App\\\\Twig\\\\AppExtension\\:\\:getLocales\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Twig/AppExtension.php
 
 		-
-			message: "#^Property App\\\\Twig\\\\AppExtension\\:\\:\\$localeCodes has no type specified\\.$#"
+			message: "#^Property App\\\\Twig\\\\AppExtension\\:\\:\\$localeCodes type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Twig/AppExtension.php
 
 		-
-			message: "#^Property App\\\\Twig\\\\AppExtension\\:\\:\\$locales has no type specified\\.$#"
+			message: "#^Property App\\\\Twig\\\\AppExtension\\:\\:\\$locales type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Twig/AppExtension.php
 
@@ -586,6 +346,11 @@ parameters:
 			path: src/Twig/SourceCodeExtension.php
 
 		-
+			message: "#^Parameter \\#1 \\$array of function array_slice expects array, array\\<int, string\\>\\|false given\\.$#"
+			count: 1
+			path: src/Twig/SourceCodeExtension.php
+
+		-
 			message: "#^Parameter \\#1 \\$filename of function file expects string, string\\|false given\\.$#"
 			count: 1
 			path: src/Twig/SourceCodeExtension.php
@@ -596,19 +361,9 @@ parameters:
 			path: src/Twig/SourceCodeExtension.php
 
 		-
-			message: "#^Parameter \\#1 \\$input of function array_slice expects array, array\\<int, string\\>\\|false given\\.$#"
-			count: 1
-			path: src/Twig/SourceCodeExtension.php
-
-		-
 			message: "#^Property App\\\\Twig\\\\SourceCodeExtension\\:\\:\\$controller has no type specified\\.$#"
 			count: 1
 			path: src/Twig/SourceCodeExtension.php
-
-		-
-			message: "#^Property App\\\\Utils\\\\MomentFormatConverter\\:\\:\\$formatConvertRules type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Utils/MomentFormatConverter.php
 
 		-
 			message: "#^Cannot call method setApplication\\(\\) on object\\|null\\.$#"
@@ -681,7 +436,7 @@ parameters:
 			path: tests/Controller/Admin/BlogControllerTest.php
 
 		-
-			message: "#^Parameter \\#2 \\$multiplier of function str_repeat expects int, float given\\.$#"
+			message: "#^Parameter \\#2 \\$times of function str_repeat expects int, float given\\.$#"
 			count: 1
 			path: tests/Controller/Admin/BlogControllerTest.php
 
@@ -764,3 +519,4 @@ parameters:
 			message: "#^Property App\\\\Tests\\\\Utils\\\\ValidatorTest\\:\\:\\$validator has no type specified\\.$#"
 			count: 1
 			path: tests/Utils/ValidatorTest.php
+
