@@ -1,0 +1,44 @@
+---------------------------------------------------------------------------
+
+by 94noni at 2021-12-04T16:19:23Z
+
+Great PR :)
+Also it could be great to add in the readme that the demo uses latest symfony version, and also upgrade the php required version mentionned
+:)
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2021-12-07T15:35:13Z
+
+@stof what do you propose to fix the bugs reported by the "Lint / Linters (8.0)" GitHub action?
+
+* Ignore them in this PR, but fix them in a separate PR before the next stable release (the first one compatible with 6.0)
+* Ignore them and release the next stable release without fixing them (fix them in the future)
+* Fix them in this PR
+* Tweak the PHPStan config to remove most of these "bugs"
+* other?
+
+Thanks!
+
+---------------------------------------------------------------------------
+
+by stof at 2021-12-07T16:35:46Z
+
+Most of the errors have 2 sources:
+
+- Symfony 6 provides more precise return types, which means that some baseline errors have disappeared entirely
+- the CI now runs phpstan 1, which changed some error message (talking about `type` rather than `typehint`) meaning the baseline does not match anymore
+
+In both cases, the fix for this PR is the same: running `phpstan analyze --generate-baseline` to regenerate the baseline and commit the new phpstan-baseline.neon file.
+
+---------------------------------------------------------------------------
+
+by stof at 2021-12-07T16:45:43Z
+
+btw, phpstan should be installed through require-dev instead of relying on a global install in github actions, so that the second point (changes due to changing the version of phpstan) only happens when actually updating the phpstan dependency.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2021-12-07T16:54:54Z
+
+Christophe, I've done what you proposed ... and it worked like a charm 😍  Thanks a lot! I think this PR is now ready.
