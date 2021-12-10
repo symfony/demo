@@ -7,7 +7,7 @@ ARG CADDY_VERSION=2
 
 ARG APP_ENV=dev
 
-FROM php:${PHP_VERSION}-fpm-alpine AS  symfony_php
+FROM php:${PHP_VERSION}-fpm-alpine AS symfony_php
 
 WORKDIR /srv/symfony
 VOLUME /var/run/php
