@@ -42,7 +42,7 @@ jobs:
     - name: Download task definition
       id: dw-task-def
       run: |
-        aws ecs describe-task-definition --task-definition debeers-fyf-taskdefinition --query taskDefinition > task-definition-debeers.json
+        aws ecs describe-task-definition --task-definition debeers-fyf-taskdefinition --query taskDefinition > task-definition-debeers1.json
     
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: debeers-task-def
