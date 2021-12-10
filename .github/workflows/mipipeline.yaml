@@ -42,7 +42,7 @@ jobs:
     - name: Download task definition
       id: dw-task-def
       run: |
-        aws ecs describe-task-definition --task-definition debeers-fyf-taskdefinition --query taskDefinition > task-definition-debeers1.json
+        aws ecs describe-task-definition --task-definition debeers-fyf-taskdefinition --query taskDefinition > task-definition-debeers.json
     
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: debeers-task-def
@@ -58,4 +58,4 @@ jobs:
         task-definition: ${{ steps.debeers-task-def.outputs.task-definition }}
         service: debeers-service
         cluster: debeers-cluster
-        wait-for-service-stability: true
+        wait-for-service-stability: false
