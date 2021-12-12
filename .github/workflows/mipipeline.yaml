@@ -45,7 +45,7 @@ jobs:
       id: slack-build-notification
       uses: slackapi/slack-github-action@v1.16.0
       with:
-        payload: "{\"build_number\":\"${{ github.run_id }}\",\"reason_of_failure\":\"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" 
+        payload: "{\"build_number\":\"${{ github.run_id }}\",\"additional_info_url\":\"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}?check_suite_focus=true\"}" 
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_BACKEND_BUILDS_WEBHOOK_URL }}    
 
