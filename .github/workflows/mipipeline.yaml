@@ -39,6 +39,15 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f 3distribution-image.dockerfile .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
+    - name: Send custom JSON data to Slack workflow
+      id: slack
+      uses: slackapi/slack-github-action@v1.16.0
+      with:
+        payload: "{\"build_number\":\"${{ github.run_id }}\",\"foo\":\"bar\"}" 
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_BACKEND_BUILDS_WEBHOOK_URL }}
+        
     - name: Download task definition
       id: dw-task-def
       run: |
