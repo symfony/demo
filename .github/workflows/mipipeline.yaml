@@ -42,7 +42,7 @@ jobs:
 
     - name: Send status to Slack workflow
       if: ${{ failure() }}
-      id: slack
+      id: slack-build-notification
       uses: slackapi/slack-github-action@v1.16.0
       with:
         payload: "{\"build_number\":\"${{ github.run_id }}\",\"reason_of_failure\":\"${{join(steps.debeers-build-image.outputs.*, '\n')}}\"}" 
@@ -56,7 +56,7 @@ jobs:
     
     - name: Send status to Slack workflow
       if: ${{ failure() }}
-      id: slack
+      id: slack-taskdefinition-notification
       uses: slackapi/slack-github-action@v1.16.0
       with:
         payload: "{\"build_number\":\"${{ github.run_id }}\",\"reason_of_failure\":\"esto es otro\"}" 
