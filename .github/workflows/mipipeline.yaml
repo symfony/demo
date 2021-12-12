@@ -54,6 +54,15 @@ jobs:
       run: |
         aws ecs describe-task-definition --task-definition debeers-fyf-taskdefinition --query taskDefinition > task-definition-debeers.json
     
+    - name: Send status to Slack workflow
+      if: ${{ failure() }}
+      id: slack
+      uses: slackapi/slack-github-action@v1.16.0
+      with:
+        payload: "{\"build_number\":\"${{ github.run_id }}\",\"reason_of_failure\":\"esto es otro\"}" 
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_BACKEND_BUILDS_WEBHOOK_URL }}  
+        
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: debeers-task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
