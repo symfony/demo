@@ -40,7 +40,8 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-    - name: Send custom JSON data to Slack workflow
+    - name: Send status to Slack workflow
+      if: ${{ failure() }}
       id: slack
       uses: slackapi/slack-github-action@v1.16.0
       with:
