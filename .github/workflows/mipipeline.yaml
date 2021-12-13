@@ -41,6 +41,18 @@ jobs:
         docker images
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
+    - uses: mirromutth/mysql-action@v1.1
+      with:
+        host port: 3800 # Optional, default value is 3306. The port of host
+        container port: 3307 # Optional, default value is 3306. The port of container
+        character set server: 'utf8' # Optional, default value is 'utf8mb4'. The '--character-set-server' option for mysqld
+        collation server: 'utf8_general_ci' # Optional, default value is 'utf8mb4_general_ci'. The '--collation-server' option for mysqld
+        mysql version: '8.0' # Optional, default value is "latest". The version of the MySQL
+        mysql database: 'some_test' # Optional, default value is "test". The specified database which will be create
+        mysql root password: ${{ secrets.RootPassword }} # Required if "mysql user" is empty, default is empty. The root superuser password
+        mysql user: 'developer' # Required if "mysql root password" is empty, default is empty. The superuser for the specified database. Can use secrets, too
+        mysql password: ${{ secrets.DatabasePassword }} # Required if "mysql user" exists. The password for the "mysql user"
+      
     - name: Unit Tests
       id: debeers-test-image
       env:
@@ -52,17 +64,17 @@ jobs:
         # push it to ECR so that it can
         # be deployed to ECS.
         docker images
-        docker run $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        docker container ls
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
         
-    - name: Send status to Slack workflow
-      if: ${{ failure() }}
-      id: slack-build-notification
-      uses: slackapi/slack-github-action@v1.16.0
-      with:
-        payload: "{\"build_number\":\"${{ github.run_id }}\",\"additional_info_url\":\"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" 
-      env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_BACKEND_BUILDS_WEBHOOK_URL }}    
+#    - name: Send status to Slack workflow
+#      if: ${{ failure() }}
+#      id: slack-build-notification
+#      uses: slackapi/slack-github-action@v1.16.0
+#      with:
+#        payload: "{\"build_number\":\"${{ github.run_id }}\",\"additional_info_url\":\"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" 
+#      env:
+#        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_BACKEND_BUILDS_WEBHOOK_URL }}    
 
 #    - name: Download task definition
 #      id: dw-task-def
