@@ -47,7 +47,7 @@ jobs:
         # Build a docker container and
         # push it to ECR so that it can
         # be deployed to ECS.
-        docker run -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        docker run -t ${{ steps.debeers-build-image.ECR_REGISTRY }}/${{ steps.debeers-build-image.ECR_REPOSITORY }}:${{ steps.debeers-build-image.IMAGE_TAG }}
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
         
     - name: Send status to Slack workflow
