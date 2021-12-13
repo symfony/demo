@@ -38,6 +38,7 @@ jobs:
         docker build -t fyfsystemimage:latest -f 3system-image.dockerfile .
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f 8distribution-image.dockerfile .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        docker images
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
     - name: Send status to Slack workflow
@@ -49,24 +50,23 @@ jobs:
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_BACKEND_BUILDS_WEBHOOK_URL }}    
 
-    - name: Download task definition
-      id: dw-task-def
-      run: |
-        aws ecs describe-task-definition --task-definition debeers-fyf-taskdefinition --query taskDefinition > task-definition-debeers.json
-    
+#    - name: Download task definition
+#      id: dw-task-def
+#      run: |
+#        aws ecs describe-task-definition --task-definition debeers-fyf-taskdefinition --query taskDefinition > task-definition-debeers.json    
         
-    - name: Fill in the new image ID in the Amazon ECS task definition
-      id: debeers-task-def
-      uses: aws-actions/amazon-ecs-render-task-definition@v1
-      with:
-        task-definition: task-definition-debeers.json
-        container-name: debeers-fyf-web-app
-        image: ${{ steps.debeers-build-image.outputs.image }}
+#    - name: Fill in the new image ID in the Amazon ECS task definition
+#      id: debeers-task-def
+#      uses: aws-actions/amazon-ecs-render-task-definition@v1
+#      with:
+#        task-definition: task-definition-debeers.json
+#        container-name: debeers-fyf-web-app
+#        image: ${{ steps.debeers-build-image.outputs.image }}
 
-    - name: Deploy Amazon ECS task definition
-      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-      with:
-        task-definition: ${{ steps.debeers-task-def.outputs.task-definition }}
-        service: debeers-service
-        cluster: debeers-cluster
-        wait-for-service-stability: false
+#    - name: Deploy Amazon ECS task definition
+#      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+#      with:
+#       task-definition: ${{ steps.debeers-task-def.outputs.task-definition }}
+#        service: debeers-service
+#        cluster: debeers-cluster
+#        wait-for-service-stability: false
