@@ -41,6 +41,15 @@ jobs:
         docker images
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
+    - name: Unit Tests
+      id: debeers-test-image
+      run: |
+        # Build a docker container and
+        # push it to ECR so that it can
+        # be deployed to ECS.
+        docker run -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+        
     - name: Send status to Slack workflow
       if: ${{ failure() }}
       id: slack-build-notification
