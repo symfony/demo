@@ -37,8 +37,8 @@ jobs:
         # be deployed to ECS.
         docker build -t fyfsystemimage:latest -f 3system-image.dockerfile .
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f 3distribution-image.dockerfile .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        docker images
+        ls -l
+        docker run --env-file .env.test2 $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
     
     - name: Unit Tests
