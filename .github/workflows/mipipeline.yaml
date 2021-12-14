@@ -40,19 +40,7 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         docker images
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-
-    - uses: mirromutth/mysql-action@v1.1
-      with:
-        host port: 3306 
-        container port: 3306
-        character set server: 'utf8' # Optional, default value is 'utf8mb4'. The '--character-set-server' option for mysqld
-        collation server: 'utf8_general_ci' # Optional, default value is 'utf8mb4_general_ci'. The '--collation-server' option for mysqld
-        mysql version: '5.7' 
-        mysql database: 'uat_fyf' 
-        mysql root password: 'symfony' 
-        mysql user: 'appuser' 
-        mysql password: 'symfony' 
-      
+    
     - name: Unit Tests
       id: debeers-test-image
       env:
@@ -67,9 +55,22 @@ jobs:
         docker images
         echo "vienen contenedores"
         docker container ls
-        echo "viene localhost"
-        ping localhost
+        echo "viene hello world"
+        docker run hello-world
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+        
+#    - uses: mirromutth/mysql-action@v1.1
+#      with:
+#        host port: 3306 
+#        container port: 3306
+#        character set server: 'utf8' # Optional, default value is 'utf8mb4'. The '--character-set-server' option for mysqld
+#        collation server: 'utf8_general_ci' # Optional, default value is 'utf8mb4_general_ci'. The '--collation-server' option for mysqld
+#        mysql version: '5.7' 
+#        mysql database: 'uat_fyf' 
+#        mysql root password: 'symfony' 
+#        mysql user: 'appuser' 
+#        mysql password: 'symfony' 
+    
         
 #    - name: Send status to Slack workflow
 #      if: ${{ failure() }}
