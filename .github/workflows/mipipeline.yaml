@@ -32,7 +32,9 @@ jobs:
         chmod +x phpunit
         echo "voy"
         pwd && ls -la
-        sh phpunit --version
+        echo "al folder phpunit"
+        ls -la phpunit
+        ./phpunit --version
         
     - name: Build, tag, and push image to Amazon ECR
       id: debeers-build-image
