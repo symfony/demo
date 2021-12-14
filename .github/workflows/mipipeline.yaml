@@ -28,12 +28,12 @@ jobs:
     - name: Unit tests Before
       id: unit-test-before
       run: |
-        wget -O phpunit https://phar.phpunit.de/phpunit-7.phar
+        wget -O phpunitf https://phar.phpunit.de/phpunit-7.phar
         chmod +x phpunit
         echo "voy"
         pwd && ls -la
         echo "al folder phpunit"
-        ls -la phpunit
+        ls -la phpunitf
         ./phpunit --version
         
     - name: Build, tag, and push image to Amazon ECR
