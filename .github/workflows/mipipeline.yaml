@@ -28,11 +28,12 @@ jobs:
     - name: Unit tests Before
       id: unit-test-before
       run: |
-        wget -O phpunit https://phar.phpunit.de/phpunit-7.phar
+        wget -O https://phar.phpunit.de/phpunit-7.phar
+        mv phpunit-7.phar /usr/local/bin
         chmod +x phpunit
         echo "voy"
         pwd && ls -la
-        ./phpunit --version
+        sh phpunit --version
         
     - name: Build, tag, and push image to Amazon ECR
       id: debeers-build-image
