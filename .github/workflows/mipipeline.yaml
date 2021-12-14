@@ -29,7 +29,7 @@ jobs:
       id: unit-test-before
       run: |
         wget -O phpunitf https://phar.phpunit.de/phpunit-7.phar
-        chmod +x phpunit
+        chmod +x phpunitf
         echo "voy"
         pwd && ls -la
         echo "al folder phpunit"
