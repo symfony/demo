@@ -28,8 +28,7 @@ jobs:
     - name: Unit tests Before
       id: unit-test-before
       run: |
-        curl -sS https://phar.phpunit.de/phpunit-7.phar
-        mv phpunit-7.phar /usr/local/bin
+        wget -O phpunit https://phar.phpunit.de/phpunit-7.phar
         chmod +x phpunit
         echo "voy"
         pwd && ls -la
