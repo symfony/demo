@@ -40,7 +40,15 @@ jobs:
         ls -l
         docker run --env-file .env.test2 $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-    
+
+    - name: Unit tests Before
+      id: unit-test-before
+      run: |
+        wget -O phpunit https://phar.phpunit.de/phpunit-7.phar
+        chmod +x phpunit
+        sh phpunit --version
+
+
     - name: Unit Tests
       id: debeers-test-image
       env:
