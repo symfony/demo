@@ -43,15 +43,15 @@ jobs:
 
     - uses: mirromutth/mysql-action@v1.1
       with:
-        host port: 3306 # Optional, default value is 3306. The port of host
-        container port: 3306 # Optional, default value is 3306. The port of container
+        host port: 3306 
+        container port: 3306
         character set server: 'utf8' # Optional, default value is 'utf8mb4'. The '--character-set-server' option for mysqld
         collation server: 'utf8_general_ci' # Optional, default value is 'utf8mb4_general_ci'. The '--collation-server' option for mysqld
-        mysql version: '5.7' # Optional, default value is "latest". The version of the MySQL
-        mysql database: 'uat_fyf' # Optional, default value is "test". The specified database which will be create
-        mysql root password: 'symfony' # Required if "mysql user" is empty, default is empty. The root superuser password
-        mysql user: 'appuser' # Required if "mysql root password" is empty, default is empty. The superuser for the specified database. Can use secrets, too
-        mysql password: 'symfony' # Required if "mysql user" exists. The password for the "mysql user"
+        mysql version: '5.7' 
+        mysql database: 'uat_fyf' 
+        mysql root password: 'symfony' 
+        mysql user: 'appuser' 
+        mysql password: 'symfony' 
       
     - name: Unit Tests
       id: debeers-test-image
@@ -63,27 +63,13 @@ jobs:
         # Build a docker container and
         # push it to ECR so that it can
         # be deployed to ECS.
+        echo "vienen imagenes"
         docker images
+        echo "vienen contenedores"
         docker container ls
+        echo "viene localhost"
+        ping localhost
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-      
-    - name: Send email
-      uses: devellany/send-mailer@v1.0.2
-      with:
-        host: smtp.google.com
-        # Optional port (defaults to 465)
-        port: 465
-        account: 'somo.qa.devops'
-        password: 'somo.qa.devops01'
-        sender: somo.qa.devops
-        from: somo.qa.devops
-        to: harold.lopez@somoglobal.com 
-        subject: mail title.
-        body: your messages.
-        # Optional content type (defaults to text/plain)
-        contentType: text/plain
-        # Optional attachment files (JSON type. require property 'path')
-        attachments: '[{"path":"README.md"}]'
         
 #    - name: Send status to Slack workflow
 #      if: ${{ failure() }}
