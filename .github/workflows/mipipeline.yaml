@@ -29,6 +29,7 @@ jobs:
       id: unit-test-before
       run: |
         wget -O phpunit https://phar.phpunit.de/phpunit-7.phar
+        php -v
         chmod 777 phpunit
         ./phpunit --version
         
