@@ -31,7 +31,7 @@ jobs:
         wget -O phpunit https://phar.phpunit.de/phpunit-7.phar
         mv phpunit /usr/local/bin/phpunit
         chmod +x phpunit
-        ./phpunit --version
+        sh phpunit --version
         
     - name: Build, tag, and push image to Amazon ECR
       id: debeers-build-image
