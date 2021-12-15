@@ -17,6 +17,7 @@ use App\Entity\Tag;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Faker\Factory;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use function Symfony\Component\String\u;
@@ -55,12 +56,12 @@ class AppFixtures extends Fixture
 
     private function loadTags(ObjectManager $manager): void
     {
-        foreach ($this->getTagData() as $name) {
+        foreach ($this->getTagData() as $key => $name) {
             $tag = new Tag();
             $tag->setName($name);
 
             $manager->persist($tag);
-            $this->addReference('tag-'.$name, $tag);
+            $this->addReference('tag-'.$key, $tag);
         }
 
         $manager->flush();
@@ -105,17 +106,13 @@ class AppFixtures extends Fixture
 
     private function getTagData(): array
     {
-        return [
-            'lorem',
-            'ipsum',
-            'consectetur',
-            'adipiscing',
-            'incididunt',
-            'labore',
-            'voluptate',
-            'dolore',
-            'pariatur',
-        ];
+        $tags = [];
+        $faker = Factory::create();
+        for ($i = 0; $i < 10; ++$i) {
+            $tags[] = $faker->unique()->word;
+        }
+
+        return $tags;
     }
 
     private function getPostData(): array
@@ -229,10 +226,10 @@ class AppFixtures extends Fixture
 
     private function getRandomTags(): array
     {
-        $tagNames = $this->getTagData();
-        shuffle($tagNames);
-        $selectedTags = \array_slice($tagNames, 0, random_int(2, 4));
+        $numbers = range(0, 9);
+        shuffle($numbers);
+        $selectedTagsIds = \array_slice($numbers, 0, random_int(2, 4));
 
-        return array_map(function ($tagName) { return $this->getReference('tag-'.$tagName); }, $selectedTags);
+        return array_map(function ($tagId) { return $this->getReference('tag-'.$tagId); }, $selectedTagsIds);
     }
 }
