@@ -81,6 +81,13 @@ class BlogController extends AbstractController
         // have enabled the DebugBundle. Uncomment the following line to see it in action:
         //
         // dump($post, $this->getUser(), new \DateTime());
+        //
+        // The result will be displayed either in the Symfony Profiler or in the stream output.
+        // See https://symfony.com/doc/current/profiler.html
+        // See https://symfony.com/doc/current/templates.html#the-dump-twig-utilities
+        //
+        // You can also leverage Symfony's 'dd()' function that dump and
+        // stop the execution
 
         return $this->render('blog/post_show.html.twig', ['post' => $post]);
     }
