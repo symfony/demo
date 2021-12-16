@@ -15,6 +15,7 @@ use App\Entity\User;
 use App\Repository\UserRepository;
 use App\Utils\Validator;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\RuntimeException;
 use Symfony\Component\Console\Input\InputArgument;
@@ -37,10 +38,12 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  *
  * @author Oleg Voronkovich <oleg-voronkovich@yandex.ru>
  */
+#[AsCommand(
+    name: 'app:delete-user',
+    description: 'Deletes users from the database'
+)]
 class DeleteUserCommand extends Command
 {
-    protected static $defaultName = 'app:delete-user';
-
     private SymfonyStyle $io;
 
     public function __construct(
@@ -57,7 +60,6 @@ class DeleteUserCommand extends Command
     protected function configure(): void
     {
         $this
-            ->setDescription('Deletes users from the database')
             ->addArgument('username', InputArgument::REQUIRED, 'The username of an existing user')
             ->setHelp(<<<'HELP'
 The <info>%command.name%</info> command deletes users from the database:
