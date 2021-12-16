@@ -10,6 +10,15 @@ if (!is_file(dirname(__DIR__).'/vendor/autoload_runtime.php')) {
 
 require_once dirname(__DIR__).'/vendor/autoload_runtime.php';
 
+/**
+ * This file is a Symfony Front Controller (entrypoint)
+ * for the command-line from a terminal.
+ *
+ * It boots Symfony in a CLI context.
+ * 
+ * See https://symfony.com/doc/current/console.html
+ */
+
 return function (array $context) {
     $kernel = new Kernel($context['APP_ENV'], (bool) $context['APP_DEBUG']);
 
