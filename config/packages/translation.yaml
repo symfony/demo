@@ -1,6 +1,9 @@
+# See https://symfony.com/doc/current/translation.html
 framework:
     default_locale: '%locale%'
     translator:
+        # Translations are defined using the ICU Message Format
+        # See https://symfony.com/doc/current/translation/message_format.html
         default_path: '%kernel.project_dir%/translations'
         fallbacks:
             - '%locale%'
