@@ -10,8 +10,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title>{% block title %}Symfony Demo application{% endblock %}</title>
         <link rel="alternate" type="application/rss+xml" title="{{ 'rss.title'|trans }}" href="{{ path('blog_rss') }}">
+
+        {#
+            Those two blocks defines frontend entrypoint for CSS and JavaScript assets
+            See https://symfony.com/doc/current/frontend.html
+        #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
         {% endblock %}
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -148,10 +156,6 @@
                     </div>
                 </div>
             </footer>
-        {% endblock %}
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
         {% endblock %}
 
         {# it's not mandatory to set the timezone in localizeddate(). This is done to
