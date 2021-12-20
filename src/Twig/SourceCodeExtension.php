@@ -21,7 +21,7 @@ use Twig\TwigFunction;
  * CAUTION: this is an extremely advanced Twig extension. It's used to get the
  * source code of the controller and the template used to render the current
  * page. If you are starting with Symfony, don't look at this code and consider
- * studying instead the code of the src/App/Twig/AppExtension.php extension.
+ * studying instead the code of the src/Twig/AppExtension.php extension.
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
