@@ -13,6 +13,7 @@ namespace App\Command;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -37,11 +38,13 @@ use Symfony\Component\Mime\Email;
  *
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
+#[AsCommand(
+    name: 'app:list-users',
+    description: 'Lists all the existing users',
+    aliases: ['app:users']
+)]
 class ListUsersCommand extends Command
 {
-    // a good practice is to use the 'app:' prefix to group all your custom application commands
-    protected static $defaultName = 'app:list-users';
-
     public function __construct(
         private MailerInterface $mailer,
         private string $emailSender,
@@ -56,7 +59,6 @@ class ListUsersCommand extends Command
     protected function configure(): void
     {
         $this
-            ->setDescription('Lists all the existing users')
             ->setHelp(<<<'HELP'
 The <info>%command.name%</info> command lists all the users registered in the application:
 
