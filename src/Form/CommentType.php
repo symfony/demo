@@ -43,6 +43,7 @@ class CommentType extends AbstractType
         $builder
             ->add('content', TextareaType::class, [
                 'help' => 'help.comment_content',
+                'formaction' => 'foo',
             ])
         ;
     }

@@ -27,10 +27,10 @@ class AppExtension extends AbstractExtension
     private array $localeCodes;
     private ?array $locales = null;
 
+    // The $locales argument is injected thanks to the service container.
+    // See https://symfony.com/doc/current/service_container.html#binding-arguments-by-name-or-type
     public function __construct(string $locales)
     {
-        // The $locales argument is injected thanks to the service container.
-        // See https://symfony.com/doc/current/service_container.html#binding-arguments-by-name-or-type
         $localeCodes = explode('|', $locales);
         sort($localeCodes);
         $this->localeCodes = $localeCodes;
