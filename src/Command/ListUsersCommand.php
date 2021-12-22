@@ -60,21 +60,20 @@ class ListUsersCommand extends Command
     {
         $this
             ->setHelp(<<<'HELP'
-The <info>%command.name%</info> command lists all the users registered in the application:
+                The <info>%command.name%</info> command lists all the users registered in the application:
 
-  <info>php %command.full_name%</info>
+                  <info>php %command.full_name%</info>
 
-By default the command only displays the 50 most recent users. Set the number of
-results to display with the <comment>--max-results</comment> option:
+                By default the command only displays the 50 most recent users. Set the number of
+                results to display with the <comment>--max-results</comment> option:
 
-  <info>php %command.full_name%</info> <comment>--max-results=2000</comment>
+                  <info>php %command.full_name%</info> <comment>--max-results=2000</comment>
 
-In addition to displaying the user list, you can also send this information to
-the email address specified in the <comment>--send-to</comment> option:
+                In addition to displaying the user list, you can also send this information to
+                the email address specified in the <comment>--send-to</comment> option:
 
-  <info>php %command.full_name%</info> <comment>--send-to=fabien@symfony.com</comment>
-
-HELP
+                  <info>php %command.full_name%</info> <comment>--send-to=fabien@symfony.com</comment>
+                HELP
             )
             // commands can optionally define arguments and/or options (mandatory and optional)
             // see https://symfony.com/doc/current/components/console/console_arguments.html
