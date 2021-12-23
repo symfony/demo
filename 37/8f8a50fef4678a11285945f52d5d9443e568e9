@@ -1,0 +1,67 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2021-12-22T16:40:31Z
+
+But if I'm right, and @wouterj could confirm this because he wrote that doc, the MessageFormatter format without `%` is recommended when you use those MessageFormatter files, which we are not using (we still use traditional Symfony translation files).
+
+---------------------------------------------------------------------------
+
+by 94noni at 2021-12-22T16:54:19Z
+
+@javiereguiluz this demo app uses `messages+intl-icu.en.xlf` [doc](https://symfony.com/doc/current/translation/message_format.html)
+
+according to this [doc](https://symfony.com/doc/current/translation/message_format.html#message-placeholders), the placeholder defined [here](https://github.com/symfony/demo/blob/d863b68c6088c8faca4daa0e37e6eb93d7975b9c/translations/messages%2Bintl-icu.en.xlf#L359) should be replaced like the [doc screened here](https://github.com/symfony/demo/pull/1298#discussion_r772378558)
+
+perhaps I am missing something but I really think this is legit
+
+---------------------------------------------------------------------------
+
+by wouterj at 2021-12-22T18:51:03Z
+
+Yes, using `%...%` is only recommended without the ICU formatter. However, this package is using the ICU formatter (indicated by the `+intl-icu` suffix in the filename). I would also say that using the ICU formatter is the recommended method for Symfony 5.0+ applications, so it makes sense for the demo application to use these.
+
+However, let's remove `%` from all translation parameter keys in that case, I'm almost certain translator is used more than once? (given the amount of messages in the catalogues).
+
+---------------------------------------------------------------------------
+
+by 94noni at 2021-12-22T19:08:19Z
+
+@wouterj
+
+> I'm almost certain translator is used more than once?
+
+in fact as [written here](https://github.com/symfony/demo/pull/1298#discussion_r772425612), in this demo app php code, this is the only code all others are in twig templates
+
+---------------------------------------------------------------------------
+
+by wouterj at 2021-12-23T15:07:20Z
+
+> in fact as written here, in this demo app php code, this is the only code all others are in twig templates
+
+Let's remove them from the twig templates as well :)
+
+---------------------------------------------------------------------------
+
+by 94noni at 2021-12-23T15:38:22Z
+
+but they are needed in [twig tplts](https://symfony.com/doc/current/translation.html#using-twig-filters) @wouterj
+
+---------------------------------------------------------------------------
+
+by wouterj at 2021-12-23T16:03:11Z
+
+They aren't, the Twig filter indirectly uses `TranslatorInterface::trans()`. Inside this, `trim($key, '%{ }')` is used to trim the remaining percent signs (inside the `IntlFormatter` to be really honest).
+
+So that's mostly a piece of docs that we forgot to update :)
+
+---------------------------------------------------------------------------
+
+by 94noni at 2021-12-23T16:21:55Z
+
+oki I got it, lets remove then :)
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2021-12-23T16:47:39Z
+
+Antoine, thanks a lot for updating all this! And thanks to our lovely reviewers too for their help here 🙏
