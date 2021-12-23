@@ -52,8 +52,8 @@ class CommentNotificationSubscriber implements EventSubscriberInterface
 
         $subject = $this->translator->trans('notification.comment_created');
         $body = $this->translator->trans('notification.comment_created.description', [
-            '%title%' => $post->getTitle(),
-            '%link%' => $linkToPost,
+            'title' => $post->getTitle(),
+            'link' => $linkToPost,
         ]);
 
         // See https://symfony.com/doc/current/mailer.html
