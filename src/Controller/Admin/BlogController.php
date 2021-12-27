@@ -29,8 +29,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * Please note that the application backend is developed manually for learning
  * purposes. However, in your real Symfony application you should use any of the
  * existing bundles that let you generate ready-to-use backends without effort.
- *
- * See https://symfony.com/bundles/EasyAdminBundle/current/index.html
+ * See https://symfony.com/bundles
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>

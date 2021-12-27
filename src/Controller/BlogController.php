@@ -86,8 +86,8 @@ class BlogController extends AbstractController
         // See https://symfony.com/doc/current/profiler.html
         // See https://symfony.com/doc/current/templates.html#the-dump-twig-utilities
         //
-        // You can also leverage Symfony's 'dd()' function that dump and
-        // stop the execution
+        // You can also leverage Symfony's 'dd()' function that dumps and
+        // stops the execution
 
         return $this->render('blog/post_show.html.twig', ['post' => $post]);
     }
