@@ -9,7 +9,6 @@ Requirements
 
   * PHP 8.0.2 or higher;
   * PDO-SQLite PHP extension enabled;
-  * Node.js 16+
   * and the [usual Symfony application requirements][2].
 
 Installation
