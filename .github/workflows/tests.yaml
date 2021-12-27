@@ -25,8 +25,13 @@ jobs:
 
         strategy:
             matrix:
-                operating-system: ['ubuntu-latest', 'windows-latest', 'macos-latest']
-                php-version: ['8.0']
+                operating-system: ['ubuntu-latest']
+                php-version: ['8.0', '8.1']
+                include:
+                    - operating-system: 'macos-latest'
+                      php-version: '8.0'
+                    - operating-system: 'windows-latest'
+                      php-version: '8.0'
 
         steps:
             - name: "Checkout code"
