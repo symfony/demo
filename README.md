@@ -27,6 +27,13 @@ Alternatively, you can use Composer:
 $ composer create-project symfony/symfony-demo my_project
 ```
 
+If you want to test the demo without installing anything locally, you can also
+deploy it on Platform.sh, the official Symfony PaaS:
+
+<p align="center">
+<a href="https://console.platform.sh/projects/create-project?template=https://raw.githubusercontent.com/symfonycorp/platformsh-symfony-template-metadata/main/template-metadata-demo.yaml&utm_content=symfonycorp&utm_source=github&utm_medium=button&utm_campaign=deploy_on_platform"><img src="https://platform.sh/images/deploy/lg-blue.svg" alt="Deploy on Platform.sh" width="180px" /></a>
+</p>
+
 Usage
 -----
 
