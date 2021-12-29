@@ -82,7 +82,6 @@ jobs:
 #        mysql user: 'appuser' 
 #        mysql password: 'symfony' 
     
-        
 #    - name: Send status to Slack workflow
 #      if: ${{ failure() }}
 #      id: slack-build-notification
