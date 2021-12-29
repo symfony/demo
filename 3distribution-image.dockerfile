@@ -11,6 +11,7 @@ RUN apt update && \
       libzip-dev \
       zip \
       zlib1g-dev \
+      apt-utils \
     && docker-php-ext-install intl opcache pdo pdo_mysql \
     && pecl install apcu \
     && docker-php-ext-enable apcu \
