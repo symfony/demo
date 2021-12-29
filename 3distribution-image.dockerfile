@@ -18,4 +18,8 @@ RUN apt update && \
     && docker-php-ext-configure zip \
     && docker-php-ext-install zip
 
+COPY composer.phar /var/www/debeersfyf/
+RUN mv /var/www/debeersfyf/composer.phar /usr/local/bin/composer
+RUN /usr/local/bin/composer | php --install-dir=/usr/local/bin --filename=composer
+
 WORKDIR /var/www/debeersfyf
