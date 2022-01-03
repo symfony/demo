@@ -34,6 +34,16 @@
                             <i class="fa fa-sign-in" aria-hidden="true"></i> {{ 'action.sign_in'|trans }}
                         </button>
                     </fieldset>
+
+                    <!-- by default, modern browsers ask users to store passwords. This behavior is correct in
+                         real sites, but it's nonsensical in this demo project, where storing this password
+                         will result in unneeded security notifications about 'breached passwords'.
+                         Sadly it's not possible to change or disable this browser behavior (even 'autocomplete=off'
+                         doesn't work). That's why we use the trick of adding many password fields to the form
+                         (only one of them is real and the ones below are unused by the application). When a form
+                         includes many password fields, browsers no longer ask to store the password.  -->
+                    <input type="password" id="disable-password-manager-1" style="display: none;" value="stop-password-manager-1"/>
+                    <input type="password" id="disable-password-manager-2" style="display: none;" value="stop-password-manager-2"/>
                 </form>
             </div>
         </div>
