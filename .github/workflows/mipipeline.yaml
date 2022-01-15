@@ -36,8 +36,10 @@ jobs:
         ls -la
         echo "LS PWD"
         ls $PWD
-        echo "LS PWD FYFSHARE"
-        ls $PWD/fyfshare
+        echo "LS FYFSHARE"
+        ls fyfshare
+        echo "LS FYFSHARE/reservations"
+        ls fyfshare/reservations
         ./phpunit --version
         
     - name: Build, tag, and push image to Amazon ECR
