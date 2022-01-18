@@ -14,7 +14,6 @@ jobs:
     steps:
       - name: Install Docker
         id: prepare-docker
-        if: ${{ false }}
         run: |
           # Install Homebrew and docker
           echo "Instalar HomeBrew"     
@@ -43,7 +42,6 @@ jobs:
     
     - name: Install Docker
       id: install-docker
-      if: ${{ false }}
       run: |
         # Install Homebrew and docker
         echo "Instalar HomeBrew"     
