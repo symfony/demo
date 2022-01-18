@@ -26,7 +26,7 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v1
      
     - name: Enable PHP 7.2
-      id: php-7.2
+      id: php-72
       run: |
         # Build a docker container and
         # push it to ECR so that it can
