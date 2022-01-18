@@ -10,21 +10,9 @@ jobs:
 
   build:
 
-    runs-on: macos-latest
+    runs-on: macos-11
 
-    steps:
-    - name: Install Docker
-      id: install-docker
-      if: ${{ false }}
-      run: |
-        # Install Homebrew and docker
-        echo "Instalar HomeBrew"     
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        echo "Instalar Docker"
-        brew cask install docker
-        echo "la version de docker es"
-        docker --version
-    
+    steps:   
     - uses: actions/checkout@v2
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -37,6 +25,18 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
     
+    - name: Install Docker
+      id: install-docker
+      if: ${{ false }}
+      run: |
+        # Install Homebrew and docker
+        echo "Instalar HomeBrew"     
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        echo "Instalar Docker"
+        brew cask install docker
+        echo "la version de docker es"
+        docker --version
+        
     - name: Enable PHP 7.2
       id: php-72
       if: ${{ false }}
