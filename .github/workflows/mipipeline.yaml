@@ -12,19 +12,7 @@ jobs:
 
     runs-on: macos-latest
 
-    steps:   
-    - uses: actions/checkout@v2
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID2 }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY2 }}
-        aws-region: us-east-1
-        
-    - name: Login to Amazon ECR
-      id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v1
-
+    steps:
     - name: Install Docker
       id: install-docker
       if: ${{ false }}
@@ -36,7 +24,19 @@ jobs:
         brew cask install docker
         echo "la version de docker es"
         docker --version
+    
+    - uses: actions/checkout@v2
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID2 }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY2 }}
+        aws-region: us-east-1
         
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+    
     - name: Enable PHP 7.2
       id: php-72
       if: ${{ false }}
