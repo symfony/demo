@@ -19,12 +19,13 @@ jobs:
           echo "Instalar HomeBrew"     
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
           echo "Instalar Docker"
-          brew cask install docker
+          brew install docker
           echo "la version de docker es"
           docker --version
 
   build:
 
+    needs: Prepare
     runs-on: macos-11
 
     steps:   
