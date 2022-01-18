@@ -10,7 +10,7 @@ jobs:
 
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:   
     - uses: actions/checkout@v2
@@ -25,8 +25,21 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
+    - name: Install Docker
+      id: install-docker
+      if: ${{ false }}
+      run: |
+        # Install Homebrew and docker
+        echo "Instalar HomeBrew"     
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        echo "Instalar Docker"
+        brew cask install docker
+        echo "la version de docker es"
+        docker --version
+        
     - name: Enable PHP 7.2
       id: php-72
+      if: ${{ false }}
       run: |
         # Install and enable PHP 7.2
         echo "la version de php es"
