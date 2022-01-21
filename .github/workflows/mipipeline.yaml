@@ -46,6 +46,7 @@ jobs:
         
     - name: Unit tests Before
       id: unit-test-before
+      if: ${{ false }}
       run: |
         wget -O phpunit https://phar.phpunit.de/phpunit-7.phar
         php -v
