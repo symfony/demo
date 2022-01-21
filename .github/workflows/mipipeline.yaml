@@ -120,9 +120,8 @@ jobs:
         container-name: public-container2
         image: public.ecr.aws/o2w9d2u1/hl-testing-repo:latest
         environment-variables: |
-            PREFIX_2=NEWURL4
-            PREFIX_3=NEWURL5
-            PREFIX_4=NEWURL6
+            PREFIX_2=NUEVO_VALOR
+
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
