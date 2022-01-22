@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Form\Type\CollectionComplexType;
 use App\Form\Type\CollectionSimpleType;
 use App\Form\Type\TagsInputType;
+use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
@@ -46,6 +47,10 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 
 class FormFieldReferenceController extends AbstractCrudController
 {
+    public function __construct(private EntityManagerInterface $entityManager)
+    {
+    }
+
     public static function getEntityFqcn(): string
     {
         return FormFieldReference::class;
@@ -78,8 +83,9 @@ class FormFieldReferenceController extends AbstractCrudController
             FormField::addPanel('Numeric Fields'),
             IntegerField::new('integer', 'Integer Field'),
             NumberField::new('decimal', 'Number Field'),
-            PercentField::new('percent', 'Percent Field'),
-            MoneyField::new('money', 'Money Field')->setCurrency('EUR'),
+            PercentField::new('percent', 'Percent Field')->setColumns(2),
+            FormField::addRow(),
+            MoneyField::new('money', 'Money Field')->setCurrency('EUR')->setColumns(3),
 
             FormField::addPanel('Date and Time Fields'),
             DateField::new('date', 'Date Field'),
@@ -103,7 +109,8 @@ class FormFieldReferenceController extends AbstractCrudController
             ImageField::new('image', 'Image Field')->setUploadDir('/public/images/'),
 
             FormField::addPanel('Other Fields'),
-            IdField::new('id', 'Id Field'),
+            IdField::new('id', 'Id Field')->setColumns(2),
+            FormField::addRow(),
             ColorField::new('color', 'Color Field'),
             EmailField::new('email', 'Email Field'),
             TelephoneField::new('telephone', 'Telephone Field'),
@@ -113,8 +120,8 @@ class FormFieldReferenceController extends AbstractCrudController
 
     public function createEntity(string $entityFqcn)
     {
-        $janeDoe = $this->getDoctrine()->getRepository(User::class)->findOneBy(['username' => 'jane_admin']);
-        $johnDoe = $this->getDoctrine()->getRepository(User::class)->findOneBy(['username' => 'john_user']);
+        $janeDoe = $this->entityManager->getRepository(User::class)->findOneBy(['username' => 'jane_admin']);
+        $johnDoe = $this->entityManager->getRepository(User::class)->findOneBy(['username' => 'john_user']);
         $formFieldReference = parent::createEntity($entityFqcn);
 
         $formFieldReference->author = $janeDoe;

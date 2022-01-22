@@ -37,7 +37,7 @@ class PostVoter extends Voter
      */
     protected function supports(string $attribute, $subject): bool
     {
-        // this voter is only executed for three specific permissions on Post objects
+        // this voter is only executed on Post objects and for three specific permissions
         return $subject instanceof Post && \in_array($attribute, [self::SHOW, self::EDIT, self::DELETE], true);
     }
 

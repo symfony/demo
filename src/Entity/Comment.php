@@ -31,59 +31,49 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Comment
 {
     /**
-     * @var int
-     *
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private ?int $id = null;
 
     /**
-     * @var Post
-     *
      * @ORM\ManyToOne(targetEntity="Post", inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $post;
+    private ?Post $post = null;
 
     /**
-     * @var string
-     *
      * @ORM\Column(type="text")
-     * @Assert\NotBlank(message="comment.blank")
-     * @Assert\Length(
-     *     min=5,
-     *     minMessage="comment.too_short",
-     *     max=10000,
-     *     maxMessage="comment.too_long"
-     * )
      */
-    private $content;
+    #[
+        Assert\NotBlank(message: 'comment.blank'),
+        Assert\Length(
+            min: 5,
+            minMessage: 'comment.too_short',
+            max: 10000,
+            maxMessage: 'comment.too_long',
+        )
+    ]
+    private ?string $content = null;
 
     /**
-     * @var \DateTime
-     *
      * @ORM\Column(type="datetime")
      */
-    private $publishedAt;
+    private \DateTime $publishedAt;
 
     /**
-     * @var User
-     *
      * @ORM\ManyToOne(targetEntity="App\Entity\User")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $author;
+    private ?User $author = null;
 
     public function __construct()
     {
         $this->publishedAt = new \DateTime();
     }
 
-    /**
-     * @Assert\IsTrue(message="comment.is_spam")
-     */
+    #[Assert\IsTrue(message: 'comment.is_spam')]
     public function isLegitComment(): bool
     {
         $containsInvalidCharacters = null !== u($this->content)->indexOf('@');

@@ -15,6 +15,8 @@ use App\Entity\User;
 use App\Repository\UserRepository;
 use App\Utils\Validator;
 use Doctrine\ORM\EntityManagerInterface;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\RuntimeException;
 use Symfony\Component\Console\Input\InputArgument;
@@ -37,23 +39,21 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  *
  * @author Oleg Voronkovich <oleg-voronkovich@yandex.ru>
  */
+#[AsCommand(
+    name: 'app:delete-user',
+    description: 'Deletes users from the database'
+)]
 class DeleteUserCommand extends Command
 {
-    protected static $defaultName = 'app:delete-user';
+    private SymfonyStyle $io;
 
-    /** @var SymfonyStyle */
-    private $io;
-    private $entityManager;
-    private $validator;
-    private $users;
-
-    public function __construct(EntityManagerInterface $em, Validator $validator, UserRepository $users)
-    {
+    public function __construct(
+        private EntityManagerInterface $entityManager,
+        private Validator $validator,
+        private UserRepository $users,
+        private LoggerInterface $logger
+    ) {
         parent::__construct();
-
-        $this->entityManager = $em;
-        $this->validator = $validator;
-        $this->users = $users;
     }
 
     /**
@@ -62,18 +62,17 @@ class DeleteUserCommand extends Command
     protected function configure(): void
     {
         $this
-            ->setDescription('Deletes users from the database')
             ->addArgument('username', InputArgument::REQUIRED, 'The username of an existing user')
             ->setHelp(<<<'HELP'
-The <info>%command.name%</info> command deletes users from the database:
+                The <info>%command.name%</info> command deletes users from the database:
 
-  <info>php %command.full_name%</info> <comment>username</comment>
+                  <info>php %command.full_name%</info> <comment>username</comment>
 
-If you omit the argument, the command will ask you to
-provide the missing value:
+                If you omit the argument, the command will ask you to
+                provide the missing value:
 
-  <info>php %command.full_name%</info>
-HELP
+                  <info>php %command.full_name%</info>
+                HELP
             );
     }
 
@@ -110,14 +109,14 @@ HELP
     {
         $username = $this->validator->validateUsername($input->getArgument('username'));
 
-        /** @var User $user */
+        /** @var User|null $user */
         $user = $this->users->findOneByUsername($username);
 
         if (null === $user) {
             throw new RuntimeException(sprintf('User with username "%s" not found.', $username));
         }
 
-        // After an entity has been removed its in-memory state is the same
+        // After an entity has been removed, its in-memory state is the same
         // as before the removal, except for generated identifiers.
         // See https://www.doctrine-project.org/projects/doctrine-orm/en/latest/reference/working-with-objects.html#removing-entities
         $userId = $user->getId();
@@ -125,7 +124,14 @@ HELP
         $this->entityManager->remove($user);
         $this->entityManager->flush();
 
-        $this->io->success(sprintf('User "%s" (ID: %d, email: %s) was successfully deleted.', $user->getUsername(), $userId, $user->getEmail()));
+        $userUsername = $user->getUsername();
+        $userEmail = $user->getEmail();
+
+        $this->io->success(sprintf('User "%s" (ID: %d, email: %s) was successfully deleted.', $userUsername, $userId, $userEmail));
+
+        // Logging is helpful and important to keep a trace of what happened in the software runtime flow.
+        // See https://symfony.com/doc/current/logging.html
+        $this->logger->info('User "{username}" (ID: {id}, email: {email}) was successfully deleted.', ['username' => $userUsername, 'id' => $userId, 'email' => $userEmail]);
 
         return Command::SUCCESS;
     }
