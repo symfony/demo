@@ -25,11 +25,9 @@ use Symfony\Component\HttpKernel\KernelEvents;
  */
 class ControllerSubscriber implements EventSubscriberInterface
 {
-    private $twigExtension;
-
-    public function __construct(SourceCodeExtension $twigExtension)
-    {
-        $this->twigExtension = $twigExtension;
+    public function __construct(
+        private SourceCodeExtension $twigExtension
+    ) {
     }
 
     public static function getSubscribedEvents(): array

@@ -15,6 +15,7 @@ use App\Entity\User;
 use App\Repository\UserRepository;
 use App\Utils\Validator;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\RuntimeException;
 use Symfony\Component\Console\Input\InputArgument;
@@ -46,30 +47,21 @@ use function Symfony\Component\String\u;
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
+#[AsCommand(
+    name: 'app:add-user',
+    description: 'Creates users and stores them in the database'
+)]
 class AddUserCommand extends Command
 {
-    // to make your command lazily loaded, configure the $defaultName static property,
-    // so it will be instantiated only when the command is actually called.
-    protected static $defaultName = 'app:add-user';
+    private SymfonyStyle $io;
 
-    /**
-     * @var SymfonyStyle
-     */
-    private $io;
-
-    private $entityManager;
-    private $passwordHasher;
-    private $validator;
-    private $users;
-
-    public function __construct(EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher, Validator $validator, UserRepository $users)
-    {
+    public function __construct(
+        private EntityManagerInterface $entityManager,
+        private UserPasswordHasherInterface $passwordHasher,
+        private Validator $validator,
+        private UserRepository $users
+    ) {
         parent::__construct();
-
-        $this->entityManager = $em;
-        $this->passwordHasher = $passwordHasher;
-        $this->validator = $validator;
-        $this->users = $users;
     }
 
     /**
@@ -78,7 +70,6 @@ class AddUserCommand extends Command
     protected function configure(): void
     {
         $this
-            ->setDescription('Creates users and stores them in the database')
             ->setHelp($this->getCommandHelp())
             // commands can optionally define arguments and/or options (mandatory and optional)
             // see https://symfony.com/doc/current/components/console/console_arguments.html
@@ -190,7 +181,7 @@ class AddUserCommand extends Command
         $user->setEmail($email);
         $user->setRoles([$isAdmin ? 'ROLE_ADMIN' : 'ROLE_USER']);
 
-        // See https://symfony.com/doc/current/security.html#c-encoding-passwords
+        // See https://symfony.com/doc/5.4/security.html#registering-the-user-hashing-passwords
         $hashedPassword = $this->passwordHasher->hashPassword($user, $plainPassword);
         $user->setPassword($hashedPassword);
 
@@ -237,27 +228,26 @@ class AddUserCommand extends Command
     private function getCommandHelp(): string
     {
         return <<<'HELP'
-The <info>%command.name%</info> command creates new users and saves them in the database:
+            The <info>%command.name%</info> command creates new users and saves them in the database:
 
-  <info>php %command.full_name%</info> <comment>username password email</comment>
+              <info>php %command.full_name%</info> <comment>username password email</comment>
 
-By default the command creates regular users. To create administrator users,
-add the <comment>--admin</comment> option:
+            By default the command creates regular users. To create administrator users,
+            add the <comment>--admin</comment> option:
 
-  <info>php %command.full_name%</info> username password email <comment>--admin</comment>
+              <info>php %command.full_name%</info> username password email <comment>--admin</comment>
 
-If you omit any of the three required arguments, the command will ask you to
-provide the missing values:
+            If you omit any of the three required arguments, the command will ask you to
+            provide the missing values:
 
-  # command will ask you for the email
-  <info>php %command.full_name%</info> <comment>username password</comment>
+              # command will ask you for the email
+              <info>php %command.full_name%</info> <comment>username password</comment>
 
-  # command will ask you for the email and password
-  <info>php %command.full_name%</info> <comment>username</comment>
+              # command will ask you for the email and password
+              <info>php %command.full_name%</info> <comment>username</comment>
 
-  # command will ask you for all arguments
-  <info>php %command.full_name%</info>
-
-HELP;
+              # command will ask you for all arguments
+              <info>php %command.full_name%</info>
+            HELP;
     }
 }

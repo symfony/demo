@@ -30,11 +30,9 @@ use Symfony\Component\HttpKernel\KernelEvents;
  */
 class CheckRequirementsSubscriber implements EventSubscriberInterface
 {
-    private $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager)
-    {
-        $this->entityManager = $entityManager;
+    public function __construct(
+        private EntityManagerInterface $entityManager
+    ) {
     }
 
     // Event Subscribers must define this method to declare the events they

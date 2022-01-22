@@ -3,7 +3,7 @@
 {% block body_id 'admin_post_edit' %}
 
 {% block main %}
-    <h1>{{ 'title.edit_post'|trans({'%id%': post.id}) }}</h1>
+    <h1>{{ 'title.edit_post'|trans({'id': post.id}) }}</h1>
 
     {{ include('admin/blog/_form.html.twig', {
         form: form,

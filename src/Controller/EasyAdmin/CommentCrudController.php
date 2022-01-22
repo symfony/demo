@@ -21,7 +21,6 @@ class CommentCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->showEntityActionsAsDropdown()
             ->setDefaultSort(['id' => 'DESC']);
     }
 
