@@ -26,20 +26,16 @@ use Doctrine\ORM\Mapping as ORM;
 class Tag implements \JsonSerializable
 {
     /**
-     * @var int
-     *
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private ?int $id = null;
 
     /**
-     * @var string
-     *
      * @ORM\Column(type="string", unique=true)
      */
-    private $name;
+    private ?string $name = null;
 
     public function getId(): ?int
     {

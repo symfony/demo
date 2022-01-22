@@ -25,17 +25,12 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class CommentNotificationSubscriber implements EventSubscriberInterface
 {
-    private $mailer;
-    private $translator;
-    private $urlGenerator;
-    private $sender;
-
-    public function __construct(MailerInterface $mailer, UrlGeneratorInterface $urlGenerator, TranslatorInterface $translator, string $sender)
-    {
-        $this->mailer = $mailer;
-        $this->urlGenerator = $urlGenerator;
-        $this->translator = $translator;
-        $this->sender = $sender;
+    public function __construct(
+        private MailerInterface $mailer,
+        private UrlGeneratorInterface $urlGenerator,
+        private TranslatorInterface $translator,
+        private string $sender
+    ) {
     }
 
     public static function getSubscribedEvents(): array
@@ -57,8 +52,8 @@ class CommentNotificationSubscriber implements EventSubscriberInterface
 
         $subject = $this->translator->trans('notification.comment_created');
         $body = $this->translator->trans('notification.comment_created.description', [
-            '%title%' => $post->getTitle(),
-            '%link%' => $linkToPost,
+            'title' => $post->getTitle(),
+            'link' => $linkToPost,
         ]);
 
         // See https://symfony.com/doc/current/mailer.html
