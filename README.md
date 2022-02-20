@@ -4,6 +4,8 @@ Symfony Demo Application
 The "Symfony Demo Application" is a reference application created to show how
 to develop applications following the [Symfony Best Practices][1].
 
+In addition to this, you can as well read [the official Symfony Book to showcase Symfony][5].
+
 Requirements
 ------------
 
@@ -65,3 +67,4 @@ $ ./bin/phpunit
 [2]: https://symfony.com/doc/current/setup.html#technical-requirements
 [3]: https://symfony.com/doc/current/setup/web_server_configuration.html
 [4]: https://symfony.com/download
+[5]: https://symfony.com/book
