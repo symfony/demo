@@ -11,8 +11,7 @@ if (!is_file(dirname(__DIR__).'/vendor/autoload_runtime.php')) {
 require_once dirname(__DIR__).'/vendor/autoload_runtime.php';
 
 /**
- * This file is a Symfony Front Controller (entrypoint)
- * for the command-line from a terminal.
+ * This file is a Symfony command-line entrypoint.
  *
  * It boots Symfony in a CLI context.
  * 
