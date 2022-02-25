@@ -4,12 +4,11 @@ on:
   workflow_dispatch:
     inputs:
       logLevel:
-        description: 'Log level'     
+        description: 'Log level'
         required: true
         default: 'warning'
       tags:
-        description: 'Test scenario tags' 
-
+        description: 'Test scenario tags'
 jobs:
   build:
     runs-on: ubuntu-latest
