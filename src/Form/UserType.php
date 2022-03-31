@@ -56,7 +56,7 @@ class UserType extends AbstractType
                 'constraints' => [
                     new UserPassword(),
                 ],
-                'label' => 'user.label.current_password',
+                'label' => 'label.current_password',
                 'mapped' => false, // Otherwise error because this field doesn't exist in the Entity
                 'attr' => [
                     'autocomplete' => 'off',
