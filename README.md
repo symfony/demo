@@ -53,6 +53,22 @@ If you don't have the Symfony binary installed, run `php -S localhost:8000 -t pu
 to use the built-in PHP web server or [configure a web server][3] like Nginx or
 Apache to run the application.
 
+## Nix
+
+To instantly run the demo:
+
+```
+nix run github:drupol/demo/feat/use-nix
+```
+
+To create a Docker image:
+
+```
+nix build github:drupol/demo/feat/use-nix#oci -o oci-image.tar.gz
+docker load -i oci-image.tar.gz
+docker run -v /tmp/ -p 8000:8000 <name-from-previous-command>
+```
+
 Tests
 -----
 
