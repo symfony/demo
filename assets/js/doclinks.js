@@ -10,6 +10,13 @@ $(function() {
         return '<a class="doclink" target="_blank" href="' + url + '">' + content + '</a>';
     };
 
+    function wrap(content, links) {
+        return content.replace(
+            new RegExp(Object.keys(links).join('|'), 'g'),
+            token => anchor(links[token], token)
+        );
+    };
+
     // Wraps links to the Symfony documentation
     $modal.find('.hljs-comment').each(function() {
         $(this).html($(this).html().replace(/https:\/\/symfony.com\/doc\/[\w/.#-]+/g, function(url) {
@@ -17,25 +24,23 @@ $(function() {
         }));
     });
 
-    // Wraps Symfony's annotations
-    var annotations = {
-        '@Cache': 'https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/cache.html',
-        '@IsGranted': 'https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/security.html#isgranted',
-        '@ParamConverter': 'https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html',
-        '@Route': 'https://symfony.com/doc/current/routing.html#creating-routes-as-annotations',
-        '@Security': 'https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/security.html#security'
+    // Wraps Symfony's attributes
+    var attributes = {
+        'Cache': 'https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/cache.html',
+        'IsGranted': 'https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/security.html#isgranted',
+        'ParamConverter': 'https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html',
+        'Route': 'https://symfony.com/doc/current/routing.html#creating-routes-as-attributes-or-annotations',
+        'Security': 'https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/security.html#security'
     };
 
-    $controllerCode.find('.hljs-doctag').each(function() {
-        var annotation = $(this).text();
+    $controllerCode.find('.hljs-meta').each(function() {
+        var src = $(this).text();
 
-        if (annotations[annotation]) {
-            $(this).html(anchor(annotations[annotation], annotation));
-        }
+        $(this).html(wrap(src, attributes));
     });
 
     // Wraps Twig's tags
-    $templateCode.find('.hljs-template-tag > .hljs-name').each(function() {
+    $templateCode.find('.hljs-template-tag + .hljs-name').each(function() {
         var tag = $(this).text();
 
         if ('else' === tag || tag.match(/^end/)) {
