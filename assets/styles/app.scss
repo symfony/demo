@@ -56,6 +56,14 @@ i {
    ------------------------------------------------------------------------- */
 .m-b-0 { margin-bottom: 0 }
 
+@media (min-width: $screen-md-min) {
+  .modal-xl { width: $modal-lg; }
+}
+
+@media (min-width: $screen-lg-min) {
+  .modal-xl { width: $screen-lg-min - 60px; }
+}
+
 /* Page elements
    ------------------------------------------------------------------------- */
 body {
