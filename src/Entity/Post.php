@@ -48,17 +48,13 @@ class Post
     private ?string $slug = null;
 
     #[ORM\Column(type: 'string')]
-    #[
-        Assert\NotBlank(message: 'post.blank_summary'),
-        Assert\Length(max: 255)
-    ]
+    #[Assert\NotBlank(message: 'post.blank_summary')]
+    #[Assert\Length(max: 255)]
     private ?string $summary = null;
 
     #[ORM\Column(type: 'text')]
-    #[
-        Assert\NotBlank(message: 'post.blank_content'),
-        Assert\Length(min: 10, minMessage: 'post.too_short_content')
-    ]
+    #[Assert\NotBlank(message: 'post.blank_content')]
+    #[Assert\Length(min: 10, minMessage: 'post.too_short_content')]
     private ?string $content = null;
 
     #[ORM\Column(type: 'datetime')]

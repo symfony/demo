@@ -39,15 +39,8 @@ class Comment
     private ?Post $post = null;
 
     #[ORM\Column(type: 'text')]
-    #[
-        Assert\NotBlank(message: 'comment.blank'),
-        Assert\Length(
-            min: 5,
-            minMessage: 'comment.too_short',
-            max: 10000,
-            maxMessage: 'comment.too_long',
-        )
-    ]
+    #[Assert\NotBlank(message: 'comment.blank')]
+    #[Assert\Length(min: 5, minMessage: 'comment.too_short', max: 10000, maxMessage: 'comment.too_long')]
     private ?string $content = null;
 
     #[ORM\Column(type: 'datetime')]
