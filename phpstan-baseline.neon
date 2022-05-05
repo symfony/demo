@@ -56,12 +56,17 @@ parameters:
 			path: src/Command/DeleteUserCommand.php
 
 		-
+			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(object\\)\\: mixed\\)\\|null, Closure\\(App\\\\Entity\\\\User\\)\\: array\\{int\\|null, string\\|null, string, string\\|null, string\\} given\\.$#"
+			count: 1
+			path: src/Command/ListUsersCommand.php
+
+		-
 			message: "#^Parameter \\#2 \\$recipient of method App\\\\Command\\\\ListUsersCommand\\:\\:sendReport\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: src/Command/ListUsersCommand.php
 
 		-
-			message: "#^Parameter \\#3 \\$limit of method Doctrine\\\\ORM\\\\EntityRepository\\<mixed\\>\\:\\:findBy\\(\\) expects int\\|null, mixed given\\.$#"
+			message: "#^Parameter \\#3 \\$limit of method Doctrine\\\\ORM\\\\EntityRepository\\<object\\>\\:\\:findBy\\(\\) expects int\\|null, mixed given\\.$#"
 			count: 1
 			path: src/Command/ListUsersCommand.php
 
@@ -79,6 +84,11 @@ parameters:
 			message: "#^Parameter \\#2 \\$token of method Symfony\\\\Bundle\\\\FrameworkBundle\\\\Controller\\\\AbstractController\\:\\:isCsrfTokenValid\\(\\) expects string\\|null, bool\\|float\\|int\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Controller/Admin/BlogController.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:getName\\(\\)\\.$#"
+			count: 1
+			path: src/Controller/BlogController.php
 
 		-
 			message: "#^Cannot call method getFullName\\(\\) on App\\\\Entity\\\\User\\|null\\.$#"
@@ -102,6 +112,11 @@ parameters:
 
 		-
 			message: "#^Parameter \\#2 \\$limit of method App\\\\Repository\\\\PostRepository\\:\\:findBySearchQuery\\(\\) expects int, bool\\|float\\|int\\|string\\|null given\\.$#"
+			count: 1
+			path: src/Controller/BlogController.php
+
+		-
+			message: "#^Parameter \\#2 \\$tag of method App\\\\Repository\\\\PostRepository\\:\\:findLatest\\(\\) expects App\\\\Entity\\\\Tag\\|null, object\\|null given\\.$#"
 			count: 1
 			path: src/Controller/BlogController.php
 
@@ -391,11 +406,6 @@ parameters:
 			path: tests/Command/AddUserCommandTest.php
 
 		-
-			message: "#^Method App\\\\Tests\\\\Command\\\\AddUserCommandTest\\:\\:isAdminDataProvider\\(\\) return type has no value type specified in iterable type Generator\\.$#"
-			count: 1
-			path: tests/Command/AddUserCommandTest.php
-
-		-
 			message: "#^Property App\\\\Tests\\\\Command\\\\AddUserCommandTest\\:\\:\\$userData has no type specified\\.$#"
 			count: 1
 			path: tests/Command/AddUserCommandTest.php
@@ -404,11 +414,6 @@ parameters:
 			message: "#^Yield can be used only with these return types\\: Generator, Iterator, Traversable, iterable\\.$#"
 			count: 2
 			path: tests/Command/AddUserCommandTest.php
-
-		-
-			message: "#^Method App\\\\Tests\\\\Command\\\\ListUsersCommandTest\\:\\:maxResultsProvider\\(\\) return type has no value type specified in iterable type Generator\\.$#"
-			count: 1
-			path: tests/Command/ListUsersCommandTest.php
 
 		-
 			message: "#^Yield can be used only with these return types\\: Generator, Iterator, Traversable, iterable\\.$#"
@@ -422,11 +427,6 @@ parameters:
 
 		-
 			message: "#^Cannot call method findOneByTitle\\(\\) on object\\|null\\.$#"
-			count: 1
-			path: tests/Controller/Admin/BlogControllerTest.php
-
-		-
-			message: "#^Method App\\\\Tests\\\\Controller\\\\Admin\\\\BlogControllerTest\\:\\:getUrlsForRegularUsers\\(\\) return type has no value type specified in iterable type Generator\\.$#"
 			count: 1
 			path: tests/Controller/Admin/BlogControllerTest.php
 
@@ -471,27 +471,12 @@ parameters:
 			path: tests/Controller/DefaultControllerTest.php
 
 		-
-			message: "#^Method App\\\\Tests\\\\Controller\\\\DefaultControllerTest\\:\\:getPublicUrls\\(\\) return type has no value type specified in iterable type Generator\\.$#"
-			count: 1
-			path: tests/Controller/DefaultControllerTest.php
-
-		-
-			message: "#^Method App\\\\Tests\\\\Controller\\\\DefaultControllerTest\\:\\:getSecureUrls\\(\\) return type has no value type specified in iterable type Generator\\.$#"
-			count: 1
-			path: tests/Controller/DefaultControllerTest.php
-
-		-
 			message: "#^Yield can be used only with these return types\\: Generator, Iterator, Traversable, iterable\\.$#"
 			count: 7
 			path: tests/Controller/DefaultControllerTest.php
 
 		-
 			message: "#^Cannot call method findOneByEmail\\(\\) on object\\|null\\.$#"
-			count: 1
-			path: tests/Controller/UserControllerTest.php
-
-		-
-			message: "#^Method App\\\\Tests\\\\Controller\\\\UserControllerTest\\:\\:getUrlsForAnonymousUsers\\(\\) return type has no value type specified in iterable type Generator\\.$#"
 			count: 1
 			path: tests/Controller/UserControllerTest.php
 
