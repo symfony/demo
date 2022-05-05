@@ -66,8 +66,21 @@ class SourceCodeExtension extends AbstractExtension
         $method = $this->getCallableReflector($this->controller);
 
         $classCode = file($method->getFileName());
-        $methodCode = \array_slice($classCode, $method->getStartLine() - 1, $method->getEndLine() - $method->getStartLine() + 1);
-        $controllerCode = '    '.$method->getDocComment()."\n".implode('', $methodCode);
+
+        $startLine = $method->getStartLine() - 1;
+        $endLine = $method->getEndLine();
+
+        while ($startLine > 0) {
+            $line = trim($classCode[$startLine - 1]);
+
+            if (\in_array($line, ['{', '}', ''], true)) {
+                break;
+            }
+
+            --$startLine;
+        }
+
+        $controllerCode = implode('', \array_slice($classCode, $startLine, $endLine - $startLine));
 
         return [
             'file_path' => $method->getFileName(),
