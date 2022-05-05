@@ -65,7 +65,9 @@ class SourceCodeExtension extends AbstractExtension
 
         $method = $this->getCallableReflector($this->controller);
 
-        $classCode = file($method->getFileName());
+        if (false === $classCode = file($method->getFileName())) {
+            throw new \LogicException(sprintf('There was an error while trying to read the contents of the "%s" file.', $method->getFileName()));
+        }
 
         $startLine = $method->getStartLine() - 1;
         $endLine = $method->getEndLine();
