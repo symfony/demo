@@ -34,7 +34,8 @@ use Symfony\Component\Routing\Annotation\Route;
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-#[Route('/admin/post'), IsGranted('ROLE_ADMIN')]
+#[Route('/admin/post')]
+#[IsGranted('ROLE_ADMIN')]
 class BlogController extends AbstractController
 {
     /**
@@ -48,10 +49,8 @@ class BlogController extends AbstractController
      *     could move this annotation to any other controller while maintaining
      *     the route name and therefore, without breaking any existing link.
      */
-    #[
-        Route('/', methods: ['GET'], name: 'admin_index'),
-        Route('/', methods: ['GET'], name: 'admin_post_index'),
-    ]
+    #[Route('/', methods: ['GET'], name: 'admin_index')]
+    #[Route('/', methods: ['GET'], name: 'admin_post_index')]
     public function index(PostRepository $posts): Response
     {
         $authorPosts = $posts->findBy(['author' => $this->getUser()], ['publishedAt' => 'DESC']);
