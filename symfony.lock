@@ -1,7 +1,4 @@
 {
-    "composer/package-versions-deprecated": {
-        "version": "1.11.99.4"
-    },
     "dama/doctrine-test-bundle": {
         "version": "4.0",
         "recipe": {
@@ -115,9 +112,6 @@
     "egulias/email-validator": {
         "version": "3.1.2"
     },
-    "erusev/parsedown": {
-        "version": "1.7.4"
-    },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.5"
     },
@@ -130,8 +124,11 @@
     "league/config": {
         "version": "v1.1.1"
     },
-    "league/uri-parser": {
-        "version": "1.4.1"
+    "league/uri": {
+        "version": "6.5.0"
+    },
+    "league/uri-interfaces": {
+        "version": "2.3.0"
     },
     "masterminds/html5": {
         "version": "2.7.5"
@@ -159,6 +156,9 @@
     },
     "psr/event-dispatcher": {
         "version": "1.0.0"
+    },
+    "psr/http-message": {
+        "version": "1.0.1"
     },
     "psr/log": {
         "version": "1.1.4"
@@ -296,8 +296,14 @@
             "src/Controller/.gitignore"
         ]
     },
+    "symfony/html-sanitizer": {
+        "version": "v6.1.0-BETA2"
+    },
+    "symfony/http-client": {
+        "version": "v6.1.0-BETA2"
+    },
     "symfony/http-client-contracts": {
-        "version": "v2.4.0"
+        "version": "v3.0.1"
     },
     "symfony/http-foundation": {
         "version": "v6.0.0"
@@ -392,9 +398,6 @@
     "symfony/polyfill-mbstring": {
         "version": "v1.23.1"
     },
-    "symfony/polyfill-php81": {
-        "version": "v1.23.0"
-    },
     "symfony/property-access": {
         "version": "v6.0.0"
     },
@@ -479,9 +482,6 @@
             "templates/base.html.twig"
         ]
     },
-    "symfony/twig-pack": {
-        "version": "v1.0.1"
-    },
     "symfony/validator": {
         "version": "5.4",
         "recipe": {
@@ -539,21 +539,6 @@
     },
     "symfony/yaml": {
         "version": "v6.0.0"
-    },
-    "tgalopin/html-sanitizer": {
-        "version": "1.4.0"
-    },
-    "tgalopin/html-sanitizer-bundle": {
-        "version": "1.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
-            "branch": "master",
-            "version": "1.0",
-            "ref": "95b935177db9abb65356fe19e57fe5abd908b5b8"
-        },
-        "files": [
-            "config/packages/html_sanitizer.yaml"
-        ]
     },
     "twig/extra-bundle": {
         "version": "v3.3.4"

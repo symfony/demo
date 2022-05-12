@@ -33,3 +33,9 @@ webpack_encore:
     # Cache the entrypoints.json (rebuild Symfony's cache when entrypoints.json changes)
     # Put in config/packages/prod/webpack_encore.yaml
     # cache: true
+
+when@prod:
+    #webpack_encore:
+        # Cache the entrypoints.json (rebuild Symfony's cache when entrypoints.json changes)
+        # Available in version 1.2
+        #cache: true
