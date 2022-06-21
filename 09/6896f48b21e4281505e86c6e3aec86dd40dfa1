@@ -1,0 +1,62 @@
+---------------------------------------------------------------------------
+
+by stof at 2022-05-12T15:13:31Z
+
+For the DbalLogger, the work is in progress at https://github.com/doctrine/DoctrineBundle/pull/1517
+
+---------------------------------------------------------------------------
+
+by dmaicher at 2022-05-13T06:52:29Z
+
+@javiereguiluz regarding
+
+```
+  1x: The "DAMA\DoctrineTestBundle\Doctrine\DBAL\StaticDriver" class implements "Doctrine\DBAL\VersionAwarePlatformDriver" that is deprecated All drivers will have to be aware of the server version in the next major release.
+    1x in PHPUnitExtension::executeBeforeFirstTest from DAMA\DoctrineTestBundle\PHPUnit
+```
+
+unfortunately there is no way to fix this deprecation :confused: Also see https://github.com/dmaicher/doctrine-test-bundle/issues/188#issuecomment-1002179428
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2022-05-13T07:20:28Z
+
+@dmaicher thanks a lot for your reply. However, I'm afraid I don't understand this well:
+
+> unfortunately there is no way to fix this deprecation
+
+You mean that this can't be fixed in DoctrineTestBundle and need to be fixed somewhere else (e.g. Doctrine DBAL) or you really mean that it cannot be fixed in any way. Thanks!
+
+---------------------------------------------------------------------------
+
+by dmaicher at 2022-05-13T07:36:19Z
+
+There is no way currently to get rid of this deprecation because of DBAL. The `VersionAwarePlatformDriver` interface is deprecated but still needs to be implemented. There is no forward compatibility layer on DBAL so that it works without implementing the interface.
+
+So I don't see any way of fixing this unless maybe there is a forward compatibility path on DBAL itself that would allow not implementing the interface.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2022-05-13T07:43:41Z
+
+@dmaicher I see. Thanks for explaining this in detail. Maybe @stof knows people in the Doctrine organization or, specifically, the DBAL project that could take a look about this. Thanks!
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2022-05-27T10:37:36Z
+
+I've deleted the custom `sanitize_html` Twig filter to use the filter with the same name provided by HtmlSanitizer component (it was added here: https://github.com/symfony/symfony/pull/46335)
+
+But, I'm seeing this error:
+
+<img width="1057" alt="error-2" src="https://user-images.githubusercontent.com/73419/170683949-6f4af312-fd44-44ab-8b5e-0459f6c732de.png">
+
+Any clue? Thanks!
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2022-06-21T13:03:38Z
+
+~Can anybody please help me? I can't make the HTML sanitizer work. Instead of sanitizing, it just removes everything. I'm reading https://symfony.com/doc/current/html_sanitizer.html but I can't find the cause of the bug. Thanks!~
+
+Fixed! The `html_sanitizer.yaml` config file wasn't being processed by Symfony on my local machine for unknown reasons. I deleted the cache and then it worked.
