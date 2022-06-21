@@ -10,12 +10,8 @@ env:
     fail-fast: true
     PHPUNIT_FLAGS: "-v"
     SYMFONY_PHPUNIT_DIR: "$HOME/symfony-bridge/.phpunit"
-    SYMFONY_REQUIRE: ">=4.4"
-    # 40x: Since symfony/monolog-bridge 5.2:
-    # Passing an actionLevel (int|string) as constructor's 3rd argument of
-    # "Symfony\Bridge\Monolog\Handler\FingersCrossed\HttpCodeActivationStrategy"
-    # is deprecated, "Monolog\Handler\FingersCrossed\ActivationStrategyInterface" expected.
-    SYMFONY_DEPRECATIONS_HELPER: 40
+    SYMFONY_REQUIRE: ">=6.0"
+    SYMFONY_DEPRECATIONS_HELPER: 7
 
 jobs:
     test:
@@ -26,12 +22,12 @@ jobs:
         strategy:
             matrix:
                 operating-system: ['ubuntu-latest']
-                php-version: ['8.0', '8.1']
+                php-version: ['8.1']
                 include:
                     - operating-system: 'macos-latest'
-                      php-version: '8.0'
+                      php-version: '8.1'
                     - operating-system: 'windows-latest'
-                      php-version: '8.0'
+                      php-version: '8.1'
 
         steps:
             - name: "Checkout code"

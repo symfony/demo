@@ -176,11 +176,6 @@ parameters:
 			path: src/Entity/Post.php
 
 		-
-			message: "#^Parameter \\$repositoryClass of attribute class Doctrine\\\\ORM\\\\Mapping\\\\Entity constructor expects class\\-string\\<Doctrine\\\\ORM\\\\EntityRepository\\<T of object\\>\\>\\|null, 'App\\\\\\\\Repository\\\\\\\\PostRepository' given\\.$#"
-			count: 1
-			path: src/Entity/Post.php
-
-		-
 			message: "#^Property App\\\\Entity\\\\Post\\:\\:\\$comments with generic interface Doctrine\\\\Common\\\\Collections\\\\Collection does not specify its types\\: TKey, T$#"
 			count: 1
 			path: src/Entity/Post.php
@@ -217,11 +212,6 @@ parameters:
 
 		-
 			message: "#^Method App\\\\Entity\\\\User\\:\\:setRoles\\(\\) has parameter \\$roles with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Entity/User.php
-
-		-
-			message: "#^Parameter \\$repositoryClass of attribute class Doctrine\\\\ORM\\\\Mapping\\\\Entity constructor expects class\\-string\\<Doctrine\\\\ORM\\\\EntityRepository\\<T of object\\>\\>\\|null, 'App\\\\\\\\Repository\\\\\\\\UserRepository' given\\.$#"
 			count: 1
 			path: src/Entity/User.php
 

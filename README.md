@@ -9,7 +9,7 @@ You can also learn about these practices in [the official Symfony Book][5].
 Requirements
 ------------
 
-  * PHP 8.0.2 or higher;
+  * PHP 8.1.0 or higher;
   * PDO-SQLite PHP extension enabled;
   * and the [usual Symfony application requirements][2].
 
