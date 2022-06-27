@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5a68d8b390e5e9272e61271871569e5b",
+    "content-hash": "4743f974d07def8ba46b0f567f1b90b7",
     "packages": [
         {
             "name": "dflydev/dot-access-data",
@@ -1450,6 +1450,48 @@
                 "source": "https://github.com/doctrine/sql-formatter/tree/1.1.3"
             },
             "time": "2022-05-23T21:33:49+00:00"
+        },
+        {
+            "name": "drupol/composer-plugin-nixify",
+            "version": "2.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/drupol/composer-plugin-nixify.git",
+                "reference": "56ece5e20dfa9402dd4058be35b893a08ed8aff1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/drupol/composer-plugin-nixify/zipball/56ece5e20dfa9402dd4058be35b893a08ed8aff1",
+                "reference": "56ece5e20dfa9402dd4058be35b893a08ed8aff1",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^2"
+            },
+            "require-dev": {
+                "composer/composer": "^2",
+                "drupol/php-conventions": "^5.0",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Nixify\\Plugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nixify\\": "./src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Composer plugin to help with Nix packaging, temporary fork of stephank/composer-plugin-nixify",
+            "homepage": "https://github.com/stephank/composer-plugin-nixify",
+            "support": {
+                "source": "https://github.com/drupol/composer-plugin-nixify/tree/2.0.7"
+            },
+            "time": "2022-06-27T21:17:06+00:00"
         },
         {
             "name": "egulias/email-validator",
