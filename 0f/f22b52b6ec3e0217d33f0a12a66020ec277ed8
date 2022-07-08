@@ -1,0 +1,13 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2022-07-04T15:22:51Z
+
+As you said, we're using a legacy version of Bootstrap (there's a pending PR to update it ... but it stalled and I don't know if it's mergeable). Do you know if updating `node-sass` to `sass` is safe for such a legacy version? Thanks!
+
+Yes, if you prefer, we can do all the updates in a single PR. Cheers!
+
+---------------------------------------------------------------------------
+
+by skmedix at 2022-07-04T16:49:30Z
+
+The only concern I would see here is the deprecation of [Slash as Division](https://sass-lang.com/documentation/breaking-changes/slash-div), which is still used in Bootswatch, but I don't think this deprecation will be removed anytime soon. (We will probably upgrade the demo to a newer version of Bootstrap sooner.)
