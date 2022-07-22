@@ -56,9 +56,10 @@ jobs:
                   restore-keys: ${{ runner.os }}-${{ matrix.php-version }}-composer-
 
             - name: "Require symfony/flex"
-              run: composer global require --no-progress --no-scripts --no-plugins symfony/flex
+              run: composer require --no-progress --no-scripts --no-plugins symfony/flex
 
-            - run: composer update
+            - name: "Install dependencies"
+              run: composer update --no-interaction --prefer-dist --optimize-autoloader
 
             - name: "Install PHPUnit"
               run: vendor/bin/simple-phpunit install
