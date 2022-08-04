@@ -58,7 +58,7 @@ class AddUserCommandTest extends AbstractCommandTest
     public function testCreateUserInteractive(bool $isAdmin): void
     {
         $this->executeCommand(
-        // these are the arguments (only 1 is passed, the rest are missing)
+            // these are the arguments (only 1 is passed, the rest are missing)
             $isAdmin ? ['--admin' => 1] : [],
             // these are the responses given to the questions asked by the command
             // to get the value of the missing required arguments
