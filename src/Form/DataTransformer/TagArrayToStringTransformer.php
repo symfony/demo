@@ -62,9 +62,7 @@ class TagArrayToStringTransformer implements DataTransformerInterface
         ]);
         $newNames = array_diff($names, $tags);
         foreach ($newNames as $name) {
-            $tag = new Tag();
-            $tag->setName($name);
-            $tags[] = $tag;
+            $tags[] = new Tag($name);
 
             // There's no need to persist these new tags because Doctrine does that automatically
             // thanks to the cascade={"persist"} option in the App\Entity\Post::$tags property.

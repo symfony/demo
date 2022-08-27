@@ -72,8 +72,8 @@ class TagArrayToStringTransformerTest extends TestCase
     public function testUsesAlreadyDefinedTags(): void
     {
         $persistedTags = [
-            $this->createTag('Hello'),
-            $this->createTag('World'),
+            new Tag('Hello'),
+            new Tag('World'),
         ];
         $tags = $this->getMockedTransformer($persistedTags)->reverseTransform('Hello, World, How, Are, You');
 
@@ -89,8 +89,8 @@ class TagArrayToStringTransformerTest extends TestCase
     public function testTransform(): void
     {
         $persistedTags = [
-            $this->createTag('Hello'),
-            $this->createTag('World'),
+            new Tag('Hello'),
+            new Tag('World'),
         ];
         $transformed = $this->getMockedTransformer()->transform($persistedTags);
 
@@ -113,16 +113,5 @@ class TagArrayToStringTransformerTest extends TestCase
             ->willReturn($findByReturnValues);
 
         return new TagArrayToStringTransformer($tagRepository);
-    }
-
-    /**
-     * This helper method creates a Tag instance for the given tag name.
-     */
-    private function createTag(string $name): Tag
-    {
-        $tag = new Tag();
-        $tag->setName($name);
-
-        return $tag;
     }
 }
