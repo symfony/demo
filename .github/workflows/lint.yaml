@@ -86,13 +86,9 @@ jobs:
               if: always() && steps.install.outcome == 'success'
               run: composer validate --strict
 
-            - name: Download Symfony CLI
-              if: always() && steps.install.outcome == 'success'
-              run: wget https://get.symfony.com/cli/installer -O - | bash
-
             - name: Check if any dependencies are compromised
               if: always() && steps.install.outcome == 'success'
-              run: /home/runner/.symfony5/bin/symfony check:security
+              run: composer audit
 
             - name: Run PHPStan
               if: always() && steps.install.outcome == 'success'
