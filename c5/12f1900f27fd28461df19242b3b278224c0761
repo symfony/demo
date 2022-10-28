@@ -1,0 +1,18 @@
+---------------------------------------------------------------------------
+
+by TheDevick at 2022-08-28T01:22:59Z
+
+Can we use a `readonly` proprierty in the Entity and keep the `setName` function?
+
+> Why?
+
+Just because sometimes it makes sense to call the constructor with no parameters - `new Tag();` and then call the `setName()` function, so making the code more readable in some cases
+
+---------------------------------------------------------------------------
+
+by chr-hertel at 2022-08-28T11:04:00Z
+
+I would not agree on having public methods for "just in case..." and within this demo application it is not needed.
+And I usually try to avoid those nullable properties if possible.
+
+And no, you cannot combine readonly with setters. That's basically the feature :)
