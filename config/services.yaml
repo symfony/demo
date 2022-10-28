@@ -27,7 +27,6 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
-            - '../src/Tests/'
 
     # when the service definition only contains arguments, you can omit the
     # 'arguments' key and define the arguments just below the service class
