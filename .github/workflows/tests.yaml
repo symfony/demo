@@ -13,6 +13,9 @@ env:
     SYMFONY_REQUIRE: ">=6.0"
     SYMFONY_DEPRECATIONS_HELPER: 7
 
+permissions:
+    contents: read
+
 jobs:
     test:
         name: "${{ matrix.operating-system }} / PHP ${{ matrix.php-version }}"
