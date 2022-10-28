@@ -29,20 +29,18 @@ class Tag implements \JsonSerializable
     #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
-    #[ORM\Column(type: 'string', unique: true)]
-    private ?string $name = null;
+    public function __construct(
+        #[ORM\Column(type: 'string', unique: true)]
+        private readonly string $name,
+    ) {
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function setName(string $name): void
-    {
-        $this->name = $name;
-    }
-
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
