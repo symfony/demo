@@ -39,5 +39,5 @@ return (new PhpCsFixer\Config())
         'blank_line_between_import_groups' => false,
     ])
     ->setFinder($finder)
-    ->setCacheFile(__DIR__.'/var/.php_cs.cache')
+    ->setCacheFile(__DIR__.'/var/.php-cs-fixer.cache')
 ;
