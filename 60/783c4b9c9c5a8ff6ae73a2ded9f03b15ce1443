@@ -1,0 +1,12 @@
+---------------------------------------------------------------------------
+
+by rosier at 2022-10-04T16:19:41Z
+
+Add the moment there is a security vulnerability advisory. So the failure in https://github.com/symfony/demo/actions/runs/3183707333/jobs/5191246090 is expected
+
+---------------------------------------------------------------------------
+
+by stof at 2022-10-26T08:25:55Z
+
+@javiereguiluz I suggest meging this.
+The current CI setup is broken anyway due to using the wrong path for the symfony CLI.
