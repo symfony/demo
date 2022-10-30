@@ -1,0 +1,57 @@
+name: "Mutation"
+
+on:
+    pull_request:
+    push:
+        branches:
+            - main
+
+env:
+    fail-fast: true
+    PHPUNIT_FLAGS: "-v"
+    SYMFONY_PHPUNIT_DIR: "$HOME/symfony-bridge/.phpunit"
+    SYMFONY_REQUIRE: ">=4.4"
+    # 40x: Since symfony/monolog-bridge 5.2:
+    # Passing an actionLevel (int|string) as constructor's 3rd argument of
+    # "Symfony\Bridge\Monolog\Handler\FingersCrossed\HttpCodeActivationStrategy"
+    # is deprecated, "Monolog\Handler\FingersCrossed\ActivationStrategyInterface" expected.
+    SYMFONY_DEPRECATIONS_HELPER: 40
+    PHP_INI_VALUES: memory_limit=-1,
+
+jobs:
+    mutation_test:
+        name: "${{ matrix.operating-system }} / PHP ${{ matrix.php-version }}"
+        runs-on: ${{ matrix.operating-system }}
+        continue-on-error: false
+
+        strategy:
+          matrix:
+            operating-system: [ 'ubuntu-latest' ]
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2.3.3
+
+            - name: Install PHP with extensions
+              uses: shivammathur/setup-php@2.7.0
+              with:
+                  coverage: "xdebug"
+                  extensions: "intl, mbstring, pdo_sqlite"
+                  php-version: '8.1'
+                  ini-values: memory_limit=-1, max_execution_time=0
+                  tools: composer:v2
+
+            - name: Install dependencies
+              run: composer update --no-interaction --prefer-dist --optimize-autoloader
+
+            - name: Run Infection
+              run: |
+                vendor/bin/phpunit --coverage-xml=/tmp/build/coverage-xml --log-junit=/tmp/build/phpunit.junit.xml                
+                php -d max_execution_time=0 -d memory_limit=-1 vendor/bin/infection --verbose --coverage=/tmp/build --threads=4 --logger-github
+
+            - name: Upload report
+              uses: actions/upload-artifact@v2
+              with:
+                name: reports-artifact
+                path: infection
+                retention-days: 3
