@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Form for {{ title2 }} {{  parent() }}{% endblock %}
+
+{% block body %}
+
+    <h1>{{ 'Form for ' }}{{ title2 ? title2 : 'building is not selected' }}</h1>
+    {# Comments here #}
+
+    <div>Hello add more forms here</div>
+
+{% endblock %}

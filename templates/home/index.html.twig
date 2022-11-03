@@ -1,16 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block body_id 'homepage' %}
-
-{#
-    the homepage is a special page which displays neither a header nor a footer.
-    this is done with the 'trick' of defining empty Twig blocks without any content
-#}
-{% block header %}{% endblock %}
-{% block footer %}{% endblock %}
+{% block title %}Home Page{{  parent() }}{% endblock %}
 
 {% block body %}
-    <img src="Humber Map Resized.png" style="align-content: center;" usemap="#image-map" width="1000px" height="1000px">
+
+<h1>{{ title1 }}</h1>
+{# Comments here #}
+    <img src="Humber Map Resized.png" style="margin-left: 400px;margin-right: 200px;" usemap="#image-map" width="1000px" height="1000px">
 
     <map name="image-map">
         <area target="" alt="" title="LRC" href="{{ path('forms', {'slug': 'LRC'}) }}" coords="504,4,746,246" shape="rect">
@@ -26,36 +22,6 @@
         <area target="" alt="" title="JF" href="{{ path('forms', {'slug': 'JF'}) }}" coords="5,752,248,996" shape="rect">
         <area target="" alt="" title="LX" href="{{ path('forms', {'slug': 'LX'}) }}" coords="254,752,497,992" shape="rect">
     </map>
+<div>Hello add here</div>
 
-    <div class="page-header">
-        <h1>{{ 'title.homepage'|trans|raw }}</h1>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="jumbotron">
-                <p>
-                    {{ 'help.browse_app'|trans|raw }}
-                </p>
-                <p>
-                    <a class="btn btn-primary btn-lg" href="{{ path('blog_index') }}">
-                        <i class="fa fa-users" aria-hidden="true"></i> {{ 'action.browse_app'|trans }}
-                    </a>
-                </p>
-            </div>
-        </div>
-
-        <div class="col-sm-6">
-            <div class="jumbotron">
-                <p>
-                    {{ 'help.browse_admin'|trans|raw }}
-                </p>
-                <p>
-                    <a class="btn btn-primary btn-lg" href="{{ path('admin_index') }}">
-                        <i class="fa fa-lock" aria-hidden="true"></i> {{ 'action.browse_admin'|trans }}
-                    </a>
-                </p>
-            </div>
-        </div>
-    </div>
 {% endblock %}
