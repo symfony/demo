@@ -33,7 +33,7 @@
                     <div class="container">
                         <div class="navbar-header col-md-3 col-lg-2">
                             <a class="navbar-brand" href="{{ path('homepage') }}">
-                                Symfony Demo
+                                Humber Map
                             </a>
 
                             <button type="button" class="navbar-toggle"
@@ -48,61 +48,13 @@
                         <div class="navbar-collapse collapse">
                             <ul class="nav navbar-nav navbar-right">
 
-                                {% block header_navigation_links %}
-                                    <li>
-                                        <a href="{{ path('blog_index') }}">
-                                            <i class="fa fa-home" aria-hidden="true"></i> {{ 'menu.homepage'|trans }}
-                                        </a>
-                                    </li>
-
-                                    {% if is_granted('ROLE_ADMIN') %}
-                                        <li>
-                                            <a href="{{ path('admin_post_index') }}">
-                                                <i class="fa fa-lock" aria-hidden="true"></i> {{ 'menu.admin'|trans }}
-                                            </a>
-                                        </li>
-                                    {% endif %}
-                                {% endblock %}
-
                                 <li>
                                     <a href="{{ path('blog_search') }}"> <i class="fa fa-search"></i> {{ 'menu.search'|trans }}</a>
                                 </li>
 
                                 {% if app.user %}
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="user">
-                                            <i class="fa fa-user" aria-hidden="true"></i>
-                                            <span class="caret"></span>
-                                            <span class="sr-only">{{ app.user.fullname }}</span>
-                                        </a>
-                                        <ul class="dropdown-menu user" role="menu" aria-labelledby="user">
-                                            <li>
-                                                <a href="{{ path('user_edit') }}">
-                                                    <i class="fa fa-edit" aria-hidden="true"></i> {{ 'menu.user'|trans }}
-                                                </a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                <a href="{{ logout_path() }}">
-                                                    <i class="fa fa-sign-out" aria-hidden="true"></i> {{ 'menu.logout'|trans }}
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                {% endif %}
 
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="locales">
-                                        <i class="fa fa-globe" aria-hidden="true"></i>
-                                        <span class="caret"></span>
-                                        <span class="sr-only">{{ 'menu.choose_language'|trans }}</span>
-                                    </a>
-                                    <ul class="dropdown-menu locales" role="menu" aria-labelledby="locales">
-                                        {% for locale in locales() %}
-                                            <li {% if app.request.locale == locale.code %}aria-checked="true" class="active"{% else %}aria-checked="false"{% endif %} role="menuitem"><a href="{{ path(app.request.get('_route', 'blog_index'), app.request.get('_route_params', [])|merge({_locale: locale.code})) }}">{{ locale.name|capitalize }} <small>{{ locale.code[0:2] }}</small></a></li>
-                                        {% endfor %}
-                                    </ul>
-                                </li>
+                                {% endif %}
                             </ul>
                         </div>
                     </div>

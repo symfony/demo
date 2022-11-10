@@ -1,0 +1,122 @@
+{#
+This is the base template used as the application layout which contains the
+common elements and decorates all the other templates.
+See https://symfony.com/doc/current/templates.html#template-inheritance-and-layouts
+#}
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>{% block title %}Humber Map{% endblock %}</title>
+    <link rel="alternate" type="application/rss+xml" title="{{ 'rss.title'|trans }}" href="{{ path('blog_rss') }}">
+
+    {#
+    Those two blocks defines frontend entrypoint for CSS and JavaScript assets
+    See https://symfony.com/doc/current/frontend.html
+    #}
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+
+<body id="{% block body_id %}{% endblock %}">
+
+{% block header %}
+    <header>
+        <div class="navbar navbar-default navbar-static-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header col-md-3 col-lg-2">
+                    <a class="navbar-brand">
+                        Humber Map
+                    </a>
+
+                    <button type="button" class="navbar-toggle"
+                            data-toggle="collapse"
+                            data-target=".navbar-collapse">
+                        <span class="sr-only">{{ 'menu.toggle_nav'|trans }}</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+
+                        {% block header_navigation_links %}
+
+                            {% if is_granted('ROLE_ADMIN') %}
+
+                            {% endif %}
+                        {% endblock %}
+
+
+                        {% if app.user %}
+
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+
+<div class="container body-container">
+    {% block body %}
+        <div class="row">
+            <div id="main" class="col-sm-9">
+                {{ include('default/_flash_messages.html.twig') }}
+
+                {% block main %}{% endblock %}
+            </div>
+
+            <div id="sidebar" class="col-sm-3">
+                {% block sidebar %}
+                    {{ render_esi(controller('Symfony\\Bundle\\FrameworkBundle\\Controller\\TemplateController::templateAction', {
+                        'template': 'blog/about.html.twig',
+                        'sharedAge': 600,
+                        '_locale': app.request.locale
+                    })) }}
+                {% endblock %}
+            </div>
+        </div>
+    {% endblock %}
+</div>
+
+{% block footer %}
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div id="footer-copyright" class="col-md-6">
+                    <p>&copy; {{ 'now'|date('Y') }} - The Symfony Project</p>
+                    <p>{{ 'mit_license'|trans }}</p>
+                </div>
+                <div id="footer-resources" class="col-md-6">
+                    <p>
+                        <a href="https://twitter.com/symfony" title="Symfony Twitter">
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.facebook.com/SensioLabs" title="SensioLabs Facebook">
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://symfony.com/blog/" title="Symfony Blog">
+                            <i class="fa fa-rss" aria-hidden="true"></i>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+
+{# it's not mandatory to set the timezone in localizeddate(). This is done to
+           avoid errors when the 'intl' PHP extension is not available and the application
+           is forced to use the limited "intl polyfill", which only supports UTC and GMT #}
+<!-- Page rendered on {{ 'now'|format_datetime('long', 'long', '', 'UTC') }} -->
+</body>
+</html>

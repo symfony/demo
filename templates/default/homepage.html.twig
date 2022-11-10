@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.2.twig' %}
 
 {% block body_id 'homepage' %}
 
@@ -6,56 +6,24 @@
     the homepage is a special page which displays neither a header nor a footer.
     this is done with the 'trick' of defining empty Twig blocks without any content
 #}
-{% block header %}{% endblock %}
 {% block footer %}{% endblock %}
 
 {% block body %}
     <img src="Humber Map Resized.png" style="align-content: center;" usemap="#image-map" width="1000px" height="1000px">
 
     <map name="image-map">
-        <area target="" alt="" title="LRC" href="{{ path('forms', {'slug': 'LRC'}) }}" coords="504,4,746,246" shape="rect">
-        <area target="" alt="" title="CTI" href="{{ path('forms', {'slug': 'CTI'}) }}" coords="755,6,995,248" shape="rect">
-        <area target="" alt="" title="H" href="{{ path('forms', {'slug': 'H'}) }}" coords="5,254,246,498" shape="rect">
-        <area target="" alt="" title="J" href="{{ path('forms', {'slug': 'J'}) }}" coords="253,255,497,497" shape="rect">
-        <area target="" alt="" title="N" href="{{ path('forms', {'slug': 'N'}) }}" coords="504,255,746,496" shape="rect">
-        <area target="" alt="" title="GH" href="{{ path('forms', {'slug': 'GH'}) }}" coords="755,252,996,497" shape="rect">
-        <area target="" alt="" title="F" href="{{ path('forms', {'slug': 'F'}) }}" coords="4,504,248,746" shape="rect">
-        <area target="" alt="" title="K" href="{{ path('forms', {'slug': 'K'}) }}" coords="251,502,496,745" shape="rect">
-        <area target="" alt="" title="L" href="{{ path('forms', {'slug': 'L'}) }}" coords="504,505,747,746" shape="rect">
-        <area target="" alt="" title="M" href="{{ path('forms', {'slug': 'M'}) }}" coords="754,504,996,751" shape="rect">
-        <area target="" alt="" title="JF" href="{{ path('forms', {'slug': 'JF'}) }}" coords="5,752,248,996" shape="rect">
-        <area target="" alt="" title="LX" href="{{ path('forms', {'slug': 'LX'}) }}" coords="254,752,497,992" shape="rect">
+        <area target="" alt="" title="LRC" href="{{ path('admin_index') }}" coords="504,4,746,246" shape="rect">
+        <area target="" alt="" title="CTI" href="{{ path('admin_index') }}" coords="755,6,995,248" shape="rect">
+        <area target="" alt="" title="H" href="{{ path('admin_index') }}" coords="5,254,246,498" shape="rect">
+        <area target="" alt="" title="J" href="{{ path('admin_index') }}" coords="253,255,497,497" shape="rect">
+        <area target="" alt="" title="N" href="{{ path('admin_index') }}" coords="504,255,746,496" shape="rect">
+        <area target="" alt="" title="GH" href="{{ path('admin_index') }}" coords="755,252,996,497" shape="rect">
+        <area target="" alt="" title="F" href="{{ path('admin_index') }}" coords="4,504,248,746" shape="rect">
+        <area target="" alt="" title="K" href="{{ path('admin_index') }}" coords="251,502,496,745" shape="rect">
+        <area target="" alt="" title="L" href="{{ path('admin_index') }}" coords="504,505,747,746" shape="rect">
+        <area target="" alt="" title="M" href="{{ path('admin_index') }}" coords="754,504,996,751" shape="rect">
+        <area target="" alt="" title="JF" href="{{ path('admin_index') }}}" coords="5,752,248,996" shape="rect">
+        <area target="" alt="" title="LX" href="{{ path('admin_index') }}" coords="254,752,497,992" shape="rect">
     </map>
 
-    <div class="page-header">
-        <h1>{{ 'title.homepage'|trans|raw }}</h1>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="jumbotron">
-                <p>
-                    {{ 'help.browse_app'|trans|raw }}
-                </p>
-                <p>
-                    <a class="btn btn-primary btn-lg" href="{{ path('blog_index') }}">
-                        <i class="fa fa-users" aria-hidden="true"></i> {{ 'action.browse_app'|trans }}
-                    </a>
-                </p>
-            </div>
-        </div>
-
-        <div class="col-sm-6">
-            <div class="jumbotron">
-                <p>
-                    {{ 'help.browse_admin'|trans|raw }}
-                </p>
-                <p>
-                    <a class="btn btn-primary btn-lg" href="{{ path('admin_index') }}">
-                        <i class="fa fa-lock" aria-hidden="true"></i> {{ 'action.browse_admin'|trans }}
-                    </a>
-                </p>
-            </div>
-        </div>
-    </div>
 {% endblock %}
