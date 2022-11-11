@@ -101,7 +101,7 @@ class TagArrayToStringTransformerTest extends TestCase
      * This helper method mocks the real TagArrayToStringTransformer class to
      * simplify the tests. See https://phpunit.de/manual/current/en/test-doubles.html.
      *
-     * @param array $findByReturnValues The values returned when calling to the findBy() method
+     * @param array<int, object> $findByReturnValues The values returned when calling to the findBy() method
      */
     private function getMockedTransformer(array $findByReturnValues = []): TagArrayToStringTransformer
     {

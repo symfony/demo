@@ -27,6 +27,10 @@ use function Symfony\Component\String\u;
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  * @author Yonel Ceruto <yonelceruto@gmail.com>
+ *
+ * @method Post|null findOneByTitle(string $postTitle)
+ *
+ * @template-extends ServiceEntityRepository<Post>
  */
 class PostRepository extends ServiceEntityRepository
 {
@@ -74,15 +78,21 @@ class PostRepository extends ServiceEntityRepository
             ;
         }
 
-        return $queryBuilder
+        /** @var Post[] $result */
+        $result = $queryBuilder
             ->orderBy('p.publishedAt', 'DESC')
             ->setMaxResults($limit)
             ->getQuery()
-            ->getResult();
+            ->getResult()
+        ;
+
+        return $result;
     }
 
     /**
      * Transforms the search string into an array of search terms.
+     *
+     * @return string[]
      */
     private function extractSearchTerms(string $searchQuery): array
     {

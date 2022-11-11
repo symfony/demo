@@ -29,8 +29,12 @@ class Paginator
     public const PAGE_SIZE = 10;
 
     private int $currentPage;
-    private \Traversable $results;
     private int $numResults;
+
+    /**
+     * @var \Traversable<int, object>
+     */
+    private \Traversable $results;
 
     public function __construct(
         private DoctrineQueryBuilder $queryBuilder,
@@ -48,13 +52,19 @@ class Paginator
             ->setMaxResults($this->pageSize)
             ->getQuery();
 
-        if (0 === \count($this->queryBuilder->getDQLPart('join'))) {
+        /** @var array<string, mixed> $joinDqlParts */
+        $joinDqlParts = $this->queryBuilder->getDQLPart('join');
+
+        if (0 === \count($joinDqlParts)) {
             $query->setHint(CountWalker::HINT_DISTINCT, false);
         }
 
         $paginator = new DoctrinePaginator($query, true);
 
-        $useOutputWalkers = \count($this->queryBuilder->getDQLPart('having') ?: []) > 0;
+        /** @var array<string, mixed> $havingDqlParts */
+        $havingDqlParts = $this->queryBuilder->getDQLPart('having');
+
+        $useOutputWalkers = \count($havingDqlParts ?: []) > 0;
         $paginator->setUseOutputWalkers($useOutputWalkers);
 
         $this->results = $paginator->getIterator();
@@ -108,6 +118,9 @@ class Paginator
         return $this->numResults;
     }
 
+    /**
+     * @return \Traversable<int, object>
+     */
     public function getResults(): \Traversable
     {
         return $this->results;

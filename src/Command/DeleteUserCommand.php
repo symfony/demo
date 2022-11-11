@@ -107,7 +107,9 @@ class DeleteUserCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $username = $this->validator->validateUsername($input->getArgument('username'));
+        /** @var string|null $username */
+        $username = $input->getArgument('username');
+        $username = $this->validator->validateUsername($username);
 
         /** @var User|null $user */
         $user = $this->users->findOneByUsername($username);

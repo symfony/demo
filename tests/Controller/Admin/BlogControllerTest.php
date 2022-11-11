@@ -47,7 +47,7 @@ class BlogControllerTest extends WebTestCase
         $this->assertResponseStatusCodeSame(Response::HTTP_FORBIDDEN);
     }
 
-    public function getUrlsForRegularUsers(): ?\Generator
+    public function getUrlsForRegularUsers(): \Generator
     {
         yield ['GET', '/en/admin/post/'];
         yield ['GET', '/en/admin/post/1'];
@@ -95,8 +95,12 @@ class BlogControllerTest extends WebTestCase
 
         $this->assertResponseRedirects('/en/admin/post/', Response::HTTP_FOUND);
 
+        /** @var PostRepository $postRepository */
+        $postRepository = static::getContainer()->get(PostRepository::class);
+
         /** @var \App\Entity\Post $post */
-        $post = static::getContainer()->get(PostRepository::class)->findOneByTitle($postTitle);
+        $post = $postRepository->findOneByTitle($postTitle);
+
         $this->assertNotNull($post);
         $this->assertSame($postSummary, $post->getSummary());
         $this->assertSame($postContent, $post->getContent());
@@ -159,8 +163,12 @@ class BlogControllerTest extends WebTestCase
 
         $this->assertResponseRedirects('/en/admin/post/1/edit', Response::HTTP_FOUND);
 
+        /** @var PostRepository $postRepository */
+        $postRepository = static::getContainer()->get(PostRepository::class);
+
         /** @var \App\Entity\Post $post */
-        $post = static::getContainer()->get(PostRepository::class)->find(1);
+        $post = $postRepository->find(1);
+
         $this->assertSame($newBlogPostTitle, $post->getTitle());
     }
 
@@ -181,14 +189,16 @@ class BlogControllerTest extends WebTestCase
 
         $this->assertResponseRedirects('/en/admin/post/', Response::HTTP_FOUND);
 
-        $post = static::getContainer()->get(PostRepository::class)->find(1);
-        $this->assertNull($post);
+        /** @var PostRepository $postRepository */
+        $postRepository = static::getContainer()->get(PostRepository::class);
+
+        $this->assertNull($postRepository->find(1));
     }
 
     private function generateRandomString(int $length): string
     {
         $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-        return mb_substr(str_shuffle(str_repeat($chars, ceil($length / mb_strlen($chars)))), 1, $length);
+        return mb_substr(str_shuffle(str_repeat($chars, (int) ceil($length / mb_strlen($chars)))), 1, $length);
     }
 }

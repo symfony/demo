@@ -13,10 +13,14 @@ namespace App\Tests\Command;
 
 use App\Command\AddUserCommand;
 use App\Repository\UserRepository;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AddUserCommandTest extends AbstractCommandTest
 {
-    private $userData = [
+    /**
+     * @var string[]
+     */
+    private array $userData = [
         'username' => 'chuck_norris',
         'password' => 'foobar',
         'email' => 'chuck@norris.com',
@@ -72,7 +76,7 @@ class AddUserCommandTest extends AbstractCommandTest
      * This is used to execute the same test twice: first for normal users
      * (isAdmin = false) and then for admin users (isAdmin = true).
      */
-    public function isAdminDataProvider(): ?\Generator
+    public function isAdminDataProvider(): \Generator
     {
         yield [false];
         yield [true];
@@ -84,13 +88,19 @@ class AddUserCommandTest extends AbstractCommandTest
      */
     private function assertUserCreated(bool $isAdmin): void
     {
-        /** @var \App\Entity\User $user */
-        $user = $this->getContainer()->get(UserRepository::class)->findOneByEmail($this->userData['email']);
-        $this->assertNotNull($user);
+        /** @var UserRepository $repository */
+        $repository = $this->getContainer()->get(UserRepository::class);
 
+        /** @var \App\Entity\User $user */
+        $user = $repository->findOneByEmail($this->userData['email']);
+
+        /** @var UserPasswordHasherInterface $passwordHasher */
+        $passwordHasher = $this->getContainer()->get('test.user_password_hasher');
+
+        $this->assertNotNull($user);
         $this->assertSame($this->userData['full-name'], $user->getFullName());
         $this->assertSame($this->userData['username'], $user->getUsername());
-        $this->assertTrue($this->getContainer()->get('test.user_password_hasher')->isPasswordValid($user, $this->userData['password']));
+        $this->assertTrue($passwordHasher->isPasswordValid($user, $this->userData['password']));
         $this->assertSame($isAdmin ? ['ROLE_ADMIN'] : ['ROLE_USER'], $user->getRoles());
     }
 

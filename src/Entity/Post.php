@@ -66,14 +66,14 @@ class Post
     private ?User $author = null;
 
     /**
-     * @var Comment[]|Collection
+     * @var Collection<int, Comment>
      */
     #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'post', orphanRemoval: true, cascade: ['persist'])]
     #[ORM\OrderBy(['publishedAt' => 'DESC'])]
     private Collection $comments;
 
     /**
-     * @var Tag[]|Collection
+     * @var Collection<int, Tag>
      */
     #[ORM\ManyToMany(targetEntity: Tag::class, cascade: ['persist'])]
     #[ORM\JoinTable(name: 'symfony_demo_post_tag')]
@@ -143,6 +143,9 @@ class Post
         $this->author = $author;
     }
 
+    /**
+     * @return Collection<int, Comment>
+     */
     public function getComments(): Collection
     {
         return $this->comments;
@@ -185,6 +188,9 @@ class Post
         $this->tags->removeElement($tag);
     }
 
+    /**
+     * @return Collection<int, Tag>
+     */
     public function getTags(): Collection
     {
         return $this->tags;

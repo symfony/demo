@@ -18,6 +18,7 @@ use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\String\AbstractUnicodeString;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use function Symfony\Component\String\u;
 
@@ -67,6 +68,8 @@ class AppFixtures extends Fixture
 
     private function loadPosts(ObjectManager $manager): void
     {
+        /** @var User $author */
+        /** @var array<Tag> $tags */
         foreach ($this->getPostData() as [$title, $slug, $summary, $content, $publishedAt, $author, $tags]) {
             $post = new Post();
             $post->setTitle($title);
@@ -78,8 +81,11 @@ class AppFixtures extends Fixture
             $post->addTag(...$tags);
 
             foreach (range(1, 5) as $i) {
+                /** @var User $commentAuthor */
+                $commentAuthor = $this->getReference('john_user');
+
                 $comment = new Comment();
-                $comment->setAuthor($this->getReference('john_user'));
+                $comment->setAuthor($commentAuthor);
                 $comment->setContent($this->getRandomText(random_int(255, 512)));
                 $comment->setPublishedAt(new \DateTime('now + '.$i.'seconds'));
 
@@ -92,6 +98,9 @@ class AppFixtures extends Fixture
         $manager->flush();
     }
 
+    /**
+     * @return array<array{string, string, string, string, array<string>}>
+     */
     private function getUserData(): array
     {
         return [
@@ -102,6 +111,9 @@ class AppFixtures extends Fixture
         ];
     }
 
+    /**
+     * @return string[]
+     */
     private function getTagData(): array
     {
         return [
@@ -117,6 +129,11 @@ class AppFixtures extends Fixture
         ];
     }
 
+    /**
+     * @throws \Exception
+     *
+     * @return array<int, array{0: string, 1: AbstractUnicodeString, 2: string, 3: string, 4: \DateTime, 5: object, 6: array<object>}>
+     */
     private function getPostData(): array
     {
         $posts = [];
@@ -137,6 +154,9 @@ class AppFixtures extends Fixture
         return $posts;
     }
 
+    /**
+     * @return string[]
+     */
     private function getPhrases(): array
     {
         return [
@@ -226,6 +246,11 @@ class AppFixtures extends Fixture
             MARKDOWN;
     }
 
+    /**
+     * @throws \Exception
+     *
+     * @return array<object>
+     */
     private function getRandomTags(): array
     {
         $tagNames = $this->getTagData();

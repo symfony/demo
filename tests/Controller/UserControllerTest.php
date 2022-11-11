@@ -47,7 +47,7 @@ class UserControllerTest extends WebTestCase
         );
     }
 
-    public function getUrlsForAnonymousUsers(): ?\Generator
+    public function getUrlsForAnonymousUsers(): \Generator
     {
         yield ['GET', '/en/profile/edit'];
         yield ['GET', '/en/profile/change-password'];
@@ -68,8 +68,11 @@ class UserControllerTest extends WebTestCase
 
         $this->assertResponseRedirects('/en/profile/edit', Response::HTTP_FOUND);
 
+        /** @var UserRepository $userRepository */
+        $userRepository = static::getContainer()->get(UserRepository::class);
+
         /** @var \App\Entity\User $user */
-        $user = static::getContainer()->get(UserRepository::class)->findOneByEmail($newUserEmail);
+        $user = $userRepository->findOneByEmail($newUserEmail);
 
         $this->assertNotNull($user);
         $this->assertSame($newUserEmail, $user->getEmail());

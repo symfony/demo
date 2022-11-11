@@ -11,7 +11,6 @@
 
 namespace App\Tests\Controller;
 
-use App\Entity\Post;
 use App\Pagination\Paginator;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -88,7 +87,11 @@ class BlogControllerTest extends WebTestCase
         $client = static::createClient();
         $client->xmlHttpRequest('GET', '/en/blog/search', ['q' => 'lorem']);
 
-        $results = json_decode($client->getResponse()->getContent(), true);
+        /** @var string $content */
+        $content = $client->getResponse()->getContent();
+
+        /** @var array<int, array<string>> $results */
+        $results = json_decode($content, true);
 
         $this->assertResponseHeaderSame('Content-Type', 'application/json');
         $this->assertCount(1, $results);
