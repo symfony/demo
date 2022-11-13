@@ -1,0 +1,20 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/shyim/devcontainers-features/symfony-cli:0": {},
+    "ghcr.io/shyim/devcontainers-features/php:0": {
+      "version": "8.1"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    }
+  },
+  "updateContentCommand": {
+    "composer install": ["composer", "install"],
+    "yarn": ["yarn"]
+  },
+  "postAttachCommand": {
+    "server": "symfony server:start",
+    "yarn": ["yarn", "watch"]
+  }
+}
