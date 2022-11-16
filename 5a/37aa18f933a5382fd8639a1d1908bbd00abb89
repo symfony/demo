@@ -1,0 +1,51 @@
+---------------------------------------------------------------------------
+
+by ihmels at 2022-09-12T13:31:41Z
+
+Maybe we should remove the check, if the user is already logged in in the SecurityController::login() action so that users can re-enter their passwords, when `IS_AUTHENTICATED_FULLY` is required.
+
+```diff
+class SecurityController extends AbstractController
+{
+    // ...
+
+    #[Route('/login', name: 'security_login')]
+    public function login(Request $request, AuthenticationUtils $helper): Response
+    {
+-        // if user is already logged in, don't display the login page again
+-        if ($this->getUser()) {
+-            return $this->redirectToRoute('blog_index');
+-        }
+
+        // ...
+    }
+
+    // ...
+}
+```
+
+---------------------------------------------------------------------------
+
+by artyuum at 2022-09-28T17:47:27Z
+
+@ihmels I'm not sure how this is related to my PR.
+
+---------------------------------------------------------------------------
+
+by ihmels at 2022-09-28T18:02:39Z
+
+@artyuum If you add the remember me functionallity, users who are logged in only because of a remember me cookie will have `IS_AUTHENTICATED_REMEMBERED`, but will not have `IS_AUTHENTICATED_FULLY`. If you then check for the `IS_AUTHENTICATED_FULLY` special attribute (via `AuthorizationCheckerInterface::isGranted('IS_AUTHENTICATED_FULLY')`) the user will be redirected to the login form. In this case you want the user to re-enter their password. If you do not remove the check I mentioned in `SecurityController::login()` the user will be redirected to the `blog_index` route and will not get the `IS_AUTHENTICATED_FULLY` attribute.
+
+---------------------------------------------------------------------------
+
+by artyuum at 2022-09-28T18:23:34Z
+
+Apparently the `IS_AUTHENTICATED_FULLY` attribute is only used there:
+https://github.com/symfony/demo/blob/ecf3f8526c59ebe6cb68b2b79fac5251c9430607/src/Controller/BlogController.php#L100
+
+I suggest replacing this attribute with `IS_AUTHENTICATED` and keeping the condition in the login controller to prevent the user from accessing the login page while they are already logged in.
+https://github.com/symfony/demo/blob/ecf3f8526c59ebe6cb68b2b79fac5251c9430607/src/Controller/SecurityController.php#L35
+
+Unless we *really* want to enforce this level of security (requiring the user to re-enter their password again before submitting a comment just because they have been logged-in again thanks to the remember me cookie)...
+
+WDYT?
