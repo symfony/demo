@@ -22,6 +22,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Component\Security\Http\Logout\LogoutUrlGenerator;
 
 /**
  * Controller used to manage current user. The #[CurrentUser] attribute
@@ -63,6 +64,7 @@ class UserController extends AbstractController
         Request $request,
         UserPasswordHasherInterface $passwordHasher,
         EntityManagerInterface $entityManager,
+        LogoutUrlGenerator $logoutUrlGenerator,
     ): Response {
         $form = $this->createForm(ChangePasswordType::class);
         $form->handleRequest($request);
@@ -74,7 +76,7 @@ class UserController extends AbstractController
             $user->setPassword($passwordHasher->hashPassword($user, $plainPassword));
             $entityManager->flush();
 
-            return $this->redirectToRoute('security_logout');
+            return $this->redirect($logoutUrlGenerator->getLogoutPath());
         }
 
         return $this->render('user/change_password.html.twig', [
