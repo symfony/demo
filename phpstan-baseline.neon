@@ -76,11 +76,6 @@ parameters:
 			path: src/Controller/Admin/BlogController.php
 
 		-
-			message: "#^Parameter \\#1 \\$author of method App\\\\Entity\\\\Post\\:\\:setAuthor\\(\\) expects App\\\\Entity\\\\User, Symfony\\\\Component\\\\Security\\\\Core\\\\User\\\\UserInterface\\|null given\\.$#"
-			count: 1
-			path: src/Controller/Admin/BlogController.php
-
-		-
 			message: "#^Parameter \\#2 \\$token of method Symfony\\\\Bundle\\\\FrameworkBundle\\\\Controller\\\\AbstractController\\:\\:isCsrfTokenValid\\(\\) expects string\\|null, bool\\|float\\|int\\|string\\|null given\\.$#"
 			count: 1
 			path: src/Controller/Admin/BlogController.php
@@ -92,11 +87,6 @@ parameters:
 
 		-
 			message: "#^Cannot call method getFullName\\(\\) on App\\\\Entity\\\\User\\|null\\.$#"
-			count: 1
-			path: src/Controller/BlogController.php
-
-		-
-			message: "#^Parameter \\#1 \\$author of method App\\\\Entity\\\\Comment\\:\\:setAuthor\\(\\) expects App\\\\Entity\\\\User, Symfony\\\\Component\\\\Security\\\\Core\\\\User\\\\UserInterface\\|null given\\.$#"
 			count: 1
 			path: src/Controller/BlogController.php
 
@@ -119,16 +109,6 @@ parameters:
 			message: "#^Parameter \\#2 \\$tag of method App\\\\Repository\\\\PostRepository\\:\\:findLatest\\(\\) expects App\\\\Entity\\\\Tag\\|null, object\\|null given\\.$#"
 			count: 1
 			path: src/Controller/BlogController.php
-
-		-
-			message: "#^Cannot call method setPassword\\(\\) on Symfony\\\\Component\\\\Security\\\\Core\\\\User\\\\UserInterface\\|null\\.$#"
-			count: 1
-			path: src/Controller/UserController.php
-
-		-
-			message: "#^Parameter \\#1 \\$user of method Symfony\\\\Component\\\\PasswordHasher\\\\Hasher\\\\UserPasswordHasherInterface\\:\\:hashPassword\\(\\) expects Symfony\\\\Component\\\\Security\\\\Core\\\\User\\\\PasswordAuthenticatedUserInterface, Symfony\\\\Component\\\\Security\\\\Core\\\\User\\\\UserInterface\\|null given\\.$#"
-			count: 1
-			path: src/Controller/UserController.php
 
 		-
 			message: "#^Parameter \\#2 \\$plainPassword of method Symfony\\\\Component\\\\PasswordHasher\\\\Hasher\\\\UserPasswordHasherInterface\\:\\:hashPassword\\(\\) expects string, mixed given\\.$#"
@@ -252,21 +232,6 @@ parameters:
 
 		-
 			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(Symfony\\\\Component\\\\String\\\\UnicodeString\\)\\: mixed\\)\\|null, 'trim' given\\.$#"
-			count: 1
-			path: src/Form/DataTransformer/TagArrayToStringTransformer.php
-
-		-
-			message: "#^Parameter \\#1 \\$string of function Symfony\\\\Component\\\\String\\\\u expects string\\|null, mixed given\\.$#"
-			count: 2
-			path: src/Form/DataTransformer/TagArrayToStringTransformer.php
-
-		-
-			message: "#^Parameter \\#2 \\$array of function implode expects array\\<string\\>, mixed given\\.$#"
-			count: 1
-			path: src/Form/DataTransformer/TagArrayToStringTransformer.php
-
-		-
-			message: "#^Parameter \\#2 \\$array of function implode expects array\\|null, mixed given\\.$#"
 			count: 1
 			path: src/Form/DataTransformer/TagArrayToStringTransformer.php
 

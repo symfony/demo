@@ -11,18 +11,23 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Form\Type\ChangePasswordType;
 use App\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\CurrentUser;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 /**
- * Controller used to manage current user.
+ * Controller used to manage current user. The #[CurrentUser] attribute
+ * tells Symfony to inject the currently logged user into the given argument.
+ * It can only be used in controllers and it's an alternative to the
+ * $this->getUser() method, which still works inside controllers.
  *
  * @author Romain Monteil <monteil.romain@gmail.com>
  */
@@ -30,10 +35,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     #[Route('/edit', methods: ['GET', 'POST'], name: 'user_edit')]
-    public function edit(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $user = $this->getUser();
-
+    public function edit(
+        #[CurrentUser] User $user,
+        Request $request,
+        EntityManagerInterface $entityManager,
+    ): Response {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
@@ -52,10 +58,12 @@ class UserController extends AbstractController
     }
 
     #[Route('/change-password', methods: ['GET', 'POST'], name: 'user_change_password')]
-    public function changePassword(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager): Response
-    {
-        $user = $this->getUser();
-
+    public function changePassword(
+        #[CurrentUser] User $user,
+        Request $request,
+        UserPasswordHasherInterface $passwordHasher,
+        EntityManagerInterface $entityManager,
+    ): Response {
         $form = $this->createForm(ChangePasswordType::class);
         $form->handleRequest($request);
 

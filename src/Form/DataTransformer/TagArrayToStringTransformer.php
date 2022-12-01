@@ -24,6 +24,8 @@ use function Symfony\Component\String\u;
  *
  * @author Yonel Ceruto <yonelceruto@gmail.com>
  * @author Jonathan Boyer <contact@grafikart.fr>
+ *
+ * @template-implements DataTransformerInterface<Tag[], string>
  */
 class TagArrayToStringTransformer implements DataTransformerInterface
 {

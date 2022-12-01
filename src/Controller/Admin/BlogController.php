@@ -12,16 +12,18 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Post;
+use App\Entity\User;
 use App\Form\PostType;
 use App\Repository\PostRepository;
 use App\Security\PostVoter;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\CurrentUser;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 /**
  * Controller used to manage blog contents in the backend.
@@ -51,9 +53,11 @@ class BlogController extends AbstractController
      */
     #[Route('/', methods: ['GET'], name: 'admin_index')]
     #[Route('/', methods: ['GET'], name: 'admin_post_index')]
-    public function index(PostRepository $posts): Response
-    {
-        $authorPosts = $posts->findBy(['author' => $this->getUser()], ['publishedAt' => 'DESC']);
+    public function index(
+        #[CurrentUser] User $user,
+        PostRepository $posts,
+    ): Response {
+        $authorPosts = $posts->findBy(['author' => $user], ['publishedAt' => 'DESC']);
 
         return $this->render('admin/blog/index.html.twig', ['posts' => $authorPosts]);
     }
@@ -66,10 +70,13 @@ class BlogController extends AbstractController
      * it responds to all methods).
      */
     #[Route('/new', methods: ['GET', 'POST'], name: 'admin_post_new')]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
+    public function new(
+        #[CurrentUser] User $user,
+        Request $request,
+        EntityManagerInterface $entityManager,
+    ): Response {
         $post = new Post();
-        $post->setAuthor($this->getUser());
+        $post->setAuthor($user);
 
         // See https://symfony.com/doc/current/form/multiple_buttons.html
         $form = $this->createForm(PostType::class, $post)

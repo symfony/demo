@@ -10,3 +10,14 @@ homepage:
     defaults:
         template: default/homepage.html.twig
         _locale: '%locale%'
+
+controllers:
+    resource:
+        path: '../src/Controller/'
+        namespace: App\Controller
+    type: attribute
+    prefix: /{_locale}
+    requirements:
+        _locale: '%app_locales%'
+    defaults:
+        _locale: '%locale%'
