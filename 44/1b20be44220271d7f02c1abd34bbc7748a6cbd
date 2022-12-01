@@ -1,0 +1,114 @@
+---------------------------------------------------------------------------
+
+by stof at 2022-10-28T10:22:25Z
+
+For the first one, we need to debug why the DbalLogger still gets autoloaded while DoctrineBundle properly supports using middlewares when using DBAL 3.2+ and Symfony versions containing the middleware for the profiler integration.
+
+for the `Symfony\Bridge\Monolog\Logger`, this should be reported to Symfony to find a way to stop extending that class (or to Monolog to revert that decision if we cannot find another way).
+
+For the extractor, either a config setting needs to be added to switch to the new extractor, or something needs to be fixed in Symfony to avoid triggering the deprecation in all projects.
+
+---------------------------------------------------------------------------
+
+by seb-jean at 2022-11-21T08:48:53Z
+
+Instead of using `$this->getUser()`, we could use `#[CurrentUser]`:
+https://symfony.com/blog/new-in-symfony-5-2-controller-argument-attributes
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2022-11-25T15:30:05Z
+
+I've just updated it until Symfony 6.2 RC1 and also updated all recipes. We still have these indirect deprecations:
+
+```
+Remaining indirect deprecation notices (3)
+
+  1x: The "Symfony\Bridge\Doctrine\Logger\DbalLogger" class implements
+      "Doctrine\DBAL\Logging\SQLLogger" that is deprecated
+      Use {@see \Doctrine\DBAL\Logging\Middleware}
+      or implement {@see \Doctrine\DBAL\Driver\Middleware} instead.
+
+  1x: The "Monolog\Logger" class is considered final. It may change without
+      further notice as of its next major version. You should not extend
+      it from "Symfony\Bridge\Monolog\Logger".
+
+  1x: Since symfony/translation 6.2: "Symfony\Component\Translation\Extractor\PhpExtractor"
+      is deprecated, use "Symfony\Component\Translation\Extractor\PhpAstExtractor" instead.
+
+```
+
+---------------------------------------------------------------------------
+
+by seb-jean at 2022-12-01T08:51:50Z
+
+@javiereguiluz, it is good practice to put each controller argument on its own line?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2022-12-01T09:22:18Z
+
+@seb-jean the traditional Symfony practice was to put all arguments on the same line, even if it's too long.
+
+However, now that we're applying PHP attributes to some arguments, we think it's better in that case to put each argument on its own line, to not miss those PHP attributes.
+
+---------------------------------------------------------------------------
+
+by seb-jean at 2022-12-01T10:42:00Z
+
+We no longer need to call `createView()`
+https://symfony.com/blog/new-in-symfony-6-2-dx-improvements#simpler-form-rendering
+
+---------------------------------------------------------------------------
+
+by seb-jean at 2022-12-01T11:04:59Z
+
+Should we use the [hash_property_path](https://symfony.com/blog/new-in-symfony-6-2-security-improvements-part-2#improved-password-form-field) option for https://github.com/symfony/demo/blob/main/src/Form/Type/ChangePasswordType.php?
+
+ ```php
+// https://github.com/symfony/demo/blob/main/src/Form/Type/ChangePasswordType.php
+->add('newPassword', RepeatedType::class, [
+    'type' => PasswordType::class,
+    'constraints' => [
+        new NotBlank(),
+        new Length(
+            min: 5,
+            max: 128,
+        ),
+    ],
+    'first_options' => [
+        'label' => 'label.new_password',
+        'hash_property_path' => 'password'
+
+    ],
+    'second_options' => [
+        'label' => 'label.new_password_confirm'
+    ],
+])
+```
+
+And remove `setPassword()`: https://github.com/symfony/demo/blob/main/src/Controller/UserController.php#L63
+
+---------------------------------------------------------------------------
+
+by stof at 2022-12-01T13:03:58Z
+
+For the remaining deprecations, here is the status:
+
+1. work is in progress in DoctrineBundle to get rid of it (we probably need to mark the SQL logger service as deprecated, unless we mis-identified the root cause)
+2. this is discussed in https://github.com/symfony/symfony/issues/47096 but it requires adding a new feature in FrameworkBundle to change the way the LoggerDataCollector is wired which might require waiting for Symfony 6.3 to solve the Monolog 3.2 deprecation (or doing weird things in a compiler pass in MonologBundle)
+3. Does this deprecation go away if you install `nikic/php-parser` to enable the new AST-based extractor ? If yes, we might need to find a solution to avoid reporting that deprecation in a different way for projects that don't want to use the translation extractor.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2022-12-01T13:55:05Z
+
+@stof thanks for the update about the deprecations! After the latest updates, the deprecation related to translation is gone. I can only see these:
+
+```
+  1x: The "Symfony\Bridge\Doctrine\Logger\DbalLogger" class implements "Doctrine\DBAL\Logging\SQLLogger" that is deprecated Use {@see \Doctrine\DBAL\Logging\Middleware} or implement {@see \Doctrine\DBAL\Driver\Middleware} instead.
+    1x in AddUserCommandTest::testCreateUserNonInteractive from App\Tests\Command
+
+  1x: The "Monolog\Logger" class is considered final. It may change without further notice as of its next major version. You should not extend it from "Symfony\Bridge\Monolog\Logger".
+    1x in AddUserCommandTest::testCreateUserNonInteractive from App\Tests\Command
+```
