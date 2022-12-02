@@ -53,10 +53,8 @@ security:
                 path: security_logout
                 # The name of the route to redirect to after logging out
                 target: homepage
-
                 # Secure the logout against CSRF
-                csrf_parameter: logout
-                csrf_token_generator: security.csrf.token_manager
+                enable_csrf: true
 
             # needed because in tests we redefine the 'main' firewall to use
             # HTTP Basic instead of the login form, so this firewall has
