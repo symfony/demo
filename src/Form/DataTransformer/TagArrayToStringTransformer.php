@@ -36,6 +36,8 @@ class TagArrayToStringTransformer implements DataTransformerInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @phpstan-param array<Tag>|null $tags
      */
     public function transform($tags): string
     {
@@ -43,12 +45,15 @@ class TagArrayToStringTransformer implements DataTransformerInterface
         // Symfony\Bridge\Doctrine\Form\DataTransformer\CollectionToArrayTransformer::transform()
         // The value returned is a string that concatenates the string representation of those objects
 
-        /* @var Tag[] $tags */
         return implode(',', $tags);
     }
 
     /**
      * {@inheritdoc}
+     *
+     * @phpstan-param string|null $string
+     *
+     * @phpstan-return array<int, Tag>
      */
     public function reverseTransform($string): array
     {
@@ -56,9 +61,10 @@ class TagArrayToStringTransformer implements DataTransformerInterface
             return [];
         }
 
-        $names = array_filter(array_unique(array_map('trim', u($string)->split(','))));
+        $names = array_filter(array_unique($this->trim(u($string)->split(','))));
 
         // Get the current tags and find the new ones that should be created.
+        /** @var Tag[] $tags */
         $tags = $this->tags->findBy([
             'name' => $names,
         ]);
@@ -73,5 +79,21 @@ class TagArrayToStringTransformer implements DataTransformerInterface
         // Return an array of tags to transform them back into a Doctrine Collection.
         // See Symfony\Bridge\Doctrine\Form\DataTransformer\CollectionToArrayTransformer::reverseTransform()
         return $tags;
+    }
+
+    /**
+     * @param string[] $strings
+     *
+     * @return string[]
+     */
+    private function trim(array $strings): array
+    {
+        $result = [];
+
+        foreach ($strings as $string) {
+            $result[] = trim($string);
+        }
+
+        return $result;
     }
 }

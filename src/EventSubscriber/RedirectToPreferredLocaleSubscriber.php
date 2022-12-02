@@ -28,6 +28,9 @@ use function Symfony\Component\String\u;
  */
 class RedirectToPreferredLocaleSubscriber implements EventSubscriberInterface
 {
+    /**
+     * @var string[]
+     */
     private array $locales;
     private string $defaultLocale;
 

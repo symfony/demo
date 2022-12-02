@@ -68,7 +68,10 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->setPassword($passwordHasher->hashPassword($user, $form->get('newPassword')->getData()));
+            /** @var string $plainPassword */
+            $plainPassword = $form->get('newPassword')->getData();
+
+            $user->setPassword($passwordHasher->hashPassword($user, $plainPassword));
             $entityManager->flush();
 
             return $this->redirectToRoute('security_logout');

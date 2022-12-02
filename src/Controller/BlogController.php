@@ -13,6 +13,7 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\Post;
+use App\Entity\Tag;
 use App\Entity\User;
 use App\Event\CommentCreatedEvent;
 use App\Form\CommentType;
@@ -52,6 +53,7 @@ class BlogController extends AbstractController
     {
         $tag = null;
         if ($request->query->has('tag')) {
+            /** @var Tag $tag */
             $tag = $tags->findOneBy(['name' => $request->query->get('tag')]);
         }
         $latestPosts = $posts->findLatest($page, $tag);
@@ -155,8 +157,8 @@ class BlogController extends AbstractController
     #[Route('/search', methods: ['GET'], name: 'blog_search')]
     public function search(Request $request, PostRepository $posts): Response
     {
-        $query = $request->query->get('q', '');
-        $limit = $request->query->get('l', 10);
+        $query = (string) $request->query->get('q', '');
+        $limit = (int) $request->query->get('l', 10);
 
         if (!$request->isXmlHttpRequest()) {
             return $this->render('blog/search.html.twig', ['query' => $query]);
@@ -166,11 +168,20 @@ class BlogController extends AbstractController
 
         $results = [];
         foreach ($foundPosts as $post) {
+            /** @var string $author */
+            $author = $post->getAuthor() ? $post->getAuthor()->getFullName() : '';
+
+            /** @var string $title */
+            $title = $post->getTitle();
+
+            /** @var string $summary */
+            $summary = $post->getSummary();
+
             $results[] = [
-                'title' => htmlspecialchars($post->getTitle(), \ENT_COMPAT | \ENT_HTML5),
+                'title' => htmlspecialchars($title, \ENT_COMPAT | \ENT_HTML5),
                 'date' => $post->getPublishedAt()->format('M d, Y'),
-                'author' => htmlspecialchars($post->getAuthor()->getFullName(), \ENT_COMPAT | \ENT_HTML5),
-                'summary' => htmlspecialchars($post->getSummary(), \ENT_COMPAT | \ENT_HTML5),
+                'author' => htmlspecialchars($author, \ENT_COMPAT | \ENT_HTML5),
+                'summary' => htmlspecialchars($summary, \ENT_COMPAT | \ENT_HTML5),
                 'url' => $this->generateUrl('blog_post', ['slug' => $post->getSlug()]),
             ];
         }

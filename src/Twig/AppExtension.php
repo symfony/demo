@@ -24,7 +24,14 @@ use Twig\TwigFunction;
  */
 class AppExtension extends AbstractExtension
 {
+    /**
+     * @var string[]
+     */
     private array $localeCodes;
+
+    /**
+     * @var array<int, array<string, string>>|null
+     */
     private ?array $locales = null;
 
     // The $locales argument is injected thanks to the service container.
@@ -47,6 +54,8 @@ class AppExtension extends AbstractExtension
      * Takes the list of codes of the locales (languages) enabled in the
      * application and returns an array with the name of each locale written
      * in its own language (e.g. English, Français, Español, etc.).
+     *
+     * @return array<int, array<string, string>>
      */
     public function getLocales(): array
     {

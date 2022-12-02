@@ -28,6 +28,9 @@ use Twig\TwigFunction;
  */
 class SourceCodeExtension extends AbstractExtension
 {
+    /**
+     * @var callable|null
+     */
     private $controller;
 
     public function setController(?callable $controller): void
@@ -46,7 +49,7 @@ class SourceCodeExtension extends AbstractExtension
     }
 
     /**
-     * @param string|TemplateWrapper|array $template
+     * @param string|TemplateWrapper $template
      */
     public function showSourceCode(Environment $twig, $template): string
     {
@@ -56,6 +59,9 @@ class SourceCodeExtension extends AbstractExtension
         ]);
     }
 
+    /**
+     * @return array{file_path: string, starting_line: int|false, source_code: string}|null
+     */
     private function getController(): ?array
     {
         // this happens for example for exceptions (404 errors, etc.)
@@ -65,8 +71,11 @@ class SourceCodeExtension extends AbstractExtension
 
         $method = $this->getCallableReflector($this->controller);
 
-        if (false === $classCode = file($method->getFileName())) {
-            throw new \LogicException(sprintf('There was an error while trying to read the contents of the "%s" file.', $method->getFileName()));
+        /** @var string $fileName */
+        $fileName = $method->getFileName();
+
+        if (false === $classCode = file($fileName)) {
+            throw new \LogicException(sprintf('There was an error while trying to read the contents of the "%s" file.', $fileName));
         }
 
         $startLine = $method->getStartLine() - 1;
@@ -85,7 +94,7 @@ class SourceCodeExtension extends AbstractExtension
         $controllerCode = implode('', \array_slice($classCode, $startLine, $endLine - $startLine));
 
         return [
-            'file_path' => $method->getFileName(),
+            'file_path' => $fileName,
             'starting_line' => $method->getStartLine(),
             'source_code' => $this->unindentCode($controllerCode),
         ];
@@ -108,9 +117,13 @@ class SourceCodeExtension extends AbstractExtension
             return $r->getMethod('__invoke');
         }
 
+        // @phpstan-ignore-next-line
         return new \ReflectionFunction($callable);
     }
 
+    /**
+     * @return array{file_path: string|false, starting_line: int, source_code: string}
+     */
     private function getTemplateSource(TemplateWrapper $template): array
     {
         $templateSource = $template->getSourceContext();

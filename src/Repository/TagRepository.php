@@ -23,6 +23,8 @@ use Doctrine\Persistence\ManagerRegistry;
  * See https://symfony.com/doc/current/doctrine.html#querying-for-objects-the-repository
  *
  * @author Yonel Ceruto <yonelceruto@gmail.com>
+ *
+ * @template-extends ServiceEntityRepository<Tag>
  */
 class TagRepository extends ServiceEntityRepository
 {

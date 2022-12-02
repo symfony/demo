@@ -129,7 +129,9 @@ class AddUserCommand extends Command
         }
 
         // Ask for the password if it's not defined
+        /** @var string|null $password */
         $password = $input->getArgument('password');
+
         if (null !== $password) {
             $this->io->text(' > <info>Password</info>: '.u('*')->repeat(u($password)->length()));
         } else {
@@ -165,10 +167,18 @@ class AddUserCommand extends Command
         $stopwatch = new Stopwatch();
         $stopwatch->start('add-user-command');
 
+        /** @var string $username */
         $username = $input->getArgument('username');
+
+        /** @var string $plainPassword */
         $plainPassword = $input->getArgument('password');
+
+        /** @var string $email */
         $email = $input->getArgument('email');
+
+        /** @var string $fullName */
         $fullName = $input->getArgument('full-name');
+
         $isAdmin = $input->getOption('admin');
 
         // make sure to validate the user data is correct
@@ -198,7 +208,7 @@ class AddUserCommand extends Command
         return Command::SUCCESS;
     }
 
-    private function validateUserData($username, $plainPassword, $email, $fullName): void
+    private function validateUserData(string $username, string $plainPassword, string $email, string $fullName): void
     {
         // first check if a user with the same username already exists.
         $existingUser = $this->users->findOneBy(['username' => $username]);

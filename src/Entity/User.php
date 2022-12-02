@@ -53,6 +53,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: Types::STRING)]
     private ?string $password = null;
 
+    /**
+     * @var string[]
+     */
     #[ORM\Column(type: Types::JSON)]
     private array $roles = [];
 
@@ -73,7 +76,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getUserIdentifier(): string
     {
-        return $this->username;
+        return (string) $this->username;
     }
 
     public function getUsername(): string
@@ -121,6 +124,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return array_unique($roles);
     }
 
+    /**
+     * @param string[] $roles
+     */
     public function setRoles(array $roles): void
     {
         $this->roles = $roles;
@@ -151,12 +157,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
+    /**
+     * @return array{int|null, string|null, string|null}
+     */
     public function __serialize(): array
     {
         // add $this->salt too if you don't use Bcrypt or Argon2i
         return [$this->id, $this->username, $this->password];
     }
 
+    /**
+     * @param array{int|null, string, string} $data
+     */
     public function __unserialize(array $data): void
     {
         // add $this->salt too if you don't use Bcrypt or Argon2i

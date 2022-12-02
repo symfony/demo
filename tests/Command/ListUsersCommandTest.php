@@ -30,7 +30,7 @@ class ListUsersCommandTest extends AbstractCommandTest
         $this->assertSame($emptyDisplayLines + $maxResults, mb_substr_count($tester->getDisplay(), "\n"));
     }
 
-    public function maxResultsProvider(): ?\Generator
+    public function maxResultsProvider(): \Generator
     {
         yield [1];
         yield [2];

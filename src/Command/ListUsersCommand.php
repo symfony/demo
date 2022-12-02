@@ -88,12 +88,13 @@ class ListUsersCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        /** @var int|null $maxResults */
         $maxResults = $input->getOption('max-results');
+
         // Use ->findBy() instead of ->findAll() to allow result sorting and limiting
         $allUsers = $this->users->findBy([], ['id' => 'DESC'], $maxResults);
 
-        // Doctrine query returns an array of objects and we need an array of plain arrays
-        $usersAsPlainArrays = array_map(static function (User $user) {
+        $createUserArray = static function (User $user) {
             return [
                 $user->getId(),
                 $user->getFullName(),
@@ -101,7 +102,11 @@ class ListUsersCommand extends Command
                 $user->getEmail(),
                 implode(', ', $user->getRoles()),
             ];
-        }, $allUsers);
+        };
+
+        // Doctrine query returns an array of objects, and we need an array of plain arrays
+        /** @var callable $createUserArray */
+        $usersAsPlainArrays = array_map($createUserArray, $allUsers);
 
         // In your console commands you should always use the regular output type,
         // which outputs contents directly in the console window. However, this
@@ -119,7 +124,10 @@ class ListUsersCommand extends Command
         $usersAsATable = $bufferedOutput->fetch();
         $output->write($usersAsATable);
 
-        if (null !== $email = $input->getOption('send-to')) {
+        /** @var string $email */
+        $email = $input->getOption('send-to');
+
+        if (null !== $email) {
             $this->sendReport($usersAsATable, $email);
         }
 

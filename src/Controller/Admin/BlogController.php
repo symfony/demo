@@ -19,6 +19,7 @@ use App\Security\PostVoter;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\SubmitButton;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -80,7 +81,8 @@ class BlogController extends AbstractController
 
         // See https://symfony.com/doc/current/form/multiple_buttons.html
         $form = $this->createForm(PostType::class, $post)
-            ->add('saveAndCreateNew', SubmitType::class);
+            ->add('saveAndCreateNew', SubmitType::class)
+        ;
 
         $form->handleRequest($request);
 
@@ -98,7 +100,10 @@ class BlogController extends AbstractController
             // See https://symfony.com/doc/current/controller.html#flash-messages
             $this->addFlash('success', 'post.created_successfully');
 
-            if ($form->get('saveAndCreateNew')->isClicked()) {
+            /** @var SubmitButton $submit */
+            $submit = $form->get('saveAndCreateNew');
+
+            if ($submit->isClicked()) {
                 return $this->redirectToRoute('admin_post_new');
             }
 
@@ -156,7 +161,10 @@ class BlogController extends AbstractController
     #[IsGranted('delete', subject: 'post')]
     public function delete(Request $request, Post $post, EntityManagerInterface $entityManager): Response
     {
-        if (!$this->isCsrfTokenValid('delete', $request->request->get('token'))) {
+        /** @var string|null $token */
+        $token = $request->request->get('token');
+
+        if (!$this->isCsrfTokenValid('delete', $token)) {
             return $this->redirectToRoute('admin_post_index');
         }
 
