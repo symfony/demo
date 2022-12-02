@@ -1,0 +1,28 @@
+---------------------------------------------------------------------------
+
+by seb-jean at 2022-11-22T08:50:38Z
+
+It would be interesting to review this PR after being updated to Symfony 6.2.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2022-12-01T14:08:30Z
+
+We've merged the PR that upgrades to 6.2. If you can, please rebase this PR. Thanks!
+
+---------------------------------------------------------------------------
+
+by kniziol at 2022-12-01T21:01:24Z
+
+At the moment we’ve got 1 error:
+```
+require.doctrine/doctrine-bundle : exact version constraints (2.7.x-dev) should be avoided if the package follows semantic versioning
+```
+
+The `doctrine/doctrine-bundle` package has been bumped to `2.7.x-dev` in 1c9ca01. Could we use another version?
+
+---------------------------------------------------------------------------
+
+by rosier at 2022-12-01T21:21:28Z
+
+That is fixed by https://github.com/symfony/demo/pull/1372
