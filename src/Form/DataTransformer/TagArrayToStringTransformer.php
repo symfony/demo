@@ -36,8 +36,6 @@ class TagArrayToStringTransformer implements DataTransformerInterface
 
     /**
      * {@inheritdoc}
-     *
-     * @phpstan-param array<Tag>|null $tags
      */
     public function transform($tags): string
     {

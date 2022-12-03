@@ -68,8 +68,6 @@ class AppFixtures extends Fixture
 
     private function loadPosts(ObjectManager $manager): void
     {
-        /** @var User $author */
-        /** @var array<Tag> $tags */
         foreach ($this->getPostData() as [$title, $slug, $summary, $content, $publishedAt, $author, $tags]) {
             $post = new Post();
             $post->setTitle($title);
@@ -132,13 +130,17 @@ class AppFixtures extends Fixture
     /**
      * @throws \Exception
      *
-     * @return array<int, array{0: string, 1: AbstractUnicodeString, 2: string, 3: string, 4: \DateTime, 5: object, 6: array<object>}>
+     * @return array<int, array{0: string, 1: AbstractUnicodeString, 2: string, 3: string, 4: \DateTime, 5: User, 6: array<Tag>}>
      */
     private function getPostData(): array
     {
         $posts = [];
         foreach ($this->getPhrases() as $i => $title) {
             // $postData = [$title, $slug, $summary, $content, $publishedAt, $author, $tags, $comments];
+
+            /** @var User $user */
+            $user = $this->getReference(['jane_admin', 'tom_admin'][0 === $i ? 0 : random_int(0, 1)]);
+
             $posts[] = [
                 $title,
                 $this->slugger->slug($title)->lower(),
@@ -146,7 +148,7 @@ class AppFixtures extends Fixture
                 $this->getPostContent(),
                 new \DateTime('now - '.$i.'days'),
                 // Ensure that the first post is written by Jane Doe to simplify tests
-                $this->getReference(['jane_admin', 'tom_admin'][0 === $i ? 0 : random_int(0, 1)]),
+                $user,
                 $this->getRandomTags(),
             ];
         }
@@ -249,7 +251,7 @@ class AppFixtures extends Fixture
     /**
      * @throws \Exception
      *
-     * @return array<object>
+     * @return array<Tag>
      */
     private function getRandomTags(): array
     {
@@ -257,6 +259,11 @@ class AppFixtures extends Fixture
         shuffle($tagNames);
         $selectedTags = \array_slice($tagNames, 0, random_int(2, 4));
 
-        return array_map(function ($tagName) { return $this->getReference('tag-'.$tagName); }, $selectedTags);
+        return array_map(function ($tagName) {
+            /** @var Tag $tag */
+            $tag = $this->getReference('tag-'.$tagName);
+
+            return $tag;
+        }, $selectedTags);
     }
 }

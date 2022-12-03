@@ -117,7 +117,6 @@ class SourceCodeExtension extends AbstractExtension
             return $r->getMethod('__invoke');
         }
 
-        // @phpstan-ignore-next-line
         return new \ReflectionFunction($callable);
     }
 

@@ -30,7 +30,7 @@ class AppExtension extends AbstractExtension
     private array $localeCodes;
 
     /**
-     * @var array<int, array<string, string>>|null
+     * @var list<array{code: string, name: string}>|null
      */
     private ?array $locales = null;
 
