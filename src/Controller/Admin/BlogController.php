@@ -112,7 +112,7 @@ class BlogController extends AbstractController
 
         return $this->render('admin/blog/new.html.twig', [
             'post' => $post,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -150,7 +150,7 @@ class BlogController extends AbstractController
 
         return $this->render('admin/blog/edit.html.twig', [
             'post' => $post,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
