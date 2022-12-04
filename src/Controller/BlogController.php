@@ -132,7 +132,7 @@ class BlogController extends AbstractController
 
         return $this->render('blog/comment_form_error.html.twig', [
             'post' => $post,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -150,7 +150,7 @@ class BlogController extends AbstractController
 
         return $this->render('blog/_comment_form.html.twig', [
             'post' => $post,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 

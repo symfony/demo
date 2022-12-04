@@ -53,7 +53,7 @@ class UserController extends AbstractController
 
         return $this->render('user/edit.html.twig', [
             'user' => $user,
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 
@@ -78,7 +78,7 @@ class UserController extends AbstractController
         }
 
         return $this->render('user/change_password.html.twig', [
-            'form' => $form->createView(),
+            'form' => $form,
         ]);
     }
 }
