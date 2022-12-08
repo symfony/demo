@@ -21,6 +21,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Component\Security\Http\Logout\LogoutUrlGenerator;
 
 /**
  * Controller used to manage current user. The #[CurrentUser] attribute
@@ -61,6 +62,7 @@ class UserController extends AbstractController
         #[CurrentUser] User $user,
         Request $request,
         EntityManagerInterface $entityManager,
+        LogoutUrlGenerator $logoutUrlGenerator,
     ): Response {
         $form = $this->createForm(ChangePasswordType::class, $user);
         $form->handleRequest($request);
@@ -68,7 +70,7 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('security_logout');
+            return $this->redirect($logoutUrlGenerator->getLogoutPath());
         }
 
         return $this->render('user/change_password.html.twig', [

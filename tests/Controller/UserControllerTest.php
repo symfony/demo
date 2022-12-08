@@ -93,9 +93,10 @@ class UserControllerTest extends WebTestCase
             'change_password[newPassword][second]' => $newUserPassword,
         ]);
 
-        $this->assertResponseRedirects(
+        $this->assertResponseRedirects();
+        $this->assertStringStartsWith(
             '/en/logout',
-            Response::HTTP_FOUND,
+            $client->getResponse()->headers->get('Location') ?? '',
             'Changing password logout the user.'
         );
     }
