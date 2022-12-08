@@ -59,18 +59,17 @@
         "symfony/web-profiler-bundle": "^6.2"
     },
     "config": {
+        "allow-plugins": {
+            "symfony/flex": true,
+            "symfony/runtime": true
+        },
         "platform": {
             "php": "8.1.0"
         },
         "preferred-install": {
             "*": "dist"
         },
-        "sort-packages": true,
-        "allow-plugins": {
-            "composer/package-versions-deprecated": true,
-            "symfony/flex": true,
-            "symfony/runtime": true
-        }
+        "sort-packages": true
     },
     "autoload": {
         "psr-4": {
