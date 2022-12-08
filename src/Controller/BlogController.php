@@ -13,7 +13,6 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\Post;
-use App\Entity\Tag;
 use App\Entity\User;
 use App\Event\CommentCreatedEvent;
 use App\Form\CommentType;
@@ -53,7 +52,6 @@ class BlogController extends AbstractController
     {
         $tag = null;
         if ($request->query->has('tag')) {
-            /** @var Tag $tag */
             $tag = $tags->findOneBy(['name' => $request->query->get('tag')]);
         }
         $latestPosts = $posts->findLatest($page, $tag);

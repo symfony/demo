@@ -35,7 +35,7 @@ class PostVoter extends Voter
     /**
      * {@inheritdoc}
      *
-     * @phpstan-param Post $subject
+     * @phpstan-param object $subject
      */
     protected function supports(string $attribute, $subject): bool
     {

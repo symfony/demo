@@ -105,7 +105,6 @@ class ListUsersCommand extends Command
         };
 
         // Doctrine query returns an array of objects, and we need an array of plain arrays
-        /** @var callable $createUserArray */
         $usersAsPlainArrays = array_map($createUserArray, $allUsers);
 
         // In your console commands you should always use the regular output type,
@@ -124,7 +123,7 @@ class ListUsersCommand extends Command
         $usersAsATable = $bufferedOutput->fetch();
         $output->write($usersAsATable);
 
-        /** @var string $email */
+        /** @var string|null $email */
         $email = $input->getOption('send-to');
 
         if (null !== $email) {
