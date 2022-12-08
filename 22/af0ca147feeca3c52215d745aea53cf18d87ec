@@ -1,0 +1,21 @@
+---------------------------------------------------------------------------
+
+by stof at 2022-12-02T16:12:21Z
+
+This is not the same than before. As a side effect of that step, we were installing deps (as it does not have `--no-update`, so the next step was running `composer update` with the Flex plugin active (and so filtering the Symfony packages based on the version filter). after your change, the `composer update` runs without the plugin.
+
+---------------------------------------------------------------------------
+
+by rosier at 2022-12-02T18:09:29Z
+
+Looking at the following line I would say that the flex plugin is still active
+
+https://github.com/symfony/demo/actions/runs/3603191289/jobs/6071084273#step:7:133
+
+Is this maybe something that changed with a newer version of composer?
+
+---------------------------------------------------------------------------
+
+by stof at 2022-12-02T18:17:41Z
+
+Ah, I forgot that recent Flex versions are automatically restarting the composer update when they are installed as part of an update that did not have the filter applied yet.
