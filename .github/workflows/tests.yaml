@@ -59,7 +59,7 @@ jobs:
                   restore-keys: ${{ runner.os }}-${{ matrix.php-version }}-composer-
 
             - name: "Install dependencies"
-              run: composer update --no-interaction --prefer-dist --optimize-autoloader
+              run: composer install --no-interaction --no-progress
 
             - name: "Install PHPUnit"
               run: vendor/bin/simple-phpunit install
