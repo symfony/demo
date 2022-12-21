@@ -1,10 +1,13 @@
 {
     "devDependencies": {
+        "@babel/core": "^7.20.5",
+        "@babel/preset-env": "^7.16.0",
         "@fortawesome/fontawesome-free": "^5.8.1",
         "@hotwired/stimulus": "^3.0",
         "@symfony/stimulus-bridge": "^3.0",
         "@symfony/webpack-encore": "^4.0",
         "bloodhound-js": "^1.2.3",
+        "bootstrap": "^3.3",
         "bootstrap-sass": "^3.3.7",
         "bootstrap-tagsinput": "^0.7.1",
         "bootswatch": "^3.3.7",
@@ -14,20 +17,16 @@
         "imports-loader": "^0.8.0",
         "jquery": "^3.5.1",
         "lato-font": "^3.0.0",
+        "moment": "^2.10",
+        "moment-timezone": "^0.5.40",
         "regenerator-runtime": "^0.13.2",
         "sass": "^1.53.0",
         "sass-loader": "^13.2",
         "stimulus": "^2.0.0",
         "typeahead.js": "^0.11.1",
-        "webpack-notifier": "^1.15.0"
-        "@babel/core": "^7.20.5",
-        "@babel/preset-env": "^7.16.0",
-        "@hotwired/stimulus": "^3.0",
-        "bootstrap": "^3.3",
-        "moment": "^2.10",
-        "moment-timezone": "^0.5.40",
         "webpack": "^5.72",
-        "webpack-cli": "^4.9.1"
+        "webpack-cli": "^4.9.1",
+        "webpack-notifier": "^1.15.0"
     },
     "license": "MIT",
     "private": true,
