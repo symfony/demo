@@ -1,0 +1,85 @@
+---------------------------------------------------------------------------
+
+by stof at 2021-12-14T17:09:23Z
+
+should use Symfony UX 2.0 (and so Stimulus 3)
+
+---------------------------------------------------------------------------
+
+by 94noni at 2021-12-14T17:14:13Z
+
+@stof indeed I've just saw that https://symfony.com/blog/symfony-ux-2-0-and-stimulus-3-support
+I will try to update underlying packages and finish this accordingly, thanks !
+edit: PR updated
+
+---------------------------------------------------------------------------
+
+by seb-jean at 2021-12-15T14:00:01Z
+
+should use Stimulus / Symfony UX Helper:
+https://github.com/symfony/webpack-encore-bundle#stimulus--symfony-ux-helper
+
+---------------------------------------------------------------------------
+
+by 94noni at 2021-12-17T10:24:26Z
+
+@weaverryan yeah I used npm at first, I will redo with yarn
+for my knowledge, what is the command to regenerate the desired assets that are versioned here ?
+just `yarn run build` and I commit all?
+
+edit : second commit is made with `yarn run build` and `git add .`
+
+---------------------------------------------------------------------------
+
+by 94noni at 2021-12-27T11:55:35Z
+
+status: need review
+
+when this PR is reviewed/approved, I will rebase/recompile assets
+
+---------------------------------------------------------------------------
+
+by 94noni at 2022-02-21T10:00:00Z
+
+friendly ping @weaverryan @GromNaN @yceruto :)
+
+---------------------------------------------------------------------------
+
+by 94noni at 2022-06-15T17:09:33Z
+
+@weaverryan since my latest comment there have been some changes, and now unfortunately I can not build asset locally
+I am getting lot of errors :
+
+```
+ error  in ./assets/styles/admin.scss                                                                                19:02:13
+
+Module Error (from ./node_modules/sass-loader/dist/cjs.js):
+Node Sass does not yet support your current environment: OS X Unsupported architecture (arm64) with Node.js 16.x
+For more information on which environments are supported please see:
+https://github.com/sass/node-sass/releases/tag/v7.0.0
+```
+
+```
+ error  in ./assets/styles/app.scss                                                                                  19:06:06
+
+Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):
+ModuleBuildError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):
+SassError: Invalid CSS after "...     floor(math": expected expression (e.g. 1px, bold), was ".div($grid-gutter-w"
+        on line 369 of node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss
+        from line 8 of node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss
+        from line 11 of assets/styles/app.scss
+>> vbar-padding-horizontal:        floor(math.div($grid-gutter-width, 2)) !defa
+```
+
+--------
+
+So please feel free to continue this PR or merge it and `yarn run build` the asset just after :)
+
+thanks
+
+---------------------------------------------------------------------------
+
+by 94noni at 2022-09-12T05:50:29Z
+
+@weaverryan PR rebased accordingly
+cc @javiereguiluz [regarding this](https://github.com/symfony/demo/issues/1342)
