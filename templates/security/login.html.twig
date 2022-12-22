@@ -25,17 +25,13 @@
                             <label for="username">{{ 'label.username'|trans }}</label>
                             <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control" {{ stimulus_target('login', 'username') }} />
                         </div>
-                        <div class="form-group">
+
+                        <div class="form-group form-group-password">
                             <label for="password">{{ 'label.password'|trans }}</label>
                             <input type="password" id="password" name="_password" class="form-control" {{ stimulus_target('login', 'password') }} />
+                            <button class="btn btn-primary pull-right" type="button" {{ stimulus_action('login', 'togglePasswordInputType') }}><i class="fa fa-eye"></i></button>
                         </div>
-                        <button class="btn btn-primary pull-right" type="button" {{ stimulus_action('login', 'togglePasswordInputType') }}><i class="fa fa-eye"></i></button>
-                        <div class="form-group">
-                            <label>
-                                <input type="checkbox" name="_remember_me" checked/>
-                                Keep me logged in
-                            </label>
-                        </div>
+
                         <div class="form-group">
                             <label>
                                 <input type="checkbox" name="_remember_me" checked/>

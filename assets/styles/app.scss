@@ -253,6 +253,22 @@ body#login #login-users-help p .console {
   padding: 10px
 }
 
+body#login .form-group-password {
+  position: relative;
+
+  input { padding-right: 48px; }
+  button {
+    background: transparent;
+    border: 0;
+    color: #2C3E50;
+    height: 45px;
+    outline: 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+}
+
 /* Common Blog page elements
    ------------------------------------------------------------------------- */
 .post-metadata {
