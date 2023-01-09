@@ -92,7 +92,7 @@ class AddUserCommandTest extends AbstractCommandTest
         $repository = $this->getContainer()->get(UserRepository::class);
 
         /** @var UserPasswordHasherInterface $passwordHasher */
-        $passwordHasher = $this->getContainer()->get('test.user_password_hasher');
+        $passwordHasher = $this->getContainer()->get(UserPasswordHasherInterface::class);
 
         $user = $repository->findOneByEmail($this->userData['email']);
 

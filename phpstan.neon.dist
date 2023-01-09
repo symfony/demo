@@ -8,3 +8,7 @@ parameters:
         - tests
     bootstrapFiles:
         - vendor/bin/.phpunit/phpunit/vendor/autoload.php
+    doctrine:
+        objectManagerLoader: tests/object-manager.php
+    symfony:
+        containerXmlPath: var/cache/dev/App_KernelDevDebugContainer.xml

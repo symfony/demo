@@ -1,6 +1,66 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Property App\\\\Entity\\\\Comment\\:\\:\\$author type mapping mismatch\\: property can contain App\\\\Entity\\\\User\\|null but database expects App\\\\Entity\\\\User\\.$#"
+			count: 1
+			path: src/Entity/Comment.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\Comment\\:\\:\\$content type mapping mismatch\\: property can contain string\\|null but database expects string\\.$#"
+			count: 1
+			path: src/Entity/Comment.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\Comment\\:\\:\\$post type mapping mismatch\\: property can contain App\\\\Entity\\\\Post\\|null but database expects App\\\\Entity\\\\Post\\.$#"
+			count: 1
+			path: src/Entity/Comment.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\Post\\:\\:\\$author type mapping mismatch\\: property can contain App\\\\Entity\\\\User\\|null but database expects App\\\\Entity\\\\User\\.$#"
+			count: 1
+			path: src/Entity/Post.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\Post\\:\\:\\$content type mapping mismatch\\: property can contain string\\|null but database expects string\\.$#"
+			count: 1
+			path: src/Entity/Post.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\Post\\:\\:\\$slug type mapping mismatch\\: property can contain string\\|null but database expects string\\.$#"
+			count: 1
+			path: src/Entity/Post.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\Post\\:\\:\\$summary type mapping mismatch\\: property can contain string\\|null but database expects string\\.$#"
+			count: 1
+			path: src/Entity/Post.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\Post\\:\\:\\$title type mapping mismatch\\: property can contain string\\|null but database expects string\\.$#"
+			count: 1
+			path: src/Entity/Post.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\User\\:\\:\\$email type mapping mismatch\\: property can contain string\\|null but database expects string\\.$#"
+			count: 1
+			path: src/Entity/User.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\User\\:\\:\\$fullName type mapping mismatch\\: property can contain string\\|null but database expects string\\.$#"
+			count: 1
+			path: src/Entity/User.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\User\\:\\:\\$password type mapping mismatch\\: property can contain string\\|null but database expects string\\.$#"
+			count: 1
+			path: src/Entity/User.php
+
+		-
+			message: "#^Property App\\\\Entity\\\\User\\:\\:\\$username type mapping mismatch\\: property can contain string\\|null but database expects string\\.$#"
+			count: 1
+			path: src/Entity/User.php
+
+		-
 			message: "#^Parameter \\#1 \\$function of class ReflectionFunction constructor expects Closure\\|string, callable\\(\\)\\: mixed given\\.$#"
 			count: 1
 			path: src/Twig/SourceCodeExtension.php

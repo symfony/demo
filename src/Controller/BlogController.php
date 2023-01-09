@@ -156,7 +156,7 @@ class BlogController extends AbstractController
     public function search(Request $request, PostRepository $posts): Response
     {
         $query = (string) $request->query->get('q', '');
-        $limit = (int) $request->query->get('l', 10);
+        $limit = $request->query->getInt('l', 10);
 
         if (!$request->isXmlHttpRequest()) {
             return $this->render('blog/search.html.twig', ['query' => $query]);
