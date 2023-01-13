@@ -29,15 +29,15 @@
             </trans-unit>
             <trans-unit id="http_error.suggestion">
                 <source>http_error.suggestion</source>
-                <target><![CDATA[Pabandyke užkrauti puslapį veliau arba <a href="{url}">grįžti į pagrindinį puslapį</a>.]]></target>
+                <target><![CDATA[Pabandyke užkrauti puslapį vėliau arba <a href="{url}">grįžti į pagrindinį puslapį</a>.]]></target>
             </trans-unit>
             <trans-unit id="http_error_403.description">
                 <source>http_error_403.description</source>
-                <target>Neturite teisės peržiūrėti šito turinio.</target>
+                <target>Neturite teisės peržiūrėti šio turinio.</target>
             </trans-unit>
             <trans-unit id="http_error_403.suggestion">
                 <source>http_error_403.suggestion</source>
-                <target>Parašykite sistemos administratoriaus, kad suteiktu prieigą prie šio turinio.</target>
+                <target>Paprašykite sistemos administratoriaus, kad suteiktų prieigą prie šio turinio.</target>
             </trans-unit>
             <trans-unit id="http_error_404.description">
                 <source>http_error_404.description</source>
@@ -45,7 +45,7 @@
             </trans-unit>
             <trans-unit id="http_error_404.suggestion">
                 <source>http_error_404.suggestion</source>
-                <target><![CDATA[Patikrinkite ar geai suvestas adresas arba <a href="{url}">grįžti į pagrindinį puslapį</a>.]]></target>
+                <target><![CDATA[Patikrinkite ar gerai įvestas adresas arba <a href="{url}">grįžti į pagrindinį puslapį</a>.]]></target>
             </trans-unit>
             <trans-unit id="http_error_500.description">
                 <source>http_error_500.description</source>
@@ -53,7 +53,7 @@
             </trans-unit>
             <trans-unit id="http_error_500.suggestion">
                 <source>http_error_500.suggestion</source>
-                <target><![CDATA[Pabandyke užkrauti puslapį veliau arba <a href="{url}">grįžti į pagrindinį puslapį</a>.]]></target>
+                <target><![CDATA[Pabandyke užkrauti puslapį vėliau arba <a href="{url}">grįžti į pagrindinį puslapį</a>.]]></target>
             </trans-unit>
 
             <trans-unit id="title.homepage">
@@ -131,7 +131,7 @@
             </trans-unit>
             <trans-unit id="delete_post_modal.title">
                 <source>delete_post_modal.title</source>
-                <target>Ar tirkai norite ištrinti įrašą?</target>
+                <target>Ar tikrai norite ištrinti įrašą?</target>
             </trans-unit>
             <trans-unit id="delete_post_modal.body">
                 <source>delete_post_modal.body</source>
@@ -204,7 +204,7 @@
             </trans-unit>
             <trans-unit id="label.username">
                 <source>label.username</source>
-                <target>Vartotojas vardas</target>
+                <target>Vartotojo vardas</target>
             </trans-unit>
             <trans-unit id="label.fullname">
                 <source>label.fullname</source>
@@ -356,12 +356,12 @@
             </trans-unit>
             <trans-unit id="notification.comment_created.description">
                 <source>notification.comment_created.description</source>
-                <target><![CDATA[Jūsų įrašas "{title}" gavo naują komentarą. Kad peržiūrėti komentarą, galite paspausti šia <a href="{link}">nuorodą</a>]]></target>
+                <target><![CDATA[Jūsų įrašas "{title}" gavo naują komentarą. Kad peržiūrėti komentarą, galite paspausti šią <a href="{link}">nuorodą</a>]]></target>
             </trans-unit>
 
             <trans-unit id="help.app_description">
                 <source>help.app_description</source>
-                <target><![CDATA[Tai yra <strong>demo puslapis</strong> sukurtas su Symfony Framework parodydant tinkamą Symfony panaudojimą.]]></target>
+                <target><![CDATA[Tai yra <strong>demo puslapis</strong> sukurtas su Symfony Framework parodant tinkamą Symfony panaudojimą.]]></target>
             </trans-unit>
             <trans-unit id="help.show_code">
                 <source>help.show_code</source>
@@ -393,27 +393,27 @@
             </trans-unit>
             <trans-unit id="help.add_user">
                 <source>help.add_user</source>
-                <target>Jei norite sukurti naują vartotoją paleiskite šia komandą:</target>
+                <target>Jei norite sukurti naują vartotoją, paleiskite šia komandą:</target>
             </trans-unit>
             <trans-unit id="help.more_information">
                 <source>help.more_information</source>
-                <target><![CDATA[Norėdami gauti daugiau informacijos, peržiūrėkite <a href="https://symfony.com/doc">Symfony dokumentciją</a>.]]></target>
+                <target><![CDATA[Norėdami gauti daugiau informacijos, peržiūrėkite <a href="https://symfony.com/doc">Symfony dokumentaciją</a>.]]></target>
             </trans-unit>
             <trans-unit id="help.post_summary">
                 <source>help.post_summary</source>
-                <target>Santrauka negali būti su Markdown ar HTML žymom, tiktai paprastas tekstas</target>
+                <target>Santrauka negali būti su Markdown ar HTML žymomis, tik paprastas tekstas</target>
             </trans-unit>
             <trans-unit id="help.post_publication">
                 <source>help.post_publication</source>
-                <target>Nustatykite datą ateityje, kad planuotumėte blogo įrašo paskelbimą.</target>
+                <target>Nustatykite datą ateityje, kad suplanuotumėte blogo įrašo paskelbimą.</target>
             </trans-unit>
             <trans-unit id="help.post_content">
                 <source>help.post_content</source>
-                <target>Turinį galima formatuoti su Markdown ir HTML žymom.</target>
+                <target>Turinį galima formatuoti su Markdown ir HTML žymomis.</target>
             </trans-unit>
             <trans-unit id="help.comment_content">
                 <source>help.comment_content</source>
-                <target>Komentarai, kurie neatitinka Elgesio kodekso, bus moderuojami.</target>
+                <target>Komentarai, kurie neatitinka elgesio kodekso, bus moderuojami.</target>
             </trans-unit>
 
             <trans-unit id="info.change_password">
