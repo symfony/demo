@@ -1,0 +1,45 @@
+---------------------------------------------------------------------------
+
+by seb-jean at 2023-01-10T08:36:52Z
+
+Should the `phpstan-baseline.neon` file be regenerated with the new errors?
+
+---------------------------------------------------------------------------
+
+by ker0x at 2023-01-11T10:40:43Z
+
+> Should the `phpstan-baseline.neon` file be regenerated with the new errors?
+
+I regenerated it, but nothing has changed with these new modifications
+
+---------------------------------------------------------------------------
+
+by seb-jean at 2023-01-11T11:08:10Z
+
+Sorry ;).
+
+I think it should be added to the `phpstan.neon.dist` file:
+```yaml
+parameters:
+    doctrine:
+        objectManagerLoader: tests/object-manager.php
+```
+
+And a new file `tests/object-manager.php`
+```php
+<?php
+
+use App\Kernel;
+use Symfony\Component\Dotenv\Dotenv;
+
+require __DIR__.'/../vendor/autoload.php';
+
+(new Dotenv())->bootEnv(__DIR__.'/../.env');
+
+$kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
+$kernel->boot();
+
+return $kernel->getContainer()->get('doctrine')->getManager();
+```
+
+https://github.com/phpstan/phpstan-doctrine#configuration
