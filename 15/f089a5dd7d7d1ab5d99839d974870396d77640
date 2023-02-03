@@ -1,0 +1,48 @@
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2023-02-01T11:53:51Z
+
+Failed PHP CS Fixer build fixed in #1396
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2023-02-02T18:59:06Z
+
+Victor, thanks for fixing this issue ... and for doing it permanently 🙌
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2023-02-02T19:00:32Z
+
+@bocharsky-bw while trying to merge I see this error 🤔
+
+```
+  Error Output:
+  ================
+  ERROR: Permission to bocharsky-bw/demo.git denied to javiereguiluz.
+  fatal: Could not read from remote repository.
+
+  Please make sure you have the correct access rights
+  and the repository exists.
+```
+
+Not sure what can I do on my side.
+
+---------------------------------------------------------------------------
+
+by bocharsky-bw at 2023-02-02T20:57:14Z
+
+Hm, super weird... I have "Allow edits and access to secrets by maintainers" enabled for this PR... and no special security for that repo too. Probably a temporary GitHub outage? I also squashed commits here to see if helps. If no - probably easier to recreate a PR
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2023-02-03T09:25:54Z
+
+Hi Victor ... thanks a lot for checking this. Actually, I read the error message too fast. Apparently, the issue is that I no longer have permission to push to `symfony/demo` either:
+
+```
+ERROR: Permission to symfony/demo.git denied to javiereguiluz.
+fatal: Could not read from remote repository.
+```
+
+I've asked @fabpot, so hopefully we can sort this out. Thanks.
