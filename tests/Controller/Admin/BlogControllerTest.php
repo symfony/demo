@@ -11,7 +11,10 @@
 
 namespace App\Tests\Controller\Admin;
 
+use App\Entity\User;
 use App\Repository\PostRepository;
+use App\Repository\UserRepository;
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -32,17 +35,34 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class BlogControllerTest extends WebTestCase
 {
+    private KernelBrowser $client;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->client = static::createClient();
+
+        /** @var UserRepository $userRepository */
+        $userRepository = $this->client->getContainer()->get(UserRepository::class);
+        /** @var User $user */
+        $user = $userRepository->findOneByUsername('jane_admin');
+        $this->client->loginUser($user);
+    }
+
     /**
      * @dataProvider getUrlsForRegularUsers
      */
     public function testAccessDeniedForRegularUsers(string $httpMethod, string $url): void
     {
-        $client = static::createClient([], [
-            'PHP_AUTH_USER' => 'john_user',
-            'PHP_AUTH_PW' => 'kitten',
-        ]);
+        $this->client->getCookieJar()->clear();
 
-        $client->request($httpMethod, $url);
+        /** @var UserRepository $userRepository */
+        $userRepository = $this->client->getContainer()->get(UserRepository::class);
+        /** @var User $user */
+        $user = $userRepository->findOneByUsername('john_user');
+        $this->client->loginUser($user);
+
+        $this->client->request($httpMethod, $url);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_FORBIDDEN);
     }
@@ -57,11 +77,7 @@ class BlogControllerTest extends WebTestCase
 
     public function testAdminBackendHomePage(): void
     {
-        $client = static::createClient([], [
-            'PHP_AUTH_USER' => 'jane_admin',
-            'PHP_AUTH_PW' => 'kitten',
-        ]);
-        $client->request('GET', '/en/admin/post/');
+        $this->client->request('GET', '/en/admin/post/');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorExists(
@@ -82,12 +98,8 @@ class BlogControllerTest extends WebTestCase
         $postSummary = $this->generateRandomString(255);
         $postContent = $this->generateRandomString(1024);
 
-        $client = static::createClient([], [
-            'PHP_AUTH_USER' => 'jane_admin',
-            'PHP_AUTH_PW' => 'kitten',
-        ]);
-        $client->request('GET', '/en/admin/post/new');
-        $client->submitForm('Create post', [
+        $this->client->request('GET', '/en/admin/post/new');
+        $this->client->submitForm('Create post', [
             'post[title]' => $postTitle,
             'post[summary]' => $postSummary,
             'post[content]' => $postContent,
@@ -112,20 +124,16 @@ class BlogControllerTest extends WebTestCase
         $postSummary = $this->generateRandomString(255);
         $postContent = $this->generateRandomString(1024);
 
-        $client = static::createClient([], [
-            'PHP_AUTH_USER' => 'jane_admin',
-            'PHP_AUTH_PW' => 'kitten',
-        ]);
-        $crawler = $client->request('GET', '/en/admin/post/new');
+        $crawler = $this->client->request('GET', '/en/admin/post/new');
         $form = $crawler->selectButton('Create post')->form([
             'post[title]' => $postTitle,
             'post[summary]' => $postSummary,
             'post[content]' => $postContent,
         ]);
-        $client->submit($form);
+        $this->client->submit($form);
 
         // post titles must be unique, so trying to create the same post twice should result in an error
-        $client->submit($form);
+        $this->client->submit($form);
 
         $this->assertSelectorTextSame('form .form-group.has-error label', 'Title');
         $this->assertSelectorTextContains('form .form-group.has-error .help-block', 'This title was already used in another blog post, but they must be unique.');
@@ -133,11 +141,7 @@ class BlogControllerTest extends WebTestCase
 
     public function testAdminShowPost(): void
     {
-        $client = static::createClient([], [
-            'PHP_AUTH_USER' => 'jane_admin',
-            'PHP_AUTH_PW' => 'kitten',
-        ]);
-        $client->request('GET', '/en/admin/post/1');
+        $this->client->request('GET', '/en/admin/post/1');
 
         $this->assertResponseIsSuccessful();
     }
@@ -152,12 +156,8 @@ class BlogControllerTest extends WebTestCase
     {
         $newBlogPostTitle = 'Blog Post Title '.mt_rand();
 
-        $client = static::createClient([], [
-            'PHP_AUTH_USER' => 'jane_admin',
-            'PHP_AUTH_PW' => 'kitten',
-        ]);
-        $client->request('GET', '/en/admin/post/1/edit');
-        $client->submitForm('Save changes', [
+        $this->client->request('GET', '/en/admin/post/1/edit');
+        $this->client->submitForm('Save changes', [
             'post[title]' => $newBlogPostTitle,
         ]);
 
@@ -180,12 +180,8 @@ class BlogControllerTest extends WebTestCase
      */
     public function testAdminDeletePost(): void
     {
-        $client = static::createClient([], [
-            'PHP_AUTH_USER' => 'jane_admin',
-            'PHP_AUTH_PW' => 'kitten',
-        ]);
-        $crawler = $client->request('GET', '/en/admin/post/1');
-        $client->submit($crawler->filter('#delete-form')->form());
+        $crawler = $this->client->request('GET', '/en/admin/post/1');
+        $this->client->submit($crawler->filter('#delete-form')->form());
 
         $this->assertResponseRedirects('/en/admin/post/', Response::HTTP_FOUND);
 

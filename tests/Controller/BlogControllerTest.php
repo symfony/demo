@@ -11,7 +11,9 @@
 
 namespace App\Tests\Controller;
 
+use App\Entity\User;
 use App\Pagination\Paginator;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -62,10 +64,16 @@ class BlogControllerTest extends WebTestCase
      */
     public function testNewComment(): void
     {
-        $client = static::createClient([], [
-            'PHP_AUTH_USER' => 'john_user',
-            'PHP_AUTH_PW' => 'kitten',
-        ]);
+        $client = static::createClient();
+
+        /** @var UserRepository $userRepository */
+        $userRepository = $client->getContainer()->get(UserRepository::class);
+
+        /** @var User $user */
+        $user = $userRepository->findOneByUsername('jane_admin');
+
+        $client->loginUser($user);
+
         $client->followRedirects();
 
         // Find first blog post
