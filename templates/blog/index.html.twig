@@ -4,22 +4,7 @@
 
 {% block main %}
     {% for post in paginator.results %}
-        <article class="post">
-            <h2>
-                <a href="{{ path('blog_post', {slug: post.slug}) }}">
-                    {{ post.title }}
-                </a>
-            </h2>
-
-            <p class="post-metadata">
-                <span class="metadata"><i class="fa fa-calendar"></i> {{ post.publishedAt|format_datetime('long', 'medium', '', 'UTC') }}</span>
-                <span class="metadata"><i class="fa fa-user"></i> {{ post.author.fullName }}</span>
-            </p>
-
-            <p>{{ post.summary }}</p>
-
-            {{ include('blog/_post_tags.html.twig') }}
-        </article>
+        {{ include('blog/_post.html.twig') }}
     {% else %}
         <div class="well">{{ 'post.no_posts_found'|trans }}</div>
     {% endfor %}

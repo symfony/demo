@@ -1,0 +1,24 @@
+{# See https://symfony.com/bundles/ux-live-component/current/index.html #}
+<div {{ attributes }}>
+    <div class="form-group">
+        <input type="search"
+               class="form-control search-field"
+               placeholder="{{ 'post.search_for'|trans }}"
+               autocomplete="off"
+               {#
+                   Using the data-model attribute ensures that the property will be automatically updated on the component
+                   See https://symfony.com/bundles/ux-live-component/current/index.html#data-binding
+               #}
+               data-model="query"
+               autofocus
+        >
+    </div>
+
+    {% for post in this.posts %}
+        {{ include('blog/_post.html.twig') }}
+    {% else %}
+        {% if query is not empty %}
+            {{ 'post.search_no_results'|trans }}
+        {% endif %}
+    {% endfor %}
+</div>

@@ -1,25 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block javascripts %}
-    {{ parent() }}
-    {{ encore_entry_script_tags('search') }}
-{% endblock %}
-
 {% block body_id 'blog_search' %}
 
 {% block main %}
-    <form action="{{ path('blog_search') }}" method="get">
-        <div class="form-group">
-            <input name="q"
-                   class="form-control search-field"
-                   placeholder="{{ 'post.search_for'|trans }}"
-                   autocomplete="off"
-                   value="{{ query }}"
-                   autofocus
-                   data-no-results-message="{{ 'post.search_no_results'|trans }}"
-            >
-        </div>
-    </form>
+    {#
+        Render a component by passing it's name as first argument
+        See https://symfony.com/bundles/ux-twig-component/current/index.html
+    #}
+    {{ component('blog_search', {
+        query: query
+    }) }}
 {% endblock %}
 
 {% block sidebar %}
