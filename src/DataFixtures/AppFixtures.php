@@ -146,7 +146,7 @@ class AppFixtures extends Fixture
                 $this->slugger->slug($title)->lower(),
                 $this->getRandomText(),
                 $this->getPostContent(),
-                new \DateTime('now - '.$i.'days'),
+                (new \DateTime('now - '.$i.'days'))->setTime(random_int(8, 17), random_int(7, 49), random_int(0, 59)),
                 // Ensure that the first post is written by Jane Doe to simplify tests
                 $user,
                 $this->getRandomTags(),
