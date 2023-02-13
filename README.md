@@ -47,6 +47,13 @@ $ cd my_project/
 $ symfony serve
 ```
 
+If you have cloned the [GitHub repository](https://github.com/symfony/demo), you
+must install the Composer dependencies.
+
+```bash
+$ composer install
+```
+
 Then access the application in your browser at the given URL (<https://localhost:8000> by default).
 
 If you don't have the Symfony binary installed, run `php -S localhost:8000 -t public/`
