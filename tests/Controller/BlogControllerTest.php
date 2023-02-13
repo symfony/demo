@@ -93,17 +93,10 @@ class BlogControllerTest extends WebTestCase
     public function testAjaxSearch(): void
     {
         $client = static::createClient();
-        $client->xmlHttpRequest('GET', '/en/blog/search', ['q' => 'lorem']);
+        $crawler = $client->request('GET', '/en/blog/search', ['q' => 'lorem']);
 
-        /** @var string $content */
-        $content = $client->getResponse()->getContent();
-
-        /** @var array<int, array<string>> $results */
-        $results = json_decode($content, true);
-
-        $this->assertResponseHeaderSame('Content-Type', 'application/json');
-        $this->assertCount(1, $results);
-        $this->assertSame('Lorem ipsum dolor sit amet consectetur adipiscing elit', $results[0]['title']);
-        $this->assertSame('Jane Doe', $results[0]['author']);
+        $this->assertResponseIsSuccessful();
+        $this->assertCount(1, $crawler->filter('article.post'));
+        $this->assertSame('Lorem ipsum dolor sit amet consectetur adipiscing elit', $crawler->filter('article.post')->first()->filter('h2 > a')->text());
     }
 }
