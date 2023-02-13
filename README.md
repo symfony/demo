@@ -26,7 +26,13 @@ $ symfony new --demo my_project
 Alternatively, you can use Composer:
 
 ```bash
+# you can create a new project based on the Symfony Demo project...
 $ composer create-project symfony/symfony-demo my_project
+
+# ...or you can clone the code repository and install its dependencies
+$ git clone https://github.com/symfony/demo.git my_project
+$ cd my_project/
+$ composer install
 ```
 
 If you want to test the demo without installing anything locally, you can also
@@ -45,13 +51,6 @@ There's no need to configure anything to run the application. If you have
 ```bash
 $ cd my_project/
 $ symfony serve
-```
-
-If you have cloned the [GitHub repository](https://github.com/symfony/demo), you
-must install the Composer dependencies.
-
-```bash
-$ composer install
 ```
 
 Then access the application in your browser at the given URL (<https://localhost:8000> by default).
