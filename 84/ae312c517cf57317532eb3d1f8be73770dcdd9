@@ -1,0 +1,23 @@
+---------------------------------------------------------------------------
+
+by derrabus at 2023-02-14T21:42:11Z
+
+There's nothing to fix here. That PhpStorm inspection is pointless and disabling it gives me peace of mind in every codebase I've worked on so far. 😌
+
+---------------------------------------------------------------------------
+
+by COil at 2023-02-14T21:54:01Z
+
+> There's nothing to fix here. That PhpStorm inspection is pointless and disabling it gives me peace of mind in every codebase I've worked on so far. 😌
+
+Yes, but it's mainly for consistency to avoid having different orders everywhere. It should/could be a php-cs-fixer rule.
+
+Is there a reason we don't use php-cs-fixer in this project?
+
+---------------------------------------------------------------------------
+
+by OskarStark at 2023-02-15T07:26:19Z
+
+You are right from a technical POV @derrabus, but I would argue that most of the devs write it in the from @COil proposed order anyway. That said I am +1 to merge this change.
+
+This repo ist mostly for newcomers 🤷🏼‍♂️
