@@ -44,9 +44,9 @@ class BlogController extends AbstractController
      *
      * See https://symfony.com/doc/current/routing.html#special-parameters
      */
-    #[Route('/', defaults: ['page' => '1', '_format' => 'html'], methods: ['GET'], name: 'blog_index')]
-    #[Route('/rss.xml', defaults: ['page' => '1', '_format' => 'xml'], methods: ['GET'], name: 'blog_rss')]
-    #[Route('/page/{page<[1-9]\d{0,8}>}', defaults: ['_format' => 'html'], methods: ['GET'], name: 'blog_index_paginated')]
+    #[Route('/', name: 'blog_index', defaults: ['page' => '1', '_format' => 'html'], methods: ['GET'])]
+    #[Route('/rss.xml', name: 'blog_rss', defaults: ['page' => '1', '_format' => 'xml'], methods: ['GET'])]
+    #[Route('/page/{page<[1-9]\d{0,8}>}', name: 'blog_index_paginated', defaults: ['_format' => 'html'], methods: ['GET'])]
     #[Cache(smaxage: 10)]
     public function index(Request $request, int $page, string $_format, PostRepository $posts, TagRepository $tags): Response
     {
@@ -72,7 +72,7 @@ class BlogController extends AbstractController
      *
      * See https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html
      */
-    #[Route('/posts/{slug}', methods: ['GET'], name: 'blog_post')]
+    #[Route('/posts/{slug}', name: 'blog_post', methods: ['GET'])]
     public function postShow(Post $post): Response
     {
         // Symfony's 'dump()' function is an improved version of PHP's 'var_dump()' but
@@ -98,7 +98,7 @@ class BlogController extends AbstractController
      *
      * See https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html#doctrine-converter
      */
-    #[Route('/comment/{postSlug}/new', methods: ['POST'], name: 'comment_new')]
+    #[Route('/comment/{postSlug}/new', name: 'comment_new', methods: ['POST'])]
     #[IsGranted('IS_AUTHENTICATED')]
     public function commentNew(
         #[CurrentUser] User $user,
@@ -152,7 +152,7 @@ class BlogController extends AbstractController
         ]);
     }
 
-    #[Route('/search', methods: ['GET'], name: 'blog_search')]
+    #[Route('/search', name: 'blog_search', methods: ['GET'])]
     public function search(Request $request): Response
     {
         return $this->render('blog/search.html.twig', ['query' => (string) $request->query->get('q', '')]);

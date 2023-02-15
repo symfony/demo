@@ -34,7 +34,7 @@ use Symfony\Component\Security\Http\Logout\LogoutUrlGenerator;
 #[Route('/profile'), IsGranted('ROLE_USER')]
 class UserController extends AbstractController
 {
-    #[Route('/edit', methods: ['GET', 'POST'], name: 'user_edit')]
+    #[Route('/edit', name: 'user_edit', methods: ['GET', 'POST'])]
     public function edit(
         #[CurrentUser] User $user,
         Request $request,
@@ -57,7 +57,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/change-password', methods: ['GET', 'POST'], name: 'user_change_password')]
+    #[Route('/change-password', name: 'user_change_password', methods: ['GET', 'POST'])]
     public function changePassword(
         #[CurrentUser] User $user,
         Request $request,

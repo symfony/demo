@@ -52,8 +52,8 @@ class BlogController extends AbstractController
      *     could move this annotation to any other controller while maintaining
      *     the route name and therefore, without breaking any existing link.
      */
-    #[Route('/', methods: ['GET'], name: 'admin_index')]
-    #[Route('/', methods: ['GET'], name: 'admin_post_index')]
+    #[Route('/', name: 'admin_index', methods: ['GET'])]
+    #[Route('/', name: 'admin_post_index', methods: ['GET'])]
     public function index(
         #[CurrentUser] User $user,
         PostRepository $posts,
@@ -70,7 +70,7 @@ class BlogController extends AbstractController
      * to constraint the HTTP methods each controller responds to (by default
      * it responds to all methods).
      */
-    #[Route('/new', methods: ['GET', 'POST'], name: 'admin_post_new')]
+    #[Route('/new', name: 'admin_post_new', methods: ['GET', 'POST'])]
     public function new(
         #[CurrentUser] User $user,
         Request $request,
@@ -119,7 +119,7 @@ class BlogController extends AbstractController
     /**
      * Finds and displays a Post entity.
      */
-    #[Route('/{id<\d+>}', methods: ['GET'], name: 'admin_post_show')]
+    #[Route('/{id<\d+>}', name: 'admin_post_show', methods: ['GET'])]
     public function show(Post $post): Response
     {
         // This security check can also be performed
@@ -134,7 +134,7 @@ class BlogController extends AbstractController
     /**
      * Displays a form to edit an existing Post entity.
      */
-    #[Route('/{id<\d+>}/edit', methods: ['GET', 'POST'], name: 'admin_post_edit')]
+    #[Route('/{id<\d+>}/edit', name: 'admin_post_edit', methods: ['GET', 'POST'])]
     #[IsGranted('edit', subject: 'post', message: 'Posts can only be edited by their authors.')]
     public function edit(Request $request, Post $post, EntityManagerInterface $entityManager): Response
     {
@@ -157,7 +157,7 @@ class BlogController extends AbstractController
     /**
      * Deletes a Post entity.
      */
-    #[Route('/{id}/delete', methods: ['POST'], name: 'admin_post_delete')]
+    #[Route('/{id}/delete', name: 'admin_post_delete', methods: ['POST'])]
     #[IsGranted('delete', subject: 'post')]
     public function delete(Request $request, Post $post, EntityManagerInterface $entityManager): Response
     {
