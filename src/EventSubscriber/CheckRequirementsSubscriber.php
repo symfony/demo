@@ -32,7 +32,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 class CheckRequirementsSubscriber implements EventSubscriberInterface
 {
     public function __construct(
-        private EntityManagerInterface $entityManager
+        private readonly EntityManagerInterface $entityManager
     ) {
     }
 

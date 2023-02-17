@@ -30,7 +30,7 @@ use function Symfony\Component\String\u;
 class TagArrayToStringTransformer implements DataTransformerInterface
 {
     public function __construct(
-        private TagRepository $tags
+        private readonly TagRepository $tags
     ) {
     }
 

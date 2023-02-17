@@ -25,8 +25,8 @@ use function Symfony\Component\String\u;
 class AppFixtures extends Fixture
 {
     public function __construct(
-        private UserPasswordHasherInterface $passwordHasher,
-        private SluggerInterface $slugger
+        private readonly UserPasswordHasherInterface $passwordHasher,
+        private readonly SluggerInterface $slugger
     ) {
     }
 

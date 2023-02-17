@@ -32,10 +32,10 @@ class RedirectToPreferredLocaleSubscriber implements EventSubscriberInterface
      * @var string[]
      */
     private array $locales;
-    private string $defaultLocale;
+    private readonly string $defaultLocale;
 
     public function __construct(
-        private UrlGeneratorInterface $urlGenerator,
+        private readonly UrlGeneratorInterface $urlGenerator,
         string $locales,
         ?string $defaultLocale = null
     ) {

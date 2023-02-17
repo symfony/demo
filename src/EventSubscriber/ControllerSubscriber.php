@@ -26,7 +26,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 class ControllerSubscriber implements EventSubscriberInterface
 {
     public function __construct(
-        private SourceCodeExtension $twigExtension
+        private readonly SourceCodeExtension $twigExtension
     ) {
     }
 

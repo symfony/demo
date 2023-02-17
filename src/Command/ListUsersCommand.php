@@ -46,9 +46,9 @@ use Symfony\Component\Mime\Email;
 class ListUsersCommand extends Command
 {
     public function __construct(
-        private MailerInterface $mailer,
-        private string $emailSender,
-        private UserRepository $users
+        private readonly MailerInterface $mailer,
+        private readonly string $emailSender,
+        private readonly UserRepository $users
     ) {
         parent::__construct();
     }
