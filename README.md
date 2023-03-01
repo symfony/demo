@@ -70,6 +70,13 @@ $ cd my_project/
 $ php -S localhost:8000 -t public/
 ```
 
+Don't forget to compile CSS / JS components :
+
+```bash
+$ yarn install
+$ yarn build
+```
+
 Tests
 -----
 
