@@ -27,7 +27,7 @@ class AppExtension extends AbstractExtension
     /**
      * @var string[]
      */
-    private array $localeCodes;
+    private readonly array $localeCodes;
 
     /**
      * @var list<array{code: string, name: string}>|null
@@ -46,7 +46,7 @@ class AppExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('locales', [$this, 'getLocales']),
+            new TwigFunction('locales', $this->getLocales(...)),
         ];
     }
 

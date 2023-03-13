@@ -48,10 +48,10 @@ class DeleteUserCommand extends Command
     private SymfonyStyle $io;
 
     public function __construct(
-        private EntityManagerInterface $entityManager,
-        private Validator $validator,
-        private UserRepository $users,
-        private LoggerInterface $logger
+        private readonly EntityManagerInterface $entityManager,
+        private readonly Validator $validator,
+        private readonly UserRepository $users,
+        private readonly LoggerInterface $logger
     ) {
         parent::__construct();
     }
@@ -101,7 +101,7 @@ class DeleteUserCommand extends Command
             '',
         ]);
 
-        $username = $this->io->ask('Username', null, [$this->validator, 'validateUsername']);
+        $username = $this->io->ask('Username', null, $this->validator->validateUsername(...));
         $input->setArgument('username', $username);
     }
 
