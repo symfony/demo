@@ -32,6 +32,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: 'symfony_demo_user')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    // We can use constants for roles to find usages all over the application rather
+    // than doing a full-text search on the "ROLE_" string.
+    // It also prevents from making typo errors.
+    final public const ROLE_USER = 'ROLE_USER';
+    final public const ROLE_ADMIN = 'ROLE_ADMIN';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: Types::INTEGER)]
@@ -118,7 +124,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         // guarantees that a user always has at least one role for security
         if (empty($roles)) {
-            $roles[] = 'ROLE_USER';
+            $roles[] = self::ROLE_USER;
         }
 
         return array_unique($roles);

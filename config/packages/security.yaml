@@ -69,6 +69,7 @@ security:
         # additional security lives in the controllers
         - { path: '^/(%app_locales%)/admin', roles: ROLE_ADMIN }
 
+    # The ROLE_ADMIN role inherits from the ROLE_USER role
     role_hierarchy:
         ROLE_ADMIN: ROLE_USER
 
