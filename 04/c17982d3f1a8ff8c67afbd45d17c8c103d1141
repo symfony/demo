@@ -1,0 +1,110 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2023-02-17T09:55:02Z
+
+Could we use an Enum instead of constants? Would Enums work everywhere? Is it worth it or is it overengineering?
+
+---------------------------------------------------------------------------
+
+by stof at 2023-02-17T10:04:41Z
+
+No we cannot. Roles are strings in Symfony, not an enum object.
+
+---------------------------------------------------------------------------
+
+by wouterj at 2023-02-18T09:53:39Z
+
+You can use e.g. `RoleEnum::USER->value` (since PHP 8.1) in attributes and php code, bit IIRC not in Yaml.
+
+---------------------------------------------------------------------------
+
+by COil at 2023-02-18T10:05:17Z
+
+> You can use e.g. `RoleEnum::USER->value` (since PHP 8.1) in attributes and php code, bit IIRC not in Yaml.
+
+With PHP 8.2 it will be OK, but we can't yet with 8.1:
+
+<img width="738" alt="Capture d’écran 2023-02-18 à 11 03 57" src="https://user-images.githubusercontent.com/177844/219854409-868a6def-1263-4520-9e0e-a232e04b63f4.png">
+
+---------------------------------------------------------------------------
+
+by COil at 2023-02-25T08:33:51Z
+
+Hello, is it OK for this PR? Or should we close it?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2023-03-13T14:14:47Z
+
+My opinion:
+
+* 🟢 I like a lot using these constants in PHP files
+* 🟡 I'm not entirely sure about injecting these constants in all Twig templates as global constants
+* 🔴 I don't like how complicated this looks in the YAML file, especially in the `security.yaml` file
+
+What do others think about this? Thanks.
+
+---------------------------------------------------------------------------
+
+by derrabus at 2023-03-13T14:28:01Z
+
+I fully agree with @javiereguiluz' assessment.
+
+> 🟢 I like a lot using these constants in PHP files
+
+Me too, I wouldn't make those constants members of the `User` class though. In my projects, I usually have a `final class Roles` that holds those constants.
+
+> 🟡 I'm not entirely sure about injecting these constants in all Twig templates as global constants
+
+Me neither and I wouldn't do it tbh. We don't gain much here.
+
+> 🔴 I don't like how complicated this looks in the YAML file, especially in the `security.yaml` file
+
+Same. I would revert this as well.
+
+---------------------------------------------------------------------------
+
+by stof at 2023-03-13T15:11:30Z
+
+Sure you can workaround the bad architecture by using `RoleEnum::USER->value` everywhere. But I would not recommend doing that in the demo as this would give the impression that using a enum for roles is a good idea, while this is an abuse of enums based on the fact that you need role strings anyway.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2023-03-13T15:40:33Z
+
+@stof but in this case we're not talking about enums. It's using PHP constants in YAML that looks too complicated to us. E.g. this change:
+
+```diff
+     role_hierarchy:
+-        ROLE_ADMIN: ROLE_USER
++        !php/const App\Entity\User::ROLE_ADMIN: !php/const App\Entity\User::ROLE_USER
+```
+
+But in PHP files these constants look very nice.
+
+---------------------------------------------------------------------------
+
+by COil at 2023-03-13T20:08:54Z
+
+> Me too, I wouldn't make those constants members of the User class though. In my projects, I usually have a final class Roles that holds those constants.
+
+But that looks weird to put this in a separated class. In this case, we should use an enum (but we don't want too here). Having these constants in the User class is the more pragmatic way, IMHO.
+
+> 🟡 I'm not entirely sure about injecting these constants in all Twig templates as global constants
+> Me neither and I wouldn't do it tbh. We don't gain much here.
+
+Actually, if we don't want to use a constant here, we could use a twig extension to do the job and make use of the PHP constant. But that's not as simple as using `is_granted` indeed.
+
+I remember now, that was the opportunity to show the usage of the Twig globals.
+
+> 🔴 I don't like how complicated this looks in the YAML file, especially in the security.yaml file
+
+I agree, it makes the YAML unreadable. I didn't even know it was possible to do this, so let's revert this. It was a try.
+
+---------------------------------------------------------------------------
+
+by derrabus at 2023-03-13T21:52:50Z
+
+> But that looks weird to put this in a separated class.
+
+🤨 🤷🏻‍♂️
