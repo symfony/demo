@@ -27,7 +27,7 @@ use function Symfony\Component\String\u;
  *
  * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
-class DateTimePickerType extends AbstractType
+final class DateTimePickerType extends AbstractType
 {
     public function __construct(
         private readonly MomentFormatConverter $formatConverter

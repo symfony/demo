@@ -21,7 +21,7 @@ use function Symfony\Component\String\u;
  *
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-class Validator
+final class Validator
 {
     public function validateUsername(?string $username): string
     {

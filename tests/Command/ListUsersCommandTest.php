@@ -13,7 +13,7 @@ namespace App\Tests\Command;
 
 use App\Command\ListUsersCommand;
 
-class ListUsersCommandTest extends AbstractCommandTest
+final class ListUsersCommandTest extends AbstractCommandTest
 {
     /**
      * @dataProvider maxResultsProvider

@@ -43,7 +43,7 @@ use Symfony\Component\Mime\Email;
     description: 'Lists all the existing users',
     aliases: ['app:users']
 )]
-class ListUsersCommand extends Command
+final class ListUsersCommand extends Command
 {
     public function __construct(
         private readonly MailerInterface $mailer,

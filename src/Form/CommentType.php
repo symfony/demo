@@ -27,7 +27,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-class CommentType extends AbstractType
+final class CommentType extends AbstractType
 {
     /**
      * {@inheritdoc}

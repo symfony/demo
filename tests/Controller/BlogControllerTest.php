@@ -26,7 +26,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  *     $ cd your-symfony-project/
  *     $ ./vendor/bin/phpunit
  */
-class BlogControllerTest extends WebTestCase
+final class BlogControllerTest extends WebTestCase
 {
     public function testIndex(): void
     {

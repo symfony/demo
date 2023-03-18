@@ -25,7 +25,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  *
  * @author Oleg Voronkovich <oleg-voronkovich@yandex.ru>
  */
-class CommentNotificationSubscriber implements EventSubscriberInterface
+final class CommentNotificationSubscriber implements EventSubscriberInterface
 {
     public function __construct(
         private readonly MailerInterface $mailer,

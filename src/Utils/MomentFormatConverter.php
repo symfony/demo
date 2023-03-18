@@ -16,7 +16,7 @@ namespace App\Utils;
  *
  * @author Yonel Ceruto <yonelceruto@gmail.com>
  */
-class MomentFormatConverter
+final class MomentFormatConverter
 {
     /**
      * This defines the mapping between PHP ICU date format (key) and moment.js date format (value)

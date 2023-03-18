@@ -23,7 +23,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  *
  * @author Romain Monteil <monteil.romain@gmail.com>
  */
-class UserType extends AbstractType
+final class UserType extends AbstractType
 {
     /**
      * {@inheritdoc}

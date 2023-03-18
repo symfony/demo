@@ -51,7 +51,7 @@ use function Symfony\Component\String\u;
     name: 'app:add-user',
     description: 'Creates users and stores them in the database'
 )]
-class AddUserCommand extends Command
+final class AddUserCommand extends Command
 {
     private SymfonyStyle $io;
 
