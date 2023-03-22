@@ -21,7 +21,7 @@ use PHPUnit\Framework\TestCase;
  *
  * See https://symfony.com/doc/current/testing/database.html
  */
-class TagArrayToStringTransformerTest extends TestCase
+final class TagArrayToStringTransformerTest extends TestCase
 {
     /**
      * Ensures that tags are created correctly.

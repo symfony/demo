@@ -27,7 +27,7 @@ use function Symfony\Component\String\u;
  *
  * @template-implements DataTransformerInterface<Tag[], string>
  */
-class TagArrayToStringTransformer implements DataTransformerInterface
+final class TagArrayToStringTransformer implements DataTransformerInterface
 {
     public function __construct(
         private readonly TagRepository $tags

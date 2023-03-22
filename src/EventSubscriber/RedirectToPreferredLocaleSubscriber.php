@@ -26,7 +26,7 @@ use function Symfony\Component\String\u;
  *
  * @author Oleg Voronkovich <oleg-voronkovich@yandex.ru>
  */
-class RedirectToPreferredLocaleSubscriber implements EventSubscriberInterface
+final class RedirectToPreferredLocaleSubscriber implements EventSubscriberInterface
 {
     /**
      * @var string[]

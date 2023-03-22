@@ -22,7 +22,7 @@ use Twig\TwigFunction;
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  * @author Julien ITARD <julienitard@gmail.com>
  */
-class AppExtension extends AbstractExtension
+final class AppExtension extends AbstractExtension
 {
     /**
      * @var string[]

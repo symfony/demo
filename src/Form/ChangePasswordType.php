@@ -26,7 +26,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
  *
  * @author Romain Monteil <monteil.romain@gmail.com>
  */
-class ChangePasswordType extends AbstractType
+final class ChangePasswordType extends AbstractType
 {
     /**
      * {@inheritdoc}

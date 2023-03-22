@@ -43,7 +43,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
     name: 'app:delete-user',
     description: 'Deletes users from the database'
 )]
-class DeleteUserCommand extends Command
+final class DeleteUserCommand extends Command
 {
     private SymfonyStyle $io;
 

@@ -31,7 +31,7 @@ use Symfony\Component\HttpFoundation\Response;
  *     $ cd your-symfony-project/
  *     $ ./vendor/bin/phpunit
  */
-class UserControllerTest extends WebTestCase
+final class UserControllerTest extends WebTestCase
 {
     /**
      * @dataProvider getUrlsForAnonymousUsers

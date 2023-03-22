@@ -18,7 +18,7 @@ use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePaginator;
 /**
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-class Paginator
+final class Paginator
 {
     /**
      * Use constants to define configuration options that rarely change instead

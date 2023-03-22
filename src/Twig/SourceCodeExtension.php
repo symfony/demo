@@ -26,7 +26,7 @@ use function Symfony\Component\String\u;
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-class SourceCodeExtension extends AbstractExtension
+final class SourceCodeExtension extends AbstractExtension
 {
     /**
      * @var callable|null

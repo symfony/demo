@@ -39,7 +39,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
  */
 #[Route('/admin/post')]
 #[IsGranted(User::ROLE_ADMIN)]
-class BlogController extends AbstractController
+final class BlogController extends AbstractController
 {
     /**
      * Lists all Post entities.

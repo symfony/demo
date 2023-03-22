@@ -15,7 +15,7 @@ use App\Command\AddUserCommand;
 use App\Repository\UserRepository;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-class AddUserCommandTest extends AbstractCommandTest
+final class AddUserCommandTest extends AbstractCommandTest
 {
     /**
      * @var string[]

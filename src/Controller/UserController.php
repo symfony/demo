@@ -32,7 +32,7 @@ use Symfony\Component\Security\Http\Logout\LogoutUrlGenerator;
  * @author Romain Monteil <monteil.romain@gmail.com>
  */
 #[Route('/profile'), IsGranted(User::ROLE_USER)]
-class UserController extends AbstractController
+final class UserController extends AbstractController
 {
     #[Route('/edit', name: 'user_edit', methods: ['GET', 'POST'])]
     public function edit(
