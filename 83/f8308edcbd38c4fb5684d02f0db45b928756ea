@@ -1,0 +1,19 @@
+---------------------------------------------------------------------------
+
+by derrabus at 2023-03-19T09:45:57Z
+
+In my apps, I usually declare all classes `final` unless I have a good reason not to. I wouldn't mind if the demo app followed this rule as well. 🙂
+
+So 👍🏻  from my side.
+
+---------------------------------------------------------------------------
+
+by COil at 2023-03-19T10:08:46Z
+
+The only problem I see is that the maker bundle doesn't put the final keyword on controllers.
+
+---------------------------------------------------------------------------
+
+by GromNaN at 2023-03-21T20:52:04Z
+
+There are [good reasons](https://matthiasnoback.nl/2018/09/final-classes-by-default-why/) to use final by default. Can we explain with a comment somewhere is this project?
