@@ -18,6 +18,10 @@ DirectoryIndex index.php
 </IfModule>
 
 <IfModule mod_rewrite.c>
+    # This Option needs to be enabled for RewriteRule, otherwise it will show an error like
+    # 'Options FollowSymLinks or SymLinksIfOwnerMatch is off which implies that RewriteRule directive is forbidden'
+    Options +FollowSymlinks
+
     RewriteEngine On
 
     # Determine the RewriteBase automatically and set it as environment variable.
