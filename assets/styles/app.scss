@@ -1,20 +1,4 @@
-// setting the value of this variable to an empty data URL is the only working solution
-// to load the Bootswatch web fonts locally and avoid loading them from Google servers
-// see https://github.com/thomaspark/bootswatch/issues/55#issuecomment-298093182
-$web-font-path: 'data:text/css;base64,';
-
-// Make sure the bootstrap-sass and lato fonts are resolved correctly
-$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
-$lato-font-path: '~lato-font/fonts';
-
-$font-default: 17px;
-$font-heading: 2.5rem;
-$font-title: 1.85rem;
-
-$secondary-color: #ecf0f1;
-$gray-7500: #e9ecec;
-
-@import "~bootswatch/dist/flatly/variables";
+@import "variables";
 
 // @import "~bootstrap/scss/bootstrap.scss";
 @import "~bootstrap/scss/functions";
@@ -54,8 +38,6 @@ $gray-7500: #e9ecec;
 // @import "~bootstrap/scss/spinners";
 @import "~bootstrap/scss/utilities";
 // @import "~bootstrap/scss/print";
-
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
 @import "~bootswatch/dist/flatly/bootswatch";
 @import "~@fortawesome/fontawesome-free/css/all.css";
@@ -123,14 +105,6 @@ a:hover {
 /* Utilities
    ------------------------------------------------------------------------- */
 .m-b-0 { margin-bottom: 0 }
-
-@media (min-width: $screen-md-min) {
-  .modal-xl { width: $modal-lg; }
-}
-
-@media (min-width: $screen-lg-min) {
-  .modal-xl { width: $screen-lg-min - 60px; }
-}
 
 .badge{
   padding: 0.25em 0.4em 0.27em 0.4em
