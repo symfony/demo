@@ -2,7 +2,7 @@ import 'flatpickr';
 import 'flatpickr/dist/flatpickr.css';
 
 flatpickr.defaultConfig.animate = window.navigator.userAgent.indexOf('MSIE') === -1;
-const locale = $('html').getAttribute('lang') || 'en';
+const locale = document.documentElement.getAttribute('lang') || 'en';
 const Locale = require(`flatpickr/dist/l10n/${locale}.js`).default[locale];
 flatpickr.localize(Locale);
 const configs = {
