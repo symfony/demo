@@ -46,13 +46,18 @@
 
 // pick the Lato fonts individually to avoid importing the entire font family
 @import '~lato-font/scss/public-api';
+
 @include lato-include-font('normal');
 @include lato-include-font('bold');
 
 /* Basic styles
    ------------------------------------------------------------------------- */
-h1 {
+h1, .h1 {
   font-size: $font-heading;
+}
+
+h3, .h3 {
+  font-size: $font-subtitle;
 }
 
 p, ul, ol {
@@ -64,13 +69,14 @@ strong {
   font-weight: bold;
 }
 
-li {
+li:not(.nav-item) {
   margin-bottom: 0.5em
 }
 
 code {
   background: $secondary-color;
   color: $blue;
+  font-size: 90%;
 }
 
 .text-danger, .text-danger:hover {
@@ -87,7 +93,7 @@ i {
 }
 
 .doclink {
-    color: inherit
+  color: inherit
 }
 
 a:hover {
@@ -104,12 +110,6 @@ a:hover {
 
 /* Utilities
    ------------------------------------------------------------------------- */
-.m-b-0 { margin-bottom: 0 }
-
-.badge{
-  padding: 0.25em 0.4em 0.27em 0.4em
-}
-
 .jumbotron {
   padding: 1.5rem 1rem
 }
@@ -122,49 +122,59 @@ body {
   min-height: 100vh;
 
   &:not(#homepage) {
-    padding-top: 120px
+    padding-top: 110px
   }
 }
 
 header {
-  margin-bottom: 2em;
+  nav.navbar {
 
-  .nav-link {
-    padding: 0 2rem;
-  }
+    margin-bottom: $navbar-margin-bottom;
 
-  .locales {
-    min-width: 190px;
-    max-height: 320px;
-    overflow-y: scroll;
+    .navbar-brand {
+      padding: 0;
+    }
+    .navbar-toggler {
+      padding: 0 $navbar-toggler-padding-x;
+    }
 
-    .dropdown-item {
-      padding: 0.25rem  1rem;
-      margin-bottom: 0;
+    .nav-link {
+      padding: 0 2rem;
+    }
 
-      &.active a,
-      &.active small,
-      &:hover a,
-      &:hover small,
-      a:hover{
-        color: inherit;
-      }
+    .locales {
+      min-width: 190px;
+      max-height: 320px;
+      overflow-y: scroll;
 
-      a {
-        color: $gray-900;
+      .dropdown-item {
+        padding: 0.25rem 1rem;
+        margin-bottom: 0;
 
-        small {
-          border-radius: 4px;
-          border: 2px solid $gray-300;
-          color: $gray-700;
-          float: left;
-          font-size: 12px;
-          line-height: 1.1;
-          margin: 2px 10px 0 0;
-          min-width: 26px;
-          padding: 0px 3px;
-          text-align: center;
-          text-transform: uppercase;
+        &.active a,
+        &.active small,
+        &:hover a,
+        &:hover small,
+        a:hover {
+          color: inherit;
+        }
+
+        a {
+          color: $gray-900;
+
+          small {
+            border-radius: 4px;
+            border: 2px solid $gray-300;
+            color: $gray-700;
+            float: left;
+            font-size: 12px;
+            line-height: 1.1;
+            margin: 2px 10px 0 0;
+            min-width: 26px;
+            padding: 0 3px;
+            text-align: center;
+            text-transform: uppercase;
+          }
         }
       }
     }
@@ -255,6 +265,10 @@ footer #footer-resources i {
 
 /* Forms
    ------------------------------------------------------------------------- */
+.form-control {
+  height: 45px;
+}
+
 .form-group.has-error .form-control {
   border-color: $red
 }
@@ -274,6 +288,7 @@ footer #footer-resources i {
 .form-group.has-error .help-block li {
   margin-bottom: 0
 }
+
 .form-group.has-error .help-block li + li {
   margin-top: 0.5em;
 }
@@ -316,7 +331,7 @@ body#homepage {
   }
 
   .jumbotron {
-    padding: 48px 60px!important;
+    padding: 48px 60px !important;
 
     .btn {
       font-size: 19px;
@@ -357,7 +372,10 @@ body#login #login-users-help p .console {
 body#login .form-group-password {
   position: relative;
 
-  input { padding-right: 48px; }
+  input {
+    padding-right: 48px;
+  }
+
   button {
     background: transparent;
     border: 0;
@@ -379,10 +397,11 @@ body#login .form-group-password {
 }
 
 .post-metadata {
-  color: $gray-500;
+  color: $gray-600;
   font-size: $font-default;
   margin-bottom: 16px;
 }
+
 .post-metadata .metadata {
   margin-right: 1.5em;
 }
@@ -419,6 +438,7 @@ body#blog_index .post-tags .label-default {
   background-color: $gray-7500;
   color: #6d8283;
 }
+
 body#blog_index .post-tags .label-default i {
   color: #a3b2b2;
 }
@@ -436,6 +456,7 @@ body#blog_post_show .post-tags .label-default {
   margin-right: 10px;
   padding: .4em 1em .5em;
 }
+
 body#blog_post_show .post-tags .label-default i {
   color: #95A6A7;
 }
