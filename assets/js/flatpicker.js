@@ -1,9 +1,10 @@
 import 'flatpickr';
 import 'flatpickr/dist/flatpickr.css';
+import l10n from "flatpickr/dist/l10n";
 
 flatpickr.defaultConfig.animate = window.navigator.userAgent.indexOf('MSIE') === -1;
-const locale = document.documentElement.getAttribute('lang') || 'en';
-const Locale = require(`flatpickr/dist/l10n/${locale}.js`).default[locale];
+let lang = document.documentElement.getAttribute('lang') || 'en';
+const Locale = l10n[`${lang}`] || l10n.default;
 flatpickr.localize(Locale);
 const configs = {
     standard: {
