@@ -5,7 +5,7 @@
 {% block main %}
     <h1>{{ 'title.post_list'|trans }}</h1>
 
-    <table class="table table-striped table-middle-aligned">
+    <table class="table table-striped table-middle-aligned table-borderless">
         <thead>
             <tr>
                 <th scope="col">{{ 'label.title'|trans }}</th>
@@ -23,7 +23,7 @@
                 <td>{{ post.publishedAt|format_datetime('medium', 'short', '', 'UTC') }}</td>
                 <td class="text-right">
                     <div class="item-actions">
-                        <a href="{{ path('admin_post_show', {id: post.id}) }}" class="btn btn-sm btn-default">
+                        <a href="{{ path('admin_post_show', {id: post.id}) }}" class="btn btn-sm btn-secondary">
                             <i class="fa fa-eye" aria-hidden="true"></i> {{ 'action.show'|trans }}
                         </a>
 

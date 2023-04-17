@@ -1,0 +1,30 @@
+// setting the value of this variable to an empty data URL is the only working solution
+// to load the Bootswatch web fonts locally and avoid loading them from Google servers
+// see https://github.com/thomaspark/bootswatch/issues/55#issuecomment-298093182
+$web-font-path: 'data:text/css;base64,';
+
+// Make sure the bootstrap-sass and lato fonts are resolved correctly
+//$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+$lato-font-path: '~lato-font/fonts';
+
+$font-default: 19px;
+
+$font-heading: 2.5rem;
+$font-title: 2rem;
+$font-subtitle: 1.5rem;
+
+$secondary-color: #ecf0f1;
+$gray-7500: #e9ecec;
+
+$navbar-margin-bottom: 21px;
+
+$table-cell-padding: 0.5rem;
+
+$btn-padding-y-lg: 21px;
+$btn-padding-x-lg: 14px;
+$btn-padding-y: 15px;
+$btn-padding-x: 10px;
+$btn-padding-y-sm: 9px;
+$btn-padding-x-sm: 6px;
+
+@import "~bootswatch/dist/flatly/variables";

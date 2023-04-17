@@ -13,13 +13,13 @@
 {% endblock %}
 
 {% block header_navigation_links %}
-    <li>
-        <a href="{{ path('admin_post_index') }}">
+    <li class="nav-item{{ _route in ['admin_index', 'admin_post_index'] ? ' active' : '' }}">
+        <a class="nav-link" href="{{ path('admin_post_index') }}">
             <i class="fa fa-list-alt" aria-hidden="true"></i> {{ 'menu.post_list'|trans }}
         </a>
     </li>
-    <li>
-        <a href="{{ path('blog_index') }}">
+    <li class="nav-item">
+        <a class="nav-link" href="{{ path('blog_index') }}">
             <i class="fa fa-home" aria-hidden="true"></i> {{ 'menu.back_to_blog'|trans }}
         </a>
     </li>

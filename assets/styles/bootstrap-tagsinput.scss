@@ -87,11 +87,10 @@
 *
 * ---------------------------------------------------------------------------- */
 .bootstrap-tagsinput {
-  display: table-cell;
-  vertical-align: middle;
-  width: 100%;
+  flex: 1 1;
+  width: 1%;
   height: 45px;
-  padding: 0;
+  padding: .125rem 0 0 0;
   font-size: 15px;
   line-height: 1.42857143;
   color: #2c3e50;
