@@ -1,0 +1,107 @@
+---------------------------------------------------------------------------
+
+by atierant at 2023-04-06T07:49:50Z
+
+About Intl js date management, moment is not recommanded anymore, but they advice to use their new Intl Date wrapper lib [Luxon](https://moment.github.io/luxon/) or [Temporal](https://momentjs.com/docs/#/-project-status/future/)
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2023-04-06T09:37:00Z
+
+Thanks for this contribution. Let's see if this time we can finish and merge this 🙏
+
+I tested it locally and found some issues.
+
+**(1)** The datepicker doesn't work for me:
+
+![Captura de pantalla 2023-04-06 a las 11 25 20](https://user-images.githubusercontent.com/73419/230336833-ee94501c-9e8c-4aa5-ba6b-f150b95e3761.png)
+
+And the error details:
+
+![Captura de pantalla 2023-04-06 a las 11 25 56](https://user-images.githubusercontent.com/73419/230336862-0dfe0b02-b944-441e-bb04-cebf0701235d.png)
+
+**(2)** Some spacing and font sizes look too different. The new design doesn't have to be identical to before, but it should be closer.
+
+See before/after comparisons:
+
+![before-after-1](https://user-images.githubusercontent.com/73419/230337112-b6b4e74e-6627-4e4b-afa2-91d3bf80a51f.png)
+
+In the above screenshot, let's tweak the top bar and the form fields to look like before, but let's keep the new bi buttons because they look better than before.
+
+![before-after-2](https://user-images.githubusercontent.com/73419/230337130-8b0b09ab-52b2-41ff-9cd0-37b26f099f82.png)
+
+---------------------------------------------------------------------------
+
+by atierant at 2023-04-06T10:38:32Z
+
+The language spotter in flatpicker.js is now fixed, just an oversight. At first I added the language as a data-attribute of the body, but I finally said to myself that it was already present in the html tag, so I had corrected too quickly...
+
+You can now test the feature, I'll have a look for design adaptations.
+
+---------------------------------------------------------------------------
+
+by atierant at 2023-04-06T16:22:58Z
+
+These differences come from the change to Bootstrap 4 and conforms to the standard Bootstrap 4 interface standards.
+
+Units are basically changed to rem rather than pixels.
+They changed the size of the inputs, the functioning of the navbar...
+They used a scaffolding script (_scaffolding.scss) which differs from the new reboot system (_reboot.scss) in many points.
+
+I'm not sure I've mastered these concepts enough to act properly on the interface, but if someone reading this in the assembly is an UX/UI master, show up with pleasure!
+
+---------------------------------------------------------------------------
+
+by atierant at 2023-04-07T08:45:00Z
+
+It seems better ! Can you give a new try please ?
+
+![image](https://user-images.githubusercontent.com/1587260/230572163-8473c74b-c950-4a70-bdc2-9a3f8e09ef1e.png)
+
+![image](https://user-images.githubusercontent.com/1587260/230571734-954222d1-a3c0-46f8-a2a7-1810af4f2058.png)
+
+![image](https://user-images.githubusercontent.com/1587260/230574733-23ba3531-3ac5-4a51-a4fd-e9cb98014f68.png)
+
+![image](https://user-images.githubusercontent.com/1587260/230574835-96d71574-e290-49ca-8951-9902662d10ab.png)
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2023-04-11T14:19:54Z
+
+This looks fantastic now! Thanks a lot Arnaud.
+
+However, there's two minor issues related to the datepicker. Please, tell me if I'm doing something wrong:
+
+(1) There's a design issue with the form field icon:
+
+<img width="932" alt="datepicker-icon" src="https://user-images.githubusercontent.com/73419/231191836-5567c2b7-a2b1-4e07-bdb2-70d1676814f0.png">
+
+(2) The datepicker works for me in all languages:
+
+|     |     |
+| --- | --- |
+| <img width="420" alt="datepicker-es" src="https://user-images.githubusercontent.com/73419/231191946-b6d91697-72c4-452f-aee5-f8249bceebd3.png"> | <img width="499" alt="datepicker-fr" src="https://user-images.githubusercontent.com/73419/231191966-3853d09c-4215-42f9-986f-53af5ceff70b.png"> |
+
+But in English it doesn't work 🤔
+
+<img width="476" alt="datepicker-en" src="https://user-images.githubusercontent.com/73419/231192147-e380b075-a693-47b3-8963-d575f4a4bb38.png">
+
+---------------------------------------------------------------------------
+
+by atierant at 2023-04-14T09:18:39Z
+
+@javiereguiluz Fixed :)
+
+---------------------------------------------------------------------------
+
+by bechir at 2023-04-14T18:11:36Z
+
+Good job @atierant
+
+---------------------------------------------------------------------------
+
+by atierant at 2023-04-14T18:55:00Z
+
+> Good job @atierant
+
+Good job to you @bechir , the most is yours ! Thanks a lot for this !
