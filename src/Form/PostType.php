@@ -37,9 +37,6 @@ final class PostType extends AbstractType
     ) {
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         // For the full reference of options defined by each form field type
@@ -86,9 +83,6 @@ final class PostType extends AbstractType
         ;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

@@ -34,9 +34,6 @@ final class TagArrayToStringTransformer implements DataTransformerInterface
     ) {
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function transform($tags): string
     {
         // The value received is an array of Tag objects generated with
@@ -47,8 +44,6 @@ final class TagArrayToStringTransformer implements DataTransformerInterface
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @phpstan-param string|null $string
      *
      * @phpstan-return array<int, Tag>

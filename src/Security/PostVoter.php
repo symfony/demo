@@ -33,8 +33,6 @@ final class PostVoter extends Voter
     public const SHOW = 'show';
 
     /**
-     * {@inheritdoc}
-     *
      * @phpstan-param object $subject
      */
     protected function supports(string $attribute, $subject): bool
@@ -44,8 +42,6 @@ final class PostVoter extends Voter
     }
 
     /**
-     * {@inheritdoc}
-     *
      * @param Post $post
      */
     protected function voteOnAttribute(string $attribute, $post, TokenInterface $token): bool
