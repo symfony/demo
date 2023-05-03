@@ -138,42 +138,105 @@ header {
       padding: 0 $navbar-toggler-padding-x;
     }
 
-    .nav-link {
-      padding: 0 2rem;
+    .nav-item {
+      font-size: 18px;
+      margin-left: 20px;
     }
+  }
+}
+
+#locale-selector-modal {
+  background: #2c3e50;
+
+  .modal-dialog {
+    @media (min-width: map-get($grid-breakpoints, 'md')) {
+      max-width: 800px;
+      width: 96%;
+    }
+  }
+
+  .modal-content {
+    border: 0;
+  }
+
+  .modal-header {
+    background: #2c3e50;
+    border-bottom: 0;
+    color: var(--white);
+
+    .close { color: var(--white); opacity: 1; }
+  }
+
+  .modal-body {
+    background: #2c3e50;
 
     .locales {
-      min-width: 190px;
-      max-height: 320px;
-      overflow-y: scroll;
+      list-style: none;
+      padding: 0;
 
-      .dropdown-item {
-        padding: 0.25rem 1rem;
-        margin-bottom: 0;
+      @media (min-width: map-get($grid-breakpoints, 'md')) {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 10px 20px;
+      }
 
-        &.active a,
-        &.active small,
-        &:hover a,
-        &:hover small,
-        a:hover {
-          color: inherit;
+      li {
+        border-radius: 4px;
+        margin-bottom: 10px;
+        position: relative;
+
+        @media (min-width: map-get($grid-breakpoints, 'md')) {
+          margin: 0;
+        }
+
+        &.rtl a {
+          direction: rtl;
         }
 
         a {
+          align-items: center;
+          background: #fff;
+          border-radius: 4px;
           color: $gray-900;
+          display: flex;
+          justify-content: space-between;
+          padding: 10px 20px;
 
           small {
             border-radius: 4px;
             border: 2px solid $gray-300;
-            color: $gray-700;
-            float: left;
-            font-size: 12px;
+            color: $gray-800;
+            font-size: 14px;
+            font-weight: bold;
             line-height: 1.1;
-            margin: 2px 10px 0 0;
+            margin-inline-start: 10px;
             min-width: 26px;
-            padding: 0 3px;
+            padding: 2px 6px;
             text-align: center;
             text-transform: uppercase;
+          }
+        }
+
+        &:hover a {
+          outline: 3px solid #18bc9c;
+          outline-offset: -5px;
+
+          small {
+            background: #18bc9c;
+            border-color: #18bc9c;
+            color: #fff;
+          }
+        }
+
+        &.active a, &:hover.active a {
+          background: #18bc9c;
+          color: #fff;
+          outline: none;
+
+          small {
+            background: transparent;
+            border-color: #fff;
+            color: #fff;
           }
         }
       }
