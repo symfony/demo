@@ -11,23 +11,37 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title"><i class="fa fa-code" aria-hidden="true"></i> {{ 'title.source_code'|trans }}</h4>
+                    <h5 class="modal-title"><i class="fa fa-code" aria-hidden="true"></i> {{ 'title.source_code'|trans }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="{{ 'action.close'|trans }}">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
 
                 <div class="modal-body">
-                    {% if controller %}
-                        <h3><a href="https://symfony.com/doc/current/controller.html" target="_blank">{{ 'title.controller_code'|trans }}</a><small class="float-right">{{ controller.file_path|format_file(controller.starting_line) }}</small></h3>
-                        <pre><code class="php">{{ controller.source_code }}</code></pre>
-                    {% else %}
-                        <h3><a href="https://symfony.com/doc/current/controller.html">{{ 'title.controller_code'|trans }}</a></h3>
-                        <pre><code>{{ 'not_available'|trans }}</code></pre>
-                    {% endif %}
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="controller-tab" data-toggle="tab" href="#controller-code" role="tab" aria-controls="home" aria-selected="true" target="_blank">{{ 'title.controller_code'|trans }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="template-tab" data-toggle="tab" href="#template-code" role="tab" aria-controls="profile" aria-selected="false" target="_blank">{{ 'title.twig_template_code'|trans }}</a>
+                        </li>
+                    </ul>
 
-                    <h3><a href="https://symfony.com/doc/current/templates.html" target="_blank">{{ 'title.twig_template_code'|trans }}</a><small class="float-right">{{ template.file_path|format_file(template.starting_line) }}</small></h3>
-                    <pre><code class="twig">{{ template.source_code }}</code></pre>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane show active" id="controller-code" role="tabpanel" aria-labelledby="controller-tab">
+                            {% if controller %}
+                                <p class="file-link">{{ controller.file_path|format_file(controller.starting_line) }}</p>
+                                <pre><code class="php">{{ controller.source_code }}</code></pre>
+                            {% else %}
+                                <pre><code>{{ 'not_available'|trans }}</code></pre>
+                            {% endif %}
+                        </div>
+
+                        <div class="tab-pane" id="template-code" role="tabpanel" aria-labelledby="template-tab">
+                            <p class="file-link">{{ template.file_path|format_file(template.starting_line) }}</p>
+                            <pre><code class="twig">{{ template.source_code }}</code></pre>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

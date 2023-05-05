@@ -18,7 +18,7 @@
 @import "~bootstrap/scss/button-group";
 @import "~bootstrap/scss/input-group";
 // @import "~bootstrap/scss/custom-forms";
-// @import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/nav";
 @import "~bootstrap/scss/navbar";
 // @import "~bootstrap/scss/card";
 @import "~bootstrap/scss/breadcrumb";
@@ -289,25 +289,38 @@ footer #footer-resources i {
   margin-left: 0.5em
 }
 
-#sourceCodeModal h3 {
-  font-size: $font-default;
-  margin-top: 0
-}
+#sourceCodeModal {
+  .modal-header {
+    border-bottom: 0;
+    padding: 1rem 1rem 0;
 
-#sourceCodeModal h3 small {
-  color: $gray-700;
-  font-size: 80%
-}
+    h3 { font-size: 18px; margin-top: 0; }
+  }
 
-#sourceCodeModal pre {
-  margin-bottom: 2em;
-  padding: 0;
-  display: block;
-  word-break: break-all;
-  word-wrap: break-word;
+  .nav-tabs {
+    border-bottom-color: #95a5a6;
+    margin-bottom: 15px;
 
-  code {
-    white-space: pre-wrap;
+    .nav-link { font-size: 16px; }
+    .nav-link.active { border-color: #95a5a6 #95a5a6 #fff; }
+    .nav-link:not(.active):hover { border-color: transparent; text-decoration: underline; }
+  }
+
+  .tab-content {
+    .file-link { font-size: 16px; margin: 0 0 10px 5px; }
+  }
+
+  pre {
+    margin-bottom: 0;
+    padding: 0;
+    display: block;
+    word-break: break-all;
+    word-wrap: break-word;
+
+    code {
+      border-radius: 6px;
+      white-space: pre-wrap;
+    }
   }
 }
 
