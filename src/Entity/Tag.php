@@ -48,9 +48,6 @@ class Tag implements \JsonSerializable
         return $this->name;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function jsonSerialize(): string
     {
         // This entity implements JsonSerializable (http://php.net/manual/en/class.jsonserializable.php)
