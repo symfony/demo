@@ -1,0 +1,30 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2023-05-09T07:44:20Z
+
+I've updated to Symfony 6.3 beta 2 and I still see this direct deprecation:
+
+<img width="848" alt="deprecation" src="https://user-images.githubusercontent.com/73419/237028550-d68450c0-0258-4c74-aea0-23d90a14f810.png">
+
+The problem is that a Symfony internal `Logger` class extends a Monolog class marked as final:
+
+<img width="881" alt="logger-class" src="https://user-images.githubusercontent.com/73419/237028691-96fe1e83-ff2c-4ed1-bbe3-9a9006867d4b.png">
+
+I have two questions:
+
+* Why is it marked as "direct deprecation" instead of "indirect deprecation"?
+* Are we aware of this in the Symfony code repository so we can fix it before the final release?
+
+---------------------------------------------------------------------------
+
+by wouterj at 2023-05-09T08:48:58Z
+
+Direct vs indirect may be a bug (the logic around this is a bit fragile).
+
+The deprecation itself is known and unrelated to a Symfony upgrade, but rather a Monolog update: https://github.com/symfony/symfony/issues/47096 There is no need to fix this before the final release
+
+---------------------------------------------------------------------------
+
+by stof at 2023-05-09T11:23:31Z
+
+Direct vs indirect deprecation is fragile for deprecations triggered by the DebugClassLoader right now
