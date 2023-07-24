@@ -4,7 +4,7 @@
 
 {% block main %}
     {% for post in paginator.results %}
-        {{ include('blog/_post.html.twig') }}
+        <twig:post :post="post"/>
     {% else %}
         <div class="jumbotron">{{ 'post.no_posts_found'|trans }}</div>
     {% endfor %}

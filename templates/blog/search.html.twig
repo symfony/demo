@@ -4,12 +4,10 @@
 
 {% block main %}
     {#
-        Render a component by passing its name as first argument
-        See https://symfony.com/bundles/ux-twig-component/current/index.html
+        Render a component by using the HTML syntax
+        See https://symfony.com/bundles/ux-twig-component/current/index.html#component-html-syntax
     #}
-    {{ component('blog_search', {
-        query: query
-    }) }}
+    <twig:blog_search :query="query"/>
 {% endblock %}
 
 {% block sidebar %}
