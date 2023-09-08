@@ -6,19 +6,26 @@
     {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
 #}
 
-{% if show_confirmation|default(false) %}
+{% props
+    form,
+    show_confirmation = false,
+    button_label = 'label.create_post'|trans,
+    include_back_to_home_link = false
+%}
+
+{% if show_confirmation %}
     {% set attr = {'data-confirmation': 'true'} %}
-    {{ include('blog/_delete_post_confirmation.html.twig') }}
+    <twig:modal:delete_post_confirmation/>
 {% endif %}
 
 {{ form_start(form, {attr: attr|default({})}) }}
     {{ form_widget(form) }}
 
     <button type="submit" class="{{ button_css|default("btn btn-primary") }}">
-        <i class="fa fa-save" aria-hidden="true"></i> {{ button_label|default('label.create_post'|trans) }}
+        <i class="fa fa-save" aria-hidden="true"></i> {{ button_label }}
     </button>
 
-    {% if include_back_to_home_link|default(false) %}
+    {% if include_back_to_home_link %}
         <a href="{{ path('admin_post_index') }}" class="btn btn-link">
             <i class="fa fa-list-alt" aria-hidden="true"></i> {{ 'action.back_to_list'|trans }}
         </a>

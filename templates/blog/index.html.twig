@@ -4,7 +4,7 @@
 
 {% block main %}
     {% for post in paginator.results %}
-        <twig:post :post="post"/>
+        <twig:blog:post :post="post"/>
     {% else %}
         <div class="jumbotron">{{ 'post.no_posts_found'|trans }}</div>
     {% endfor %}
@@ -55,5 +55,5 @@
     {{ parent() }}
 
     {{ show_source_code(_self) }}
-    {{ include('blog/_rss.html.twig') }}
+    <twig:blog:rss />
 {% endblock %}

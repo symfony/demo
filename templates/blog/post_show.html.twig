@@ -12,7 +12,7 @@
 
     {{ post.content|markdown_to_html|sanitize_html }}
 
-    {{ include('blog/_post_tags.html.twig') }}
+    <twig:blog:post_tags :tags="post.tags" />
 
     <div id="post-add-comment" class="jumbotron">
         {# The 'IS_AUTHENTICATED_FULLY' role ensures that the user has entered
@@ -39,7 +39,7 @@
 
     {% for comment in post.comments %}
         <div class="row post-comment">
-            <a name="comment_{{ comment.id }}"></a>
+            <a id="comment_{{ comment.id }}"></a>
             <h4 class="col-sm-3">
                 <strong>{{ comment.author.fullName }}</strong> {{ 'post.commented_on'|trans }}
                 {# it's not mandatory to set the timezone in localizeddate(). This is done to
@@ -73,5 +73,5 @@
     {{ parent() }}
 
     {{ show_source_code(_self) }}
-    {{ include('blog/_rss.html.twig') }}
+    <twig:blog:rss />
 {% endblock %}

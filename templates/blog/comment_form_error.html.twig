@@ -6,6 +6,6 @@
     <h1 class="text-danger">{{ 'title.comment_error'|trans }}</h1>
 
     <div class="jumbotron">
-        {{ include('blog/_comment_form.html.twig') }}
+        <twig:blog:comment_form :form="form" :post="post"/>
     </div>
 {% endblock %}

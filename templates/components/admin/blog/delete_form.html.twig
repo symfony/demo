@@ -1,4 +1,6 @@
-{{ include('blog/_delete_post_confirmation.html.twig') }}
+{% props post %}
+
+<twig:modal:delete_post_confirmation/>
 <form action="{{ url('admin_post_delete', {id: post.id}) }}" method="post" data-confirmation="true" id="delete-form">
     <input type="hidden" name="token" value="{{ csrf_token('delete') }}" />
     <button type="submit" class="btn btn-lg btn-block btn-danger">

@@ -36,7 +36,7 @@
                             Symfony Demo
                         </a>
                         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#appNavbar" aria-controls="appNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                            <span class="navbar-toggler-icon"></span>
                         </button>
 
                         <div class="navbar-collapse collapse" id="appNavbar">
@@ -128,7 +128,7 @@
             {% block body %}
                 <div class="row">
                     <div id="main" class="col-sm-9">
-                        {{ include('default/_flash_messages.html.twig') }}
+                        <twig:flash_messages />
 
                         {% block main %}{% endblock %}
                     </div>

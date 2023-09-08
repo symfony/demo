@@ -19,7 +19,7 @@
             You can nest components into another one
             See https://symfony.com/bundles/ux-twig-component/current/index.html#nested-components
         #}
-        <twig:post :post="post"/>
+        <twig:blog:post :post="post"/>
     {% else %}
         {% if query is not empty %}
             {{ 'post.search_no_results'|trans }}

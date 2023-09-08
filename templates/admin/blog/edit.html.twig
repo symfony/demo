@@ -5,11 +5,7 @@
 {% block main %}
     <h1>{{ 'title.edit_post'|trans({'id': post.id}) }}</h1>
 
-    {{ include('admin/blog/_form.html.twig', {
-        form: form,
-        button_label: 'action.save'|trans,
-        include_back_to_home_link: true,
-    }, with_context = false) }}
+    <twig:admin:blog:form :form="form" button_label="{{ 'action.save'|trans }}" include_back_to_home_link="false" />
 {% endblock %}
 
 {% block sidebar %}
@@ -20,7 +16,7 @@
     </div>
 
     <div class="section actions">
-        {{ include('admin/blog/_delete_form.html.twig', {post: post}, with_context = false) }}
+        <twig:admin:blog:delete_form :post="post"/>
     </div>
 
     {{ parent() }}
