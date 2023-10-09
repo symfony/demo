@@ -32,7 +32,7 @@ final class Paginator
     private int $numResults;
 
     /**
-     * @var \Traversable<int, object>
+     * @var \Traversable<array-key, object>
      */
     private \Traversable $results;
 
@@ -59,6 +59,7 @@ final class Paginator
             $query->setHint(CountWalker::HINT_DISTINCT, false);
         }
 
+        /** @var DoctrinePaginator<object> $paginator */
         $paginator = new DoctrinePaginator($query, true);
 
         /** @var array<string, mixed> $havingDqlParts */
