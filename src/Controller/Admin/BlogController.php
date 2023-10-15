@@ -11,6 +11,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Dto\DeletePostPayload;
 use App\Entity\Post;
 use App\Entity\User;
 use App\Form\PostType;
@@ -22,6 +23,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\SubmitButton;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
@@ -159,12 +161,9 @@ final class BlogController extends AbstractController
      */
     #[Route('/{id}/delete', name: 'admin_post_delete', methods: ['POST'])]
     #[IsGranted('delete', subject: 'post')]
-    public function delete(Request $request, Post $post, EntityManagerInterface $entityManager): Response
+    public function delete(#[MapRequestPayload] DeletePostPayload $deletePostPayload, Post $post, EntityManagerInterface $entityManager): Response
     {
-        /** @var string|null $token */
-        $token = $request->request->get('token');
-
-        if (!$this->isCsrfTokenValid('delete', $token)) {
+        if (!$this->isCsrfTokenValid('delete', $deletePostPayload->token)) {
             return $this->redirectToRoute('admin_post_index');
         }
 
