@@ -1,0 +1,70 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2023-10-13T13:27:05Z
+
+Thanks for this proposal.
+
+However, I made some quick tests about this and I think this change is not needed.
+
+The issue was that we also commit the `composer.lock` in this project. If I clone the Git repo and run `composer install`, I always end up with `6.3.0` dependencies, no matter if we use `6.3`, `^6.3` or `6.3.*` in `extra.symfony.require`.
+
+When I removed the `composer.lock` file, running `composer install` correctly installed 6.3.5 even if we use `6.3` in `extra.symfony.require`.
+
+Also, soon we're going to update this project to Symfony 6.4 and 7.0, so we'll update dependencies significantly very soon. Thanks!
+
+---------------------------------------------------------------------------
+
+by stof at 2023-10-13T13:55:39Z
+
+@javiereguiluz using `6.3` will make Flex keep only the `6.3.0` version. It should have been `6.3.*` as said in #1428.
+
+In your test, you probably ran a composer resolution without Flex installed at all (and so not taking this filtering into account)
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2023-10-13T14:39:25Z
+
+OK. Sorry. Let's reopen then.
+
+---------------------------------------------------------------------------
+
+by stof at 2023-10-13T15:09:52Z
+
+This PR is not the right fix though, as the demo intends to lock a specific Symfony minor version, which is not what `^6.3` will do.
+
+---------------------------------------------------------------------------
+
+by tacman at 2023-10-15T14:36:37Z
+
+Hmm.  I use the demo app to make sure that my bundles work, but I want to test with the latest release version of Symfony.  Here's my script that I use to make sure my bundle installs:
+
+```bash
+symfony new --demo command-demo && cd command-demo
+# remove the php8.1 lock, allow latest version of Symfony 6.3
+sed -i 's/"php": "8.1.0"//' composer.json
+sed -i 's/"require": "6.3"/"require": "^6.3"/' composer.json
+composer update
+# allow command-bundle recipe, which is waiting for PR approval
+export SYMFONY_ENDPOINT=https://raw.githubusercontent.com/symfony/recipes-contrib/flex/pull-1548/index.json
+
+composer req survos/command-bundle
+bin/console --version
+
+yarn install && yarn dev
+symfony server:start -d
+symfony open:local  --path admin/commands
+```
+
+> sed -i 's/"php": "8.1.0"//' composer.json
+
+I have php 8.1 on my system, but the sqlite extension isn't installed, so I remove that requirement.  I don't understand the purpose to locking to 8.1.
+
+> sed -i 's/"require": "6.3"/"require": "^6.3"/' composer.json
+
+I guess if the demo is supposed to be testing 6.3.0, it needs that requirement, but I always want to make sure that my bundles install with the latest release.
+
+Obviously, I'd like to remove those hacky 'sed' commands, which I was I submitted this PR.  What would be a better solution?  Or maybe it's not necessary, and I should just test my bundles with Symfony 6.3.0.  But when I'm creating a new project, I do always want the latest version.
+
+> yarn install && yarn dev
+
+I can't wait to remove these lines!  Last I tried installing 6.4 (minimum stability: dev) I ran into an issue, so I guess it's still in active development.  This demo application uses older versions of bootstrap and fontawesome, so we can do a review of all the front-end assets as we're moving them to asset-mapper/importmap.  Happy to help, in fact, eager to help.
