@@ -32,8 +32,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  * @author Mecanik <contact@mecanik.dev>
  */
-#[ORM\Entity(repositoryClass: UserRepository::class), HasLifecycleCallbacks]
+#[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: 'symfony_demo_user')]
+#[HasLifecycleCallbacks]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     // We can use constants for roles to find usages all over the application rather

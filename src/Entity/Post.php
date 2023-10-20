@@ -35,9 +35,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @author Yonel Ceruto <yonelceruto@gmail.com>
  * @author Mecanik <contact@mecanik.dev>
  */
-#[ORM\Entity(repositoryClass: PostRepository::class), HasLifecycleCallbacks]
+#[ORM\Entity(repositoryClass: PostRepository::class)]
 #[ORM\Table(name: 'symfony_demo_post')]
 #[UniqueEntity(fields: ['slug'], errorPath: 'title', message: 'post.slug_unique')]
+#[HasLifecycleCallbacks]
 class Post
 {
     #[ORM\Id]

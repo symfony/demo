@@ -30,8 +30,9 @@ use function Symfony\Component\String\u;
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  * @author Mecanik <contact@mecanik.dev>
  */
-#[ORM\Entity, HasLifecycleCallbacks]
+#[ORM\Entity]
 #[ORM\Table(name: 'symfony_demo_comment')]
+#[HasLifecycleCallbacks]
 class Comment
 {
     #[ORM\Id]

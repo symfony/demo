@@ -25,8 +25,9 @@ use Doctrine\ORM\Mapping\PreUpdate;
  * @author Yonel Ceruto <yonelceruto@gmail.com>
  * @author Mecanik <contact@mecanik.dev>
  */
-#[ORM\Entity, HasLifecycleCallbacks]
+#[ORM\Entity]
 #[ORM\Table(name: 'symfony_demo_tag')]
+#[HasLifecycleCallbacks]
 class Tag implements \JsonSerializable
 {
     #[ORM\Id]
