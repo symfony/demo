@@ -232,14 +232,16 @@ class Post
     }
 	
 	#[PrePersist]
-    #[PreUpdate]
-    public function updatedTimestamps()
+	public function onPrePersist()
     {
-        if ($this->getUpdatedAt() == null) {
-            $this->setUpdatedAt(new \DateTimeImmutable('now'));
-        }
         if ($this->getCreatedAt() == null) {
             $this->setCreatedAt(new \DateTimeImmutable('now'));
         }
+    }
+	
+    #[PreUpdate]
+    public function onPreUpdate()
+    {
+        $this->setUpdatedAt(new \DateTimeImmutable('now'));
     }
 }
