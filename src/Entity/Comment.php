@@ -13,6 +13,9 @@ namespace App\Entity;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Doctrine\ORM\Mapping\PrePersist;
+use Doctrine\ORM\Mapping\PreUpdate;
 use Symfony\Component\Validator\Constraints as Assert;
 use function Symfony\Component\String\u;
 
@@ -25,8 +28,9 @@ use function Symfony\Component\String\u;
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
+ * @author Mecanik <contact@mecanik.dev>
  */
-#[ORM\Entity]
+#[ORM\Entity, HasLifecycleCallbacks]
 #[ORM\Table(name: 'symfony_demo_comment')]
 class Comment
 {
@@ -51,6 +55,12 @@ class Comment
     #[ORM\JoinColumn(nullable: false)]
     private ?User $author = null;
 
+    #[ORM\Column(type: 'datetime_immutable')]
+    private $createdAt;
+
+    #[ORM\Column(type: 'datetime_immutable')]
+    private $updatedAt;
+	
     public function __construct()
     {
         $this->publishedAt = new \DateTime();
@@ -107,5 +117,41 @@ class Comment
     public function setPost(Post $post): void
     {
         $this->post = $post;
+    }
+	
+	public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+	
+	#[PrePersist]
+    #[PreUpdate]
+    public function updatedTimestamps()
+    {
+        if ($this->getUpdatedAt() == null) {
+            $this->setUpdatedAt(new \DateTimeImmutable('now'));
+        }
+        if ($this->getCreatedAt() == null) {
+            $this->setCreatedAt(new \DateTimeImmutable('now'));
+        }
     }
 }

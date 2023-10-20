@@ -16,6 +16,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Doctrine\ORM\Mapping\PrePersist;
+use Doctrine\ORM\Mapping\PreUpdate;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -30,8 +33,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  * @author Yonel Ceruto <yonelceruto@gmail.com>
+ * @author Mecanik <contact@mecanik.dev>
  */
-#[ORM\Entity(repositoryClass: PostRepository::class)]
+#[ORM\Entity(repositoryClass: PostRepository::class), HasLifecycleCallbacks]
 #[ORM\Table(name: 'symfony_demo_post')]
 #[UniqueEntity(fields: ['slug'], errorPath: 'title', message: 'post.slug_unique')]
 class Post
@@ -64,7 +68,7 @@ class Post
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $author = null;
-
+	
     /**
      * @var Collection<int, Comment>
      */
@@ -81,6 +85,12 @@ class Post
     #[Assert\Count(max: 4, maxMessage: 'post.too_many_tags')]
     private Collection $tags;
 
+    #[ORM\Column(type: 'datetime_immutable')]
+    private $createdAt;
+
+    #[ORM\Column(type: 'datetime_immutable')]
+    private $updatedAt;
+	
     public function __construct()
     {
         $this->publishedAt = new \DateTime();
@@ -194,5 +204,41 @@ class Post
     public function getTags(): Collection
     {
         return $this->tags;
+    }
+	
+	public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+	
+	#[PrePersist]
+    #[PreUpdate]
+    public function updatedTimestamps()
+    {
+        if ($this->getUpdatedAt() == null) {
+            $this->setUpdatedAt(new \DateTimeImmutable('now'));
+        }
+        if ($this->getCreatedAt() == null) {
+            $this->setCreatedAt(new \DateTimeImmutable('now'));
+        }
     }
 }
