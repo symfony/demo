@@ -69,7 +69,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'datetime_immutable')]
     private $updatedAt;
-	
+
     /**
      * @var string[]
      */
@@ -191,8 +191,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // add $this->salt too if you don't use Bcrypt or Argon2i
         [$this->id, $this->username, $this->password] = $data;
     }
-	
-	public function getCreatedAt(): ?\DateTimeImmutable
+
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
@@ -215,15 +215,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-	
-	#[PrePersist]
-	public function onPrePersist()
+
+    #[PrePersist]
+    public function onPrePersist()
     {
-        if ($this->getCreatedAt() == null) {
+        if (null === $this->getCreatedAt()) {
             $this->setCreatedAt(new \DateTimeImmutable('now'));
         }
     }
-	
+
     #[PreUpdate]
     public function onPreUpdate()
     {

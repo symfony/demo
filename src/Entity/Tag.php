@@ -43,7 +43,7 @@ class Tag implements \JsonSerializable
 
     #[ORM\Column(type: 'datetime_immutable')]
     private $updatedAt;
-	
+
     public function __construct(string $name)
     {
         $this->name = $name;
@@ -72,8 +72,8 @@ class Tag implements \JsonSerializable
     {
         return $this->name;
     }
-	
-	public function getCreatedAt(): ?\DateTimeImmutable
+
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
@@ -96,15 +96,15 @@ class Tag implements \JsonSerializable
 
         return $this;
     }
-	
-	#[PrePersist]
-	public function onPrePersist()
+
+    #[PrePersist]
+    public function onPrePersist()
     {
-        if ($this->getCreatedAt() == null) {
+        if (null === $this->getCreatedAt()) {
             $this->setCreatedAt(new \DateTimeImmutable('now'));
         }
     }
-	
+
     #[PreUpdate]
     public function onPreUpdate()
     {

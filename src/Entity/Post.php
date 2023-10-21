@@ -69,7 +69,7 @@ class Post
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $author = null;
-	
+
     /**
      * @var Collection<int, Comment>
      */
@@ -91,7 +91,7 @@ class Post
 
     #[ORM\Column(type: 'datetime_immutable')]
     private $updatedAt;
-	
+
     public function __construct()
     {
         $this->publishedAt = new \DateTime();
@@ -206,8 +206,8 @@ class Post
     {
         return $this->tags;
     }
-	
-	public function getCreatedAt(): ?\DateTimeImmutable
+
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
@@ -230,15 +230,15 @@ class Post
 
         return $this;
     }
-	
-	#[PrePersist]
-	public function onPrePersist()
+
+    #[PrePersist]
+    public function onPrePersist()
     {
-        if ($this->getCreatedAt() == null) {
+        if (null === $this->getCreatedAt()) {
             $this->setCreatedAt(new \DateTimeImmutable('now'));
         }
     }
-	
+
     #[PreUpdate]
     public function onPreUpdate()
     {

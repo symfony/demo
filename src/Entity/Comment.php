@@ -61,7 +61,7 @@ class Comment
 
     #[ORM\Column(type: 'datetime_immutable')]
     private $updatedAt;
-	
+
     public function __construct()
     {
         $this->publishedAt = new \DateTime();
@@ -119,8 +119,8 @@ class Comment
     {
         $this->post = $post;
     }
-	
-	public function getCreatedAt(): ?\DateTimeImmutable
+
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
@@ -143,15 +143,15 @@ class Comment
 
         return $this;
     }
-	
-	#[PrePersist]
-	public function onPrePersist()
+
+    #[PrePersist]
+    public function onPrePersist()
     {
-        if ($this->getCreatedAt() == null) {
+        if (null === $this->getCreatedAt()) {
             $this->setCreatedAt(new \DateTimeImmutable('now'));
         }
     }
-	
+
     #[PreUpdate]
     public function onPreUpdate()
     {
