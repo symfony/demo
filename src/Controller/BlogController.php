@@ -70,7 +70,7 @@ final class BlogController extends AbstractController
      * after performing a database query looking for a Post with the 'slug'
      * value given in the route.
      *
-     * See https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html
+     * See https://symfony.com/doc/current/doctrine.html#automatically-fetching-objects-entityvalueresolver
      */
     #[Route('/posts/{slug}', name: 'blog_post', methods: ['GET'])]
     public function postShow(Post $post): Response
@@ -93,10 +93,10 @@ final class BlogController extends AbstractController
     }
 
     /**
-     * NOTE: The ParamConverter mapping is required because the route parameter
+     * NOTE: The #[MapEntity] mapping is required because the route parameter
      * (postSlug) doesn't match any of the Doctrine entity properties (slug).
      *
-     * See https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html#doctrine-converter
+     * See https://symfony.com/doc/current/doctrine.html#doctrine-entity-value-resolver
      */
     #[Route('/comment/{postSlug}/new', name: 'comment_new', methods: ['POST'])]
     #[IsGranted('IS_AUTHENTICATED')]
@@ -140,7 +140,9 @@ final class BlogController extends AbstractController
      * a route name for it.
      *
      * The "id" of the Post is passed in and then turned into a Post object
-     * automatically by the ParamConverter.
+     * automatically by the ValueResolver.
+     *
+     * See https://symfony.com/doc/current/doctrine.html#automatically-fetching-objects-entityvalueresolver
      */
     public function commentForm(Post $post): Response
     {
