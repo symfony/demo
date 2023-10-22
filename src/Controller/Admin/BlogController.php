@@ -86,9 +86,8 @@ final class BlogController extends AbstractController
 
         $form->handleRequest($request);
 
-        // the isSubmitted() method is completely optional because the other
-        // isValid() method already checks whether the form is submitted.
-        // However, we explicitly add it to improve code readability.
+        // The isSubmitted() call is mandatory because the isValid() method
+        // throws an exception if the form has not been submitted.
         // See https://symfony.com/doc/current/forms.html#processing-forms
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($post);
