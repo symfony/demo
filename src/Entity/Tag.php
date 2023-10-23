@@ -38,10 +38,10 @@ class Tag implements \JsonSerializable
     #[ORM\Column(type: Types::STRING, unique: true)]
     private readonly string $name;
 
-    #[ORM\Column(type: 'datetime_immutable')]
+    #[ORM\Column(type: Types::DATETIMETZ_IMMUTABLE)]
     private $createdAt;
 
-    #[ORM\Column(type: 'datetime_immutable')]
+    #[ORM\Column(type: Types::DATETIMETZ_IMMUTABLE)]
     private $updatedAt;
 
     public function __construct(string $name)

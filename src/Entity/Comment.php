@@ -56,10 +56,10 @@ class Comment
     #[ORM\JoinColumn(nullable: false)]
     private ?User $author = null;
 
-    #[ORM\Column(type: 'datetime_immutable')]
+    #[ORM\Column(type: Types::DATETIMETZ_IMMUTABLE)]
     private $createdAt;
 
-    #[ORM\Column(type: 'datetime_immutable')]
+    #[ORM\Column(type: Types::DATETIMETZ_IMMUTABLE)]
     private $updatedAt;
 
     public function __construct()
