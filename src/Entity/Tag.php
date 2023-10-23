@@ -103,6 +103,10 @@ class Tag implements \JsonSerializable
         if (null === $this->getCreatedAt()) {
             $this->setCreatedAt(new \DateTimeImmutable('now'));
         }
+		
+		if ($this->getUpdatedAt() == null) {
+            $this->setUpdatedAt(new \DateTimeImmutable('now'));
+        }
     }
 
     #[PreUpdate]
