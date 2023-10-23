@@ -123,6 +123,9 @@ final class BlogController extends AbstractController
             // passed in the event and they can even modify the execution flow, so
             // there's no guarantee that the rest of this controller will be executed.
             // See https://symfony.com/doc/current/components/event_dispatcher.html
+            // You can also leverage the Symfony Messenger component if you need
+            // some asynchronous operations.
+            // See https://symfony.com/doc/current/messenger.html
             $eventDispatcher->dispatch(new CommentCreatedEvent($comment));
 
             return $this->redirectToRoute('blog_post', ['slug' => $post->getSlug()]);
