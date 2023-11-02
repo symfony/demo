@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Wrap Symfony Doc urls in comments
-    [...modalElt.querySelectorAll('.hljs-comment')].forEach((commentElt) => {
+    modalElt.querySelectorAll('.hljs-comment').forEach((commentElt) => {
         commentElt.innerHTML = commentElt.innerHTML.replace(/https:\/\/symfony.com\/[\w/.#-]+/g, (url) => anchor(url, url));
     });
 
@@ -31,12 +31,12 @@ document.addEventListener('DOMContentLoaded', function() {
         'Route': 'https://symfony.com/doc/current/routing.html#creating-routes-as-attributes',
         'IsGranted': 'https://symfony.com/doc/current/security.html#security-securing-controller-annotations'
     };
-    [...controllerCode.querySelectorAll('.hljs-meta')].forEach((elt) => {
+    controllerCode.querySelectorAll('.hljs-meta').forEach((elt) => {
         elt.innerHTML = wrap(elt.textContent, attributes);
     });
 
     // Wraps Twig's tags
-    [...templateCode.querySelectorAll('.hljs-template-tag + .hljs-name')].forEach((elt) => {
+    templateCode.querySelectorAll('.hljs-template-tag + .hljs-name').forEach((elt) => {
         const tag = elt.textContent;
         if ('else' === tag || tag.match(/^end/)) {
             return;
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Wraps Twig's functions
-    [...templateCode.querySelectorAll('.hljs-template-variable > .hljs-name')].forEach((elt) => {
+    templateCode.querySelectorAll('.hljs-template-variable > .hljs-name').forEach((elt) => {
         const func = elt.textContent;
         const url = 'https://twig.symfony.com/doc/3.x/functions/' + func + '.html#' + func;
         elt.innerHTML = anchor(url, func);
