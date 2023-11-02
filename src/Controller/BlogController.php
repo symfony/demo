@@ -123,8 +123,9 @@ final class BlogController extends AbstractController
             // passed in the event and they can even modify the execution flow, so
             // there's no guarantee that the rest of this controller will be executed.
             // See https://symfony.com/doc/current/components/event_dispatcher.html
-            // You can also leverage the Symfony Messenger component if you need
-            // some asynchronous operations.
+            //
+            // If you prefer to process comments asynchronously (e.g. to perform some
+            // heavy tasks on them) you can use the Symfony Messenger component.
             // See https://symfony.com/doc/current/messenger.html
             $eventDispatcher->dispatch(new CommentCreatedEvent($comment));
 
