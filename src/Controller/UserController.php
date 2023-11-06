@@ -48,7 +48,7 @@ final class UserController extends AbstractController
 
             $this->addFlash('success', 'user.updated_successfully');
 
-            return $this->redirectToRoute('user_edit');
+            return $this->redirectToRoute('user_edit', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('user/edit.html.twig', [
