@@ -1,4 +1,8 @@
 import './styles/app.scss';
+import '@fortawesome/fontawesome-free/css/all.css';
+import '@fortawesome/fontawesome-free/css/v4-shims.css';
+import 'highlight.js/styles/github-dark-dimmed.css';
+import 'lato-font/css/lato-font.css';
 
 // loads the Bootstrap plugins
 import 'bootstrap/js/dist/alert';
@@ -15,6 +19,6 @@ import './js/highlight.js';
 import './js/doclinks.js';
 
 // start the Stimulus application
-import './bootstrap';
+import './bootstrap.js';
 
-import './js/flatpicker';
+import './js/flatpicker.js';

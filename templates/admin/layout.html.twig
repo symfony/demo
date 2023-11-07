@@ -7,9 +7,9 @@
 #}
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    {{ encore_entry_link_tags('admin') }}
+{% block importmap %}
+    {# Load both the app.js and admin.js entrypoints #}
+    {{ importmap(['app', 'admin']) }}
 {% endblock %}
 
 {% block header_navigation_links %}
@@ -25,7 +25,3 @@
     </li>
 {% endblock %}
 
-{% block javascripts %}
-    {{ parent() }}
-    {{ encore_entry_script_tags('admin') }}
-{% endblock %}
