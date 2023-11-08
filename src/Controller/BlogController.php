@@ -129,7 +129,7 @@ final class BlogController extends AbstractController
             // See https://symfony.com/doc/current/messenger.html
             $eventDispatcher->dispatch(new CommentCreatedEvent($comment));
 
-            return $this->redirectToRoute('blog_post', ['slug' => $post->getSlug()]);
+            return $this->redirectToRoute('blog_post', ['slug' => $post->getSlug()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('blog/comment_form_error.html.twig', [

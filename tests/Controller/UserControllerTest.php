@@ -73,7 +73,7 @@ final class UserControllerTest extends WebTestCase
             'user[email]' => $newUserEmail,
         ]);
 
-        $this->assertResponseRedirects('/en/profile/edit', Response::HTTP_FOUND);
+        $this->assertResponseRedirects('/en/profile/edit', Response::HTTP_SEE_OTHER);
 
         /** @var User $user */
         $user = $userRepository->findOneByEmail($newUserEmail);
