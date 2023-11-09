@@ -1,0 +1,10 @@
+---------------------------------------------------------------------------
+
+by weaverryan at 2023-11-08T17:26:31Z
+
+Oh, this would make life MUCH easier over on my PR - thank you!
+
+After this, on that PR, we could focus on:
+
+A) importing CSS versions (instead of sass) for all of the vendor packages other than Bootstrap (`bootstrap-tagsinput`, `~lato-font/scss/public-api`, etc). In theory (?) we may be overriding some Sass variables on those. But if we are, we can check on what we're tweaking and find a different solution.
+B) Keep Bootstrap - but point at the `vendor/` directory. Or do you think we could remove the Bootstrap Sass entirely? We're overriding several things in `_variables.scss`. What I don't know is how feasible it is to make these same changes by overriding CSS properties... especially since the demo uses Bootstrap 4 at the moment (not sure how many CSS properties they use/expose in v4)
