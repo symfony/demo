@@ -2,6 +2,10 @@
 // @import "~eonasdan-bootstrap-datetimepicker/src/sass/bootstrap-datetimepicker-build.scss";
 @import "bootstrap-tagsinput.scss";
 
+:root {
+  --blue: #007bff;
+}
+
 /* Page: 'Backend post index'
    ------------------------------------------------------------------------- */
 body#admin_post_index .item-actions {
@@ -27,9 +31,8 @@ body#admin_post_show .post-tags .label-default i {
 
 .form-control {
   border-width: .125rem;
-
-  &:focus {
-    color: $blue;
-    box-shadow: none;
-  }
+}
+.form-control:focus {
+  color: var(--blue);
+  box-shadow: none;
 }
