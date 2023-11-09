@@ -74,6 +74,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->fullName;
     }
 
+    public function __construct()
+    {
+        $this->username = 'new-user-'.random_int(100000, 1000000);
+    }
+
     public function getId(): ?int
     {
         return $this->id;

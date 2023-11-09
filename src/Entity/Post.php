@@ -107,6 +107,11 @@ class Post
     #[Assert\Count(max: 4, maxMessage: 'post.too_many_tags')]
     private Collection $tags;
 
+    public function __toString(): string
+    {
+        return $this->getTitle() ?? 'n/a';
+    }
+
     public function __construct()
     {
         $this->publishedAt = new \DateTime();
