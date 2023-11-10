@@ -14,6 +14,9 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Doctrine\ORM\Mapping\PrePersist;
+use Doctrine\ORM\Mapping\PreUpdate;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -27,9 +30,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
+ * @author Mecanik <contact@mecanik.dev>
  */
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: 'symfony_demo_user')]
+#[HasLifecycleCallbacks]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     // We can use constants for roles to find usages all over the application rather
@@ -58,6 +63,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: Types::STRING)]
     private ?string $password = null;
+
+    #[ORM\Column(type: Types::DATETIMET_IMMUTABLE)]
+    private $createdAt;
+
+    #[ORM\Column(type: Types::DATETIMET_IMMUTABLE)]
+    private $updatedAt;
 
     /**
      * @var string[]
@@ -179,5 +190,47 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // add $this->salt too if you don't use Bcrypt or Argon2i
         [$this->id, $this->username, $this->password] = $data;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    #[PrePersist]
+    public function onPrePersist()
+    {
+        if (null === $this->getCreatedAt()) {
+            $this->setCreatedAt(new \DateTimeImmutable('now'));
+        }
+		
+		if ($this->getUpdatedAt() == null) {
+            $this->setUpdatedAt(new \DateTimeImmutable('now'));
+        }
+    }
+
+    #[PreUpdate]
+    public function onPreUpdate()
+    {
+        $this->setUpdatedAt(new \DateTimeImmutable('now'));
     }
 }
