@@ -30,7 +30,7 @@
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane show active" id="controller-code" role="tabpanel" aria-labelledby="controller-tab">
                             {% if controller %}
-                                <p class="file-link">{{ controller.file_path|format_file(controller.starting_line) }}</p>
+                                <p class="file-link">{{ link_source_file(controller.file_path, controller.starting_line) }}</p>
                                 <pre><code class="php">{{ controller.source_code }}</code></pre>
                             {% else %}
                                 <pre><code>{{ 'not_available'|trans }}</code></pre>
@@ -38,7 +38,7 @@
                         </div>
 
                         <div class="tab-pane" id="template-code" role="tabpanel" aria-labelledby="template-tab">
-                            <p class="file-link">{{ template.file_path|format_file(template.starting_line) }}</p>
+                            <p class="file-link">{{ link_source_file(template.file_path, template.starting_line) }}</p>
                             <pre><code class="twig">{{ template.source_code }}</code></pre>
                         </div>
                     </div>
