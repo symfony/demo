@@ -66,9 +66,12 @@ final class SourceCodeExtension extends AbstractExtension
     {
         $text = str_replace('\\', '/', $file);
         if (str_starts_with($text, $this->projectDir)) {
-            $text = substr($text, \strlen($this->projectDir));
+            $text = mb_substr($text, mb_strlen($this->projectDir));
         }
-        $link = $this->fileLinkFormat->format($file, $line);
+
+        if (false === $link = $this->fileLinkFormat->format($file, $line)) {
+            return '';
+        }
 
         return sprintf('<a href="%s" title="Click to open this file" class="file_link">%s</a> at line %d',
             htmlspecialchars($link, \ENT_COMPAT | \ENT_SUBSTITUTE, $twig->getCharset()),
