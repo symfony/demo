@@ -1,0 +1,203 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2023-10-17T06:57:21Z
+
+After updating dependencies again, now we see some errors like this one:
+
+```
+1) App\Tests\Controller\Admin\BlogControllerTest::testAccessDeniedForRegularUsers with data set #0 ('GET', '/en/admin/post/')
+Error: Call to undefined method Symfony\Component\ErrorHandler\ErrorRenderer\HtmlErrorRenderer::getFileLink()
+
+/home/runner/work/demo/demo/vendor/symfony/error-handler/Resources/views/trace.html.php:14
+/home/runner/work/demo/demo/vendor/symfony/error-handler/ErrorRenderer/HtmlErrorRenderer.php:337
+/home/runner/work/demo/demo/vendor/symfony/error-handler/Resources/views/traces.html.php:52
+/home/runner/work/demo/demo/vendor/symfony/error-handler/ErrorRenderer/HtmlErrorRenderer.php:337
+/home/runner/work/demo/demo/vendor/symfony/error-handler/Resources/views/exception.html.php:57
+/home/runner/work/demo/demo/vendor/symfony/error-handler/ErrorRenderer/HtmlErrorRenderer.php:337
+/home/runner/work/demo/demo/vendor/symfony/error-handler/Resources/views/exception_full.html.php:35
+/home/runner/work/demo/demo/vendor/symfony/error-handler/ErrorRenderer/HtmlErrorRenderer.php:[33](https://github.com/symfony/demo/actions/runs/6543565287/job/17768359222?pr=1431#step:10:34)7
+/home/runner/work/demo/demo/vendor/symfony/error-handler/ErrorRenderer/HtmlErrorRenderer.php:144
+/home/runner/work/demo/demo/vendor/symfony/error-handler/ErrorRenderer/HtmlErrorRenderer.php:70
+/home/runner/work/demo/demo/vendor/symfony/twig-bridge/ErrorRenderer/TwigErrorRenderer.php:48
+/home/runner/work/demo/demo/vendor/symfony/error-handler/ErrorRenderer/SerializerErrorRenderer.php:65
+/home/runner/work/demo/demo/vendor/symfony/http-kernel/Controller/ErrorController.php:41
+/home/runner/work/demo/demo/vendor/symfony/http-kernel/HttpKernel.php:181
+/home/runner/work/demo/demo/vendor/symfony/http-kernel/HttpKernel.php:76
+/home/runner/work/demo/demo/vendor/symfony/http-kernel/EventListener/ErrorListener.php:117
+/home/runner/work/demo/demo/vendor/symfony/event-dispatcher/Debug/WrappedListener.php:116
+/home/runner/work/demo/demo/vendor/symfony/event-dispatcher/EventDispatcher.php:220
+/home/runner/work/demo/demo/vendor/symfony/event-dispatcher/EventDispatcher.php:56
+/home/runner/work/demo/demo/vendor/symfony/event-dispatcher/Debug/TraceableEventDispatcher.php:139
+/home/runner/work/demo/demo/vendor/symfony/http-kernel/HttpKernel.php:239
+/home/runner/work/demo/demo/vendor/symfony/http-kernel/HttpKernel.php:91
+/home/runner/work/demo/demo/vendor/symfony/http-kernel/Kernel.php:197
+/home/runner/work/demo/demo/vendor/symfony/http-kernel/HttpKernelBrowser.php:65
+/home/runner/work/demo/demo/vendor/symfony/framework-bundle/KernelBrowser.php:175
+/home/runner/work/demo/demo/vendor/symfony/browser-kit/AbstractBrowser.php:[38](https://github.com/symfony/demo/actions/runs/6543565287/job/17768359222?pr=1431#step:10:39)5
+/home/runner/work/demo/demo/tests/Controller/Admin/BlogControllerTest.php:65
+```
+
+---------------------------------------------------------------------------
+
+by wouterj at 2023-10-17T07:11:17Z
+
+See https://github.com/symfony/symfony/pull/52088
+
+---------------------------------------------------------------------------
+
+by stof at 2023-10-17T09:28:36Z
+
+For the `reportFieldsWhereDeclared` deprecation of the ORM, DoctrineBundle 2.10.0 added a `report_fields_where_declared` configuration setting to control it.
+
+Edit: updating the DoctrineBundle recipe to its latest version would enable this setting, as recipes are turning it on for new projects.
+
+---------------------------------------------------------------------------
+
+by stof at 2023-10-17T09:35:41Z
+
+The `postConnect` deprecation comes from `dama/doctrine-test-bundle`. They have beta releases of their 8.0 version where this is fixed.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2023-10-17T10:24:14Z
+
+Thank you for the info about how to solve some of the deprecations! Great team effort!
+
+-----
+
+After last updates, I see these indirect deprecations:
+
+```
+Remaining indirect deprecation notices (4)
+
+  1x: Since symfony/monolog-bridge 6.4: The "Symfony\Bridge\Monolog\Logger" class is deprecated, use HttpKernel's DebugLoggerConfigurator instead.
+    1x in AddUserCommandTest::testCreateUserNonInteractive from App\Tests\Command
+
+  1x: The "Monolog\Logger" class is considered final. It may change without further notice as of its next major version. You should not extend it from "Symfony\Bridge\Monolog\Logger".
+    1x in AddUserCommandTest::testCreateUserNonInteractive from App\Tests\Command
+
+  1x: Since symfony/dependency-injection 6.4: "Symfony\Bridge\Doctrine\DataFixtures\ContainerAwareLoader" is deprecated, use dependency injection in your fixtures instead.
+    1x in AddUserCommandTest::testCreateUserNonInteractive from App\Tests\Command
+
+  1x: The "Doctrine\Bundle\FixturesBundle\Loader\SymfonyFixturesLoader" class extends "Symfony\Bridge\Doctrine\DataFixtures\ContainerAwareLoader" that is deprecated since Symfony 6.4, use dependency injection in your fixtures instead.
+    1x in AddUserCommandTest::testCreateUserNonInteractive from App\Tests\Command
+
+Other deprecation notices (44)
+
+  44x: In ORM 3.0, the AttributeDriver will report fields for the classes where they are declared. This may uncover invalid mapping configurations. To opt into the new mode today, set the "reportFieldsWhereDeclared" constructor parameter to true. (AttributeDriver.php:78 called by App_KernelTestDebugContainer.php:819, https://github.com/doctrine/orm/pull/10455, package doctrine/orm)
+    10x in BlogControllerTest::setUp from App\Tests\Controller\Admin
+    5x in DefaultControllerTest::tearDown from App\Tests\Controller
+    4x in BlogControllerTest::testNewComment from App\Tests\Controller
+    2x in AddUserCommandTest::testCreateUserNonInteractive from App\Tests\Command
+    2x in AddUserCommandTest::testCreateUserInteractive from App\Tests\Command
+    ...
+```
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2023-10-25T13:09:45Z
+
+There are the remaining indirect deprecations after the last changes:
+
+```
+Remaining indirect deprecation notices (3)
+
+  1x: The "Symfony\UX\LiveComponent\Twig\TemplateCacheWarmer::warmUp()" method will require a new "string|null $buildDir" argument in the next major version of its interface "Symfony\Component\HttpKernel\CacheWarmer\WarmableInterface", not defining it is deprecated.
+    1x in AddUserCommandTest::testCreateUserNonInteractive from App\Tests\Command
+
+  1x: Since symfony/monolog-bridge 6.4: The "Symfony\Bridge\Monolog\Logger" class is deprecated, use HttpKernel's DebugLoggerConfigurator instead.
+    1x in AddUserCommandTest::testCreateUserNonInteractive from App\Tests\Command
+
+  1x: The "Monolog\Logger" class is considered final. It may change without further notice as of its next major version. You should not extend it from "Symfony\Bridge\Monolog\Logger".
+    1x in AddUserCommandTest::testCreateUserNonInteractive from App\Tests\Command
+```
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2023-11-02T08:27:18Z
+
+Here are the indirect deprecations after the last updates:
+
+```
+  1x: The "Symfony\UX\LiveComponent\Twig\TemplateCacheWarmer::warmUp()" method will require a new "string|null $buildDir" argument in the next major version of its interface "Symfony\Component\HttpKernel\CacheWarmer\WarmableInterface", not defining it is deprecated.
+    1x in AddUserCommandTest::testCreateUserNonInteractive from App\Tests\Command
+
+  1x: Since symfony/monolog-bridge 6.4: The "Symfony\Bridge\Monolog\Logger" class is deprecated, use HttpKernel's DebugLoggerConfigurator instead.
+    1x in AddUserCommandTest::testCreateUserNonInteractive from App\Tests\Command
+
+  1x: The "Monolog\Logger" class is considered final. It may change without further notice as of its next major version. You should not extend it from "Symfony\Bridge\Monolog\Logger".
+    1x in AddUserCommandTest::testCreateUserNonInteractive from App\Tests\Command
+```
+
+---------------------------------------------------------------------------
+
+by seb-jean at 2023-11-02T08:51:23Z
+
+Should we keep the `logout` function? Because there is the [Simpler Logout](https://symfony.com/blog/new-in-symfony-6-4-simpler-logout) now.
+https://github.com/symfony/demo/blob/main/src/Controller/SecurityController.php#L70
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2023-11-16T08:23:52Z
+
+After upgrading to Symfony 6.4.0-RC1, there's only 1 indirect deprecation:
+
+```
+17x: Since symfony/http-kernel 6.4:
+Callable "Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction()"
+is not allowed as a controller.
+
+Did you miss tagging it with "#[AsController]" or registering its type with
+"Symfony\Component\HttpKernel\Controller\ControllerResolver::allowControllers()"?
+```
+
+We use that `templateAction` controller in:
+
+https://github.com/symfony/demo/blob/206f0c9aab07cdc9f7437640b12947d35e9d5e72/config/routes.yaml#L5-L12
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2023-11-16T09:13:01Z
+
+There's also a PHPStan issue. Which would be the best fix in this case?
+
+```
+  Line   src/Pagination/Paginator.php
+ ------ ----------------------------------------------------------------------------------------------------------------------------
+  70     Property App\Pagination\Paginator::$results (Traversable<int, object>) does not accept ArrayIterator<(int|string), mixed>.
+```
+
+---------------------------------------------------------------------------
+
+by stof at 2023-11-16T10:30:07Z
+
+Allowing TemplateController as a controller is something that should be fixed in FrameworkBundle.
+
+for the phpstan error, it is a mismatch between the type of your Paginator and the ORM one used inside it (the part about values can be solved, but the part about keys cannot without changing types of Paginator as the ORM paginator says that the keys in its iterator are always `array-key`, i.e. `int|string`)
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2023-11-16T13:48:16Z
+
+I don't know how to solve the PHPStan error. I'm trying with this:
+
+```php
+    /**
+     * @var \Traversable<int|string, object>|\ArrayIterator<(int|string), mixed>
+     */
+    private \Traversable|\ArrayIterator $results;
+```
+
+But the error persists. I need help here. Thanks!
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2023-11-21T16:44:08Z
+
+The PHPStan issue was finally fixed thanks to the smart folks of Symfony Slack such as @mbbaker and @dkarlovi. Thanks!
+
+---------------------------------------------------------------------------
+
+by stof at 2023-11-21T16:56:13Z
+
+The remaining indirect deprecation has been fixed in https://github.com/symfony/symfony/pull/52656
