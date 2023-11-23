@@ -74,7 +74,7 @@ final class PostType extends AbstractType
             // of the form handling process.
             // See https://symfony.com/doc/current/form/events.html
             ->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
-                /** @var Post */
+                /** @var Post $post */
                 $post = $event->getData();
                 if (null === $post->getSlug() && null !== $post->getTitle()) {
                     $post->setSlug($this->slugger->slug($post->getTitle())->lower());

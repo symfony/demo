@@ -80,10 +80,7 @@ final class SourceCodeExtension extends AbstractExtension
         );
     }
 
-    /**
-     * @param string|TemplateWrapper $template
-     */
-    public function showSourceCode(Environment $twig, $template): string
+    public function showSourceCode(Environment $twig, string|TemplateWrapper $template): string
     {
         return $twig->render('debug/source_code.html.twig', [
             'controller' => $this->getController(),
