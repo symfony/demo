@@ -18,6 +18,7 @@
   --font-subtitle: 1.5rem;
   --font-default: 19px;
   --secondary-color: #ecf0f1;
+  --text-color: #2c3e50;
   --blue: #007bff;
   --red: #dc3545;
   --yellow: #ffc107;
@@ -64,8 +65,10 @@ li:not(.nav-item) {
 
 code {
   background: var(--secondary-color);
-  color: var(--blue);
+  border-radius: 4px;
+  color: var(--text-color);
   font-size: 90%;
+  padding: 2px 4px;
 }
 
 .text-danger, .text-danger:hover {
@@ -97,10 +100,27 @@ a:hover {
   margin-bottom: 0;
 }
 
+.btn {
+  padding: 10px 15px;
+}
+
+form legend {
+  font-size: 22.5px;
+}
+
 /* Utilities
    ------------------------------------------------------------------------- */
 .jumbotron {
   padding: 1.5rem 1rem
+}
+
+.well {
+  background-color: var(--secondary-color);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  min-height: 20px;
+  padding: 19px;
 }
 
 /* Page elements
@@ -129,7 +149,7 @@ header nav.navbar .nav-item {
 }
 
 #locale-selector-modal {
-  background: #2c3e50;
+  background: var(--text-color);
 }
 @media (min-width: 768px) {
   #locale-selector-modal .modal-dialog {
@@ -141,7 +161,7 @@ header nav.navbar .nav-item {
   border: 0;
 }
 #locale-selector-modal .modal-header {
-  background: #2c3e50;
+  background: var(--text-color);
   border-bottom: 0;
   color: var(--white);
 }
@@ -150,7 +170,7 @@ header nav.navbar .nav-item {
   opacity: 1;
 }
 #locale-selector-modal .modal-body {
-  background: #2c3e50;
+  background: var(--text-color);
 }
 #locale-selector-modal .modal-body .locales {
   list-style: none;
@@ -303,7 +323,7 @@ footer #footer-resources i {
 /* Misc. elements
    ------------------------------------------------------------------------- */
 .section.rss a {
-  color: var(--yellow);
+  color: var(--orange);
   font-size: 21px;
 }
 
@@ -417,12 +437,16 @@ body#login .form-group-password input {
 body#login .form-group-password button {
   background: transparent;
   border: 0;
-  color: #2C3E50;
+  color: var(--text-color);
   height: 45px;
   outline: 0;
   position: absolute;
   bottom: 0;
   right: 0;
+}
+
+body#login #login-help table td {
+  vertical-align: middle;
 }
 
 /* Common Blog page elements

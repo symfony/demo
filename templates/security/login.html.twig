@@ -17,7 +17,7 @@
     #}
     <div class="row" {{ stimulus_controller('login') }}{# @see assets/controllers/login-controller.js #}>
         <div class="col-sm-5">
-            <div class="jumbotron">
+            <div class="well">
                 <form action="{{ path('security_login') }}" method="post">
                     <fieldset>
                         <legend><i class="fa fa-lock" aria-hidden="true"></i> {{ 'title.login'|trans }}</legend>
@@ -83,8 +83,8 @@
                 </tbody>
             </table>
 
-            <div id="login-users-help" class="panel panel-default">
-                <div class="panel-body">
+            <div id="login-users-help" class="card">
+                <div class="card-body">
                     <p>
                         <span class="badge badge-success">{{ 'note'|trans }}</span>
                         {{ 'help.reload_fixtures'|trans }}<br/>
