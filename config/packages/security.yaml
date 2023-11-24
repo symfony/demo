@@ -49,8 +49,6 @@ security:
                 #always_remember_me: true
 
             logout:
-                # The route name the user can go to in order to logout
-                path: security_logout
                 # The name of the route to redirect to after logging out
                 target: homepage
                 # Secure the logout against CSRF
