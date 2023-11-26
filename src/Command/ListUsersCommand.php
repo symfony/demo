@@ -20,6 +20,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 
@@ -47,6 +48,7 @@ final class ListUsersCommand extends Command
 {
     public function __construct(
         private readonly MailerInterface $mailer,
+        #[Autowire('%app.notifications.email_sender%')]
         private readonly string $emailSender,
         private readonly UserRepository $users
     ) {
