@@ -16,7 +16,6 @@ use App\Form\ChangePasswordType;
 use App\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -63,7 +62,6 @@ final class UserController extends AbstractController
         #[CurrentUser] User $user,
         Request $request,
         EntityManagerInterface $entityManager,
-        #[Autowire('@security.logout_url_generator')]
         LogoutUrlGenerator $logoutUrlGenerator,
     ): Response {
         $form = $this->createForm(ChangePasswordType::class, $user);

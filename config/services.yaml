@@ -14,7 +14,10 @@ services:
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
-        bind:               # defines the scalar arguments once and apply them to any service defined/created in this file
+        bind:
+            # this allows to define the scalar arguments once and apply them to any services
+            # defined/created in this file; if some argument is used rarely, instead of defining
+            # it here you can use the #[Autowire] attribute to inject it manually in the service constructor
             string $locales: '%app_locales%'
             string $defaultLocale: '%locale%'
 
@@ -26,3 +29,6 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+
+    # this is needed because Symfony doesn't make the 'security.logout_url_generator' service autowirable
+    Symfony\Component\Security\Http\Logout\LogoutUrlGenerator: '@security.logout_url_generator'
