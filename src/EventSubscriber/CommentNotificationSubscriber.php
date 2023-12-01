@@ -14,6 +14,7 @@ namespace App\EventSubscriber;
 use App\Entity\Post;
 use App\Entity\User;
 use App\Event\CommentCreatedEvent;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
@@ -31,6 +32,7 @@ final class CommentNotificationSubscriber implements EventSubscriberInterface
         private readonly MailerInterface $mailer,
         private readonly UrlGeneratorInterface $urlGenerator,
         private readonly TranslatorInterface $translator,
+        #[Autowire('%app.notifications.email_sender%')]
         private readonly string $sender
     ) {
     }
