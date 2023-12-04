@@ -91,6 +91,14 @@
                 <source>title.comment_error</source>
                 <target>Er is een fout opgetreden bij het opslaan van je reactie</target>
             </trans-unit>
+            <trans-unit id="title.edit_user">
+                <source>title.edit_user</source>
+                <target>Wijzig gebruiker</target>
+            </trans-unit>
+            <trans-unit id="title.change_password">
+                <source>title.change_password</source>
+                <target>Wachtwoord wijzigen</target>
+            </trans-unit>
 
             <trans-unit id="action.show">
                 <source>action.show</source>
@@ -169,6 +177,14 @@
                 <source>action.browse_admin</source>
                 <target>Beheerpaneel bekijken</target>
             </trans-unit>
+            <trans-unit id="action.edit_user">
+                <source>action.edit_user</source>
+                <target>Wijzig gebruiker</target>
+            </trans-unit>
+            <trans-unit id="action.change_password">
+                <source>action.change_password</source>
+                <target>Wijzig wachtwoord</target>
+            </trans-unit>
 
             <trans-unit id="label.title">
                 <source>label.title</source>
@@ -190,6 +206,14 @@
                 <source>label.username</source>
                 <target>Gebruikersnaam</target>
             </trans-unit>
+            <trans-unit id="label.fullname">
+                <source>label.fullname</source>
+                <target>Volledige naam</target>
+            </trans-unit>
+            <trans-unit id="label.email">
+                <source>label.email</source>
+                <target>E-mail</target>
+            </trans-unit>
             <trans-unit id="label.password">
                 <source>label.password</source>
                 <target>Wachtwoord</target>
@@ -197,6 +221,18 @@
             <trans-unit id="label.remember_me">
                 <source>label.remember_me</source>
                 <target>Aangemeld blijven</target>
+            </trans-unit>
+            <trans-unit id="label.current_password">
+                <source>label.current_password</source>
+                <target>Huidig wachtwoord</target>
+            </trans-unit>
+            <trans-unit id="label.new_password">
+                <source>label.new_password</source>
+                <target>Nieuw wachtwoord</target>
+            </trans-unit>
+            <trans-unit id="label.new_password_confirm">
+                <source>label.new_password_confirm</source>
+                <target>Herhaal wachtwoord</target>
             </trans-unit>
             <trans-unit id="label.role">
                 <source>label.role</source>
@@ -255,6 +291,10 @@
                 <source>menu.admin</source>
                 <target>Beheerpaneel</target>
             </trans-unit>
+            <trans-unit id="menu.user">
+                <source>menu.user</source>
+                <target>Account</target>
+            </trans-unit>
             <trans-unit id="menu.logout">
                 <source>menu.logout</source>
                 <target>Uitloggen</target>
@@ -309,6 +349,11 @@
                 <target>No results found</target>
             </trans-unit>
 
+            <trans-unit id="user.updated_successfully">
+                <source>user.updated_successfully</source>
+                <target>Gebruiker is succesvol bijgewerkt!</target>
+            </trans-unit>
+
             <trans-unit id="notification.comment_created">
                 <source>notification.comment_created</source>
                 <target>Er is een reactie bij je bericht geplaatst!</target>
@@ -358,6 +403,27 @@
                 <source>help.more_information</source>
                 <target><![CDATA[Voor meer informatie, bekijk de <a href="https://symfony.com/doc">Symfony documentatie</a>.]]></target>
             </trans-unit>
+            <trans-unit id="help.post_summary">
+                <source>help.post_summary</source>
+                <target>Samenvattingen mogen geen Markdown- of HTML-inhoud bevatten; alleen platte tekst.</target>
+            </trans-unit>
+            <trans-unit id="help.post_publication">
+                <source>help.post_publication</source>
+                <target>Stel een datum in de toekomst in om de publicatie van de blogpost te plannen.</target>
+            </trans-unit>
+            <trans-unit id="help.post_content">
+                <source>help.post_content</source>
+                <target>Gebruik Markdown om de inhoud van de blogpost op te maken. HTML is ook toegestaan.</target>
+            </trans-unit>
+            <trans-unit id="help.comment_content">
+                <source>help.comment_content</source>
+                <target>Reacties die niet voldoen aan onze 'Code of Conduct' zullen worden aangepast.</target>
+            </trans-unit>
+
+            <trans-unit id="info.change_password">
+                <source>info.change_password</source>
+                <target>Nadat je je wachtwoord gewijzigd hebt, word je uitgelogd uit de applicatie.</target>
+            </trans-unit>
 
             <trans-unit id="rss.title">
                 <source>rss.title</source>
@@ -375,6 +441,10 @@
             <trans-unit id="paginator.next">
                 <source>paginator.next</source>
                 <target>Volgende</target>
+            </trans-unit>
+            <trans-unit id="paginator.current">
+                <source>paginator.current</source>
+                <target>(huidig)</target>
             </trans-unit>
         </body>
     </file>
