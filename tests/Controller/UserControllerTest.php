@@ -103,9 +103,9 @@ final class UserControllerTest extends WebTestCase
         ]);
 
         $this->assertResponseRedirects();
-        $this->assertStringStartsWith(
-            '/logout',
-            $client->getResponse()->headers->get('Location') ?? '',
+        $this->assertResponseRedirects(
+            '/',
+            Response::HTTP_FOUND,
             'Changing password logout the user.'
         );
     }
