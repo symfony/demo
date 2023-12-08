@@ -55,11 +55,11 @@ jobs:
               uses: actions/cache@v3
               with:
                   path: ${{ steps.composer-cache.outputs.dir }}
-                  key: ${{ runner.os }}-${{ matrix.php-version }}-composer-${{ hashFiles('composer.json') }}
-                  restore-keys: ${{ runner.os }}-${{ matrix.php-version }}-composer-
+                  key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+                  restore-keys: ${{ runner.os }}-composer-
 
             - name: "Install dependencies"
-              run: composer install --no-interaction --no-progress
+              run: composer install --ansi --no-interaction --no-progress
 
             - name: "Install PHPUnit"
               run: vendor/bin/simple-phpunit install
