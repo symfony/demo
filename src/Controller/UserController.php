@@ -70,9 +70,9 @@ final class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            // The logout method has a protection against CSRF attacks, it's disabled here
-            // because the form already has a CSRF token validated.
-            return $security->logout(false);
+            // The logout method applies an automatic protection against CSRF attacks;
+            // it's explicitly disabled here because the form already has a CSRF token validated.
+            return $security->logout(validateCsrfToken: false);
         }
 
         return $this->render('user/change_password.html.twig', [
