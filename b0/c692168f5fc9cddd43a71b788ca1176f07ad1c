@@ -1,0 +1,147 @@
+---------------------------------------------------------------------------
+
+by tacman at 2023-11-19T13:15:40Z
+
+> commit public/assets/ or assets/vendor/ so the code works after clone with ZERO other commands. Else, the user will need to run importmap:install.
+
+I think committing those is going to create a worse DX experience.  Developers download the demo and start tweaking it as a way of learning Symfony's best practices.  I've been burned with accidentally having the public/assets and wondering why stimulus or css wasn't working.
+
+```
+bash git clone && composer install && assets:install && start the server
+```
+
+That's a pretty amazing installation.   And it makes sense -- download the PHP code, download the front-end assets, start the server.  We shouldn't commit the front-end assets (js/css/images) for the same reason we don't commit the /vendor directory.
+
+---------------------------------------------------------------------------
+
+by tacman at 2023-11-19T13:18:17Z
+
+I'm happy to help, maybe with the admin layout?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2023-11-19T14:24:42Z
+
+@tacman I'm sorry but we don't plant to change the current way of working and installing with this demo.
+
+One of its best features is that it doesn't require anything except cloning and `composer install`. No extra config. No extra asset installing or generation. Nothing.
+
+This feature has made the Symfony Demo to be usable in many different scenarios. For example, the PHP source code uses Symfony Demo in heir continuous benchmarks. That's only possible because of how easy is to install and use it.
+
+Thanks for understanding!
+
+---------------------------------------------------------------------------
+
+by tacman at 2023-11-19T14:52:43Z
+
+Brainstorming: could composer install have an auto-script that installs the
+assets, where it clears the cache?
+
+On Sun, Nov 19, 2023 at 9:24 AM Javier Eguiluz ***@***.***>
+wrote:
+
+> @tacman <https://github.com/tacman> I'm sorry but we don't plant to
+> change the current way of working and installing with this demo.
+>
+> One of its best features is that it doesn't require anything except
+> cloning and composer install. No extra config. No extra asset installing
+> or generation. Nothing.
+>
+> This feature has made the Symfony Demo to be usable in many different
+> scenarios. For example, the PHP source code uses Symfony Demo in heir
+> continuous benchmarks. That's only possible because of how easy is to
+> install and use it.
+>
+> Thanks for understanding!
+>
+> —
+> Reply to this email directly, view it on GitHub
+> <https://github.com/symfony/demo/pull/1449#issuecomment-1817870678>, or
+> unsubscribe
+> <https://github.com/notifications/unsubscribe-auth/AAEXIQMQ734VR4RLOHPM3HLYFIJDLAVCNFSM6AAAAAA7BVWWDCVHI2DSMVQWIX3LMV43OSLTON2WKQ3PNVWWK3TUHMYTQMJXHA3TANRXHA>
+> .
+> You are receiving this because you were mentioned.Message ID:
+> ***@***.***>
+>
+
+---------------------------------------------------------------------------
+
+by RubenKruiswijk at 2023-11-28T22:01:46Z
+
+@tacman Wouldn't that be as simple as adding the assetmapper equivalent to https://github.com/weaverryan/symfony-demo/blob/upgrading-to-asset-mapper/composer.json#L95?
+
+---------------------------------------------------------------------------
+
+by tacman at 2023-11-29T11:00:31Z
+
+@RubenKruiswijk Indeed, my applications all have
+
+```json
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "fos:js-routing:dump --format=js --target=public/js/fos_js_routes.js --callback=\"export default  \"": "symfony-cmd"
+        },
+```
+
+Any for deployment, I have the same in either Procfile or app.json (to deploy to heroku / dokku)
+
+```
+web:  vendor/bin/heroku-php-nginx -C nginx.conf  -F fpm_custom.conf public/
+release: bin/console importmap:install && bin/console asset-map:compile
+```
+
+```json
+    "scripts": {
+        "dokku": {
+            "predeploy": "bin\/console importmap:install && bin\/console asset-map:compile",
+            "postdeploy": ""
+        }
+    },
+```
+
+I still think putting the public/assets in the repo is going to be a pain point for many developers.
+
+---------------------------------------------------------------------------
+
+by stof at 2023-11-29T11:13:44Z
+
+For heroku, I would recommend to do that in the `heroku-postdeploy` composer script (which is run during deployment) instead of doing that in the `release` step (which will run in a dedicated dyno and so won't impact the web dynos if your files are served by your app and not a CDN).
+
+---------------------------------------------------------------------------
+
+by stof at 2023-11-29T11:32:58Z
+
+And the `importmap:install` should even be in `auto-scripts` so that any `composer install` runs it automatically (maybe it could be added in the recipe)
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2023-12-09T18:24:52Z
+
+Ryan, thanks for keep working on this 🙌
+
+I recently upgraded a full Symfony app from Webpack Encore to AssetMapper. I have some comments and questions about AssetMapper and shared them at https://github.com/symfony/symfony/issues/52939
+
+When this PR is finished, I'll look in detail at Ryan's work to add or remove more comments/questions. Thanks!
+
+---------------------------------------------------------------------------
+
+by weaverryan at 2023-12-09T19:04:47Z
+
+This is now ready! Thanks Javier for the other PR's to smooth my path :).
+
+In some future PR's, I think it's time to modernize a few things also (I'm sure you're already aware) - like going to Bootstrap 5, removing jQuery, etc. Some of the complexity of the PR is due to some older things being used, but I'm happy with the result! I don't know the demo super well, so I did my best to check things.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2023-12-09T19:24:41Z
+
+Just asking: to keep the previous behavior where assets are fully compiled and ready to use out-of-the-box, shouldn't we commit the `assets/vendor/` dir to the repo too?
+
+---------------------------------------------------------------------------
+
+by weaverryan at 2023-12-09T19:26:45Z
+
+> Just asking: to keep the previous behavior where assets are fully compiled and ready to use out-of-the-box, shouldn't we commit the assets/vendor/ dir to the repo too?
+
+Very fair question. I added `importmap:install` to the composer scripts. So if you run `composer install`, everything is there. So if you somehow run `composer install` which you must do somehow even right now, then you should have everything you need. But if you experience something different, please tell me!
