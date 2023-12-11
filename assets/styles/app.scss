@@ -139,6 +139,10 @@ header nav.navbar .nav-item {
   margin-left: 20px;
 }
 
+.modal-backdrop {
+  /* needed to lower the default 1,040 value which interferes with some styles */
+  z-index: 1024;
+}
 #locale-selector-modal {
   background: var(--text-color);
 }
@@ -384,25 +388,49 @@ body#homepage {
   text-align: center;
 }
 body#homepage .page-header {
+  display: flex;
+  justify-content: space-between;
   padding-bottom: 9.5px;
-  margin: 42px 0px 21px;
+  margin: 60px 0 30px;
 }
 body#homepage .page-header h1 {
-  font-size: 39px;
-  margin-top: 21px;
-  margin-bottom: 10.5px
+  font-size: 32px;
+  margin: 0;
+}
+body#homepage .page-header a.language-selector-dropdown-button {
+  align-items: center;
+  border: 2px solid var(--gray-300);
+  border-radius: 4px;
+  color: inherit;
+  display: inline-flex;
+  font-size: 16px;
+  line-height: 1;
+  padding: 5px 15px;
+}
+body#homepage .page-header a.language-selector-dropdown-button:hover {
+  background: var(--gray-100);
+  border-color: var(--gray-800);
+}
+body#homepage .page-header a.language-selector-dropdown-button .current-language {
+  display: inline-flex;
+  margin-inline: 5px 10px;
 }
 body#homepage .jumbotron {
-  padding: 48px 60px !important;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  padding: 45px 15px;
 }
 body#homepage .jumbotron .btn {
   font-size: 19px;
   line-height: 1.33333;
   padding: 18px 27px;
   border-radius: 6px;
+  margin-top: 20px;
 }
 body#homepage .jumbotron P {
-  margin-bottom: 15px;
+  margin-bottom: 0;
   font-size: 23px;
   font-weight: 400
 }
