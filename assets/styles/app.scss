@@ -253,6 +253,10 @@ header nav.navbar .nav-item {
   margin: 1.5em 0 0
 }
 
+.btn-secondary {
+  color: #fff;
+}
+
 footer {
   background: var(--secondary-color);
   margin-top: 2em;
@@ -321,7 +325,12 @@ footer #footer-resources i {
 /* Forms
    ------------------------------------------------------------------------- */
 .form-control {
+  color: var(--gray-700);
   height: 45px;
+}
+
+.form-group .form-control:focus {
+  color: var(--text-color);
 }
 
 .form-group.has-error .form-control {
@@ -395,7 +404,7 @@ body#homepage .jumbotron .btn {
 body#homepage .jumbotron P {
   margin-bottom: 15px;
   font-size: 23px;
-  font-weight: 200
+  font-weight: 400
 }
 
 /* Page: 'Login'
