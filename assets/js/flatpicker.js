@@ -1,5 +1,5 @@
 import 'flatpickr';
-import 'flatpickr/dist/flatpickr.css';
+import 'flatpickr/dist/flatpickr.min.css';
 import l10n from "flatpickr/dist/l10n";
 
 flatpickr.defaultConfig.animate = window.navigator.userAgent.indexOf('MSIE') === -1;

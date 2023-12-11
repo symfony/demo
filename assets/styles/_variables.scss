@@ -3,10 +3,6 @@
 // see https://github.com/thomaspark/bootswatch/issues/55#issuecomment-298093182
 $web-font-path: 'data:text/css;base64,';
 
-// Make sure the bootstrap-sass and lato fonts are resolved correctly
-//$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
-$lato-font-path: '~lato-font/fonts';
-
 $font-default: 19px;
 
 $font-heading: 2.5rem;
@@ -27,4 +23,4 @@ $btn-padding-x: 10px;
 $btn-padding-y-sm: 9px;
 $btn-padding-x-sm: 6px;
 
-@import "~bootswatch/dist/flatly/variables";
+@import "./bootswatch/variables";

@@ -3,7 +3,7 @@
     "license": "MIT",
     "type": "project",
     "description": "Symfony Demo Application",
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "replace": {
         "symfony/polyfill-php72": "*",
@@ -22,6 +22,7 @@
         "league/commonmark": "^2.1",
         "symfony/apache-pack": "^1.0",
         "symfony/asset": "6.4.*",
+        "symfony/asset-mapper": "6.4.*",
         "symfony/console": "6.4.*",
         "symfony/dotenv": "6.4.*",
         "symfony/expression-language": "6.4.*",
@@ -42,8 +43,8 @@
         "symfony/twig-bundle": "6.4.*",
         "symfony/ux-live-component": "^2.6",
         "symfony/validator": "6.4.*",
-        "symfony/webpack-encore-bundle": "^2.1",
         "symfony/yaml": "6.4.*",
+        "symfonycasts/sass-bundle": "^0.2.3",
         "twig/extra-bundle": "^3.3",
         "twig/intl-extra": "^3.3",
         "twig/markdown-extra": "^3.3"
@@ -61,7 +62,8 @@
         "symfony/maker-bundle": "^1.36",
         "symfony/phpunit-bridge": "6.4.*",
         "symfony/stopwatch": "6.4.*",
-        "symfony/web-profiler-bundle": "6.4.*"
+        "symfony/web-profiler-bundle": "6.4.*",
+        "twbs/bootstrap": "^4.5.3"
     },
     "config": {
         "allow-plugins": {
@@ -90,7 +92,8 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "importmap:install": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"
