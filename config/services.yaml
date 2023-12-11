@@ -29,6 +29,3 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
-
-    # this is needed because Symfony doesn't make the 'security.logout_url_generator' service autowirable
-    Symfony\Component\Security\Http\Logout\LogoutUrlGenerator: '@security.logout_url_generator'
