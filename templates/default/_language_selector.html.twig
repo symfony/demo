@@ -1,0 +1,41 @@
+{% macro render_language_selector(display_current_language = false) %}
+    <a href="#" class="nav-link dropdown-toggle language-selector-dropdown-button" data-toggle="modal" data-target="#locale-selector-modal" role="button" id="locales">
+        <i class="fa fa-solid fa-globe" aria-hidden="true"></i>
+        {% if display_current_language %}
+            <span class="current-language">{{ app.request.locale|locale_name }}</span>
+        {% endif %}
+        <span class="caret"></span>
+        <span class="sr-only">{{ 'menu.choose_language'|trans }}</span>
+    </a>
+
+    <div id="locale-selector-modal" class="modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-lg modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p class="modal-title" lang="en">
+                        {# display this title always in English to make the language selector easier to use #}
+                        Choose your language
+                    </p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <ul class="locales">
+                        {% for locale in locales() %}
+                            {% set is_active = app.request.locale == locale.code %}
+                            {% set is_rtl = locale.code in ['ar', 'fa', 'he'] %}
+                            <li class="{{ is_active ? 'active' }} {{ is_rtl ? 'rtl' }}" translate="no">
+                                <a class="stretched-link" lang="{{ locale.code }}" hreflang="{{ locale.code }}" href="{{ path(app.request.get('_route', 'blog_index'), app.request.get('_route_params', [])|merge({_locale: locale.code})) }}">
+                                    {{ locale.name|capitalize }}
+                                    <small>{{ locale.code }}</small>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}

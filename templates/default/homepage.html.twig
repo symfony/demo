@@ -12,10 +12,13 @@
 {% block body %}
     <div class="page-header">
         <h1>{{ 'title.homepage'|trans|raw }}</h1>
+
+        {% from 'default/_language_selector.html.twig' import render_language_selector %}
+        {{ render_language_selector(true) }}
     </div>
 
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm">
             <div class="jumbotron">
                 <p>
                     {{ 'help.browse_app'|trans|raw }}
@@ -28,7 +31,7 @@
             </div>
         </div>
 
-        <div class="col-sm-6">
+        <div class="col-sm">
             <div class="jumbotron">
                 <p>
                     {{ 'help.browse_admin'|trans|raw }}
