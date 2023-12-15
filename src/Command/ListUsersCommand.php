@@ -93,7 +93,7 @@ final class ListUsersCommand extends Command
         // Use ->findBy() instead of ->findAll() to allow result sorting and limiting
         $allUsers = $this->users->findBy([], ['id' => 'DESC'], $maxResults);
 
-        $createUserArray = static function (User $user) {
+        $createUserArray = static function (User $user): array {
             return [
                 $user->getId(),
                 $user->getFullName(),
