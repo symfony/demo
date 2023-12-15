@@ -76,8 +76,8 @@ final class CommentNotificationSubscriber implements EventSubscriberInterface
             ->html($body)
         ;
 
-        // In config/packages/dev/mailer.yaml the delivery of messages is disabled.
-        // That's why in the development environment you won't actually receive any email.
+        // In config/packages/mailer.yaml the delivery of messages is disabled in the development environment.
+        // That's why you won't actually receive any email.
         // However, you can inspect the contents of those unsent emails using the debug toolbar.
         $this->mailer->send($email);
     }
