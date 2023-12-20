@@ -1,0 +1,33 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2023-12-01T14:15:00Z
+
+I don't understand the failing test. It says:
+
+```
+Verifying lock file contents can be installed on current platform.
+Warning: The lock file is not up to date with the latest changes in composer.json. You may be getting outdated dependencies. It is recommended that you run `composer update` or `composer update <package name>`.
+- Required package "symfony/phpunit-bridge" is not present in the lock file.
+This usually happens when composer files are incorrectly merged or the composer.json file is manually edited.
+Read more about correctly resolving merge conflicts https://getcomposer.org/doc/articles/resolving-merge-conflicts.md
+and prefer using the "require" command over editing the composer.json file directly https://getcomposer.org/doc/03-cli.md#require-r
+Error: Process completed with exit code 4.
+```
+
+BUT, `symfony/phpunit-bridge` is in the lock file:
+
+https://github.com/symfony/demo/pull/1457/files#diff-f37acfaa6b11f575a9a6f41a75fa73a61d0f8ebc2c9b8cddc215d8aca10e44f5R8898
+
+---------------------------------------------------------------------------
+
+by dmaicher at 2023-12-01T14:46:54Z
+
+@javiereguiluz this seems related to https://github.com/sebastianbergmann/phpunit/issues/5578 and fixed by https://github.com/symfony/symfony/pull/52846
+
+Maybe try using `composer require symfony/phpunit-bridge "7.0.x-dev as 7.0.1" --dev` to see if it works then
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2023-12-01T14:59:00Z
+
+@dmaicher it worked! Thanks a lot 🙇
