@@ -10,7 +10,7 @@ env:
     fail-fast: true
     PHPUNIT_FLAGS: "-v"
     SYMFONY_PHPUNIT_DIR: "$HOME/symfony-bridge/.phpunit"
-    SYMFONY_DEPRECATIONS_HELPER: 17
+    SYMFONY_DEPRECATIONS_HELPER: 0
 
 permissions:
     contents: read
@@ -24,12 +24,12 @@ jobs:
         strategy:
             matrix:
                 operating-system: ['ubuntu-latest']
-                php-version: ['8.1', '8.2', '8.3']
+                php-version: ['8.2', '8.3']
                 include:
                     - operating-system: 'macos-latest'
-                      php-version: '8.1'
+                      php-version: '8.2'
                     - operating-system: 'windows-latest'
-                      php-version: '8.1'
+                      php-version: '8.2'
 
         steps:
             - name: "Checkout code"
@@ -39,7 +39,7 @@ jobs:
               uses: shivammathur/setup-php@v2
               with:
                   coverage: "none"
-                  extensions: "intl, mbstring, pdo_sqlite"
+                  extensions: "intl, mbstring, pdo_sqlite, zip"
                   php-version: ${{ matrix.php-version }}
                   tools: composer:v2
 
