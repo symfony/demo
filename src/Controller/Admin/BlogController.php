@@ -56,7 +56,7 @@ final class BlogController extends AbstractController
     #[Route('/', name: 'admin_post_index', methods: ['GET'])]
     public function index(
         #[MapEntity(expr: 'repository.findBy(["author" => user], ["publishedAt" => "DESC"]')]
-        iterable $authorPosts = []
+        iterable $authorPosts
     ): Response {
 
         return $this->render('admin/blog/index.html.twig', ['posts' => $authorPosts]);
