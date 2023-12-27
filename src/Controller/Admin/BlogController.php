@@ -14,9 +14,9 @@ namespace App\Controller\Admin;
 use App\Entity\Post;
 use App\Entity\User;
 use App\Form\PostType;
-use App\Repository\PostRepository;
 use App\Security\PostVoter;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\SubmitButton;
@@ -55,10 +55,9 @@ final class BlogController extends AbstractController
     #[Route('/', name: 'admin_index', methods: ['GET'])]
     #[Route('/', name: 'admin_post_index', methods: ['GET'])]
     public function index(
-        #[CurrentUser] User $user,
-        PostRepository $posts,
+        #[MapEntity(expr: 'repository.findBy(["author" => user], ["publishedAt" => "DESC"]')]
+        iterable $authorPosts = []
     ): Response {
-        $authorPosts = $posts->findBy(['author' => $user], ['publishedAt' => 'DESC']);
 
         return $this->render('admin/blog/index.html.twig', ['posts' => $authorPosts]);
     }
