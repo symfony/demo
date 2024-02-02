@@ -26,7 +26,8 @@ jobs:
                 operating-system: ['ubuntu-latest']
                 php-version: ['8.2', '8.3']
                 include:
-                    - operating-system: 'macos-latest'
+                    # TODO: change this to 'macos-latest' on June 2024, when '14' will become 'latest'
+                    - operating-system: 'macos-14'
                       php-version: '8.2'
                     - operating-system: 'windows-latest'
                       php-version: '8.2'
