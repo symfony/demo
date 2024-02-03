@@ -51,9 +51,11 @@ final class BlogController extends AbstractController
     public function index(Request $request, int $page, string $_format, PostRepository $posts, TagRepository $tags): Response
     {
         $tag = null;
+
         if ($request->query->has('tag')) {
             $tag = $tags->findOneBy(['name' => $request->query->get('tag')]);
         }
+
         $latestPosts = $posts->findLatest($page, $tag);
 
         // Every template name also has two extensions that specify the format and
