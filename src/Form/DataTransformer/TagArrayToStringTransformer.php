@@ -61,7 +61,9 @@ final class TagArrayToStringTransformer implements DataTransformerInterface
         $tags = $this->tags->findBy([
             'name' => $names,
         ]);
+
         $newNames = array_diff($names, $tags);
+
         foreach ($newNames as $name) {
             $tags[] = new Tag($name);
 

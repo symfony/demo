@@ -65,6 +65,7 @@ final class SourceCodeExtension extends AbstractExtension
     public function linkSourceFile(Environment $twig, string $file, int $line): string
     {
         $text = str_replace('\\', '/', $file);
+
         if (str_starts_with($text, $this->projectDir)) {
             $text = mb_substr($text, mb_strlen($this->projectDir));
         }
@@ -180,6 +181,7 @@ final class SourceCodeExtension extends AbstractExtension
         });
 
         $codeIsIndented = \count($indentedOrBlankLines) === \count($codeLines);
+
         if ($codeIsIndented) {
             $unindentedLines = array_map(static function ($lineOfCode) {
                 return u($lineOfCode)->after('    ');

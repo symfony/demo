@@ -135,6 +135,7 @@ final class AppFixtures extends Fixture
     private function getPostData(): array
     {
         $posts = [];
+
         foreach ($this->getPhrases() as $i => $title) {
             // $postData = [$title, $slug, $summary, $content, $publishedAt, $author, $tags, $comments];
 

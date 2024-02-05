@@ -37,9 +37,10 @@ final class RedirectToPreferredLocaleSubscriber implements EventSubscriberInterf
     public function __construct(
         private readonly UrlGeneratorInterface $urlGenerator,
         string $locales,
-        string $defaultLocale = null
+        ?string $defaultLocale = null
     ) {
         $this->locales = explode('|', trim($locales));
+
         if (empty($this->locales)) {
             throw new \UnexpectedValueException('The list of supported locales must not be empty.');
         }
@@ -75,6 +76,7 @@ final class RedirectToPreferredLocaleSubscriber implements EventSubscriberInterf
         // Ignore requests from referrers with the same HTTP host in order to prevent
         // changing language for users who possibly already selected it for this application.
         $referrer = $request->headers->get('referer');
+
         if (null !== $referrer && u($referrer)->ignoreCase()->startsWith($request->getSchemeAndHttpHost())) {
             return;
         }

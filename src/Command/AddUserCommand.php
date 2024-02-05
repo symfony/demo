@@ -138,6 +138,7 @@ final class AddUserCommand extends Command
 
         // Ask for the email if it's not defined
         $email = $input->getArgument('email');
+
         if (null !== $email) {
             $this->io->text(' > <info>Email</info>: '.$email);
         } else {
@@ -147,6 +148,7 @@ final class AddUserCommand extends Command
 
         // Ask for the full name if it's not defined
         $fullName = $input->getArgument('full-name');
+
         if (null !== $fullName) {
             $this->io->text(' > <info>Full Name</info>: '.$fullName);
         } else {
@@ -198,6 +200,7 @@ final class AddUserCommand extends Command
         $this->io->success(sprintf('%s was successfully created: %s (%s)', $isAdmin ? 'Administrator user' : 'User', $user->getUsername(), $user->getEmail()));
 
         $event = $stopwatch->stop('add-user-command');
+
         if ($output->isVerbose()) {
             $this->io->comment(sprintf('New user database id: %d / Elapsed time: %.2f ms / Consumed memory: %.2f MB', $user->getId(), $event->getDuration(), $event->getMemory() / (1024 ** 2)));
         }

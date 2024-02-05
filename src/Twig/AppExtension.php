@@ -64,6 +64,7 @@ final class AppExtension extends AbstractExtension
         }
 
         $this->locales = [];
+
         foreach ($this->localeCodes as $localeCode) {
             $this->locales[] = ['code' => $localeCode, 'name' => Locales::getName($localeCode, $localeCode)];
         }
