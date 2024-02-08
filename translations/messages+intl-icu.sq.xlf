@@ -1,0 +1,457 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="sq" datatype="plaintext" original="file.ext">
+        <header>
+            <note>
+                Për fjalët e huaja, të cilat nuk kanë përkthim të drejtpërdrejtë, ju lutemi të ndiqni rregullat e mëposhtme:
+                 a) në rast se emri është akronim i përdorur gjerësisht si i përveçëm, atëherë, emri lakohet pa thonjëza dhe mbaresa shkruhet me vizë ndarëse. Gjinia gjykohet sipas rastit. Shembull: JSON-i (mashkullore)
+                 b) në rast se emri është akronim i papërdorur gjerësisht si i përveçëm, atëherë, emri lakohet pa thonjëza dhe mbaresa shkruhet me vizë ndarëse. Gjinia është femërore. Shembull: URL-ja (femërore)
+                 c) në rast se emri duhet lakuar për shkak të rasës në fjali, atëherë, emri lakohet pa thonjëza dhe mbaresa shkruhet me vizë ndarëse. Shembull: host-i, prej host-it
+                 d) në rast se emri nuk duhet lakuar për shkak të trajtës në fjali, atëherë, emri rrethohet me thonjëzat “”. Shembull: “locale”
+                 e) në rast se emri është i përveçëm, atëherë, emri rrethohet me thonjëzat “”. Shembull: “Symfony”
+            </note>
+        </header>
+        <body>
+            <trans-unit id="note">
+                <source>note</source>
+                <target>SHËNIM</target>
+            </trans-unit>
+            <trans-unit id="tip">
+                <source>tip</source>
+                <target>SUGJERIM</target>
+            </trans-unit>
+            <trans-unit id="not_available">
+                <source>not_available</source>
+                <target>Nuk gjendet</target>
+            </trans-unit>
+            <trans-unit id="mit_license">
+                <source>mit_license</source>
+                <target>Liçencë MIT</target>
+            </trans-unit>
+
+            <trans-unit id="http_error.name">
+                <source>http_error.name</source>
+                <target>Gabim {status_code, number}</target>
+            </trans-unit>
+            <trans-unit id="http_error.description">
+                <source>http_error.description</source>
+                <target>Një gabim i panjohur (HTTP {status_code, number}) ndaloi plotësimin e kërkesës.</target>
+            </trans-unit>
+            <trans-unit id="http_error.suggestion">
+                <source>http_error.suggestion</source>
+                <target><![CDATA[Provo të rifreskosh faqen pas pak ose <a href="{url}">kthehu në ballinë</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="http_error_403.description">
+                <source>http_error_403.description</source>
+                <target>Mungojnë të drejta për të qasur këtë burim.</target>
+            </trans-unit>
+            <trans-unit id="http_error_403.suggestion">
+                <source>http_error_403.suggestion</source>
+                <target>Kërko pranë një administratori të japë qasje këtij burimi.</target>
+            </trans-unit>
+            <trans-unit id="http_error_404.description">
+                <source>http_error_404.description</source>
+                <target>Faqja e kërkuar nuk u gjend.</target>
+            </trans-unit>
+            <trans-unit id="http_error_404.suggestion">
+                <source>http_error_404.suggestion</source>
+                <target><![CDATA[Kontrollo të jetë shkruar saktë URL-ja ose <a href="{url}">kthehu në ballinë</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="http_error_500.description">
+                <source>http_error_500.description</source>
+                <target>Ndodhi një gabim i brendshëm server-i (shërbyesi).</target>
+            </trans-unit>
+            <trans-unit id="http_error_500.suggestion">
+                <source>http_error_500.suggestion</source>
+                <target><![CDATA[Provo të rifreskosh faqen pas pak ose <a href="{url}">kthehu në ballinë</a>.]]></target>
+            </trans-unit>
+
+            <trans-unit id="title.homepage">
+                <source>title.homepage</source>
+                <target><![CDATA[Mirë se erdhe në aplikacionin <strong>“Symfony Demo”</strong>]]></target>
+            </trans-unit>
+            <trans-unit id="title.source_code">
+                <source>title.source_code</source>
+                <target>Kodi burimor i përdorur për të shfaqur këtë faqe</target>
+            </trans-unit>
+            <trans-unit id="title.controller_code">
+                <source>title.controller_code</source>
+                <target>Kodi i kontrollorit</target>
+            </trans-unit>
+            <trans-unit id="title.twig_template_code">
+                <source>title.twig_template_code</source>
+                <target>Kodi “Twig”</target>
+            </trans-unit>
+            <trans-unit id="title.login">
+                <source>title.login</source>
+                <target>Hyrje e sigurtë</target>
+            </trans-unit>
+            <trans-unit id="title.post_list">
+                <source>title.post_list</source>
+                <target>Lista e artikujve</target>
+            </trans-unit>
+            <trans-unit id="title.edit_post">
+                <source>title.edit_post</source>
+                <target>Redakto artikullin #{id, number}</target>
+            </trans-unit>
+            <trans-unit id="title.add_comment">
+                <source>title.add_comment</source>
+                <target>Shto një koment</target>
+            </trans-unit>
+            <trans-unit id="title.comment_error">
+                <source>title.comment_error</source>
+                <target>Ndodhi një gabim gjatë publikimit të komentit tënd</target>
+            </trans-unit>
+            <trans-unit id="title.edit_user">
+                <source>title.edit_user</source>
+                <target>Redakto përdoruesin</target>
+            </trans-unit>
+            <trans-unit id="title.change_password">
+                <source>title.change_password</source>
+                <target>Ndrysho fjalëkalimin</target>
+            </trans-unit>
+
+            <trans-unit id="action.show">
+                <source>action.show</source>
+                <target>Shfaq</target>
+            </trans-unit>
+            <trans-unit id="action.show_post">
+                <source>action.show_post</source>
+                <target>Shfaq artikullin</target>
+            </trans-unit>
+            <trans-unit id="action.show_code">
+                <source>action.show_code</source>
+                <target>Shfaq kodin</target>
+            </trans-unit>
+            <trans-unit id="action.edit">
+                <source>action.edit</source>
+                <target>Redakto</target>
+            </trans-unit>
+            <trans-unit id="action.edit_post">
+                <source>action.edit_post</source>
+                <target>Redakto artikullin</target>
+            </trans-unit>
+            <trans-unit id="action.save">
+                <source>action.save</source>
+                <target>Ruaj ndryshimet</target>
+            </trans-unit>
+            <trans-unit id="action.delete_post">
+                <source>action.delete_post</source>
+                <target>Fshi artikullin</target>
+            </trans-unit>
+            <trans-unit id="delete_post_modal.title">
+                <source>delete_post_modal.title</source>
+                <target>I/E sigurtë që dëshiron të fshish këtë artikull?</target>
+            </trans-unit>
+            <trans-unit id="delete_post_modal.body">
+                <source>delete_post_modal.body</source>
+                <target>Ky veprim nuk mund të zhbëhet.</target>
+            </trans-unit>
+            <trans-unit id="label.delete_post">
+                <source>label.delete_post</source>
+                <target>Fshi artikullin</target>
+            </trans-unit>
+            <trans-unit id="label.cancel">
+                <source>label.cancel</source>
+                <target>Ndalo</target>
+            </trans-unit>
+            <trans-unit id="action.create_post">
+                <source>action.create_post</source>
+                <target>Shto një artikull të ri</target>
+            </trans-unit>
+            <trans-unit id="label.create_post">
+                <source>label.create_post</source>
+                <target>Ruaj</target>
+            </trans-unit>
+            <trans-unit id="label.save_and_create_new">
+                <source>label.save_and_create_new</source>
+                <target>Ruaj dhe shkruaj tjetër</target>
+            </trans-unit>
+            <trans-unit id="action.back_to_list">
+                <source>action.back_to_list</source>
+                <target>Kthehu në listën e artikujve</target>
+            </trans-unit>
+            <trans-unit id="action.publish_comment">
+                <source>action.publish_comment</source>
+                <target>Publiko komentin</target>
+            </trans-unit>
+            <trans-unit id="action.sign_in">
+                <source>action.sign_in</source>
+                <target>Hyr</target>
+            </trans-unit>
+            <trans-unit id="action.browse_app">
+                <source>action.browse_app</source>
+                <target>Shfleto aplikacionin</target>
+            </trans-unit>
+            <trans-unit id="action.browse_admin">
+                <source>action.browse_admin</source>
+                <target>Shfleto panelin e administrimit</target>
+            </trans-unit>
+            <trans-unit id="action.edit_user">
+                <source>action.edit_user</source>
+                <target>Redakto përdoruesin</target>
+            </trans-unit>
+            <trans-unit id="action.change_password">
+                <source>action.change_password</source>
+                <target>Ndrysho fjalëkalimin</target>
+            </trans-unit>
+            <trans-unit id="action.close">
+                <source>action.close</source>
+                <target>Mbyll</target>
+            </trans-unit>
+
+            <trans-unit id="label.title">
+                <source>label.title</source>
+                <target>Titulli</target>
+            </trans-unit>
+            <trans-unit id="label.author">
+                <source>label.author</source>
+                <target>Autori</target>
+            </trans-unit>
+            <trans-unit id="label.author_email">
+                <source>label.author_email</source>
+                <target>Email-i i autorit</target>
+            </trans-unit>
+            <trans-unit id="label.username">
+                <source>label.username</source>
+                <target>Emri i përdoruesit</target>
+            </trans-unit>
+            <trans-unit id="label.fullname">
+                <source>label.fullname</source>
+                <target>Emri i plotë</target>
+            </trans-unit>
+            <trans-unit id="label.email">
+                <source>label.email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="label.password">
+                <source>label.password</source>
+                <target>Fjalëkalimi</target>
+            </trans-unit>
+            <trans-unit id="label.current_password">
+                <source>label.current_password</source>
+                <target>Fjalëkalimi i tanishëm</target>
+            </trans-unit>
+            <trans-unit id="label.new_password">
+                <source>label.new_password</source>
+                <target>Fjalëkalimi i ri</target>
+            </trans-unit>
+            <trans-unit id="label.new_password_confirm">
+                <source>label.new_password_confirm</source>
+                <target>Konfirmo fjalëkalimin</target>
+            </trans-unit>
+            <trans-unit id="label.role">
+                <source>label.role</source>
+                <target>Roli</target>
+            </trans-unit>
+            <trans-unit id="label.content">
+                <source>label.content</source>
+                <target>Përmbajtja</target>
+            </trans-unit>
+            <trans-unit id="label.summary">
+                <source>label.summary</source>
+                <target>Përmbledhja</target>
+            </trans-unit>
+            <trans-unit id="label.published_at">
+                <source>label.published_at</source>
+                <target>Publikuar më</target>
+            </trans-unit>
+            <trans-unit id="label.tags">
+                <source>label.tags</source>
+                <target>Etiketa</target>
+            </trans-unit>
+            <trans-unit id="label.actions">
+                <source>label.actions</source>
+                <target>Veprime</target>
+            </trans-unit>
+            <trans-unit id="title.post_new">
+                <source>title.post_new</source>
+                <target>Shkrimi i artikullit</target>
+            </trans-unit>
+            <trans-unit id="action.edit_contents">
+                <source>action.edit_contents</source>
+                <target>Redakto përmbajtjen</target>
+            </trans-unit>
+
+            <trans-unit id="menu.toggle_nav">
+                <source>menu.toggle_nav</source>
+                <target>Ndrysho shfletimin</target>
+            </trans-unit>
+            <trans-unit id="menu.choose_language">
+                <source>menu.choose_language</source>
+                <target>Zgjidh gjuhën</target>
+            </trans-unit>
+            <trans-unit id="menu.post_list">
+                <source>menu.post_list</source>
+                <target>Lista e artikujve</target>
+            </trans-unit>
+            <trans-unit id="menu.back_to_blog">
+                <source>menu.back_to_blog</source>
+                <target>Kthehu në blog</target>
+            </trans-unit>
+            <trans-unit id="menu.homepage">
+                <source>menu.homepage</source>
+                <target>Ballina</target>
+            </trans-unit>
+            <trans-unit id="menu.admin">
+                <source>menu.admin</source>
+                <target>Paneli i administrimit</target>
+            </trans-unit>
+            <trans-unit id="menu.user">
+                <source>menu.user</source>
+                <target>Llogaria</target>
+            </trans-unit>
+            <trans-unit id="menu.logout">
+                <source>menu.logout</source>
+                <target>Dil</target>
+            </trans-unit>
+            <trans-unit id="menu.rss">
+                <source>menu.rss</source>
+                <target>RSS-ja e blogut</target>
+            </trans-unit>
+            <trans-unit id="menu.search">
+                <source>menu.search</source>
+                <target>Kërko</target>
+            </trans-unit>
+
+            <trans-unit id="post.to_publish_a_comment">
+                <source>post.to_publish_a_comment</source>
+                <target>për të publikuar një koment</target>
+            </trans-unit>
+            <trans-unit id="post.num_comments">
+                <source>post.num_comments</source>
+                <target>{count, plural, one {# koment} other {# komente}}</target>
+            </trans-unit>
+            <trans-unit id="post.commented_on">
+                <source>post.commented_on</source>
+                <target>ka komentuar më</target>
+            </trans-unit>
+            <trans-unit id="post.no_comments">
+                <source>post.no_comments</source>
+                <target>Komento i pari/e para.</target>
+            </trans-unit>
+            <trans-unit id="post.no_posts_found">
+                <source>post.no_posts_found</source>
+                <target>Asnjë artikull.</target>
+            </trans-unit>
+            <trans-unit id="post.created_successfully">
+                <source>post.created_successfully</source>
+                <target>Postimi u ruajt!</target>
+            </trans-unit>
+            <trans-unit id="post.updated_successfully">
+                <source>post.updated_successfully</source>
+                <target>Postimi u përditësua!</target>
+            </trans-unit>
+            <trans-unit id="post.deleted_successfully">
+                <source>post.deleted_successfully</source>
+                <target>Postimi u fshi!</target>
+            </trans-unit>
+            <trans-unit id="post.search_for">
+                <source>post.search_for</source>
+                <target>Kërko për...</target>
+            </trans-unit>
+            <trans-unit id="post.search_no_results">
+                <source>post.search_no_results</source>
+                <target>Asnjë rezultat</target>
+            </trans-unit>
+
+            <trans-unit id="user.updated_successfully">
+                <source>user.updated_successfully</source>
+                <target>Përdoruesi u përditësua me sukses!</target>
+            </trans-unit>
+
+            <trans-unit id="notification.comment_created">
+                <source>notification.comment_created</source>
+                <target>Dikush komentoi artikullin tënd!</target>
+            </trans-unit>
+            <trans-unit id="notification.comment_created.description">
+                <source>notification.comment_created.description</source>
+                <target><![CDATA[Dikush la një koment të ri tek artikulli: "{title}". Komenti mund të lexohet në këtë <a href="{link}">lidhëz</a>]]></target>
+            </trans-unit>
+
+            <trans-unit id="help.app_description">
+                <source>help.app_description</source>
+                <target><![CDATA[Ky është një <strong>aplikacion shembull</strong> i krijuar me “Symfony Framework” për të treguar mënyrën e rekomanduar për të zhvilluar aplikacione me “Symfony”.]]></target>
+            </trans-unit>
+            <trans-unit id="help.show_code">
+                <source>help.show_code</source>
+                <target><![CDATA[Kliko këtë buton për shfaqur kodin burimor të <strong>kontrollorëve</strong> e <strong>shablloneve (template)</strong> të përdorura për të shfaqur këtë faqe.]]></target>
+            </trans-unit>
+            <trans-unit id="help.browse_app">
+                <source>help.browse_app</source>
+                <target><![CDATA[Shfleto <strong>seksionin publik</strong> të aplikacionit.]]></target>
+            </trans-unit>
+            <trans-unit id="help.browse_admin">
+                <source>help.browse_admin</source>
+                <target><![CDATA[Shfleto <strong>panelin e administrimit</strong> të aplikacionit.]]></target>
+            </trans-unit>
+            <trans-unit id="help.login_users">
+                <source>help.login_users</source>
+                <target>Provo një prej përdoruesëve të mëposhtëm</target>
+            </trans-unit>
+            <trans-unit id="help.role_user">
+                <source>help.role_user</source>
+                <target>përdorues i zakonshëm</target>
+            </trans-unit>
+            <trans-unit id="help.role_admin">
+                <source>help.role_admin</source>
+                <target>admimistrator</target>
+            </trans-unit>
+            <trans-unit id="help.reload_fixtures">
+                <source>help.reload_fixtures</source>
+                <target>Nëse këta përdorues nuk punojnë, ngarkoni përsëri të dhënat e aplikacionit duke ekzekuatuar këtë komandë në terminal:</target>
+            </trans-unit>
+            <trans-unit id="help.add_user">
+                <source>help.add_user</source>
+                <target>Nëse dëshiron të shtosh përdorues të rinj, ekzekuto këtë komandë:</target>
+            </trans-unit>
+            <trans-unit id="help.more_information">
+                <source>help.more_information</source>
+                <target><![CDATA[Për më shumë informacion, vizito <a href="https://symfony.com/doc">dokumentacionin e “Symfony”</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="help.post_summary">
+                <source>help.post_summary</source>
+                <target>Përmbledhjet nuk mund të kenë “Markdown” ose HTML; vetëm tekst të thjeshtë.</target>
+            </trans-unit>
+            <trans-unit id="help.post_publication">
+                <source>help.post_publication</source>
+                <target>Vendos datën në të ardhmen për të planifikuar publikimin e artikullit.</target>
+            </trans-unit>
+            <trans-unit id="help.post_content">
+                <source>help.post_content</source>
+                <target>Përdor “Markdown” për të formatuar përmbajtjen e artikullit. HTML-ja lejohet gjithashtu.</target>
+            </trans-unit>
+            <trans-unit id="help.comment_content">
+                <source>help.comment_content</source>
+                <target>Komentet që nuk i përmbahen kodit tonë të sjelljes do të kontrollohen.</target>
+            </trans-unit>
+
+            <trans-unit id="info.change_password">
+                <source>info.change_password</source>
+                <target>Pas ndryshimit të fjalëkalimit, llogaria do të dalë nga aplikacioni.</target>
+            </trans-unit>
+
+            <trans-unit id="rss.title">
+                <source>rss.title</source>
+                <target>“Symfony Demo” blog</target>
+            </trans-unit>
+            <trans-unit id="rss.description">
+                <source>rss.description</source>
+                <target>Postimet më të reja të publikuara në “Symfony Demo” blog</target>
+            </trans-unit>
+
+            <trans-unit id="paginator.previous">
+                <source>paginator.previous</source>
+                <target>Mbrapa</target>
+            </trans-unit>
+            <trans-unit id="paginator.next">
+                <source>paginator.next</source>
+                <target>Para</target>
+            </trans-unit>
+            <trans-unit id="paginator.current">
+                <source>paginator.current</source>
+                <target>(tani)</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="sq" datatype="plaintext" original="file.ext">
+        <header>
+            <note>
+                Për fjalët e huaja, të cilat nuk kanë përkthim të drejtpërdrejtë, ju lutemi të ndiqni rregullat e mëposhtme:
+                 a) në rast se emri është akronim i përdorur gjerësisht si i përveçëm, atëherë, emri lakohet pa thonjëza dhe mbaresa shkruhet me vizë ndarëse. Gjinia gjykohet sipas rastit. Shembull: JSON-i (mashkullore)
+                 b) në rast se emri është akronim i papërdorur gjerësisht si i përveçëm, atëherë, emri lakohet pa thonjëza dhe mbaresa shkruhet me vizë ndarëse. Gjinia është femërore. Shembull: URL-ja (femërore)
+                 c) në rast se emri duhet lakuar për shkak të rasës në fjali, atëherë, emri lakohet pa thonjëza dhe mbaresa shkruhet me vizë ndarëse. Shembull: host-i, prej host-it
+                 d) në rast se emri nuk duhet lakuar për shkak të trajtës në fjali, atëherë, emri rrethohet me thonjëzat “”. Shembull: “locale”
+                 e) në rast se emri është i përveçëm, atëherë, emri rrethohet me thonjëzat “”. Shembull: “Symfony”
+            </note>
+        </header>
+        <body>
+            <trans-unit id="post.slug_unique">
+                <source>post.slug_unique</source>
+                <target>Ky titull është përdorur në një artikull tjetër. Titujt duhet të jenë unikë.</target>
+            </trans-unit>
+            <trans-unit id="post.blank_summary">
+                <source>post.blank_summary</source>
+                <target>Vendos një përmbledhje!</target>
+            </trans-unit>
+            <trans-unit id="post.blank_content">
+                <source>post.blank_content</source>
+                <target>Artikulli yt duhet të ketë ca përmbajtje!</target>
+            </trans-unit>
+            <trans-unit id="post.too_short_content">
+                <source>post.too_short_content</source>
+                <target>Përmbajtja e artikullit është shumë e shkurtër (të paktën { limit } karaktere)</target>
+            </trans-unit>
+            <trans-unit id="post.too_many_tags">
+                <source>post.too_many_tags</source>
+                <target>Shumë etiketa (të shumtën { limit } etiketa)</target>
+            </trans-unit>
+            <trans-unit id="comment.blank">
+                <source>comment.blank</source>
+                <target>Komenti nuk mund të jetë bosh!</target>
+            </trans-unit>
+            <trans-unit id="comment.too_short">
+                <source>comment.too_short</source>
+                <target>Komenti është shumë i shkurtër (të paktën { limit } karaktere)</target>
+            </trans-unit>
+            <trans-unit id="comment.too_long">
+                <source>comment.too_long</source>
+                <target>Komenti është shumë i gjatë (të shumtën { limit } karaktere)</target>
+            </trans-unit>
+            <trans-unit id="comment.is_spam">
+                <source>comment.is_spam</source>
+                <target>Përmbajtja e këtij komenti njihet si “spam”.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
