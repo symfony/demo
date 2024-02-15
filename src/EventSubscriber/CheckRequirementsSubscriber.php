@@ -12,7 +12,7 @@
 namespace App\EventSubscriber;
 
 use Doctrine\DBAL\Exception\DriverException;
-use Doctrine\DBAL\Platforms\SqlitePlatform;
+use Doctrine\DBAL\Platforms\SQLitePlatform;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\ConsoleEvents;
 use Symfony\Component\Console\Event\ConsoleErrorEvent;
@@ -95,6 +95,6 @@ final class CheckRequirementsSubscriber implements EventSubscriberInterface
     {
         $databasePlatform = $this->entityManager->getConnection()->getDatabasePlatform();
 
-        return $databasePlatform instanceof SqlitePlatform;
+        return $databasePlatform instanceof SQLitePlatform;
     }
 }
