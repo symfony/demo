@@ -62,8 +62,11 @@ jobs:
             - name: "Install dependencies"
               run: composer install --ansi --no-interaction --no-progress
 
-            - name: "Build Sass"
-              run: php bin/console sass:build
+            - name: "Build and compile assets"
+              run: |
+                php bin/console importmap:install
+                php bin/console sass:build
+                php bin/console asset-map:compile
 
             - name: "Install PHPUnit"
               run: vendor/bin/simple-phpunit install
