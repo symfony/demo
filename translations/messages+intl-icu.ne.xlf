@@ -1,0 +1,447 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="ne" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="note">
+                <source>note</source>
+                <target>नोट</target>
+            </trans-unit>
+            <trans-unit id="tip">
+                <source>tip</source>
+                <target>टिप</target>
+            </trans-unit>
+            <trans-unit id="not_available">
+                <source>not_available</source>
+                <target>उपलब्ध छैन</target>
+            </trans-unit>
+            <trans-unit id="mit_license">
+                <source>mit_license</source>
+                <target>MIT लाइसेन्स</target>
+            </trans-unit>
+
+            <trans-unit id="http_error.name">
+                <source>http_error.name</source>
+                <target>भूल {status_code, number}</target>
+            </trans-unit>
+            <trans-unit id="http_error.description">
+                <source>http_error.description</source>
+                <target>त्यहाँ एउटा अज्ञात भूल (HTTP {status_code, number}) जसले तपाईंको अनुरोध पूरा हुनबाट रोक्यो।</target>
+            </trans-unit>
+            <trans-unit id="http_error.suggestion">
+                <source>http_error.suggestion</source>
+                <target><![CDATA[यो पृष्ठ केही मिनेटमा फेरि लोड गर्ने प्रयास गर्नुहोस् वा <a href="{url}">होमपेजमा फर्कनुहोस्</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="http_error_403.description">
+                <source>http_error_403.description</source>
+                <target>तपाईंसँग यो स्रोत पहुँच गर्ने अनुमति छैन।</target>
+            </trans-unit>
+            <trans-unit id="http_error_403.suggestion">
+                <source>http_error_403.suggestion</source>
+                <target>तपाइँको प्रबन्धक वा प्रणाली प्रशासकलाई तपाइँलाई यो स्रोतमा पहुँच प्रदान गर्न अनुरोध गर्नुहोस्।</target>
+            </trans-unit>
+            <trans-unit id="http_error_404.description">
+                <source>http_error_404.description</source>
+                <target>हामीले तपाईंले अनुरोध गर्नुभएको पृष्ठ पाउनु सकेनौं।</target>
+            </trans-unit>
+            <trans-unit id="http_error_404.suggestion">
+                <source>http_error_404.suggestion</source>
+                <target><![CDATA[URL मा कुनै पनि गलत हिज्जे जाँच गर्नुहोस् वा <a href="{url}">होमपेजमा फर्कनुहोस्</a>.]]></target>
+            </trans-unit>
+            <trans-unit id="http_error_500.description">
+                <source>http_error_500.description</source>
+                <target>त्यहाँ आन्तरिक सर्भरमा गलती थियो।</target>
+            </trans-unit>
+            <trans-unit id="http_error_500.suggestion">
+                <source>http_error_500.suggestion</source>
+                <target><![CDATA[यो पृष्ठ केही मिनेटमा फेरि लोड गर्ने प्रयास गर्नुहोस् वा <a href="{url}">होमपेजमा फर्कनुहोस्</a>.]]></target>
+            </trans-unit>
+
+            <trans-unit id="title.homepage">
+                <source>title.homepage</source>
+                <target><![CDATA[<strong>Symfony Demo</strong> अनुप्रयोगमा स्वागत छ]]></target>
+            </trans-unit>
+            <trans-unit id="title.source_code">
+                <source>title.source_code</source>
+                <target>यो पृष्ठ रेन्डर गर्न प्रयोग गरिएको स्रोत कोड</target>
+            </trans-unit>
+            <trans-unit id="title.controller_code">
+                <source>title.controller_code</source>
+                <target>कन्ट्रोलर कोड</target>
+            </trans-unit>
+            <trans-unit id="title.twig_template_code">
+                <source>title.twig_template_code</source>
+                <target>ट्विग टेम्प्लेट कोड</target>
+            </trans-unit>
+            <trans-unit id="title.login">
+                <source>title.login</source>
+                <target>सुरक्षित साइन इन</target>
+            </trans-unit>
+            <trans-unit id="title.post_list">
+                <source>title.post_list</source>
+                <target>पोस्ट सूची</target>
+            </trans-unit>
+            <trans-unit id="title.edit_post">
+                <source>title.edit_post</source>
+                <target>पोस्ट सम्पादन #{id, number}</target>
+            </trans-unit>
+            <trans-unit id="title.add_comment">
+                <source>title.add_comment</source>
+                <target>टिप्पणी थप्नुहोस्</target>
+            </trans-unit>
+            <trans-unit id="title.comment_error">
+                <source>title.comment_error</source>
+                <target>तपाईंको टिप्पणी प्रकाशित गर्दा त्रुटि भयो</target>
+            </trans-unit>
+            <trans-unit id="title.edit_user">
+                <source>title.edit_user</source>
+                <target>प्रयोगकर्ता सम्पादन</target>
+            </trans-unit>
+            <trans-unit id="title.change_password">
+                <source>title.change_password</source>
+                <target>पासवर्ड परिवर्तन</target>
+            </trans-unit>
+
+            <trans-unit id="action.show">
+                <source>action.show</source>
+                <target>देखाउनु</target>
+            </trans-unit>
+            <trans-unit id="action.show_post">
+                <source>action.show_post</source>
+                <target>पोस्ट देखाउनु</target>
+            </trans-unit>
+            <trans-unit id="action.show_code">
+                <source>action.show_code</source>
+                <target>कोड देखाउनु</target>
+            </trans-unit>
+            <trans-unit id="action.edit">
+                <source>action.edit</source>
+                <target>सम्पादन</target>
+            </trans-unit>
+            <trans-unit id="action.edit_post">
+                <source>action.edit_post</source>
+                <target>पोस्ट सम्पादन</target>
+            </trans-unit>
+            <trans-unit id="action.save">
+                <source>action.save</source>
+                <target>परिवर्तनहरू राख्नु</target>
+            </trans-unit>
+            <trans-unit id="action.delete_post">
+                <source>action.delete_post</source>
+                <target>पोस्ट मेटाउनु</target>
+            </trans-unit>
+            <trans-unit id="delete_post_modal.title">
+                <source>delete_post_modal.title</source>
+                <target>के तपाइँ यो पोस्ट मेटाउन निश्चित हुनुहुन्छ?</target>
+            </trans-unit>
+            <trans-unit id="delete_post_modal.body">
+                <source>delete_post_modal.body</source>
+                <target>यो कार्य पूर्ववत गर्न सकिँदैन।</target>
+            </trans-unit>
+            <trans-unit id="label.delete_post">
+                <source>label.delete_post</source>
+                <target>पोस्ट मेटाउनु</target>
+            </trans-unit>
+            <trans-unit id="label.cancel">
+                <source>label.cancel</source>
+                <target>रद्द गर्नु</target>
+            </trans-unit>
+            <trans-unit id="action.create_post">
+                <source>action.create_post</source>
+                <target>नयाँ पोस्ट लेख्नु</target>
+            </trans-unit>
+            <trans-unit id="label.create_post">
+                <source>label.create_post</source>
+                <target>पोस्ट लेख्नु</target>
+            </trans-unit>
+            <trans-unit id="label.save_and_create_new">
+                <source>label.save_and_create_new</source>
+                <target>बचत गर्नुहोस् र नयाँ लेख्नु</target>
+            </trans-unit>
+            <trans-unit id="action.back_to_list">
+                <source>action.back_to_list</source>
+                <target>पोस्ट सूचीमा फर्कनु</target>
+            </trans-unit>
+            <trans-unit id="action.publish_comment">
+                <source>action.publish_comment</source>
+                <target>टिप्पणी प्रकाशित गर्नु</target>
+            </trans-unit>
+            <trans-unit id="action.sign_in">
+                <source>action.sign_in</source>
+                <target>साइन इन</target>
+            </trans-unit>
+            <trans-unit id="action.browse_app">
+                <source>action.browse_app</source>
+                <target>अनुप्रयोग ब्राउज गर्नुहोस्</target>
+            </trans-unit>
+            <trans-unit id="action.browse_admin">
+                <source>action.browse_admin</source>
+                <target>ब्याकइन्ड ब्राउज गर्नुहोस्</target>
+            </trans-unit>
+            <trans-unit id="action.edit_user">
+                <source>action.edit_user</source>
+                <target>प्रयोगकर्ता सम्पादन</target>
+            </trans-unit>
+            <trans-unit id="action.change_password">
+                <source>action.change_password</source>
+                <target>पासवर्ड परिवर्तन</target>
+            </trans-unit>
+            <trans-unit id="action.close">
+                <source>action.close</source>
+                <target>बन्द गर्नु</target>
+            </trans-unit>
+
+            <trans-unit id="label.title">
+                <source>label.title</source>
+                <target>शीर्षक</target>
+            </trans-unit>
+            <trans-unit id="label.author">
+                <source>label.author</source>
+                <target>लेखक</target>
+            </trans-unit>
+            <trans-unit id="label.author_email">
+                <source>label.author_email</source>
+                <target>लेखक ईमेल</target>
+            </trans-unit>
+            <trans-unit id="label.username">
+                <source>label.username</source>
+                <target>प्रयोगकर्ता नाम</target>
+            </trans-unit>
+            <trans-unit id="label.fullname">
+                <source>label.fullname</source>
+                <target>पुरा नाम</target>
+            </trans-unit>
+            <trans-unit id="label.email">
+                <source>label.email</source>
+                <target>इमेल</target>
+            </trans-unit>
+            <trans-unit id="label.password">
+                <source>label.password</source>
+                <target>पासवर्ड</target>
+            </trans-unit>
+            <trans-unit id="label.current_password">
+                <source>label.current_password</source>
+                <target>वर्तमान पासवर्ड</target>
+            </trans-unit>
+            <trans-unit id="label.new_password">
+                <source>label.new_password</source>
+                <target>नया पासवर्ड</target>
+            </trans-unit>
+            <trans-unit id="label.new_password_confirm">
+                <source>label.new_password_confirm</source>
+                <target>पासवर्ड सुनिश्चित गर्नुहोस</target>
+            </trans-unit>
+            <trans-unit id="label.role">
+                <source>label.role</source>
+                <target>भूमिका</target>
+            </trans-unit>
+            <trans-unit id="label.content">
+                <source>label.content</source>
+                <target>कन्टेन्ट</target>
+            </trans-unit>
+            <trans-unit id="label.summary">
+                <source>label.summary</source>
+                <target>सारांश</target>
+            </trans-unit>
+            <trans-unit id="label.published_at">
+                <source>label.published_at</source>
+                <target>मा प्रकाशित</target>
+            </trans-unit>
+            <trans-unit id="label.tags">
+                <source>label.tags</source>
+                <target>ट्यागहरू</target>
+            </trans-unit>
+            <trans-unit id="label.actions">
+                <source>label.actions</source>
+                <target>कार्यहरू</target>
+            </trans-unit>
+            <trans-unit id="title.post_new">
+                <source>title.post_new</source>
+                <target>पोस्ट सिर्जना</target>
+            </trans-unit>
+            <trans-unit id="action.edit_contents">
+                <source>action.edit_contents</source>
+                <target>कन्टेन्ट सम्पादन</target>
+            </trans-unit>
+
+            <trans-unit id="menu.toggle_nav">
+                <source>menu.toggle_nav</source>
+                <target>नेभिगेसन टगल</target>
+            </trans-unit>
+            <trans-unit id="menu.choose_language">
+                <source>menu.choose_language</source>
+                <target>भाषा छान्नुहोस्</target>
+            </trans-unit>
+            <trans-unit id="menu.post_list">
+                <source>menu.post_list</source>
+                <target>पोस्ट सूची</target>
+            </trans-unit>
+            <trans-unit id="menu.back_to_blog">
+                <source>menu.back_to_blog</source>
+                <target>ब्लगमा फर्कनु</target>
+            </trans-unit>
+            <trans-unit id="menu.homepage">
+                <source>menu.homepage</source>
+                <target>होमपेज</target>
+            </trans-unit>
+            <trans-unit id="menu.admin">
+                <source>menu.admin</source>
+                <target>ब्याकइन्ड</target>
+            </trans-unit>
+            <trans-unit id="menu.user">
+                <source>menu.user</source>
+                <target>खाता</target>
+            </trans-unit>
+            <trans-unit id="menu.logout">
+                <source>menu.logout</source>
+                <target>बाहिर निस्कनु</target>
+            </trans-unit>
+            <trans-unit id="menu.rss">
+                <source>menu.rss</source>
+                <target>ब्लग पोस्ट RSS</target>
+            </trans-unit>
+            <trans-unit id="menu.search">
+                <source>menu.search</source>
+                <target>खोज्नुहोस्</target>
+            </trans-unit>
+
+            <trans-unit id="post.to_publish_a_comment">
+                <source>post.to_publish_a_comment</source>
+                <target>टिप्पणी प्रकाशित गर्न</target>
+            </trans-unit>
+            <trans-unit id="post.num_comments">
+                <source>post.num_comments</source>
+                <target>{गणना, बहुवचन, एक {# टिप्पणी} अन्य {# टिप्पणी}}</target>
+            </trans-unit>
+            <trans-unit id="post.commented_on">
+                <source>post.commented_on</source>
+                <target>टिप्पणी गरे</target>
+            </trans-unit>
+            <trans-unit id="post.no_comments">
+                <source>post.no_comments</source>
+                <target>यस पोस्टमा टिप्पणी गर्ने पहिलो बन्नुहोस्।</target>
+            </trans-unit>
+            <trans-unit id="post.no_posts_found">
+                <source>post.no_posts_found</source>
+                <target>कुनै पोस्टहरू पाएन।</target>
+            </trans-unit>
+            <trans-unit id="post.created_successfully">
+                <source>post.created_successfully</source>
+                <target>पोस्ट सफलतापूर्वक लेखियो!</target>
+            </trans-unit>
+            <trans-unit id="post.updated_successfully">
+                <source>post.updated_successfully</source>
+                <target>पोस्ट सफलतापूर्वक अद्यावधिक गरियो!</target>
+            </trans-unit>
+            <trans-unit id="post.deleted_successfully">
+                <source>post.deleted_successfully</source>
+                <target>पोस्ट सफलतापूर्वक मेटाइयो!</target>
+            </trans-unit>
+            <trans-unit id="post.search_for">
+                <source>post.search_for</source>
+                <target>खोज्नको लागि...</target>
+            </trans-unit>
+            <trans-unit id="post.search_no_results">
+                <source>post.search_no_results</source>
+                <target>कुनै परिणाम पाएन।</target>
+            </trans-unit>
+
+            <trans-unit id="user.updated_successfully">
+                <source>user.updated_successfully</source>
+                <target>प्रयोगकर्ता सफलतापूर्वक अद्यावधिक गरियो!</target>
+            </trans-unit>
+
+            <trans-unit id="notification.comment_created">
+                <source>notification.comment_created</source>
+                <target>तपाईंको पोस्टले टिप्पणी प्राप्त गर्यो!</target>
+            </trans-unit>
+            <trans-unit id="notification.comment_created.description">
+                <source>notification.comment_created.description</source>
+                <target><![CDATA[तपाईंको पोस्ट "{title}" ले नयाँ टिप्पणी प्राप्त गरेको छ। तपाईंले <a href="{link}">यो लिङ्क</a> थिचेर टिप्पणी पढ्न सक्नुहुन्छ]]></target>
+            </trans-unit>
+
+            <trans-unit id="help.app_description">
+                <source>help.app_description</source>
+                <target><![CDATA[यो एउटा <strong>डेमो अनुप्रयोग</strong> हो जुन Symfony फ्रेमवर्कमा Symfony अनुप्रयोगहरू विकास गर्ने सिफारिस गरिएको तरिकालाई चित्रण गर्न बनाइएको हो।]]></target>
+            </trans-unit>
+            <trans-unit id="help.show_code">
+                <source>help.show_code</source>
+                <target><![CDATA[यो पृष्ठ रेन्डर गर्न प्रयोग गरिएको <strong>नियन्त्रक</strong> र <strong>टेम्प्लेट</strong> को स्रोत कोड देखाउन यो बटनमा क्लिक गर्नुहोस्।]]></target>
+            </trans-unit>
+            <trans-unit id="help.browse_app">
+                <source>help.browse_app</source>
+                <target><![CDATA[डेमो अनुप्रयोगको <strong>सार्वजनिक खण्ड</strong> ब्राउज गर्नुहोस्।]]></target>
+            </trans-unit>
+            <trans-unit id="help.browse_admin">
+                <source>help.browse_admin</source>
+                <target><![CDATA[डेमो अनुप्रयोगको <strong>प्रशासक ब्याकइन्ड</strong> ब्राउज गर्नुहोस्।]]></target>
+            </trans-unit>
+            <trans-unit id="help.login_users">
+                <source>help.login_users</source>
+                <target>निम्न प्रयोगकर्ताहरू मध्ये कुनै पनि प्रयास गर्नुहोस्</target>
+            </trans-unit>
+            <trans-unit id="help.role_user">
+                <source>help.role_user</source>
+                <target>नियमित प्रयोगकर्ता</target>
+            </trans-unit>
+            <trans-unit id="help.role_admin">
+                <source>help.role_admin</source>
+                <target>प्रशासक</target>
+            </trans-unit>
+            <trans-unit id="help.reload_fixtures">
+                <source>help.reload_fixtures</source>
+                <target>यदि यी प्रयोगकर्ताहरूले काम गर्दैनन् भने, टर्मिनलबाट यो आदेश चलाएर अनुप्रयोग फिक्स्चरहरू पुन: लोड गर्नुहोस्:</target>
+            </trans-unit>
+            <trans-unit id="help.add_user">
+                <source>help.add_user</source>
+                <target>यदि तपाइँ नयाँ प्रयोगकर्ताहरू सिर्जना गर्न चाहनुहुन्छ भने, यो अन्य आदेश चलाउनुहोस्:</target>
+            </trans-unit>
+            <trans-unit id="help.more_information">
+                <source>help.more_information</source>
+                <target><![CDATA[थप जानकारीको लागि, <a href="https://symfony.com/doc">Symfony doc</a> हेर्नुहोस्।]]></target>
+            </trans-unit>
+            <trans-unit id="help.post_summary">
+                <source>help.post_summary</source>
+                <target>सारांशहरूले मार्कडाउन वा HTML कन्टेन्टहरू समावेश गर्न सक्दैन; केवल सादा पाठ।</target>
+            </trans-unit>
+            <trans-unit id="help.post_publication">
+                <source>help.post_publication</source>
+                <target>ब्लग पोस्ट प्रकाशन तालिका बनाउन भविष्यमा मिति सेट गर्नुहोस्।</target>
+            </trans-unit>
+            <trans-unit id="help.post_content">
+                <source>help.post_content</source>
+                <target>ब्लग पोस्ट कन्टेन्ट ढाँचा गर्न मार्कडाउन प्रयोग गर्नुहोस्। HTML लाई पनि अनुमति छ।</target>
+            </trans-unit>
+            <trans-unit id="help.comment_content">
+                <source>help.comment_content</source>
+                <target>हाम्रो आचार संहिताको पालना नगर्ने टिप्पणीहरू मध्यस्थ गरिनेछ।</target>
+            </trans-unit>
+
+            <trans-unit id="info.change_password">
+                <source>info.change_password</source>
+                <target>आफ्नो पासवर्ड परिवर्तन गरेपछि, तपाइँ अनुप्रयोगबाट लग आउट हुनुहुनेछ।</target>
+            </trans-unit>
+
+            <trans-unit id="rss.title">
+                <source>rss.title</source>
+                <target>सिम्फनी डेमो ब्लग</target>
+            </trans-unit>
+            <trans-unit id="rss.description">
+                <source>rss.description</source>
+                <target>सिम्फनी डेमो ब्लगमा प्रकाशित सबैभन्दा भर्खरका पोष्टहरू</target>
+            </trans-unit>
+
+            <trans-unit id="paginator.previous">
+                <source>paginator.previous</source>
+                <target>अघिल्लो</target>
+            </trans-unit>
+            <trans-unit id="paginator.next">
+                <source>paginator.next</source>
+                <target>अर्को</target>
+            </trans-unit>
+            <trans-unit id="paginator.current">
+                <source>paginator.current</source>
+                <target>(वर्तमान)</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
