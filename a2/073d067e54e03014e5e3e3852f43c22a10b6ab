@@ -1,0 +1,19 @@
+---------------------------------------------------------------------------
+
+by dmaicher at 2024-02-15T08:10:03Z
+
+Will check how to get rid of this deprecation
+
+```
+   44x: Doctrine\DBAL\Connection::setNestTransactionsWithSavepoints is deprecated and will be removed in 5.0 (Connection.php:948 called by App_KernelTestDebugContainer.php:611, https://github.com/doctrine/dbal/pull/5383, package doctrine/dbal)
+    10x in BlogControllerTest::setUp from App\Tests\Controller\Admin
+    5x in DefaultControllerTest::tearDown from App\Tests\Controller
+    4x in BlogControllerTest::testNewComment from App\Tests\Controller
+    2x in AddUserCommandTest::testCreateUserNonInteractive from App\Tests\Command
+    2x in AddUserCommandTest::testCreateUserInteractive from App\Tests\Command
+
+---------------------------------------------------------------------------
+
+by dmaicher at 2024-02-15T08:13:15Z
+
+Needs https://github.com/dmaicher/doctrine-test-bundle/issues/281 first
