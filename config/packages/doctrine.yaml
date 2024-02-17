@@ -47,8 +47,3 @@ when@prod:
                     adapter: cache.app
                 doctrine.system_cache_pool:
                     adapter: cache.system
-
-when@dev:
-    doctrine:
-        dbal:
-            profiling_collect_backtrace: true
