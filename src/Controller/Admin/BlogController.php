@@ -162,7 +162,7 @@ final class BlogController extends AbstractController
     public function delete(Request $request, Post $post, EntityManagerInterface $entityManager): Response
     {
         /** @var string|null $token */
-        $token = $request->request->get('token');
+        $token = $request->getPayload()->get('token');
 
         if (!$this->isCsrfTokenValid('delete', $token)) {
             return $this->redirectToRoute('admin_post_index', [], Response::HTTP_SEE_OTHER);
