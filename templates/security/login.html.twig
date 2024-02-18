@@ -35,7 +35,7 @@
                         <div class="form-group">
                             <label>
                                 <input type="checkbox" name="_remember_me" checked/>
-                                Keep me logged in
+                                {{ 'label.remember_me'|trans }}
                             </label>
                         </div>
                         <input type="hidden" name="_target_path" value="{{ app.request.get('redirect_to') }}"/>
