@@ -22,7 +22,7 @@ There are 3 different ways of installing this project depending on your needs:
 on your computer to run this command:
 
 ```bash
-$ symfony new --demo my_project
+symfony new --demo my_project
 ```
 
 **Option 2.** [Download Composer][6] and use the `composer` binary installed
@@ -30,12 +30,12 @@ on your computer to run these commands:
 
 ```bash
 # you can create a new project based on the Symfony Demo project...
-$ composer create-project symfony/symfony-demo my_project
+composer create-project symfony/symfony-demo my_project
 
 # ...or you can clone the code repository and install its dependencies
-$ git clone https://github.com/symfony/demo.git my_project
-$ cd my_project/
-$ composer install
+git clone https://github.com/symfony/demo.git my_project
+cd my_project/
+composer install
 ```
 
 **Option 3.** Click the following button to deploy this project on Platform.sh,
@@ -54,8 +54,8 @@ There's no need to configure anything before running the application. There are
 **Option 1.** [Download Symfony CLI][4] and run this command:
 
 ```bash
-$ cd my_project/
-$ symfony serve
+cd my_project/
+symfony serve
 ```
 
 Then access the application in your browser at the given URL (<https://localhost:8000> by default).
@@ -66,8 +66,8 @@ Then access the application in your browser at the given URL (<https://localhost
 On your local machine, you can run this command to use the built-in PHP web server:
 
 ```bash
-$ cd my_project/
-$ php -S localhost:8000 -t public/
+cd my_project/
+php -S localhost:8000 -t public/
 ```
 
 Tests
@@ -76,8 +76,8 @@ Tests
 Execute this command to run tests:
 
 ```bash
-$ cd my_project/
-$ ./bin/phpunit
+cd my_project/
+./bin/phpunit
 ```
 
 [1]: https://symfony.com/doc/current/best_practices.html
