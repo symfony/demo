@@ -31,7 +31,9 @@ on your computer to run these commands:
 ```bash
 # you can create a new project based on the Symfony Demo project...
 composer create-project symfony/symfony-demo my_project
+```
 
+```bash
 # ...or you can clone the code repository and install its dependencies
 git clone https://github.com/symfony/demo.git my_project
 cd my_project/
