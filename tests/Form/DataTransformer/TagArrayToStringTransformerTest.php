@@ -11,9 +11,9 @@
 
 namespace App\Tests\Form\DataTransformer;
 
-use App\Entity\Tag;
-use App\Form\DataTransformer\TagArrayToStringTransformer;
-use App\Repository\TagRepository;
+use App\Core\Blog\Entity\Tag;
+use App\Core\Blog\Form\DataTransformer\TagArrayToStringTransformer;
+use App\Core\Blog\Repository\TagRepository;
 use PHPUnit\Framework\TestCase;
 
 /**

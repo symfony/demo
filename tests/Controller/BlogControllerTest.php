@@ -11,9 +11,9 @@
 
 namespace App\Tests\Controller;
 
-use App\Entity\User;
-use App\Pagination\Paginator;
-use App\Repository\UserRepository;
+use App\Core\Blog\Pagination\Paginator;
+use App\Core\Security\Entity\User;
+use App\Core\Security\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**

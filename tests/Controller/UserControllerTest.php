@@ -11,8 +11,8 @@
 
 namespace App\Tests\Controller;
 
-use App\Entity\User;
-use App\Repository\UserRepository;
+use App\Core\Security\Entity\User;
+use App\Core\Security\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 

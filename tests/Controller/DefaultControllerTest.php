@@ -11,7 +11,7 @@
 
 namespace App\Tests\Controller;
 
-use App\Entity\Post;
+use App\Core\Blog\Entity\Post;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;

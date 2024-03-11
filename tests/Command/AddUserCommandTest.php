@@ -11,8 +11,8 @@
 
 namespace App\Tests\Command;
 
-use App\Command\AddUserCommand;
-use App\Repository\UserRepository;
+use App\Core\Blog\Command\AddUserCommand;
+use App\Core\Security\Repository\UserRepository;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 final class AddUserCommandTest extends AbstractCommandTest
