@@ -25,22 +25,16 @@ use Twig\TwigFunction;
 final class AppExtension extends AbstractExtension
 {
     /**
-     * @var string[]
-     */
-    private readonly array $localeCodes;
-
-    /**
      * @var list<array{code: string, name: string}>|null
      */
     private ?array $locales = null;
 
     // The $locales argument is injected thanks to the service container.
     // See https://symfony.com/doc/current/service_container.html#binding-arguments-by-name-or-type
-    public function __construct(string $locales)
-    {
-        $localeCodes = explode('|', $locales);
-        sort($localeCodes);
-        $this->localeCodes = $localeCodes;
+    public function __construct(
+        /** @var string[] */
+        private array $enabledLocales,
+    ) {
     }
 
     public function getFunctions(): array
@@ -65,7 +59,7 @@ final class AppExtension extends AbstractExtension
 
         $this->locales = [];
 
-        foreach ($this->localeCodes as $localeCode) {
+        foreach ($this->enabledLocales as $localeCode) {
             $this->locales[] = ['code' => $localeCode, 'name' => Locales::getName($localeCode, $localeCode)];
         }
 

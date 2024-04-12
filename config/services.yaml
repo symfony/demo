@@ -5,8 +5,6 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
     locale: 'en'
-    # This parameter defines the codes of the locales (languages) enabled in the application
-    app_locales: ar|en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca|sl|sq|hr|zh_CN|bg|tr|lt|bs|sr_Cyrl|sr_Latn|eu|ne|bn|vi
     app.notifications.email_sender: anonymous@example.com
 
 services:
@@ -18,7 +16,7 @@ services:
             # this allows to define the scalar arguments once and apply them to any services
             # defined/created in this file; if some argument is used rarely, instead of defining
             # it here you can use the #[Autowire] attribute to inject it manually in the service constructor
-            string $locales: '%app_locales%'
+            array $enabledLocales: '%kernel.enabled_locales%'
             string $defaultLocale: '%locale%'
 
     # makes classes in src/ available to be used as services

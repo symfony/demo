@@ -5,8 +5,6 @@
 homepage:
     path: /{_locale}
     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
-    requirements:
-        _locale: '%app_locales%'
     defaults:
         template: default/homepage.html.twig
         _locale: '%locale%'
@@ -17,7 +15,5 @@ controllers:
         namespace: App\Controller
     type: attribute
     prefix: /{_locale}
-    requirements:
-        _locale: '%app_locales%'
     defaults:
         _locale: '%locale%'
