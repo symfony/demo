@@ -31,6 +31,7 @@ final class DateTimePickerType extends AbstractType
         // @see https://symfony.com/doc/current/reference/forms/types/date.html#rendering-a-single-html5-text-box
         $resolver->setDefaults([
             'widget' => 'single_text',
+            'input' => 'datetime_immutable',
             // if true, the browser will display the native date picker widget
             // however, this app uses a custom JavaScript widget, so it must be set to false
             'html5' => false,
