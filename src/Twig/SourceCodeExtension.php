@@ -30,19 +30,16 @@ use function Symfony\Component\String\u;
  */
 final class SourceCodeExtension extends AbstractExtension
 {
-    private FileLinkFormatter $fileLinkFormat;
-    private string $projectDir;
     /**
      * @var callable|null
      */
     private $controller;
 
     public function __construct(
-        FileLinkFormatter $fileLinkFormat,
+        private FileLinkFormatter $fileLinkFormat,
         #[Autowire('%kernel.project_dir%')]
-        string $projectDir,
+        private string $projectDir,
     ) {
-        $this->fileLinkFormat = $fileLinkFormat;
         $this->projectDir = str_replace('\\', '/', $projectDir).'/';
     }
 
