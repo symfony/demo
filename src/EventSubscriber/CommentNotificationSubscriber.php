@@ -26,14 +26,14 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  *
  * @author Oleg Voronkovich <oleg-voronkovich@yandex.ru>
  */
-final class CommentNotificationSubscriber implements EventSubscriberInterface
+final readonly class CommentNotificationSubscriber implements EventSubscriberInterface
 {
     public function __construct(
-        private readonly MailerInterface $mailer,
-        private readonly UrlGeneratorInterface $urlGenerator,
-        private readonly TranslatorInterface $translator,
+        private MailerInterface $mailer,
+        private UrlGeneratorInterface $urlGenerator,
+        private TranslatorInterface $translator,
         #[Autowire('%app.notifications.email_sender%')]
-        private readonly string $sender
+        private string $sender
     ) {
     }
 

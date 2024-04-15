@@ -33,7 +33,7 @@ final class AppExtension extends AbstractExtension
     // See https://symfony.com/doc/current/service_container.html#binding-arguments-by-name-or-type
     public function __construct(
         /** @var string[] */
-        private array $enabledLocales,
+        private readonly array $enabledLocales,
     ) {
     }
 
