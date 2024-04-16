@@ -29,10 +29,10 @@ use Symfony\Component\HttpKernel\KernelEvents;
  *
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-final class CheckRequirementsSubscriber implements EventSubscriberInterface
+final readonly class CheckRequirementsSubscriber implements EventSubscriberInterface
 {
     public function __construct(
-        private readonly EntityManagerInterface $entityManager
+        private EntityManagerInterface $entityManager
     ) {
     }
 

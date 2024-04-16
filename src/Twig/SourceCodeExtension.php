@@ -36,7 +36,7 @@ final class SourceCodeExtension extends AbstractExtension
     private $controller;
 
     public function __construct(
-        private FileLinkFormatter $fileLinkFormat,
+        private readonly FileLinkFormatter $fileLinkFormat,
         #[Autowire('%kernel.project_dir%')]
         private string $projectDir,
     ) {

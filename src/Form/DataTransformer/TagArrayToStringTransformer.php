@@ -27,10 +27,10 @@ use function Symfony\Component\String\u;
  *
  * @template-implements DataTransformerInterface<Tag[], string>
  */
-final class TagArrayToStringTransformer implements DataTransformerInterface
+final readonly class TagArrayToStringTransformer implements DataTransformerInterface
 {
     public function __construct(
-        private readonly TagRepository $tags
+        private TagRepository $tags
     ) {
     }
 

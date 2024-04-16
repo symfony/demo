@@ -23,10 +23,10 @@ use Symfony\Component\HttpKernel\KernelEvents;
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-final class ControllerSubscriber implements EventSubscriberInterface
+final readonly class ControllerSubscriber implements EventSubscriberInterface
 {
     public function __construct(
-        private readonly SourceCodeExtension $twigExtension
+        private SourceCodeExtension $twigExtension
     ) {
     }
 
