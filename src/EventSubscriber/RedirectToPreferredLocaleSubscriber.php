@@ -46,7 +46,7 @@ final class RedirectToPreferredLocaleSubscriber implements EventSubscriberInterf
 
         // Add the default locale at the first position of the array,
         // because Symfony\HttpFoundation\Request::getPreferredLanguage
-        // returns the first element when no an appropriate language is found
+        // returns the first element when no appropriate language is found
         array_unshift($this->enabledLocales, $this->defaultLocale);
         $this->enabledLocales = array_unique($this->enabledLocales);
     }
