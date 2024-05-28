@@ -10,7 +10,7 @@ env:
     fail-fast: true
     PHPUNIT_FLAGS: "-v"
     SYMFONY_PHPUNIT_DIR: "$HOME/symfony-bridge/.phpunit"
-    SYMFONY_DEPRECATIONS_HELPER: 0
+    SYMFONY_DEPRECATIONS_HELPER: 'max[indirect]=52'
 
 permissions:
     contents: read

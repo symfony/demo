@@ -83,7 +83,10 @@ final class DeleteUserCommand extends Command
 
     protected function interact(InputInterface $input, OutputInterface $output): void
     {
-        if (null !== $input->getArgument('username')) {
+        /** @var string|null $username */
+        $username = $input->getArgument('username');
+
+        if (null !== $username) {
             return;
         }
 
