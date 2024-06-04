@@ -22,7 +22,9 @@
         See https://symfony.com/doc/current/security/remember_me.html#forcing-the-user-to-re-authenticate-before-accessing-certain-resources
         #}
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            {{ render(controller('App\\Controller\\BlogController::commentForm', {'id': post.id})) }}
+            {# when the name of the Twig argument is the same as the name of the variable, you can omit it.
+               e.g. instead of controller('...', {post: post}) you can use controller('...', {post}) #}
+            {{ render(controller('App\\Controller\\BlogController::commentForm', {post})) }}
         {% else %}
             <p>
                 <a class="btn btn-success" href="{{ path('security_login', {'redirect_to': app.request.pathInfo}) }}">

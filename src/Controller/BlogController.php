@@ -69,13 +69,15 @@ final class BlogController extends AbstractController
     }
 
     /**
-     * NOTE: The $post controller argument is automatically injected by Symfony
-     * after performing a database query looking for a Post with the 'slug'
-     * value given in the route.
-     *
-     * See https://symfony.com/doc/current/doctrine.html#automatically-fetching-objects-entityvalueresolver
+     * NOTE: when the controller argument is a Doctrine entity, Symfony makes an
+     * automatic database query to fetch it based on the value of the route parameters.
+     * The '{slug:post}' configuration tells Symfony to use the 'slug' route
+     * parameter in the database query that fetches the entity of the $post argument.
+     * This is mostly useful when the route has multiple parameters and the controller
+     * also has multiple arguments.
+     * See https://symfony.com/doc/current/doctrine.html#automatically-fetching-objects-entityvalueresolver.
      */
-    #[Route('/posts/{slug}', name: 'blog_post', requirements: ['slug' => Requirement::ASCII_SLUG], methods: ['GET'])]
+    #[Route('/posts/{slug:post}', name: 'blog_post', requirements: ['slug' => Requirement::ASCII_SLUG], methods: ['GET'])]
     public function postShow(Post $post): Response
     {
         // Symfony's 'dump()' function is an improved version of PHP's 'var_dump()' but
@@ -145,11 +147,6 @@ final class BlogController extends AbstractController
      * This controller is called directly via the render() function in the
      * blog/post_show.html.twig template. That's why it's not needed to define
      * a route name for it.
-     *
-     * The "id" of the Post is passed in and then turned into a Post object
-     * automatically by the ValueResolver.
-     *
-     * See https://symfony.com/doc/current/doctrine.html#automatically-fetching-objects-entityvalueresolver
      */
     public function commentForm(Post $post): Response
     {
