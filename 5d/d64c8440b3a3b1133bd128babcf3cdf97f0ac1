@@ -1,0 +1,82 @@
+---------------------------------------------------------------------------
+
+by nicolas-grekas at 2024-05-28T15:41:57Z
+
+Here is the diff for the commentForm deprecation:
+
+```diff
+--- a/templates/blog/post_show.html.twig
++++ b/templates/blog/post_show.html.twig
+@@ -22,7 +22,7 @@
+         See https://symfony.com/doc/current/security/remember_me.html#forcing-the-user-to-re-authenticate-before-accessing-certain-resources
+         #}
+         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+-            {{ render(controller('App\\Controller\\BlogController::commentForm', {'id': post.id})) }}
++            {{ render(controller('App\\Controller\\BlogController::commentForm', {'post': post.id})) }}
+         {% else %}
+             <p>
+```
+
+---------------------------------------------------------------------------
+
+by nicolas-grekas at 2024-05-28T15:43:12Z
+
+Note that this would work also (and that'd skip the entity resolver entirely):
+
+```diff
+--- a/templates/blog/post_show.html.twig
++++ b/templates/blog/post_show.html.twig
+@@ -22,7 +22,7 @@
+         See https://symfony.com/doc/current/security/remember_me.html#forcing-the-user-to-re-authenticate-before-accessing-certain-resources
+         #}
+         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+-            {{ render(controller('App\\Controller\\BlogController::commentForm', {'id': post.id})) }}
++            {{ render(controller('App\\Controller\\BlogController::commentForm', {'post': post})) }}
+         {% else %}
+             <p>
+                 <a class="btn btn-success" href="{{ path('security_login', {'redirect_to': app.request.pathInfo}) }}">
+```
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2024-05-30T15:45:26Z
+
+What would be the best way to solve the issues reported by PHPStan? Thanks
+
+---------------------------------------------------------------------------
+
+by seb-jean at 2024-05-31T08:33:37Z
+
+Should we use `IsCsrfTokenValid` Attribute on the `delete` function: https://github.com/symfony/demo/blob/main/src/Controller/Admin/BlogController.php#L162?
+
+https://symfony.com/blog/new-in-symfony-7-1-iscsrftokenvalid-attribute
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2024-05-31T10:53:33Z
+
+@seb-jean yes, but let's do that change in a separate PR after this one. There might be other new features that we could use too. Thanks!
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2024-05-31T11:30:14Z
+
+This is now ready for the final review before merge.
+
+**Remaining indirect deprecation notices (52)**
+
+-----
+
+  37x: Since twig/twig 3.10: The "Twig\Extension\EscaperExtension::addSafeClass()" method is deprecated, use the "Twig\Runtime\EscaperRuntime::addSafeClass()" method instead.
+    4x in BlogControllerTest::testAccessDeniedForRegularUsers from App\Tests\Controller\Admin
+    4x in BlogControllerTest::testNewComment from App\Tests\Controller
+    4x in DefaultControllerTest::testSecureUrls from App\Tests\Controller
+    3x in BlogControllerTest::testAdminNewDuplicatedPost from App\Tests\Controller\Admin
+    3x in DefaultControllerTest::testPublicUrls from App\Tests\Controller
+    ...
+
+-----
+
+  15x: Since twig/twig 3.9: Using the internal "twig_escape_filter" function is deprecated.
+    9x in DefaultControllerTest::testPublicUrls from App\Tests\Controller
+    6x in BlogControllerTest::testAjaxSearch from App\Tests\Controller
