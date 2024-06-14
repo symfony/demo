@@ -16,8 +16,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Defines the properties of the Post entity to represent the blog posts.
@@ -33,7 +31,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 #[ORM\Table(name: 'symfony_demo_post')]
-#[UniqueEntity(fields: ['slug'], errorPath: 'title', message: 'post.slug_unique')]
 class Post
 {
     #[ORM\Id]
@@ -42,33 +39,28 @@ class Post
     private ?int $id = null;
 
     #[ORM\Column(type: Types::STRING)]
-    #[Assert\NotBlank]
-    private ?string $title = null;
+    private string $title;
 
     #[ORM\Column(type: Types::STRING)]
-    private ?string $slug = null;
+    private string $slug;
 
     #[ORM\Column(type: Types::STRING)]
-    #[Assert\NotBlank(message: 'post.blank_summary')]
-    #[Assert\Length(max: 255)]
-    private ?string $summary = null;
+    private string $summary;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Assert\NotBlank(message: 'post.blank_content')]
-    #[Assert\Length(min: 10, minMessage: 'post.too_short_content')]
-    private ?string $content = null;
+    private string $content;
 
     #[ORM\Column]
     private \DateTimeImmutable $publishedAt;
 
-    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $author = null;
+    private User $author;
 
     /**
      * @var Collection<int, Comment>
      */
-    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'post', orphanRemoval: true, cascade: ['persist'])]
+    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'post', cascade: ['persist'], orphanRemoval: true)]
     #[ORM\OrderBy(['publishedAt' => 'DESC'])]
     private Collection $comments;
 
@@ -78,12 +70,11 @@ class Post
     #[ORM\ManyToMany(targetEntity: Tag::class, cascade: ['persist'])]
     #[ORM\JoinTable(name: 'symfony_demo_post_tag')]
     #[ORM\OrderBy(['name' => 'ASC'])]
-    #[Assert\Count(max: 4, maxMessage: 'post.too_many_tags')]
     private Collection $tags;
 
-    public function __construct()
+    public function __construct(User $author)
     {
-        $this->publishedAt = new \DateTimeImmutable();
+        $this->author = $author;
         $this->comments = new ArrayCollection();
         $this->tags = new ArrayCollection();
     }
@@ -93,17 +84,17 @@ class Post
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    public function getTitle(): string
     {
         return $this->title;
     }
 
-    public function setTitle(?string $title): void
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
 
-    public function getSlug(): ?string
+    public function getSlug(): string
     {
         return $this->slug;
     }
@@ -113,12 +104,12 @@ class Post
         $this->slug = $slug;
     }
 
-    public function getContent(): ?string
+    public function getContent(): string
     {
         return $this->content;
     }
 
-    public function setContent(?string $content): void
+    public function setContent(string $content): void
     {
         $this->content = $content;
     }
@@ -133,7 +124,7 @@ class Post
         $this->publishedAt = $publishedAt;
     }
 
-    public function getAuthor(): ?User
+    public function getAuthor(): User
     {
         return $this->author;
     }
@@ -165,12 +156,12 @@ class Post
         $this->comments->removeElement($comment);
     }
 
-    public function getSummary(): ?string
+    public function getSummary(): string
     {
         return $this->summary;
     }
 
-    public function setSummary(?string $summary): void
+    public function setSummary(string $summary): void
     {
         $this->summary = $summary;
     }
@@ -187,6 +178,14 @@ class Post
     public function removeTag(Tag $tag): void
     {
         $this->tags->removeElement($tag);
+    }
+
+    /**
+     * @param Collection<int, Tag> $tags
+     */
+    public function setTags(Collection $tags): void
+    {
+        $this->tags = $tags;
     }
 
     /**

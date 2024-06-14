@@ -46,6 +46,7 @@ final class DateTimePickerType extends AbstractType
             'format' => 'yyyy-MM-dd HH:mm',
             'input_format' => 'Y-m-d H:i',
             'date_format' => 'Y-m-d H:i',
+            'empty_data' => date('Y-m-d H:i'),
         ]);
     }
 
