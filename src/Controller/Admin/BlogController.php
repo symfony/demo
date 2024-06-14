@@ -13,6 +13,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Post;
 use App\Entity\User;
+use App\Form\Model\PostDto;
 use App\Form\PostType;
 use App\Repository\PostRepository;
 use App\Security\PostVoter;
@@ -77,11 +78,9 @@ final class BlogController extends AbstractController
         Request $request,
         EntityManagerInterface $entityManager,
     ): Response {
-        $post = new Post();
-        $post->setAuthor($user);
-
+        $dto = new PostDto();
         // See https://symfony.com/doc/current/form/multiple_buttons.html
-        $form = $this->createForm(PostType::class, $post)
+        $form = $this->createForm(PostType::class, $dto)
             ->add('saveAndCreateNew', SubmitType::class)
         ;
 
@@ -91,6 +90,7 @@ final class BlogController extends AbstractController
         // throws an exception if the form has not been submitted.
         // See https://symfony.com/doc/current/forms.html#processing-forms
         if ($form->isSubmitted() && $form->isValid()) {
+            $post = $dto->to(new Post($user));
             $entityManager->persist($post);
             $entityManager->flush();
 
@@ -111,7 +111,6 @@ final class BlogController extends AbstractController
         }
 
         return $this->render('admin/blog/new.html.twig', [
-            'post' => $post,
             'form' => $form,
         ]);
     }
@@ -138,10 +137,12 @@ final class BlogController extends AbstractController
     #[IsGranted('edit', subject: 'post', message: 'Posts can only be edited by their authors.')]
     public function edit(Request $request, Post $post, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(PostType::class, $post);
+        $dto = PostDto::from($post);
+        $form = $this->createForm(PostType::class, $dto);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $post = $dto->to($post);
             $entityManager->flush();
             $this->addFlash('success', 'post.updated_successfully');
 

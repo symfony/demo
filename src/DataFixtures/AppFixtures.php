@@ -69,13 +69,12 @@ final class AppFixtures extends Fixture
     private function loadPosts(ObjectManager $manager): void
     {
         foreach ($this->getPostData() as [$title, $slug, $summary, $content, $publishedAt, $author, $tags]) {
-            $post = new Post();
+            $post = new Post($author);
             $post->setTitle($title);
             $post->setSlug($slug);
             $post->setSummary($summary);
             $post->setContent($content);
             $post->setPublishedAt($publishedAt);
-            $post->setAuthor($author);
             $post->addTag(...$tags);
 
             foreach (range(1, 5) as $i) {
