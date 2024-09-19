@@ -42,7 +42,7 @@ final class UserController extends AbstractController
     ): Response {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
-
+        var_dump("string");
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
