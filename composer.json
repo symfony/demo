@@ -92,6 +92,7 @@
     },
     "scripts": {
         "auto-scripts": {
+            ".env.setup.php": "php-script",
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd",
             "importmap:install": "symfony-cmd",
