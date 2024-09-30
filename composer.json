@@ -91,6 +91,7 @@
     },
     "scripts": {
         "auto-scripts": {
+            "-r \"@rename('.env.local.demo', '.env.local');\"": "php-script",
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd",
             "importmap:install": "symfony-cmd",
