@@ -15,7 +15,7 @@
 {% block sidebar %}
     <div class="section">
         <a href="{{ path('admin_post_show', {id: post.id}) }}" class="btn btn-lg btn-block btn-success">
-            <i class="fa fa-eye" aria-hidden="true"></i> {{ 'action.show_post'|trans }}
+            <twig:ux:icon name="tabler:eye"/> {{ 'action.show_post'|trans }}
         </a>
     </div>
 

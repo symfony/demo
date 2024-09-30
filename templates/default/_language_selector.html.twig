@@ -1,6 +1,6 @@
 {% macro render_language_selector(display_current_language = false) %}
     <a href="#" class="nav-link dropdown-toggle language-selector-dropdown-button" data-toggle="modal" data-target="#locale-selector-modal" role="button" id="locales">
-        <i class="fa fa-solid fa-globe" aria-hidden="true"></i>
+        <twig:ux:icon name="tabler:world"/>
         {% if display_current_language %}
             <span class="current-language">{{ app.request.locale|locale_name }}</span>
         {% endif %}

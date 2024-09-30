@@ -42,36 +42,36 @@
                                 {% block header_navigation_links %}
                                     <li class="nav-item{{ _route == 'blog_index' ? ' active' : '' }}">
                                         <a class="nav-link" href="{{ path('blog_index') }}">
-                                            <i class="fa fa-home" aria-hidden="true"></i> {{ 'menu.homepage'|trans }}
+                                            <twig:ux:icon name="tabler:home"/> {{ 'menu.homepage'|trans }}
                                         </a>
                                     </li>
                                     {% if is_granted('ROLE_ADMIN') %}
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{ path('admin_post_index') }}">
-                                                <i class="fa fa-lock" aria-hidden="true"></i> {{ 'menu.admin'|trans }}
+                                                <twig:ux:icon name="tabler:lock"/> {{ 'menu.admin'|trans }}
                                             </a>
                                         </li>
                                     {% endif %}
                                 {% endblock %}
 
                                 <li class="nav-item{{ _route == 'blog_search' ? ' active' : '' }}">
-                                    <a class="nav-link" href="{{ path('blog_search') }}"> <i class="fa fa-search"></i> {{ 'menu.search'|trans }}</a>
+                                    <a class="nav-link" href="{{ path('blog_search') }}"> <twig:ux:icon name="tabler:search"/> {{ 'menu.search'|trans }}</a>
                                 </li>
 
                                 {% if app.user %}
                                     <li class="nav-item dropdown">
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="user">
-                                            <i class="fa fa-user" aria-hidden="true"></i>
+                                            <twig:ux:icon name="tabler:user"/>
                                             <span class="caret"></span>
                                             <span class="sr-only">{{ app.user.fullname }}</span>
                                         </a>
                                         <div class="dropdown-menu user" role="menu" aria-labelledby="user">
                                             <a class="dropdown-item" href="{{ path('user_edit') }}">
-                                                <i class="fa fa-edit" aria-hidden="true"></i> {{ 'menu.user'|trans }}
+                                                <twig:ux:icon name="tabler:id-badge-2"/> {{ 'menu.user'|trans }}
                                             </a>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="{{ logout_path() }}">
-                                                <i class="fa fa-sign-out" aria-hidden="true"></i> {{ 'menu.logout'|trans }}
+                                                <twig:ux:icon name="tabler:logout"/> {{ 'menu.logout'|trans }}
                                             </a>
                                         </div>
                                     </li>
@@ -121,10 +121,10 @@
                         <div id="footer-resources" class="col-md-6">
                             <p>
                                 <a rel="noopener noreferrer" target="_blank" href="https://twitter.com/symfony" title="Symfony on X (formerly Twitter)">
-                                    <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+                                    <twig:ux:icon name="tabler:brand-x" font-size="28px" /> <span class="sr-only">X/Twitter</span>
                                 </a>
                                 <a target="_blank" href="https://symfony.com/blog/" title="Symfony Blog">
-                                    <i class="fa-solid fa-rss" aria-hidden="true"></i>
+                                    <twig:ux:icon name="tabler:rss" font-size="28px" /> <span class="sr-only">RSS feed</span>
                                 </a>
                             </p>
                         </div>

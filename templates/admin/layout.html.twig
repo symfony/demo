@@ -15,12 +15,12 @@
 {% block header_navigation_links %}
     <li class="nav-item{{ _route in ['admin_index', 'admin_post_index'] ? ' active' : '' }}">
         <a class="nav-link" href="{{ path('admin_post_index') }}">
-            <i class="fa fa-list-alt" aria-hidden="true"></i> {{ 'menu.post_list'|trans }}
+            <twig:ux:icon name="tabler:list"/> {{ 'menu.post_list'|trans }}
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{ path('blog_index') }}">
-            <i class="fa fa-home" aria-hidden="true"></i> {{ 'menu.back_to_blog'|trans }}
+            <twig:ux:icon name="tabler:home"/> {{ 'menu.back_to_blog'|trans }}
         </a>
     </li>
 {% endblock %}

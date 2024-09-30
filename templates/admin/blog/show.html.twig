@@ -6,8 +6,8 @@
     <h1>{{ post.title }}</h1>
 
     <p class="post-metadata">
-        <span class="metadata"><i class="fa fa-calendar"></i> {{ post.publishedAt|format_datetime('long', 'medium', '', 'UTC') }}</span>
-        <span class="metadata"><i class="fa fa-user"></i> {{ post.author.fullName }}</span>
+        <span class="metadata"><twig:ux:icon name="tabler:calendar-month"/> {{ post.publishedAt|format_datetime('long', 'medium', '', 'UTC') }}</span>
+        <span class="metadata"><twig:ux:icon name="tabler:user"/> {{ post.author.fullName }}</span>
     </p>
 
     <div class="jumbotron">
@@ -22,7 +22,7 @@
 {% block sidebar %}
     <div class="section">
         <a href="{{ path('admin_post_edit', {id: post.id}) }}" class="btn btn-lg btn-block btn-success">
-            <i class="fa fa-edit" aria-hidden="true"></i> {{ 'action.edit_contents'|trans }}
+            <twig:ux:icon name="tabler:pencil"/> {{ 'action.edit_contents'|trans }}
         </a>
     </div>
 

@@ -15,12 +15,12 @@
     {{ form_widget(form) }}
 
     <button type="submit" class="{{ button_css|default("btn btn-primary") }}">
-        <i class="fa fa-save" aria-hidden="true"></i> {{ button_label|default('label.create_post'|trans) }}
+        <twig:ux:icon name="tabler:save-changes"/> {{ button_label|default('label.create_post'|trans) }}
     </button>
 
     {% if include_back_to_home_link|default(false) %}
         <a href="{{ path('admin_post_index') }}" class="btn btn-link">
-            <i class="fa fa-list-alt" aria-hidden="true"></i> {{ 'action.back_to_list'|trans }}
+            <twig:ux:icon name="tabler:list"/> {{ 'action.back_to_list'|trans }}
         </a>
     {% endif %}
 {{ form_end(form) }}

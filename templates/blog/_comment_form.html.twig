@@ -15,7 +15,7 @@
 
     <fieldset>
         <legend>
-            <i class="fa fa-comment" aria-hidden="true"></i> {{ 'title.add_comment'|trans }}
+            <twig:ux:icon name="tabler:message"/> {{ 'title.add_comment'|trans }}
         </legend>
 
         {# Render any global form error (e.g. when a constraint on a public getter method failed) #}
@@ -33,7 +33,7 @@
 
         <div class="form-group">
             <button class="btn btn-primary float-right" type="submit">
-                <i class="fa fa-paper-plane" aria-hidden="true"></i> {{ 'action.publish_comment'|trans }}
+                <twig:ux:icon name="tabler:send"/> {{ 'action.publish_comment'|trans }}
             </button>
         </div>
     </fieldset>

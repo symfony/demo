@@ -6,8 +6,8 @@
     <h1>{{ post.title }}</h1>
 
     <p class="post-metadata">
-        <span class="metadata"><i class="fa fa-calendar"></i> {{ post.publishedAt|format_datetime('long', 'medium', '', 'UTC') }}</span>
-        <span class="metadata"><i class="fa fa-user"></i> {{ post.author.fullName }}</span>
+        <span class="metadata"><twig:ux:icon name="tabler:calendar-month"/> {{ post.publishedAt|format_datetime('long', 'medium', '', 'UTC') }}</span>
+        <span class="metadata"><twig:ux:icon name="tabler:user"/> {{ post.author.fullName }}</span>
     </p>
 
     {{ post.content|markdown_to_html|sanitize_html }}
@@ -28,7 +28,7 @@
         {% else %}
             <p>
                 <a class="btn btn-success" href="{{ path('security_login', {'redirect_to': app.request.pathInfo}) }}">
-                    <i class="fa fa-sign-in" aria-hidden="true"></i> {{ 'action.sign_in'|trans }}
+                    <twig:ux:icon name="tabler:login"/> {{ 'action.sign_in'|trans }}
                 </a>
                 {{ 'post.to_publish_a_comment'|trans }}
             </p>
@@ -36,7 +36,7 @@
     </div>
 
     <h3>
-        <i class="fa fa-comments" aria-hidden="true"></i> {{ 'post.num_comments'|trans({ 'count': post.comments|length }) }}
+        <twig:ux:icon name="tabler:messages"/> {{ 'post.num_comments'|trans({ 'count': post.comments|length }) }}
     </h3>
 
     {% for comment in post.comments %}
@@ -64,7 +64,7 @@
     {% if is_granted('edit', post) %}
         <div class="section">
             <a class="btn btn-lg btn-block btn-success" href="{{ path('admin_post_edit', {id: post.id}) }}">
-                <i class="fa fa-edit" aria-hidden="true"></i> {{ 'action.edit_post'|trans }}
+                <twig:ux:icon name="tabler:pencil"/> {{ 'action.edit_post'|trans }}
             </a>
         </div>
     {% endif %}
