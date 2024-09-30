@@ -2,9 +2,6 @@
 framework:
     secret: '%env(APP_SECRET)%'
     csrf_protection: true
-    annotations: false
-    http_method_override: false
-    handle_all_throwables: true
 
     # this defines the codes of the locales (languages) available in the application
     # https://symfony.com/doc/current/reference/configuration/framework.html#enabled-locales
