@@ -32,7 +32,7 @@ final class RedirectToPreferredLocaleSubscriber implements EventSubscriberInterf
         private readonly UrlGeneratorInterface $urlGenerator,
         /** @var string[] */
         private array $enabledLocales,
-        private ?string $defaultLocale = null
+        private ?string $defaultLocale = null,
     ) {
         if (empty($this->enabledLocales)) {
             throw new \UnexpectedValueException('The list of supported locales must not be empty.');
@@ -41,7 +41,7 @@ final class RedirectToPreferredLocaleSubscriber implements EventSubscriberInterf
         $this->defaultLocale = $defaultLocale ?: $this->enabledLocales[0];
 
         if (!\in_array($this->defaultLocale, $this->enabledLocales, true)) {
-            throw new \UnexpectedValueException(sprintf('The default locale ("%s") must be one of "%s".', $this->defaultLocale, implode(', ', $this->enabledLocales)));
+            throw new \UnexpectedValueException(\sprintf('The default locale ("%s") must be one of "%s".', $this->defaultLocale, implode(', ', $this->enabledLocales)));
         }
 
         // Add the default locale at the first position of the array,
