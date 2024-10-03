@@ -9,8 +9,8 @@
         <thead>
             <tr>
                 <th scope="col">{{ 'label.title'|trans }}</th>
-                <th scope="col"><i class="fa fa-calendar" aria-hidden="true"></i> {{ 'label.published_at'|trans }}</th>
-                <th scope="col" class="text-center"><i class="fa fa-cogs" aria-hidden="true"></i> {{ 'label.actions'|trans }}</th>
+                <th scope="col"><twig:ux:icon name="tabler:calendar-month"/> {{ 'label.published_at'|trans }}</th>
+                <th scope="col" class="text-center"><twig:ux:icon name="tabler:settings"/> {{ 'label.actions'|trans }}</th>
             </tr>
         </thead>
         <tbody>
@@ -24,11 +24,11 @@
                 <td class="text-right">
                     <div class="item-actions">
                         <a href="{{ path('admin_post_show', {id: post.id}) }}" class="btn btn-sm btn-secondary">
-                            <i class="fa fa-eye" aria-hidden="true"></i> {{ 'action.show'|trans }}
+                            <twig:ux:icon name="tabler:eye"/> {{ 'action.show'|trans }}
                         </a>
 
                         <a href="{{ path('admin_post_edit', {id: post.id}) }}" class="btn btn-sm btn-primary">
-                            <i class="fa fa-edit" aria-hidden="true"></i> {{ 'action.edit'|trans }}
+                            <twig:ux:icon name="tabler:pencil"/> {{ 'action.edit'|trans }}
                         </a>
                     </div>
                 </td>
@@ -45,7 +45,7 @@
 {% block sidebar %}
     <div class="section actions">
         <a href="{{ path('admin_post_new') }}" class="btn btn-lg btn-block btn-success">
-            <i class="fa fa-plus" aria-hidden="true"></i> {{ 'action.create_post'|trans }}
+            <twig:ux:icon name="tabler:pencil"/> {{ 'action.create_post'|trans }}
         </a>
     </div>
 

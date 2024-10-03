@@ -12,7 +12,7 @@
         {{ block('datetime_widget') }}
         <div class="input-group-append">
             <button type="button" class="btn btn-outline-secondary">
-                <span class="fa fa-calendar" aria-hidden="true"></span>
+                <twig:ux:icon name="tabler:calendar-month" aria-hidden="false" aria-label="Pick a date"/>
             </button>
         </div>
     </div>
@@ -23,7 +23,7 @@
         {{ form_widget(form, {'attr': {'data-toggle': 'tagsinput', 'data-tags': tags|json_encode}}) }}
         <div class="input-group-append">
             <span class="input-group-text">
-                <span class="fa fa-tags" aria-hidden="true"></span>
+                <twig:ux:icon name="tabler:tags"/>
             </span>
         </div>
     </div>

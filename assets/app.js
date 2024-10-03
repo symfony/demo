@@ -1,8 +1,6 @@
 // start the Stimulus application
 import './bootstrap.js';
 import './styles/app.scss';
-import '@fortawesome/fontawesome-free/css/all.css';
-import '@fortawesome/fontawesome-free/css/v4-shims.css';
 import 'highlight.js/styles/github-dark-dimmed.css';
 import 'lato-font/css/lato-font.css';
 

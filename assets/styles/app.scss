@@ -268,7 +268,7 @@ footer {
   padding-bottom: 2em
 }
 
-footer p {
+footer p, footer a {
   color: var(--gray-700);
   font-size: 13px;
   margin-bottom: 0.25em
@@ -278,9 +278,7 @@ footer #footer-resources {
   text-align: right
 }
 
-footer #footer-resources i {
-  color: var(--gray-700);
-  font-size: 28.5px;
+footer #footer-resources svg {
   margin-left: 0.5em
 }
 

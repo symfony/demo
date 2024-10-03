@@ -4,7 +4,7 @@
             <a href="{{ path('blog_index', {'tag': tag.name == app.request.query.get('tag') ? null : tag.name}) }}"
                class="badge badge-{{ tag.name == app.request.query.get('tag') ? 'success' : 'secondary' }}"
             >
-                <i class="fa fa-tag"></i> {{ tag.name }}
+                <twig:ux:icon name="tabler:tag" style="top: 0"/> {{ tag.name }}
             </a>
         {% endfor %}
     </p>

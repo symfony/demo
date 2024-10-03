@@ -16,12 +16,12 @@
                 {% if paginator.hasPreviousPage %}
                     <li class="page-item">
                         <a class="page-link" href="{{ path('blog_index_paginated', {page: paginator.previousPage, tag: tagName}) }}" rel="previous">
-                            <i class="fa fw fa-long-arrow-left"></i> {{ 'paginator.previous'|trans }}
+                            <twig:ux:icon name="tabler:arrow-left"/> {{ 'paginator.previous'|trans }}
                         </a>
                     </li>
                 {% else %}
                     <li class="page-item disabled">
-                        <span class="page-link"><i class="fa fw fa-arrow-left"></i> {{ 'paginator.previous'|trans }}</span>
+                        <span class="page-link"><twig:ux:icon name="tabler:arrow-left"/> {{ 'paginator.previous'|trans }}</span>
                     </li>
                 {% endif %}
 
@@ -38,12 +38,12 @@
                 {% if paginator.hasNextPage %}
                     <li class="page-item">
                         <a class="page-link" href="{{ path('blog_index_paginated', {page: paginator.nextPage, tag: tagName}) }}">
-                            <span>{{ 'paginator.next'|trans }} <i class="fa fw fa-long-arrow-right"></i></span>
+                            <span>{{ 'paginator.next'|trans }} <twig:ux:icon name="tabler:arrow-right"/></span>
                         </a>
                     </li>
                 {% else %}
                     <li class="page-item disabled">
-                        <span class="page-link">{{ 'paginator.next'|trans }} <i class="fa fw fa-long-arrow-right"></i></span>
+                        <span class="page-link">{{ 'paginator.next'|trans }} <twig:ux:icon name="tabler:arrow-right"/></span>
                     </li>
                 {% endif %}
             </ul>

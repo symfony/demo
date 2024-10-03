@@ -71,16 +71,8 @@ return [
         'version' => '11.9.0',
         'type' => 'css',
     ],
-    '@fortawesome/fontawesome-free/css/all.css' => [
-        'version' => '6.5.1',
-        'type' => 'css',
-    ],
     'lato-font/css/lato-font.css' => [
         'version' => '3.0.0',
-        'type' => 'css',
-    ],
-    '@fortawesome/fontawesome-free/css/v4-shims.css' => [
-        'version' => '6.5.1',
         'type' => 'css',
     ],
     'popper.js' => [

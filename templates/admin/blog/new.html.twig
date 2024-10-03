@@ -13,11 +13,11 @@
         {{ form_row(form.tags) }}
 
         <button type="submit" class="btn btn-primary">
-            <i class="fa fa-save" aria-hidden="true"></i> {{ 'label.create_post'|trans }}
+            <twig:ux:icon name="tabler:save-changes"/> {{ 'label.create_post'|trans }}
         </button>
         {{ form_widget(form.saveAndCreateNew, {label: 'label.save_and_create_new', attr: {class: 'btn btn-primary'}}) }}
         <a href="{{ path('admin_post_index') }}" class="btn btn-link">
-            <i class="fa fa-list-alt" aria-hidden="true"></i> {{ 'action.back_to_list'|trans }}
+            <twig:ux:icon name="tabler:list"/> {{ 'action.back_to_list'|trans }}
         </a>
     {{ form_end(form) }}
 {% endblock %}
