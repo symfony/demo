@@ -50,7 +50,7 @@ final class ListUsersCommand extends Command
         private readonly MailerInterface $mailer,
         #[Autowire('%app.notifications.email_sender%')]
         private readonly string $emailSender,
-        private readonly UserRepository $users
+        private readonly UserRepository $users,
     ) {
         parent::__construct();
     }
@@ -140,7 +140,7 @@ final class ListUsersCommand extends Command
         $email = (new Email())
             ->from($this->emailSender)
             ->to($recipient)
-            ->subject(sprintf('app:list-users report (%s)', date('Y-m-d H:i:s')))
+            ->subject(\sprintf('app:list-users report (%s)', date('Y-m-d H:i:s')))
             ->text($contents);
 
         $this->mailer->send($email);

@@ -33,7 +33,7 @@ final readonly class CommentNotificationSubscriber implements EventSubscriberInt
         private UrlGeneratorInterface $urlGenerator,
         private TranslatorInterface $translator,
         #[Autowire('%app.notifications.email_sender%')]
-        private string $sender
+        private string $sender,
     ) {
     }
 

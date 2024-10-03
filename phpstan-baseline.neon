@@ -61,6 +61,11 @@ parameters:
 			path: src/Entity/User.php
 
 		-
+			message: "#^Method App\\\\Entity\\\\User::getUserIdentifier\\(\\) should return non-empty-string but returns string\\.$#"
+			count: 1
+			path: src/Entity/User.php
+
+		-
 			message: "#^Parameter \\#1 \\$function of class ReflectionFunction constructor expects Closure\\|string, callable\\(\\)\\: mixed given\\.$#"
 			count: 1
 			path: src/Twig/SourceCodeExtension.php
