@@ -1,0 +1,89 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2024-10-01T13:03:37Z
+
+The only important requirement for this project is that it must be fully usable without doing anything (run no commands, change no config option, etc.)
+
+A user runs `symfony new --demo my_project` (or `composer create-project symfony/symfony-demo my_project`) and then they have a fully usable project. If that it's true after all these changes, I'm OK with it.
+
+----
+
+In `framework.yaml` file, I think we need to readd this option: `csrf_protection: true` because the default value of that option is `false`.
+
+---------------------------------------------------------------------------
+
+by nicolas-grekas at 2024-10-01T13:05:39Z
+
+csrf_protection should be enabled by default, so everything should work after a create-project
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2024-10-01T13:40:01Z
+
+OK, thanks. Can you please fix the linter issues? Then, I'll merge this. Thanks.
+
+---------------------------------------------------------------------------
+
+by stof at 2024-10-01T13:58:21Z
+
+> * composer.lock is no committed, so that people always get the latest dependencies (note that this is how e.g. laravel installation works, so we're not inventing anything here, this is proven strategy.)
+
+The `symfony/demo` package is not about doing a new symfony installation but about being a project showcasing the best practices. So I don't think this argument holds true.
+
+---------------------------------------------------------------------------
+
+by nicolas-grekas at 2024-10-01T14:34:29Z
+
+Possibly @stof. The second argument still holds :)
+
+---------------------------------------------------------------------------
+
+by stof at 2024-10-01T14:37:18Z
+
+your second argument made me realize a big shortcoming of your new Flex feature (I commented at https://github.com/symfony/flex/pull/1028#issuecomment-2386163238 as this belongs to Flex).
+Actual projects won't be able to do your "hack" to fix it
+
+---------------------------------------------------------------------------
+
+by stof at 2024-10-01T14:38:46Z
+
+Btw, your hack would be a pain to maintain as this manual removal will have to be re-applied each time someone contributes an update.
+
+---------------------------------------------------------------------------
+
+by nicolas-grekas at 2024-10-01T14:54:16Z
+
+CI fixed @javiereguiluz
+I also bumped `twbs/bootstrap` and `symfonycasts/sass-bundle` which were using outdated versions.
+
+> your hack would be a pain to maintain as this manual removal will have to be re-applied each time someone contributes an update.
+
+@stof let's see. This should be manageable IMHO.
+
+---------------------------------------------------------------------------
+
+by stof at 2024-10-01T15:11:34Z
+
+@nicolas-grekas it would be very easy for contributors to submit an updated symfony.lock that would be missed during code review (especially given it is collapsed by default).
+And if we solve properly this problem space in Flex, we might not need this hack at all in the demo.
+
+---------------------------------------------------------------------------
+
+by nicolas-grekas at 2024-10-01T15:13:05Z
+
+We need to be careful indeed.
+Also we don't have a solution in flex, so I'm not sure what you have in mind. Can you expand on that?
+
+---------------------------------------------------------------------------
+
+by stof at 2024-10-01T15:36:56Z
+
+Well, in Flex, you are suggesting to use `.env.dev` instead of `.env.local`
+
+---------------------------------------------------------------------------
+
+by nicolas-grekas at 2024-10-01T15:41:56Z
+
+Vote pending BTW on that PR :)
+
+But this PR on flex won't solve the issue you're raising about maintainability: we'll still want flex to generate a new secret when the demo is installed, and the only way to do so it to run the fwb recipe at installation time, aka not commit the recipe in symfony.lock.
