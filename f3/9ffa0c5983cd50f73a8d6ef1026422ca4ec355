@@ -1,0 +1,25 @@
+---------------------------------------------------------------------------
+
+by Kocal at 2024-10-01T06:15:22Z
+
+Hi Javier, `em` is a relative unit that scales on ancestors `font-size`.
+
+When you render an icon inside a `.btn.btm-sm` which has a `font-size: 0.875rem`, the icon will be rendered smaller (visually 14px x 14px) instead of 16px x 16px if the parent's font-size was `1rem`:
+
+https://github.com/user-attachments/assets/6343d00c-46b9-4140-9455-698652d03fad
+
+And here where the icon is inside a `.btn.btn-lg`, you can see it's visually rendered as 20px x 20px:
+
+https://github.com/user-attachments/assets/bae17e2d-8639-43ab-b024-e98343b3ca36
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2024-10-01T06:21:37Z
+
+@Kocal yes, you are right. But even with the `1em` width/height of the icons, to me they look visibly smaller than the text that goes along them. I'll keep the `1.2em` default attribute then. Thanks!
+
+---------------------------------------------------------------------------
+
+by Kocal at 2024-10-01T06:31:12Z
+
+It may also be related to the fact that previous icons (via FontAwesome) were rendered using a font, whereas now a `<svg>` element is used. 🤔
