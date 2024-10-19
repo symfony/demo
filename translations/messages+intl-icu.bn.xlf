@@ -314,7 +314,7 @@
             </trans-unit>
             <trans-unit id="post.num_comments">
                 <source>post.num_comments</source>
-                <target>{count, plural, একটি {# মন্তব্য} অন্যান্য {# মন্তব্যসমূহ}}</target>
+                <target>{count, plural, one {একটি মন্তব্য} other {# মন্তব্যসমূহ}}</target>
             </trans-unit>
             <trans-unit id="post.commented_on">
                 <source>post.commented_on</source>

@@ -70,9 +70,13 @@ jobs:
               if: always() && steps.install.outcome == 'success'
               run: ./bin/console lint:twig templates --env=prod
 
-            - name: Lint XLIFF translations
+            - name: Lint XLIFF translation files
               if: always() && steps.install.outcome == 'success'
               run: ./bin/console lint:xliff translations
+
+            - name: Lint translation contents
+              if: always() && steps.install.outcome == 'success'
+              run: ./bin/console lint:translations
 
             - name: Lint Parameters and Services
               if: always() && steps.install.outcome == 'success'
