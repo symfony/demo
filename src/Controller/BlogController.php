@@ -13,6 +13,7 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\Post;
+use App\Entity\Tag;
 use App\Entity\User;
 use App\Event\CommentCreatedEvent;
 use App\Form\CommentType;
@@ -51,6 +52,8 @@ final class BlogController extends AbstractController
     #[Cache(smaxage: 10)]
     public function index(Request $request, int $page, string $_format, PostRepository $posts, TagRepository $tags): Response
     {
+        $tag = new Tag('');
+
         if ($request->query->has('tag')) {
             $tag = $tags->findOneBy(['name' => $request->query->get('tag')]);
         }
