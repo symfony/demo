@@ -7,7 +7,7 @@ homepage:
     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
     defaults:
         template: default/homepage.html.twig
-        _locale: '%locale%'
+        _locale: '%app.locale%'
 
 controllers:
     resource:
@@ -16,4 +16,4 @@ controllers:
     type: attribute
     prefix: /{_locale}
     defaults:
-        _locale: '%locale%'
+        _locale: '%app.locale%'
