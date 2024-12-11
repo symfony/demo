@@ -52,7 +52,7 @@ final class TagsInputType extends AbstractType
         $view->vars['tags'] = $this->tags->findAll();
     }
 
-    public function getParent(): ?string
+    public function getParent(): string
     {
         return TextType::class;
     }

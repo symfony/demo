@@ -56,11 +56,8 @@ jobs:
                   restore-keys: ${{ runner.os }}-composer-
 
             - name: "Install dependencies"
-              run: composer install --ansi --no-interaction --no-progress
-
-            - name: Install PHPUnit
               id: install
-              run: vendor/bin/simple-phpunit install
+              run: composer install --ansi --no-interaction --no-progress
 
             - name: Lint YAML files
               if: always() && steps.install.outcome == 'success'
@@ -94,6 +91,25 @@ jobs:
               if: always() && steps.install.outcome == 'success'
               run: composer audit
 
+    static-analysis:
+        name: PHPStan
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  coverage: none
+                  php-version: '8.3'
+
+            - name: Install dependencies
+              run: composer install --ansi --no-interaction --no-progress
+
+            - name: Install PHPUnit
+              run: vendor/bin/simple-phpunit install
+
             - name: Run PHPStan
-              if: always() && steps.install.outcome == 'success'
-              run: ./vendor/bin/phpstan analyze
+              run: vendor/bin/phpstan analyze --no-progress

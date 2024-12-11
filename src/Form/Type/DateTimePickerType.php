@@ -49,7 +49,7 @@ final class DateTimePickerType extends AbstractType
         ]);
     }
 
-    public function getParent(): ?string
+    public function getParent(): string
     {
         return DateTimeType::class;
     }
