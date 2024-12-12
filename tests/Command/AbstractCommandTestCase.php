@@ -16,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
 
-abstract class AbstractCommandTest extends KernelTestCase
+abstract class AbstractCommandTestCase extends KernelTestCase
 {
     /**
      * This helper method abstracts the boilerplate code needed to test the
