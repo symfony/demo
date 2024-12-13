@@ -58,10 +58,6 @@ jobs:
             - name: "Install dependencies"
               run: composer install --ansi --no-interaction --no-progress
 
-            - name: Install PHPUnit
-              id: install
-              run: vendor/bin/simple-phpunit install
-
             - name: Lint YAML files
               if: always() && steps.install.outcome == 'success'
               run: ./bin/console lint:yaml config --parse-tags
