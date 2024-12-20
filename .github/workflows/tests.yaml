@@ -24,10 +24,9 @@ jobs:
         strategy:
             matrix:
                 operating-system: ['ubuntu-latest']
-                php-version: ['8.2', '8.3']
+                php-version: ['8.2', '8.3', '8.4']
                 include:
-                    # TODO: change this to 'macos-latest' on June 2024, when '14' will become 'latest'
-                    - operating-system: 'macos-14'
+                    - operating-system: 'macos-latest'
                       php-version: '8.2'
                     - operating-system: 'windows-latest'
                       php-version: '8.2'
