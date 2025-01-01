@@ -44,17 +44,6 @@ jobs:
                   php-version: ${{ matrix.php-version }}
                   tools: composer:v2
 
-            - name: "Set composer cache directory"
-              id: composer-cache
-              run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
-
-            - name: "Cache composer"
-              uses: actions/cache@v4
-              with:
-                  path: ${{ steps.composer-cache.outputs.dir }}
-                  key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
-                  restore-keys: ${{ runner.os }}-composer-
-
             - name: "Install dependencies"
               run: composer install --ansi --no-interaction --no-progress
 
