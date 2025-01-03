@@ -1,8 +1,26 @@
+includes:
+    - phpstan-baseline.neon
+    - vendor/phpstan/phpstan-doctrine/extension.neon
+    - vendor/phpstan/phpstan-symfony/extension.neon
+    - vendor/phpstan/phpstan-symfony/rules.neon
+
 parameters:
+    bootstrapFiles:
+        - vendor/bin/.phpunit/phpunit/vendor/autoload.php
+
+    doctrine:
+        objectManagerLoader: tests/object-manager.php
+
+    ignoreErrors:
+        - identifier: missingType.generics
+
     level: 6
     paths:
-        - bin/
-        - config/
-        - public/
-        - src/
-        - tests/
+        - bin
+        - config
+        - public
+        - src
+        - tests
+
+    symfony:
+        containerXmlPath: var/cache/dev/App_KernelDevDebugContainer.xml
