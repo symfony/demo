@@ -145,23 +145,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function eraseCredentials(): void
     {
-        // if you had a plainPassword property, you'd nullify it here
-        // $this->plainPassword = null;
-    }
-
-    /**
-     * @return array{int|null, string|null, string|null}
-     */
-    public function __serialize(): array
-    {
-        return [$this->id, $this->username, $this->password];
-    }
-
-    /**
-     * @param array{int|null, string, string} $data
-     */
-    public function __unserialize(array $data): void
-    {
-        [$this->id, $this->username, $this->password] = $data;
+        $this->password = null;
     }
 }
