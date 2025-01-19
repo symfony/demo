@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<meta-storm xmlns="meta-storm">
+    <definitions>
+        <classMethod class="\Symfony\Bundle\FrameworkBundle\Controller\AbstractController" method="render" argument="0">
+            <files xpath="$project/templates" extension="" />
+        </classMethod>
+        <classMethod class="\Symfony\Bundle\FrameworkBundle\Controller\AbstractController" method="redirectToRoute" argument="0">
+            <collection name="routes" />
+        </classMethod>
+        <classMethod class="\Symfony\Component\Routing\Generator\UrlGeneratorInterface" method="generate" argument="0">
+            <collection name="routes" />
+        </classMethod>
+        <classMethod class="\Symfony\Component\String\UnicodeString" method="replaceMatches" argument="0">
+            <languageInjection language="RegExp" />
+        </classMethod>
+        <classMethod class="\Symfony\Component\DomCrawler\Crawler" method="filter" argument="0">
+            <languageInjection language="CSS" />
+        </classMethod>
+        <classMethod class="\Twig\Environment" method="render" argument="0">
+            <files xpath="$project/templates" extension="" />
+        </classMethod>
+        <classMethod class="\Doctrine\ORM\EntityRepository" method="resolveMagicCall" argument="0">
+            <methods xpath="$containingClass" />
+        </classMethod>
+        <classMethod class="\Symfony\Component\BrowserKit\AbstractBrowser" method="request" argument="0">
+            <collection name="http-methods" />
+        </classMethod>
+    </definitions>
+    <collections>
+        <attributeArgument name="routes" class="\Symfony\Component\Routing\Attribute\Route" argument="1" />
+        <strings name="http-methods">
+            <value>GET</value>
+            <value>POST</value>
+            <value>PUT</value>
+            <value>DELETE</value>
+            <value>PATCH</value>
+            <value>OPTIONS</value>
+        </strings>
+    </collections>
+</meta-storm>
