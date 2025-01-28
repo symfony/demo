@@ -60,13 +60,6 @@ security:
             # See https://symfony.com/doc/current/security/experimental_authenticators.html#configuring-the-authentication-entry-point
             entry_point: 'form_login'
 
-    # Easy way to control access for large sections of your site
-    # Note: Only the *first* access control that matches will be used
-    access_control:
-        # this is a catch-all for the admin area
-        # additional security lives in the controllers
-        - { path: '^/{_locale}/admin', roles: ROLE_ADMIN }
-
     # The ROLE_ADMIN role inherits from the ROLE_USER role
     role_hierarchy:
         ROLE_ADMIN: ROLE_USER
