@@ -27,7 +27,7 @@
                             {% set is_active = app.request.locale == locale.code %}
                             {% set is_rtl = locale.code in ['ar', 'fa', 'he'] %}
                             <li class="{{ is_active ? 'active' }} {{ is_rtl ? 'rtl' }}" translate="no">
-                                <a class="stretched-link" lang="{{ locale.code }}" hreflang="{{ locale.code }}" href="{{ path(app.request.get('_route', 'blog_index'), app.request.get('_route_params', [])|merge({_locale: locale.code})) }}">
+                                <a class="stretched-link" lang="{{ locale.code }}" hreflang="{{ locale.code }}" href="{{ path(app.current_route ?? 'blog_index', app.current_route_parameters|merge({_locale: locale.code})) }}">
                                     {{ locale.name|capitalize }}
                                     <small>{{ locale.code }}</small>
                                 </a>
