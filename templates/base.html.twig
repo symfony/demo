@@ -4,7 +4,7 @@
    See https://symfony.com/doc/current/templates.html#template-inheritance-and-layouts
 #}
 <!DOCTYPE html>
-<html lang="{{ app.request.locale }}">
+<html lang="{{ app.locale }}">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -102,7 +102,7 @@
                             {{ render_esi(controller('Symfony\\Bundle\\FrameworkBundle\\Controller\\TemplateController::templateAction', {
                                 'template': 'blog/about.html.twig',
                                 'sharedAge': 600,
-                                '_locale': app.request.locale
+                                '_locale': app.locale
                             })) }}
                         {% endblock %}
                     </div>
