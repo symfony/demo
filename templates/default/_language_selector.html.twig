@@ -2,7 +2,7 @@
     <a href="#" class="nav-link dropdown-toggle language-selector-dropdown-button" data-toggle="modal" data-target="#locale-selector-modal" role="button" id="locales">
         <twig:ux:icon name="tabler:world"/>
         {% if display_current_language %}
-            <span class="current-language">{{ app.request.locale|locale_name }}</span>
+            <span class="current-language">{{ app.locale|locale_name }}</span>
         {% endif %}
         <span class="caret"></span>
         <span class="sr-only">{{ 'menu.choose_language'|trans }}</span>
@@ -24,7 +24,7 @@
                 <div class="modal-body">
                     <ul class="locales">
                         {% for locale in locales() %}
-                            {% set is_active = app.request.locale == locale.code %}
+                            {% set is_active = app.locale == locale.code %}
                             {% set is_rtl = locale.code in ['ar', 'fa', 'he'] %}
                             <li class="{{ is_active ? 'active' }} {{ is_rtl ? 'rtl' }}" translate="no">
                                 <a class="stretched-link" lang="{{ locale.code }}" hreflang="{{ locale.code }}" href="{{ path(app.current_route ?? 'blog_index', app.current_route_parameters|merge({_locale: locale.code})) }}">
