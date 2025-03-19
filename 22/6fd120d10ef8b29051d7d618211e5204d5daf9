@@ -1,0 +1,21 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2025-02-24T09:28:52Z
+
+Wouter, if you have some time, please try to rebase this PR so we can merge it. Thanks a lot!
+
+---------------------------------------------------------------------------
+
+by wouterj at 2025-03-06T12:50:44Z
+
+Rebased. The test seem to be broken in main though.
+
+Also, I'm not sure on what the policies for this project are, but this PR is not in line with the Flex recipes for the phpunit configuration. I was thinking we first have to fix Flex before we could merge this?
+
+---------------------------------------------------------------------------
+
+by rosier at 2025-03-09T20:51:32Z
+
+The lines https://github.com/symfony/demo/blob/main/phpstan.dist.neon#L8-L10 can be removed.
+
+This should fix the Lint / PHPStan test
