@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- https://phpunit.readthedocs.io/en/latest/configuration.html -->
+<!-- https://docs.phpunit.de/en/11.5/configuration.html -->
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
-         backupGlobals="false"
+         failOnDeprecation="true"
+         failOnNotice="true"
+         failOnWarning="true"
          colors="true"
          bootstrap="tests/bootstrap.php"
-         convertDeprecationsToExceptions="false"
 >
     <php>
-        <ini name="display_errors" value="1" />
-        <ini name="error_reporting" value="-1" />
-        <server name="APP_ENV" value="test" force="true" />
-        <server name="SHELL_VERBOSITY" value="-1" />
-        <server name="SYMFONY_PHPUNIT_REMOVE" value="" />
-        <server name="SYMFONY_PHPUNIT_VERSION" value="9.6" />
+        <ini name="display_errors" value="1"/>
+        <ini name="error_reporting" value="-1"/>
+        <server name="APP_ENV" value="test" force="true"/>
+        <server name="SHELL_VERBOSITY" value="-1"/>
     </php>
 
     <testsuites>
@@ -23,22 +22,26 @@
         </testsuite>
     </testsuites>
 
-    <coverage processUncoveredFiles="true">
+    <source ignoreSuppressionOfDeprecations="true"
+            ignoreIndirectDeprecations="true"
+    >
         <include>
             <directory suffix=".php">src</directory>
         </include>
-    </coverage>
 
-    <listeners>
-        <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener" />
-    </listeners>
+        <deprecationTrigger>
+            <function>trigger_deprecation</function>
+            <method>Doctrine\Deprecations\Deprecation::trigger</method>
+            <method>Doctrine\Deprecations\Deprecation::delegateTriggerToBackend</method>
+        </deprecationTrigger>
+    </source>
 
     <extensions>
         <!-- it begins a database transaction before every testcase and rolls it back after
              the test finished, so tests can manipulate the database without affecting other tests -->
-        <extension class="DAMA\DoctrineTestBundle\PHPUnit\PHPUnitExtension" />
+        <bootstrap class="DAMA\DoctrineTestBundle\PHPUnit\PHPUnitExtension"/>
 
         <!-- Run `composer require symfony/panther` before enabling this extension -->
-        <!-- <extension class="Symfony\Component\Panther\ServerExtension" /> -->
+        <!-- <bootstrap class="Symfony\Component\Panther\ServerExtension" /> -->
     </extensions>
 </phpunit>

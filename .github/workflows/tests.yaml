@@ -8,9 +8,6 @@ on:
 
 env:
     fail-fast: true
-    PHPUNIT_FLAGS: "-v"
-    SYMFONY_PHPUNIT_DIR: "$HOME/symfony-bridge/.phpunit"
-    SYMFONY_DEPRECATIONS_HELPER: 'max[indirect]=52'
 
 permissions:
     contents: read
@@ -55,11 +52,5 @@ jobs:
                 php bin/console sass:build
                 php bin/console asset-map:compile
 
-            - name: "Install PHPUnit"
-              run: vendor/bin/simple-phpunit install
-
-            - name: "PHPUnit version"
-              run: vendor/bin/simple-phpunit --version
-
             - name: "Run tests"
-              run: vendor/bin/simple-phpunit ${{ env.PHPUNIT_FLAGS }}
+              run: vendor/bin/phpunit

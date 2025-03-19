@@ -13,6 +13,7 @@ namespace App\Tests\Controller;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -33,9 +34,7 @@ use Symfony\Component\HttpFoundation\Response;
  */
 final class UserControllerTest extends WebTestCase
 {
-    /**
-     * @dataProvider getUrlsForAnonymousUsers
-     */
+    #[DataProvider('getUrlsForAnonymousUsers')]
     public function testAccessDeniedForAnonymousUsers(string $httpMethod, string $url): void
     {
         $client = static::createClient();
@@ -48,7 +47,7 @@ final class UserControllerTest extends WebTestCase
         );
     }
 
-    public function getUrlsForAnonymousUsers(): \Generator
+    public static function getUrlsForAnonymousUsers(): \Generator
     {
         yield ['GET', '/en/profile/edit'];
         yield ['GET', '/en/profile/change-password'];
