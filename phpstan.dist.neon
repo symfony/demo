@@ -5,9 +5,6 @@ includes:
     - vendor/phpstan/phpstan-symfony/rules.neon
 
 parameters:
-    bootstrapFiles:
-        - vendor/bin/.phpunit/phpunit/vendor/autoload.php
-
     doctrine:
         objectManagerLoader: tests/object-manager.php
 
