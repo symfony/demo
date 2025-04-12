@@ -44,11 +44,13 @@ final class DefaultControllerTest extends WebTestCase
     }
 
     /**
-     * A good practice for tests is to not use the service container, to make
+     * A good practice for such tests is to not use the service container, to make
      * them more robust. However, in this example we must access to the container
      * to get the entity manager and make a database query. The reason is that
      * blog post fixtures are randomly generated and there's no guarantee that
      * a given blog post slug will be available.
+     * You can also make some integration test to test services logic.
+     * See https://symfony.com/doc/current/testing.html#integration-tests
      */
     public function testPublicBlogPost(): void
     {
