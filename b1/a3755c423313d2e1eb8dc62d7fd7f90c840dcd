@@ -1,0 +1,7 @@
+---------------------------------------------------------------------------
+
+by rosier at 2024-11-13T19:35:21Z
+
+BTW to make the demo work in production mode I also had to run:
+
+`APP_ENV=prod bin/console asset-map:compile`
