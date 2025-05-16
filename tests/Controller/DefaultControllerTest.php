@@ -49,7 +49,8 @@ final class DefaultControllerTest extends WebTestCase
      * to get the entity manager and make a database query. The reason is that
      * blog post fixtures are randomly generated and there's no guarantee that
      * a given blog post slug will be available.
-     * You can also make some integration test to test services logic.
+     *
+     * You can also write integration tests to verify the logic of your services.
      * See https://symfony.com/doc/current/testing.html#integration-tests
      */
     public function testPublicBlogPost(): void
