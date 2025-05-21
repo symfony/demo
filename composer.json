@@ -96,6 +96,9 @@
             "importmap:install": "symfony-cmd",
             "sass:build": "symfony-cmd"
         },
+        "post-create-project-cmd": [
+            "@php -r \"echo 'APP_SECRET='.bin2hex(random_bytes(16)).PHP_EOL;\" > .env.local"
+        ],
         "post-install-cmd": [
             "@auto-scripts"
         ],
