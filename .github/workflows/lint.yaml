@@ -44,6 +44,9 @@ jobs:
                   php-version: ${{ matrix.php-version }}
                   tools: composer:v2
 
+            - name: Lint Composer config
+              run: composer validate --no-check-publish --strict
+
             - name: "Install dependencies"
               id: install
               run: composer install --ansi --no-interaction --no-progress
@@ -71,10 +74,6 @@ jobs:
             - name: Lint Doctrine entities
               if: always() && steps.install.outcome == 'success'
               run: ./bin/console doctrine:schema:validate --skip-sync -vvv --no-interaction
-
-            - name: Lint Composer config
-              if: always() && steps.install.outcome == 'success'
-              run: composer validate --strict
 
             - name: Check if any dependencies are compromised
               if: always() && steps.install.outcome == 'success'
