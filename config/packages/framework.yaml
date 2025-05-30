@@ -15,6 +15,9 @@ framework:
     esi: true
     fragments: true
 
+    property_info:
+        with_constructor_extractor: false
+
 when@test:
     framework:
         test: true
