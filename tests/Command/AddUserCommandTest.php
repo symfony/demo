@@ -11,7 +11,6 @@
 
 namespace App\Tests\Command;
 
-use App\Command\AddUserCommand;
 use App\Repository\UserRepository;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -103,8 +102,8 @@ final class AddUserCommandTest extends AbstractCommandTestCase
         $this->assertSame($isAdmin ? ['ROLE_ADMIN'] : ['ROLE_USER'], $user->getRoles());
     }
 
-    protected function getCommandFqcn(): string
+    protected function getCommandName(): string
     {
-        return AddUserCommand::class;
+        return 'app:add-user';
     }
 }

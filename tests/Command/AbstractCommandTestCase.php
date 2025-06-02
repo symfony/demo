@@ -13,7 +13,6 @@ namespace App\Tests\Command;
 
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
 
 abstract class AbstractCommandTestCase extends KernelTestCase
@@ -29,11 +28,10 @@ abstract class AbstractCommandTestCase extends KernelTestCase
     protected function executeCommand(array $arguments, array $inputs = []): CommandTester
     {
         $kernel = self::bootKernel();
+        $application = new Application($kernel);
 
-        // this uses a special testing container that allows you to fetch private services
-        /** @var Command $command */
-        $command = static::getContainer()->get($this->getCommandFqcn());
-        $command->setApplication(new Application($kernel));
+        $command = $application->find($this->getCommandName());
+        $command->setApplication($application);
 
         $commandTester = new CommandTester($command);
         $commandTester->setInputs($inputs);
@@ -42,5 +40,5 @@ abstract class AbstractCommandTestCase extends KernelTestCase
         return $commandTester;
     }
 
-    abstract protected function getCommandFqcn(): string;
+    abstract protected function getCommandName(): string;
 }
