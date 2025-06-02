@@ -11,7 +11,6 @@
 
 namespace App\Tests\Command;
 
-use App\Command\ListUsersCommand;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 final class ListUsersCommandTest extends AbstractCommandTestCase
@@ -50,8 +49,8 @@ final class ListUsersCommandTest extends AbstractCommandTestCase
         $this->assertEmailCount(1);
     }
 
-    protected function getCommandFqcn(): string
+    protected function getCommandName(): string
     {
-        return ListUsersCommand::class;
+        return 'app:list-users';
     }
 }
