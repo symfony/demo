@@ -34,13 +34,17 @@ final class AppExtension extends AbstractExtension
     public function __construct(
         /** @var string[] */
         private readonly array $enabledLocales,
+        private readonly string $defaultLocale,
     ) {
     }
 
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('locales', $this->getLocales(...)),
+            new TwigFunction('locales', [$this, 'getLocales']),
+            new TwigFunction('is_rtl', [$this, 'isRtl']),
+            new TwigFunction('rtl_class', [$this, 'getRtlClass']),
+            new TwigFunction('rtl_dir', [$this, 'getRtlDir']),
         ];
     }
 
@@ -64,5 +68,31 @@ final class AppExtension extends AbstractExtension
         }
 
         return $this->locales;
+    }
+
+    /**
+     * Check if the given locale is RTL.
+     */
+    public function isRtl(?string $locale = null): bool
+    {
+        $locale = $locale ?? $this->defaultLocale;
+
+        return \in_array($locale, ['ar', 'fa', 'he', 'ur', 'ps', 'sd'], true);
+    }
+
+    /**
+     * Get RTL class if the locale is RTL.
+     */
+    public function getRtlClass(?string $locale = null): string
+    {
+        return $this->isRtl($locale) ? 'rtl' : '';
+    }
+
+    /**
+     * Get direction attribute value for RTL support.
+     */
+    public function getRtlDir(?string $locale = null): string
+    {
+        return $this->isRtl($locale) ? 'rtl' : 'ltr';
     }
 }

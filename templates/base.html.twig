@@ -4,7 +4,7 @@
    See https://symfony.com/doc/current/templates.html#template-inheritance-and-layouts
 #}
 <!DOCTYPE html>
-<html lang="{{ app.locale }}">
+<html lang="{{ app.locale }}" dir="{{ rtl_dir(app.locale) }}">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -23,7 +23,7 @@
         <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
     </head>
 
-    <body id="{% block body_id %}{% endblock %}">
+    <body id="{% block body_id %}{% endblock %}" class="{{ rtl_class(app.locale) }}">
 
         {% block header %}
             {% set _route = app.current_route %}
