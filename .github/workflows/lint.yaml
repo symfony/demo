@@ -21,9 +21,9 @@ jobs:
               uses: actions/checkout@v4
 
             - name: PHP-CS-Fixer
-              uses: docker://oskarstark/php-cs-fixer-ga
+              uses: docker://ghcr.io/php-cs-fixer/php-cs-fixer:3-php8.2
               with:
-                  args: --diff --dry-run
+                  args: check --diff --using-cache=no
 
     linters:
         name: Linters
