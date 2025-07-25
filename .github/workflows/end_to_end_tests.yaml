@@ -50,8 +50,8 @@ jobs:
                   composer create-project symfony/symfony-demo composer_test
 
             - name: Test application
+              working-directory: ./composer_test
               run: |
-                  working-directory: ./composer_test
                   php bin/console about
                   php bin/console list
                   php bin/console cache:clear --env=test
