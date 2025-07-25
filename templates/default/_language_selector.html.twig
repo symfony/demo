@@ -25,7 +25,7 @@
                     <ul class="locales">
                         {% for locale in locales() %}
                             {% set is_active = app.locale == locale.code %}
-                            <li class="{{ is_active ? 'active' }} {{ rtl_class(locale.code) }}" translate="no">
+                            <li class="{{ is_active ? 'active' }} {{ is_rtl(locale.code) ? 'rtl' }}" translate="no">
                                 <a class="stretched-link" lang="{{ locale.code }}" hreflang="{{ locale.code }}" href="{{ path(app.current_route ?? 'blog_index', app.current_route_parameters|merge({_locale: locale.code})) }}">
                                     {{ locale.name|capitalize }}
                                     <small>{{ locale.code }}</small>
