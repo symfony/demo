@@ -8,6 +8,9 @@ on:
     # allow manual triggering for testing purposes
     workflow_dispatch:
 
+permissions:
+    contents: read
+
 jobs:
     test-symfony-cli-installation:
         name: Test Symfony CLI Installation
