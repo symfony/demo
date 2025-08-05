@@ -16,9 +16,9 @@ jobs:
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
               with:
-                  php-version: '8.4'
-                  extensions: none, ctype, iconv, intl, mbstring, pdo_sqlite, xml
                   coverage: none
+                  extensions: none, ctype, dom, iconv, intl, mbstring, pdo_sqlite, simplexml, tokenizer, xml, xmlwriter
+                  php-version: '8.4'
                   tools: symfony
 
             - name: Create project using Symfony CLI
@@ -40,10 +40,9 @@ jobs:
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
               with:
-                  php-version: '8.4'
-                  extensions: none, ctype, iconv, intl, mbstring, pdo_sqlite, xml
-                  tools: composer
                   coverage: none
+                  extensions: none, ctype, dom, iconv, intl, mbstring, pdo_sqlite, simplexml, tokenizer, xml, xmlwriter
+                  php-version: '8.4'
 
             - name: Create project using Composer
               run: |
@@ -64,10 +63,9 @@ jobs:
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
               with:
-                  php-version: '8.4'
-                  extensions: none, ctype, iconv, intl, mbstring, pdo_sqlite, xml
-                  tools: composer
                   coverage: none
+                  extensions: none, ctype, dom, iconv, intl, mbstring, pdo_sqlite, simplexml, tokenizer, xml, xmlwriter
+                  php-version: '8.4'
 
             - name: Clone repository and install dependencies
               run: |
