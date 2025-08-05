@@ -4,8 +4,9 @@ on:
     schedule:
         # run daily at 2:00 AM UTC
         - cron: '0 2 * * *'
-        # allow manual triggering for testing purposes
-        workflow_dispatch:
+
+    # allow manual triggering for testing purposes
+    workflow_dispatch:
 
 jobs:
     test-symfony-cli-installation:
