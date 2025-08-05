@@ -82,10 +82,11 @@ jobs:
                   php bin/console cache:clear --env=test
 
     notify-on-failure:
-        name: Notify on Failure
-        runs-on: ubuntu-latest
-        needs: [test-symfony-cli-installation, test-composer-create-project, test-git-clone-installation]
         if: failure()
+        name: Notify on Failure
+        needs: [test-symfony-cli-installation, test-composer-create-project, test-git-clone-installation]
+        runs-on: ubuntu-latest
+
         permissions:
             issues: write
 
