@@ -27,10 +27,10 @@ jobs:
 
             - name: Create project using Symfony CLI
               run: |
-                  symfony new --demo symfony_cli_test
+                  symfony new --demo ${{ github.job }}
 
             - name: Test application
-              working-directory: ./symfony_cli_test
+              working-directory: ${{ github.job }}
               run: |
                   php bin/console about
                   php bin/console list
@@ -50,10 +50,10 @@ jobs:
 
             - name: Create project using Composer
               run: |
-                  composer create-project symfony/symfony-demo composer_test
+                  composer create-project symfony/symfony-demo ${{ github.job }}
 
             - name: Test application
-              working-directory: ./composer_test
+              working-directory: ${{ github.job }}
               run: |
                   php bin/console about
                   php bin/console list
@@ -73,12 +73,12 @@ jobs:
 
             - name: Clone repository and install dependencies
               run: |
-                  git clone https://github.com/symfony/demo.git git_clone_test
-                  cd git_clone_test
+                  git clone https://github.com/symfony/demo.git ${{ github.job }}
+                  cd ${{ github.job }}
                   composer install --no-dev --optimize-autoloader
 
             - name: Test application
-              working-directory: ./git_clone_test
+              working-directory: ${{ github.job }}
               run: |
                   php bin/console about
                   php bin/console list
