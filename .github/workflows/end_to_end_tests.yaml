@@ -110,18 +110,19 @@ jobs:
               with:
                   script: |
                       const title = `End to End Test Failed - ${new Date().toISOString().split('T')[0]}`;
-                      const body = `
-                          The daily end to end test workflow has failed. This means users may be experiencing issues installing the Symfony Demo application.
+                      const body = `The daily end to end test workflow has failed.
 
-                          **Failed Jobs:**
-                          - Check the workflow run for details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+                      This means users may be experiencing issues installing the Symfony Demo application.
 
-                          **Installation Methods Tested:**
-                          - Symfony CLI installation
-                          - Composer create-project
-                          - Git clone + composer install
+                      **Failed Jobs:**
+                      - Check the workflow run for details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
-                          Please investigate and fix the installation issues as soon as possible.
+                      **Installation Methods Tested:**
+                      - Symfony CLI installation
+                      - Composer create-project
+                      - Git clone + composer install
+
+                      Please investigate and fix the installation issues as soon as possible.
                       `;
 
                       github.rest.issues.create({
