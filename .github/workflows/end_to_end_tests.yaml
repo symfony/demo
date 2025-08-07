@@ -23,7 +23,7 @@ jobs:
                   coverage: none
                   extensions: none, ctype, dom, iconv, intl, mbstring, pdo_sqlite, simplexml, tokenizer, xml, xmlwriter
                   php-version: '8.2'
-                  tools: symfony
+                  tools: symfony-cli
 
             - name: Configure environment
               run: |
@@ -39,8 +39,9 @@ jobs:
               working-directory: ${{ github.job }}
               run: |
                   php bin/console about
-                  php bin/console list
-                  php bin/console cache:clear --env=test
+                  symfony server:start -d --no-tls
+                  curl --fail --max-time 5 --no-progress-meter --output home.html -v http://127.0.0.1:8000/
+                  symfony server:stop
 
     test-composer-create-project:
         name: Test Composer Create Project
@@ -53,6 +54,7 @@ jobs:
                   coverage: none
                   extensions: none, ctype, dom, iconv, intl, mbstring, pdo_sqlite, simplexml, tokenizer, xml, xmlwriter
                   php-version: latest
+                  tools: symfony-cli
 
             - name: Create project using Composer
               run: |
@@ -62,8 +64,9 @@ jobs:
               working-directory: ${{ github.job }}
               run: |
                   php bin/console about
-                  php bin/console list
-                  php bin/console cache:clear --env=test
+                  symfony server:start -d --no-tls
+                  curl --fail --max-time 5 --no-progress-meter --output home.html -v http://127.0.0.1:8000/
+                  symfony server:stop
 
     test-git-clone-installation:
         name: Test Git Clone Installation
@@ -76,6 +79,7 @@ jobs:
                   coverage: none
                   extensions: none, ctype, dom, iconv, intl, mbstring, pdo_sqlite, simplexml, tokenizer, xml, xmlwriter
                   php-version: '8.3'
+                  tools: symfony-cli
 
             - name: Clone repository and install dependencies
               run: |
@@ -87,8 +91,9 @@ jobs:
               working-directory: ${{ github.job }}
               run: |
                   php bin/console about
-                  php bin/console list
-                  php bin/console cache:clear --env=test
+                  symfony server:start -d --no-tls
+                  curl --fail --max-time 5 --no-progress-meter --output home.html -v http://127.0.0.1:8000/
+                  symfony server:stop
 
     notify-on-failure:
         if: failure()
