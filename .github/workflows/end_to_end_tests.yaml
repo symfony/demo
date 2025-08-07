@@ -25,6 +25,12 @@ jobs:
                   php-version: '8.2'
                   tools: symfony
 
+            - name: Configure environment
+              run: |
+                  git config --global init.defaultBranch main
+                  git config --global user.email "noreply@example.com"
+                  git config --global user.name "Symfony Demo"
+
             - name: Create project using Symfony CLI
               run: |
                   symfony new --demo ${{ github.job }}
