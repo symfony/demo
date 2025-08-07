@@ -83,7 +83,7 @@ jobs:
               run: |
                   git clone https://github.com/symfony/demo.git ${{ github.job }}
                   cd ${{ github.job }}
-                  composer install --no-dev --optimize-autoloader
+                  composer install
 
             - name: Test application
               working-directory: ${{ github.job }}
