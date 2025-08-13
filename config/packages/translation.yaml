@@ -5,8 +5,6 @@ framework:
         # Translations are defined using the ICU Message Format
         # See https://symfony.com/doc/current/translation/message_format.html
         default_path: '%kernel.project_dir%/translations'
-        fallbacks:
-            - '%app.locale%'
         providers:
 #            crowdin:
 #                dsn: '%env(CROWDIN_DSN)%'
