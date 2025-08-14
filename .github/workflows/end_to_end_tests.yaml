@@ -61,6 +61,7 @@ jobs:
             - name: Test application
               working-directory: ${{ github.job }}
               run: |
+                  rm -v .env.local
                   php bin/console about
                   symfony server:start -d --no-tls
                   curl --fail --max-time 5 --no-progress-meter --output home.html -v http://127.0.0.1:8000/
@@ -94,7 +95,7 @@ jobs:
                   symfony server:stop
 
     notify-on-failure:
-        if: failure()
+        if: ${{ always() && contains(needs.*.result, 'failure') }}
         name: Notify on Failure
         needs: [test-symfony-cli-installation, test-composer-create-project, test-git-clone-installation]
         runs-on: ubuntu-latest
@@ -105,25 +106,30 @@ jobs:
         steps:
             - name: Create Issue on Failure
               uses: actions/github-script@v7
+              env:
+                  NEEDS_CONTEXT: ${{ toJSON(needs) }}
               with:
                   script: |
-                      const title = `End to End Test Failed - ${new Date().toISOString().split('T')[0]}`;
-                      const body = `The daily end to end test workflow has failed.
+                      const needsContext = JSON.parse(process.env.NEEDS_CONTEXT);
+                      const failedJobs = Object.keys(needsContext)
+                        .filter(jobName => 'failure' === needsContext[jobName].result)
+                        .map(jobName => `- **${needsContext[jobName].outputs.name || jobName}**: Failed`);
+
+                      const runUrl = `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
+                      const title = `E2E Test Failure: ${new Date().toISOString().split('T')[0]}`;
+
+                      const body = `
+                      The daily end-to-end test workflow has failed.
 
                       This means users may be experiencing issues installing the Symfony Demo application.
 
-                      **Failed Jobs:**
-                      - Check the workflow run for details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-
-                      **Installation Methods Tested:**
-                      - Symfony CLI installation
-                      - Composer create-project
-                      - Git clone + composer install
+                      ### Failed Jobs:
+                      ${failedJobs.join('\n')}
 
                       Please investigate and fix the installation issues as soon as possible.
                       `;
 
-                      github.rest.issues.create({
+                      await github.rest.issues.create({
                           owner: context.repo.owner,
                           repo: context.repo.repo,
                           title: title,
