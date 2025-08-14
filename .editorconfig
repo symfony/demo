@@ -1,3 +1,5 @@
+# editorconfig.org
+
 root = true
 
 [*]
@@ -7,3 +9,9 @@ indent_size = 4
 indent_style = space
 insert_final_newline = true
 trim_trailing_whitespace = true
+
+[{compose.yaml,compose.*.yaml}]
+indent_size = 2
+
+[*.md]
+trim_trailing_whitespace = false
