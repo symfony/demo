@@ -4,8 +4,12 @@ on:
     schedule:
         # run daily at 2:00 AM UTC
         - cron: '0 2 * * *'
-        # allow manual triggering for testing purposes
-        workflow_dispatch:
+
+    # allow manual triggering for testing purposes
+    workflow_dispatch:
+
+permissions:
+    contents: read
 
 jobs:
     test-symfony-cli-installation:
@@ -16,21 +20,27 @@ jobs:
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
               with:
-                  php-version: '8.4'
-                  extensions: none, ctype, iconv, intl, mbstring, pdo_sqlite, xml
                   coverage: none
-                  tools: symfony
+                  extensions: none, ctype, dom, iconv, intl, mbstring, pdo_sqlite, simplexml, tokenizer, xml, xmlwriter
+                  php-version: '8.2'
+                  tools: symfony-cli
+
+            - name: Configure environment
+              run: |
+                  git config --global init.defaultBranch main
+                  git config --global user.email "noreply@example.com"
+                  git config --global user.name "Symfony Demo"
 
             - name: Create project using Symfony CLI
-              run: |
-                  symfony new --demo symfony_cli_test
+              run: symfony new --demo ${{ github.job }}
 
             - name: Test application
-              working-directory: ./symfony_cli_test
+              working-directory: ${{ github.job }}
               run: |
                   php bin/console about
-                  php bin/console list
-                  php bin/console cache:clear --env=test
+                  symfony server:start -d --no-tls
+                  curl --fail --max-time 5 --no-progress-meter --output home.html -v http://127.0.0.1:8000/
+                  symfony server:stop
 
     test-composer-create-project:
         name: Test Composer Create Project
@@ -40,21 +50,22 @@ jobs:
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
               with:
-                  php-version: '8.4'
-                  extensions: none, ctype, iconv, intl, mbstring, pdo_sqlite, xml
-                  tools: composer
                   coverage: none
+                  extensions: none, ctype, dom, iconv, intl, mbstring, pdo_sqlite, simplexml, tokenizer, xml, xmlwriter
+                  php-version: latest
+                  tools: symfony-cli
 
             - name: Create project using Composer
-              run: |
-                  composer create-project symfony/symfony-demo composer_test
+              run: composer create-project symfony/symfony-demo ${{ github.job }}
 
             - name: Test application
-              working-directory: ./composer_test
+              working-directory: ${{ github.job }}
               run: |
+                  rm -v .env.local
                   php bin/console about
-                  php bin/console list
-                  php bin/console cache:clear --env=test
+                  symfony server:start -d --no-tls
+                  curl --fail --max-time 5 --no-progress-meter --output home.html -v http://127.0.0.1:8000/
+                  symfony server:stop
 
     test-git-clone-installation:
         name: Test Git Clone Installation
@@ -64,29 +75,31 @@ jobs:
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
               with:
-                  php-version: '8.4'
-                  extensions: none, ctype, iconv, intl, mbstring, pdo_sqlite, xml
-                  tools: composer
                   coverage: none
+                  extensions: none, ctype, dom, iconv, intl, mbstring, pdo_sqlite, simplexml, tokenizer, xml, xmlwriter
+                  php-version: '8.3'
+                  tools: symfony-cli
 
             - name: Clone repository and install dependencies
               run: |
-                  git clone https://github.com/symfony/demo.git git_clone_test
-                  cd git_clone_test
-                  composer install --no-dev --optimize-autoloader
+                  git clone https://github.com/symfony/demo.git ${{ github.job }}
+                  cd ${{ github.job }}
+                  composer install
 
             - name: Test application
-              working-directory: ./git_clone_test
+              working-directory: ${{ github.job }}
               run: |
                   php bin/console about
-                  php bin/console list
-                  php bin/console cache:clear --env=test
+                  symfony server:start -d --no-tls
+                  curl --fail --max-time 5 --no-progress-meter --output home.html -v http://127.0.0.1:8000/
+                  symfony server:stop
 
     notify-on-failure:
-        name: Notify on Failure
-        runs-on: ubuntu-latest
-        needs: [test-symfony-cli-installation, test-composer-create-project, test-git-clone-installation]
         if: failure()
+        name: Notify on Failure
+        needs: [test-symfony-cli-installation, test-composer-create-project, test-git-clone-installation]
+        runs-on: ubuntu-latest
+
         permissions:
             issues: write
 
@@ -96,18 +109,19 @@ jobs:
               with:
                   script: |
                       const title = `End to End Test Failed - ${new Date().toISOString().split('T')[0]}`;
-                      const body = `
-                          The daily end to end test workflow has failed. This means users may be experiencing issues installing the Symfony Demo application.
+                      const body = `The daily end to end test workflow has failed.
 
-                          **Failed Jobs:**
-                          - Check the workflow run for details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+                      This means users may be experiencing issues installing the Symfony Demo application.
 
-                          **Installation Methods Tested:**
-                          - Symfony CLI installation
-                          - Composer create-project
-                          - Git clone + composer install
+                      **Failed Jobs:**
+                      - Check the workflow run for details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
-                          Please investigate and fix the installation issues as soon as possible.
+                      **Installation Methods Tested:**
+                      - Symfony CLI installation
+                      - Composer create-project
+                      - Git clone + composer install
+
+                      Please investigate and fix the installation issues as soon as possible.
                       `;
 
                       github.rest.issues.create({
