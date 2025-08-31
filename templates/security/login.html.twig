@@ -4,42 +4,42 @@
 
 {% block main %}
     {% if error %}
-        <div class="alert alert-danger">
+        <div class="alert alert-danger" role="alert">
             {{ error.messageKey|trans(error.messageData, 'security') }}
         </div>
     {% endif %}
 
     {#
-        This references the Stimulus controller defined in
-        "assets/controllers/login-controller.js".
+        This references the Stimulus controller defined in "assets/controllers/login-controller.js".
         See https://symfony.com/bundles/StimulusBundle/current/index.html
-        More info on Symfony UX https://ux.symfony.com
+        For more info on Symfony UX see https://ux.symfony.com
     #}
-    <div class="row" {{ stimulus_controller('login') }}{# @see assets/controllers/login-controller.js #}>
+    <div class="row" {{ stimulus_controller('login') }}>
         <div class="col-sm-5">
             <div class="well">
                 <form action="{{ path('security_login') }}" method="post">
                     <fieldset>
                         <legend><twig:ux:icon name="tabler:lock"/> {{ 'title.login'|trans }}</legend>
-                        <div class="form-group">
-                            <label for="username">{{ 'label.username'|trans }}</label>
-                            <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control" {{ stimulus_target('login', 'username') }} />
+                        <div class="mb-3">
+                            <label class="form-label" for="username">{{ 'label.username'|trans }}</label>
+                            <input class="form-control" {{ stimulus_target('login', 'username') }} id="username" name="_username" required="required" type="text" value="{{ last_username }}">
                         </div>
 
-                        <div class="form-group form-group-password">
-                            <label for="password">{{ 'label.password'|trans }}</label>
-                            <input type="password" id="password" name="_password" class="form-control" {{ stimulus_target('login', 'password') }} />
-                            <button class="btn btn-primary pull-right" type="button" {{ stimulus_action('login', 'togglePasswordInputType') }}><twig:ux:icon name="tabler:eye" aria-hidden="false" aria-label="Toggle password visibility"/></button>
+                        <div class="mb-3">
+                            <label class="form-label" for="password">{{ 'label.password'|trans }}</label>
+                            <div class="input-group">
+                                <input class="form-control" {{ stimulus_target('login', 'password') }} id="password" name="_password" required="required" type="password">
+                                <button class="btn btn-primary" type="button" {{ stimulus_action('login', 'togglePasswordInputType') }}><twig:ux:icon name="tabler:eye" aria-hidden="false" aria-label="Toggle password visibility"/></button>
+                            </div>
                         </div>
 
-                        <div class="form-group">
-                            <label>
-                                <input type="checkbox" name="_remember_me" checked/>
-                                {{ 'label.remember_me'|trans }}
-                            </label>
+                        <div class="mb-3 form-check">
+                            <input class="form-check-input" id="remember_me" name="_remember_me" type="checkbox" checked>
+                            <label class="form-check-label" for="remember_me">{{ 'label.remember_me'|trans }}</label>
                         </div>
-                        <input type="hidden" name="_target_path" value="{{ app.request.get('redirect_to') }}"/>
-                        <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}"/>
+
+                        <input type="hidden" name="_target_path" value="{{ app.request.get('redirect_to') }}">
+                        <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
                         <button type="submit" class="btn btn-primary">
                             <twig:ux:icon name="tabler:login"/> {{ 'action.sign_in'|trans }}
                         </button>
@@ -89,18 +89,16 @@
 
             <div id="login-users-help" class="card">
                 <div class="card-body">
-                    <p>
-                        <span class="badge badge-success">{{ 'note'|trans }}</span>
-                        {{ 'help.reload_fixtures'|trans }}<br/>
-
-                        <code class="console">$ php bin/console doctrine:fixtures:load</code>
+                    <p class="card-text">
+                        <span class="badge text-bg-info">{{ 'note'|trans }}</span>
+                        {{ 'help.reload_fixtures'|trans }}<br>
+                        <code class="d-block my-2 p-2">$ php bin/console doctrine:fixtures:load</code>
                     </p>
 
-                    <p>
-                        <span class="badge badge-success">{{ 'tip'|trans }}</span>
-                        {{ 'help.add_user'|trans }}<br/>
-
-                        <code class="console">$ php bin/console app:add-user</code>
+                    <p class="card-text">
+                        <span class="badge text-bg-info">{{ 'tip'|trans }}</span>
+                        {{ 'help.add_user'|trans }}<br>
+                        <code class="d-block my-2 p-2">$ php bin/console app:add-user</code>
                     </p>
                 </div>
             </div>
