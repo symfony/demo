@@ -40,8 +40,8 @@
                         <div class="navbar-collapse collapse" id="appNavbar">
                             <ul class="navbar-nav ml-auto">
                                 {% block header_navigation_links %}
-                                    <li class="nav-item{{ _route == 'blog_index' ? ' active' : '' }}">
-                                        <a class="nav-link" href="{{ path('blog_index') }}">
+                                    <li class="nav-item">
+                                        <a class="nav-link {{- _route == 'blog_index' ? ' active' -}}" href="{{ path('blog_index') }}">
                                             <twig:ux:icon name="tabler:home"/> {{ 'menu.homepage'|trans }}
                                         </a>
                                     </li>
@@ -54,8 +54,10 @@
                                     {% endif %}
                                 {% endblock %}
 
-                                <li class="nav-item{{ _route == 'blog_search' ? ' active' : '' }}">
-                                    <a class="nav-link" href="{{ path('blog_search') }}"> <twig:ux:icon name="tabler:search"/> {{ 'menu.search'|trans }}</a>
+                                <li class="nav-item">
+                                    <a class="nav-link {{- _route == 'blog_search' ? ' active' -}}" href="{{ path('blog_search') }}">
+                                        <twig:ux:icon name="tabler:search"/> {{ 'menu.search'|trans }}
+                                    </a>
                                 </li>
 
                                 {% if app.user %}
