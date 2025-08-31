@@ -15,15 +15,18 @@
     {{ include('blog/_post_tags.html.twig') }}
 
     <div id="post-add-comment" class="well">
-        {# The 'IS_AUTHENTICATED_FULLY' role ensures that the user has entered
-        their credentials (login + password) during this session. If they
-        are automatically logged via the 'Remember Me' functionality, they won't
-        be able to add a comment.
-        See https://symfony.com/doc/current/security/remember_me.html#forcing-the-user-to-re-authenticate-before-accessing-certain-resources
+        {#
+            The 'IS_AUTHENTICATED_FULLY' role ensures that the user has entered
+            their credentials (login + password) during this session. If they
+            are automatically logged via the 'Remember Me' functionality, they won't
+            be able to add a comment.
+            See https://symfony.com/doc/current/security/remember_me.html#forcing-the-user-to-re-authenticate-before-accessing-certain-resources
         #}
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            {# when the name of the Twig argument is the same as the name of the variable, you can omit it.
-               e.g. instead of controller('...', {post: post}) you can use controller('...', {post}) #}
+            {#
+                When the name of the Twig argument is the same as the name of the variable, you can omit it.
+                e.g. instead of controller('...', {post: post}) you can use controller('...', {post})
+            #}
             {{ render(controller('App\\Controller\\BlogController::commentForm', {post})) }}
         {% else %}
             <p>
@@ -44,9 +47,11 @@
             <a name="comment_{{ comment.id }}"></a>
             <h4 class="col-sm-3">
                 <strong>{{ comment.author.fullName }}</strong> {{ 'post.commented_on'|trans }}
-                {# it's not mandatory to set the timezone in localizeddate(). This is done to
-                   avoid errors when the 'intl' PHP extension is not available and the application
-                   is forced to use the limited "intl polyfill", which only supports UTC and GMT #}
+                {#
+                    It's not mandatory to set the timezone in format_datetime(). This is done to
+                    avoid errors when the 'intl' PHP extension is not available and the application
+                    is forced to use the limited "intl polyfill", which only supports UTC and GMT
+                #}
                 <strong>{{ comment.publishedAt|format_datetime('medium', 'short', '', 'UTC') }}</strong>
             </h4>
             <div class="col-sm-9">
@@ -69,9 +74,11 @@
         </div>
     {% endif %}
 
-    {# the parent() function includes the contents defined by the parent template
-      ('base.html.twig') for this block ('sidebar'). This is a very convenient way
-      to share common contents in different templates #}
+    {#
+        The parent() function includes the contents defined by the parent template
+        ('base.html.twig') for this block ('sidebar'). This is a very convenient way
+        to share common contents in different templates
+    #}
     {{ parent() }}
 
     {{ show_source_code(_self) }}

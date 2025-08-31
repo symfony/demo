@@ -7,7 +7,8 @@
 #}
 
 {{ form_start(form, {method: 'POST', action: path('comment_new', {'postSlug': post.slug})}) }}
-    {#  instead of displaying form fields one by one, you can also display them
+    {#
+        Instead of displaying form fields one by one, you can also display them
         all with their default options and styles just by calling to this function:
 
         {{ form_widget(form) }}
