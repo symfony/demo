@@ -3,7 +3,7 @@
         {{ 'help.show_code'|trans|raw }}
     </p>
 
-    <button type="button" class="btn btn-secondary py-3 btn-lg btn-block" data-toggle="modal" data-target="#sourceCodeModal">
+    <button type="button" class="btn btn-secondary py-3 btn-lg btn-block" data-bs-toggle="modal" data-bs-target="#sourceCodeModal">
         <twig:ux:icon name="tabler:code"/> {{ 'action.show_code'|trans }}
     </button>
 
@@ -12,23 +12,21 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title"><twig:ux:icon name="tabler:code"/> {{ 'title.source_code'|trans }}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ 'action.close'|trans }}">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ 'action.close'|trans }}"></button>
                 </div>
 
                 <div class="modal-body">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="controller-tab" data-toggle="tab" href="#controller-code" role="tab" aria-controls="home" aria-selected="true" target="_blank">{{ 'title.controller_code'|trans }}</a>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="controller-tab" data-bs-toggle="tab" data-bs-target="#controller-code" type="button" role="tab" aria-controls="controller-code" aria-selected="true">{{ 'title.controller_code'|trans }}</button>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="template-tab" data-toggle="tab" href="#template-code" role="tab" aria-controls="profile" aria-selected="false" target="_blank">{{ 'title.twig_template_code'|trans }}</a>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="template-tab" data-bs-toggle="tab" data-bs-target="#template-code" type="button" role="tab" aria-controls="template-code" aria-selected="false">{{ 'title.twig_template_code'|trans }}</button>
                         </li>
                     </ul>
 
                     <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane show active" id="controller-code" role="tabpanel" aria-labelledby="controller-tab">
+                        <div class="tab-pane show active" id="controller-code" role="tabpanel" aria-labelledby="controller-tab" tabindex="0">
                             {% if controller %}
                                 <p class="file-link">{{ link_source_file(controller.file_path, controller.starting_line) }}</p>
                                 <pre><code class="php">{{ controller.source_code }}</code></pre>
@@ -37,7 +35,7 @@
                             {% endif %}
                         </div>
 
-                        <div class="tab-pane" id="template-code" role="tabpanel" aria-labelledby="template-tab">
+                        <div class="tab-pane" id="template-code" role="tabpanel" aria-labelledby="template-tab" tabindex="0">
                             <p class="file-link">{{ link_source_file(template.file_path, template.starting_line) }}</p>
                             <pre><code class="twig">{{ template.source_code }}</code></pre>
                         </div>

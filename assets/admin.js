@@ -1,4 +1,5 @@
 import './styles/admin.css';
+import * as bootstrap from 'bootstrap';
 import 'typeahead.js';
 import Bloodhound from "bloodhound-js";
 import './js/jquery_global.js';
@@ -44,7 +45,9 @@ $(document).on('submit', 'form[data-confirmation]', function (event) {
                 $confirm.data('result', 'yes');
                 $form.find('input[type="submit"]').attr('disabled', 'disabled');
                 $form.trigger('submit');
-            })
-            .modal('show');
+            });
+
+        const myModal = new bootstrap.Modal($confirm);
+        myModal.show();
     }
 });

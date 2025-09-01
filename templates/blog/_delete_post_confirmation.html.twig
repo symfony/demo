@@ -1,4 +1,4 @@
-{# Bootstrap modal, see https://getbootstrap.com/docs/3.4/javascript/#modals #}
+{# Bootstrap modal, see https://getbootstrap.com/docs/5.3/components/modal/ #}
 <div class="modal fade" id="confirmationModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -7,10 +7,10 @@
                 <p>{{ 'delete_post_modal.body'|trans }}</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="btnNo" data-dismiss="modal">
+                <button type="button" class="btn btn-secondary" id="btnNo" data-bs-dismiss="modal">
                     <twig:ux:icon name="tabler:ban"/> {{ 'label.cancel'|trans }}
                 </button>
-                <button type="button" class="btn btn-danger" id="btnYes" data-dismiss="modal">
+                <button type="button" class="btn btn-danger" id="btnYes" data-bs-dismiss="modal">
                     <twig:ux:icon name="tabler:trash"/> {{ 'label.delete_post'|trans }}
                 </button>
             </div>

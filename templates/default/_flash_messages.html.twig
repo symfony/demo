@@ -18,13 +18,10 @@
     <div class="messages">
         {% for type, messages in app.flashes %}
             {% for message in messages %}
-                {# Bootstrap alert, see https://getbootstrap.com/docs/3.4/components/#alerts #}
+                {# Bootstrap alerts, see https://getbootstrap.com/docs/5.3/components/alerts/#dismissing #}
                 <div class="alert alert-dismissible alert-{{ type }} fade show" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="{{ 'action.close'|trans }}">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-
                     {{ message|trans }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{{ 'action.close'|trans }}"></button>
                 </div>
             {% endfor %}
         {% endfor %}

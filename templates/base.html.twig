@@ -6,11 +6,12 @@
 <!DOCTYPE html>
 <html lang="{{ app.locale }}" dir="{{ is_rtl() ? 'rtl' : 'ltr' }}">
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <meta name="view-transition" content="same-origin" />
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="view-transition" content="same-origin">
         <title>{% block title %}Symfony Demo application{% endblock %}</title>
         <link rel="alternate" type="application/rss+xml" title="{{ 'rss.title'|trans }}" href="{{ path('blog_rss') }}">
+        <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
 
         {#
             Those two blocks defines frontend entrypoint for CSS and JavaScript assets
@@ -20,7 +21,6 @@
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
-        <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
     </head>
 
     <body id="{% block body_id %}{% endblock %}" class="{{ is_rtl(app.locale) ? 'rtl' }}">
@@ -33,12 +33,11 @@
                         <a class="navbar-brand" href="{{ path('homepage') }}">
                             Symfony Demo
                         </a>
-                        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#appNavbar" aria-controls="appNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#appNavbar" aria-controls="appNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
                         </button>
-
-                        <div class="navbar-collapse collapse" id="appNavbar">
-                            <ul class="navbar-nav ml-auto">
+                        <div class="collapse navbar-collapse" id="appNavbar">
+                            <ul class="navbar-nav">
                                 {% block header_navigation_links %}
                                     <li class="nav-item{{ _route == 'blog_index' ? ' active' : '' }}">
                                         <a class="nav-link" href="{{ path('blog_index') }}">
@@ -60,24 +59,22 @@
 
                                 {% if app.user %}
                                     <li class="nav-item dropdown">
-                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="user">
-                                            <twig:ux:icon name="tabler:user"/>
-                                            <span class="caret"></span>
-                                            <span class="sr-only">{{ app.user.fullname }}</span>
+                                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <twig:ux:icon name="tabler:user"/> {{ app.user.fullname }}
                                         </a>
-                                        <div class="dropdown-menu user" role="menu" aria-labelledby="user">
-                                            <a class="dropdown-item" href="{{ path('user_edit') }}">
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="{{ path('user_edit') }}">
                                                 <twig:ux:icon name="tabler:id-badge-2"/> {{ 'menu.user'|trans }}
-                                            </a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="{{ logout_path() }}">
+                                            </a></li>
+                                            <li><hr class="dropdown-divider"></li>
+                                            <li><a class="dropdown-item" href="{{ logout_path() }}">
                                                 <twig:ux:icon name="tabler:logout"/> {{ 'menu.logout'|trans }}
-                                            </a>
-                                        </div>
+                                            </a></li>
+                                        </ul>
                                     </li>
                                 {% endif %}
 
-                                <li class="nav-item dropdown">
+                                <li class="nav-item">
                                     {% from 'default/_language_selector.html.twig' import render_language_selector %}
                                     {{ render_language_selector() }}
                                 </li>
