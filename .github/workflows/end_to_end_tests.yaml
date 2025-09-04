@@ -61,7 +61,6 @@ jobs:
             - name: Test application
               working-directory: ${{ github.job }}
               run: |
-                  rm -v .env.local
                   php bin/console about
                   symfony server:start -d --no-tls
                   curl --fail --max-time 5 --no-progress-meter --output home.html -v http://127.0.0.1:8000/
