@@ -435,38 +435,6 @@ body#homepage .jumbotron P {
    ------------------------------------------------------------------------- */
 body#login #login-users-help p {
   font-size: 15px;
-  line-height: 1.42857
-}
-
-body#login #login-users-help p:last-child {
-  margin-bottom: 0
-}
-
-body#login #login-users-help p .label {
-  margin-right: 5px
-}
-
-body#login #login-users-help p .console {
-  display: block;
-  margin: 5px 0;
-  padding: 10px
-}
-
-body#login .form-group-password {
-  position: relative;
-}
-body#login .form-group-password input {
-  padding-right: 48px;
-}
-body#login .form-group-password button {
-  background: transparent;
-  border: 0;
-  color: var(--text-color);
-  height: 45px;
-  outline: 0;
-  position: absolute;
-  bottom: 0;
-  right: 0;
 }
 
 body#login #login-help table td {
@@ -599,9 +567,4 @@ body#blog_search article.post {
 body#blog_search .post-metadata {
   font-size: 16px;
   margin-bottom: 8px;
-}
-
-.input-group button.btn {
-  padding-bottom: 0;
-  padding-top: 0;
 }
