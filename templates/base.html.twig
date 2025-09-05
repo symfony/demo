@@ -40,7 +40,7 @@
                             <ul class="navbar-nav">
                                 {% block header_navigation_links %}
                                     <li class="nav-item">
-                                        <a class="nav-link {{- _route == 'blog_index' ? ' active' -}}" href="{{ path('blog_index') }}">
+                                        <a class="nav-link {{ _route == 'blog_index' ? 'active' }}" href="{{ path('blog_index') }}">
                                             <twig:ux:icon name="tabler:home"/> {{ 'menu.homepage'|trans }}
                                         </a>
                                     </li>
@@ -54,7 +54,7 @@
                                 {% endblock %}
 
                                 <li class="nav-item">
-                                    <a class="nav-link {{- _route == 'blog_search' ? ' active' -}}" href="{{ path('blog_search') }}">
+                                    <a class="nav-link {{ _route == 'blog_search' ? 'active' }}" href="{{ path('blog_search') }}">
                                         <twig:ux:icon name="tabler:search"/> {{ 'menu.search'|trans }}
                                     </a>
                                 </li>
