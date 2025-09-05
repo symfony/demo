@@ -94,7 +94,7 @@ jobs:
                   symfony server:stop
 
     notify-on-failure:
-        if: failure()
+        if: ${{ always() && contains(needs.*.result, 'failure') }}
         name: Notify on Failure
         needs: [test-symfony-cli-installation, test-composer-create-project, test-git-clone-installation]
         runs-on: ubuntu-latest
@@ -105,28 +105,63 @@ jobs:
         steps:
             - name: Create Issue on Failure
               uses: actions/github-script@v7
+              env:
+                  NEEDS_CONTEXT: ${{ toJSON(needs) }}
               with:
                   script: |
-                      const title = `End to End Test Failed - ${new Date().toISOString().split('T')[0]}`;
-                      const body = `The daily end to end test workflow has failed.
+                      const needsContext = JSON.parse(process.env.NEEDS_CONTEXT);
 
-                      This means users may be experiencing issues installing the Symfony Demo application.
+                      // Map job ids to human-readable names used in the workflow UI
+                      const jobNames = {
+                        'test-symfony-cli-installation': 'Test Symfony CLI Installation',
+                        'test-composer-create-project': 'Test Composer Create Project',
+                        'test-git-clone-installation': 'Test Git Clone Installation',
+                      };
 
-                      **Failed Jobs:**
-                      - Check the workflow run for details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+                      const failedJobs = Object.entries(needsContext)
+                        .filter(([, v]) => v.result === 'failure')
+                        .map(([id]) => `- **${jobNames[id] || id}**: failed`);
 
-                      **Installation Methods Tested:**
-                      - Symfony CLI installation
-                      - Composer create-project
-                      - Git clone + composer install
+                      const runUrl = `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
+                      const date = new Date().toISOString().split('T')[0];
+                      const title = `E2E Test Failure: ${date}`;
 
-                      Please investigate and fix the installation issues as soon as possible.
-                      `;
+                      const body = [
+                        'The daily end-to-end test workflow has failed.',
+                        '',
+                        'This may indicate users are experiencing issues installing the Symfony Demo application.',
+                        '',
+                        `**Run**: ${runUrl}`,
+                        '',
+                        '### Failed Jobs',
+                        failedJobs.join('\n'),
+                        '',
+                        'Please investigate and fix the installation issues as soon as possible.'
+                      ].join('\n');
 
-                      github.rest.issues.create({
-                          owner: context.repo.owner,
-                          repo: context.repo.repo,
-                          title: title,
-                          body: body,
-                          labels: ['bug']
+                      // Ensure label exists
+                      const owner = context.repo.owner;
+                      const repo = context.repo.repo;
+                      const labelName = 'bug';
+                      try {
+                        await github.rest.issues.getLabel({ owner, repo, name: labelName });
+                      } catch {
+                        await github.rest.issues.createLabel({
+                          owner, repo, name: labelName, color: 'd73a4a', description: 'Something is broken'
+                        });
+                      }
+
+                      // Reuse an open issue for today if it already exists to avoid duplicates
+                      const { data: issues } = await github.rest.issues.listForRepo({
+                        owner, repo, state: 'open', labels: labelName, per_page: 100
                       });
+                      const existing = issues.find(i => i.title === title);
+
+                      if (existing) {
+                        await github.rest.issues.createComment({
+                          owner, repo, issue_number: existing.number,
+                          body: `Another failing run detected.\n\n${body}`
+                        });
+                      } else {
+                        await github.rest.issues.create({ owner, repo, title, body, labels: [labelName] });
+                      }
