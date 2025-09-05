@@ -1,18 +1,18 @@
 {#
-   This is a template fragment designed to be included in other templates
-   See https://symfony.com/doc/current/templates.html#including-templates
+    This is a template fragment designed to be included in other templates
+    See https://symfony.com/doc/current/templates.html#including-templates
 
-   A common practice to better distinguish between templates and fragments is to
-   prefix fragments with an underscore. That's why this template is called
-   '_flash_messages.html.twig' instead of 'flash_messages.html.twig'
+    A common practice to better distinguish between templates and fragments is to
+    prefix fragments with an underscore. That's why this template is called
+    '_flash_messages.html.twig' instead of 'flash_messages.html.twig'
 #}
 
 {#
-   The check is needed to prevent starting the session when looking for "flash messages":
-   https://symfony.com/doc/current/session.html#avoid-starting-sessions-for-anonymous-users
+    The check is needed to prevent starting the session when looking for "flash messages":
+    https://symfony.com/doc/current/session.html#avoid-starting-sessions-for-anonymous-users
 
-   TIP: With FOSHttpCache you can also adapt this to make it cache safe:
-   https://foshttpcachebundle.readthedocs.io/en/latest/features/helpers/flash-message.html
+    TIP: With FOSHttpCache you can also adapt this to make it cache safe:
+    https://foshttpcachebundle.readthedocs.io/en/latest/features/helpers/flash-message.html
 #}
 {% if app.request.hasPreviousSession %}
     <div class="messages">
