@@ -102,10 +102,6 @@ form legend {
 
 /* Utilities
    ------------------------------------------------------------------------- */
-.jumbotron {
-  padding: 1.5rem 1rem
-}
-
 .well {
   background-color: var(--secondary-color);
   border: 1px solid transparent;
@@ -409,26 +405,6 @@ body#homepage .page-header a.language-selector-dropdown-button:hover {
 body#homepage .page-header a.language-selector-dropdown-button .current-language {
   display: inline-flex;
   margin-inline: 5px 10px;
-}
-body#homepage .jumbotron {
-  background: var(--secondary-color);
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: center;
-  padding: 45px 15px;
-}
-body#homepage .jumbotron .btn {
-  font-size: 19px;
-  line-height: 1.33333;
-  padding: 18px 27px;
-  border-radius: 6px;
-  margin-top: 20px;
-}
-body#homepage .jumbotron P {
-  margin-bottom: 0;
-  font-size: 23px;
-  font-weight: 400
 }
 
 /* Page: 'Login'
