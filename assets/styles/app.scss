@@ -321,45 +321,6 @@ footer #footer-resources svg {
   font-size: 21px;
 }
 
-/* Forms
-   ------------------------------------------------------------------------- */
-.form-control {
-  color: var(--gray-700);
-  height: 45px;
-}
-
-.form-group .form-control:focus {
-  color: var(--text-color);
-}
-
-.form-group.has-error .form-control {
-  border-color: var(--red);
-}
-
-.form-group.has-error .control-label {
-  color: var(--red);
-}
-
-.form-group.has-error .help-block {
-  background-color: var(--red);
-  color: var(--white);
-  font-size: 15px;
-  padding: 1em
-}
-
-.form-group.has-error .help-block ul,
-.form-group.has-error .help-block li {
-  margin-bottom: 0
-}
-
-.form-group.has-error .help-block li + li {
-  margin-top: 0.5em;
-}
-
-textarea {
-  max-width: 100%
-}
-
 /* Page: 'Technical Requirements Checker'
    ------------------------------------------------------------------------- */
 body#requirements_checker header h1 {
