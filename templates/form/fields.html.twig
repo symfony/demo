@@ -8,23 +8,16 @@
 #}
 
 {% block date_time_picker_widget %}
-    <div class="input-group date">
+    <div class="input-group flatpickr">
         {{ block('datetime_widget') }}
-        <div class="input-group-append">
-            <button type="button" class="btn btn-outline-secondary">
-                <twig:ux:icon name="tabler:calendar-month" aria-hidden="false" aria-label="Pick a date"/>
-            </button>
-        </div>
+        <button class="btn btn-outline-secondary" data-toggle type="button"><twig:ux:icon name="tabler:calendar-month" /></button>
+        <button class="btn btn-outline-danger" data-clear type="button"><twig:ux:icon name="tabler:trash" /></button>
     </div>
 {% endblock %}
 
 {% block tags_input_widget %}
     <div class="input-group">
         {{ form_widget(form, {'attr': {'data-toggle': 'tagsinput', 'data-tags': tags|json_encode}}) }}
-        <div class="input-group-append">
-            <span class="input-group-text">
-                <twig:ux:icon name="tabler:tags"/>
-            </span>
-        </div>
+        <span class="input-group-text"><twig:ux:icon name="tabler:tags" /></span>
     </div>
 {% endblock %}

@@ -14,7 +14,6 @@ namespace App\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use function Symfony\Component\String\u;
 
 /**
  * Defines the custom form field type used to manipulate datetime values across
@@ -32,16 +31,12 @@ final class DateTimePickerType extends AbstractType
         $resolver->setDefaults([
             'widget' => 'single_text',
             'input' => 'datetime_immutable',
-            // if true, the browser will display the native date picker widget
+            // If true, the browser will display the native date picker widget
             // however, this app uses a custom JavaScript widget, so it must be set to false
             'html5' => false,
-            // adds a class that can be selected in JavaScript
+            // Add attributes for flatpickr usage that can be selected in JavaScript
             'attr' => [
-                'class' => 'flatpickr',
-                // Attributes for flatpickr usage
-                'data-flatpickr-class' => 'standard',
-                'data-date-locale' => u(\Locale::getDefault())->replace('_', '-')->lower(),
-                'data-date-format' => 'Y-m-d H:i',
+                'data-input' => 'data-input',
             ],
             'format' => 'yyyy-MM-dd HH:mm',
             'input_format' => 'Y-m-d H:i',
