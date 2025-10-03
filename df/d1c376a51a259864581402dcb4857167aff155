@@ -1,0 +1,34 @@
+---------------------------------------------------------------------------
+
+by stof at 2025-09-22T09:07:32Z
+
+is the icon still a trigger to open the flatpickr picker ?
+
+---------------------------------------------------------------------------
+
+by rosier at 2025-09-22T15:17:35Z
+
+> is the icon still a trigger to open the flatpickr picker ?
+
+No, the button does nothing that's why I opted to remove the button and make the calendar icon the same as the tags icon
+
+The flatpickr calendar opens when the input field gets focus or is clicked.
+
+---------------------------------------------------------------------------
+
+by stof at 2025-09-22T15:53:37Z
+
+I think the intent was that the button would also trigger the picker (see the `aria-label` for instance), but the implementation was broken.
+I think it would make sense to update `assets/js/flatpicker.js` to also use the button as trigger.
+
+---------------------------------------------------------------------------
+
+by rosier at 2025-09-23T17:19:18Z
+
+Hmm, I see.  It may take some time until I get to that.
+
+---------------------------------------------------------------------------
+
+by rosier at 2025-10-03T07:57:04Z
+
+I did add a toggle and a clear button
