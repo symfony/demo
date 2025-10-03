@@ -1,7 +1,3 @@
-:root {
-  --blue: #007bff;
-}
-
 /* Page: 'Backend post index'
    ------------------------------------------------------------------------- */
 body#admin_post_index .item-actions {
@@ -23,12 +19,4 @@ body#admin_post_show .post-tags .label-default {
 }
 body#admin_post_show .post-tags .label-default i {
   color: #95A6A7;
-}
-
-.form-control {
-  border-width: .125rem;
-}
-.form-control:focus {
-  color: var(--blue);
-  box-shadow: none;
 }
