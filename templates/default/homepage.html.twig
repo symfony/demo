@@ -19,11 +19,11 @@
 
     <div class="row">
         <div class="col-sm">
-            <div class="jumbotron">
-                <p>
+            <div class="bg-body-tertiary px-3 py-5 rounded-3">
+                <p class="fs-4">
                     {{ 'help.browse_app'|trans|raw }}
                 </p>
-                <p>
+                <p class="mb-0">
                     <a class="btn btn-primary btn-lg" href="{{ path('blog_index') }}">
                         <twig:ux:icon name="tabler:users-group" font-size="21px" /> {{ 'action.browse_app'|trans }}
                     </a>
@@ -32,11 +32,11 @@
         </div>
 
         <div class="col-sm">
-            <div class="jumbotron">
-                <p>
+            <div class="bg-body-tertiary px-3 py-5 rounded-3">
+                <p class="fs-4">
                     {{ 'help.browse_admin'|trans|raw }}
                 </p>
-                <p>
+                <p class="mb-0">
                     <a class="btn btn-primary btn-lg" href="{{ path('admin_index') }}">
                         <twig:ux:icon name="tabler:lock"/> {{ 'action.browse_admin'|trans }}
                     </a>

@@ -6,7 +6,7 @@
     {% for post in paginator.results %}
         {{ include('blog/_post.html.twig') }}
     {% else %}
-        <div class="jumbotron">{{ 'post.no_posts_found'|trans }}</div>
+        <div class="bg-body-tertiary mb-3 p-3 rounded">{{ 'post.no_posts_found'|trans }}</div>
     {% endfor %}
 
     {% if paginator.hasToPaginate %}
