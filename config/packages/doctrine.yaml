@@ -8,14 +8,15 @@ doctrine:
 
         profiling_collect_backtrace: '%kernel.debug%'
         use_savepoints: true
+
     orm:
         auto_generate_proxy_classes: true
-        enable_lazy_ghost_objects: true
         report_fields_where_declared: true
         validate_xml_mapping: true
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         identity_generation_preferences:
             Doctrine\DBAL\Platforms\PostgreSQLPlatform: identity
+
         auto_mapping: true
         mappings:
             App:
@@ -24,6 +25,7 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Entity'
                 prefix: 'App\Entity'
                 alias: App
+
         controller_resolver:
             auto_mapping: false
 
