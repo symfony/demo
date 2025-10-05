@@ -20,6 +20,12 @@ return [
         'path' => './assets/admin.js',
         'entrypoint' => true,
     ],
+    '@symfony/stimulus-bundle' => [
+        'path' => './vendor/symfony/stimulus-bundle/assets/dist/loader.js',
+    ],
+    '@symfony/ux-live-component' => [
+        'path' => './vendor/symfony/ux-live-component/assets/dist/live_controller.js',
+    ],
     '@hotwired/stimulus' => [
         'version' => '3.2.2',
     ],
@@ -27,22 +33,23 @@ return [
         'version' => '2.11.8',
     ],
     'bootstrap' => [
-        'version' => '5.3.7',
+        'version' => '5.3.8',
     ],
     'jquery' => [
         'version' => '3.7.1',
     ],
     'highlight.js/lib/core' => [
-        'version' => '11.9.0',
+        'version' => '11.11.1',
     ],
     'highlight.js/lib/languages/php' => [
-        'version' => '11.9.0',
+        'version' => '11.11.1',
     ],
     'highlight.js/lib/languages/twig' => [
-        'version' => '11.9.0',
+        'version' => '11.11.1',
     ],
-    '@symfony/stimulus-bundle' => [
-        'path' => './vendor/symfony/stimulus-bundle/assets/dist/loader.js',
+    'highlight.js/styles/github-dark-dimmed.css' => [
+        'version' => '11.11.1',
+        'type' => 'css',
     ],
     'flatpickr' => [
         'version' => '4.6.13',
@@ -52,10 +59,6 @@ return [
     ],
     'flatpickr/dist/flatpickr.min.css' => [
         'version' => '4.6.13',
-        'type' => 'css',
-    ],
-    'highlight.js/styles/github-dark-dimmed.css' => [
-        'version' => '11.9.0',
         'type' => 'css',
     ],
     'lato-font/css/lato-font.css' => [
@@ -85,8 +88,5 @@ return [
     ],
     'bootstrap-tagsinput' => [
         'version' => '0.7.1',
-    ],
-    '@symfony/ux-live-component' => [
-        'path' => './vendor/symfony/ux-live-component/assets/dist/live_controller.js',
     ],
 ];
