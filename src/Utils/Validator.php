@@ -12,6 +12,7 @@
 namespace App\Utils;
 
 use Symfony\Component\Console\Exception\InvalidArgumentException;
+
 use function Symfony\Component\String\u;
 
 /**
