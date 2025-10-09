@@ -18,10 +18,8 @@ use function Symfony\Component\String\u;
 
 /**
  * Defines the properties of the Comment entity to represent the blog comments.
- * See https://symfony.com/doc/current/doctrine.html#creating-an-entity-class.
  *
- * Tip: if you have an existing database, you can generate these entity class automatically.
- * See https://symfony.com/doc/current/doctrine/reverse_engineering.html
+ * See https://symfony.com/doc/current/doctrine.html#creating-an-entity-class
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
