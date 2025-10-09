@@ -20,10 +20,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Defines the properties of the User entity to represent the application users.
- * See https://symfony.com/doc/current/doctrine.html#creating-an-entity-class.
  *
- * Tip: if you have an existing database, you can generate these entity class automatically.
- * See https://symfony.com/doc/current/doctrine/reverse_engineering.html
+ * See https://symfony.com/doc/current/doctrine.html#creating-an-entity-class
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
