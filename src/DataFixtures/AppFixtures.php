@@ -20,6 +20,7 @@ use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\String\AbstractUnicodeString;
 use Symfony\Component\String\Slugger\SluggerInterface;
+
 use function Symfony\Component\String\u;
 
 final class AppFixtures extends Fixture
@@ -127,9 +128,9 @@ final class AppFixtures extends Fixture
     }
 
     /**
-     * @throws \Exception
-     *
      * @return array<int, array{0: string, 1: AbstractUnicodeString, 2: string, 3: string, 4: \DateTimeImmutable, 5: User, 6: array<Tag>}>
+     *
+     * @throws \Exception
      */
     private function getPostData(): array
     {
@@ -245,9 +246,9 @@ final class AppFixtures extends Fixture
     }
 
     /**
-     * @throws \Exception
-     *
      * @return array<Tag>
+     *
+     * @throws \Exception
      */
     private function getRandomTags(): array
     {
