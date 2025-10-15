@@ -14,7 +14,7 @@
 {{ form_start(form, {attr: attr|default({})}) }}
     {{ form_widget(form) }}
 
-    <button type="submit" class="{{ button_css|default("btn btn-primary") }}">
+    <button type="submit" class="{{ button_css|default('btn btn-primary') }}">
         <twig:ux:icon name="tabler:save-changes"/> {{ button_label|default('label.create_post'|trans) }}
     </button>
 

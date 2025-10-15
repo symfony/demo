@@ -30,7 +30,7 @@
             {{ render(controller('App\\Controller\\BlogController::commentForm', {post})) }}
         {% else %}
             <p>
-                <a class="btn btn-success" href="{{ path('security_login', {'redirect_to': app.request.pathInfo}) }}">
+                <a class="btn btn-success" href="{{ path('security_login', {redirect_to: app.request.pathInfo}) }}">
                     <twig:ux:icon name="tabler:login"/> {{ 'action.sign_in'|trans }}
                 </a>
                 {{ 'post.to_publish_a_comment'|trans }}
@@ -39,7 +39,7 @@
     </div>
 
     <h3>
-        <twig:ux:icon name="tabler:messages"/> {{ 'post.num_comments'|trans({ 'count': post.comments|length }) }}
+        <twig:ux:icon name="tabler:messages"/> {{ 'post.num_comments'|trans({count: post.comments|length}) }}
     </h3>
 
     {% for comment in post.comments %}
