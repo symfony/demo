@@ -38,7 +38,7 @@
                             <label class="form-check-label" for="remember_me">{{ 'label.remember_me'|trans }}</label>
                         </div>
 
-                        <input type="hidden" name="_target_path" value="{{ app.request.get('redirect_to') }}">
+                        <input type="hidden" name="_target_path" value="{{ app.request.query.get('redirect_to') }}">
                         <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
                         <button type="submit" class="btn btn-primary">
                             <twig:ux:icon name="tabler:login"/> {{ 'action.sign_in'|trans }}
