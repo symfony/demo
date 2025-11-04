@@ -3,8 +3,8 @@
     "license": "MIT",
     "type": "project",
     "description": "Symfony Demo Application",
-    "minimum-stability": "stable",
-    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "prefer-stable": false,
     "require": {
         "php": ">=8.2",
         "ext-ctype": "*",
@@ -111,7 +111,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": true,
-            "require": "7.3.*"
+            "require": "7.4.*"
         }
     }
 }

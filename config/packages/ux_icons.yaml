@@ -1,8 +1,25 @@
+# Full configuration reference: https://symfony.com/bundles/ux-icons/current/index.html#configuration
 ux_icons:
+
+    # Default HTML attributes to add to all icons
     default_icon_attributes:
-        width: 1.2em
-        height: 1.2em
+
+        # Use current text color to fill the icon
+        fill: currentColor
+
+        # Default dimensions
+        width: '1.2em'
+        height: '1.2em'
+
         style: 'position: relative; top: -2px;'
 
     aliases:
         'tabler:save-changes': 'tabler:device-floppy'
+
+    # Throw an exception if an icon is not
+    ignore_not_found: false
+
+when@prod:
+    ux_icons:
+        # Suppress exceptions for missing icons in production
+        ignore_not_found: true

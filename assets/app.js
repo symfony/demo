@@ -1,5 +1,5 @@
 // start the Stimulus application
-import './bootstrap.js';
+import './stimulus_bootstrap.js';
 import './styles/app.scss';
 import 'highlight.js/styles/github-dark-dimmed.css';
 import 'lato-font/css/lato-font.css';

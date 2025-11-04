@@ -1,3 +1,12 @@
+# yaml-language-server: $schema=../vendor/symfony/routing/Loader/schema/routing.schema.json
+
+# This file is the entry point to configure the routes of your app.
+# Methods with the #[Route] attribute are automatically imported.
+# See also https://symfony.com/doc/current/routing.html
+
+# To list all registered routes, run the following command:
+#   php bin/console debug:router
+
 # These lines define a route using YAML configuration. The controller used by
 # the route (FrameworkBundle:Template:template) is a convenient shortcut when
 # the template can be rendered without executing any logic in your own controller.
@@ -10,10 +19,7 @@ homepage:
         _locale: '%app.locale%'
 
 controllers:
-    resource:
-        path: '../src/Controller/'
-        namespace: App\Controller
-    type: attribute
+    resource: routing.controllers
     prefix: /{_locale}
     defaults:
         _locale: '%app.locale%'
