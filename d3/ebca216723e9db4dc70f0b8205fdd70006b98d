@@ -1,0 +1,60 @@
+---------------------------------------------------------------------------
+
+by stof at 2025-11-04T15:04:43Z
+
+As discussed in https://github.com/symfony/symfony/issues/62195, the changes done in Symfony 7.4 to support all syntaxes for CSS imports are breaking things for SassBundle which was relying on the fact that the way Sass imports are defined was not matched by the regex of CSS (which is not true anymore) and has not been adapted.
+
+As I commented in this issue, there is a workaround for that. If you use Sass modules (i.e. using `@use` instead of `@import` in your Sass files), you won't be impacted by the issue (as this `@use` at-rule won't look like a CSS import at all). And at the same time, it will use the recommended Sass syntax (using `@import` in Sass is deprecated).
+However, I'm not sure Bootswatch supports using modules yet.
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2025-11-24T12:23:02Z
+
+I tried changing our `@import` by `@use` but then I see other errors:
+
+```
+Error: This at-rule is not allowed here.
+  ╷
+9 │   @use url("#{$web-font-path}");
+  │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  assets/styles/bootswatch/_bootswatch.scss 9:3  @use
+  assets/styles/app.scss 4:1                     root stylesheet
+
+In PreAssetsCompileEventListener.php line 42:
+
+  Error compiling sass: "Error: This at-rule is not allowed here.
+    ╷
+  9 │   @use url("#{$web-font-path}");
+    │   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ╵
+    assets/styles/bootswatch/_bootswatch.scss 9:3  @use
+    assets/styles/app.scss 4:1                     root stylesheet
+  "
+```
+
+Another example:
+
+```
+Error: Undefined variable.
+   ╷
+24 │     color: $dark;
+   │            ^^^^^
+   ╵
+  assets/styles/bootswatch/_bootswatch.scss 24:12  @use
+  assets/styles/app.scss 4:1                       root stylesheet
+
+In PreAssetsCompileEventListener.php line 42:
+
+  Error compiling sass: "Error: Undefined variable.
+     ╷
+  24 │     color: $dark;
+     │            ^^^^^
+     ╵
+    assets/styles/bootswatch/_bootswatch.scss 24:12  @use
+    assets/styles/app.scss 4:1                       root stylesheet
+  "
+```
+
+So, let's merge this as a temporary fix and let's try to fix this properly in a future PR. Thanks!
