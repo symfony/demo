@@ -35,7 +35,6 @@ when@test:
 when@prod:
     doctrine:
         orm:
-            proxy_dir: '%kernel.build_dir%/doctrine/orm/Proxies'
             query_cache_driver:
                 type: pool
                 pool: doctrine.system_cache_pool
