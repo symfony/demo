@@ -1,0 +1,105 @@
+---------------------------------------------------------------------------
+
+by nicolas-grekas at 2025-11-05T17:07:45Z
+
+<details>
+
+<summary>Some stuff that's missing (don't miss the 755 mode on bin/phpunit)</summary>
+
+```diff
+diff --git a/bin/phpunit b/bin/phpunit
+new file mode 100755
+index 0000000..ac5eef1
+--- /dev/null
++++ b/bin/phpunit
+@@ -0,0 +1,4 @@
++#!/usr/bin/env php
++<?php
++
++require dirname(__DIR__).'/vendor/phpunit/phpunit/phpunit';
+diff --git a/config/packages/asset_mapper.yaml b/config/packages/asset_mapper.yaml
+index f7653e9..b1c7f06 100644
+--- a/config/packages/asset_mapper.yaml
++++ b/config/packages/asset_mapper.yaml
+@@ -4,6 +4,8 @@ framework:
+         paths:
+             - assets/
+         missing_import_mode: strict
++        excluded_patterns:
++            - '**/assets/styles/**/_*.scss'
+
+ when@prod:
+     framework:
+diff --git a/config/packages/symfonycasts_sass.yaml b/config/packages/symfonycasts_sass.yaml
+new file mode 100644
+index 0000000..74e4375
+--- /dev/null
++++ b/config/packages/symfonycasts_sass.yaml
+@@ -0,0 +1,3 @@
++symfonycasts_sass:
++    root_sass:
++        - 'assets/styles/app.scss'
+diff --git a/symfony.lock b/symfony.lock
+index 43a348e..4bcaf6d 100644
+--- a/symfony.lock
++++ b/symfony.lock
+@@ -215,21 +215,6 @@
+             "config/packages/monolog.yaml"
+         ]
+     },
+-    "symfony/phpunit-bridge": {
+-        "version": "7.2",
+-        "recipe": {
+-            "repo": "github.com/symfony/recipes",
+-            "branch": "main",
+-            "version": "6.3",
+-            "ref": "a411a0480041243d97382cac7984f7dce7813c08"
+-        },
+-        "files": [
+-            ".env.test",
+-            "bin/phpunit",
+-            "phpunit.xml.dist",
+-            "tests/bootstrap.php"
+-        ]
+-    },
+     "symfony/property-info": {
+         "version": "7.3",
+         "recipe": {
+@@ -371,7 +356,17 @@
+         ]
+     },
+     "symfonycasts/sass-bundle": {
+-        "version": "v0.7.0"
++        "version": "0.8",
++        "recipe": {
++            "repo": "github.com/symfony/recipes",
++            "branch": "main",
++            "version": "0.5",
++            "ref": "c891eb9a33f522440ec7dfc0dae3f63ce3a9ee87"
++        },
++        "files": [
++            "config/packages/symfonycasts_sass.yaml",
++            "assets/styles/app.scss"
++        ]
+     },
+     "twig/extra-bundle": {
+         "version": "v3.20.0"
+```
+
+</details>
+
+---------------------------------------------------------------------------
+
+by yceruto at 2025-11-05T17:45:07Z
+
+Should we also upgrade the min php version to 8.4? Like this we can update also the codebase with latest php features
+
+---------------------------------------------------------------------------
+
+by rosier at 2025-11-16T16:15:07Z
+
+> Should we also upgrade the min php version to 8.4? Like this we can update also the codebase with latest php features
+
+I think we should first do a release with Symfony 7.4 and bump the php version for the release with Symfony 8.0.
+
+This way we stay in sync with the required php versions of Symfony. It also gives us a bit more time to update the codebase with latest features
