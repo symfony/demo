@@ -17,11 +17,10 @@ use App\Utils\Validator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Attribute\Argument;
 use Symfony\Component\Console\Attribute\AsCommand;
+use Symfony\Component\Console\Attribute\Interact;
 use Symfony\Component\Console\Attribute\Option;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\RuntimeException;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Stopwatch\Stopwatch;
@@ -55,8 +54,6 @@ use function Symfony\Component\String\u;
 )]
 final class AddUserCommand extends Command
 {
-    private SymfonyStyle $io;
-
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
         private readonly UserPasswordHasherInterface $passwordHasher,
@@ -66,32 +63,11 @@ final class AddUserCommand extends Command
         parent::__construct();
     }
 
-    /**
-     * This optional method is the first one executed for a command and is useful
-     * to initialize properties based on the input arguments and options.
-     */
-    protected function initialize(InputInterface $input, OutputInterface $output): void
-    {
-        // SymfonyStyle is an optional feature that Symfony provides so you can
-        // apply a consistent look to the commands of your application.
-        // See https://symfony.com/doc/current/console/style.html
-        $this->io = new SymfonyStyle($input, $output);
-    }
-
-    /**
-     * This method is executed after initialize() and before __invoke(). Its purpose
-     * is to check if some options/arguments are missing and interactively ask the user
-     * for those values.
-     *
-     * This method is completely optional. If you are developing an internal console
-     * command, you probably should not implement this method because it requires
-     * quite a lot of work. However, if the command is meant to be used by external
-     * users, this method is a nice way to fall back and prevent errors.
-     */
-    protected function interact(InputInterface $input, OutputInterface $output): void
+    #[Interact]
+    public function prompt(SymfonyStyle $io): void
     {
         /** @var string|null $username */
-        $username = $input->getArgument('username');
+        $username = $io->getArgument('username');
         /** @var string|null $password */
         $password = $input->getArgument('password');
         /** @var string|null $email */
@@ -103,8 +79,8 @@ final class AddUserCommand extends Command
             return;
         }
 
-        $this->io->title('Add User Command Interactive Wizard');
-        $this->io->text([
+        $io->title('Add User Command Interactive Wizard');
+        $io->text([
             'If you prefer to not use this interactive wizard, provide the',
             'arguments required by this command as follows:',
             '',
@@ -115,7 +91,7 @@ final class AddUserCommand extends Command
 
         // Ask for the username if it's not defined
         if (null !== $username) {
-            $this->io->text(' > <info>Username</info>: '.$username);
+            $io->text(' > <info>Username</info>: '.$username);
         } else {
             $username = $this->io->ask('Username', null, $this->validator->validateUsername(...));
             $input->setArgument('username', $username);
@@ -123,7 +99,7 @@ final class AddUserCommand extends Command
 
         // Ask for the password if it's not defined
         if (null !== $password) {
-            $this->io->text(' > <info>Password</info>: '.u('*')->repeat(u($password)->length()));
+            $io->text(' > <info>Password</info>: '.u('*')->repeat(u($password)->length()));
         } else {
             $password = $this->io->askHidden('Password (your type will be hidden)', $this->validator->validatePassword(...));
             $input->setArgument('password', $password);
@@ -131,17 +107,17 @@ final class AddUserCommand extends Command
 
         // Ask for the email if it's not defined
         if (null !== $email) {
-            $this->io->text(' > <info>Email</info>: '.$email);
+            $io->text(' > <info>Email</info>: '.$email);
         } else {
-            $email = $this->io->ask('Email', null, $this->validator->validateEmail(...));
+            $email = $io->ask('Email', null, $this->validator->validateEmail(...));
             $input->setArgument('email', $email);
         }
 
         // Ask for the full name if it's not defined
         if (null !== $fullName) {
-            $this->io->text(' > <info>Full Name</info>: '.$fullName);
+            $io->text(' > <info>Full Name</info>: '.$fullName);
         } else {
-            $fullName = $this->io->ask('Full Name', null, $this->validator->validateFullName(...));
+            $fullName = $io->ask('Full Name', null, $this->validator->validateFullName(...));
             $input->setArgument('full-name', $fullName);
         }
     }
@@ -155,6 +131,7 @@ final class AddUserCommand extends Command
      * @see https://symfony.com/doc/current/console/input.html
      */
     public function __invoke(
+        SymfonyStyle $io,
         #[Argument('The username of the new user')] string $username,
         #[Argument('The plain password of the new user', 'password')] string $plainPassword,
         #[Argument('The email of the new user')] string $email,
