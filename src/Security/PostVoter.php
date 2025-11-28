@@ -50,12 +50,23 @@ final class PostVoter extends Voter
 
         // the user must be logged in; if not, deny permission
         if (!$user instanceof User) {
+            // votes can include explanations about the decisions. These can be:
+            //   * internal: not shown to the end user, but useful for logging or debugging (you can include technical details)
+            //   * public: (as in this case) meant to be shown to the end user (make sure to not include sensitive information)
+            $vote?->addReason(\sprintf('There is no user logged in, so it\'s not possible to %s the blog post.', $attribute));
+
             return false;
         }
 
         // the logic of this voter is pretty simple: if the logged-in user is the
         // author of the given blog post, grant permission; otherwise, deny it.
         // (the supports() method guarantees that $post is a Post object)
-        return $user === $post->getAuthor();
+        if ($user === $post->getAuthor()) {
+            return true;
+        }
+
+        $vote?->addReason(\sprintf('You can\'t %s this blog post because you are not its author.', $attribute));
+
+        return false;
     }
 }
