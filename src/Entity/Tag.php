@@ -23,7 +23,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 #[ORM\Entity]
 #[ORM\Table(name: 'symfony_demo_tag')]
-class Tag implements \JsonSerializable
+class Tag implements \Stringable, \JsonSerializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
