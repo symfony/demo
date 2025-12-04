@@ -1,0 +1,39 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2025-11-28T07:38:28Z
+
+I'm having some troubles updating the invokable commands:
+
+1) We use a service to validate the arguments, and we can't use that in the `validator` callback option of `#[Ask]`.
+
+2) Also, I'm having issues getting the values of arguments in the `#[Interact]` prompt method 😓
+
+3) The `maxAttempts: 3` option in `#[Ask]` doesn't work for me. I see the `Enter the username` prompt, press Enter and the command exists with a message error instead of asking again.
+
+Any help is appreciated. Thanks.
+
+---------------------------------------------------------------------------
+
+by yceruto at 2025-11-29T10:31:24Z
+
+now that we are using 8.4, what about validating the values using property hook approach?
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2025-11-29T12:17:57Z
+
+Sorry, but I don't know exactly how to do that 🤔
+
+---------------------------------------------------------------------------
+
+by seb-jean at 2025-11-30T19:27:57Z
+
+Would it be worthwhile to add the [Doctrine DatePoint Type](https://symfony.com/blog/new-in-symfony-7-3-dx-improvements-part-1#datepoint-doctrine-type) (Symfony 7.3)?
+
+---------------------------------------------------------------------------
+
+by yceruto at 2025-12-01T09:45:24Z
+
+>now that we are using 8.4, what about validating the values using property hook approach?
+
+Never mind, I thought the 8.0 upgrade had been merged at this point. We can start introducing these new features now, but with PHP 8.4 as the min requirement it will be much easier to implement
