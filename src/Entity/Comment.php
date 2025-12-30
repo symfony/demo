@@ -13,6 +13,7 @@ namespace App\Entity;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Clock\DatePoint;
 use Symfony\Component\Validator\Constraints as Assert;
 
 use function Symfony\Component\String\u;
@@ -43,8 +44,8 @@ class Comment
     #[Assert\Length(min: 5, max: 10000, minMessage: 'comment.too_short', maxMessage: 'comment.too_long')]
     private ?string $content = null;
 
-    #[ORM\Column]
-    private \DateTimeImmutable $publishedAt;
+    #[ORM\Column(type: 'date_point')]
+    private DatePoint $publishedAt;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
@@ -52,7 +53,7 @@ class Comment
 
     public function __construct()
     {
-        $this->publishedAt = new \DateTimeImmutable();
+        $this->publishedAt = new DatePoint();
     }
 
     #[Assert\IsTrue(message: 'comment.is_spam')]
@@ -78,12 +79,12 @@ class Comment
         $this->content = $content;
     }
 
-    public function getPublishedAt(): \DateTimeImmutable
+    public function getPublishedAt(): DatePoint
     {
         return $this->publishedAt;
     }
 
-    public function setPublishedAt(\DateTimeImmutable $publishedAt): void
+    public function setPublishedAt(DatePoint $publishedAt): void
     {
         $this->publishedAt = $publishedAt;
     }
