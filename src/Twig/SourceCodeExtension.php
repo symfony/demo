@@ -167,16 +167,12 @@ final class SourceCodeExtension
     {
         $codeLines = u($code)->split("\n");
 
-        $indentedOrBlankLines = array_filter($codeLines, static function ($lineOfCode) {
-            return u($lineOfCode)->isEmpty() || u($lineOfCode)->startsWith('    ');
-        });
+        $indentedOrBlankLines = array_filter($codeLines, static fn ($lineOfCode) => u($lineOfCode)->isEmpty() || u($lineOfCode)->startsWith('    '));
 
         $codeIsIndented = \count($indentedOrBlankLines) === \count($codeLines);
 
         if ($codeIsIndented) {
-            $unindentedLines = array_map(static function ($lineOfCode) {
-                return u($lineOfCode)->after('    ');
-            }, $codeLines);
+            $unindentedLines = array_map(static fn ($lineOfCode) => u($lineOfCode)->after('    '), $codeLines);
             $code = u("\n")->join($unindentedLines)->toString();
         }
 

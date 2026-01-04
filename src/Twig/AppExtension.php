@@ -66,7 +66,7 @@ final class AppExtension
     #[AsTwigFunction('is_rtl')]
     public function isRtl(?string $locale = null): bool
     {
-        $locale = $locale ?? $this->defaultLocale;
+        $locale ??= $this->defaultLocale;
 
         return \in_array($locale, ['ar', 'fa', 'he', 'ur', 'ps', 'sd'], true);
     }

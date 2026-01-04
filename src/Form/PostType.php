@@ -73,7 +73,7 @@ final class PostType extends AbstractType
             // form events let you modify information or fields at different steps
             // of the form handling process.
             // See https://symfony.com/doc/current/form/events.html
-            ->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
+            ->addEventListener(FormEvents::SUBMIT, function (FormEvent $event): void {
                 /** @var Post $post */
                 $post = $event->getData();
                 if (null === $post->getSlug() && null !== $post->getTitle()) {
