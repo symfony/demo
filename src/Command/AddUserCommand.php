@@ -220,25 +220,25 @@ final class AddUserCommand extends Command
      * code readability.
      */
     public const HELP = <<<'HELP'
-        The <info>%command.name%</info> command creates new users and saves them in the database:
+            The <info>%command.name%</info> command creates new users and saves them in the database:
 
-          <info>php %command.full_name%</info> <comment>username password email</comment>
+              <info>php %command.full_name%</info> <comment>username password email</comment>
 
-        By default the command creates regular users. To create administrator users,
-        add the <comment>--admin</comment> option:
+            By default the command creates regular users. To create administrator users,
+            add the <comment>--admin</comment> option:
 
-          <info>php %command.full_name%</info> username password email <comment>--admin</comment>
+              <info>php %command.full_name%</info> username password email <comment>--admin</comment>
 
-        If you omit any of the three required arguments, the command will ask you to
-        provide the missing values:
+            If you omit any of the three required arguments, the command will ask you to
+            provide the missing values:
 
-          # command will ask you for the email
-          <info>php %command.full_name%</info> <comment>username password</comment>
+              # command will ask you for the email
+              <info>php %command.full_name%</info> <comment>username password</comment>
 
-          # command will ask you for the email and password
-          <info>php %command.full_name%</info> <comment>username</comment>
+              # command will ask you for the email and password
+              <info>php %command.full_name%</info> <comment>username</comment>
 
-          # command will ask you for all arguments
-          <info>php %command.full_name%</info>
-    HELP;
+              # command will ask you for all arguments
+              <info>php %command.full_name%</info>
+        HELP;
 }

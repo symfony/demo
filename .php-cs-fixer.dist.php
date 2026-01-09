@@ -10,13 +10,13 @@
  */
 
 $fileHeaderComment = <<<COMMENT
-This file is part of the Symfony package.
+    This file is part of the Symfony package.
 
-(c) Fabien Potencier <fabien@symfony.com>
+    (c) Fabien Potencier <fabien@symfony.com>
 
-For the full copyright and license information, please view the LICENSE
-file that was distributed with this source code.
-COMMENT;
+    For the full copyright and license information, please view the LICENSE
+    file that was distributed with this source code.
+    COMMENT;
 
 return (new PhpCsFixer\Config())
     ->setFinder(
@@ -24,8 +24,11 @@ return (new PhpCsFixer\Config())
     )
     ->setRiskyAllowed(true)
     ->setRules([
+        '@PHP8x2Migration' => true,
+        '@PHP8x2Migration:risky' => true,
         '@Symfony' => true,
         '@Symfony:risky' => true,
+        'declare_strict_types' => false, // depends how project wants to handle type matching and untaint user input
         'header_comment' => ['header' => $fileHeaderComment, 'separate' => 'both'],
         'no_useless_else' => true,
         'no_useless_return' => true,

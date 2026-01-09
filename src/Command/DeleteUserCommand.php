@@ -43,15 +43,15 @@ use Symfony\Component\Console\Style\SymfonyStyle;
     name: 'app:delete-user',
     description: 'Deletes users from the database',
     help: <<<'HELP'
-        The <info>%command.name%</info> command deletes users from the database:
+            The <info>%command.name%</info> command deletes users from the database:
 
-          <info>php %command.full_name%</info> <comment>username</comment>
+              <info>php %command.full_name%</info> <comment>username</comment>
 
-        If you omit the argument, the command will ask you to
-        provide the missing value:
+            If you omit the argument, the command will ask you to
+            provide the missing value:
 
-          <info>php %command.full_name%</info>
-    HELP,
+              <info>php %command.full_name%</info>
+        HELP,
 )]
 final class DeleteUserCommand extends Command
 {
