@@ -22,7 +22,7 @@ jobs:
               with:
                   coverage: none
                   extensions: none, ctype, dom, iconv, intl, mbstring, pdo_sqlite, simplexml, tokenizer, xml, xmlwriter
-                  php-version: '8.2'
+                  php-version: '8.4'
                   tools: symfony-cli
 
             - name: Configure environment
@@ -76,7 +76,7 @@ jobs:
               with:
                   coverage: none
                   extensions: none, ctype, dom, iconv, intl, mbstring, pdo_sqlite, simplexml, tokenizer, xml, xmlwriter
-                  php-version: '8.3'
+                  php-version: '8.4'
                   tools: symfony-cli
 
             - name: Clone repository and install dependencies
