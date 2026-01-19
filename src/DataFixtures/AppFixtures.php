@@ -17,6 +17,7 @@ use App\Entity\Tag;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\Clock\DatePoint;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\String\AbstractUnicodeString;
 use Symfony\Component\String\Slugger\SluggerInterface;
@@ -85,7 +86,7 @@ final class AppFixtures extends Fixture
                 $comment = new Comment();
                 $comment->setAuthor($this->getReference('john_user', User::class));
                 $comment->setContent($this->getRandomText(random_int(255, 512)));
-                $comment->setPublishedAt(new \DateTimeImmutable('now + '.$i.'seconds'));
+                $comment->setPublishedAt(new DatePoint('now + '.$i.'seconds'));
 
                 $post->addComment($comment);
             }
@@ -128,7 +129,7 @@ final class AppFixtures extends Fixture
     }
 
     /**
-     * @return array<int, array{0: string, 1: AbstractUnicodeString, 2: string, 3: string, 4: \DateTimeImmutable, 5: User, 6: array<Tag>}>
+     * @return array<int, array{0: string, 1: AbstractUnicodeString, 2: string, 3: string, 4: DatePoint, 5: User, 6: array<Tag>}>
      *
      * @throws \Exception
      */
@@ -143,7 +144,7 @@ final class AppFixtures extends Fixture
                 $this->slugger->slug($title)->lower(),
                 $this->getRandomText(),
                 $this->getPostContent(),
-                (new \DateTimeImmutable('now - '.$i.'days'))->setTime(random_int(8, 17), random_int(7, 49), random_int(0, 59)),
+                (new DatePoint('now - '.$i.'days'))->setTime(random_int(8, 17), random_int(7, 49), random_int(0, 59)),
                 // Ensure that the first post is written by Jane Doe to simplify tests
                 $this->getReference(['jane_admin', 'tom_admin'][0 === $i ? 0 : random_int(0, 1)], User::class),
                 $this->getRandomTags(),
