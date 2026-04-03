@@ -73,6 +73,23 @@ cd my_project/
 ./bin/phpunit
 ```
 
+> **Note:** User emails are encrypted in use using a key generated automatically
+> in `.env.local` during `composer install`. If you regenerate the key (e.g. by
+> deleting `.env.local` and running `composer install` again), you **must** reload
+> the fixtures so the database is re-encrypted with the new key:
+>
+> ```bash
+> php bin/console doctrine:fixtures:load
+> ```
+>
+> The test database (`data/database_test.sqlite`) uses the fixed key defined in
+> `.env.test` (`APP_EMAIL_ENCRYPTION_KEY=000...000`). After changing the test
+> fixtures or the encryption logic, regenerate it with:
+>
+> ```bash
+> php bin/console doctrine:fixtures:load --env=test
+> ```
+
 [1]: https://symfony.com/doc/current/best_practices.html
 [2]: https://symfony.com/doc/current/setup.html#technical-requirements
 [3]: https://symfony.com/doc/current/setup/web_server_configuration.html
