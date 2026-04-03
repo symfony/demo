@@ -250,12 +250,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GromNaN/dbal.git",
-                "reference": "adbd44c2a6f3b81ebaac100a0455df38329433e3"
+                "reference": "0b6f833990dc856f0795178e09689103703e54ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GromNaN/dbal/zipball/adbd44c2a6f3b81ebaac100a0455df38329433e3",
-                "reference": "adbd44c2a6f3b81ebaac100a0455df38329433e3",
+                "url": "https://api.github.com/repos/GromNaN/dbal/zipball/0b6f833990dc856f0795178e09689103703e54ce",
+                "reference": "0b6f833990dc856f0795178e09689103703e54ce",
                 "shasum": ""
             },
             "require": {
@@ -275,7 +275,8 @@
                 "slevomat/coding-standard": "8.27.1",
                 "squizlabs/php_codesniffer": "4.0.1",
                 "symfony/cache": "^6.3.8|^7.0|^8.0",
-                "symfony/console": "^5.4|^6.3|^7.0|^8.0"
+                "symfony/console": "^5.4|^6.3|^7.0|^8.0",
+                "symfony/service-contracts": "^2|^3"
             },
             "suggest": {
                 "symfony/console": "For helpful console commands such as SQL execution and import of files."
@@ -356,7 +357,7 @@
                     "url": "https://www.doctrine-project.org/sponsorship.html"
                 }
             ],
-            "time": "2026-04-03T10:47:37+00:00"
+            "time": "2026-04-03T16:10:25+00:00"
         },
         {
             "name": "doctrine/deprecations",
@@ -412,16 +413,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GromNaN/DoctrineBundle.git",
-                "reference": "480b5af8b5731a3c81b8cc8bc5fcbbb0132ff042"
+                "reference": "1db2468a7d765df9c8a7d1eb4de12dd12306c5b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GromNaN/DoctrineBundle/zipball/480b5af8b5731a3c81b8cc8bc5fcbbb0132ff042",
-                "reference": "480b5af8b5731a3c81b8cc8bc5fcbbb0132ff042",
+                "url": "https://api.github.com/repos/GromNaN/DoctrineBundle/zipball/1db2468a7d765df9c8a7d1eb4de12dd12306c5b9",
+                "reference": "1db2468a7d765df9c8a7d1eb4de12dd12306c5b9",
                 "shasum": ""
             },
             "require": {
-                "doctrine/dbal": "^4.0",
+                "doctrine/dbal": "dev-type-registry-config as 4.4.x-dev",
                 "doctrine/deprecations": "^1.0",
                 "doctrine/persistence": "^4",
                 "doctrine/sql-formatter": "^1.0.1",
@@ -440,7 +441,7 @@
             },
             "require-dev": {
                 "doctrine/coding-standard": "^14",
-                "doctrine/orm": "^3.4.4",
+                "doctrine/orm": "dev-type-registry-instance as 3.6.x-dev",
                 "phpstan/phpstan": "^2.1.13",
                 "phpstan/phpstan-phpunit": "2.0.3",
                 "phpstan/phpstan-strict-rules": "^2",
@@ -516,7 +517,7 @@
             "support": {
                 "source": "https://github.com/GromNaN/DoctrineBundle/tree/feat/dbal-type-as-service"
             },
-            "time": "2026-04-03T11:28:08+00:00"
+            "time": "2026-04-03T13:42:43+00:00"
         },
         {
             "name": "doctrine/event-manager",
