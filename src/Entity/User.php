@@ -11,6 +11,7 @@
 
 namespace App\Entity;
 
+use App\Doctrine\Type\Base64EmailType;
 use App\Repository\UserRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -50,7 +51,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\Length(min: 2, max: 50)]
     private ?string $username = null;
 
-    #[ORM\Column(type: Types::STRING, unique: true)]
+    #[ORM\Column(type: Base64EmailType::NAME, unique: true)]
     #[Assert\Email]
     private ?string $email = null;
 
