@@ -43,7 +43,7 @@ final class EncryptedEmailType extends Type
             return null;
         }
 
-        $nonce = substr(hash('sha256', $this->key.$value, true), 0, 12);
+        $nonce = substr(hash_hmac('sha256', $value, $this->key, true), 0, 12);
         $tag = '';
         $ciphertext = openssl_encrypt($value, 'aes-256-gcm', $this->key, OPENSSL_RAW_DATA, $nonce, $tag, '', 16);
 
