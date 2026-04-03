@@ -15,9 +15,9 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-pdo_sqlite": "*",
-        "doctrine/dbal": "dev-type-registry-config",
-        "doctrine/doctrine-bundle": "dev-feat/dbal-type-as-service",
-        "doctrine/orm": "dev-type-registry-instance",
+        "doctrine/dbal": "dev-type-registry-config as 4.4.x-dev",
+        "doctrine/doctrine-bundle": "dev-feat/dbal-type-as-service as 3.3.x-dev",
+        "doctrine/orm": "dev-type-registry-instance as 3.6.x-dev",
         "league/commonmark": "^2.1",
         "symfony/apache-pack": "^1.0",
         "symfony/asset": "^8",
@@ -103,6 +103,7 @@
     "scripts": {
         "auto-scripts": {
             "-r \"@rename('.env.local.demo', '.env.local');\"": "php-script",
+            "bin/generate-env-keys": "script",
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd",
             "importmap:install": "symfony-cmd",

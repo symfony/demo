@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8f521c3aa7188a09289cdb4e3d9bdb43",
+    "content-hash": "770ae02bb45e97c56567b18e0b57409d",
     "packages": [
         {
             "name": "composer/semver",
@@ -246,11 +246,17 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "4.4.x-dev",
+            "version": "dev-type-registry-config",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GromNaN/dbal.git",
+                "reference": "adbd44c2a6f3b81ebaac100a0455df38329433e3"
+            },
             "dist": {
-                "type": "path",
-                "url": "../../doctrine-dbal",
-                "reference": "b5bd71c04aac147c269a80af9ce31005ec6967b9"
+                "type": "zip",
+                "url": "https://api.github.com/repos/GromNaN/dbal/zipball/adbd44c2a6f3b81ebaac100a0455df38329433e3",
+                "reference": "adbd44c2a6f3b81ebaac100a0455df38329433e3",
+                "shasum": ""
             },
             "require": {
                 "doctrine/deprecations": "^1.1.5",
@@ -333,10 +339,24 @@
                 "sqlserver",
                 "sqlsrv"
             ],
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "source": "https://github.com/GromNaN/dbal/tree/type-registry-config"
+            },
+            "funding": [
+                {
+                    "type": "patreon",
+                    "url": "https://www.patreon.com/phpdoctrine"
+                },
+                {
+                    "type": "tidelift",
+                    "url": "https://tidelift.com/funding/github/packagist/doctrine%2Fdbal"
+                },
+                {
+                    "type": "custom",
+                    "url": "https://www.doctrine-project.org/sponsorship.html"
+                }
+            ],
+            "time": "2026-04-03T10:47:37+00:00"
         },
         {
             "name": "doctrine/deprecations",
@@ -388,11 +408,17 @@
         },
         {
             "name": "doctrine/doctrine-bundle",
-            "version": "3.3.x-dev",
+            "version": "dev-feat/dbal-type-as-service",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GromNaN/DoctrineBundle.git",
+                "reference": "480b5af8b5731a3c81b8cc8bc5fcbbb0132ff042"
+            },
             "dist": {
-                "type": "path",
-                "url": "..",
-                "reference": "3314039c9c0595c0357b7fd28f3c71f1e0388249"
+                "type": "zip",
+                "url": "https://api.github.com/repos/GromNaN/DoctrineBundle/zipball/480b5af8b5731a3c81b8cc8bc5fcbbb0132ff042",
+                "reference": "480b5af8b5731a3c81b8cc8bc5fcbbb0132ff042",
+                "shasum": ""
             },
             "require": {
                 "doctrine/dbal": "^4.0",
@@ -487,10 +513,10 @@
                 "ORM",
                 "Persistence"
             ],
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "source": "https://github.com/GromNaN/DoctrineBundle/tree/feat/dbal-type-as-service"
+            },
+            "time": "2026-04-03T11:28:08+00:00"
         },
         {
             "name": "doctrine/event-manager",
@@ -821,11 +847,17 @@
         },
         {
             "name": "doctrine/orm",
-            "version": "3.6.x-dev",
-            "dist": {
-                "type": "path",
-                "url": "../../doctrine-orm",
+            "version": "dev-type-registry-instance",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GromNaN/doctrine-orm.git",
                 "reference": "460fdc90a9c63b67f5aeb39f16e0a07c099d122c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GromNaN/doctrine-orm/zipball/460fdc90a9c63b67f5aeb39f16e0a07c099d122c",
+                "reference": "460fdc90a9c63b67f5aeb39f16e0a07c099d122c",
+                "shasum": ""
             },
             "require": {
                 "composer-runtime-api": "^2",
@@ -906,10 +938,10 @@
                 "database",
                 "orm"
             ],
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "source": "https://github.com/GromNaN/doctrine-orm/tree/type-registry-instance"
+            },
+            "time": "2026-04-03T08:26:28+00:00"
         },
         {
             "name": "doctrine/persistence",
@@ -11498,9 +11530,32 @@
             "time": "2025-11-17T20:03:58+00:00"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "package": "doctrine/dbal",
+            "version": "dev-type-registry-config",
+            "alias": "4.4.x-dev",
+            "alias_normalized": "4.4.9999999.9999999-dev"
+        },
+        {
+            "package": "doctrine/doctrine-bundle",
+            "version": "dev-feat/dbal-type-as-service",
+            "alias": "3.3.x-dev",
+            "alias_normalized": "3.3.9999999.9999999-dev"
+        },
+        {
+            "package": "doctrine/orm",
+            "version": "dev-type-registry-instance",
+            "alias": "3.6.x-dev",
+            "alias_normalized": "3.6.9999999.9999999-dev"
+        }
+    ],
     "minimum-stability": "dev",
-    "stability-flags": {},
+    "stability-flags": {
+        "doctrine/dbal": 20,
+        "doctrine/doctrine-bundle": 20,
+        "doctrine/orm": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

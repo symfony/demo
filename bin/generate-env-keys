@@ -1,0 +1,36 @@
+#!/usr/bin/env php
+<?php
+
+/*
+ * This file is part of the Symfony package.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+/**
+ * Generates missing secret keys in .env.local.
+ * Called automatically on composer install/update.
+ */
+
+$envLocalPath = dirname(__DIR__).'/.env.local';
+$content = file_exists($envLocalPath) ? file_get_contents($envLocalPath) : '';
+
+$keys = [
+    'APP_EMAIL_ENCRYPTION_KEY' => static fn () => bin2hex(random_bytes(32)),
+];
+
+$added = [];
+foreach ($keys as $key => $generator) {
+    if (!str_contains($content, $key.'=')) {
+        $content .= PHP_EOL.$key.'='.$generator().PHP_EOL;
+        $added[] = $key;
+    }
+}
+
+if ($added !== []) {
+    file_put_contents($envLocalPath, $content);
+    echo 'Generated missing keys in .env.local: '.implode(', ', $added).PHP_EOL;
+}
