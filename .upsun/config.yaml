@@ -1,0 +1,40 @@
+# Upsun configuration, generated using AI at: 2026-04-27T06:30:55.615Z
+# AI can make mistakes. Please modify this file to suit your needs.
+applications:
+  app:
+    type: php:8.5
+    build:
+      flavor: none
+    hooks:
+      build: |
+        set -ex
+        curl -sfS https://get.symfony.com/cloud/configurator | bash
+        symfony-build
+
+        # Set runtime secrets
+        echo >> .environment 'export APP_SECRET="$PLATFORM_PROJECT_ENTROPY"'
+      deploy: |
+        set -ex
+        symfony-deploy
+    web:
+      locations:
+        /:
+          root: public
+          passthru: /index.php
+          expires: 5m
+    runtime:
+      extensions:
+        - pdo_sqlite
+        - apcu
+        - mbstring
+        - sodium
+    mounts:
+      data: # Writable storage for the SQLite database file.
+        source: storage
+      var/cache:
+        source: tmp
+      var/log:
+        source: storage
+    variables:
+      php:
+        opcache.preload: config/preload.php
