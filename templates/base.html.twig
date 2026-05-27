@@ -21,6 +21,15 @@
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
+
+        {# When using FrankenPHP to serve your application, this feature
+           automatically reloads the current page whenever you modify a file #}
+        {% set frankenphpHotReload = app.request.server.get('FRANKENPHP_HOT_RELOAD') %}
+        {% if frankenphpHotReload %}
+        <meta name="frankenphp-hot-reload:url" content="{{ frankenphpHotReload }}">
+        <script src="https://cdn.jsdelivr.net/npm/idiomorph"></script>
+        <script src="https://cdn.jsdelivr.net/npm/frankenphp-hot-reload/+esm" type="module"></script>
+        {% endif %}
     </head>
 
     <body id="{% block body_id %}{% endblock %}" class="{{ is_rtl(app.locale) ? 'rtl' }}">

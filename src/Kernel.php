@@ -17,4 +17,14 @@ use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 class Kernel extends BaseKernel
 {
     use MicroKernelTrait;
+
+    /**
+     * See: https://symfony.com/doc/current/configuration/micro_kernel_trait.html#restricting-allowed-environments.
+     *
+     * @return list<string> An array of allowed values for APP_ENV
+     */
+    private function getAllowedEnvs(): array
+    {
+        return ['dev', 'prod', 'test'];
+    }
 }
