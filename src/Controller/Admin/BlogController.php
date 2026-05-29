@@ -25,6 +25,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
+use Symfony\Component\Security\Http\Attribute\IsCsrfTokenValid;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 /**
@@ -159,15 +160,9 @@ final class BlogController extends AbstractController
      */
     #[Route('/{id:post}/delete', name: 'admin_post_delete', requirements: ['id' => Requirement::POSITIVE_INT], methods: ['POST'])]
     #[IsGranted('delete', subject: 'post')]
-    public function delete(Request $request, Post $post, EntityManagerInterface $entityManager): Response
+    #[IsCsrfTokenValid('delete', tokenKey: 'token')]
+    public function delete(Post $post, EntityManagerInterface $entityManager): Response
     {
-        /** @var string|null $token */
-        $token = $request->getPayload()->get('token');
-
-        if (!$this->isCsrfTokenValid('delete', $token)) {
-            return $this->redirectToRoute('admin_post_index', [], Response::HTTP_SEE_OTHER);
-        }
-
         // Delete the tags associated with this blog post. This is done automatically
         // by Doctrine, except for SQLite (the database used in this application)
         // because foreign key support is not enabled by default in SQLite
