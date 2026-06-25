@@ -18,10 +18,18 @@ $fileHeaderComment = <<<COMMENT
     file that was distributed with this source code.
     COMMENT;
 
+$finder = (new PhpCsFixer\Finder())
+    ->in(__DIR__.'/src')
+    ->in(__DIR__.'/tests')
+    ->exclude('var')
+    ->notPath([
+        'config/bundles.php',
+        'config/reference.php',
+    ])
+;
+
 return new PhpCsFixer\Config()
-    ->setFinder(
-        PhpCsFixer\Finder::create()->in(['src', 'tests'])->append([__FILE__])
-    )
+    ->setFinder($finder)
     ->setRiskyAllowed(true)
     ->setRules([
         '@PHP8x4Migration' => true,
