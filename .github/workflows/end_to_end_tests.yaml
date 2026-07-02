@@ -42,6 +42,23 @@ jobs:
                   curl --fail --max-time 5 --no-progress-meter --output home.html -v http://127.0.0.1:8000/
                   symfony server:stop
 
+            - name: Show diagnostics on failure
+              if: ${{ failure() }}
+              working-directory: ${{ github.job }}
+              run: |
+                  php -v
+                  php -i | grep -E "memory_limit|opcache.enable|opcache.jit" || true
+                  # retry without --fail to see if the failure is first-request-only
+                  curl -sS --max-time 15 -o /tmp/retry.html -w 'retry: %{http_code} in %{time_total}s\n' http://127.0.0.1:8000/ || true
+                  head -c 300 /tmp/retry.html || true
+                  echo '===== app logs (filtered) ====='
+                  grep -hvE "security.DEBUG|http_client.INFO|cache.INFO" var/log/*.log | tail -n 60 || true
+                  echo '===== symfony CLI / PHP-FPM logs ====='
+                  find "$HOME" -maxdepth 6 -type d -name "*symfony5*" 2>/dev/null || true
+                  for f in $(find "$HOME/.symfony5" "${XDG_DATA_HOME:-$HOME/.local/share}/symfony5" "${XDG_CONFIG_HOME:-$HOME/.config}/symfony5" -type f -name "*.log" 2>/dev/null); do echo "--- $f"; cat "$f"; done
+                  echo '===== kernel messages (crashes / OOM) ====='
+                  sudo dmesg 2>/dev/null | tail -n 30 || true
+
     test-composer-create-project:
         name: Test Composer Create Project
         runs-on: ubuntu-latest
@@ -52,6 +69,12 @@ jobs:
               with:
                   coverage: none
                   extensions: none, ctype, dom, iconv, intl, mbstring, pdo_sqlite, simplexml, tokenizer, xml, xmlwriter
+                  # setup-php enables the opcache JIT by default, but stock PHP disables it.
+                  # The tracing JIT crashes PHP-FPM while serving the first request of a
+                  # Symfony 8.1 app (reproduced with PHP 8.4 and 8.5, on x86_64 and arm64),
+                  # which made this job fail with a 502 error. Disable the JIT to test the
+                  # default PHP configuration that users actually run.
+                  ini-values: opcache.jit=disable
                   php-version: latest
                   tools: symfony-cli
 
@@ -65,6 +88,23 @@ jobs:
                   symfony server:start -d --no-tls
                   curl --fail --max-time 5 --no-progress-meter --output home.html -v http://127.0.0.1:8000/
                   symfony server:stop
+
+            - name: Show diagnostics on failure
+              if: ${{ failure() }}
+              working-directory: ${{ github.job }}
+              run: |
+                  php -v
+                  php -i | grep -E "memory_limit|opcache.enable|opcache.jit" || true
+                  # retry without --fail to see if the failure is first-request-only
+                  curl -sS --max-time 15 -o /tmp/retry.html -w 'retry: %{http_code} in %{time_total}s\n' http://127.0.0.1:8000/ || true
+                  head -c 300 /tmp/retry.html || true
+                  echo '===== app logs (filtered) ====='
+                  grep -hvE "security.DEBUG|http_client.INFO|cache.INFO" var/log/*.log | tail -n 60 || true
+                  echo '===== symfony CLI / PHP-FPM logs ====='
+                  find "$HOME" -maxdepth 6 -type d -name "*symfony5*" 2>/dev/null || true
+                  for f in $(find "$HOME/.symfony5" "${XDG_DATA_HOME:-$HOME/.local/share}/symfony5" "${XDG_CONFIG_HOME:-$HOME/.config}/symfony5" -type f -name "*.log" 2>/dev/null); do echo "--- $f"; cat "$f"; done
+                  echo '===== kernel messages (crashes / OOM) ====='
+                  sudo dmesg 2>/dev/null | tail -n 30 || true
 
     test-git-clone-installation:
         name: Test Git Clone Installation
@@ -92,6 +132,23 @@ jobs:
                   symfony server:start -d --no-tls
                   curl --fail --max-time 5 --no-progress-meter --output home.html -v http://127.0.0.1:8000/
                   symfony server:stop
+
+            - name: Show diagnostics on failure
+              if: ${{ failure() }}
+              working-directory: ${{ github.job }}
+              run: |
+                  php -v
+                  php -i | grep -E "memory_limit|opcache.enable|opcache.jit" || true
+                  # retry without --fail to see if the failure is first-request-only
+                  curl -sS --max-time 15 -o /tmp/retry.html -w 'retry: %{http_code} in %{time_total}s\n' http://127.0.0.1:8000/ || true
+                  head -c 300 /tmp/retry.html || true
+                  echo '===== app logs (filtered) ====='
+                  grep -hvE "security.DEBUG|http_client.INFO|cache.INFO" var/log/*.log | tail -n 60 || true
+                  echo '===== symfony CLI / PHP-FPM logs ====='
+                  find "$HOME" -maxdepth 6 -type d -name "*symfony5*" 2>/dev/null || true
+                  for f in $(find "$HOME/.symfony5" "${XDG_DATA_HOME:-$HOME/.local/share}/symfony5" "${XDG_CONFIG_HOME:-$HOME/.config}/symfony5" -type f -name "*.log" 2>/dev/null); do echo "--- $f"; cat "$f"; done
+                  echo '===== kernel messages (crashes / OOM) ====='
+                  sudo dmesg 2>/dev/null | tail -n 30 || true
 
     notify-on-failure:
         if: ${{ always() && contains(needs.*.result, 'failure') }}
@@ -151,17 +208,14 @@ jobs:
                         });
                       }
 
-                      // Reuse an open issue for today if it already exists to avoid duplicates
+                      // Skip if any E2E failure issue is already open, to avoid daily noise
                       const { data: issues } = await github.rest.issues.listForRepo({
-                        owner, repo, state: 'open', labels: labelName, per_page: 100
+                        owner, repo, state: 'open', per_page: 100
                       });
-                      const existing = issues.find(i => i.title === title);
-
+                      const existing = issues.find(i => i.title.startsWith('E2E Test Failure'));
                       if (existing) {
-                        await github.rest.issues.createComment({
-                          owner, repo, issue_number: existing.number,
-                          body: `Another failing run detected.\n\n${body}`
-                        });
-                      } else {
-                        await github.rest.issues.create({ owner, repo, title, body, labels: [labelName] });
+                        core.info(`Issue #${existing.number} about E2E failures is still open; not creating another one.`);
+                        return;
                       }
+
+                      await github.rest.issues.create({ owner, repo, title, body, labels: [labelName] });
