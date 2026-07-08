@@ -135,7 +135,7 @@
             </trans-unit>
             <trans-unit id="action.close">
                 <source>action.close</source>
-                <target>Blisko</target>
+                <target>Zamknij</target>
             </trans-unit>
             <trans-unit id="label.author">
                 <source>label.author</source>
@@ -190,6 +190,10 @@
                 <source>menu.toggle_nav</source>
                 <target>Przełącz nawigację</target>
             </trans-unit>
+            <trans-unit id="menu.choose_language">
+                <source>menu.choose_language</source>
+                <target>Wybierz język</target>
+            </trans-unit>
             <trans-unit id="menu.post_list">
                 <source>menu.post_list</source>
                 <target>Lista artykułów</target>
@@ -206,9 +210,21 @@
                 <source>menu.admin</source>
                 <target>Panel administracyjny</target>
             </trans-unit>
+            <trans-unit id="menu.user">
+                <source>menu.user</source>
+                <target>Konto</target>
+            </trans-unit>
             <trans-unit id="menu.logout">
                 <source>menu.logout</source>
                 <target>Wyloguj się</target>
+            </trans-unit>
+            <trans-unit id="menu.rss">
+                <source>menu.rss</source>
+                <target>Kanał RSS wpisów na blogu</target>
+            </trans-unit>
+            <trans-unit id="menu.search">
+                <source>menu.search</source>
+                <target>Szukaj</target>
             </trans-unit>
 
             <trans-unit id="post.to_publish_a_comment">
@@ -284,6 +300,15 @@
                 <target><![CDATA[Sprawdź <a href="https://symfony.com/doc">dokumentację Symfony</a>, aby uzyskać więcej informacji.]]></target>
             </trans-unit>
 
+            <trans-unit id="rss.title">
+                <source>rss.title</source>
+                <target>Blog Symfony Demo</target>
+            </trans-unit>
+            <trans-unit id="rss.description">
+                <source>rss.description</source>
+                <target>Najnowsze artykuły opublikowane na blogu Symfony Demo</target>
+            </trans-unit>
+
             <trans-unit id="paginator.previous">
                 <source>paginator.previous</source>
                 <target>Poprzednia</target>
@@ -291,6 +316,10 @@
             <trans-unit id="paginator.next">
                 <source>paginator.next</source>
                 <target>Następna</target>
+            </trans-unit>
+            <trans-unit id="paginator.current">
+                <source>paginator.current</source>
+                <target>(bieżąca)</target>
             </trans-unit>
         </body>
     </file>
