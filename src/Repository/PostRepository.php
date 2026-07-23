@@ -12,7 +12,6 @@
 namespace App\Repository;
 
 use App\Entity\Post;
-use App\Entity\Tag;
 use App\Pagination\Paginator;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -40,7 +39,7 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
-    public function findLatest(int $page = 1, ?Tag $tag = null): Paginator
+    public function findLatest(int $page = 1, ?string $tagName = null): Paginator
     {
         $qb = $this->createQueryBuilder('p')
             ->addSelect('a', 't')
@@ -51,9 +50,13 @@ class PostRepository extends ServiceEntityRepository
             ->setParameter('now', new \DateTimeImmutable())
         ;
 
-        if (null !== $tag) {
-            $qb->andWhere(':tag MEMBER OF p.tags')
-                ->setParameter('tag', $tag);
+        if (null !== $tagName) {
+            // Filter on a dedicated join instead of the 't' alias used by addSelect()
+            // so the posts are hydrated with all their tags, not only the one being
+            // filtered on.
+            $qb->innerJoin('p.tags', 'filterTag')
+                ->andWhere('filterTag.name = :tagName')
+                ->setParameter('tagName', $tagName);
         }
 
         return new Paginator($qb)->paginate($page);
