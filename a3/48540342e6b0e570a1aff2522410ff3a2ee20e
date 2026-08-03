@@ -1,0 +1,79 @@
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2023-12-04T10:50:50Z
+
+Thanks for this. The `validators.nl.xlf` and `security.nl.xlf` files look the same as the default Symfony files, right?
+
+I think we should exclude them, but let's wait for more comments about this. Thanks!
+
+---------------------------------------------------------------------------
+
+by evertharmeling at 2023-12-04T11:25:18Z
+
+Looking at:
+- default [validators.nl.xlf](https://github.com/symfony/symfony/blob/6.4/src/Symfony/Component/Validator/Resources/translations/validators.nl.xlf) it does not exactly match the one in this PR.
+- default [security.nl.xlf](https://github.com/symfony/symfony/blob/6.4/src/Symfony/Component/Security/Core/Resources/translations/security.nl.xlf) also does not exactly match the one in this PR (it's 1 translation off in count, didn't diff it on identifier)
+
+Not sure how it's exactly generated, but maybe good idea to exclude them idd.
+
+---------------------------------------------------------------------------
+
+by evertharmeling at 2023-12-05T08:37:50Z
+
+Removed the extra generated files so we can move this PR forward, we could always add those files by running the command again 😊
+
+EDIT: I've also re-extracted the translations for `en`, so I could make a clean diff on `nl` vs `en` translations, those are now in sync and (should be) complete.
+
+EDIT 2: Since the extraction of the translations aren't ordered and this is only supported via the `--dump-messages` option, the easiest way is to generate 2 outputs `bin/console translation:extract --dump-messages <lang>` (one for `en` and your language) and compare which identifiers are missing.
+
+_**tip**_: In PHPStorm you may easily diff the files by selecting them and press `cmd + d` (on mac)
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2024-06-14T10:48:05Z
+
+Evert, I'm sorry I didn't merge this one yet. The problem is that I'm not comfortable merging it as it is now.
+
+Why? Because all the other translation files use the traditional format, and this PR proposes to change the format but only for NL locale:
+
+```xml
+<!-- BEFORE -->
+<trans-unit id="http_error_500.description">
+    <source>http_error_500.description</source>
+    <target>Er is een interne serverfout opgetreden.</target>
+</trans-unit>
+
+<!-- AFTER -->
+<trans-unit id="ZYXSW95" resname="http_error_500.description">
+    <source>http_error_500.description</source>
+    <target>Er is een interne serverfout opgetreden.</target>
+</trans-unit>
+```
+
+I'm not sure the new format is better. E.g. why have a random `id` value when we already have a unique identifier for each message?
+
+So, what should we do here? Thanks!
+
+---------------------------------------------------------------------------
+
+by evertharmeling at 2024-06-18T07:36:17Z
+
+No need to apologize Javier! As in my opinion the 'symfony/demo' project should follow 'best practices' and 'symfony / industry standards'. Therefor I used the `bin/console translation:extract` command, this resulted in these (big) changes.
+So everyone working on the translation files, would generate the same files and this would prevent / decrease future conflicts etc. It also comes with the benefit that files are easier compared if they have the same order / layout, since that was necessary to find the missing translations.
+
+So the fact that the id's are randomised it due to the fact that the `translation:extract`-command exports them like that, which I guess would be best practice in a project Symfony wise? The id's don't have a real significant value do they?
+
+We could do the following things (and happy to do so):
+1. Drop the use of `translation:extract`-command and therefor have less changes and update the files manually
+2. Continue this way and create separate commits / PR's to ease the transformation (for other locales).
+
+---------------------------------------------------------------------------
+
+by javiereguiluz at 2024-06-18T08:55:48Z
+
+I'm not sure what to do here:
+
+* Keep translation files using the traditional format
+* Update all translation files with the new format created by `translation:extract`
+
+Let me ask some folks about what do: @stof and @wouterj Thanks!
