@@ -17,6 +17,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Clock\DatePoint;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -55,8 +56,8 @@ class Post
     #[Assert\Length(min: 10, minMessage: 'post.too_short_content')]
     private ?string $content = null;
 
-    #[ORM\Column]
-    private \DateTimeImmutable $publishedAt;
+    #[ORM\Column(type: 'date_point')]
+    private DatePoint $publishedAt;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
@@ -80,7 +81,7 @@ class Post
 
     public function __construct()
     {
-        $this->publishedAt = new \DateTimeImmutable();
+        $this->publishedAt = new DatePoint();
         $this->comments = new ArrayCollection();
         $this->tags = new ArrayCollection();
     }
@@ -120,12 +121,12 @@ class Post
         $this->content = $content;
     }
 
-    public function getPublishedAt(): \DateTimeImmutable
+    public function getPublishedAt(): DatePoint
     {
         return $this->publishedAt;
     }
 
-    public function setPublishedAt(\DateTimeImmutable $publishedAt): void
+    public function setPublishedAt(DatePoint $publishedAt): void
     {
         $this->publishedAt = $publishedAt;
     }
