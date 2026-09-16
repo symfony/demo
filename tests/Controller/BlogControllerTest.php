@@ -42,6 +42,22 @@ final class BlogControllerTest extends WebTestCase
         );
     }
 
+    public function testIndexFiltersByAnExistingTag(): void
+    {
+        $client = static::createClient();
+        $client->request('GET', '/en/blog/', ['tag' => 'lorem']);
+
+        $this->assertResponseIsSuccessful();
+    }
+
+    public function testIndexReturnsNotFoundForAnUnknownTag(): void
+    {
+        $client = static::createClient();
+        $client->request('GET', '/en/blog/', ['tag' => 'this-tag-does-not-exist']);
+
+        $this->assertResponseStatusCodeSame(404);
+    }
+
     public function testRss(): void
     {
         $client = static::createClient();
