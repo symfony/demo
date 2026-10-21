@@ -13,7 +13,9 @@ namespace App\Pagination;
 
 use Doctrine\ORM\QueryBuilder as DoctrineQueryBuilder;
 use Doctrine\ORM\Tools\Pagination\CountWalker;
-use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePaginator;
+use Doctrine\ORM\Tools\Pagination\OffsetPaginator;
+use Doctrine\ORM\Tools\Pagination\Window;
+use Doctrine\ORM\Tools\Pagination\WindowPage;
 
 /**
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
@@ -45,12 +47,8 @@ final class Paginator
     public function paginate(int $page = 1): self
     {
         $this->currentPage = max(1, $page);
-        $firstResult = ($this->currentPage - 1) * $this->pageSize;
 
-        $query = $this->queryBuilder
-            ->setFirstResult($firstResult)
-            ->setMaxResults($this->pageSize)
-            ->getQuery();
+        $query = $this->queryBuilder->getQuery();
 
         /** @var array<string, mixed> $joinDqlParts */
         $joinDqlParts = $this->queryBuilder->getDQLPart('join');
@@ -59,17 +57,19 @@ final class Paginator
             $query->setHint(CountWalker::HINT_DISTINCT, false);
         }
 
-        /** @var DoctrinePaginator<object> $paginator */
-        $paginator = new DoctrinePaginator($query, true);
-
         /** @var array<string, mixed> $havingDqlParts */
         $havingDqlParts = $this->queryBuilder->getDQLPart('having');
 
         $useOutputWalkers = \count($havingDqlParts ?: []) > 0;
-        $paginator->setUseOutputWalkers($useOutputWalkers);
 
-        $this->results = $paginator->getIterator();
-        $this->numResults = $paginator->count();
+        /** @var OffsetPaginator<object> $paginator */
+        $paginator = new OffsetPaginator(fetchJoinCollection: true, useOutputWalkers: $useOutputWalkers);
+
+        /** @var WindowPage<object> $windowPage */
+        $windowPage = $paginator->paginate($query, Window::fromPageNumberAndSize($this->currentPage, $this->pageSize));
+
+        $this->results = $windowPage->getIterator();
+        $this->numResults = $windowPage->getTotalCount();
 
         return $this;
     }
