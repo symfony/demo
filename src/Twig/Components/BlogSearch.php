@@ -24,8 +24,8 @@ use Symfony\UX\LiveComponent\DefaultActionTrait;
  *
  * @author Romain Monteil <monteil.romain@gmail.com>
  */
-#[AsLiveComponent(name: 'blog_search')]
-final class BlogSearchComponent
+#[AsLiveComponent]
+final class BlogSearch
 {
     use DefaultActionTrait;
 

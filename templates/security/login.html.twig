@@ -29,7 +29,7 @@
                             <label class="form-label" for="password">{{ 'label.password'|trans }}</label>
                             <div class="input-group">
                                 <input class="form-control" {{ stimulus_target('login', 'password') }} id="password" name="_password" required="required" type="password">
-                                <button class="btn btn-primary" type="button" {{ stimulus_action('login', 'togglePasswordInputType') }}><twig:ux:icon name="tabler:eye" aria-hidden="false" aria-label="Toggle password visibility"/></button>
+                                <button class="btn btn-primary" type="button" {{ stimulus_action('login', 'togglePasswordInputType') }}><twig:ux:icon name="tabler:eye" aria-label="Toggle password visibility"/></button>
                             </div>
                         </div>
 
@@ -70,7 +70,7 @@
                         <td><code>ROLE_USER</code> ({{ 'help.role_user'|trans }})</td>
                         <td>
                             <button class="btn btn-primary btn-sm" {{ stimulus_action('login', 'prefillJohnUser') }}>
-                                <twig:ux:icon name="tabler:user" aria-hidden="false" aria-label="Log in as the user John"/>
+                                <twig:ux:icon name="tabler:user" aria-label="Log in as the user John"/>
                             </button>
                         </td>
                     </tr>
@@ -80,7 +80,7 @@
                         <td><code>ROLE_ADMIN</code> ({{ 'help.role_admin'|trans }})</td>
                         <td>
                             <button class="btn btn-primary btn-sm" {{ stimulus_action('login', 'prefillJaneAdmin') }}>
-                                <twig:ux:icon name="tabler:user" aria-hidden="false" aria-label="Log in as the user Jane"/>
+                                <twig:ux:icon name="tabler:user" aria-label="Log in as the user Jane"/>
                             </button>
                         </td>
                     </tr>
