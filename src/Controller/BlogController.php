@@ -17,7 +17,6 @@ use App\Entity\User;
 use App\Event\CommentCreatedEvent;
 use App\Form\CommentType;
 use App\Repository\PostRepository;
-use App\Repository\TagRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -49,22 +48,23 @@ final class BlogController extends AbstractController
     #[Route('/rss.xml', name: 'blog_rss', defaults: ['page' => '1', '_format' => 'xml'], methods: ['GET'])]
     #[Route('/page/{page}', name: 'blog_index_paginated', defaults: ['_format' => 'html'], requirements: ['page' => Requirement::POSITIVE_INT], methods: ['GET'])]
     #[Cache(smaxage: 10)]
-    public function index(Request $request, int $page, string $_format, PostRepository $posts, TagRepository $tags): Response
+    public function index(Request $request, int $page, string $_format, PostRepository $posts): Response
     {
-        $tag = null;
+        $tagName = $request->query->has('tag') ? (string) $request->query->get('tag') : null;
+        $latestPosts = $posts->findLatest($page, $tagName);
 
-        if ($request->query->has('tag')) {
-            $tag = $tags->findOneBy(['name' => $request->query->get('tag')]);
+        // Return a 404 instead of listing every post when the requested tag does not
+        // exist, which is both more helpful for users and better for SEO.
+        if (null !== $tagName && 0 === $latestPosts->getNumResults()) {
+            throw $this->createNotFoundException('No posts found for this tag.');
         }
-
-        $latestPosts = $posts->findLatest($page, $tag);
 
         // Every template name also has two extensions that specify the format and
         // engine for that template.
         // See https://symfony.com/doc/current/templates.html#template-naming
         return $this->render('blog/index.'.$_format.'.twig', [
             'paginator' => $latestPosts,
-            'tagName' => $tag?->getName(),
+            'tagName' => $tagName,
         ]);
     }
 
