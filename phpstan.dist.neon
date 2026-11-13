@@ -13,10 +13,6 @@ parameters:
 
     ignoreErrors:
         - identifier: missingType.generics
-        -
-            message: '#^Method App\\Kernel\:\:getAllowedEnvs\(\) is unused\.$#'
-            identifier: method.unused
-            path: src/Kernel.php
 
     level: 6
     paths:
