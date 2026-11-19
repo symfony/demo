@@ -28,7 +28,7 @@ final class TagArrayToStringTransformerTest extends TestCase
      */
     public function testCreateTheRightAmountOfTags(): void
     {
-        $tags = $this->getMockedTransformer()->reverseTransform('Hello, Demo, How');
+        $tags = $this->getTestTransformer()->reverseTransform('Hello, Demo, How');
 
         $this->assertCount(3, $tags);
         $this->assertSame('Hello', $tags[0]->getName());
@@ -40,7 +40,7 @@ final class TagArrayToStringTransformerTest extends TestCase
      */
     public function testCreateTheRightAmountOfTagsWithTooManyCommas(): void
     {
-        $transformer = $this->getMockedTransformer();
+        $transformer = $this->getTestTransformer();
 
         $this->assertCount(3, $transformer->reverseTransform('Hello, Demo,, How'));
         $this->assertCount(3, $transformer->reverseTransform('Hello, Demo, How,'));
@@ -51,7 +51,7 @@ final class TagArrayToStringTransformerTest extends TestCase
      */
     public function testTrimNames(): void
     {
-        $tags = $this->getMockedTransformer()->reverseTransform('   Hello   ');
+        $tags = $this->getTestTransformer()->reverseTransform('   Hello   ');
 
         $this->assertSame('Hello', $tags[0]->getName());
     }
@@ -61,7 +61,7 @@ final class TagArrayToStringTransformerTest extends TestCase
      */
     public function testDuplicateNames(): void
     {
-        $tags = $this->getMockedTransformer()->reverseTransform('Hello, Hello, Hello');
+        $tags = $this->getTestTransformer()->reverseTransform('Hello, Hello, Hello');
 
         $this->assertCount(1, $tags);
     }
@@ -75,7 +75,7 @@ final class TagArrayToStringTransformerTest extends TestCase
             new Tag('Hello'),
             new Tag('World'),
         ];
-        $tags = $this->getMockedTransformer($persistedTags)->reverseTransform('Hello, World, How, Are, You');
+        $tags = $this->getTestTransformer($persistedTags)->reverseTransform('Hello, World, How, Are, You');
 
         $this->assertCount(5, $tags);
         $this->assertSame($persistedTags[0], $tags[0]);
@@ -92,23 +92,26 @@ final class TagArrayToStringTransformerTest extends TestCase
             new Tag('Hello'),
             new Tag('World'),
         ];
-        $transformed = $this->getMockedTransformer()->transform($persistedTags);
+        $transformed = $this->getTestTransformer()->transform($persistedTags);
 
         $this->assertSame('Hello,World', $transformed);
     }
 
     /**
-     * This helper method mocks the real TagArrayToStringTransformer class to
-     * simplify the tests. See https://phpunit.de/manual/current/en/test-doubles.html.
+     * This helper method creates a test stub of the TagRepository class for
+     * the TagArrayToStringTransformer class to simplify the tests.
+     *
+     * See https://docs.phpunit.de/en/12.5/test-doubles.html
      *
      * @param array<int, object> $findByReturnValues The values returned when calling to the findBy() method
      */
-    private function getMockedTransformer(array $findByReturnValues = []): TagArrayToStringTransformer
+    private function getTestTransformer(array $findByReturnValues = []): TagArrayToStringTransformer
     {
-        $tagRepository = $this->getMockBuilder(TagRepository::class)
+        $tagRepository = $this->getStubBuilder(TagRepository::class)
             ->disableOriginalConstructor()
-            ->getMock();
-        $tagRepository->expects($this->any())
+            ->getStub();
+
+        $tagRepository
             ->method('findBy')
             ->willReturn($findByReturnValues);
 
