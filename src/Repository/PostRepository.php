@@ -13,8 +13,10 @@ namespace App\Repository;
 
 use App\Entity\Post;
 use App\Entity\Tag;
-use App\Pagination\Paginator;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\OffsetPaginator;
+use Doctrine\ORM\Tools\Pagination\Window;
+use Doctrine\ORM\Tools\Pagination\WindowPage;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Clock\DatePoint;
 
@@ -36,12 +38,23 @@ use function Symfony\Component\String\u;
  */
 class PostRepository extends ServiceEntityRepository
 {
+    /**
+     * Use constants to define configuration options that rarely change instead
+     * of specifying them under parameters section in config/services.yaml file.
+     *
+     * See https://symfony.com/doc/current/best_practices.html#use-constants-to-define-options-that-rarely-change
+     */
+    public const PAGE_SIZE = 10;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Post::class);
     }
 
-    public function findLatest(int $page = 1, ?Tag $tag = null): Paginator
+    /**
+     * @return WindowPage<Post>
+     */
+    public function findLatest(int $page = 1, ?Tag $tag = null): WindowPage
     {
         $qb = $this->createQueryBuilder('p')
             ->addSelect('a', 't')
@@ -57,13 +70,16 @@ class PostRepository extends ServiceEntityRepository
                 ->setParameter('tag', $tag);
         }
 
-        return new Paginator($qb)->paginate($page);
+        return new OffsetPaginator()->paginate(
+            $qb,
+            Window::fromPageNumberAndSize($page, self::PAGE_SIZE),
+        );
     }
 
     /**
      * @return Post[]
      */
-    public function findBySearchQuery(string $query, int $limit = Paginator::PAGE_SIZE): array
+    public function findBySearchQuery(string $query, int $limit = self::PAGE_SIZE): array
     {
         $searchTerms = $this->extractSearchTerms($query);
 

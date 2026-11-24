@@ -12,7 +12,7 @@
 namespace App\Tests\Controller;
 
 use App\Entity\User;
-use App\Pagination\Paginator;
+use App\Repository\PostRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -36,7 +36,7 @@ final class BlogControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
 
         $this->assertCount(
-            Paginator::PAGE_SIZE,
+            PostRepository::PAGE_SIZE,
             $crawler->filter('article.post'),
             'The homepage displays the right number of posts.'
         );
@@ -50,7 +50,7 @@ final class BlogControllerTest extends WebTestCase
         $this->assertResponseHeaderSame('Content-Type', 'text/xml; charset=UTF-8');
 
         $this->assertCount(
-            Paginator::PAGE_SIZE,
+            PostRepository::PAGE_SIZE,
             $crawler->filter('item'),
             'The xml file displays the right number of posts.'
         );
