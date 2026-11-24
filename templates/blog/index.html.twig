@@ -3,7 +3,7 @@
 {% block body_id 'blog_index' %}
 
 {% block main %}
-    {% for post in paginator.results %}
+    {% for post in paginator.items %}
         {{ include('blog/_post.html.twig') }}
     {% else %}
         <div class="bg-body-tertiary mb-3 p-3 rounded">{{ 'post.no_posts_found'|trans }}</div>
@@ -15,7 +15,7 @@
             <ul class="pagination pagination-lg">
                 {% if paginator.hasPreviousPage %}
                     <li class="page-item">
-                        <a class="page-link" href="{{ path('blog_index_paginated', {page: paginator.previousPage, tag: tagName}) }}" rel="previous">
+                        <a class="page-link" href="{{ path('blog_index_paginated', {page: paginator.previousWindow.pageNumber, tag: tagName}) }}" rel="previous">
                             <twig:ux:icon name="tabler:arrow-left"/> {{ 'paginator.previous'|trans }}
                         </a>
                     </li>
@@ -25,8 +25,8 @@
                     </li>
                 {% endif %}
 
-                {% for i in 1..paginator.lastPage %}
-                    {% if i == paginator.currentPage %}
+                {% for i in 1..paginator.pageCount %}
+                    {% if i == paginator.pageNumber %}
                         <li class="page-item active">
                             <span class="page-link">{{ i }} <span class="sr-only">{{ 'paginator.current'|trans }}</span></span>
                         </li>
@@ -37,7 +37,7 @@
 
                 {% if paginator.hasNextPage %}
                     <li class="page-item">
-                        <a class="page-link" href="{{ path('blog_index_paginated', {page: paginator.nextPage, tag: tagName}) }}">
+                        <a class="page-link" href="{{ path('blog_index_paginated', {page: paginator.nextWindow.pageNumber, tag: tagName}) }}">
                             <span>{{ 'paginator.next'|trans }} <twig:ux:icon name="tabler:arrow-right"/></span>
                         </a>
                     </li>
